@@ -1,0 +1,36 @@
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+
+# Claude Code (sessões locais, não devem ir pro repo)
+.claude/projects/
+.claude/sessions/
+.claude/shell-snapshots/
+.claude/telemetry/
+.claude/file-history/
+.claude/backups/
+.claude/settings.local.json
+
+# MCP (contém chave de API do Firecrawl em texto puro)
+.mcp.json
+
+# Dependências
+node_modules/
+
+# Arquivos temporários
+*.log
+*.tmp
+
+# Drop zone do usuário (só o README vai versionado)
+dados/*
+!dados/README.md
+
+# Impeccable (detector de antipadrões de design)
+# config.json VAI versionado: é onde ficam as exceções e o porquê de cada uma.
+# O resto é cache e sessão local.
+.impeccable/*
+!.impeccable/config.json

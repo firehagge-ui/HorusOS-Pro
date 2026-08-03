@@ -1,0 +1,23 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [
+      "**/Backup*/**",
+      "**/backups/**",
+      "**/Referencias*/**",
+      "**/referencias-*/**",
+      "**/node_modules/**"
+    ],
+    "ignoreValues": [
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "clientes/aion-psicologia/**"
+        ],
+        "createdAt": "2026-07-28T22:03:40.666Z",
+        "reason": "Paleta creme+terracota escolhida de proposito para a Aion, a partir do estudo de concorrentes reais do nicho (Giuli Ragno, Valeria Movio) registrado em _memoria/design/99-checklist.md. Decisao do Marcelo, nao reflexo do modelo. O contraste dessa paleta continua sendo cobrado pela regra low-contrast, que NAO esta dispensada."
+      }
+    ]
+  }
+}

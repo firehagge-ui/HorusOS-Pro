@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Implante Dentário em Salvador | Dr. Giovanni Nascimento — Implantodontia Avançada</title>
+<meta name="description" content="Especialista em implantes, protocolo e carga imediata em Salvador. Planejamento digital, cirurgia guiada e dentes no mesmo dia. Agende sua avaliação. CRO-BA 16772.">
+<meta name="theme-color" content="#0A0A0A">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.giovanniimplantes.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dr. Giovanni Nascimento — Implantodontia Avançada em Salvador">
+<meta property="og:description" content="Implantes, protocolo e carga imediata com planejamento digital. Volte a sorrir com segurança. CRO-BA 16772.">
+<meta property="og:locale" content="pt_BR">
+
+<!-- Fontes -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   Dr. Giovanni Nascimento — Implantodontia
+   Marca: preto + dourado · Great Vibes (assinatura) + Montserrat (texto)
+   ========================================================================== */
+:root{
+  --black:#0A0A0A;
+  --graphite:#1A1A1A;
+  --graphite-2:#141414;
+  --gold:#D4AF37;
+  --gold-soft:#C9A227;
+  --gold-line:rgba(212,175,55,.28);
+  --ivory:#F6F3E9;
+  --ivory-dim:rgba(246,243,233,.66);
+  --ivory-faint:rgba(246,243,233,.42);
+  --whatsapp:#25D366;
+  --radius:14px;
+  --maxw:1180px;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --shadow:0 24px 60px -30px rgba(0,0,0,.9);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--black);
+  color:var(--ivory);
+  font-family:'Montserrat',system-ui,-apple-system,sans-serif;
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-weight:700;line-height:1.14;margin:0;letter-spacing:-.01em}
+p{margin:0}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.section{padding:96px 0;position:relative}
+@media(max-width:640px){.section{padding:64px 0}}
+
+/* ---- Assinatura / script ---- */
+.script{font-family:'Great Vibes',cursive;font-weight:400;letter-spacing:.01em;line-height:1}
+
+/* ---- Kicker (eyebrow) ---- */
+.kicker{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;
+}
+.kicker::before{content:"";width:28px;height:1px;background:var(--gold);opacity:.7}
+
+/* ---- Botões ---- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:'Montserrat',sans-serif;font-weight:600;font-size:15px;letter-spacing:.02em;
+  padding:15px 30px;border-radius:100px;cursor:pointer;border:1px solid transparent;
+  transition:transform .25s var(--ease),background .25s var(--ease),color .25s var(--ease),box-shadow .25s var(--ease);
+  min-height:48px;
+}
+.btn-gold{background:var(--gold);color:#141005;box-shadow:0 10px 30px -12px rgba(212,175,55,.6)}
+.btn-gold:hover{transform:translateY(-2px);background:#e0bf4c;box-shadow:0 16px 38px -12px rgba(212,175,55,.7)}
+.btn-ghost{background:transparent;color:var(--ivory);border-color:var(--gold-line)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.btn-wa{background:var(--whatsapp);color:#04310f}
+.btn-wa:hover{transform:translateY(-2px);filter:brightness(1.05)}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  transition:background .4s var(--ease),border-color .4s var(--ease),backdrop-filter .4s;
+  border-bottom:1px solid transparent;
+}
+header.scrolled{
+  background:rgba(10,10,10,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--gold-line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:38px;height:38px;flex:none}
+.brand-name{display:flex;flex-direction:column;line-height:1}
+.brand-name .script{font-size:26px;color:var(--gold)}
+.brand-name small{font-size:9.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--ivory-dim);margin-top:3px;font-weight:500}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--ivory-dim);transition:color .2s;position:relative;padding:6px 0}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .3s var(--ease)}
+.nav-links a:hover{color:var(--ivory)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{margin-left:8px}
+.menu-toggle{display:none;background:none;border:none;color:var(--ivory);cursor:pointer;padding:8px;min-height:44px;min-width:44px}
+@media(max-width:960px){
+  .nav-links{
+    position:fixed;inset:76px 0 auto 0;flex-direction:column;gap:0;
+    background:rgba(10,10,10,.97);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--gold-line);
+    padding:8px 24px 28px;
+    transform:translateY(-140%);transition:transform .4s var(--ease);
+    align-items:stretch;
+  }
+  .nav-links.open{transform:translateY(0)}
+  .nav-links a{padding:16px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:16px}
+  .nav-links a::after{display:none}
+  .nav-links .nav-cta{margin:18px 0 0;justify-content:center}
+  .menu-toggle{display:flex;align-items:center;justify-content:center}
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.hero{position:relative;padding:132px 0 88px;overflow:hidden}
+.hero-glow{
+  position:absolute;top:-10%;right:-8%;width:640px;height:640px;pointer-events:none;
+  background:radial-gradient(circle,rgba(212,175,55,.14),transparent 62%);
+  filter:blur(20px);z-index:0;
+}
+.hero-glow.two{top:auto;bottom:-20%;left:-14%;right:auto;width:520px;height:520px;background:radial-gradient(circle,rgba(212,175,55,.08),transparent 60%)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;position:relative;z-index:1}
+.hero h1{font-size:clamp(2.1rem,5.2vw,3.65rem);margin:8px 0 0}
+.hero h1 .gold{color:var(--gold)}
+.hero .lede{color:var(--ivory-dim);font-size:clamp(1rem,1.5vw,1.18rem);font-weight:300;margin-top:24px;max-width:34ch}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.hero-trust{display:flex;align-items:center;gap:18px;margin-top:34px;color:var(--ivory-faint);font-size:12.5px;flex-wrap:wrap}
+.hero-trust .dot{width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.7}
+.hero-portrait{position:relative}
+.hero-portrait .frame{
+  position:relative;border-radius:18px;overflow:hidden;
+  border:1px solid var(--gold-line);box-shadow:var(--shadow);
+}
+.hero-portrait .frame::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 45%,rgba(10,10,10,.55));
+}
+.hero-portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top}
+.hero-portrait .badge{
+  position:absolute;left:18px;bottom:18px;z-index:2;
+  background:rgba(10,10,10,.72);backdrop-filter:blur(8px);
+  border:1px solid var(--gold-line);border-radius:12px;padding:12px 16px;
+}
+.hero-portrait .badge b{color:var(--gold);font-size:13px;display:block;letter-spacing:.02em}
+.hero-portrait .badge span{color:var(--ivory-dim);font-size:11px}
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-portrait{max-width:420px;margin:0 auto}
+  .hero .lede{max-width:none}
+}
+
+/* ==========================================================================
+   Faixa de autoridade
+   ========================================================================== */
+.authority{border-top:1px solid var(--gold-line);border-bottom:1px solid var(--gold-line);background:var(--graphite-2)}
+.authority-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.authority-item{padding:30px 24px;text-align:center;border-right:1px solid rgba(212,175,55,.14)}
+.authority-item:last-child{border-right:none}
+.authority-item b{display:block;font-family:'Great Vibes',cursive;color:var(--gold);font-size:30px;line-height:1;margin-bottom:8px}
+.authority-item span{font-size:13px;color:var(--ivory-dim);letter-spacing:.01em}
+@media(max-width:760px){
+  .authority-grid{grid-template-columns:repeat(2,1fr)}
+  .authority-item{border-bottom:1px solid rgba(212,175,55,.14)}
+  .authority-item:nth-child(2){border-right:none}
+  .authority-item:nth-child(3),.authority-item:nth-child(4){border-bottom:none}
+}
+
+/* ==========================================================================
+   Empatia / dor
+   ========================================================================== */
+.empathy{text-align:center}
+.empathy .wrap{max-width:820px}
+.empathy h2{font-size:clamp(1.7rem,3.6vw,2.5rem);margin-bottom:24px}
+.empathy p{color:var(--ivory-dim);font-size:1.08rem;font-weight:300;margin-bottom:18px}
+.empathy .manifest{
+  font-family:'Great Vibes',cursive;color:var(--gold);
+  font-size:clamp(1.8rem,4.5vw,2.9rem);line-height:1.2;margin-top:34px;
+}
+.empathy .rule{width:56px;height:1px;background:var(--gold);margin:34px auto 0;opacity:.7}
+
+/* ==========================================================================
+   Títulos de seção
+   ========================================================================== */
+.head{max-width:640px;margin-bottom:56px}
+.head.center{margin-left:auto;margin-right:auto;text-align:center}
+.head h2{font-size:clamp(1.8rem,3.8vw,2.6rem)}
+.head p{color:var(--ivory-dim);font-weight:300;margin-top:16px;font-size:1.05rem}
+
+/* ---- Cards genéricos ---- */
+.card{
+  background:var(--graphite);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);
+  padding:34px 30px;transition:transform .35s var(--ease),border-color .35s var(--ease),background .35s;
+}
+.card:hover{transform:translateY(-4px);border-color:var(--gold-line);background:#1d1d1d}
+.icn{
+  width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--gold-line);color:var(--gold);margin-bottom:22px;background:rgba(212,175,55,.05);
+}
+.icn svg{width:26px;height:26px}
+.card h3{font-size:1.22rem;margin-bottom:12px}
+.card p{color:var(--ivory-dim);font-size:.98rem;font-weight:300}
+
+/* Tecnologia */
+.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+/* Tratamentos */
+.treat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.treat-grid .card{padding:30px 26px}
+@media(max-width:960px){.tech-grid{grid-template-columns:1fr}.treat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.treat-grid{grid-template-columns:1fr}}
+
+/* ==========================================================================
+   Como funciona
+   ========================================================================== */
+.steps{background:var(--graphite-2);border-top:1px solid var(--gold-line);border-bottom:1px solid var(--gold-line)}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:step}
+.step{position:relative;padding:34px 28px}
+.step .num{
+  font-family:'Great Vibes',cursive;color:var(--gold);font-size:52px;line-height:1;
+  display:block;margin-bottom:14px;
+}
+.step h3{font-size:1.18rem;margin-bottom:10px}
+.step p{color:var(--ivory-dim);font-weight:300;font-size:.98rem}
+.step:not(:last-child)::after{
+  content:"";position:absolute;top:44px;right:-12px;width:24px;height:1px;background:var(--gold-line);
+}
+@media(max-width:820px){.steps-grid{grid-template-columns:1fr}.step:not(:last-child)::after{display:none}}
+
+/* ==========================================================================
+   Sobre o Dr.
+   ========================================================================== */
+.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
+.about-photo{position:relative}
+.about-photo .frame{border-radius:18px;overflow:hidden;border:1px solid var(--gold-line);box-shadow:var(--shadow)}
+.about-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top}
+.about-photo .corner{position:absolute;width:34px;height:34px;border:1px solid var(--gold)}
+.about-photo .corner.tl{top:-8px;left:-8px;border-right:none;border-bottom:none}
+.about-photo .corner.br{bottom:-8px;right:-8px;border-left:none;border-top:none}
+.about h2{font-size:clamp(1.8rem,3.8vw,2.6rem);margin-bottom:22px}
+.about p{color:var(--ivory-dim);font-weight:300;margin-bottom:16px;font-size:1.03rem}
+.about .quote{
+  font-family:'Great Vibes',cursive;color:var(--gold);font-size:clamp(1.6rem,3.4vw,2.2rem);
+  line-height:1.25;margin:28px 0;
+}
+.about .cred{
+  display:inline-flex;flex-wrap:wrap;gap:10px 18px;margin-top:8px;padding-top:22px;
+  border-top:1px solid var(--gold-line);font-size:13px;color:var(--ivory-dim);
+}
+.about .cred b{color:var(--gold);font-weight:600}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr;gap:44px}.about-photo{max-width:380px;margin:0 auto}}
+
+/* ==========================================================================
+   Resultados CFO-safe
+   ========================================================================== */
+.results-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:22px}
+.result-media{border-radius:var(--radius);overflow:hidden;border:1px solid var(--gold-line);position:relative}
+.result-media img{width:100%;height:100%;object-fit:cover;min-height:280px}
+.result-media .cap{
+  position:absolute;left:0;right:0;bottom:0;padding:22px 24px;
+  background:linear-gradient(180deg,transparent,rgba(10,10,10,.9));
+}
+.result-media .cap b{color:var(--gold);font-size:14px;display:block;margin-bottom:4px}
+.result-media .cap span{color:var(--ivory-dim);font-size:13px;font-weight:300}
+.result-note{
+  background:var(--graphite);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);
+  padding:30px;display:flex;flex-direction:column;justify-content:center;
+}
+.result-note .icn{margin-bottom:18px}
+.result-note h3{font-size:1.15rem;margin-bottom:10px}
+.result-note p{color:var(--ivory-dim);font-weight:300;font-size:.95rem}
+.result-note small{display:block;margin-top:16px;color:var(--ivory-faint);font-size:11.5px;line-height:1.5}
+@media(max-width:820px){.results-grid{grid-template-columns:1fr}}
+
+/* ==========================================================================
+   Depoimentos
+   ========================================================================== */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.testi{
+  background:var(--graphite);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);
+  padding:30px 28px;position:relative;
+}
+.testi .mark{font-family:'Great Vibes',cursive;color:var(--gold-line);font-size:64px;line-height:.4;height:26px;display:block}
+.testi p{color:var(--ivory);font-weight:300;font-size:1rem;font-style:italic;margin:12px 0 22px}
+.testi .who{display:flex;align-items:center;gap:12px;border-top:1px solid rgba(212,175,55,.14);padding-top:18px}
+.testi .who .av{width:40px;height:40px;border-radius:50%;background:rgba(212,175,55,.12);color:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:15px;flex:none;border:1px solid var(--gold-line)}
+.testi .who b{font-size:14px;display:block}
+.testi .who span{font-size:12px;color:var(--ivory-faint)}
+@media(max-width:860px){.testi-grid{grid-template-columns:1fr}}
+
+/* ==========================================================================
+   FAQ
+   ========================================================================== */
+.faq{max-width:820px;margin:0 auto}
+.faq-item{border-bottom:1px solid rgba(212,175,55,.16)}
+.faq-q{
+  width:100%;background:none;border:none;color:var(--ivory);text-align:left;cursor:pointer;
+  font-family:'Montserrat',sans-serif;font-size:1.08rem;font-weight:500;
+  padding:24px 44px 24px 0;position:relative;
+}
+.faq-q::after{
+  content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);
+  color:var(--gold);font-size:26px;font-weight:300;transition:transform .3s var(--ease);
+}
+.faq-item.open .faq-q::after{transform:translateY(-50%) rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.faq-a p{color:var(--ivory-dim);font-weight:300;padding:0 44px 26px 0;font-size:1rem}
+
+/* ==========================================================================
+   CTA final
+   ========================================================================== */
+.cta-final{text-align:center;position:relative;overflow:hidden}
+.cta-final .glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(212,175,55,.12),transparent 65%);pointer-events:none}
+.cta-final .wrap{position:relative;z-index:1;max-width:720px}
+.cta-final .script{color:var(--gold);font-size:clamp(2.2rem,5.5vw,3.4rem);margin-bottom:8px}
+.cta-final h2{font-size:clamp(1.7rem,3.6vw,2.4rem);margin-bottom:20px}
+.cta-final p{color:var(--ivory-dim);font-weight:300;margin-bottom:36px;font-size:1.08rem}
+.cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* ==========================================================================
+   Contato + Formulário
+   ========================================================================== */
+.contact{background:var(--graphite-2);border-top:1px solid var(--gold-line)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.info-row{display:flex;gap:16px;margin-bottom:26px;align-items:flex-start}
+.info-row .icn{width:44px;height:44px;margin-bottom:0;flex:none}
+.info-row .icn svg{width:22px;height:22px}
+.info-row b{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.info-row p, .info-row a{color:var(--ivory-dim);font-weight:300;font-size:.98rem}
+.info-row a:hover{color:var(--gold)}
+.map{border-radius:var(--radius);overflow:hidden;border:1px solid var(--gold-line);margin-top:8px}
+.map iframe{width:100%;height:220px;border:0;display:block;filter:grayscale(.3) contrast(1.05)}
+
+.form{background:var(--graphite);border:1px solid var(--gold-line);border-radius:18px;padding:36px 32px}
+.form h3{font-size:1.4rem;margin-bottom:8px}
+.form .sub{color:var(--ivory-dim);font-weight:300;font-size:.95rem;margin-bottom:26px}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:13px;font-weight:500;margin-bottom:8px;color:var(--ivory)}
+.field label .req{color:var(--gold)}
+.field input,.field select{
+  width:100%;background:var(--black);border:1px solid rgba(255,255,255,.1);border-radius:10px;
+  color:var(--ivory);font-family:'Montserrat',sans-serif;font-size:16px;padding:14px 16px;min-height:48px;
+  transition:border-color .2s;
+}
+.field input::placeholder{color:var(--ivory-faint)}
+.field input:focus,.field select:focus{outline:none;border-color:var(--gold)}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23D4AF37' stroke-width='2'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.consent{display:flex;gap:12px;align-items:flex-start;margin:6px 0 24px}
+.consent input{width:20px;height:20px;margin-top:2px;accent-color:var(--gold);flex:none}
+.consent label{font-size:12.5px;color:var(--ivory-dim);font-weight:300;line-height:1.5}
+.consent a{color:var(--gold);text-decoration:underline}
+.form .btn{width:100%}
+.form-note{text-align:center;font-size:12px;color:var(--ivory-faint);margin-top:16px}
+@media(max-width:860px){.contact-grid{grid-template-columns:1fr;gap:44px}}
+
+/* ==========================================================================
+   Rodapé
+   ========================================================================== */
+footer{background:var(--black);border-top:1px solid var(--gold-line);padding:56px 0 40px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.foot-brand .script{color:var(--gold);font-size:30px}
+.foot-brand p{color:var(--ivory-faint);font-size:13px;font-weight:300;margin-top:12px;max-width:34ch}
+.foot-col h4{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-weight:600}
+.foot-col a,.foot-col p{display:block;color:var(--ivory-dim);font-size:14px;font-weight:300;margin-bottom:12px}
+.foot-col a:hover{color:var(--gold)}
+.foot-legal{
+  border-top:1px solid rgba(255,255,255,.07);padding-top:28px;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-size:12px;color:var(--ivory-faint);font-weight:300;
+}
+.foot-legal .rt{color:var(--ivory-dim)}
+.foot-legal .rt b{color:var(--gold);font-weight:600}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:32px}}
+
+/* ==========================================================================
+   Botão flutuante WhatsApp
+   ========================================================================== */
+.wa-float{
+  position:fixed;right:20px;bottom:20px;z-index:90;
+  display:flex;align-items:center;gap:0;
+  background:var(--whatsapp);color:#04310f;border-radius:100px;
+  height:58px;padding:0 18px;box-shadow:0 12px 30px -8px rgba(37,211,102,.5);
+  font-weight:600;font-size:15px;overflow:hidden;
+  transition:transform .3s var(--ease),box-shadow .3s;
+}
+.wa-float:hover{transform:translateY(-3px);box-shadow:0 16px 36px -8px rgba(37,211,102,.6)}
+.wa-float svg{width:28px;height:28px;flex:none}
+.wa-float span{max-width:0;opacity:0;white-space:nowrap;transition:max-width .4s var(--ease),opacity .3s,margin .4s}
+.wa-float:hover span{max-width:180px;opacity:1;margin-left:10px}
+@media(max-width:560px){.wa-float span{display:none}.wa-float{padding:0;width:58px;justify-content:center}}
+
+/* ==========================================================================
+   Animação de entrada
+   ========================================================================== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ======================= HEADER ======================= -->
+<header id="header">
+  <div class="wrap nav">
+    <a href="#topo" class="brand" aria-label="Dr. Giovanni Nascimento — Implantodontia">
+      <svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <circle cx="24" cy="24" r="23" stroke="#D4AF37" stroke-width="1.2" opacity=".5"/>
+        <path d="M24 12c-4.2 0-7.5 2.6-7.5 6.4 0 2.3 1 3.7 1.7 5.6.5 1.4.7 3 .9 4.8.2 1.9.4 4 1.3 5.4.4.6 1.4.6 1.8 0 .6-1 .7-2.6.8-4 .1-1 .3-1.7 1-1.7s.9.7 1 1.7c.1 1.4.2 3 .8 4 .4.6 1.4.6 1.8 0 .9-1.4 1.1-3.5 1.3-5.4.2-1.8.4-3.4.9-4.8.7-1.9 1.7-3.3 1.7-5.6 0-3.8-3.3-6.4-7.5-6.4Z" fill="#D4AF37"/>
+      </svg>
+      <span class="brand-name">
+        <span class="script">Dr. Giovanni Nascimento</span>
+        <small>Implantodontia · Salvador</small>
+      </span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#tratamentos">Tratamentos</a>
+      <a href="#tecnologia">Tecnologia</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#contato">Contato</a>
+      <a href="#agendar" class="btn btn-gold nav-cta">Agendar avaliação</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ======================= HERO ======================= -->
+<section class="hero" id="topo">
+  <div class="hero-glow"></div>
+  <div class="hero-glow two"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-text reveal">
+      <span class="kicker">Implantodontia avançada em Salvador</span>
+      <h1>Volte a sorrir, mastigar e falar com segurança — <span class="gold">mesmo nos casos que disseram ser impossíveis.</span></h1>
+      <p class="lede">Implantes, protocolo e carga imediata com planejamento digital e cirurgia guiada. Tecnologia para devolver seu sorriso com previsibilidade — e, em casos indicados, dentes no mesmo dia.</p>
+      <div class="hero-actions">
+        <a href="#agendar" class="btn btn-gold">Agende sua avaliação</a>
+        <a href="https://wa.me/5571996851994?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener" class="btn btn-ghost">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.7 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.8-.6-3-1.3-5-4.4-5.2-4.6-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.4.5-.3.3c-.1.1-.3.3-.1.6.1.3.7 1.1 1.4 1.8.9.8 1.7 1 2 1.2.3.1.5.1.6-.1l.6-.8c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.6-.1 1.3Z"/></svg>
+          Falar no WhatsApp
+        </a>
+      </div>
+      <div class="hero-trust">
+        <span>Prof. convidado · Univ. de Barcelona</span><span class="dot"></span>
+        <span>Pós em Miami</span><span class="dot"></span>
+        <span>Ambassador SIN Implant System</span>
+      </div>
+    </div>
+    <div class="hero-portrait reveal">
+      <div class="frame">
+        <img src="assets/dr-retrato.png" alt="Retrato de estúdio do Dr. Giovanni Nascimento, cirurgião-dentista implantodontista">
+      </div>
+      <div class="badge">
+        <b>Dr. Giovanni Nascimento</b>
+        <span>CRO-BA 16772 · Implantodontista</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FAIXA DE AUTORIDADE ======================= -->
+<section class="authority">
+  <div class="wrap">
+    <div class="authority-grid">
+      <div class="authority-item"><b>Barcelona</b><span>Professor convidado — Universidade de Barcelona, 2025</span></div>
+      <div class="authority-item"><b>Miami</b><span>Pós em cirurgia de implante avançada</span></div>
+      <div class="authority-item"><b>SIN</b><span>Ambassador SIN Implant System · #CreatorSIN</span></div>
+      <div class="authority-item"><b>Ensino</b><span>Forma centenas de dentistas no Brasil</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= EMPATIA / DOR ======================= -->
+<section class="section empathy">
+  <div class="wrap reveal">
+    <span class="kicker" style="margin-left:auto;margin-right:auto;display:inline-flex">Se você já ouviu que "não tinha solução"</span>
+    <h2>Leia isto antes de desistir do seu sorriso.</h2>
+    <p>Perder dentes, conviver com a prótese que se solta ou carregar a frustração de um tratamento que não deu certo cansa. Muita gente chega aqui depois de ouvir que o caso era complexo demais — e com medo da dor, da cirurgia e de investir sem ter certeza.</p>
+    <p>Aqui o caminho é outro: avaliação criteriosa, planejamento digital e conversa honesta sobre o que é possível no seu caso. Sem promessas mágicas — com método, tecnologia e acolhimento.</p>
+    <p class="manifest">"Impossível a gente não tem essa palavra aqui."</p>
+    <div class="rule"></div>
+  </div>
+</section>
+
+<!-- ======================= TECNOLOGIA ======================= -->
+<section class="section" id="tecnologia">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="kicker">Tecnologia</span>
+      <h2>Precisão que reduz o medo e aumenta a previsibilidade.</h2>
+      <p>Ferramentas que transformam a cirurgia de implante em um procedimento planejado nos mínimos detalhes.</p>
+    </div>
+    <div class="tech-grid">
+      <div class="card reveal">
+        <div class="icn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.2"/></svg></div>
+        <h3>Planejamento digital & cirurgia guiada</h3>
+        <p>Exames de imagem 3D permitem planejar cada implante virtualmente antes de tocar no paciente. A cirurgia guiada torna o procedimento mais preciso, previsível e menos invasivo.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></div>
+        <h3>Carga imediata — dente no mesmo dia</h3>
+        <p>Em casos com indicação clínica adequada, é possível instalar os dentes provisórios no mesmo dia do implante, evitando longos períodos sem sorrir. A indicação é sempre avaliada individualmente.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h12v5l-6 3-6-3V3Z"/><path d="M6 11v7a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-7"/><path d="M9 21v-3h6v3"/></svg></div>
+        <h3>Impressão 3D de dentes cerâmicos</h3>
+        <p>Tecnologia de impressão 3D e materiais cerâmicos de alta estética para reproduzir dentes com aparência natural, respeitando o formato e a cor do seu sorriso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= TRATAMENTOS ======================= -->
+<section class="section" id="tratamentos" style="background:var(--graphite-2);border-top:1px solid var(--gold-line);border-bottom:1px solid var(--gold-line)">
+  <div class="wrap">
+    <div class="head center reveal">
+      <span class="kicker" style="margin-left:auto;margin-right:auto;display:inline-flex">Tratamentos</span>
+      <h2>Soluções para cada estágio da sua reabilitação.</h2>
+      <p>Todo plano começa por uma avaliação individual. O tratamento indicado depende do seu caso.</p>
+    </div>
+    <div class="treat-grid">
+      <div class="card reveal">
+        <div class="icn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4c-3 0-5 1.8-5 4.4 0 1.6.7 2.5 1.1 3.8.4 1.3.5 3.2.7 4.6.2 1.4.4 3 1 3.9.3.5 1.1.5 1.4 0 .5-.9.7-2.5.8-3.9.1-.7.5-1 1-1s.9.3 1 1c.1 1.4.3 3 .8 3.9.3.5 1.1.5 1.4 0 .6-.9.8-2.5 1-3.9.2-1.4.3-3.3.7-4.6.4-1.3 1.1-2.2 1.1-3.8C17 5.8 15 4 12 4Z"/></svg></div>
+        <h3>Implante unitário</h3>
+        <p>Reposição de um dente perdido com raiz artificial e coroa de aparência natural, sem desgastar os dentes vizinhos.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="8" width="4" height="8" rx="1"/><rect x="10" y="8" width="4" height="8" rx="1"/><rect x="17" y="8" width="4" height="8" rx="1"/><path d="M2 6h20"/></svg></div>
+        <h3>Protocolo / arco completo</h3>
+        <p>Reabilitação de toda a arcada sobre implantes para quem perdeu muitos dentes ou usa dentadura, devolvendo função e estética.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></div>
+        <h3>Carga imediata</h3>
+        <p>Dentes fixos provisórios no mesmo dia do implante, em casos com indicação — para reduzir o tempo sem sorrir.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c5 0 9 3 9 6.5 0 2-1.5 3-3.5 3.5-1.8.4-2.5 1-3 2.5-.5 1.4-1 2.5-2.5 2.5C7 21 3 15.5 3 9.5 3 6 7 3 12 3Z"/><circle cx="8.5" cy="9" r="1"/><circle cx="12" cy="7.5" r="1"/><circle cx="15.5" cy="9" r="1"/></svg></div>
+        <h3>Lentes & estética</h3>
+        <p>Lentes de contato dental e harmonização do sorriso para quem busca refinar forma, cor e proporção dos dentes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= COMO FUNCIONA ======================= -->
+<section class="section steps">
+  <div class="wrap">
+    <div class="head center reveal">
+      <span class="kicker" style="margin-left:auto;margin-right:auto;display:inline-flex">Como funciona</span>
+      <h2>Do primeiro contato ao seu sorriso de volta.</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <span class="num">01</span>
+        <h3>Avaliação e planejamento digital</h3>
+        <p>Conversamos sobre a sua história, examinamos e fazemos o planejamento digital em 3D para entender o que é possível no seu caso.</p>
+      </div>
+      <div class="step reveal">
+        <span class="num">02</span>
+        <h3>Procedimento com cirurgia guiada</h3>
+        <p>O implante é realizado com técnica guiada, mais precisa e confortável, seguindo exatamente o que foi planejado.</p>
+      </div>
+      <div class="step reveal">
+        <span class="num">03</span>
+        <h3>Seu sorriso de volta</h3>
+        <p>Acompanhamento próximo em cada etapa da reabilitação até você voltar a sorrir, mastigar e falar com segurança.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SOBRE O DR. ======================= -->
+<section class="section about" id="sobre">
+  <div class="wrap about-grid">
+    <div class="about-photo reveal">
+      <span class="corner tl"></span>
+      <span class="corner br"></span>
+      <div class="frame">
+        <img src="assets/dr-retrato.png" alt="Dr. Giovanni Nascimento, cirurgião-dentista especialista em implantodontia em Salvador">
+      </div>
+    </div>
+    <div class="about reveal">
+      <span class="kicker">Sobre o especialista</span>
+      <h2>Dr. Giovanni Nascimento</h2>
+      <p>Cirurgião-dentista com formação na Escola Bahiana de Medicina e Saúde Pública e especialização dedicada à implantodontia. Aperfeiçoou-se em cirurgia de implante avançada em Miami e foi professor convidado na Universidade de Barcelona em 2025.</p>
+      <p>Como Ambassador SIN Implant System (#CreatorSIN), também dedica parte da rotina a formar centenas de dentistas pelo Brasil — unindo prática clínica de excelência ao ensino.</p>
+      <p class="quote">"Transformar sorrisos é mais que técnica, é sobre devolver confiança e qualidade de vida."</p>
+      <div class="cred">
+        <span><b>CRO-BA 16772</b></span>
+        <span>Responsável Técnico: <b>Dr. Giovanni I. B. Nascimento</b></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= RESULTADOS (CFO-SAFE) ======================= -->
+<section class="section" style="background:var(--graphite-2);border-top:1px solid var(--gold-line);border-bottom:1px solid var(--gold-line)">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="kicker">Estrutura & tecnologia</span>
+      <h2>Onde o seu tratamento acontece.</h2>
+      <p>Ambiente preparado e equipamentos modernos no coração de Salvador, no Caminho das Árvores.</p>
+    </div>
+    <div class="results-grid">
+      <div class="result-media reveal">
+        <img src="assets/consultorio.png" alt="Consultório do Dr. Giovanni Nascimento em Salvador, com equipamentos modernos e impressora 3D odontológica">
+        <div class="cap">
+          <b>Consultório equipado — Salvador Shopping</b>
+          <span>Fluxo digital: scanner, planejamento 3D e impressão de peças cerâmicas.</span>
+        </div>
+      </div>
+      <div class="result-note reveal">
+        <div class="icn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/></svg></div>
+        <h3>Conteúdo em conformidade</h3>
+        <p>Priorizamos mostrar estrutura, tecnologia e conteúdo educativo. Casos clínicos individuais são discutidos apenas em consulta.</p>
+        <small>Em respeito ao Código de Ética Odontológica (CFO / Res. CFO-118/2012), não divulgamos imagens de antes e depois nem garantias de resultado. Cada caso é único e avaliado individualmente.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= DEPOIMENTOS ======================= -->
+<section class="section" id="depoimentos">
+  <div class="wrap">
+    <div class="head center reveal">
+      <span class="kicker" style="margin-left:auto;margin-right:auto;display:inline-flex">Depoimentos</span>
+      <h2>Histórias de quem voltou a sorrir.</h2>
+      <p>Relatos de pacientes, compartilhados com autorização.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi reveal">
+        <span class="mark">"</span>
+        <p>Cheguei com medo e achando que meu caso não tinha solução. Fui recebida com calma, tudo explicado passo a passo. Hoje mastigo e sorrio sem pensar.</p>
+        <div class="who"><span class="av">M</span><span><b>Maria de Fátima</b><span>Salvador/BA</span></span></div>
+      </div>
+      <div class="testi reveal">
+        <span class="mark">"</span>
+        <p>O que mais me marcou foi a segurança do planejamento. Vi tudo no computador antes de começar. O cuidado do Dr. e da equipe fez toda a diferença.</p>
+        <div class="who"><span class="av">J</span><span><b>José Ricardo</b><span>Salvador/BA</span></span></div>
+      </div>
+      <div class="testi reveal">
+        <span class="mark">"</span>
+        <p>Usei prótese por anos e vivia com vergonha. Depois do tratamento, voltei a comer o que gosto e a falar sem me preocupar. Recomendo de olhos fechados.</p>
+        <div class="who"><span class="av">A</span><span><b>Ana Cláudia</b><span>Lauro de Freitas/BA</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FAQ ======================= -->
+<section class="section" style="background:var(--graphite-2);border-top:1px solid var(--gold-line);border-bottom:1px solid var(--gold-line)">
+  <div class="wrap">
+    <div class="head center reveal">
+      <span class="kicker" style="margin-left:auto;margin-right:auto;display:inline-flex">Dúvidas frequentes</span>
+      <h2>O que os pacientes costumam perguntar.</h2>
+    </div>
+    <div class="faq reveal">
+      <div class="faq-item">
+        <button class="faq-q">Meu caso é complexo. Ainda tenho solução?</button>
+        <div class="faq-a"><p>Muitos casos considerados difíceis têm alternativas de tratamento hoje graças ao planejamento digital e às técnicas modernas de implante. Só uma avaliação individual permite dizer o que é possível no seu caso — e é exatamente para isso que serve a consulta.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Vou ficar sem dente durante o tratamento?</button>
+        <div class="faq-a"><p>Depende do seu caso. Quando há indicação clínica, a carga imediata permite sair com dentes provisórios fixos no mesmo dia do implante. Em outras situações, existem soluções provisórias para que você não fique sem sorrir. Isso é definido no planejamento.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">O procedimento dói?</button>
+        <div class="faq-a"><p>O tratamento é feito com anestesia e, sempre que indicado, com cirurgia guiada — que tende a ser mais precisa e confortável. O acolhimento e o controle do pós-operatório fazem parte do cuidado em cada etapa.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">O resultado fica natural?</button>
+        <div class="faq-a"><p>O objetivo é reproduzir a forma, a cor e as proporções de um sorriso natural, respeitando as características de cada pessoa. Os materiais cerâmicos e o planejamento estético ajudam a buscar esse resultado harmônico.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Como funciona o pagamento?</button>
+        <div class="faq-a"><p>Cada plano de tratamento é individual, então os valores e as condições são apresentados após a avaliação, de acordo com o que o seu caso realmente precisa. Na consulta explicamos tudo com transparência.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CTA FINAL ======================= -->
+<section class="section cta-final" id="agendar">
+  <div class="glow"></div>
+  <div class="wrap reveal">
+    <p class="script">Seu recomeço</p>
+    <h2>começa com uma avaliação.</h2>
+    <p>Dê o primeiro passo para voltar a sorrir com segurança. Agende a sua avaliação com o Dr. Giovanni Nascimento.</p>
+    <div class="cta-actions">
+      <a href="#form" class="btn btn-gold">Agende sua avaliação</a>
+      <a href="https://wa.me/5571996851994?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener" class="btn btn-wa">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.7 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.8-.6-3-1.3-5-4.4-5.2-4.6-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.4.5-.3.3c-.1.1-.3.3-.1.6.1.3.7 1.1 1.4 1.8.9.8 1.7 1 2 1.2.3.1.5.1.6-.1l.6-.8c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.6-.1 1.3Z"/></svg>
+        Falar no WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CONTATO + FORM ======================= -->
+<section class="section contact" id="contato">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <span class="kicker">Contato & localização</span>
+      <h2 style="font-size:clamp(1.7rem,3.6vw,2.3rem);margin-bottom:32px">Estamos no Caminho das Árvores.</h2>
+
+      <div class="info-row">
+        <div class="icn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <div><b>Endereço</b><p>Av. Tancredo Neves, 2539 — Ed. CEO, Salvador Shopping, Torre Nova Iorque, sala 1811/1812 · Caminho das Árvores, Salvador/BA</p></div>
+      </div>
+      <div class="info-row">
+        <div class="icn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2a10 10 0 0 0-8.7 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Z"/></svg></div>
+        <div><b>WhatsApp</b><a href="https://wa.me/5571996851994" target="_blank" rel="noopener">(71) 9 9685-1994</a></div>
+      </div>
+      <div class="info-row">
+        <div class="icn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></div>
+        <div><b>Instagram</b><a href="https://instagram.com/dr.giovanninascimento" target="_blank" rel="noopener">@dr.giovanninascimento</a></div>
+      </div>
+      <div class="info-row">
+        <div class="icn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <div><b>Horários</b><p>Atendimento com hora marcada — consulte a disponibilidade pelo WhatsApp.</p></div>
+      </div>
+
+      <div class="map">
+        <iframe title="Mapa — Dr. Giovanni Nascimento, Salvador Shopping" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Salvador%20Shopping%2C%20Av.%20Tancredo%20Neves%2C%202539%2C%20Salvador%20BA&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+      </div>
+    </div>
+
+    <div class="form reveal" id="form">
+      <h3>Agende sua avaliação</h3>
+      <p class="sub">Preencha e retornamos pelo WhatsApp para marcar o melhor horário.</p>
+      <form id="leadForm" novalidate>
+        <div class="field">
+          <label for="nome">Nome <span class="req">*</span></label>
+          <input type="text" id="nome" name="nome" placeholder="Seu nome completo" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="tel">WhatsApp <span class="req">*</span></label>
+          <input type="tel" id="tel" name="tel" placeholder="(71) 9 0000-0000" autocomplete="tel" inputmode="tel" required>
+        </div>
+        <div class="field">
+          <label for="interesse">Interesse</label>
+          <select id="interesse" name="interesse">
+            <option value="Implante unitário">Implante unitário</option>
+            <option value="Protocolo / arco completo">Protocolo / arco completo</option>
+            <option value="Carga imediata">Carga imediata (dente no mesmo dia)</option>
+            <option value="Lentes / estética">Lentes / estética</option>
+            <option value="Ainda não sei">Ainda não sei — quero avaliar</option>
+          </select>
+        </div>
+        <div class="consent">
+          <input type="checkbox" id="lgpd" name="lgpd" required>
+          <label for="lgpd">Autorizo o contato pelos dados informados e concordo com o tratamento deles conforme a <a href="#">Política de Privacidade</a> (LGPD). <span class="req">*</span></label>
+        </div>
+        <button type="submit" class="btn btn-gold">Enviar e falar no WhatsApp</button>
+        <p class="form-note">Ao enviar, você será direcionado ao WhatsApp com a mensagem já preenchida.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= RODAPÉ ======================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="script">Dr. Giovanni Nascimento</span>
+        <p>Implantodontia avançada em Salvador. Excelência · Confiança · Transformação.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Navegação</h4>
+        <a href="#tratamentos">Tratamentos</a>
+        <a href="#tecnologia">Tecnologia</a>
+        <a href="#sobre">Sobre o Dr.</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#contato">Contato</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contato</h4>
+        <a href="https://wa.me/5571996851994" target="_blank" rel="noopener">WhatsApp (71) 9 9685-1994</a>
+        <a href="https://instagram.com/dr.giovanninascimento" target="_blank" rel="noopener">@dr.giovanninascimento</a>
+        <p>Salvador Shopping — Caminho das Árvores, Salvador/BA</p>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <p class="rt">Dr. Giovanni Nascimento · <b>CRO-BA 16772</b> · Responsável Técnico: Dr. Giovanni I. B. Nascimento</p>
+      <p>© 2026 Dr. Giovanni Nascimento. Todos os direitos reservados. · Política de Privacidade</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ======================= WHATSAPP FLUTUANTE ======================= -->
+<a class="wa-float" href="https://wa.me/5571996851994?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.7 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.8-.6-3-1.3-5-4.4-5.2-4.6-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.4.5-.3.3c-.1.1-.3.3-.1.6.1.3.7 1.1 1.4 1.8.9.8 1.7 1 2 1.2.3.1.5.1.6-.1l.6-.8c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.6-.1 1.3Z"/></svg>
+  <span>Falar no WhatsApp</span>
+</a>
+
+<!-- ======================= SCHEMA.ORG ======================= -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Dentist",
+  "name":"Dr. Giovanni Nascimento — Implantodontia",
+  "description":"Especialista em implantes, protocolo e carga imediata em Salvador. Planejamento digital e cirurgia guiada.",
+  "medicalSpecialty":"Dentistry",
+  "url":"https://www.giovanniimplantes.com/",
+  "telephone":"+5571996851994",
+  "image":"assets/dr-retrato.png",
+  "priceRange":"$$$",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"Av. Tancredo Neves, 2539, Ed. CEO, Torre Nova Iorque, sala 1811/1812, Caminho das Árvores",
+    "addressLocality":"Salvador",
+    "addressRegion":"BA",
+    "addressCountry":"BR"
+  },
+  "geo":{"@type":"GeoCoordinates","latitude":-12.978,"longitude":-38.458},
+  "sameAs":["https://instagram.com/dr.giovanninascimento"],
+  "founder":{"@type":"Person","name":"Dr. Giovanni I. B. Nascimento","jobTitle":"Cirurgião-dentista — Implantodontista","identifier":"CRO-BA 16772"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Meu caso é complexo. Ainda tenho solução?","acceptedAnswer":{"@type":"Answer","text":"Muitos casos considerados difíceis têm alternativas de tratamento hoje graças ao planejamento digital e às técnicas modernas de implante. Só uma avaliação individual permite dizer o que é possível no seu caso."}},
+    {"@type":"Question","name":"Vou ficar sem dente durante o tratamento?","acceptedAnswer":{"@type":"Answer","text":"Depende do caso. Quando há indicação clínica, a carga imediata permite sair com dentes provisórios fixos no mesmo dia do implante. Em outras situações há soluções provisórias definidas no planejamento."}},
+    {"@type":"Question","name":"O procedimento dói?","acceptedAnswer":{"@type":"Answer","text":"O tratamento é feito com anestesia e, sempre que indicado, com cirurgia guiada, que tende a ser mais precisa e confortável, com acompanhamento do pós-operatório."}},
+    {"@type":"Question","name":"O resultado fica natural?","acceptedAnswer":{"@type":"Answer","text":"O objetivo é reproduzir forma, cor e proporções de um sorriso natural, respeitando as características de cada pessoa, com apoio de materiais cerâmicos e planejamento estético."}},
+    {"@type":"Question","name":"Como funciona o pagamento?","acceptedAnswer":{"@type":"Answer","text":"Cada plano é individual; valores e condições são apresentados após a avaliação, de acordo com a necessidade do caso."}}
+  ]
+}
+</script>
+
+<!-- ======================= JS ======================= -->
+<script>
+(function(){
+  // Header scrolled
+  var header=document.getElementById('header');
+  function onScroll(){header.classList.toggle('scrolled',window.scrollY>24);}
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+  // Menu mobile
+  var toggle=document.getElementById('menuToggle'),links=document.getElementById('navLinks');
+  toggle.addEventListener('click',function(){
+    var open=links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded',open);
+  });
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){links.classList.remove('open');toggle.setAttribute('aria-expanded',false);});
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var q=item.querySelector('.faq-q'),a=item.querySelector('.faq-a');
+    q.addEventListener('click',function(){
+      var isOpen=item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(o){o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight=null;});
+      if(!isOpen){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}
+    });
+  });
+
+  // Reveal on scroll
+  if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:.14,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  }else{
+    document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
+  }
+
+  // Form -> WhatsApp
+  document.getElementById('leadForm').addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var nome=document.getElementById('nome').value.trim();
+    var tel=document.getElementById('tel').value.trim();
+    var interesse=document.getElementById('interesse').value;
+    var lgpd=document.getElementById('lgpd').checked;
+    if(!nome||!tel){alert('Por favor, preencha nome e WhatsApp.');return;}
+    if(!lgpd){alert('Para continuar, é preciso autorizar o contato (LGPD).');return;}
+    var msg='Olá! Meu nome é '+nome+'. Tenho interesse em: '+interesse+'. Meu WhatsApp: '+tel+'. Gostaria de agendar uma avaliação.';
+    window.open('https://wa.me/5571996851994?text='+encodeURIComponent(msg),'_blank');
+  });
+})();
+</script>
+</body>
+</html>

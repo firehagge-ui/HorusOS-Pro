@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ⚠️ noindex enquanto for demonstração. RETIRAR no dia da publicação, e não antes. -->
+<meta name="robots" content="noindex, nofollow">
+
+<title>Café Grão da Serra | Café artesanal 100% arábica em Brejões, Bahia</title>
+<meta name="description" content="Café 100% arábica, puro e de torra artesanal. Grão escolhido maduro e beneficiado de forma artesanal. Venda para consumo e para revenda em Brejões e Salvador.">
+
+<!-- TODO: imagem de compartilhamento 1200x630. Sem ela o link no WhatsApp abre cinza. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Café Grão da Serra | Café artesanal 100% arábica">
+<meta property="og:description" content="A gente não planta. A gente escolhe. Café puro, pilado e torrado de forma artesanal no interior da Bahia.">
+<meta property="og:locale" content="pt_BR">
+
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icone-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icone-180.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Source Sans 3 no lugar de Inter: o detector marca Inter como fonte saturada
+     ("usada em tantos sites que deixou de ser distintiva"). -->
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="aviso-demo">
+  Demonstração. O que está destacado ainda depende de informação do cliente.
+</div>
+
+<button type="button" class="alterna-btn" id="alterna" aria-pressed="false">Ver versão limpa</button>
+
+<header class="topo">
+  <div class="wrap">
+    <a class="marca" href="#topo">
+      <img src="assets/logo-topo.png" width="56" height="56" alt="Café Grão da Serra">
+      <b>Café Grão da Serra</b>
+    </a>
+    <button class="menu-btn" id="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">☰</button>
+    <nav class="nav" id="nav">
+      <a href="#revenda">Para quem revende</a>
+      <a href="#processo">O processo</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main id="topo">
+
+  <!-- ============================ 1. HERO ============================ -->
+  <section class="hero">
+    <span class="rotulo-fundo">Imagem provisória</span>
+    <div class="wrap">
+      <p class="eyebrow">Brejões, Bahia</p>
+      <h1>A gente não planta.<br>A gente escolhe.</h1>
+      <p class="sub">
+        Café 100% arábica, puro, escolhido ainda maduro e beneficiado de forma
+        artesanal, do terreiro à torra.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-primario" href="https://wa.me/5575991467309?text=Ol%C3%A1%21%20Quero%20revender%20o%20caf%C3%A9%20de%20voc%C3%AAs.">Quero revender</a>
+        <a class="btn btn-secundario" href="https://wa.me/5575991467309?text=Ol%C3%A1%21%20Quero%20comprar%20caf%C3%A9.">Comprar para mim</a>
+      </div>
+      <div class="selos">
+        <ul>
+          <li><b>100% arábica</b> grãos selecionados</li>
+        </ul>
+        <ul>
+          <li><b>Torra artesanal</b> em pequena quantidade</li>
+        </ul>
+        <ul>
+          <li><b>Café puro</b> sem mistura</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 2. PARA QUEM REVENDE ====================== -->
+  <section class="publico" id="revenda">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Para quem vende café todo dia</h2>
+        <p>
+          Cada ponto tem uma necessidade diferente, e a gente ajusta o
+          fornecimento ao que o seu vende.
+        </p>
+      </div>
+
+      <ul>
+        <li>
+          <b>Padaria e mercadinho</b>
+          <span>Seu cliente já entra para levar o pão. O café bom é o que faz ele voltar antes da hora.</span>
+        </li>
+        <li>
+          <b>Cafeteria e lanchonete</b>
+          <span>O café que você serve é o que fica na memória de quem sentou na sua mesa.</span>
+        </li>
+        <li>
+          <b>Mercearia e empório</b>
+          <span>Produto com procedência, embalado, com margem de revenda que fecha a conta.</span>
+        </li>
+        <li>
+          <b>Escritório e consultório</b>
+          <span>Entrega combinada, na quantidade que você usa, sem você precisar lembrar de repor.</span>
+        </li>
+      </ul>
+
+      <div class="dor">
+        <img class="folha" src="assets/folhas.webp" width="700" height="700" loading="lazy" decoding="async" alt="">
+        <p>
+          Se você já ficou sem café numa sexta-feira, já recebeu um lote com torra
+          velha, ou já teve que trocar de marca porque o sabor mudou do nada, é
+          exatamente disso que a gente cuida.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. O BENEFICIAMENTO — seção-assinatura ============= -->
+  <section class="processo" id="processo">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">O que acontece antes do pacote</p>
+        <h2>O trabalho está na escolha e no beneficiamento</h2>
+        <p>
+          A gente não tem lavoura. O que a nossa família faz há anos é escolher o
+          grão certo e cuidar de cada etapa depois dele colhido, uma de cada vez.
+        </p>
+      </div>
+
+      <div class="etapas">
+        <article class="etapa">
+          <span class="num">01</span>
+          <div class="traco"></div>
+          <img class="selo-ilustra" src="assets/etapa-01-escolha.webp" width="82" height="62" loading="lazy" decoding="async" alt="">
+          <figure class="fig">
+            <img src="assets/proc-01-escolha.webp" width="560" height="420" loading="lazy" decoding="async" alt="Mãos passando por um monte de grãos de café secos">
+            <span class="rotulo">Provisória</span>
+          </figure>
+          <h3>A escolha</h3>
+          <p>O grão é comprado de produtor, já maduro, e escolhido um a um. É aqui que o café é decidido.</p>
+        </article>
+
+        <article class="etapa">
+          <span class="num">02</span>
+          <div class="traco"></div>
+          <img class="selo-ilustra" src="assets/etapa-02-secagem.webp" width="82" height="62" loading="lazy" decoding="async" alt="">
+          <figure class="fig">
+            <img src="assets/proc-02-secagem.webp" width="560" height="420" loading="lazy" decoding="async" alt="Grãos de café secando ao sol em um terreiro">
+            <span class="rotulo">Provisória</span>
+          </figure>
+          <h3>A secagem</h3>
+          <p>Secagem ao sol, no tempo que for preciso, até o grão chegar no ponto certo de umidade.</p>
+        </article>
+
+        <article class="etapa">
+          <span class="num">03</span>
+          <div class="traco"></div>
+          <img class="selo-ilustra" src="assets/etapa-03-pilagem.webp" width="82" height="62" loading="lazy" decoding="async" alt="">
+          <figure class="fig">
+            <img src="assets/proc-03-pilagem.webp" width="560" height="560" loading="lazy" decoding="async" alt="Pilão de madeira com grãos de café dentro">
+            <span class="rotulo">Provisória</span>
+          </figure>
+          <h3>A pilagem</h3>
+          <p>No pilão, do jeito tradicional, para soltar a casca seca sem maltratar o grão.</p>
+        </article>
+
+        <article class="etapa">
+          <span class="num">04</span>
+          <div class="traco"></div>
+          <img class="selo-ilustra" src="assets/etapa-04-torra.webp" width="82" height="62" loading="lazy" decoding="async" alt="">
+          <figure class="fig">
+            <img src="assets/proc-04-torra.webp" width="560" height="420" loading="lazy" decoding="async" alt="Grãos de café recém torrados saindo do torrador">
+            <span class="rotulo">Provisória</span>
+          </figure>
+          <h3>A torra</h3>
+          <p>Torra artesanal, em pequena quantidade, acompanhada de perto. Depois vem a moagem.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== 4. PRODUTOS ========================= -->
+  <section class="produtos" id="produtos">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Nossos cafés</h2>
+        <p>
+          <span class="pend">Os produtos, os tamanhos de pacote e as opções em grão
+          ou moído ainda precisam ser confirmados com o cliente.</span>
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="foto-pend">FALTA A FOTO<br>do pacote</div>
+          <h3><span class="pend">Produto a confirmar</span></h3>
+          <div class="linha">
+            <p><span class="pend">Moagem a confirmar</span></p>
+            <span class="preco pend">peso</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="foto-pend">FALTA A FOTO<br>do pacote</div>
+          <h3><span class="pend">Produto a confirmar</span></h3>
+          <div class="linha">
+            <p><span class="pend">Moagem a confirmar</span></p>
+            <span class="preco pend">peso</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="foto-pend">FALTA A FOTO<br>do pacote</div>
+          <h3><span class="pend">Produto a confirmar</span></h3>
+          <div class="linha">
+            <p><span class="pend">Moagem a confirmar</span></p>
+            <span class="preco pend">peso</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== 5. COMO VIRAR REVENDEDOR ==================== -->
+  <section class="passos">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Como começar a revender</h2>
+      </div>
+      <ol>
+        <li>
+          <h3>Você chama no WhatsApp</h3>
+          <p>Não precisa saber ainda quanto quer, nem ter feito conta nenhuma. Só diga que tipo de ponto você tem.</p>
+        </li>
+        <li>
+          <h3>A gente combina quantidade e entrega</h3>
+          <p>Você diz quanto costuma vender e a gente ajusta o pedido e a data de entrega junto com você.</p>
+        </li>
+        <li>
+          <h3>Você recebe e revende</h3>
+          <p>Quando estiver acabando, é só chamar de novo. A ideia é você nunca ficar sem.</p>
+        </li>
+      </ol>
+      <p style="margin-top:34px">
+        <a class="btn btn-primario" href="https://wa.me/5575991467309?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20revender%20o%20caf%C3%A9%20de%20voc%C3%AAs.">Falar sobre revenda</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ========================== 6. QUEM FAZ ========================== -->
+  <section class="quem">
+    <div class="wrap quem-grid">
+      <div class="foto-pend">FALTA FOTO<br>do Nelson trabalhando</div>
+      <div>
+        <h2>Quem faz</h2>
+        <p>
+          O Café Grão da Serra é tocado pelo <strong>Nelson</strong>, de Serrana,
+          distrito de Brejões, na Bahia. É ele quem responde o WhatsApp, separa os
+          pedidos e entrega.
+        </p>
+        <p>
+          <span class="pend">O beneficiamento é feito pelo pai dele, que escolhe o
+          grão e cuida da secagem, da pilagem e da torra. Esta parte só entra no ar
+          depois de o Nelson autorizar falar do pai no site.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Colagem assimétrica, no padrão que White Coffee e Maison Deuza usam como
+       respiro entre blocos de texto. Sem legenda de propósito: paisagem com
+       texto vira afirmação de origem, e a origem do grão não foi confirmada. -->
+  <section class="colagem">
+    <div class="wrap">
+      <div class="colagem-grid">
+        <figure class="c-a fig">
+          <img src="assets/paisagem-serra.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Paisagem de serras ao amanhecer">
+          <span class="rotulo">Imagem provisória</span>
+        </figure>
+        <figure class="c-b">
+          <img src="assets/proc-02-secagem.webp" width="560" height="420" loading="lazy" decoding="async" alt="Café secando ao sol no terreiro">
+        </figure>
+        <figure class="c-c">
+          <img src="assets/folhas.webp" width="700" height="700" loading="lazy" decoding="async" alt="Ramo de café com folhas verdes">
+        </figure>
+        <figure class="c-d">
+          <img src="assets/proc-04-torra.webp" width="560" height="420" loading="lazy" decoding="async" alt="Grãos recém torrados">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!--
+    ⚠️ SEÇÃO 7 "DE ONDE VEM" foi deixada FORA de propósito.
+    Só entra depois de o cliente confirmar que o grão vem de produtores da região
+    Serrana / Brejões. Enquanto não confirmar, não vira texto vago sobre "a serra".
+    Ver clientes/grao-da-serra/briefing.md e site/ARQUITETURA.md.
+  -->
+
+  <!-- ============================ 8. FAQ ============================= -->
+  <section class="faq" id="duvidas">
+    <div class="wrap">
+      <h2>Dúvidas</h2>
+      <div class="faq-lista">
+
+        <details>
+          <summary>Vocês vendem para revenda?</summary>
+          <p>Vendemos. Atendemos padaria, mercadinho, cafeteria, mercearia, escritório e consultório, além de quem quer comprar para tomar em casa.</p>
+        </details>
+
+        <details>
+          <summary>Tem quantidade mínima de pedido?</summary>
+          <p><span class="pend">A confirmar com o cliente.</span></p>
+        </details>
+
+        <details>
+          <summary>Para onde vocês entregam?</summary>
+          <p>Atendemos Brejões e Salvador. <span class="pend">As demais cidades da região ainda precisam ser confirmadas.</span></p>
+        </details>
+
+        <details>
+          <summary>Quanto tempo demora a entrega?</summary>
+          <p><span class="pend">A confirmar com o cliente.</span></p>
+        </details>
+
+        <details>
+          <summary>Como funciona o pagamento?</summary>
+          <p><span class="pend">A confirmar com o cliente.</span></p>
+        </details>
+
+        <details>
+          <summary>O café é vendido em grão ou moído?</summary>
+          <p><span class="pend">A confirmar com o cliente.</span></p>
+        </details>
+
+        <details>
+          <summary>Vocês emitem nota?</summary>
+          <p><span class="pend">A confirmar com o cliente.</span> O Café Grão da Serra tem CNPJ ativo, registrado como MEI.</p>
+        </details>
+
+        <details>
+          <summary>O que é café pilado?</summary>
+          <p>É o café que passa pelo pilão depois de seco, para soltar a casca. É o jeito tradicional de beneficiar, feito aos poucos e sem pressa, em vez de tudo de uma vez na máquina.</p>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== 9. CONTATO =========================== -->
+  <section class="contato" id="contato">
+    <div class="wrap contato-grid">
+      <div>
+        <p class="eyebrow">Fale com a gente</p>
+        <h2>Quem atende é o Nelson</h2>
+        <p>
+          Sem atendente e sem robô. A mensagem chega direto em quem prepara e
+          entrega o café.
+        </p>
+        <p style="margin-top:26px">
+          <a class="btn btn-primario" href="https://wa.me/5575991467309?text=Ol%C3%A1%21%20Vim%20pelo%20site.">Chamar no WhatsApp</a>
+        </p>
+      </div>
+      <div>
+        <ul class="dados">
+          <li>
+            <strong>WhatsApp</strong>
+            <a href="https://wa.me/5575991467309">(75) 99146-7309</a>
+          </li>
+          <li>
+            <strong>Instagram</strong>
+            <a href="https://www.instagram.com/graodaserra__" rel="noopener">@graodaserra__</a>
+          </li>
+          <li>
+            <strong>Onde estamos</strong>
+            Serrana, Brejões, Bahia
+          </li>
+          <li>
+            <strong>Atendimento</strong>
+            Todos os dias, das 7h às 20h
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <span>Café Grão da Serra · Brejões, Bahia</span>
+    <span class="legal">CNPJ 65.816.871/0001-23</span>
+  </div>
+</footer>
+
+<script>
+  var btn = document.getElementById('menu-btn');
+  var nav = document.getElementById('nav');
+  btn.addEventListener('click', function(){
+    var aberto = nav.classList.toggle('aberto');
+    btn.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+  });
+  nav.addEventListener('click', function(e){
+    if (e.target.tagName === 'A') {
+      nav.classList.remove('aberto');
+      btn.setAttribute('aria-expanded','false');
+    }
+  });
+
+  var alterna = document.getElementById('alterna');
+  alterna.addEventListener('click', function(){
+    var limpo = document.body.classList.toggle('limpo');
+    alterna.textContent = limpo ? 'Ver pendências' : 'Ver versão limpa';
+    alterna.setAttribute('aria-pressed', limpo ? 'true' : 'false');
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,879 @@
+/* =========================================================================
+   AION PSICOLOGIA — sistema visual
+   Tema: LIGHT LOCK. A página inteira é clara. A marca.md do cliente proíbe
+   fundo escuro predominante, então não há variante dark. Decisão de marca,
+   não esquecimento.
+   Raio de canto: cards 18px, imagens 18px, botões pill (999px), chips 999px.
+   Acento único: terracota, em dois tons da mesma família (ver :root).
+   ========================================================================= */
+:root{
+  --creme:#FAF2EA;
+  --areia:#F2E3D5;
+  --areia-2:#EBD8C6;
+  /* Acento único da página. O tom claro fica em ícone, borda e detalhe gráfico.
+     Texto e botão usam o tom escuro: branco sobre #D65F45 dá 3.76:1 e reprova
+     no WCAG AA; sobre #B84B33 dá 5.13:1 e passa. Mesma família, um acento só. */
+  --terracota:#D65F45;
+  --terracota-esc:#B84B33;
+  --terracota-hov:#9E3F2B;
+  --pessego:#F1C6A3;
+  --tinta:#3A2E28;
+  /* Escurecido de #7A675C para #74625A em 28/07/2026. O original dava 4,83:1 sobre
+     o creme (passa) mas 4,30:1 sobre a areia (reprova no AA), e metade das seções
+     tem fundo areia. Agora dá 5,22:1 e 4,60:1. É a "versão escurecida da mesma cor"
+     que o _memoria/design/99-checklist.md §2 prescreve para a paleta da casa. */
+  --tinta-med:#74625A;
+  --linha:rgba(58,46,40,.12);
+  --whats:#25D366;
+  --r-card:18px;
+  --max:1240px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+/* Todo alvo de âncora precisa descontar o cabeçalho sticky de 72px. Sem isto o
+   navegador rola até o topo exato do elemento e a barra cobre o título: quem
+   clica em "Orientação Familiar" na seção de situações cai na página de
+   especialidades com o h2 escondido atrás do menu, e parece link quebrado.
+   Vale para as 4 páginas, que dividem este arquivo. */
+main[id],section[id],article[id]{scroll-margin-top:92px}
+body{
+  margin:0;background:var(--creme);color:var(--tinta);
+  font-family:'Karla',system-ui,sans-serif;font-size:17.5px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+/* Títulos em EB Garamond. Garalda humanista: acentuação impecável em português,
+   ar de biblioteca em vez de convite de casamento. Como toda garalda tem altura-x
+   baixa e traço leve, a escala abaixo é ~8% maior que a de uma sans equivalente,
+   a entrelinha é um pouco mais folgada e o tracking fica em zero: serifa antiga
+   não quer tracking negativo, isso fecha o contraforma e suja a leitura. */
+h1,h2,h3,.disp{
+  font-family:'EB Garamond',Georgia,serif;
+  line-height:1.17;letter-spacing:0;margin:0;
+}
+p{margin:0}
+/* height:auto anula o atributo height do HTML, que senão vence o aspect-ratio */
+img{max-width:100%;display:block;height:auto}
+a{color:inherit}
+.wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 24px}
+.sec{padding:104px 0}
+/* O corpo NÃO diminui no celular. Havia aqui um font-size:16.5px, que furava o
+   piso de 17px que marca.md e 99-checklist.md exigem ("parte do público é mãe ou
+   pai lendo no celular à noite, e adulto acima de 50"), justamente no aparelho em
+   que esse público lê. Só o espaçamento vertical encolhe. */
+@media(max-width:768px){.sec{padding:64px 0}}
+
+/* ---------- tipografia utilitária ---------- */
+.h-xl{font-size:clamp(2.6rem,6.1vw,4.4rem);font-weight:600}
+.h-lg{font-size:clamp(2.1rem,4vw,3.1rem);font-weight:600}
+.h-md{font-size:clamp(1.3rem,1.95vw,1.55rem);font-weight:600;line-height:1.3}
+.lead{font-size:clamp(1.06rem,1.5vw,1.2rem);color:var(--tinta-med);max-width:60ch}
+.body{color:var(--tinta-med);max-width:62ch}
+.eyebrow{
+  font-family:'Karla',sans-serif;font-size:.74rem;font-weight:600;
+  /* tom de hover, não o esc: o eyebrow aparece tanto sobre creme quanto sobre
+     areia (seção de serviços), e sobre areia o esc dá 4,1:1 */
+  text-transform:uppercase;letter-spacing:.16em;color:var(--terracota-hov);
+  margin-bottom:14px;
+}
+
+/* ---------- botões ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:9px;white-space:nowrap;
+  font-family:'Karla',sans-serif;font-size:.95rem;font-weight:500;
+  padding:15px 28px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;
+  transition:background .25s var(--ease),color .25s var(--ease),transform .18s var(--ease),border-color .25s var(--ease);
+}
+.btn-1{background:var(--terracota-esc);color:#fff}
+.btn-1:hover{background:var(--terracota-hov)}
+.btn-2{border-color:rgba(58,46,40,.28);color:var(--tinta)}
+.btn-2:hover{border-color:var(--tinta);background:rgba(58,46,40,.04)}
+.btn:active{transform:translateY(1px)}
+.btn svg{width:18px;height:18px;flex:none}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:40;height:72px;display:flex;align-items:center;
+  background:rgba(250,242,234,.9);backdrop-filter:blur(12px);
+  border-bottom:1px solid transparent;transition:border-color .3s ease;
+}
+.nav.stuck{border-bottom-color:var(--linha)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{width:44px;height:44px;object-fit:contain}
+.brand-txt{display:block;line-height:1}
+.brand b{display:block;font-family:'Jost',sans-serif;font-size:1.26rem;font-weight:500;letter-spacing:.32em;color:var(--tinta)}
+/* "PSICOLOGIA" do logotipo. Estava em .56rem (8,96px) e terracota claro: reprovava
+   no piso de 11px de texto funcional E no contraste (3,4:1 sobre creme). Subiu para
+   .74rem (11,84px) e terracota escuro (4,6:1). ⚠️ marca.md pede para NÃO recriar o
+   logotipo em texto e usar o arquivo do logo: quando o vetor chegar, isso sai. */
+.brand i{display:block;font-family:'Jost',sans-serif;font-style:normal;font-size:.74rem;letter-spacing:.4em;color:var(--terracota-esc);font-weight:500;margin-top:3px}
+.nav nav{display:flex;align-items:center;gap:30px}
+.nav nav a{font-size:.95rem;text-decoration:none;color:var(--tinta-med);transition:color .2s}
+.nav nav a:hover{color:var(--terracota)}
+/* página em que a pessoa está: o link para de ser link e vira posição */
+.nav nav a[aria-current="page"]{color:var(--terracota-esc);font-weight:600}
+
+/* Botão do menu. Só existe abaixo de 900px, onde a barra de links não cabe.
+   Antes daqui a navegação simplesmente sumia no celular e nada a substituía. */
+.nav-abre{
+  display:none;position:relative;width:44px;height:44px;flex:none;
+  background:none;border:0;padding:0;margin:0;cursor:pointer;color:var(--tinta);
+  border-radius:10px;
+}
+.nav-abre span{
+  position:absolute;left:11px;width:22px;height:2px;background:currentColor;border-radius:2px;
+  transition:transform .28s var(--ease),opacity .18s var(--ease);
+}
+.nav-abre span:nth-child(1){top:15px}
+.nav-abre span:nth-child(2){top:21px}
+.nav-abre span:nth-child(3){top:27px}
+.nav.aberto .nav-abre span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav.aberto .nav-abre span:nth-child(2){opacity:0}
+.nav.aberto .nav-abre span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.nav-abre:focus-visible{outline:2px solid var(--terracota-esc);outline-offset:2px}
+
+@media(max-width:900px){
+  .nav-abre{display:block}
+  .nav nav{
+    position:absolute;left:0;right:0;top:72px;display:none;
+    flex-direction:column;align-items:stretch;gap:0;padding:4px 0 10px;
+    background:var(--creme);border-bottom:1px solid var(--linha);
+    box-shadow:0 22px 44px -30px rgba(58,46,40,.6);
+  }
+  .nav.aberto nav{display:flex}
+  .nav nav a{padding:15px 24px;font-size:1.04rem;color:var(--tinta);border-top:1px solid var(--linha)}
+  .nav nav a:first-child{border-top:0}
+}
+@media(max-width:520px){.brand b{font-size:1.1rem;letter-spacing:.26em}.brand img{width:38px;height:38px}}
+
+/* Atalho de teclado para pular a navegação. Fica fora da tela até receber foco. */
+.pula{
+  position:absolute;left:-9999px;top:0;z-index:100;
+  background:var(--terracota-esc);color:#fff;text-decoration:none;
+  font-family:'Karla',sans-serif;font-size:.95rem;padding:12px 20px;border-radius:0 0 10px 0;
+}
+.pula:focus{left:0}
+
+/* ---------- hero: split de altura cheia ---------- */
+.hero{position:relative;overflow:hidden;background:var(--creme);min-height:calc(100svh - 72px);display:flex;align-items:center}
+.hero-inner{position:relative;z-index:2;width:100%;max-width:var(--max);margin:0 auto;padding:0 24px}
+.hero-txt{max-width:544px;padding:56px 0}
+/* .hero .chip removido em 30/07/2026 junto com o elemento no HTML. Era a pílula
+   "Mais de 20 anos em Salvador" acima do h1, o antipadrão `hero-eyebrow-chip`. */
+.hero h1{margin-bottom:22px}
+.hero .lead{margin-bottom:34px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:13px}
+.hero-foto{position:absolute;top:0;right:0;bottom:0;width:47%;z-index:1}
+/* A foto é paisagem (1376x768) dentro de uma coluna quase quadrada, então o cover
+   corta as laterais. No centro geométrico dessa imagem só existe parede vazia, e a
+   poltrona, que é a âncora da cena, fica na faixa que o gradiente apaga. Puxar o
+   corte para a esquerda traz a poltrona para a área visível. */
+.hero-foto img{width:100%;height:100%;object-fit:cover;object-position:32% center}
+.hero-foto::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,var(--creme) 0%,rgba(250,242,234,.35) 14%,rgba(250,242,234,0) 32%)}
+@media(max-width:900px){
+  .hero{flex-direction:column-reverse;min-height:0}
+  .hero-foto{position:relative;width:100%;height:48vw;min-height:240px}
+  .hero-foto::before{background:linear-gradient(0deg,var(--creme) 0%,rgba(250,242,234,0) 45%)}
+  .hero-txt{max-width:none;padding:32px 0 8px}
+  /* no empilhado a foto vira faixa larga e baixa: aí o corte central funciona */
+  .hero-foto img{object-position:center 42%}
+}
+
+/* ---------- faixa sobre ---------- */
+/* ---------- divisoria em buraco, com seta ---------- */
+.notch{position:relative;display:block;height:96px;background:var(--creme);z-index:5}
+.notch-fundo{position:absolute;inset:0;width:100%;height:100%;display:block}
+.notch-seta{position:absolute;left:50%;top:19px;width:26px;height:26px;transform:translateX(-50%);color:var(--terracota-esc);transition:transform .3s var(--ease)}
+.notch:hover .notch-seta,.notch:focus-visible .notch-seta{transform:translateX(-50%) translateY(5px)}
+.notch:focus-visible{outline:2px solid var(--terracota-esc);outline-offset:-5px;border-radius:8px}
+
+/* ---------- secao 1: manifesto, com o cerebro em marca-dagua ---------- */
+/* Seção mais baixa que as outras, a pedido do Marcelo: é a faixa de respiro
+   entre o hero e os serviços, não precisa do padding cheio de .sec. */
+.sobre{background:var(--areia);position:relative;overflow:hidden;padding:72px 0 64px}
+.sobre .wrap{position:relative;z-index:1}
+/* BOTÂNICA DA MARCA.
+   Substitui o cérebro em marca-d'água que estava aqui até 28/07/2026. Dois motivos:
+   1) cérebro é o clichê do segmento, e a Aion nunca usou um. A linguagem gráfica
+      dela, nos cards do destaque "Serviços", é ramo em traço fino terracota sobre
+      mancha orgânica pêssego (ver marca.md, Motivo gráfico 2);
+   2) cérebro atrás do manifesto declara "clínica de neuro" no desenho, contra a
+      decisão de 23/07 de dar peso igual aos 6 serviços. A copy obedecia, o gráfico não.
+   Densidade menor que no story: o que preenche um 9:16 polui um 16:9. */
+.mancha{position:absolute;z-index:0;pointer-events:none;user-select:none;color:var(--pessego);height:auto}
+.ramo{position:absolute;z-index:0;pointer-events:none;user-select:none;color:var(--terracota);height:auto}
+.sobre-mancha{left:-11%;top:-22%;width:min(520px,42vw);opacity:.5}
+.sobre-ramo{right:-16px;bottom:-24px;width:min(230px,21vw);opacity:.45;transform:rotate(8deg)}
+@media(max-width:900px){
+  .sobre-mancha{left:-26%;top:-10%;width:min(340px,64vw);opacity:.4}
+  .sobre-ramo{width:130px;right:-24px;bottom:-16px;opacity:.35}
+}
+.manifesto{
+  font-family:'EB Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(2.05rem,4.3vw,3.4rem);line-height:1.2;letter-spacing:0;
+  max-width:27ch;margin:0 0 clamp(30px,3.4vw,44px);
+}
+.sobre-base{display:grid;grid-template-columns:.86fr 1.14fr;gap:clamp(36px,5vw,64px);align-items:center}
+/* foto retangular de canto arredondado. O arco fica reservado à equipe. */
+.sobre-foto{margin:0;grid-column:1;justify-self:end;width:min(100%,360px)}
+.sobre-foto img{
+  width:100%;aspect-ratio:3/4;object-fit:cover;vertical-align:bottom;
+  border-radius:var(--r-card);
+  box-shadow:0 26px 54px -30px rgba(58,46,40,.55);
+}
+.sobre-txt{grid-column:2}
+.sobre-regua{height:1px;background:rgba(58,46,40,.28);margin-bottom:20px}
+.sobre-txt p{color:var(--tinta-med);max-width:52ch}
+.sobre-txt .fatos{margin-top:24px}
+.sobre-txt .btn-seta{margin-top:26px}
+.btn-seta{margin-top:32px}
+.btn-seta svg{width:19px;height:19px}
+@media(max-width:900px){
+  .sobre{padding:54px 0 48px}
+  .manifesto{max-width:none}
+  .sobre-base{grid-template-columns:1fr;gap:32px}
+  .sobre-foto{grid-column:1;justify-self:start;width:min(62%,260px)}
+  .sobre-txt{grid-column:1}
+}
+.fatos{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.fato{
+  font-family:'Karla',sans-serif;font-size:.86rem;font-weight:500;
+  background:var(--creme);border-radius:999px;padding:10px 20px;
+}
+
+/* ---------- para quem é: situações que chegam à clínica ----------
+   NÃO é autoteste nem quiz de diagnóstico (vedado pelo CFP 011/2018).
+   São situações descritas, com a ressalva de que nada ali é diagnóstico. */
+/* Índice de situações. Coluna única, sem ícone e sem card: a frase é o elemento
+   gráfico. Cada linha é um link, então a seção não é só empatia, ela encaminha
+   para o serviço que costuma atender aquela procura. Layout de índice editorial,
+   família que não se repete em nenhuma outra seção da página. */
+.quem-sec{background:var(--creme)}
+.quem-topo{max-width:48ch;margin-bottom:clamp(30px,3.6vw,44px)}
+.quem-topo .h-lg{max-width:20ch}
+.quem-topo .body{margin-top:18px}
+.quem-lista{list-style:none;margin:0;padding:0;max-width:900px}
+.quem-lista a{
+  display:grid;grid-template-columns:1fr auto;align-items:baseline;
+  gap:10px clamp(28px,4vw,56px);
+  padding:24px 20px 24px 0;text-decoration:none;color:inherit;
+  border-radius:12px;transition:background .3s var(--ease),padding-left .3s var(--ease);
+}
+.quem-lista li + li a{box-shadow:0 -1px 0 var(--linha)}
+.quem-caso{
+  font-family:'EB Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.26rem,2.05vw,1.58rem);line-height:1.5;letter-spacing:0;
+  color:var(--tinta);max-width:34ch;
+}
+/* O termo-chave da frase em terracota, mesmo peso: destaque sem gritar. */
+.quem-caso em{font-style:normal;color:var(--terracota-esc)}
+.quem-rota{
+  display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+  font-size:.86rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--tinta-med);transition:color .25s var(--ease);
+}
+.quem-rota svg{width:15px;height:15px;transition:transform .3s var(--ease)}
+.quem-lista a:hover{background:var(--areia);padding-left:20px}
+/* no hover o fundo vira areia, e aí o terracota-esc cai para 4,1:1. O tom de hover
+   é mais escuro justamente para não perder contraste quando o fundo muda. */
+.quem-lista a:hover .quem-rota{color:var(--terracota-hov)}
+.quem-lista a:hover .quem-rota svg{transform:translateX(4px)}
+.quem-lista a:focus-visible{outline:2px solid var(--terracota-esc);outline-offset:2px}
+.quem-nota{margin-top:36px;font-size:.95rem;color:var(--tinta-med);max-width:60ch}
+@media(max-width:760px){
+  .quem-lista a{grid-template-columns:1fr;gap:12px;padding:20px 0}
+  .quem-lista a:hover{padding-left:0}
+  .quem-caso{max-width:none}
+  /* "Intervenção Neuropsicológica" em caixa alta não cabe em 390px com nowrap:
+     sem isto a página inteira ganha rolagem horizontal. */
+  .quem-rota{white-space:normal;font-size:.74rem;letter-spacing:.06em;line-height:1.4}
+}
+@media(prefers-reduced-motion:reduce){.quem-lista a,.quem-rota svg{transition:none}}
+
+/* ---------- servicos: cards-link, com uma linha de descricao ---------- */
+.servicos-sec{background:var(--areia);position:relative;overflow:hidden}
+.servicos-sec .wrap{position:relative;z-index:1}
+/* Traço enrolado de fundo, na esquerda. Referência do Marcelo, redesenhado
+   nas cores da Aion. Some no mobile, onde não sobra margem para ele. */
+.serv-linha{
+  position:absolute;left:-72px;top:50%;transform:translateY(-50%);
+  width:min(400px,28vw);height:auto;color:var(--terracota);opacity:.4;
+  z-index:0;pointer-events:none;
+}
+.serv-linha-2{
+  position:absolute;right:4%;top:44px;
+  width:min(320px,23vw);height:auto;color:var(--terracota);opacity:.4;
+  z-index:0;pointer-events:none;
+}
+.serv-top{max-width:62ch;margin-bottom:56px}
+@media(max-width:1180px){.serv-linha{opacity:.22;left:-120px}.serv-linha-2{opacity:.3;right:2%;width:24vw}}
+@media(max-width:900px){.serv-top{margin-bottom:44px}.serv-linha,.serv-linha-2{display:none}}
+.serv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.serv{
+  background:var(--creme);border:1px solid var(--linha);border-radius:var(--r-card);
+  padding:32px 30px 28px;position:relative;overflow:hidden;text-decoration:none;color:inherit;
+  display:flex;flex-direction:column;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);
+}
+.serv-desc{font-size:.95rem;color:var(--tinta-med);line-height:1.55}
+.serv:hover{transform:translateY(-4px);box-shadow:0 20px 44px -24px rgba(58,46,40,.4);border-color:rgba(214,95,69,.45)}
+.serv:focus-visible{outline:2px solid var(--terracota-esc);outline-offset:3px}
+.serv .arco{width:34px;height:34px;margin-bottom:20px;color:var(--terracota)}
+.serv h3{margin-bottom:12px;font-size:1.32rem;line-height:1.3}
+.serv .quem{font-size:.86rem;color:var(--tinta-med)}
+.serv .quem b{font-family:'Karla',sans-serif;font-weight:600;color:var(--tinta);font-size:.74rem;letter-spacing:.06em}
+.serv-mais{margin-top:auto;padding-top:22px;display:inline-flex;align-items:center;gap:7px;
+  font-family:'Karla',sans-serif;font-weight:600;font-size:.86rem;color:var(--terracota-esc)}
+.serv-mais svg{width:16px;height:16px;transition:transform .3s var(--ease)}
+.serv:hover .serv-mais svg{transform:translateX(4px)}
+@media(max-width:980px){.serv-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:660px){.serv-grid{grid-template-columns:1fr}}
+
+/* ---------- equipe: fotos em arco, com marca-dagua ---------- */
+.equipe-sec{position:relative;overflow:hidden}
+/* Aqui havia o logo ampliado a 9% como marca-d'água. Logo gigante de fundo é
+   enchimento, e era o mesmo arquivo do símbolo do topo, ou seja, o mesmo desenho
+   duas vezes na mesma página. Trocado pela botânica, que é sistema e não cópia. */
+.eq-mancha{left:-8%;top:-18%;width:min(430px,34vw);opacity:.42}
+.eq-ramo{right:-30px;top:8%;width:min(210px,18vw);opacity:.4;transform:scaleX(-1) rotate(6deg)}
+@media(max-width:900px){
+  .eq-mancha{left:-24%;top:-8%;width:min(300px,58vw);opacity:.34}
+  .eq-ramo{display:none}
+}
+.equipe-sec .wrap{position:relative;z-index:1}
+.eq-head{text-align:center;max-width:60ch;margin:0 auto 52px}
+.eq-head .body{margin:14px auto 0}
+/* fotos da equipe: moldura em arco (topo em meia-elipse, base reta).
+   Sem transform e sem transição, a pedido do Marcelo. */
+.equipe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3.4vw,44px);
+  max-width:920px;margin:0 auto}
+.pessoa{margin:0}
+.pessoa-foto{
+  border-radius:50% 50% 12px 12px / 34% 34% 12px 12px;
+  overflow:hidden;background:var(--areia-2);position:relative;
+  box-shadow:0 24px 50px -28px rgba(58,46,40,.5);
+}
+/* Véu quente uniforme sobre os três retratos. Eles não são a mesma sessão de fotos:
+   dois em fundo de estúdio pêssego (em tons diferentes entre si) e um em ambiente
+   interno com persiana. Lado a lado a diferença aparece. O véu aproxima a
+   temperatura das três e a página inteira é quente, então não briga com nada.
+   ⚠️ Isto é remendo. A correção de verdade são três fotos no mesmo fundo. */
+.pessoa-foto::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:rgba(241,198,163,.14);mix-blend-mode:multiply;
+}
+/* vertical-align tira o respiro de linha embaixo da imagem, que aparecia como
+   uma faixa clara entre a foto e a base do arco.
+   O object-position vertical não fazia nada: as três imagens são mais largas que
+   o quadro 3:4, então o cover corta na horizontal e a altura inteira sempre aparece.
+   O que ajusta de verdade é o eixo horizontal, mais um zoom leve que tira contexto
+   de fundo e iguala o tamanho aparente das cabeças. */
+.pessoa-foto img{
+  width:100%;aspect-ratio:3/4;object-fit:cover;vertical-align:bottom;
+  transform-origin:center 26%;
+}
+.pessoa-foto .p-tutti{object-position:50% center;transform:scale(1.05)}
+.pessoa-foto .p-joao{object-position:50% center;transform:scale(1.07)}
+.pessoa-foto .p-giuliana{object-position:43% center;transform:scale(1.15)}
+.pessoa figcaption{margin-top:20px;display:flex;flex-direction:column;gap:6px}
+.pessoa-nome{font-family:'EB Garamond',Georgia,serif;font-weight:600;font-size:1.32rem;color:var(--tinta);line-height:1.35}
+.pessoa-crp{
+  font-family:'Karla',sans-serif;font-size:.74rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--terracota-esc);
+}
+.pessoa-bio{margin-top:4px;font-size:.95rem;line-height:1.55;color:var(--tinta-med)}
+@media(max-width:760px){
+  .equipe-grid{grid-template-columns:1fr;max-width:520px;gap:40px}
+  .pessoa{display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:center}
+  .pessoa figcaption{margin-top:0}
+}
+@media(max-width:440px){
+  .pessoa{grid-template-columns:1fr;gap:16px}
+  .pessoa-foto{max-width:220px}
+}
+
+/* ---------- como começa: três passos numerados ---------- */
+.passos-sec{background:var(--areia)}
+/* margem menor porque o primeiro passo agora traz 32px de padding próprio */
+.passos-head{max-width:52ch;margin-bottom:clamp(6px,1.4vw,18px)}
+.passos-head .body{margin-top:16px}
+/* Passos empilhados, com o numeral grande à esquerda.
+   Antes eram três colunas, e Serviços, Equipe e Como começa ficavam sendo a mesma
+   seção repetida três vezes seguidas (00-anatomia.md, Ritmo visual). Empilhar aqui
+   quebra a repetição, e a lista numerada lê melhor que card em passo de processo. */
+.passos{display:grid;gap:0;counter-reset:passo;max-width:880px}
+.passo{
+  display:grid;grid-template-columns:auto 1fr;
+  column-gap:clamp(20px,3.2vw,42px);row-gap:9px;align-items:start;
+  /* Padding explícito e igual em todos, e o fio só entre um passo e o seguinte
+     (`.passo + .passo`). Antes o primeiro item zerava o padding-top por exceção,
+     e um item com border-top na regra base e padding-top zero na exceção lê como
+     texto colado no fio, no detector e no olho de quem revisa. */
+  padding:32px 0;
+}
+.passo + .passo{border-top:1px solid rgba(58,46,40,.18)}
+.passo::before{
+  counter-increment:passo;content:counter(passo,decimal-leading-zero);
+  grid-column:1;grid-row:1 / span 2;
+  font-family:'EB Garamond',Georgia,serif;font-weight:600;line-height:.9;
+  font-size:clamp(2.3rem,4.2vw,3.2rem);color:var(--terracota);opacity:.6;
+}
+.passo h3{grid-column:2;font-size:1.32rem;line-height:1.3}
+.passo p{grid-column:2;color:var(--tinta-med);font-size:.95rem;max-width:58ch}
+.passos-nota{margin-top:36px;font-size:.95rem;color:var(--tinta-med);max-width:64ch}
+
+/* ---------- espaço ---------- */
+.espaco-sec{background:var(--creme)}
+.espaco-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:44px}
+.espaco-grid figure{margin:0;border-radius:var(--r-card);overflow:hidden;position:relative}
+.espaco-grid img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .7s var(--ease)}
+.espaco-grid figure:hover img{transform:scale(1.03)}
+.espaco-grid figcaption{padding:16px 2px 0;font-size:.95rem;color:var(--tinta-med)}
+@media(max-width:760px){.espaco-grid{grid-template-columns:1fr}}
+
+/* ---------- localizacao ---------- */
+.contato{background:var(--tinta);color:var(--creme)}
+.contato .h-lg{color:var(--creme)}
+.contato .eyebrow{color:var(--pessego)}
+.ct-sub{color:rgba(250,242,234,.72);margin-top:16px;max-width:44ch}
+.ct-grid{display:grid;grid-template-columns:1fr 1.02fr;gap:48px 64px;align-items:start}
+/* Lista em linhas rótulo/valor com fio fino. Substitui os quatro blocos soltos,
+   que ficavam bagunçados com as marcações de pendência. */
+.ct-lista{margin:36px 0 0;display:grid}
+.ct-item{display:grid;grid-template-columns:104px 1fr;gap:8px 20px;
+  padding:16px 0;border-top:1px solid rgba(250,242,234,.14)}
+.ct-item dt{
+  font-family:'Karla',sans-serif;font-size:.74rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--pessego);padding-top:4px;
+}
+.ct-item dd{margin:0;font-size:1.04rem;color:#fff;line-height:1.5}
+.ct-item dd a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)}
+.ct-item dd a:hover{border-bottom-color:var(--pessego)}
+.ct-acao{margin-top:34px}
+.ct-acao .btn-1{background:var(--whats);color:#0B2E19}
+.ct-acao .btn-1:hover{background:#1FBB59}
+.ct-acao p{margin-top:18px;font-size:.95rem;color:rgba(250,242,234,.72)}
+.ct-acao p a{color:#fff}
+.ct-acao .ct-nota{margin-top:12px;font-size:.86rem}
+/* mapa */
+.ct-mapa{margin:0;position:sticky;top:96px;padding-top:8px}
+.ct-mapa-moldura{
+  border-radius:var(--r-card);overflow:hidden;
+  border:1px solid rgba(250,242,234,.16);background:rgba(250,242,234,.06);
+  box-shadow:0 26px 60px -30px rgba(0,0,0,.6);
+}
+.ct-mapa iframe{display:block;width:100%;height:clamp(380px,52vh,540px);border:0;filter:saturate(.9)}
+.ct-mapa figcaption{
+  padding-top:16px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;
+  font-size:.86rem;color:rgba(250,242,234,.6);
+}
+.ct-mapa figcaption a{
+  display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;
+  font-family:'Karla',sans-serif;font-weight:600;font-size:.86rem;
+  border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:2px;transition:border-color .2s;
+}
+.ct-mapa figcaption a:hover{border-bottom-color:var(--pessego)}
+.ct-mapa figcaption a svg{width:16px;height:16px}
+@media(max-width:980px){
+  .ct-grid{grid-template-columns:1fr;gap:40px}
+  .ct-mapa{position:static;padding-top:0}
+}
+@media(max-width:520px){.ct-item{grid-template-columns:1fr;gap:4px}.ct-item dt{padding-top:0}}
+
+/* ---------- rodape ---------- */
+.rodape{background:#2E2420;color:rgba(250,242,234,.62);font-size:.95rem;padding:64px 0 40px}
+.rd-grid{display:grid;grid-template-columns:1.7fr 1fr 1fr;gap:48px;padding-bottom:44px}
+.rd-marca{max-width:40ch}
+.brand-rod{margin-bottom:20px}
+.brand-rod img{width:42px;height:42px}
+.brand-rod .brand-txt b{color:#fff}
+/* no rodapé escuro o terracota dá 4,0:1; o pêssego dá 9,6:1 */
+.brand-rod .brand-txt i{color:var(--pessego)}
+.rd-marca p{color:rgba(250,242,234,.58);line-height:1.6;margin-bottom:22px}
+.rd-insta{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:rgba(250,242,234,.85);transition:color .2s}
+.rd-insta svg{width:20px;height:20px;fill:currentColor}
+.rd-insta:hover{color:var(--pessego)}
+.rd-col{display:flex;flex-direction:column;gap:13px}
+.rd-tit{font-family:'Karla',sans-serif;font-weight:600;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,242,234,.66);margin-bottom:4px}
+.rd-col a{text-decoration:none;color:rgba(250,242,234,.8);transition:color .2s}
+.rd-col a:hover{color:var(--pessego)}
+.rd-regua{height:1px;background:rgba(250,242,234,.15)}
+.rd-base{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 28px;padding-top:26px}
+.rd-copy{font-size:.86rem;color:rgba(250,242,234,.72)}
+/* Esta linha carrega o CRP da pessoa jurídica e a responsável técnica, que o CFP
+   obriga a estar visíveis. Estava a .48 de opacidade e 0.79rem, o que dava 4,30:1
+   sobre #2E2420 e reprovava no WCAG AA: era o texto menos legível da página, e
+   justamente o obrigatório. A .78 e 0.86rem dá 8,89:1. */
+.rd-legal{font-size:.86rem;color:rgba(250,242,234,.78);flex:1 1 300px;text-align:center}
+.rd-assina{font-size:.86rem;color:rgba(250,242,234,.66)}
+@media(max-width:820px){
+  .rd-grid{grid-template-columns:1fr 1fr;gap:32px 24px}
+  .rd-marca{grid-column:1 / -1;max-width:none}
+  .rd-base{flex-direction:column;align-items:flex-start;gap:12px}
+  /* flex:1 1 300px vira ALTURA quando a direção é coluna, e a linha legal abria um
+     vão vazio de ~230px no celular. No empilhado ela não precisa crescer. */
+  .rd-legal{text-align:left;flex:0 0 auto}
+}
+
+/* faixa de crise, fora do rodapé escuro para ficar sempre visível */
+.crise{background:var(--pessego);color:#4A2A1C;padding:16px 24px;text-align:center;font-size:.95rem}
+.crise b{font-family:'Karla',sans-serif;font-weight:600}
+.crise a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+
+/* =========================================================================
+   PÁGINA DE DOCUMENTO (política de privacidade)
+   ========================================================================= */
+.doc{padding-bottom:104px}
+.doc .h-xl{max-width:16ch;margin-bottom:18px}
+.doc-data{margin-top:22px;font-size:.95rem}
+.doc-corpo{margin-top:52px;max-width:70ch;border-top:1px solid var(--linha);padding-top:8px}
+.doc-corpo h2{font-size:1.32rem;margin:38px 0 12px}
+.doc-corpo p{color:var(--tinta-med);margin-bottom:12px}
+.doc-corpo p b{color:var(--tinta)}
+.doc-corpo a{color:var(--terracota-esc);text-decoration:underline;text-underline-offset:3px}
+.doc-aviso{
+  margin-top:44px;padding:20px 22px;border-radius:14px;
+  background:rgba(184,75,51,.09);border:1px dashed var(--terracota-esc);
+  font-size:.95rem;line-height:1.6;color:var(--tinta);
+}
+.doc-volta{margin-top:36px}
+
+/* ---------- placeholder de dado pendente ---------- */
+.pend{
+  background:rgba(214,95,69,.14);border-bottom:1.5px dashed var(--terracota);
+  padding:1px 5px;border-radius:3px;color:inherit;
+}
+.contato .pend,.rodape .pend{background:rgba(241,198,163,.2);border-bottom-color:var(--pessego)}
+.aviso-demo{
+  background:var(--terracota-esc);color:#fff;text-align:center;
+  font-family:'Karla',sans-serif;font-size:.86rem;font-weight:500;
+  padding:9px 24px;letter-spacing:.01em;
+  display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;
+}
+/* Botão que apaga o destaque das pendências, para apresentar o site limpo para a
+   cliente sem perder a marcação. Só existe enquanto a faixa de demo existir. */
+.pend-btn{
+  font:inherit;font-size:.74rem;cursor:pointer;
+  background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.45);
+  border-radius:999px;padding:3px 12px;transition:background .2s;
+}
+.pend-btn:hover{background:rgba(255,255,255,.3)}
+.pend-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+/* estado limpo: a pendência vira texto comum, sem realce */
+body.pend-off .pend{background:none;border-bottom:0;padding:0;border-radius:0}
+
+/* ---------- botão flutuante whatsapp ---------- */
+.float{
+  position:fixed;right:20px;bottom:20px;z-index:50;width:56px;height:56px;
+  border-radius:50%;background:var(--whats);display:grid;place-items:center;
+  box-shadow:0 10px 30px -8px rgba(0,0,0,.4);transition:transform .25s var(--ease);
+}
+.float:hover{transform:scale(1.07)}
+.float svg{width:29px;height:29px;fill:#fff}
+
+/* ---------- motion (MOTION_INTENSITY 4) ---------- */
+.rev{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rev.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rev{opacity:1;transform:none;transition:none}
+  *{animation:none!important}
+  .serv:hover,.espaco-grid figure:hover img,.float:hover{transform:none}
+  .nav-abre span{transition:none}
+  /* o scale dos retratos é enquadramento, não movimento: não entra aqui */
+}
+
+/* =========================================================================
+   PÁGINA DE CONTATO
+   ========================================================================= */
+.pg-topo{padding:78px 0 0}
+.ct2{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;padding-bottom:104px}
+
+/* coluna esquerda */
+.ct2-esq .h-xl{margin-bottom:56px}
+.ct2-regua{height:1px;background:var(--linha);margin:0 0 30px}
+.ct2-dados{margin-bottom:34px}
+.ct2-dados p{margin-bottom:6px}
+.ct2-dados .rot{font-family:'Karla',sans-serif;font-weight:600;color:var(--tinta)}
+.ct2-dados a{color:var(--terracota-esc);text-decoration:none;border-bottom:1px solid rgba(184,75,51,.35)}
+.ct2-dados a:hover{border-bottom-color:var(--terracota-esc)}
+.ct2-tit{font-family:'Karla',sans-serif;font-weight:600;font-size:.95rem;margin-bottom:16px;display:block}
+.ct2-unid{display:flex;flex-wrap:wrap;gap:10px}
+.ct2-unid .fato{background:var(--areia)}
+
+/* coluna direita, o formulário */
+.form-card{background:var(--areia);border-radius:var(--r-card);padding:44px 42px 40px}
+.form-card h2{font-size:1.5rem;margin-bottom:14px}
+.form-card .intro{color:var(--tinta-med);margin-bottom:36px;max-width:46ch}
+.campos{display:grid;grid-template-columns:1fr 1fr;gap:26px 24px}
+.campo{display:flex;flex-direction:column;gap:7px}
+.campo.full{grid-column:1 / -1}
+.campo label{font-size:.86rem;font-weight:600;font-family:'Karla',sans-serif;color:var(--tinta)}
+.campo input,.campo textarea{
+  font-family:'Karla',sans-serif;font-size:1rem;color:var(--tinta);
+  background:transparent;border:0;border-bottom:1.5px solid rgba(58,46,40,.32);
+  padding:9px 2px;border-radius:0;transition:border-color .25s var(--ease);
+}
+.campo textarea{min-height:112px;resize:vertical;line-height:1.55}
+.campo input::placeholder,.campo textarea::placeholder{color:#8A7669}
+.campo input:focus,.campo textarea:focus{outline:0;border-bottom-color:var(--terracota-esc);border-bottom-width:2px}
+.campo input:focus-visible,.campo textarea:focus-visible{outline:2px solid var(--terracota-esc);outline-offset:3px}
+.ajuda{font-size:.86rem;color:#6E5B50}
+.consent{display:flex;gap:11px;align-items:flex-start;margin-top:30px;font-size:.86rem;color:#6E5B50;line-height:1.5}
+.consent input{margin-top:3px;width:17px;height:17px;accent-color:var(--terracota-esc);flex:none}
+.form-rod{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-top:32px}
+.form-rod .obrig{font-size:.86rem;color:#6E5B50}
+.form-aviso{
+  margin-top:28px;padding:14px 16px;border-radius:12px;
+  background:rgba(184,75,51,.1);border:1px dashed var(--terracota-esc);
+  font-size:.86rem;line-height:1.55;color:var(--tinta);
+}
+@media(max-width:980px){
+  .ct2{grid-template-columns:1fr;gap:48px;padding-bottom:64px}
+  .ct2-esq .h-xl{margin-bottom:32px}
+}
+@media(max-width:560px){
+  .form-card{padding:32px 24px 30px}
+  .campos{grid-template-columns:1fr}
+}
+
+/* ---------- FAQ ---------- */
+.faq{background:var(--areia)}
+.faq-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start}
+.faq-esq p{color:var(--tinta-med);margin-top:14px}
+/* A seção de FAQ tem fundo areia, e sobre areia o terracota-esc cai para 4,1:1.
+   Link e hover aqui usam o tom de hover, que dá 5,2:1. */
+.faq-esq a{color:var(--terracota-hov);text-decoration:underline;text-underline-offset:3px}
+/* O fio de cima fica em cada item, não no container. Quando ele estava no
+   container, o primeiro filho encostava no fio sem respiro nenhum: o afastamento
+   visual vinha do padding do <summary>, um nível abaixo. Mesma aparência, estrutura
+   honesta. */
+.faq-lista{border-top:0}
+.faq-item{border-top:1px solid rgba(58,46,40,.22)}
+.faq-item:last-child{border-bottom:1px solid rgba(58,46,40,.22)}
+.faq-item summary{
+  list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:24px 0;font-family:'Karla',sans-serif;font-weight:500;font-size:1.04rem;color:var(--tinta);
+  transition:color .2s;
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:hover{color:var(--terracota-hov)}
+.faq-item summary:focus-visible{outline:2px solid var(--terracota-esc);outline-offset:4px;border-radius:4px}
+.faq-item .sinal{position:relative;width:16px;height:16px;flex:none}
+.faq-item .sinal::before,.faq-item .sinal::after{
+  content:"";position:absolute;background:var(--terracota-esc);border-radius:2px;
+  transition:transform .3s var(--ease),opacity .3s var(--ease);
+}
+.faq-item .sinal::before{inset:7px 0;height:2px}
+.faq-item .sinal::after{inset:0 7px;width:2px}
+.faq-item[open] .sinal::after{transform:scaleY(0);opacity:0}
+.faq-item .resp{padding:0 0 26px;color:var(--tinta-med);max-width:62ch}
+.faq-item .resp p + p{margin-top:12px}
+@media(max-width:900px){.faq-grid{grid-template-columns:1fr;gap:36px}}
+@media(prefers-reduced-motion:reduce){.faq-item .sinal::before,.faq-item .sinal::after{transition:none}}
+
+/* =========================================================================
+   PÁGINA DE ESPECIALIDADES
+   ========================================================================= */
+/* ⚠️ `padding-top`, nunca o shorthand `padding`. Estes blocos usam `class="wrap X"`,
+   e o shorthand chega depois do `.wrap{padding:0 24px}` no arquivo, com a mesma
+   especificidade: ele zera os 24px laterais e o texto encosta na borda da tela no
+   celular. É a "especificidade de CSS que se anula" do 90-antipadroes.md, e aqui ela
+   estava viva em .esp-hero e .esp-lista-sec desde antes. Corrigido em 30/07/2026. */
+.esp-hero{padding-top:76px}
+.esp-hero .h-xl{max-width:16ch;margin-bottom:20px}
+.esp-hero .lead{max-width:56ch}
+.esp-lista-sec{padding-top:64px;padding-bottom:104px}
+.esp{display:grid;grid-template-columns:64px 1fr;gap:28px;padding:44px 0;border-top:1px solid var(--linha)}
+.esp:first-child{border-top:0}
+.esp-icone{width:56px;height:56px;border-radius:14px;background:var(--areia);display:grid;place-items:center;color:var(--terracota-esc)}
+.esp-icone svg{width:28px;height:28px}
+.esp-body h2{font-size:clamp(1.5rem,2.6vw,2rem);margin-bottom:10px}
+/* Sem caixa alta. Frases como "Crianças, adolescentes e adultos" têm 32 caracteres,
+   e acima de ~30 a caixa alta apaga o desenho da palavra, que é como se lê rápido.
+   Caixa alta serve pra rótulo de duas ou três palavras (90-antipadroes.md). */
+.esp-para{font-family:'Karla',sans-serif;font-size:.95rem;font-weight:600;letter-spacing:.01em;color:var(--terracota-esc);margin-bottom:18px}
+.esp-body>p{color:var(--tinta-med);max-width:64ch;margin-bottom:18px}
+.esp-passos{list-style:none;padding:0;margin:0 0 26px;display:grid;gap:10px;max-width:60ch}
+.esp-passos li{position:relative;padding-left:26px;color:var(--tinta-med)}
+.esp-passos li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--terracota)}
+.esp-volta{margin-top:8px}
+/* especialidades.html virou índice em 30/07/2026: o título de cada bloco abre a
+   página do serviço. Sublinhado só no hover, para o h2 não virar uma barra. */
+.esp-link{color:inherit;text-decoration:none}
+.esp-link:hover{color:var(--terracota-hov);text-decoration:underline;text-underline-offset:5px}
+.esp-link:focus-visible{outline:2px solid var(--terracota-esc);outline-offset:4px;border-radius:4px}
+@media(max-width:640px){
+  .esp{grid-template-columns:1fr;gap:16px;padding:36px 0}
+  .esp-icone{width:48px;height:48px}
+}
+
+/* ---------- páginas individuais de serviço (6 arquivos, 30/07/2026) ----------
+   Uma página por serviço, cada uma com URL, título e descrição próprios. A
+   especialidades.html virou o índice das seis.
+
+   REFORMULADAS EM 01/08/2026 no padrão de layout do Q Psychology
+   (qpsychology.com.au/services/*), a pedido do Marcelo. O que foi adotado de lá:
+
+   1. Hero em FAIXA DE COR CHEIA, com h1 grande, régua fina e duas colunas abaixo
+   2. Título de seção como MARGINÁLIA à esquerda, conteúdo na coluna direita
+   3. Faixa de CTA colorida fechando a página
+
+   O que NÃO foi adotado, e por quê: no Q quase todo o conteúdo mora dentro de
+   acordeão, porque a página dele empilha 12 sub-serviços. Aqui cada página tem um
+   serviço e dois parágrafos, e esconder isso atrás de um `<details>` é esconder o
+   que a pessoa veio ler. Acordeão fica só no FAQ. Também ficou de fora a textura
+   granulada das faixas (grão em SVG é antipadrão da casa) e a imagem circular
+   abstrata do hero, já que a Aion tem foto real da clínica.
+
+   A assinatura da página é a BOTÂNICA DA MARCA (mancha pêssego + ramo em traço),
+   a mesma da home, vinda dos cards do Instagram. Sem ela a página seria um clone
+   competente do Q em vez de uma página da Aion.
+
+   Alternância de fundo (00-anatomia.md, "ritmo visual"):
+   areia (hero) → creme (quando) → areia (como) → creme (faq) → areia (outros)
+   → terracota-hov (cta final).
+   Nenhum tamanho de fonte novo: tudo sai dos nove degraus consolidados em
+   28/07/2026, ou do clamp de display. */
+
+/* Faixa do hero. `overflow:hidden` contém a botânica, que sangra de propósito. */
+.sv-topo{background:var(--areia);position:relative;overflow:hidden;padding:44px 0 84px}
+.sv-topo .wrap{position:relative;z-index:1}
+.sv-hero{padding-top:0}
+/* Migalha em vez de eyebrow. O rótulo miúdo em caixa alta sobre o h1 é o
+   `hero-eyebrow-chip`; migalha de navegação é o uso que a regra permite. */
+.sv-migalha{
+  display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-bottom:26px;
+  font-family:'Karla',sans-serif;font-size:.86rem;color:var(--tinta-med);
+}
+.sv-migalha a{color:var(--tinta-med);text-decoration:none;border-bottom:1px solid var(--linha)}
+.sv-migalha a:hover{color:var(--terracota-hov);border-bottom-color:currentColor}
+.sv-migalha a:focus-visible{outline:2px solid var(--terracota-esc);outline-offset:3px;border-radius:2px}
+.sv-migalha span[aria-hidden]{opacity:.5}
+.sv-migalha [aria-current]{color:var(--tinta)}
+/* O h1 respira até 20ch: na faixa cheia ele é o elemento que carrega a página,
+   como no Q, onde o título ocupa quase a largura toda em duas linhas. */
+.sv-hero .h-xl{max-width:20ch;margin-bottom:0}
+/* Régua fina entre o título e o bloco de leitura. É o gesto que separa as duas
+   zonas do hero do Q sem precisar de caixa nem de fundo diferente. */
+.sv-regua{height:1px;background:rgba(58,46,40,.26);margin:clamp(32px,4.5vw,52px) 0 0}
+/* Duas colunas abaixo da régua: leitura à esquerda, respiro à direita. A coluna
+   vazia não é desperdício, é o que dá ao hero o ar de página de destino. */
+.sv-duo-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.82fr);gap:clamp(32px,5vw,72px);align-items:start;padding-top:clamp(28px,3.5vw,40px)}
+.sv-publico{font-family:'Karla',sans-serif;font-size:.95rem;font-weight:600;letter-spacing:.01em;color:var(--terracota-hov);margin:0 0 20px}
+.sv-abre p + p{margin-top:16px}
+.sv-abre a{color:var(--terracota-hov);text-decoration:underline;text-underline-offset:3px}
+.sv-cta{display:flex;flex-wrap:wrap;gap:13px;margin-top:34px}
+
+/* Botânica da marca no hero: mancha pêssego chapada + ramo em traço fino.
+   Mesmos desenhos da seção 1 da home, vindos dos cards do Instagram. Decorativos,
+   então `aria-hidden` no HTML e sem papel semântico nenhum. */
+.sv-bot{position:absolute;pointer-events:none;user-select:none}
+.sv-mancha{right:-9%;top:-32%;width:min(56%,620px);color:var(--pessego);opacity:.5}
+.sv-ramo{right:4%;bottom:-6%;width:min(20%,190px);color:var(--terracota);opacity:.34}
+@media(max-width:900px){.sv-mancha{right:-28%;top:-14%;width:78%}.sv-ramo{display:none}}
+
+/* ---- marginália: título à esquerda, conteúdo à direita ----
+   É a estrutura mais característica do Q e a razão principal do pedido. A mesma
+   proporção do .faq-grid que já existia aqui desde 26/07, então o padrão não é
+   importado inteiro: metade dele a página já usava no FAQ. */
+.sv-duo{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(36px,5vw,64px);align-items:start}
+.sv-duo-tit{margin:0}
+.sv-duo-tit + .sv-duo-nota{margin-top:16px;color:var(--tinta-med);font-size:.95rem;max-width:34ch}
+
+/* Passou de areia para creme em 01/08/2026: com o hero virando faixa de areia,
+   manter esta seção em areia daria duas faixas iguais coladas. */
+.sv-quando-sec{background:var(--creme)}
+.sv-quando-sec .h-lg{max-width:19ch;margin-bottom:0}
+/* Fio de 1px, não listra: acima disso vira o jeito rápido de fingir hierarquia
+   que o espaçamento não deu (90-antipadroes.md). */
+.sv-quando{
+  font-family:'EB Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(1.26rem,2.05vw,1.58rem);line-height:1.5;letter-spacing:0;
+  color:var(--tinta);max-width:38ch;margin:0;
+  padding-left:clamp(18px,2.4vw,28px);border-left:1px solid rgba(58,46,40,.28);
+}
+/* O tom de hover foi escolhido em 30/07 porque o fundo era areia, onde o
+   terracota-esc cai para 4,1:1 e reprova (o texto tem 20 a 25px sem negrito,
+   então não conta como "large text" e precisa dos 4,5:1 cheios). Desde 01/08 o
+   fundo aqui é creme, onde o hov dá 5,92:1: continua correto, agora com folga.
+   Mantido em hov de propósito, para a frase ter o mesmo valor nas 6 páginas. */
+.sv-quando em{font-style:normal;color:var(--terracota-hov)}
+.sv-ressalva{margin:30px 0 0;font-size:.95rem;color:var(--tinta-med);max-width:60ch}
+
+/* "Como funciona" e "Quem conduz" deixaram de ser duas colunas lado a lado e
+   passaram a ocupar a coluna direita da marginália, uma abaixo da outra, com um
+   fio separando. Motivo: com o título virando marginália, duas colunas dentro da
+   coluna direita dariam quatro faixas verticais numa tela de 1240px. */
+.sv-como-sec{background:var(--areia)}
+.sv-quem{margin-top:clamp(38px,4.5vw,54px);padding-top:clamp(34px,4vw,46px);border-top:1px solid rgba(58,46,40,.22)}
+.sv-quem h3{font-size:1.32rem;margin-bottom:14px}
+.sv-quem .body{margin-bottom:0}
+.sv-quem .btn-seta{margin-top:28px}
+
+/* FAQ das páginas de serviço em creme, para não repetir a areia do "como".
+   O .faq global é areia e continua areia na home e no contato. */
+.sv-faq{background:var(--creme)}
+
+/* Os outros serviços deixaram de ser grid de 3 cards. Dois motivos: cinco itens
+   num grid de três deixavam um buraco na segunda linha, e "três cards iguais lado
+   a lado" é antipadrão da casa quando os itens têm o mesmo peso. Viraram linhas
+   com fio, no espírito da lista do Q, que também usa fio e não card. */
+.sv-outros-sec{background:var(--areia)}
+.sv-lista{border-top:1px solid rgba(58,46,40,.22)}
+.sv-item{
+  display:grid;grid-template-columns:34px 1fr auto;align-items:center;
+  gap:20px;padding:24px 0;text-decoration:none;
+  border-bottom:1px solid rgba(58,46,40,.22);
+  transition:background .25s var(--ease);
+}
+.sv-item:hover{background:rgba(58,46,40,.035)}
+.sv-item:focus-visible{outline:2px solid var(--terracota-esc);outline-offset:-2px}
+/* Cada célula é posicionada explicitamente. O ícone e a seta cruzam as duas
+   linhas (título em cima, descrição embaixo) e ficam centrados nelas.
+   ⚠️ A seta PRECISA de grid-column:3. Sem isso o auto-placement a joga na coluna
+   2 da primeira linha, logo depois do ícone, e empurra o título inteiro para a
+   linha de baixo. */
+.sv-item .arco{grid-column:1;grid-row:1/3;align-self:center;width:34px;height:34px;color:var(--terracota-esc)}
+.sv-item h3{grid-column:2;grid-row:1;font-size:1.32rem;line-height:1.3;margin:0}
+.sv-item .sv-item-desc{grid-column:2;grid-row:2;font-size:.95rem;color:var(--tinta-med);line-height:1.55;margin-top:5px}
+.sv-item .sv-seta{grid-column:3;grid-row:1/3;align-self:center;width:19px;height:19px;color:var(--terracota-esc);transition:transform .3s var(--ease)}
+.sv-item:hover .sv-seta{transform:translateX(4px)}
+@media(max-width:640px){
+  .sv-item{grid-template-columns:28px 1fr;gap:14px;padding:20px 0}
+  .sv-item .arco{width:28px;height:28px}
+  .sv-item .sv-seta{display:none}
+  /* com a seta fora, a coluna 3 deixa de existir e o título volta para a 2 */
+  .sv-item h3,.sv-item .sv-item-desc{grid-column:2}
+}
+
+/* ---- faixa de CTA final ----
+   Pedido explícito do Marcelo (01/08/2026): um botão de contato fechando a
+   página. Faixa cheia como a do Q, que fecha em verde escuro.
+   Cor: --terracota-hov #9E3F2B, não a terracota da marca. Creme sobre #9E3F2B dá
+   5,92:1; sobre a terracota #D65F45 daria 2,4:1 e reprovaria feio. Mesma família,
+   acento único preservado (99-checklist.md §2.5).
+   O botão inverte: creme sólido com texto em --terracota-esc, 4,63:1 sobre creme. */
+.sv-fecha{background:var(--terracota-hov);color:var(--creme);text-align:center;padding:116px 0}
+.sv-fecha h2{color:var(--creme);max-width:20ch;margin:0 auto}
+.sv-fecha .sv-fecha-sub{color:rgba(250,242,234,.88);max-width:52ch;margin:22px auto 0}
+.sv-fecha .btn{margin-top:38px}
+.sv-fecha .btn-claro{background:var(--creme);color:var(--terracota-esc);font-weight:600}
+.sv-fecha .btn-claro:hover{background:#fff;color:var(--terracota-hov)}
+.sv-fecha .btn-claro:focus-visible{outline:2px solid var(--creme);outline-offset:4px}
+.sv-fecha .sv-fecha-alt{margin-top:22px;font-size:.95rem;color:rgba(250,242,234,.88)}
+.sv-fecha .sv-fecha-alt a{color:var(--creme);text-decoration:underline;text-underline-offset:3px}
+
+/* Padding vertical em valor literal + media query, e não em clamp(). Não é
+   preferência de estilo: o detector da casa não resolve clamp() em padding e
+   acusa `cramped-padding` numa seção que tem 84px de folga. Confirmado em
+   01/08/2026, quando .sv-topo (topo 44px literal, base em clamp) acusou só a
+   base, e .sv-fecha (os dois em clamp) acusou os dois. É o mesmo padrão que
+   .sec já usava desde o começo do arquivo. */
+@media(max-width:900px){
+  .sv-topo{padding:32px 0 56px}
+  .sv-fecha{padding:76px 0}
+  .sv-duo-hero,.sv-duo{grid-template-columns:1fr;gap:32px}
+  .sv-duo-tit + .sv-duo-nota{max-width:60ch}
+}
