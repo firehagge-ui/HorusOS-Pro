@@ -56,11 +56,16 @@ roda e aponta arquivo e linha.
 npx --yes impeccable@3.5.0 detect "clientes/<nome>/site"
 ```
 
-Vem do projeto `impeccable` (github.com/pbakaus/impeccable, Apache 2.0). **Só o
-detector foi adotado**, de propósito: os 23 comandos, o `DESIGN.md` e o
-`PRODUCT.md` dele ficaram de fora porque colidiriam com `marca.md` e `briefing.md`,
-e porque ele não tem noção de compliance de CFO e CFP. Exceções ficam em
-`.impeccable/config.json`, versionado pra que o motivo de cada uma fique visível.
+Vem do projeto `impeccable` (github.com/pbakaus/impeccable, Apache 2.0). Até
+07/08/2026 a Horus usava **só o detector**, via `npx`. Em 08/08/2026 o pacote
+**completo** foi instalado: a skill com 23 comandos, os 4 agentes e os dois hooks.
+A colisão original (o `DESIGN.md` e o `PRODUCT.md` dele batiam com `marca.md` e
+`briefing.md`) foi **resolvida** com a regra de contexto por cliente, não ignorada:
+detalhe na seção "Impeccable" do `CLAUDE.md` da raiz. Mesmo com o pacote inteiro, o
+detector segue sendo a peça de lei aqui, e o impeccable não conhece compliance de
+CFO nem de CFP, então **o compliance do cliente vence o impeccable**. Exceções do
+detector ficam em `.impeccable/config.json`, versionado pra que o motivo de cada uma
+fique visível.
 
 É a diferença entre regra e lei. As quatro primeiras peças são regra. Essa é lei.
 
@@ -99,16 +104,25 @@ O sinal de que está funcionando: a quantidade de correção por entrega cai, e 
 que sobram são de gosto do cliente, não de erro previsível. Agora tem um segundo
 sinal, e esse é número: **o detector sai limpo antes da primeira leitura humana.**
 
-Placar desde que ele entrou, em 28/07/2026:
+**Este é o placar oficial do detector.** Outras menções ao histórico (em
+`_memoria/empresa.md` e nos `CLAUDE.md` de cliente) apontam pra cá em vez de repetir
+o número, que é como ele acabou com três valores diferentes espalhados.
 
-| Data | Aion | Giovanni |
-|---|---|---|
-| 28/07, detector recém-plugado | 57 | 97 |
-| 28/07, depois da rodada de correção | **11** | 97 |
+| Quando | Aion | Giovanni | Grão da Serra |
+|---|---|---|---|
+| 28/07, detector recém-plugado | 57 | 97 | — |
+| 28/07, depois da rodada de correção | 11 | 97 | — |
+| **10/08/2026, medido em auditoria** | **1** | **26** | **0** |
 
-O que caiu na Aion foram os 35 de contraste, os 7 de texto abaixo de 11px e os 2 de
-eyebrow no hero. Sobraram 11: escala de tipo achatada (4), caixa alta em texto
-corrido (3), texto colado na borda (3) e uma transição que anima `padding` (1).
-O material do Giovanni não foi tocado porque ele está fora da linha de frente, e
-boa parte dos 97 deve evaporar quando uma das quatro versões de home for escolhida
-e as outras arquivadas.
+Leitura da última linha (a que vale hoje):
+
+- **Aion = 1.** Sobrou o `transition: padding-left` em `assets/site.css`, a entrada
+  `layout-transition` ainda aberta em `90-antipadroes.md`. Todo o resto da rodada de
+  28/07 (contraste, texto miúdo, eyebrow, escala achatada) foi corrigido.
+- **Giovanni = 26** (era 97). Ninguém tocou no material dele, que está fora da linha
+  de frente: a maior parte da queda é falso positivo de `flat-type-hierarchy` da
+  versão 3.4.0 do detector, corrigido na 3.5.0 (ver `/verificar`). O que sobra deve
+  evaporar quando uma das quatro versões de home for escolhida e as outras arquivadas.
+- **Grão da Serra = 0.** O site mais recente, saiu limpo. É o sinal mais forte de que
+  o sistema está funcionando: a memória de antipadrões nascida na Aion evitou o erro
+  antes dele acontecer.

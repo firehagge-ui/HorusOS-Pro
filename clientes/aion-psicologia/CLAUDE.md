@@ -176,7 +176,10 @@ Isso muda duas coisas:
     eram 12 `cramped-padding` do quirk do `clamp()` (corrigido de verdade, com valor
     literal) e 1 `layout-transition` que eu mesmo tinha introduzido com um
     `transition:padding` sem motivo. Zero falha de acessibilidade.
-  - **Histórico do detector: 57 → 4 → 10** (`npx impeccable@3.4.0 detect`). O 4 virou 10 em
+  - **Histórico do detector (na 3.4.0): 57 → 4 → 10.** Medido de novo em 10/08/2026 na
+    **3.5.0: 1** (só o `layout-transition` de `assets/site.css`); o 10 era falso positivo
+    de `flat-type-hierarchy` da 3.4.0, corrigido na 3.5.0. Placar oficial em
+    `_memoria/design/README.md`. O 4 virou 10 em
     30/07/2026 **sem regressão**: são 6 páginas novas usando a mesma escala tipográfica
     já decidida, então a mesma regra advisória passou a ser contada dez vezes em vez de
     quatro. Zero falha de acessibilidade, que é o que a regra da casa não deixa

@@ -1,17 +1,21 @@
 ---
 name: estudar-site
-description: Estuda um site de referência e gera um teardown estruturado em referencias/. Use quando o Marcelo mandar uma URL para analisar, pedir para estudar concorrentes de um cliente, ou disser "estuda esse site", "faz o teardown de", "/estudar-site <url>". Também use por conta própria antes de começar um site novo, para estudar 3 a 5 concorrentes do segmento do cliente.
+description: Estuda uma referência de site (URL OU imagem colada — print, Pinterest, galeria) e gera um teardown estruturado em referencias/. Use quando o Marcelo mandar uma URL ou uma imagem para analisar, pedir para estudar concorrentes de um cliente, ou disser "estuda esse site", "estuda essa referência", "faz o teardown de", "/estudar-site". Também use por conta própria antes de começar um site novo, para estudar 3 a 5 concorrentes do segmento do cliente, e sempre que o Marcelo mandar referências antes de um site.
 ---
 
 # Estudar site
 
-Transforma uma URL num teardown que fica no repositório e vira contexto nas
-próximas vezes. Navegar não ensina; teardown ensina. O objetivo é que a decisão
-de design pare de sair do viés médio do modelo e passe a sair de referência real.
+Transforma uma referência (URL **ou** imagem) num teardown que fica no repositório e
+vira contexto nas próximas vezes. Navegar não ensina; teardown ensina. Olhar um print
+e achar "bonito" não ensina; destrinchar ensina. O objetivo é que a decisão de design
+pare de sair do viés médio do modelo e passe a sair de referência real, estudada.
 
 ## Quando usar
 
 - O Marcelo mandou uma URL para analisar
+- **O Marcelo colou imagens de referência** (Pinterest, galeria, print de concorrente)
+  antes de um site. Essas referências são material de estudo, não inspiração de olhada
+  rápida: passam por teardown **antes** da primeira linha de HTML
 - **Antes de começar qualquer site novo**, com 3 a 5 concorrentes do segmento do
   cliente. Concorrente do nicho ensina mais que galeria premiada
 - Quando aparecer um site excelente fora do segmento, para não ficar só
@@ -44,6 +48,35 @@ msedge.exe --headless=old --disable-gpu --no-sandbox --hide-scrollbars
 ⚠️ Duas armadilhas conhecidas: usar um `--user-data-dir` novo a cada chamada,
 senão a segunda falha por profile travado; e o viewport mínimo é ~477px, então
 **não dá para verificar mobile por print** aqui.
+
+### 1b. Coletar de uma imagem colada (print, Pinterest, galeria)
+
+Quando a referência é uma imagem que o Marcelo mandou, não há Firecrawl nem scrape: a
+coleta é **leitura visual disciplinada**, e vale tanto quanto a de URL desde que seja
+feita com o mesmo rigor. O erro a evitar é o de sempre: olhar rápido, achar "bonito" e
+já ir montar. A imagem é material de estudo, e passa pela mesma lista de 10 pontos de
+"O que olhar, na ordem" (abaixo).
+
+A diferença é ser honesto sobre o que a imagem **entrega** e o que é só **aparente**:
+
+- **Entrega** (dá para afirmar): ordem e número de seções, proporção e hierarquia (o que
+  é grande, o que é pequeno, quantas vezes maior), posição dos elementos (texto à
+  esquerda? imagem sangrando na borda? produto centralizado?), para onde o olho cai
+  primeiro e como a página conduz dali, quantos acentos de cor de verdade, densidade de
+  texto por bloco, composição (simétrica, deslocada, sobreposta, bento), e o que a peça
+  deliberadamente **evita**.
+- **Aparente** (registrar como estimativa, nunca como fato exato): hex de cor, nome da
+  fonte, medida em px, peso de arquivo. Numa imagem eu leio "serifa de alto contraste,
+  terrosa, título umas 3x o corpo", não "Fraunces #D65F45 a 64px". Marcar como *aparente*
+  no teardown, para ninguém copiar um valor inventado como se fosse medido.
+
+Se o Marcelo deu o link de onde tirou (Pinterest, o site), registrar no campo URL do
+gabarito. Se forem **várias imagens**, cada uma é uma passada, e o teardown consolida o
+**padrão comum** entre elas, que é o que mais ensina: a ideia não é copiar uma, é extrair
+o que se repete nas boas e por quê.
+
+O resto do fluxo é idêntico ao da URL: teardown em `referencias/`, e se revelou padrão ou
+antipadrão novo, registrar em `_memoria/design/` na mesma hora.
 
 ### 2. Escrever o teardown
 

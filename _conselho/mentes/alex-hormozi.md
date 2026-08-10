@@ -92,7 +92,7 @@ they do, but to do the things that ALL of them do."
 - **A Máquina é a oferta, não a lista de serviços.** Site, bot, conteúdo e tráfego
   são o avião. A viagem é agenda cheia com paciente certo. Isso muda a copy da
   proposta e o preço que ela sustenta
-- **Teste das 100 pessoas aplicado ao próprio MazyOS:** o que só o Marcelo
+- **Teste das 100 pessoas aplicado ao próprio Horus OS:** o que só o Marcelo
   consegue fazer não é processo. É exatamente o argumento do `_memoria/design/`
 - **Independência de canal vale pro cliente e pra agência:** cliente que só existe
   no Instagram tem risco de canal, e agência que só acha cliente por indicação

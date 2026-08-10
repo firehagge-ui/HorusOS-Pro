@@ -120,6 +120,22 @@ CONCLUSÃO: {pronto / pronto com pendência / não pronto}
 Item que **não dá** pra verificar (mobile por print, por exemplo, que o headless
 daqui não alcança) é declarado como não verificado. Nunca é declarado como ok.
 
+## Antes de fechar: o aprendizado subiu?
+
+Se nesta entrega o Marcelo corrigiu algo, ou você descobriu um padrão que vale para
+**outros clientes** e não só para este, a correção não pode morrer aqui. Uma pergunta
+antes de encerrar: **isso que aprendi vale para o próximo cliente?**
+
+- Se vale → subir na hora para a memória da agência: design em
+  `_memoria/design/90-antipadroes.md`, carrossel/post em
+  `_memoria/conteudo/90-antipadroes.md`, jeito de interpretar o pedido do Marcelo ou
+  regra de processo em `CLAUDE.md` ou `_memoria/preferencias.md`. Sempre com o porquê
+  e a data de origem.
+- Se é só deste cliente → fica no `CLAUDE.md` dele.
+
+Correção que fica só no chat volta como erro na próxima sessão. A `/atualizar` faz a
+varredura periódica dessa promoção; aqui é o gatilho no calor da entrega.
+
 ## Regra final
 
 Pendência declarada é trabalho profissional. Pendência escondida atrás de "está

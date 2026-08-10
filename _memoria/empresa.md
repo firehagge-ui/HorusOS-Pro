@@ -4,7 +4,7 @@
 > Aqui fica a AGÊNCIA. Cada cliente tem pasta própria em `clientes/<nome>/`.
 
 **Nome:** Horus
-**Negócio:** Agência de marketing digital com IA (opera sobre o sistema MazyOS)
+**Negócio:** Agência de marketing digital com IA (opera sobre o sistema Horus OS)
 **O que faz:** Constrói "máquinas" de marketing pra negócios — site, bot+CRM,
 conteúdo/carrossel, tráfego — usando IA pra produzir e publicar em escala.
 **Perfil:** Agência (equipe pequena) atendendo múltiplos clientes em paralelo.
@@ -93,7 +93,8 @@ A descrição de cada função da operação está em `equipe/`, com tipo de exe
   serviços ganharam página própria por decisão do Marcelo, e a `especialidades.html`
   virou o índice das seis. Rodada de design fechada em 28/07 (menu no celular,
   botânica da marca, contraste, escala tipográfica; detector da casa de 57
-  antipadrões para 4). Backup da versão anterior em `Backup 1/`.
+  antipadrões para 1 hoje, placar oficial em `_memoria/design/README.md`).
+  Backup da versão anterior em `Backup 1/`.
   O que trava a publicação não é produção, é dado que só a cliente tem (sala,
   horário, telefone fixo, CRP da pessoa jurídica, responsável técnica, 2
   profissionais que faltam, destino do formulário). As páginas de serviço somaram

@@ -1,14 +1,14 @@
 ---
 name: instalar
 description: >
-  Instala o MazyOS no negócio do usuário. Entrevista sobre empresa, tom de voz,
+  Instala o Horus OS no negócio do usuário. Entrevista sobre empresa, tom de voz,
   foco atual e identidade visual, e preenche `_memoria/empresa.md`, `_memoria/preferencias.md`,
   `_memoria/estrategia.md`, `identidade/design-guide.md` e adapta o `CLAUDE.md` conforme o perfil.
   Use quando o usuário acabou de clonar o repositório e quer instalar o sistema, ou quando
-  pedir explicitamente "rodar /instalar", "instalar o MazyOS", "primeiro setup".
+  pedir explicitamente "rodar /instalar", "instalar o Horus OS", "primeiro setup".
 ---
 
-# /instalar — Instalação inicial do MazyOS
+# /instalar — Instalação inicial do Horus OS
 
 Esse é o primeiro comando que o usuário roda depois de clonar o repositório. Não pode falhar e não pode soar burocrático. Trata como conversa de descoberta — pergunta uma coisa por vez, escuta de verdade, não enfileira tudo. O objetivo é o sistema sair daqui sabendo quem é a empresa, como ela fala, e onde tá o atrito do dia a dia.
 
@@ -144,7 +144,7 @@ Se a pasta já tem nome próprio (não genérico), pular essa fase.
 
 ## Fase 6 — Próximos passos
 
-> "Pronto. O MazyOS já te conhece.
+> "Pronto. O Horus OS já te conhece.
 >
 > No começo de cada sessão de trabalho, roda `/abrir` — eu carrego tudo
 > que combinamos aqui antes da primeira frase. Quando quiser fazer um

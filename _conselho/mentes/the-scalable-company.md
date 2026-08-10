@@ -70,7 +70,7 @@ sabe dizer quais são, ainda não entende a operação.
 
 ## Como isso aterrissa na Horus
 
-- **O cofre da Coca-Cola é o diagnóstico exato do MazyOS.** Tudo que só existe na
+- **O cofre da Coca-Cola é o diagnóstico exato do Horus OS.** Tudo que só existe na
   cabeça do Marcelo é risco. Foi por isso que nasceram `_memoria/design/` e
   `referencias/`. Esta mente dá o vocabulário e o critério de prioridade: tire
   primeiro o que quebraria a operação se sumisse

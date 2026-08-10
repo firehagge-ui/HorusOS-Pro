@@ -45,7 +45,7 @@ Nove ou dez dos dez fazem tudo isto:
 ## A estrutura da LucrOS, que é a mais próxima do caso da Hórus
 
 Ela se descreve como "agência de IA, sistema operacional do negócio", que é quase
-literalmente a Hórus sobre o MazyOS. Ordem da home dela:
+literalmente a Hórus sobre o Horus OS. Ordem da home dela:
 
 ```
 hero (rótulo, título, lead, 2 CTAs, 3 números, personagem 3D)

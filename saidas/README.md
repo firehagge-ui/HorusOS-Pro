@@ -1,4 +1,4 @@
-# saidas/ — outputs gerais do MazyOS
+# saidas/ — outputs gerais do Horus OS
 
 Pasta pra qualquer output que não é marketing puro (não cabe em `marketing/`).
 

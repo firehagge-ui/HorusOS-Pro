@@ -1,7 +1,7 @@
-# MazyOS — Sistema operacional do negócio
+# Horus OS — Sistema operacional do negócio
 
 Sua empresa roda em cima desse arquivo. Aqui ficam as regras de operação
-do MazyOS — como o Claude lê o contexto, aprende com correções, mantém
+do Horus OS — como o Claude lê o contexto, aprende com correções, mantém
 tudo atualizado e cria skills novas conforme a operação evolui.
 
 Esse arquivo é editável. Quando o `/instalar` rodar, ele complementa o
@@ -151,6 +151,16 @@ em `.claude/skills/verificar/SKILL.md`. Se o comando não rodar (rede, node), o 
 Em site novo, estudar de 3 a 5 concorrentes reais do segmento do cliente com a
 skill `/estudar-site` antes de propor estrutura. Concorrente do nicho ensina mais
 que galeria premiada, porque carrega a expectativa formada daquele público.
+
+**Referência que o Marcelo mandar (Pinterest, print, galeria, link) é material de
+estudo, não inspiração de olhada rápida.** Antes da primeira linha de HTML, passar
+cada referência pela `/estudar-site` (que agora aceita imagem colada, não só URL) e
+destrinchar: ordem e trabalho de cada seção, hierarquia e proporção, posição dos
+elementos, distribuição de cor, tipografia aparente, composição, para onde o olho é
+conduzido, o que a peça evita, o que reaproveitar e o que adaptar. O que o estudo
+revelar de padrão vira linha em `_memoria/design/` (anatomia ou antipadrões). O que
+não se reaproveita é a aparência; o que se reaproveita é a **estrutura e o raciocínio**.
+Analisar referência por cima e já montar é o erro que essa regra existe para cortar.
 
 Quando o Marcelo corrigir algo de design, a correção vira linha em
 `_memoria/design/90-antipadroes.md` **com o porquê junto**. Correção que morre no
@@ -343,10 +353,10 @@ camada de estratégia/diagnóstico. O fluxo de trabalho padrão é:
 
 1. **Mega Brain** — o usuário estuda o cliente/lead lá (diagnóstico,
    dores, estratégia, decisões com a metodologia dele)
-2. **MazyOS (aqui)** — o usuário traz o documento/diagnóstico pronto e
-   o MazyOS **produz e publica**: site, carrossel, anúncio, relatório
+2. **Horus OS (aqui)** — o usuário traz o documento/diagnóstico pronto e
+   o Horus OS **produz e publica**: site, carrossel, anúncio, relatório
 
-Divisão de papéis: Mega Brain decide o quê/por quê; MazyOS executa.
+Divisão de papéis: Mega Brain decide o quê/por quê; Horus OS executa.
 Quando o usuário mandar um documento de diagnóstico/estratégia vindo do
 Mega Brain, tratar como briefing pronto — não refazer a análise
 estratégica, ir direto pra produção (perguntando só o que faltar de
@@ -434,7 +444,7 @@ não publica sem revisão do profissional responsável.
 ## Perfil deste workspace — Agência (Horus)
 
 > Bloco preenchido no setup. A Horus é uma **agência de marketing digital com
-> IA** (opera sobre o sistema MazyOS). Este workspace é a operação da agência:
+> IA** (opera sobre o sistema Horus OS). Este workspace é a operação da agência:
 > cada cliente tem pasta própria e autossuficiente em `clientes/<nome>/`.
 > Contexto da agência em `_memoria/`.
 
@@ -457,9 +467,9 @@ não publica sem revisão do profissional responsável.
   `clientes/<nome>/referencias-*/`, que é material daquele cliente só
 - `identidade/` — marca **da agência** (peças institucionais). O `design-guide.md`
   foi preenchido em 04/08/2026 e deixou de ser buraco declarado
-- `templates/` — modelos do MazyOS: perfis de `CLAUDE.md`, catálogo de ferramentas
+- `templates/` — modelos do Horus OS: perfis de `CLAUDE.md`, catálogo de ferramentas
   e exemplos de identidade. Base para skill nova (ver "Criação de skills" acima)
-- `dados/`, `marketing/`, `scripts/` — pastas do esqueleto do MazyOS, hoje só com
+- `dados/`, `marketing/`, `scripts/` — pastas do esqueleto do Horus OS, hoje só com
   `README.md`. Vazias de propósito até a operação pedir
 - `saidas/` — arquivo solto de trabalho (imagens geradas, logo de cliente). Não é
   entrega: entrega mora na pasta do cliente

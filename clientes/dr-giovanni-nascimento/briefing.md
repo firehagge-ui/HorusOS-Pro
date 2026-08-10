@@ -1,6 +1,6 @@
 # Briefing — Dr. Giovanni Nascimento (Implantodontia)
 
-> Cliente #1 da MazyOS. Dossiê completo e fiel ao briefing original.
+> Cliente #1 da Horus OS. Dossiê completo e fiel ao briefing original.
 > Diagnóstico estratégico já veio pronto (Mega Brain) — tratar como briefing
 > fechado. Produzir por prioridade, começando pelo site. Compliance CFO em tudo.
 

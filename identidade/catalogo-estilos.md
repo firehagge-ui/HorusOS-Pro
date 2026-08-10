@@ -1,6 +1,6 @@
 # Catálogo de estilos visuais
 
-> Mapa das skills de design do MazyOS. Serve pra o Claude (e pra você) saber
+> Mapa das skills de design do Horus OS. Serve pra o Claude (e pra você) saber
 > **qual skill puxar** ao produzir uma peça. Não é decoração — é o índice que
 > conecta um pedido ("cria no estilo editorial") à skill certa.
 >

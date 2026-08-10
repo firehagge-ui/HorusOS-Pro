@@ -1,50 +1,42 @@
-# MazyOS
+# Horus OS
 
-> O sistema operacional do seu negócio dentro do Claude Code.
+> O sistema operacional da Hórus dentro do Claude Code.
 
-Você acaba de instalar o MazyOS. Em alguns minutos, sua empresa vai
-ter uma memória própria, uma identidade visual aplicada em tudo que
-o sistema gerar, e 15 skills prontas pra fazer marketing, SEO, ads
-e operação rodarem com você dirigindo.
+O Horus OS é a operação da agência Hórus rodando dentro do Claude Code:
+memória própria do negócio, identidade visual aplicada em tudo que o
+sistema gera, um sistema de design que aprende a cada correção, e as
+skills que fazem site, conteúdo, SEO, ads e operação rodarem.
+
+Construído sobre o template **MazyOS** ([mazzeoia.com.br](https://mazzeoia.com.br)),
+adaptado e renomeado. Este repositório é a instância da Hórus, não um
+template para redistribuir.
 
 Bora voar.
 
 ---
 
-## Ligando o sistema
+## Rodando numa máquina nova
 
-Dois caminhos. Escolhe o que combina contigo.
-
-### Pelo Claude (mais rápido)
-
-Abre o Claude Code em qualquer pasta e cola:
+Já está instalado e adaptado. Numa máquina nova, é só clonar o repositório
+e abrir:
 
 ```
-Clona o https://github.com/mazzeoia/MazyOS.git na pasta atual,
-entra nela e roda o /instalar.
-```
-
-Ele clona, entra na pasta nova e dispara a entrevista de setup. Você
-só responde.
-
-### Pelo terminal (mais previsível)
-
-```
-git clone https://github.com/mazzeoia/MazyOS.git
-cd MazyOS
+git clone https://github.com/firehagge-ui/HorusOS-Pro.git
+cd HorusOS-Pro
 code .
 ```
 
-Na janela do VS Code que abrir: terminal integrado → `claude` → `/instalar`.
+Na janela do VS Code: terminal integrado → `claude` → `/abrir`. O `/abrir`
+carrega a memória do negócio e você já começa a trabalhar.
 
----
+> ⚠️ Não rodar `/instalar` num clone deste repositório: ele é a entrevista
+> de setup inicial e sobrescreveria a memória já preenchida. O `/instalar`
+> só serve para instalar o sistema do zero num negócio novo.
 
-Quando o `/instalar` terminar, renomeia a pasta `MazyOS/` pro nome do teu
-negócio (fecha o VS Code, renomeia no Explorer/Finder, abre de novo). A
-pasta não fica como "MazyOS" — ela é o teu negócio agora.
-
-O `/instalar` roda uma vez só. Te entrevista sobre o negócio, monta a
-memória e configura o sistema. Depois disso, é só usar.
+Falta um passo local em cada máquina nova: o `.mcp.json` (chave do Firecrawl)
+e a `OPENAI_API_KEY` no `.env` ficam **fora do git** e precisam ser recriados
+à mão. Ver o `.gitignore` e a seção "Firecrawl" / "Geração de imagens" do
+`CLAUDE.md`.
 
 ---
 
@@ -52,8 +44,8 @@ memória e configura o sistema. Depois disso, é só usar.
 
 **Núcleo** — o jeito de operar o dia a dia
 `/abrir` carrega o contexto antes de cada sessão de trabalho · `/salvar`
-faz commit + push no GitHub · `/atualizar` varre o projeto e atualiza
-a memória · `/novo-projeto` cria pasta isolada pra cada cliente ou
+faz commit + push no GitHub · `/atualizar` varre o projeto e mantém a
+memória coerente · `/novo-projeto` cria pasta isolada pra cada cliente ou
 iniciativa · `/mapear-rotinas` descobre o que você repete e transforma
 em skill personalizada.
 
@@ -74,6 +66,11 @@ e devolve relatório semanal com alertas e recomendações.
 `/analisar-dados` lê CSV/XLSX/PDF e gera resumo executivo ·
 `/email-profissional` rascunha email a partir de contexto livre.
 
+**Design e decisão** — o que sustenta a qualidade
+`/estudar-site` destrincha uma referência (URL ou imagem) num teardown que
+vira memória · `/verificar` confere antes de declarar qualquer coisa pronta
+· `/conselho`, `/debate`, `/consultar` e `/comparar` para decisão difícil.
+
 ---
 
 ## A tese
@@ -84,27 +81,29 @@ que ela roda.
 A diferença não é velocidade. É capacidade nova — uma pessoa com IA
 constrói o que antes exigia time inteiro. Cada processo crítico que hoje
 roda em open loop (decide → executa → não mede → repete cego) vira
-closed loop dentro do MazyOS (decide → executa → captura → realimenta →
+closed loop dentro do Horus OS (decide → executa → captura → realimenta →
 ajusta sozinho).
 
 O sistema não substitui você. Vira parte da sua empresa.
 
 ---
 
-## Como o MazyOS pensa
+## Como o Horus OS pensa
 
-`_memoria/` é o cérebro. Tudo que importa do seu negócio mora aqui —
-quem é a empresa, como ela fala, o que tá em foco essa semana. O Claude
+`_memoria/` é o cérebro. Tudo que importa do negócio mora aqui — quem é a
+empresa, como ela fala, o que tá em foco, e o que a agência já aprendeu
+sobre site (`_memoria/design/`) e conteúdo (`_memoria/conteudo/`). O Claude
 lê isso antes de cada resposta. Quanto melhor a memória, melhor o sistema.
 
-`identidade/` é o rosto. Cores, fontes, logo, padrão visual. Todo
-carrossel, slide, peça que o sistema gera respeita isso.
+`identidade/` é o rosto da agência. `clientes/<nome>/marca.md` é o rosto de
+cada cliente, e vence em peça de cliente.
 
-`marketing/`, `saidas/` e `scripts/` são o resultado. O sistema produz,
-versiona no GitHub, fica tudo seu.
+`referencias/` é o acervo de estudo: teardowns de sites reais que fazem a
+decisão de design sair de um caso concreto, não do viés médio do modelo.
 
 ---
 
-## Quando precisar
+## Crédito
 
-[mazzeoia.com.br](https://mazzeoia.com.br)
+Construído sobre o **MazyOS** de [mazzeoia.com.br](https://mazzeoia.com.br),
+adaptado para a operação da Hórus.
