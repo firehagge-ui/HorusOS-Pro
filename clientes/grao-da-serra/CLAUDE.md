@@ -3,6 +3,379 @@
 > Projeto criado em 29/07/2026. Pasta dedicada — instruções aqui sobrescrevem as
 > da raiz quando relevantes.
 
+## 🏠 Décima-oitava rodada (10/08) — casinha do rodapé virou elemento próprio
+
+O Marcelo pediu pra corrigir a casinha do rodapé: menor, abaixo do texto, centralizada
+de forma simétrica, sem competir com o texto, e corrigir o desnivelamento — com a
+condição de **remover** se não desse pra deixar bem alinhada.
+
+**A causa raiz:** a casinha nunca foi um elemento posicionável. Desde a 10ª rodada
+(07/08) ela estava **gravada dentro do print** `rodape-fundo.webp`, usado como
+`background: ... center bottom / cover`. Com `cover`, o recorte e a posição da
+imagem mudam conforme a proporção do rodapé em cada largura de tela — foi isso que
+fazia a casinha parecer torta e, no desktop, ela caía bem em cima da linha do CNPJ
+no rodapé-pé, competindo com o texto de verdade.
+
+**A correção não foi reposicionar o `background-position`** (isso só desloca o
+recorte, não resolve o acoplamento entre proporção do rodapé e posição da casa).
+A casinha virou uma **`<img>` própria**, isolada com alfa real, numa nova linha
+`.rodape-casa` **entre as 4 colunas e a linha de copyright**: `display:flex;
+justify-content:center`, largura fixa de 190px. Ela para de depender da altura do
+rodapé pra ficar no lugar certo — está sempre centralizada no `.wrap`, sempre
+abaixo do texto, em qualquer largura.
+
+**De onde saiu a imagem:** `site-fontes/casinha-rodape.webp` (520×346, alfa
+verdadeiro, conferido pixel a pixel — cantos em `(0,0,0,0)`) já existia como
+recorte isolado da mesma gravação (casa + duas árvores, composição simétrica).
+Foi copiada pra `site/assets/casinha-rodape.webp` (51 KB). O `rodape-fundo.webp`
+antigo (fundo chapado + casa gravada) saiu da pasta que vai ao ar — não tinha mais
+uso, já que o fundo do rodapé voltou a ser `var(--escuro)` sólido — e foi pra
+`site-fontes/rodape-fundo-com-casa-antigo.webp`.
+
+**Verificado:** detector do impeccable — só o achado pré-existente de `dark-glow`
+na sombra da foto de "Nossa origem" (sem relação com o rodapé, não mexido). Render
+1440px e 390px (iframe): casinha centralizada, sem sobrepor texto, espaçamento
+simétrico acima e abaixo, em ambas as larguras.
+
+## ⏱️ ONDE PARAMOS (07/08/2026) — ler primeiro
+
+**Site:** 11ª rodada fechada em 08/08 (ver "Décima-primeira rodada" abaixo).
+Detector `exit 0`, sem overflow. **O Conselho avaliou o site em 08/08** (log em
+`_conselho/logs/2026-08-08-grao-da-serra-site-pronto-para-apresentar.md`):
+veredito = apresentar como RASCUNHO para destravar dado, não publicar. Confiança 78%.
+
+✅ **Feito em 08/08 (aprovado pelo Conselho):** as seções **"Para quem atende" (B2B,
+6 perfis)** e **"Como funciona o pedido" (3 passos, faixa escura)** foram construídas,
+entre "Nosso café" e o formulário. Detector exit 0, sem overflow, render desktop+mobile.
+
+🔴 **Ainda pendente (o Marcelo pediu para NÃO trocar a foto por ora):**
+- **Trocar a foto de produto de IA pela REAL** (`site-fontes/produto-original.png`).
+  A "NOVO PRODUTO CAFÉ.png" foi **rejeitada** (rótulo embaralhado: "GRÂO DA SRRA",
+  peso "2009"). A atual (`produto-cafe.webp`, "Imagem produto") também é mockup de IA.
+  Marcelo pediu para deixar como está por enquanto (08/08).
+- As outras 3 seções propostas (produto detalhado, subseção com callouts, prova de
+  confiança) dependem de dado do Nelson e dos vetos — ver log do Conselho.
+🔴 **Duas pendências abertas para o Marcelo:**
+1. **"Da Serra de Brejões" no h1** afirma a região; o grão ainda não foi confirmado
+   como sendo de lá. Está marcado com `.pend` (fio pontilhado). Uma pergunta ao
+   Nelson libera. Se ele disser que NÃO, o headline precisa mudar.
+2. **Dois rótulos diferentes no site:** o hero usa a foto nova (`hero-wallpaper`),
+   cujo rótulo diz "Serra de Brejões / Notas de sabor: chocolate amargo, frutas
+   secas" (origem não confirmada + nota de degustação inventada). "Nosso café" usa
+   o rótulo REAL (`produto-original`: "Qualidade Premium / da Serra de Brejões").
+   São dois rótulos — decidir qual é o verdadeiro e padronizar.
+3. **Marcelo está pensando em trocar a tipografia geral** (hoje Prata + Source
+   Sans 3). Não decidido — aguardando ele.
+
+## 🟢 Décima-sétima rodada (08/08) — CORREÇÃO da 16ª (não era pra mexer no Nosso café)
+
+Na 16ª eu **errei**: substituí a parte de cima do "Nosso café" pelo layout do print e
+removi a extensão. O Marcelo só queria **acrescentar as duas imagens à extensão**,
+mantendo o "Nosso café" original. Revertido:
+
+- **"Nosso café" (#cafe) RESTAURADO ao original:** texto à esquerda (eyebrow + h2
+  "Qualidade que você sente em cada xícara" + 3 atributos + botão) e o **pacote**
+  (`novo-produto.webp`, de volta em assets) à direita. Nada removido.
+- **Extensão (#opcoes / #formatos) DE VOLTA**, agora com as duas imagens posicionadas
+  como a referência: **foto circular + rótulo + descrição, lado a lado** (Grãos /
+  Moído), mais a tira de dados (250g · 100% arábica · torra artesanal · sob medida).
+
+Regra aprendida: quando o pedido é "acrescentar à extensão", **não** tocar na parte
+de cima. A referência visual era sobre POSICIONAR as imagens na extensão, não sobre
+refazer a seção inteira.
+
+**Verificado:** detector `exit 0`, sem overflow 1920→390, render das duas partes.
+Pasta em **988 KB** (o pacote voltou; perto do teto de 1 MB — se apertar, `novo-produto`
+é o item a trocar/otimizar).
+
+## 🟢 Décima-sexta rodada (08/08) — linha vertical + Nosso café no print
+
+| Pedido | O que foi feito |
+|---|---|
+| "Como comprar": a linha estava horizontal; ele quer VERTICAL, saindo do marcador, à esquerda do texto | Trocado: o fio horizontal saiu; agora é `border-left` no parágrafo — linha **em pé**, à esquerda do texto de cada passo |
+| "Nosso café" igual ao print (grãos/moído com fotos + atributos) | Seção REFEITA no layout do print: título central "Um café. Duas opções. A mesma qualidade.", dois formatos com **FOTO REAL circular** (grãos / moído), e tira de 4 atributos (100% arábica · torra artesanal · aroma intenso · café puro). Copy limpa: **sem** "excepcional" (superlativo), **sem** "torra média", **sem** notas de degustação (chocolate/caramelo, finalização doce, corpo/acidez) — tudo vetado |
+
+**Consequências estruturais:**
+- A seção **"Em grãos ou moído" (#formatos) foi REMOVIDA** — o novo Nosso café absorveu grão/moído. Não há mais duplicação.
+- 🔴 **O pacote (`novo-produto.webp`) saiu do Nosso café** (o print não tem pacote, só as pilhas). O pacote continua **no hero** (`hero-wallpaper`). `novo-produto.webp` foi para `site-fontes/`. Se o Marcelo quiser o pacote de volta numa seção, é decisão dele.
+- As fotos de grão/moído são as reais que ele mandou (`foto-graos.webp`, `foto-moido.webp`), em miniatura circular.
+
+**Verificado:** detector `exit 0`, `scrollWidth==clientWidth` em 1920→390, render desktop e mobile. Pasta caiu para **832 KB** (o mockup pesado saiu).
+
+## 🟢 Décima-quinta rodada (08/08) — polimento de ícones e fotos reais
+
+| Pedido | O que foi feito |
+|---|---|
+| "Como comprar": ícones maiores + linha do ícone à direita do texto | `.passo-ic` 40 → **54px**; adicionado `.passo-linha` (fio dourado) no topo de cada passo, puxando do ícone e passando à direita do texto |
+| Melhorar 1º e 3º ícones (prancheta + caixa aberta) | 1º virou **clipboard-list** (prancheta clara); 3º virou **package-open** (caixa aberta clara). Ambos lucide |
+| Trocar ícone B2B na home | Faixa verde "Fornecimento B2B": caixa única → **caixas empilhadas** (fornecimento em volume) |
+| Trocar Restaurantes/Hotéis/Padarias | Restaurantes e Bares → **garfo+faca**; Hotéis e Pousadas → **sino de recepção**; Padarias e Confeitarias → **cupcake** |
+| Fotos de grão e moído na seção "Em grãos ou moído" | Os ícones dos 2 cartões viraram **fotos reais circulares** (`foto-graos.webp`, `foto-moido.webp`, recorte quadrado central, 104px, borda dourada). Fontes pesadas → `site-fontes/` |
+
+**Verificado:** detector `exit 0`, `scrollWidth==clientWidth` em 1920→390, render das seções
+alteradas. Pasta em **988 KB** — ⚠️ perto do teto de 1 MB (o mais pesado é
+`novo-produto.webp`, 157 KB, o mockup de IA; trocar pela foto real do pacote
+(`site-fontes/produto-recorte-real.webp`) devolve ~50 KB e o rótulo legível).
+
+## 🟢 Décima-quarta rodada (08/08) — remodel round 2 + seção nova + ajustes
+
+| Pedido | O que foi feito |
+|---|---|
+| "Como comprar" igual ao print 1 | Refeita: banner "Imagem banner etapas" (`banner-etapas.webp`, xícara com a logo à direita) de FUNDO, véu escuro à esquerda, texto + 3 passos com nº dourado + ícone (prancheta/WhatsApp/caixa). Copy do print. Mobile: banner esmaecido, passos empilham |
+| Seção nova abaixo da 2, mesma cor, extensão | Criada **"Em grãos ou moído"** (`#formatos`, `--creme-fundo`): 2 cartões (Em grãos / Moído) + tira de dados B2B (250g · 100% arábica · Torra artesanal · Sob medida). Todos verdadeiros |
+| Tirar "grãos/moído" da seção 2 (não ficou bom) | Painel removido do Nosso café → virou a seção nova acima |
+| Aumentar bem o produto da seção 2 | Nosso café voltou a 2 colunas; `max-height` do produto 520 → **680px** |
+| Aumentar altura do hero | `min-height` 600 → **720px** |
+| Encurtar "Feito para o seu negócio" | Recuo 92 → **46px**, cabeçalho compacto — faixa curta |
+
+🔴 **Imagem que faltou:** o Marcelo mandou (colada) uma foto de **grãos torrados num
+saco aberto, mãos com luva** (ótima, B2B, e permitida — é produto/beneficiamento, não
+colheita), para a seção nova. **Ela não foi salva na pasta** (só no chat), então a
+seção foi montada com as infos por enquanto. Quando ele salvar em `assets/`, encaixar.
+
+**Contexto:** o Marcelo disse ter dificuldade de organizar o site por não saber como
+**sites B2B de café** se estruturam. Próximo passo sugerido: rodar `/estudar-site` em
+3-4 fornecedores B2B reais e trazer um teardown de estrutura.
+
+**Verificado:** detector `exit 0`, `scrollWidth==clientWidth` em 1920→390, render de
+todas as seções em desktop e mobile. Pasta em **928 KB**.
+
+## 🟢 Décima-terceira rodada (08/08) — remodel no estilo dos prints (round 1)
+
+O Marcelo mandou 4 prints de comps (marca fictícia) e pediu para remodelar as
+seções nesse estilo. **Análise completa dos 4 prints está na resposta do chat**;
+resumo: prints 1 e 2 limpos; print 3 com layout bom mas copy vetada (cultivo +
+perfil sensorial); print 4 com imagem vetada (mãos com cerejas = colheita) +
+superlativo. **Round 1 feito:**
+
+- **"Nosso café" → print 3.** Virou 3 zonas (texto · produto · painel "Grãos /
+  Moído"). Copy reescrita SEM "cultivo" ("da escolha do grão à entrega") e SEM os
+  atributos sensoriais do print (sabor balanceado / corpo aveludado / torra média
+  = vetados). Ficaram Aroma intenso / Café puro / 250g. Painel grão+moído confirmado
+  pelo campo do formulário, sem citar nível de moagem.
+- **"Para quem atende" → print 2.** Virou linha horizontal de **7 perfis** com fios
+  verticais e ícones em traço (Cafeterias e Coffee Shops · Restaurantes e Bares ·
+  Hotéis e Pousadas · Padarias e Confeitarias · Mercados e Empórios · Empresas e
+  Escritórios · Revendedores e Distribuidores). Responsivo 7→4→3→2.
+
+**Imagem do produto:** o Marcelo fez a **"NOVO PRODUTO CAFÉ" transparente** (PNG,
+70% alfa — confirmado) e pediu na seção. Colocada (`novo-produto.webp`, 153 KB).
+⚠️ **O rótulo dela é mockup de IA e está embaralhado** ("GRÂO DA SERRA", "2009") —
+avisado ao Marcelo 3x; ele optou por ela. O **recorte da foto REAL** (rótulo legível)
+está guardado em `site-fontes/produto-recorte-real.webp` para troca de uma palavra.
+
+🔴 **Round 2 pendente (precisam de imagem):**
+- **"Como funciona" → print 1** (faixa escura + xícara à direita + ícones preenchidos).
+  Precisa de uma imagem de xícara limpa (tenho `xicara.webp`, a avaliar).
+- **"Por que escolher" (print 4)** como seção NOVA: só depois de trocar a imagem de
+  colheita por outra (grão/torra/xícara) e tirar "qualidade superior" e "de origem".
+
+**Verificado:** detector `exit 0`, `scrollWidth==clientWidth` em 1920→390, render das
+duas seções em desktop/1024/mobile. Pasta em **892 KB** (novo-produto.webp é o item
+mais pesado; se apertar o teto de 1 MB, otimizar ou voltar ao recorte real).
+
+## 🟢 Décima-segunda rodada (08/08) — duas seções B2B aprovadas pelo Conselho
+
+Construídas as duas seções que o Conselho aprovou como seguras e de maior impacto,
+entre "Nosso café" e o formulário:
+
+- **"Para quem atende"** (`#publico`, fundo #F1E4D1): eyebrow "Para o seu negócio",
+  h2 "Feito para quem compra para revender", 6 perfis B2B em grade (cafeterias,
+  padarias, mercearias, restaurantes/hotéis, escritórios, revendedores), cada um com
+  ícone em traço próprio + rótulo + descritor. Alinhado ao campo "Você é" do form.
+  **Sem alegação de origem, saúde ou superlativo** — descreve o público-alvo, não
+  afirma clientes existentes. É o "para quem é" do 00-anatomia.md que faltava.
+- **"Como funciona o pedido"** (`#como-funciona`, faixa ESCURA #3D2115): 3 passos
+  numerados (preenche formulário → escolhe grão/moído e quantidade → finaliza no
+  WhatsApp). Descreve o fluxo REAL do form sem servidor (50-copy-de-interface.md).
+  A faixa escura quebra a sequência de cremes.
+
+Ordem atual do site: Hero · Faixa verde · Origem · Nosso café · **Para quem atende** ·
+**Como funciona** · Pedido · Rodapé.
+
+**Verificado:** detector `exit 0`, `scrollWidth==clientWidth` em 1920/1440/1280/900/768/390,
+render desktop e mobile das duas seções. Foto do produto **não** foi trocada (pedido do Marcelo).
+
+## 🟢 Décima-primeira rodada (08/08) — casa do rodapé, título sem pendência, Conselho
+
+| Pedido | O que foi feito |
+|---|---|
+| Casa do rodapé: tirar do centro, pôr à direita abaixo do texto "Valorizamos..." | `rodape-fundo.webp` recomposto: casa à direita (centro ~80% da largura) e embaixo. Fica sob a 4ª coluna, abaixo do texto |
+| Tirar a linha pontilhada amarela do título da home | `.pend` removido do `<h1>`. A pendência de origem continua marcada no parágrafo da "Nossa origem" e no CLAUDE.md |
+| Substituir foto da seção do produto pela "NOVO PRODUTO CAFÉ" | **NÃO feito, com motivo:** o rótulo dela está embaralhado por IA ("GRÂO DA SRRA", "CATEA", peso "2009"). Levado ao Conselho |
+| Avaliar 5 seções propostas + rodar o Conselho | Feito. Ver log e o resumo no topo |
+
+**Veredito do Conselho (resumo):** site pronto para **apresentar como rascunho**, não
+publicar. Construir já **"Para quem atende"** e **"Como funciona o pedido"** (seguros,
+alto impacto — o "para quem é" B2B era o bloco removido de maior impacto). **Vetos:**
+perfil sensorial (jargão sem fonte), depoimentos (nenhum real), "atendimento direto com
+o produtor" (a família beneficia, não produz). Foto de produto: usar a **real**, não IA.
+Pendências a cobrar do Nelson na reunião: foto real, origem do grão, atende PF?, e a
+**autorização de portfólio** (que é o pagamento da Horus).
+
+## 🟢 Décima rodada (07/08) — barra do topo, logo maior, seções trocadas, produto real
+
+Retorno do Marcelo, seis pedidos.
+
+| Pedido | O que foi feito |
+|---|---|
+| Rodapé: tirar a casinha extra e pôr a casa do print no lugar dela | A `casinha.webp` já tinha saído na 9ª rodada (o print dele com duas casas era do estado anterior). O `rodape-fundo.webp` foi **recomposto por script**: recortei a gravação da casa e colei **centralizada e embaixo** num canvas do mesmo marrom (fundo amostrado do próprio print, então sem emenda). Casa reduzida a 60% pra virar ornamento discreto sobre a linha do rodapé, não competir com o texto das colunas |
+| "Barra meio cinza no topo, tira ela" | Era o **gradiente escuro do cabeçalho** sobre o céu claro do hero (translúcido = cinza), numa faixa acima da logo onde não há texto. `.topo` virou `background:transparent` em repouso (só fica sólido ao rolar). ⚠️ Isso expôs o fundo creme do body no vão, porque a logo maior deixou o cabeçalho com **106px** e o hero só subia 72 — corrigido: `margin-top:-106px` no hero + `padding-top:174px` no wrap, e a foto passa por baixo do cabeçalho inteiro |
+| Aumentar logo e nome | Emblema 60 → **78px**, nome 28 → **34px**, "Café" acompanhando. Atributos `width/height` da logo atualizados pra 78 (evita CLS) |
+| Trocar seção 1 e 2 de lugar | **Origem agora vem ANTES de Nosso café** (swap feito por script nos blocos `<section>`, preservando comentários) |
+| Nosso café: imagem na direita, texto na esquerda | Colunas do grid invertidas (texto 1ª, foto 2ª). A planta foi pra ESQUERDA, espelhada (`scaleX(-1)`), acompanhando o texto |
+| Nova imagem do produto ("Imagem produto") | Foto de estúdio do pacote (com grãos e ramo) entrou como **foto arredondada** (`cover`, radius 20, sombra), no mesmo vocabulário da origem. Substituiu os grãos genéricos |
+
+**⚠️ Efeito colateral do swap + imagem-direita:** origem e Nosso café ficaram as DUAS com foto à direita/texto à esquerda (antes alternavam). Foi o pedido literal do Marcelo; as cores de fundo diferentes (#F1E4D1 vs #E7D2B8) separam as seções. Se ele quiser alternância, é só reinverter uma delas.
+
+**⚠️ Compliance/integridade — o rótulo da nova foto do produto:** a "Imagem produto" tem o rótulo lendo **"QUALIDADE PREMIUM"** e **"DA SERRA DE BREJÕES"**. "Premium" é superlativo e "Serra de Brejões" é a origem não confirmada — mas é o **rótulo físico do produto do cliente**, não copy nossa. Fica como está (é o produto dele), mas anotado: se um dia ele revisar a embalagem, esses dois pontos são os de risco.
+
+**Sobre a "barra cinza":** o que o Marcelo chamou de barra cinza era o gradiente translúcido do cabeçalho. A barra **marrom** de "Demonstração" (`.aviso-demo`) continua — é o aviso de pendência, some no modo limpo (`Ver versão limpa`). Se ele quiser que suma de vez, é um pedido à parte.
+
+**Verificado:** detector `exit 0`. Render 1900/1440/390 do topo (repouso + rolado), das duas seções trocadas e do rodapé. `scrollWidth==clientWidth` em 1920/1600/1440/1280/1024/900/768/390. `Imagem produto.png` (6,2 MB) e `graos-cafe.webp` (órfão) foram pra `site-fontes/`. Pasta em **780 KB**.
+
+## 🟢 Nona rodada (07/08) — zoom do hero, origem reorganizada, rodapé com print
+
+Retorno do Marcelo com seis pedidos, todos atendidos.
+
+| Pedido | O que foi feito |
+|---|---|
+| "A imagem da home tá com muito zoom" | `min-height` do hero baixou de 680 → 600px. Com a foto larga (2,09:1) em `cover`, um contêiner mais baixo fica com proporção mais larga que a imagem, então o `cover` ajusta pela LARGURA e mostra a cena inteira (serra + saca + pacote) em vez de ampliar o centro. Em 1280px+ não há corte lateral |
+| No título, tirar a linha abaixo de "Da Serra de Brejões" | Removido o `<br>para o seu <em>negócio</em>.`. O h1 ficou só "Da Serra de Brejões" (com o `.pend` de sempre) |
+| Trocar "CAFÉ ARTESANAL DA BAHIA" por "CAFÉ ARÁBICO DA SERRA DE BREJÕES / BA" em `#d6b35f` | Eyebrow do hero trocado e recolorido para o dourado `--dourado` (#D6B35F). ⚠️ Ele pediu "BREJÕES - BA"; usei **" / "** no lugar do " - " por causa da regra da casa (sem tracinho como separador) e da grafia que o projeto já usa ("Brejões/BA") |
+| Seção 2 (origem): a imagem sumiu | Era referência quebrada — o HTML apontava `vista-brejoes.webp`, que não existia (só o `.png`). Gerei o WebP (1040px, 149 KB) |
+| Origem: pontas arredondadas + selo na esquerda passando pela metade | A foto deixou de sangrar até a borda e virou figura CONTIDA na coluna direita, `border-radius:20px`. O selo foi para a borda esquerda, `left:0;translate(-50%,-50%)` = metade dentro, metade fora |
+| Origem: rever "Altitude / Clima / Solo" — "veja um lugar melhor ou tire" | **Removidos os três cards.** Repetiam palavra por palavra o parágrafo e empilhavam a mesma credencial de origem não confirmada. Quem "ressalta a Serra de Brejões" agora é a própria foto (serra, mata, cafezal, cidade no vale) + o selo + o parágrafo. Menos, e mais honesto |
+| Origem: fundo `#f1e4d1` | `--origem` foi de `#E1CAAC` para `#F1E4D1` |
+| Rodapé: usar o print (marrom com a casinha gravada) de fundo | `.rodape` com `background:var(--escuro) url(rodape-fundo.webp) center bottom/cover`. Como já havia a `casinha.webp` na 4ª coluna, ela SAIU (duas casas era redundante) |
+| Seção 1 (Nosso café): pôr a foto "Grães de café" | Feito. ⚠️ Isso **substituiu a foto REAL do pacote** por grãos genéricos. Registrado abaixo |
+
+**🔴 Duas armadilhas de imagem desta rodada:**
+1. **O PNG "Grães de café" veio com o xadrez de transparência DESENHADO dentro
+   do arquivo** (não era alfa) — o mesmo caso da xícara e do selo. Recortado por
+   script (keying por cromaticidade+luminância a partir de `site-fontes/graos-cafe.png`).
+2. **`cramped-padding` na origem, do detector.** Até a 8ª rodada a foto sangrava
+   até a borda (`right:0`), e era o sangramento que fazia o detector aceitar a
+   seção colorida com padding horizontal 0. Como a foto virou contida, a calha
+   lateral teve de sair da PRÓPRIA seção (`.origem{padding:62px var(--gut)}` +
+   `.origem .wrap{padding:0}`). Regra: **seção colorida sem filho que sangre
+   precisa de padding horizontal próprio.**
+
+**🔴 Pendência que esta rodada REFORÇOU:** o novo eyebrow ("CAFÉ ARÁBICO DA SERRA
+DE BREJÕES") afirma origem do grão na região — a mesma pendência #1 já aberta (o h1
+e o parágrafo da origem já carregam `.pend`). Continua dependendo de UMA pergunta ao
+Nelson: *"o café que seu pai compra vem de produtores daqui da região Serrana /
+Brejões?"* Se ele disser que não, caem o eyebrow, o h1 e o parágrafo da origem.
+
+**⚠️ Também levar pro Marcelo:** trocar o pacote real por grãos genéricos na seção
+1 tira do site a única foto do produto que o revendedor B2B enxerga. O `pacote.webp`
+(rótulo verdadeiro) está guardado em `site-fontes/` e volta com uma troca de arquivo
+se ele quiser.
+
+**Verificado:** detector `exit 0` (acusava `exit 2` antes da correção do padding, então
+rodou mesmo). Render 1440/390 nas quatro seções mexidas. `scrollWidth==clientWidth`
+em 1920/1440/1280/900/390. Fontes pesadas movidas para `site-fontes/`. Pasta em **868 KB**.
+
+## 🟢 Oitava rodada (07/08) — wallpaper novo, faixa verde de volta, home no print
+
+O Marcelo mandou um print novo da home (marca fictícia "Grão da Serra" com foto
+publicitária) e uma foto de fundo nova (`site-fontes/wallpaper-home.png` →
+`hero-wallpaper.webp`, 1812x868, larga).
+
+| Pedido | O que foi feito |
+|---|---|
+| Trocar o wallpaper da home pela foto nova | Feito. É larga (2,09:1), então cobre a tela sem ampliar demais e o pacote fica em tamanho bom — resolve de vez o "muito grande" |
+| Deixar a home igual ao print | Eyebrow + h1 "Da Serra de Brejões / para o seu negócio", subtítulo, dois botões (dourado "Solicitar Orçamento" + fio "Nossos Cafés"), botão dourado no cabeçalho |
+| Logo grande | Emblema de 44 → 60px, nome em corpo maior |
+| Cores dos botões | Dourado preenchido + fio, como o print |
+| Tirar o papel rasgado | Removido (HTML + CSS). O hero encosta direto na faixa verde |
+| Faixa verde depois da home | Seção `.faixa` #20301C com os 3 atributos que estavam no hero + **Fornecimento B2B** (ícone de caixa novo) |
+
+**Copy do print foi ajustada (integridade):** o print dizia "cultivados com
+cuidado" (a família não planta) e "Cafés Especiais" (jargão proibido). Viraram
+"escolhido maduro, torrado com cuidado" e eyebrow "Café artesanal da Bahia".
+
+🔴 **O verde voltou.** Saiu em 06/08 por alinhamento ao manual do Nelson; volta por
+pedido explícito do Marcelo. Pedido do cliente vence a diretriz interna — registrado.
+
+**Armadilha desta rodada (vale como lição):** ao trocar o hero inteiro por Edit, o
+`old_string` não incluiu o SVG do rasgo que vinha DEPOIS dos `</div>` — sobrou um
+rasgo órfão + um `</section>` extra entre a faixa e "Nosso café", que só apareceu no
+render (borda serrilhada no fim da faixa). **Ao substituir uma seção grande, o
+old_string tem que ir até o `</section>`, não até o último `</div>` visível.**
+
+**Verificado:** detector `exit 0` (controle 5 achados). Render 1920/1440/390, sem
+overflow. `hero-serra.webp` saiu da pasta que vai ao ar. Pasta em **873 KB**.
+
+## 🖼️ Sétima rodada (06/08) — hero menor e preto, produto real em "Nosso café"
+
+Retorno do Marcelo depois de ver a sexta rodada, mais dúvida sobre a seção
+"Nosso café". Ele mandou modelos de referência (kraft minimalista, produto em fundo
+escuro, foto publicitária do pacote).
+
+| Pedido | O que foi feito |
+|---|---|
+| "A foto da home ficou muito grande" | O hero deixou de ser `cover` de largura cheia (que ampliava o pacote; em 1920 o rótulo ficava legível) e passou a ser dimensionado pela **largura do contêiner** (54%, teto 820px), ancorado embaixo à direita. O pacote encolhe proporcionalmente em qualquer tela |
+| "A cor escura da esquerda, que está marrom, quero preta" | Fundo do hero e véu passaram de marrom `#2D190F` para **preto**. Branco sobre preto = 21:1 |
+| (efeito colateral) borda dura da foto sobre o preto | A imagem é **mascarada** (mask-composite `intersect`): topo e esquerda dissolvem no preto, então a foto emerge sem emenda em vez de virar um retângulo com linha |
+| "Nosso café: pacote? grãos? foto publicitária? não esquecer que é B2B" | Decidido: **foto real do pacote** (`pacote.webp`, rótulo verdadeiro) no lugar da foto genérica de mãos no grão. É o que o revendedor quer ver, e tirou mais um "Imagem provisória". Formulário fica com a ilustração botânica — repetir o pacote nas duas seções é o container preguiçoso |
+
+**Por que sem Conselho:** escolha de imagem de seção é design, não decisão de risco
+(`DINAMICA-E-LIMITES.md`: não convocar por hábito). Resolvido direto.
+
+**Verificado:** detector `exit 0` (controle devolveu 5 achados). Hero e "Nosso café"
+conferidos em 1920, 1440 e 390. `pessoa-mexendo-cafe.webp` saiu da pasta que vai ao
+ar. Pasta em **844 KB**.
+
+## ⏱️ Onde paramos antes (05/08/2026)
+
+**Google Meu Negócio:** ✅ criado e **verificado na hora**, sem vídeo, porque usamos
+o endereço do MEI. Já está no ar. Falta só cadastrar produtos, subir fotos reais e
+pedir as primeiras avaliações aos clientes de revenda dele.
+
+**Site:** **TERCEIRA versão**, refeita em 05/08 a partir de seis referências novas.
+`site/index.html` + `site/assets/site.css`. Detector `exit 0`, **736 KB**.
+A versão escura está em `Backup 1/`; a versão clara de 03/08 foi substituída.
+
+**O site tem hoje, na ordem:** cabeçalho verde com logo à esquerda · hero com o
+pacote real sobre a serra · faixa verde de 4 pilares · "Nosso café" · processo em
+4 etapas · "Nossa origem" com selo redondo · "Para quem é" · FAQ · formulário que
+monta o pedido e abre o WhatsApp preenchido · rodapé em 4 colunas.
+
+### 🔴 O que trava, e é tudo material do cliente
+
+1. ~~Fotos reais do pacote~~ ✅ **resolvido em 05/08**: o Nelson mandou a foto de
+   estúdio da embalagem (`site-fontes/produto-original.png`), e o Marcelo mandou a
+   arte do hero com o pacote sobre a serra. As **quatro fotos do processo**
+   continuam geradas e marcadas "Imagem provisória"
+2. **Foto do Nelson** — a seção "Quem faz" está fora desde 03/08, mas a foto
+   continua sendo o que falta para ela voltar
+3. **Lista de produtos** com peso, moagem e faixa de preço. O rótulo confirma
+   **250 g**; falta o resto
+4. **Confirmar a ordem das etapas**: pesquisa (Embrapa/Emater) diz secagem **antes**
+   da pilagem, e o site já está escrito assim. Perguntar: *"vocês secam primeiro e
+   só depois pilam, certo?"*
+5. **Autorização para falar do pai** no site (a seção "Quem faz" tem isso marcado)
+6. **Escopo e prazo do site**, e a **autorização de uso como portfólio** — nunca
+   foram fechados, e a autorização é o pagamento da Horus nesse projeto
+7. **Origem do grão**: se vier de produtores da região Serrana, entra a seção
+   "De onde vem", que hoje está deliberadamente fora
+
+### Ideias do Marcelo ainda não feitas
+
+- **Motion nos processos do café** (ele pediu, ficou para depois das fotos reais)
+- Logo com lettering em fundo transparente, e o vetor se existir
+
+### Notas operacionais
+
+- **Higgsfield:** o **MCP não autentica** nesta máquina, mas o **CLI local está
+  logado e funciona** (`higgsfield generate create nano_banana_pro --prompt "..."
+  --aspect_ratio 4:3 --resolution 1k --wait`). 2 créditos por imagem.
+  **Saldo em 03/08: 154 créditos** (2 gastos no `hero-graos`, aprovado de primeira)
+- **Print da página:** Edge headless com `--headless=old` e `--user-data-dir` novo a
+  cada execução. Ver `_memoria/design/99-checklist.md`
+- Arte-fonte em `site-fontes/`, fora da pasta que vai ao ar
+
 ## Sobre
 
 Entregar um **site** para o Café Grão da Serra (café torrado 100% arábica,
@@ -23,7 +396,452 @@ Cliente novo. Chegou por relação: o Antonio (sócio) já era amigo do Nelson.
    **É trabalho pago, com escopo próprio.** Não deixar virar extensão do grátis
 4. Tráfego pago (oportunidade, não vendida)
 
-## Estado do site (30/07/2026)
+## 🟢 Quarta rodada (05/08/2026) — site refeito nas SEIS referências novas
+
+O Marcelo mandou um mockup completo de home em seis partes
+(`imagens/referencia-home/HOME PT 1..6.png`), de uma marca fictícia chamada
+"Café Serra de Brejão", e pediu **igual**. O site foi refeito inteiro.
+
+**⚠️ Armadilha de processo que custou meia rodada:** as seis imagens foram
+salvas em `site/assets/` **depois** de a mensagem ser enviada, e o primeiro
+`ls` da pasta não as trouxe. Eu comecei a construir em cima das referências
+antigas (`imagens/Ideia de Home 1..3.png`, de 03/08), que têm nome parecido.
+**Quando o Marcelo disser "as imagens que te passei", conferir a data do
+arquivo, não só o nome** — e relistar a pasta antes de assumir que não chegou.
+
+### O que veio de cada parte
+
+| Referência | Virou |
+|---|---|
+| PT 1 | Cabeçalho verde `#20301C` com logo à esquerda e pílula "Peça pelo WhatsApp"; hero com texto à esquerda sobre creme e a arte sangrando por trás |
+| PT 2 | Faixa verde com quatro pilares, ícone em traço dourado |
+| PT 3 | "Nosso café": foto à esquerda, eyebrow + título + divisor + três atributos com selo redondo + botão verde |
+| PT 4 | "Nossa origem": texto à esquerda, paisagem sangrando à direita, **selo redondo montado na junção** |
+| PT 5 | "Peça o seu café": formulário em creme com ornamento botânico em traço |
+| PT 6 | Rodapé escuro em quatro colunas, com sociais e ícones de contato |
+
+**Ficaram, e não estão nas seis referências:** o **processo em 4 etapas** (é o
+diferencial verdadeiro do cliente, e nenhum concorrente do nicho mostra), o
+**"Para quem é"** (o negócio é B2B, e sem ele o site não fala com quem revende) e
+o **FAQ**. Sem esses três o site perderia conteúdo já aprovado em troca de nada.
+
+### 🔴 A copy do mockup foi REESCRITA, e o motivo não é estilo
+
+O mockup dizia, em texto corrido: *"cultivado com cuidado no interior da Bahia"*,
+*"do cultivo à colheita, cada etapa é feita com dedicação"*, *"região de altitude,
+clima ameno e solo fértil que resultam em um café especial"* e *"famílias que vivem
+do campo"*.
+
+Nada disso pode entrar: **a família não planta e não colhe**, e altitude, solo e
+"café especial" são exatamente o jargão que a `marca.md` proíbe sem fonte. O que
+ficou afirma o lugar onde **eles** estão e o trabalho que **eles** fazem.
+
+### Paleta: de onde saiu cada cor
+
+Amostragem das áreas chapadas do mockup: verde `#20301C`, creme `#E4D0B4`, rodapé
+`#2C1C10`.
+
+- **O verde virou fundo de seção inteira.** ⚠️ A `marca.md` diz o contrário
+  ("coisa pouca", proibido fundo de seção). **Pedido explícito do Marcelo vence a
+  diretriz interna**, e a divergência fica registrada aqui de propósito
+- **O creme foi clareado** de `#E4D0B4` para `#F8E4CF`, que é o `#EFC294` OFICIAL
+  com 55% de branco. Não é gosto: com o creme do mockup **nenhum** degrau de
+  dourado fecha 4,5:1 num eyebrow
+- **O eyebrow dourado do mockup reprova.** Dourado `#D6B35F` sobre creme dá
+  **1,44:1**. Entrou o degrau escuro `#7E6124`, que dá 4,69:1 e continua lendo
+  como dourado. O `#D6B35F` ficou como preenchimento e como traço de ícone **sobre
+  o verde**, onde ele dá 6,98:1
+- O rodapé usa o `#3D2115` oficial no lugar do `#2C1C10` do mockup
+
+### 🔴 Três achados do detector que viraram regra
+
+1. **`padding:0` de reset de lista sobrescreve a calha do `.wrap`.** Os quatro
+   pilares viraram `<ul>` e o reset `list-style:none;margin:0;padding:0` apagou os
+   24px laterais: no celular o texto encostava na borda da tela. **Reset de lista
+   zera a margem, não o padding**, quando o próprio elemento é o container de
+   largura
+2. **`skipped-heading` do h1 direto para h3.** Os quatro pilares eram `<h3>` e a
+   faixa não tem `<h2>`. Não se resolve inventando um título: eles são **rótulos de
+   atributo**, não seções do documento, e viraram `<p class="pilar-nome">` dentro
+   de uma lista
+3. **`cramped-padding` em seção com foto sangrando.** A "Nossa origem" tinha
+   recuo zero porque a foto vai até as bordas. A saída não foi dispensar a regra:
+   o recuo foi para a **seção** e a foto sai dele com uma **margem negativa do
+   mesmo tamanho**. Ela continua sangrando e a seção passa a ter recuo de verdade
+
+### Notas de imagem desta rodada
+
+- O **recorte do pacote** (`site-fontes/pacote-recortado.png`) foi feito por
+  script a partir da foto de estúdio, em `scipy`: silhueta por saturação, abertura
+  com disco de raio 22 para comer a língua fina da sombra (a sombra encostada no
+  saco é **saturada**, porque o kraft rebate luz quente nela — filtro de cor não
+  separa, espessura separa), e sombra refeita em CSS com `drop-shadow`, que
+  acompanha o alfa. **Ele não está no site hoje**: a arte do hero já traz o pacote
+- A arte do hero veio como `ChatGPT Image 5 de ago...png` dentro de `site/assets/`.
+  Foi **renomeada e movida** para `site-fontes/hero-pacote-serra-2k.png`: nome de
+  arquivo do gerador fica público no HTML, e PNG de 1,9 MB não vai ao ar
+- ⚠️ **O rótulo na arte do hero é uma reconstrução do modelo, não o rótulo real.**
+  Ampliando, ele lê "selecionado e 100% natural" e "embalado com carinho e
+  dedicação especial", que **não** é o que o rótulo do Nelson diz. No tamanho de
+  exibição não se lê, mas **não usar essa arte ampliada nem como foto de produto**
+
+**Verificado em 05/08:** detector `exit 0` (o mesmo comando devolvia 2 achados
+antes das correções, então rodou mesmo). Render em 1440, 900 e **390px pelo método
+do iframe**. Pasta em **736 KB**. Cinco WebP que ficaram sem uso foram movidos para
+`site-fontes/`.
+
+### 🔁 Retorno do Marcelo na mesma noite (05/08) — ajuste fino
+
+| Pedido | O que foi feito |
+|---|---|
+| "A imagem da hero não está ajustada de acordo com a referência" | A arte deixou de ser `cover` esticado na largura e passou a se ajustar pela **altura**, ancorada à direita. Com `cover` num hero de 580px ela perdia 33% da altura: sumia a mesa e o pacote ficava gigante e cortado. Agora aparece inteira, do céu à mesa, e o creme preenche a esquerda |
+| "Logo abaixo da hero, os textos estão todos na esquerda" | Bug real: `margin:0` do reset de lista em `.pilares-grid` apagava o `margin:0 auto` do `.wrap`, e a faixa inteira encostava na esquerda |
+| Desenhos de planta 1, 2 e 3 | Planta 2 na direita da seção 1; planta 1 na direita do formulário; planta 3 na esquerda do formulário, atrás da xícara e acima dela, como no PT 5 |
+| Xícara no formulário | Sangra pela esquerda, sobre a planta 3 |
+| Seção 1: imagem maior, base alinhada ao botão | `align-items:stretch` no grid: a foto passa a ter a altura da coluna de texto, então a base dela fecha na linha do botão |
+| Botão "Quero experimentar" mais largo | `padding` lateral de 56px |
+| Seção 1 com a cor de fundo do desenho | `--creme-fundo:#E7D2B8`, amostrado do próprio arquivo. Vale também para o formulário, senão a planta 3 (que é opaca) apareceria como retângulo |
+| — | O selo redondo que eu tinha desenhado em SVG virou a arte `Selo Bahia` que ele mandou |
+
+**Três defeitos reais achados nesse ajuste** (e que viraram linha em
+`90-antipadroes.md`): o `margin:0` do reset de lista; o `object-fit:cover` cortando
+arte já composta; e `.origem-foto img` (sem `>`) pegando a img do selo, deixando o
+wrapper com altura zero — o selo simplesmente não aparecia, sem erro no console.
+
+**Sobre os arquivos:** as imagens chegaram com nome de gerador e com espaço e acento
+(`Xícara do Formulário.png`, `Planta desenho 1.png`). Foram convertidas para WebP e
+renomeadas para slug sem acento: nome com espaço vira `%20` na URL e quebra em
+alguns hosts. As fotos do processo mantiveram o nome descritivo que o Marcelo deu,
+só que em slug (`secagem-do-cafe.webp`, `torra-do-cafe.webp`...).
+
+⚠️ **Duas artes vieram com o xadrez de transparência DESENHADO dentro do PNG** (a
+xícara e o selo), não com alfa. Foram recortadas por script. Ver o antipadrão
+correspondente: a chave por cor sozinha come a louça branca do assunto.
+
+⚠️ O arquivo que ele chamou de "Moagem do café" é a foto do **pilão** e está na etapa
+03, que o site chama de "Pilado no pilão". O nome do arquivo e a etapa divergem: se
+a foto for mesmo de moagem, a etapa 03 precisa de outra foto.
+
+**Verificado depois do ajuste:** detector `exit 0`, conferido contra um
+arquivo-controle que devolveu **5 achados**, para garantir que a ferramenta rodou.
+Render em 1440 e 390px.
+
+### ✂️ Terceiro retorno da mesma noite (05/08) — o site encolheu para 5 blocos
+
+O Marcelo mandou remover **três seções inteiras**: "O trabalho está no cuidado com o
+grão" (o processo em 4 etapas), "Para quem é esse café" e "Dúvidas". Feito.
+
+**O site hoje tem:** cabeçalho · hero · faixa de 4 pilares · "Nosso café" ·
+"Nossa origem" · "Peça o seu café" · rodapé.
+
+🔴 **O que saiu junto, e precisa estar declarado:**
+
+1. **O processo era o diferencial verdadeiro do cliente.** Seleção do grão maduro,
+   secagem no terreiro, pilão e torra artesanal é o que a família de fato faz e o
+   que nenhum concorrente do nicho mostra. Sem essa seção, o argumento sobrevive só
+   em uma linha da Origem e num pilar da faixa verde
+2. **"Para quem é" era o único bloco que falava com quem REVENDE**, e o negócio é
+   B2B. Hoje isso vive apenas no pilar "Feito para revender" e no campo "Você é" do
+   formulário
+3. **O FAQ carregava sete pendências marcadas** (mínimo de pedido, prazo, entrega,
+   pagamento, nota, venda em grão). Elas não sumiram do negócio: sumiram do site, e
+   agora caem todas no WhatsApp do Nelson, que atende sozinho
+
+Nada disso desfaz o pedido. Fica registrado para a decisão ser consciente, e porque
+o `00-anatomia.md` trata os blocos 2 e 4 como os de maior impacto e mais esquecidos.
+
+**Efeito colateral resolvido:** o botão da Origem dizia "Conheça nossa história" e
+apontava para `#processo`, que deixou de existir. Virou "Peça o seu café" →
+`#pedido`. Os links do menu e do rodapé para as seções removidas também saíram.
+
+**Também nesta rodada:**
+
+- **Ícone oficial do WhatsApp** no lugar do balão de conversa, nos quatro lugares
+  (pílula do cabeçalho, botão do formulário, rodapé social e linha de contato). ⚠️ É
+  um glifo **preenchido**, e as regras de ícone da casa são todas de traço: a classe
+  `.ico-wa` desliga `stroke` e liga `fill`
+- **Planta 2** na seção 1 cresceu para 430px e passou a ser ancorada **embaixo**
+  (`bottom:0`), que é como ela aparece na referência
+- **Planta 1** do formulário cresceu para 400px; a **xícara** foi para 370px com
+  menos corte. O limite dela é a borda esquerda da caixa do formulário: passando
+  disso, cobre os rótulos dos campos
+- 🔴 **`.sec-head` morava dentro do bloco CSS do processo** e saiu junto quando a
+  seção foi removida. O formulário usa: o título dele ficou alinhado à esquerda até
+  a regra voltar. **Ao remover uma seção, conferir o que do CSS dela é
+  compartilhado** — o mesmo vale para `.fig`, `.rotulo` e `.revela`, que ficaram
+
+**Verificado:** detector `exit 0`. Render em 1440 e 390px. Pasta caiu de 956 KB para
+**680 KB**, porque as quatro fotos do processo saíram da pasta que vai ao ar (estão
+em `site-fontes/`, e voltam se a seção voltar).
+
+### 🏠 Quarto retorno (05/08) — formulário comprimido e a casa no rodapé
+
+| Pedido | O que foi feito |
+|---|---|
+| Comprimir o formulário e colar os ornamentos no rodapé | Recuo de baixo da seção caiu de 100px para 34px; campos, `textarea` e `sec-head` apertados. A xícara e o galho passaram a ser ancorados **embaixo** (`bottom` negativo), então são cortados pela linha do rodapé, como no print |
+| "Beneficiado na Bahia" → "Produzido na Bahia" | Feito |
+| Texto novo da última coluna | "Valorizamos nossa terra, nossa gente e a tradição que faz do nosso café algo especial." É a copy do mockup, e **"nossa terra" é palavra que o próprio cliente usa** (ver `marca.md`, tom de voz): não afirma lavoura, afirma pertencimento |
+| Ilustração da casa abaixo do texto | `casinha.webp`, 258px, largura da coluna |
+
+**Sobre o "Produzido na Bahia":** passa. A família não planta e não colhe, mas
+**beneficia** (seleção, secagem, pilão, torra, moagem) em Brejões, e é isso que
+"produzido" descreve aqui. O que continua proibido é cultivo e colheita.
+
+**Verificado:** detector `exit 0`. Render em 1440 e 390px. Pasta em **732 KB**.
+
+## 🌄 Quinta rodada (06/08) — hero escuro, paleta do manual, faixa verde fora
+
+O Marcelo mandou prints de outra direção (hero escuro com cabeçalho transparente e
+botão dourado) e pediu para alinhar as cores ao manual do Nelson.
+
+| Pedido | O que foi feito |
+|---|---|
+| Cabeçalho transparente | Véu em gradiente que desce a zero, e o hero passa **por baixo** dele (`margin-top:-72px`). Vira chapa `#3D2115` ao rolar |
+| Escurecer a home do lado do texto | O véu do hero deixou de ser creme e virou escuro. O texto foi de tinta sobre creme para **branco sobre marrom**. Medido no ponto mais claro da foto: a .80 o branco dá 8,05:1 |
+| Alinhar à paleta do Nelson | **O verde escuro `#20301C` saiu do site**: faixa, botões e hover. Botão do hero virou dourado `#D6B35F` com texto tinta (7,34:1); nas seções claras virou marrom `#3D2115` com creme (8,98:1). Só sobrou o `--verde-md` em ícone e link, que é a dose de "coisa pouca" da `marca.md` |
+| Tirar a faixa verde e levar os 3 textos para a home | Feito. Viraram a tira `.hero-selos`, logo abaixo dos botões |
+| Papel rasgado na borda da home | SVG com caminho **gerado**, não desenhado à mão, preenchido com a cor da seção seguinte |
+| "Nossa origem" com fundo `#E1CAAC` | Feito. Contraste conferido: tinta 9,28 · marrom 4,59 · verde-md 4,86 · dourado-esc 4,65 |
+| Selo sob a imagem, mais à direita | Saiu da junção das colunas e foi para dentro da foto, canto inferior direito |
+| Foto nova | `vista-brejoes.webp`, a foto real de Brejões que ele mandou |
+| Três atributos abaixo do texto | Feito, com fio em cima de cada um (três cards iguais lado a lado é o container preguiçoso do `90-antipadroes.md`) |
+
+**Por que o botão não é dourado em toda parte:** sobre creme o dourado tem 1,44:1
+de contraste **com o próprio fundo** e deixa de ler como botão, mesmo com o texto
+passando. Dourado sobre escuro, marrom sobre claro. O acento continua sendo um só.
+
+**Armadilha do hero escuro:** a foto é ajustada pela altura e ancorada à direita,
+então à esquerda dela aparece o fundo chapado da seção. Com o fundo em `#3D2115` e o
+véu em `rgb(45,25,15)` ficava uma **emenda vertical dura** no meio da composição. Os
+dois têm que ser a mesma cor, e o véu tem que cobrir a seção inteira, não só a foto.
+
+### 🔴 O texto novo da Origem afirma o que ainda não foi confirmado
+
+O texto pedido é: *"A Serra de Brejões, no coração da Bahia, oferece o terreno
+perfeito para cafés: altitude, clima e solo fértil que resultam em grãos de alta
+qualidade e sabor marcante. É de lá que nasce o Grão da Serra."* Mais os três
+atributos (altitude, clima, solo).
+
+Isso afirma que **o grão vem da região**, e usa **altitude, clima e solo como
+credencial do produto**. As duas coisas estão na lista de proibido-sem-fonte da
+`marca.md`, e o `briefing.md` registra que ainda não foi confirmado de onde o pai
+compra o grão. A foto nova reforça: ela tem um **cafezal em primeiro plano**.
+
+**Está no site, marcado com `.pend`**, que é o mecanismo do `integridade.md` para
+dado não confirmado. **Uma pergunta ao Nelson libera os quatro elementos de uma
+vez:** *"o café que seu pai compra vem de produtores daqui da região Serrana /
+Brejões?"* Se sim, tira-se a marcação e está tudo certo. Se não, caem o parágrafo,
+os três atributos e a foto com cafezal.
+
+**Verificado:** detector `exit 0`. Render em 1440 e 390px. Pasta em **727 KB**.
+`paisagem-serra.webp` ficou sem uso e foi para `site-fontes/`.
+
+## 🩹 Sexta rodada (06/08) — o quadrado marrom, o rasgo, a Origem e a planta sumida
+
+Retorno duro do Marcelo, item por item. Ele mandou junto **cinco prints novos**,
+que estão em `imagens/referencia-06-08/` (chegaram em `site/assets/` e foram
+movidos de lá: referência não vai ao ar).
+
+| Pedido | O que foi feito |
+|---|---|
+| "Um quadrado marrom gigante na home, cortado no meio. Tira." | A foto do hero deixou de ser ajustada pela altura e ancorada à direita, e passou a **cobrir a largura inteira** (`cover` + `object-position:74% 62%`). O `#2D190F` que aparecia à esquerda era a chapa da seção, e a emenda vertical era a borda da foto. Quem escurece o lado do texto agora é só o véu |
+| "O papel rasgado ficou muito feio" | Caminho refeito: ruído de **quatro oitavas** (380/126/43/15px) com entalhes esparsos, em vez do serrilhado de dentes regulares. Duas camadas — sombra desfocada em cima, creme 4,2px abaixo — para o rasgo ter espessura |
+| "Na Nossa Origem os textos estão com fundo amarelo, muito feio" | Era a marcação `.pend` de pendência. Virou **fio tracejado** por baixo do parágrafo mais uma nota curta ao pé da tira de atributos. O aviso continua, o bloco amarelo não |
+| "Refaça a Nossa Origem, está bugada" · "estica a imagem, encosta no canto direito, mais horizontalizada, diminui a altura" | Seção refeita no PT 4: texto na calha à esquerda, foto **absoluta de `left:50%` a `right:0`**, sangrando também pelo topo. Seção caiu de ~830px para ~640px, e a foto virou uma faixa de 2:1 |
+| "A planta 3 sumiu do formulário, põe de volta" | Estava lá o tempo todo, invisível. Ver abaixo |
+| "Diminui a altura da seção do formulário" | Recuo de cima de 88 → 64px, `sec-head` mais curto |
+| "Faça idêntico aos prints de referência. O mesmo desenho." | Os **seis ícones** foram redesenhados em SVG a partir dos prints 1 e 2 |
+
+### Os ícones, e o que foi copiado de verdade
+
+**PRINT 1** (tira do hero) — grão de café duplo com o vinco vazado por máscara,
+montanha de massa cheia com as duas calotas de neve vazadas por `fill-rule:evenodd`
+no mesmo caminho (é isso que dá o fio em volta da neve), e roseta de fio com fita.
+**PRINT 2** (atributos da Origem) — muda, sol e planta, todos em folha cheia com a
+nervura vazada por máscara, sobre as mesmas três linhas de terra em traço fino.
+
+⚠️ **A cor não foi copiada, e não podia ser.** No print os ícones são verde escuro
+sobre creme. Na tira do hero o fundo é foto escurecida, onde verde escuro
+desaparece: lá eles vão em dourado. Na Origem, que é creme, ficaram no verde do
+print. **O desenho é o mesmo; o par de contraste é o do lugar onde ele mora.**
+
+### 🔴 Por que a planta 3 tinha sumido (e não deu erro nenhum)
+
+Duas coisas somadas. O arquivo era **opaco**, e dependia de uma `mask-image` radial
+para se dissolver no fundo. A máscara é definida em **porcentagem da caixa**, e o
+galho mora no canto de baixo à esquerda da arte — com `left:-130px`, o centro da
+máscara caiu na parte vazia do desenho e o galho já estava fora da tela. Resultado:
+um retângulo transparente, sem nada no console.
+
+A correção não foi mexer na máscara: o **fundo chapado virou alfa de verdade**
+(`alfa = 1 - min(pixel/fundo)`, cor por desmultiplicação — mesmo tratamento das
+plantas 1 e 2, conferido contra o original com erro médio de 1,9/255). Sem máscara,
+o ornamento pode ir a qualquer lugar. O alfa levou reforço de 1,65× porque o
+desenho original é claro demais para ler ao lado da planta 1.
+Arquivo em `site-fontes/planta-3-alpha.png`; o WebP do site é 740px, q70/aq70.
+
+### O detector cobrou de novo a mesma regra, e estava certo
+
+Tirar o recuo de cima da seção e passar para a coluna de texto acusou
+`cramped-padding` na "Nossa origem" — **exatamente o mesmo achado de 05/08**. A
+saída é a que já estava escrita: o recuo fica na seção, e a foto sai dele com
+deslocamento negativo do mesmo tamanho (`top:-62px`). Só para cima: para baixo ela
+invadiria a tira de atributos.
+
+### 🔴 Continua em aberto, e piorou de escala
+
+O rótulo na arte do hero é uma **reconstrução do modelo**, não o rótulo real: lê
+"QUALIDADE PREMIUM DA SERRA DE BREJÕES" e "embalado com carinho e dedicação
+especial". Com a foto agora cobrindo a largura inteira, **em tela de 1920 esse
+rótulo cresce ~33% e fica legível**. É superlativo mais origem não confirmada,
+grande, na primeira dobra. Antes ficava pequeno porque a foto era ajustada pela
+altura. **Não é bug de layout, é o arquivo:** só se resolve com uma arte de hero que
+use o rótulo verdadeiro do Nelson. Levar para o Marcelo.
+
+**Verificado em 06/08:** detector `exit 0`, conferido contra um arquivo-controle que
+devolveu **5 achados** (a ferramenta rodou mesmo). `scrollWidth == clientWidth` em
+1920, 1440, 900 e 390 — sem overflow horizontal. Render em 1920, 1440 e 390.
+Modo limpo conferido: fio tracejado e nota de pendência somem. Pasta em **800 KB**.
+
+## 🎞️ Terceira rodada do Marcelo (03/08/2026) — logo centralizada, foto no hero, motion
+
+| Pedido | O que foi feito |
+|---|---|
+| Logo centralizada no topo | Cabeçalho no formato da referência "Hot Coffee": emblema + nome no centro, **dois links de cada lado**. Os 4 links continuam existindo uma vez só, divididos em dois `<nav>` com `aria-label` próprio: nada duplicado para o mobile. No celular vira hambúrguer à esquerda + logo no centro, e os dois nav descem **no fluxo** quando abre |
+| Fundo do hero | **Grãos torrados** (escolha dele entre as duas opções). `assets/hero-graos.webp`, 33 KB, gerada no Higgsfield. Véu branco em gradiente vertical segura 95% de cobertura na faixa do título e abre até zero embaixo, onde só há grão |
+| Sobreposição errada na seção 1 | Ver abaixo, virou regra |
+| Motion na seção 1 | Reveal no scroll (opacity + translateY, `IntersectionObserver`) e **parallax entre as duas fotos** conforme a página rola. **Grão voando não entrou**, e o porquê está abaixo |
+| "Não sei se o card ficou bom sozinho" | O rótulo ganhou companhia: a seção virou duas colunas, com o bloco **"Para quem é esse café"** à direita. É o `para quem é` do `00-anatomia.md`, em coluna única e curto — resolve o vazio e recupera o que tinha sumido com a antiga seção 2 |
+
+**A pergunta do fundo do hero, e por que ela importava.** Dos dois prints que ele
+mandou, o Wake Up Coffee tem **colheita em lavoura em tela cheia**. Isso é o que o
+projeto não pode: a família compra o grão de produtores, e já descartamos uma foto
+de hero por esse motivo em 30/07. Ofereci grãos torrados (o que eles de fato fazem)
+ou close botânico sem lavoura, e ele escolheu os grãos torrados. **Regra que fica:
+o que impede a foto de cafezal é a cena de produção, não o café na imagem.** Cereja
+e folha soltas como recorte continuam valendo; terreiro, pé de café e gente
+colhendo, não.
+
+**Motion: por que não entrou grão voando.** Ele perguntou se ficaria legal. Partícula
+atravessando a tela é decoração pura, e a versão que funciona no celular custa caro.
+O que entrou faz o mesmo serviço com função: o conteúdo entra na ordem de leitura e
+as duas fotos correm em velocidades diferentes, que é a mesma sensação de
+profundidade do parallax do hero que ele já tinha gostado. Só `transform` e
+`opacity`, e desligado inteiro em `prefers-reduced-motion`.
+
+### 🔴 Duas armadilhas de CSS que custaram render (não desfazer)
+
+1. **`margin:0 auto` num grid item mata o stretch.** A largura vira `auto`, e como as
+   duas fotos da seção 1 são `position:absolute` não sobra nada para medir: largura
+   zero, e o `aspect-ratio` devolve **altura zero**. As fotos sumiam e só os rótulos
+   "Imagem provisória" ficavam boiando — e **só em 900px**, porque nos outros
+   breakpoints a regra não valia. Correto: `width:min(100%,620px);margin:0 auto`
+2. **`min-height` fixo não serve para sobreposição.** Filho absoluto não empurra o
+   pai, então o valor que fecha num breakpoint vaza por cima da seção seguinte nos
+   outros. A altura agora sai da largura: `aspect-ratio:1/.78`, derivado da
+   geometria (grande `.74w` → `.555w` de altura, pequena → `.345w`, sobreposição
+   `.12w`)
+
+**Também nesta rodada:** o botão secundário era transparente e sumia sobre os grãos
+do hero (virou fundo sólido); `.rot-lista` caiu de 3 para 2 colunas, porque ao lado
+do texto a caixa estreitou e metade dos atributos quebrava em duas linhas;
+`scroll-margin-top` subiu para 130px por causa do cabeçalho mais alto.
+
+**Verificado em 03/08:** detector `exit 0`. Render em 1440, 1100, 900 e 560 px com
+`--force-prefers-reduced-motion`. Pasta em **716 KB**.
+
+## ✂️ Revisão da home pedida pelo Marcelo (03/08/2026, depois da versão clara)
+
+Segunda rodada de retorno, já em cima da versão clara. O que ele pediu e como foi
+resolvido:
+
+| Pedido | O que foi feito |
+|---|---|
+| Tags de diferencial "com cara de IA" | Viraram a seção **ficha/rótulo** (`.rot`): uma caixa só, no formato do rótulo do pacote, com o mesmo conteúdo. A nuvem de pílulas virou linha em `90-antipadroes.md` |
+| Tirar a logo com o nome girando ao redor | O miolo do selo era o PNG do emblema. Agora é um **grão de café em traço** desenhado em SVG, igual à referência `imagens/Logo Giratória.png` |
+| Texto do anel mais centralizado entre as linhas | Faixa de r=54 a r=78 (meio em 66), linha de base do texto em r=61, corpo 14px. Antes o texto corria colado no fio de fora |
+| Título "A gente não planta. A gente escolhe." | Virou **"Café puro, torrado à mão no interior da Bahia."** Motivo em `90-antipadroes.md`, seção Conteúdo |
+| Wallpaper do hero, muitos elementos, elementos repetidos | Saiu o `radial-gradient` de 1100×520; ficou uma passagem linear para a cor da seção seguinte. Cinco elementos flutuantes viraram **três, um de cada tipo** (a folha aparecia 3× só no hero, e ainda reaparecia em "Sobre" e no "dor"). O parallax de mouse ficou |
+| Seção 1: texto sem dizer que "apenas escolhem" | Reescrita. Fala do lugar e do beneficiamento inteiro (seleção, secagem, pilão, torra, moagem). **Não afirma plantio em lugar nenhum** — a restrição continua respeitada, só saiu do texto |
+| Seção 1: título centralizado no topo, sem eyebrow | `sec-head` centralizado, `eyebrow` "Sobre o Grão da Serra" removido |
+| Seção 1: mais uma imagem, quase em cima da outra | `hero-escolha` (76%) + `paisagem-serra` (52%) encavaladas, as duas com rótulo "Imagem provisória" |
+| Tirar a seção 2 ("Para quem vende café todo dia") | Removida, junto com o bloco `.dor` |
+| Seção 3: tirar os assets "etapa" e deixar 1 imagem por etapa | `.selo-il` (ilustração em traço dourado) e a segunda foto saíram. Uma foto por etapa, em `aspect-ratio:4/3` para as quatro ficarem do mesmo tamanho |
+| Tirar a seção "Quem faz" | Removida |
+
+**Efeito colateral a levar pro Marcelo:** com a seção 2 fora, o site perdeu o único
+bloco que dizia **para quem** o café serve (padaria, mercadinho, cafeteria,
+escritório) — que num negócio B2B é o bloco de maior impacto do
+`00-anatomia.md`. Hoje isso sobrevive só no campo "Você é" do formulário e numa
+pergunta do FAQ. O CTA "Quero revender" continua no hero, mas agora aponta para o
+formulário. Se ele quiser a revenda de volta, o caminho é um bloco novo e mais
+curto, não a volta da lista antiga.
+
+**Também corrigido de passagem** (não foi pedido, mas estava errado):
+- `main[id],section[id]{scroll-margin-top:100px}`. O cabeçalho é sticky e cobria o
+  título de todo link de âncora. É o antipadrão que o `90-antipadroes.md` descreve
+  como "só aparece olhando"
+- O fundo do cabeçalho era `rgba(247,241,230,.92)`, o creme da versão anterior, e
+  virava uma faixa bege visível sobre o hero branco. Agora é branco
+- `--t-hero` era `clamp(2.6rem, 6.4vw, 5.2rem)`: a 1440px dava 92px, quebrava o h1
+  em três linhas e empurrava os botões para fora da dobra. Agora
+  `clamp(2.35rem, 4.5vw, 3.85rem)`
+- Cinco WebP que ficaram sem uso (`etapa-0*`, `folhas`) foram movidos para
+  `site-fontes/`. A pasta que vai ao ar caiu de 748 KB para **672 KB**
+
+**Verificado em 03/08:** detector `exit 0` (conferido contra um arquivo-controle,
+que devolveu 11 achados e `exit 2`, para garantir que a ferramenta rodou mesmo).
+Render em headless a 1440, 760 e 520 px: hero cabe na dobra, sem overflow
+horizontal, hambúrguer aparece.
+
+## 🔄 Site refeito CLARO (03/08/2026)
+
+Retorno do Marcelo sobre a versão escura: *"não gostei do design geral, pedi uma
+pegada natureza/natural, não vi nada de verde, tá muito feio e genérico"*.
+A versão escura ficou em `Backup 1/index-escuro.html` e `site-escuro.css`.
+
+**O que mudou, e por quê:**
+
+- **Fundo claro.** As três referências que ele mandou (`imagens/Ideia de Home *.png`)
+  são todas claras e arejadas. A versão escura era o oposto do pedido
+- **O verde virou acento de verdade:** `#5F7346` dá **4,64:1** sobre fundo claro e
+  passa como texto. No fundo escuro ele tinha 2:1 e sumia — por isso a versão
+  escura "não tinha verde nenhum". A cor não estava errada, o fundo estava
+- **Elementos recortados flutuando** (cereja, folha) com blur e parallax de mouse,
+  copiando a "Ideia de Home 3". Gerados no Higgsfield em fundo branco e recortados
+  por luminância com alpha proporcional na borda
+- **Selo giratório** em SVG (`textPath` + `@keyframes`), da referência
+  "Logo Giratória" do Maison Deuza
+- **Seção de tags** com os diferenciais, pedida por ele
+- **Processo no layout dos prints** "Torrado à mão": texto de um lado, imagens
+  deslocadas do outro, **alternando o lado** a cada etapa
+- **Seção "Sobre"** com ênfase no interior, também pedida por ele
+- **Formulário que monta o pedido e abre o WhatsApp preenchido.** Sem servidor, e o
+  texto de ajuda diz isso ao usuário (regra do `50-copy-de-interface.md`: formulário
+  sem servidor não finge que enviou)
+
+**Estilo de referência:** "Organic Biophilic", da skill `ui-ux-pro-max` — curvas
+orgânicas, raio 16-24px, layout espaçoso. ⚠️ **Só o vocabulário formal foi usado.**
+As cores que ela sugeriu (`#15803D`, `#EC4899`) foram descartadas: a marca do
+cliente manda.
+
+### 🔴 Três achados do detector que viraram regra
+
+1. **`cream-palette`**: o fundo `#F7F1E6` que eu tinha escolhido foi acusado de ser
+   *"o bege quente que toda IA escolhe por reflexo"*. Estava certo: **a cor não vinha
+   da paleta do cliente, eu inventei**. Hoje o fundo é branco puro e a superfície
+   quente é `#FBEEDC`, derivada do `#EFC294` **da paleta oficial**
+2. **`clipped-overflow-container`**: `overflow-x:hidden` no `body` cortando filho
+   posicionado. Quem contém os elementos soltos é o `.hero`, não o body
+3. **`wide-tracking`**: o detector acusa a partir de **0.05em**, inclusive. Ficou
+   em 0.04em no selo
+
+⚠️ **Alegação recusada:** o Marcelo pediu a tag *"rico em óleos essenciais e
+antioxidantes"*. **Não entrou**: é alegação funcional de alimento, a mesma coisa que
+foi reprovada no concorrente que dizia "ideal para gestantes". No lugar entraram
+**aroma intenso** e **sabor encorpado**, que são sensoriais e não prometem efeito.
+
+## Estado do site (30/07/2026, versão escura — histórico)
 
 `site/index.html` + `site/assets/site.css`. **One-page, 8 seções, escrito.**
 

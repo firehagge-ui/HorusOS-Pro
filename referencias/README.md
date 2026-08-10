@@ -22,6 +22,7 @@ decisão sair de um caso real em vez do viés médio do modelo. Ver
 | [Fazenda São Gabriel](fazenda-sao-gabriel-atacado.md) | Café, atacado B2B | 6 | **Segmentação por tipo de negócio** (6 blocos com bullets próprios) e comparativo "especial × tradicional", que cria critério de compra sem citar concorrente |
 | [Grão da Serra Mantiqueira](grao-da-serra-mantiqueira.md) | Café gourmet, e-commerce | 3 | **Contraexemplo e homônimo do cliente #4.** Azul `#337AB7` do Bootstrap num site de café, h1 de 18px, corpo de 12px. Vantagem deles é domínio e tempo, não qualidade |
 | [Lista de café do Marcelo](cafe-lista-marcelo.md) | Café, B2C e cafeteria, internacional | — | Consolidado de 7 links + 11 prints. **Narrativa em capítulos** (La Boheme), kicker + título em página escura (site russo), h1 de 114 a 199px, zero sombra, verde só como acento |
+| [Dez agências de IA](agencias-ia-dez-sites.md) | Agência de marketing com IA, BR e fora | — | **Consolidado de 10 sites que o Marcelo escolheu para o site da própria Hórus.** O denominador comum: quase-preto, um acento saturado, título com um pedaço no acento, rótulo em pílula, arte 3D grande, trinca de números |
 
 > Valéria Movio e Pataquini ainda estão só como linha aqui. Fazer o teardown
 > completo dos dois quando sobrar tempo, principalmente do Pataquini: teardown de

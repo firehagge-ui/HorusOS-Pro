@@ -12,6 +12,17 @@ description: >
 
 Skill central de criação de conteúdo visual. Pega um tema → entrega HTMLs estilizados + PNGs prontos pra postar + legenda no padrão da marca.
 
+## Leitura obrigatória antes da primeira linha de copy
+
+1. `_memoria/conteudo/00-formatos.md` — os sete formatos narrativos. **Escolher UM antes de escrever**
+2. `_memoria/conteudo/10-legibilidade.md` — os pisos de fonte, contraste e densidade
+3. `_memoria/conteudo/90-antipadroes.md` — o que denuncia carrossel feito por IA
+4. `_memoria/integridade.md` — se a peça é de cliente. Dado que falta vira `[FALTA: ...]`, nunca texto plausível
+
+Antes de **entregar**, rodar `_memoria/conteudo/99-checklist.md`: as condições de
+veto primeiro, a rubrica depois. Se a conferência não rodou nesta mensagem, não
+dá pra dizer que passou.
+
 ## Dependências
 
 - **Identidade visual:** `identidade/design-guide.md` — LER ANTES de criar qualquer visual
@@ -54,15 +65,22 @@ O MazyOS tem um estilo próprio — editorial, calmo, premium. Sem clip-art, sem
 
 ### Tipografia padrão
 
-- **Fonte:** Inter (Google Fonts), pesos 400/500/600/700/800/900
-- **Título de capa:** 90-100px, weight 900, line-height 0.98, letter-spacing **-0.04em**
-- **H2 (slides internos):** 60-72px, weight 800, line-height 1.04, letter-spacing **-0.035em**
-- **Corpo:** 20-24px, weight 500, line-height 1.5
-- **Eyebrow/kicker:** 13-16px, weight 700-800, **UPPERCASE**, letter-spacing **0.22-0.32em**, cor de destaque
-- **Page counter (canto sup. dir.):** 14-16px, weight 500-600, letter-spacing 0.18em, cor muted
-- **Meta/handle (@):** 15-18px, weight 600
+Piso e faixa vêm de `_memoria/conteudo/10-legibilidade.md`. A peça é renderizada a
+1080px e lida num celular de ~390px: o fator é 0,36, então **22px viram 8px na mão
+da pessoa**. Os números abaixo já estão corrigidos por causa disso.
 
-Regra do tipo: títulos grandes com kerning **apertado** (-0.035em), eyebrows pequenos com kerning **aberto** (0.22em+). Esse contraste é o coração do estilo.
+- **Fonte:** Inter (Google Fonts), pesos 500/600/700/800/900
+- **Título de capa:** 90-110px, weight 900, line-height 0.98, letter-spacing **-0.04em**
+- **H2 (slides internos):** 60-76px, weight 800, line-height 1.04, letter-spacing **-0.035em**
+- **Corpo:** **34-42px**, weight 500, line-height 1.5 — piso absoluto 34px
+- **Eyebrow/kicker:** **26-30px**, weight 700-800, **UPPERCASE**, letter-spacing **0.22-0.32em**, cor de destaque
+- **Meta/handle/crédito (@):** **24-28px**, weight 500-600
+
+Regra do tipo: títulos grandes com kerning **apertado** (-0.035em), eyebrows pequenos com kerning **aberto** (0.22em+). Esse contraste é o coração do estilo — o que mudou foi a escala, não a relação.
+
+**Nada de texto de leitura abaixo de 24px.** O que estiver abaixo disso é decoração e não pode carregar informação.
+
+Consequência direta: com corpo em 36px cabem ~5 palavras por linha. **20 a 45 palavras por slide, no máximo 4 linhas de corpo.** Isso é o efeito desejado, não um problema — slide denso é slide pulado.
 
 ### Cores padrão (quando design-guide for vago)
 
@@ -77,7 +95,8 @@ Paleta sóbria: fundo dark + off-white + **UMA** cor de destaque. Nunca quatro c
 ### Elementos visuais recorrentes
 
 - **Régua fina** (3-4px de altura, 60-80px de largura, cor de destaque) entre kicker e h2 ou como divisor
-- **Logo top-left + page counter top-right** em todos os slides
+- **Logo top-left** em todos os slides
+- **Contador de slide ("1/8"):** ⚠️ **desligado por padrão no Instagram.** O app já desenha os pontinhos de navegação, e contador dentro da arte é ruído redundante e tell de template automático. Ligar só quando a peça vira PDF ou vai pro LinkedIn. *Decisão pendente do Marcelo — ver `_memoria/conteudo/91-o-que-veio-do-opensquad.md`*
 - **Border-top 1px** `rgba(255,255,255,0.12)` separando rodapé do conteúdo (em slides escuros)
 - **Stamps circulares** (200x200, border 3px translúcida, rotate -10deg) pra selos/datas/dados
 - **Tags/pills** uppercase, padding generoso, kerning 0.2em, pra rotular categoria do slide
@@ -100,10 +119,24 @@ Vocabulário de layout — cada slide tem um nome. Variar entre eles pra criar r
 
 ## Padrão do carrossel
 
+Duas coisas diferentes, e as duas precisam ser escolhidas:
+
+- **Formato narrativo** = por que o slide 4 existe e por que vem depois do 3.
+  Vem de `_memoria/conteudo/00-formatos.md`. São sete: Tese, Lista, Tutorial,
+  Mito vs Realidade, Problema → Solução, História, Transformação
+- **Layout** = como o slide parece. É o vocabulário visual logo abaixo
+
+Escolher o formato **primeiro**, e a partir dele a contagem e o papel de cada
+slide. Só então distribuir os layouts.
+
+⚠️ **Transformação (antes/depois) é proibido no Dr. Giovanni e na Aion.**
+Sem versão leve: naqueles dois clientes, é não usar.
+
 **Estrutura base (5 a 10 slides):**
-- **Slide 1:** layout `CAPA`
+- **Slide 1:** layout `CAPA` — para o scroll, não anuncia o conteúdo
 - **Slides internos:** usar 2-3 layouts diferentes entre `SOLO` / `DUO` / `NÚMERO` / `CITAÇÃO`
-- **Slide final:** layout `CTA FINAL`
+- **Penúltimo de conteúdo:** o slide de **reflexão**, não de informação. É o que decide entre curtida e salvamento
+- **Slide final:** layout `CTA FINAL`, com CTA que cita o conteúdo
 
 Antes de criar HTML: ler `identidade/design-guide.md`. Se estiver em branco, usar o "Estilo visual base" acima como default.
 
@@ -129,7 +162,11 @@ Ao terminar de renderizar os PNGs, gerar **automaticamente** a legenda do post e
 2. Contexto (1-2 frases sobre o conteúdo)
 3. CTA pra arrastar ("Arraste pro lado e confere")
 4. Bloco de oferta (diferenciais da empresa, contato)
-5. Hashtags (10-15 — público + nicho + local se aplicável)
+5. Hashtags (5-15, misturando nicho, médio alcance e amplo; local se aplicável)
+
+Piso e teto: primeiros 125 caracteres funcionam sozinhos como gancho (é o que
+aparece antes do "mais"), legenda inteira entre 1.500 e 1.800 caracteres, nunca
+acima de 2.200. Sem URL na legenda: o Instagram não deixa link clicável ali.
 
 ---
 
@@ -148,25 +185,44 @@ Ao terminar de renderizar os PNGs, gerar **automaticamente** a legenda do post e
      perguntar antes de seguir
    Sempre UM estilo. A marca do cliente sempre vence sobre o estilo.
 4. Identificar o tipo de conteúdo (1, 2 ou 3)
-5. Definir o tema e o ângulo
+5. **Escolher o formato narrativo** em `_memoria/conteudo/00-formatos.md`. Se dois
+   servem, escolher o que a marca menos usou nas últimas semanas — variedade de
+   formato mantém o perfil vivo muito mais que variedade de cor
 
-### Passo 2 — Texto
+### Passo 2 — Três ângulos
 
-Escrever o conteúdo seguindo as regras de tom:
+Antes de escrever o carrossel, propor **3 ângulos diferentes** pro mesmo tema.
+Não três títulos: três leituras do assunto, cada uma levando a um carrossel
+diferente. Um parágrafo cada, dizendo o formato narrativo e a promessa.
+
+Serve pra forçar divergência antes de comprometer. O primeiro ângulo que o modelo
+produz é quase sempre o mais óbvio do segmento.
+
+**CHECKPOINT:** Marcelo escolhe um ângulo (ou pede outros).
+
+### Passo 3 — Texto
+
+Escrever o conteúdo seguindo o formato escolhido e as regras de tom:
 
 **Pra carrossel (5-10 slides):**
-- Slide 1 (Capa): título impactante, máx 8 palavras. Oferecer 3 opções
-- Slides internos: um insight por slide, frases naturais, sem bullet points
-- Slide final: CTA + logo
+- Slide 1 (Capa): título que para o scroll, máx 8 palavras. Oferecer 3 opções
+- Slides internos: uma ideia por slide. Se precisa de "e também", são dois slides
+- **20 a 45 palavras por slide**, no máximo 4 linhas de corpo
+- Penúltimo de conteúdo: reflexão
+- Slide final: CTA que cita o conteúdo
 
 **Pra post único:**
 - Frase principal em destaque
 - Contexto de apoio (se necessário)
 - CTA sutil
 
+Passar a copy pelo `90-antipadroes.md` antes de mostrar. O teste mais rápido:
+trocar o nome do cliente pelo do concorrente. Se o texto continua fazendo
+sentido, ele não diz nada — reescrever.
+
 **CHECKPOINT:** Mostrar o texto completo. Esperar aprovação antes do visual.
 
-### Passo 3 — Gerar fotos (se tipo 2)
+### Passo 4 — Gerar fotos (se tipo 2)
 
 Só se o usuário pediu carrossel com foto IA.
 
@@ -192,13 +248,33 @@ Se não tiver o script ainda, instruir o usuário a configurar `OPENAI_API_KEY` 
 
 **CHECKPOINT:** Foto aprovada → seguir. Se não, ajustar prompt e regenerar.
 
-### Passo 4 — Criar visuais (HTML + PNG)
+### Passo 5 — Sistema de design (antes do primeiro HTML)
+
+Escrever o sistema **antes** de abrir o editor: cores (máximo 5: primária,
+secundária, destaque, fundo, texto), fonte e escala, unidade de espaçamento,
+raio, e o elemento gráfico recorrente. É o contrato visual entre os slides — sem
+ele a cor escorrega no slide 5 e a fonte muda no 7.
+
+**Se o cliente ainda não tem identidade de carrossel travada:** propor **3
+identidades visuais distintas** (não três variações da mesma paleta), renderizar
+o **slide 1 de cada uma** em PNG e mostrar as três lado a lado.
+
+**CHECKPOINT:** Marcelo escolhe uma. A escolhida vira
+`clientes/<nome>/carrossel-referencia.html` e as regras entram no `marca.md`
+dele. A partir daí todo carrossel daquele cliente parte desse arquivo, e esse
+passo é pulado.
+
+Se o cliente já tem `marca.md` com estilo definido, a marca vence e não há
+proposta a fazer.
+
+### Passo 6 — Criar visuais (HTML + PNG)
 
 1. Criar **um único `carrossel.html`** com TODOS os slides como `<div class="slide">` dentro do mesmo arquivo. Inline CSS, Google Fonts como única dependência externa. Aplicar:
-   - Cores e tipografia de `identidade/design-guide.md`
+   - Cores e tipografia do sistema de design do Passo 5
    - Mínimo 2 layouts diferentes (não repetir o mesmo em todos os slides)
-   - Logo top-left + slide-counter top-right em todos os slides
+   - Logo top-left em todos os slides (contador: ver regra acima, desligado por padrão)
    - Slide final: logo + CTA, fundo na cor principal
+   - Nenhum texto de leitura abaixo dos pisos de `10-legibilidade.md`
 
    **Pra incluir foto IA no HTML:**
    ```html
@@ -218,9 +294,27 @@ Se não tiver o script ainda, instruir o usuário a configurar `OPENAI_API_KEY` 
 NODE_PATH="<pasta-com-node_modules>/node_modules" node render.js
 ```
 
-3. Mostrar slide 1, 2 e o CTA final renderizados. Se aprovado, mostrar os intermediários.
+3. **Renderizar o slide 1 sozinho e olhar o PNG antes do lote.** Não o HTML — o
+   PNG. O HTML pode estar perfeito e a fonte ter caído no fallback, o texto ter
+   estourado ou um bloco ter sido cortado, sem erro nenhum aparecer. Um defeito
+   no slide 1 se repete nos outros dez se não for pego agora.
 
-### Passo 5 — Salvar e organizar
+4. Renderizar o lote. Mostrar slide 1, 2 e o CTA final. Se aprovado, mostrar os intermediários.
+
+### Passo 7 — Porta de qualidade (antes de mostrar como pronto)
+
+Rodar `_memoria/conteudo/99-checklist.md`:
+
+1. **Condições de veto** — qualquer uma sozinha reprova. Não se compensa com nota alta em outro lugar
+2. **Rubrica** — aprova com média ≥ 7 e nenhum critério abaixo de 4. O "para o scroll" tem peso 1,5 e reprova sozinho com nota ≤ 3
+3. **Compliance do cliente** — em cliente regulado, trava a entrega mesmo com tudo mais em ordem
+
+Reportar o resultado com número e pendência, nunca "está pronto":
+
+> Formato: Lista, 8 slides. Rubrica: média 7,8, menor nota 6 (C5, CTA).
+> Vetos: nenhum. Pendente: `[FALTA: telefone ativo]` no slide 8.
+
+### Passo 8 — Salvar e organizar
 
 ```
 marketing/conteudo/<tipo>-<tema>-<YYYY-MM-DD>/
@@ -236,7 +330,7 @@ marketing/conteudo/<tipo>-<tema>-<YYYY-MM-DD>/
   legenda-linkedin.md   ← (se pedido, mais formal)
 ```
 
-### Passo 6 — Conexão com blog (opcional)
+### Passo 9 — Conexão com blog (opcional)
 
 Depois de criar o conteúdo visual, perguntar:
 
@@ -248,8 +342,12 @@ Se sim, chamar `/publicar-tema` com o mesmo tema.
 
 ## Regras
 
+- Ler `_memoria/conteudo/` antes da primeira linha de copy, e rodar o `99-checklist.md` antes de entregar
+- Escolher o **formato narrativo** antes de escrever. Layout vem depois
 - Sempre ler `identidade/design-guide.md` antes de criar qualquer visual
-- Carrossel: 1080x1350 (4:5 retrato) — sempre. TikTok/Reels: 1080x1920 (9:16) — só quando pedido explicitamente
+- Carrossel: 1080x1350 (4:5 retrato) — sempre. A primeira imagem define a proporção do carrossel inteiro, então todos os slides saem na mesma dimensão. TikTok/Reels: 1080x1920 (9:16) — só quando pedido explicitamente
+- Nenhum texto de leitura abaixo de 24px; corpo com piso de 34px
+- Renderizar e **olhar** o slide 1 antes de renderizar o lote
 - Linguagem segue `_memoria/preferencias.md` estritamente
 - Sempre considerar a sequência de capa no feed antes de definir capa nova
 - Sempre gerar legenda automaticamente ao final, salvando em `legenda.md`

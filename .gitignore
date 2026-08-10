@@ -34,3 +34,13 @@ dados/*
 # O resto é cache e sessão local.
 .impeccable/*
 !.impeccable/config.json
+
+# Impeccable (skill completa, instalada em 08/08/2026)
+# São 2 MB de código de terceiro, incluindo um bundle minificado de 514 KB.
+# Não é decisão da Horus, é dependência: fica de fora igual node_modules.
+# O que VAI versionado é a decisão — .impeccable/config.json, os 4 agentes em
+# .claude/agents/ e os hooks em .claude/settings.json.
+# Pra reinstalar num clone novo:  npx --yes impeccable@3.5.0 install
+# Sem a pasta, o hook vira no-op silencioso (o guard `[ ! -f ... ]` cobre) e o
+# /verificar continua funcionando, porque ele chama o detector via npx.
+.claude/skills/impeccable/

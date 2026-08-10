@@ -49,12 +49,22 @@ Pular passo é mentir, não é economizar tempo.
 Antes de dizer que um site está pronto, rodar:
 
 ```
-npx --yes impeccable@3.4.0 detect "clientes/<nome>/site"
+node .claude/skills/impeccable/scripts/detect.mjs "clientes/<nome>/site"
 ```
+
+Se a skill não estiver instalada nesse clone (a pasta é gitignored — ver
+`CLAUDE.md`, seção "Impeccable"), o mesmo detector roda via
+`npx --yes impeccable@3.5.0 detect "clientes/<nome>/site"`.
 
 É um programa, não uma leitura. Roda tenha o Claude lido `_memoria/design/` ou
 não, e é por isso que ele existe: a memória de design depende de o modelo lembrar
 de abrir o arquivo, o detector não depende de nada.
+
+> **Versão:** a 3.4.0 ficou pra trás em 08/08/2026. Ela acusava
+> `flat-type-hierarchy` em 6 das 10 páginas da Aion, e era **falso positivo**:
+> corrigido na 3.5.0, que roda as mesmas páginas limpo. Se voltar a aparecer
+> `flat-type-hierarchy` num site que não mudou, conferir a versão antes de mexer
+> na tipografia.
 
 **Como ler o resultado:**
 
@@ -73,7 +83,7 @@ só três:
 2. **Dispensar com motivo registrado**, quando a regra briga com uma decisão
    deliberada e documentada:
    ```
-   npx --yes impeccable@3.4.0 ignores add-value <regra> "*" --file "clientes/<nome>/**" --reason "<por que, e onde a decisão está escrita>"
+   npx --yes impeccable@3.5.0 ignores add-value <regra> "*" --file "clientes/<nome>/**" --reason "<por que, e onde a decisão está escrita>"
    ```
    Dispensa sem `--reason` não é dispensa, é varrer pra debaixo do tapete.
 3. **Escalar pro Marcelo**, quando não está claro se é erro ou escolha.
@@ -85,7 +95,7 @@ mecânica, não pega mentira nem estratégia.
 
 **Exceções ativas** ficam em `.impeccable/config.json`, versionado de propósito
 pra que o motivo de cada uma fique visível. Ver com
-`npx --yes impeccable@3.4.0 ignores list`.
+`npx --yes impeccable@3.5.0 ignores list`.
 
 ## Sinais de que você está prestes a violar
 

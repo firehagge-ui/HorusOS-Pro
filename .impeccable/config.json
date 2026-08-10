@@ -17,6 +17,24 @@
         ],
         "createdAt": "2026-07-28T22:03:40.666Z",
         "reason": "Paleta creme+terracota escolhida de proposito para a Aion, a partir do estudo de concorrentes reais do nicho (Giuli Ragno, Valeria Movio) registrado em _memoria/design/99-checklist.md. Decisao do Marcelo, nao reflexo do modelo. O contraste dessa paleta continua sendo cobrado pela regra low-contrast, que NAO esta dispensada."
+      },
+      {
+        "rule": "kicker-above-heading",
+        "value": "*",
+        "files": [
+          "site/**"
+        ],
+        "createdAt": "2026-08-05T13:10:02.884Z",
+        "reason": "Rotulo de secao em pilula, com ponto e caixa alta curta. Escolha do Marcelo em 05/08/2026, a partir de dez referencias que ele mandou (Vexuno, LucrOS, GMX, Helloup, Ellis, Prxmo, Navbar, Menzzo, Remak, Synthai): nove das dez usam esse rotulo, e ele e parte da linguagem visual pedida. Vale SO para site/, que e o site da propria Horus, e nao libera eyebrow em site de cliente, onde o teto de 1 a cada 3 secoes de _memoria/design/90-antipadroes.md continua valendo. O texto do rotulo fica abaixo de 30 caracteres, senao a regra all-caps-body pega, e essa NAO esta dispensada."
+      },
+      {
+        "rule": "all-caps-body",
+        "value": "*",
+        "files": [
+          "site/**"
+        ],
+        "createdAt": "2026-08-05T15:26:27.349Z",
+        "reason": "Faixa de palavras do site da propria Horus (INOVACAO IMPACTO INSPIRACAO), tipografia de cartaz a 64px em texto vazado, com marquee. Sao tres palavras isoladas e decorativas (aria-hidden), nao passagem de leitura: o motivo da regra e que a caixa alta apaga o desenho da palavra em texto corrido, e aqui nao ha texto corrido. Pedido do Marcelo em 05/08/2026 a partir de tres referencias. Vale SO para site/, que e o site da agencia, e nao libera caixa alta em site de cliente."
       }
     ]
   }

@@ -53,7 +53,7 @@ a regra existe e não acontece nada. O detector não depende disso: é um progra
 roda e aponta arquivo e linha.
 
 ```
-npx --yes impeccable@3.4.0 detect "clientes/<nome>/site"
+npx --yes impeccable@3.5.0 detect "clientes/<nome>/site"
 ```
 
 Vem do projeto `impeccable` (github.com/pbakaus/impeccable, Apache 2.0). **Só o

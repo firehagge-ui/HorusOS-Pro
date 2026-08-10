@@ -1,64 +1,126 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    Café Grão da Serra — site institucional
-   Paleta OFICIAL do cliente (clientes/grao-da-serra/marca.md). Nenhuma cor
-   fora da tabela de papéis. Contraste WCAG medido em 30/07/2026.
+   Refeito em 05/08/2026 a partir das SEIS referências que o Marcelo mandou:
+   imagens/referencia-home/HOME PT 1..6.png (mockup "Café Serra de Brejão").
+
+     PT 1 → cabeçalho verde + hero: texto à esquerda, paisagem e pacote à direita
+     PT 2 → faixa verde com quatro pilares, ícone em traço dourado
+     PT 3 → "Nosso café": foto à esquerda, texto e três atributos à direita
+     PT 4 → "Nossa origem": texto à esquerda, paisagem à direita, selo redondo
+     PT 5 → "Peça o seu café": formulário em creme, ornamento botânico
+     PT 6 → rodapé escuro em quatro colunas
+
+   O mockup é de outra marca ("Serra de Brejão"). O que foi copiado dele é o
+   LAYOUT e a paleta. O nome, a logo, os dados e a copy são do Grão da Serra,
+   e a copy dele foi reescrita: o mockup diz "cultivado", "do cultivo à
+   colheita", "região de altitude", "solo fértil" e "café especial", e esta
+   família NÃO planta, NÃO colhe, e nada disso está confirmado.
+   Ver briefing.md e marca.md.
+
+   ---------------------------------------------------------------------
+   PALETA, e de onde cada cor vem
+
+   Do mockup (amostragem das áreas chapadas, 05/08):
+     verde escuro  #20301C   ← cabeçalho, faixa de pilares, botão
+     creme         #E4D0B4   ← fundo das seções claras
+     rodapé        #2C1C10
+
+   O verde NÃO está no manual do cliente: é a cor autorizada verbalmente por
+   ele em 30/07 ("seria interessante sim, coisa pouca"). ⚠️ A marca.md limita
+   o verde a detalhe e proíbe fundo de seção inteira — o Marcelo agora pediu
+   exatamente o contrário, e pedido do cliente vence a diretriz interna.
+   Fica registrado que a diferença é intencional.
+
+   Existem TRÊS cremes, e cada um tem motivo:
+     #F8E4CF  hero  ← #EFC294 oficial + 55% branco
+     #FDF6EA  origem, só para separar as duas seções de #E7D2B8
+     #E7D2B8  "Nosso café" e formulário ← a cor EXATA do fundo dos desenhos
+              de planta que o Marcelo mandou, pedida por ele em 05/08
+
+   Contraste medido em 05/08 (a régua, não o olho):
+     sobre #F8E4CF : tinta 11,91 · marrom 5,89 · verde 11,32 · verde-md 6,24
+     sobre #E7D2B8 : tinta  9,82 · marrom 4,86 · verde  9,34 · verde-md 5,15
+                     dourado-esc 4,92 ✅ · dourado #D6B35F 1,44 🔴
+     sobre #20301C : creme 11,3 · #EFC294 8,54 · dourado 6,98 · verde-cl 4,57
+     sobre #3D2115 : branco 14,72 · #EFC294 8,98 · dourado 7,34
+
+   Consequências que não devem ser desfeitas:
+   · O eyebrow do mockup é DOURADO SOBRE CREME. Isso dá 1,44:1 e é o erro
+     clássico que vira texto ilegível. Aqui ele usa o degrau escuro
+     #6B521C, que fecha 4,92:1 no MAIS ESCURO dos três cremes e por isso
+     pode ser o mesmo em todas as seções.
+   · O #D6B35F só existe como preenchimento e como traço de ícone SOBRE O
+     VERDE, onde ele dá 6,98:1.
+   · Sobre o verde é o contrário do fundo claro: quem some é o verde médio,
+     e quem serve é creme, dourado e branco.
    ========================================================================== */
 
 :root{
-  /* --- cores: papéis fixos, ver marca.md ---
-     ⚠️ CORREÇÃO 30/07/2026: o `#764D36` da paleta é claro demais para ser FUNDO
-     de seção. Sobre ele, creme dá 4,44:1 e dourado 3,63:1, e o detector reprovou
-     15 vezes. A régua é o fundo REAL da seção, não o da página (99-checklist.md).
-     Solução, sem sair da identidade: um degrau entre o fundo e a superfície.
-     `#54321F` dá creme 6,92:1 e dourado 5,65:1. O `#764D36` fica só em BORDA,
-     onde não há texto por cima.                                              */
-  --fundo:      #3D2115;  /* base do site inteiro                            */
-  --secao:      #54321F;  /* fundo de seção alternada e card  creme 6,92:1   */
-  --borda:      #764D36;  /* linha e contorno. NUNCA fundo de texto          */
-  --dourado:    #D6B35F;  /* acento e botão            7,34:1 sobre o fundo  */
-  --creme:      #EFC294;  /* texto de corpo            8,98:1                */
-  --branco:     #FFFFFF;  /* títulos                  14,72:1                */
-  --claro:      #F3EA99;  /* destaque raro            11,94:1                */
-  --sage:       #8A9A5B;  /* verde autorizado, dose pequena  4,80:1          */
-  /* decoração apenas, nunca texto de corpo */
-  --ambar:      #BB7C39;
-  --terra:      #B17242;
-  --rosado:     #BD815F;
+  /* --- fundos --- */
+  --creme:  #F8E4CF;  /* seção clara principal — #EFC294 oficial + 55% branco */
+  /* 05/08, pedido do Marcelo: a seção 1 e o formulário usam a MESMA cor de
+     fundo dos desenhos de planta que ele mandou. Amostrada do arquivo
+     "Planta desenho 3", que é opaco. Sem isso o desenho apareceria como um
+     retângulo de cor diferente em cima da seção. */
+  --creme-fundo: #E7D2B8;
+  --origem:      #F1E4D1;  /* fundo da "Nossa origem" — cor pedida em 07/08  */
+  --campo:  #F6EBD9;  /* superfície de campo, MAIS CLARA que --creme-fundo   */
+  /* ⚠️ O verde escuro #20301C SAIU do site em 06/08, junto com a faixa verde
+     e com os botões verdes: o manual do Nelson não tem verde, e o pedido foi
+     alinhar as cores a ele. O que ficou é o --verde-md, em ícone e link, que
+     é a dose de "coisa pouca" que a marca.md sempre autorizou. */
+  --escuro: #3D2115;  /* rodapé — o marrom oficial no lugar do #2C1C10        */
 
-  --pend-bg:    rgba(214,179,95,.16);
-  --pend-linha: var(--dourado);
+  /* --- texto --- */
+  --tinta:    #3D2115;
+  --marrom:   #764D36;
+  --verde-md: #3F5A34;  /* verde legível sobre creme (6,24:1)                */
+  --sobre-verde:   #F8E4CF;
+  --sobre-verde-2: #EFC294;
 
-  /* --- tipografia: 8 tamanhos, e só esses --- */
-  --t-xs:   .8125rem;  /* 13px  rótulo legal, não interativo   */
-  --t-sm:   .9375rem;  /* 15px  apoio, legenda                 */
-  --t-base: 1.09375rem;/* 17,5px corpo. NÃO reduzir no celular */
-  --t-lg:   1.375rem;  /* 22px  destaque de leitura            */
-  --t-xl:   1.75rem;   /* 28px  h3                             */
-  --t-2xl:  2.5rem;    /* 40px  h2                             */
-  --t-3xl:  3.25rem;   /* 52px  h2 grande                      */
-  /* Reduzido de 6.5rem para 5rem em 30/07: com 3 linhas o hero não cabia em
-     1440x900 e empurrava os selos para fora da dobra. A regra da casa é que o
-     hero cabe na tela, e quem cede é a escala da fonte (00-anatomia.md). */
-  --t-hero: clamp(2.5rem, 6.2vw, 5rem); /* display do hero */
+  /* --- acentos --- */
+  --dourado:     #D6B35F;  /* preenchimento e traço sobre o verde            */
+  /* 05/08: caiu de #7E6124 para #6B521C. Com a entrada do --creme-fundo
+     (#E4D0B8), o tom anterior dava 3,87:1 nele e reprovava. Este dá 4,92 no
+     mais escuro dos três cremes, então o eyebrow é o MESMO em todas as
+     seções — a regra é "o mesmo acento medido contra cada fundo", não um
+     acento por seção. */
+  --dourado-esc: #6B521C;  /* eyebrow e texto pequeno sobre creme            */
 
-  --serif: "Prata", Georgia, "Times New Roman", serif;
-  --sans:  "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* --- tipografia: 8 degraus, valores literais.
+     Sem clamp(): o detector não resolve clamp e passa a enxergar três
+     tamanhos onde existem oito (flat-type-hierarchy). Media query resolve. */
+  --t-xs:   .8125rem;   /* 13,0px */
+  --t-sm:   .9375rem;   /* 15,0px */
+  --t-base: 1.09375rem; /* 17,5px — corpo. NÃO reduzir no celular */
+  --t-lg:   1.375rem;   /* 22,0px */
+  --t-xl:   1.75rem;    /* 28,0px */
+  --t-2xl:  2.375rem;   /* 38,0px */
+  --t-3xl:  3rem;       /* 48,0px */
+  --t-hero: 3.5rem;     /* 56,0px — cai em media query */
 
-  --maxw: 1180px;
+  --serif: "Prata", Georgia, serif;
+  --sans:  "Source Sans 3", system-ui, -apple-system, sans-serif;
+
+  --maxw: 1200px;
   --gut: 24px;
+  --r: 14px;
 }
 
 *{box-sizing:border-box}
-
 html{scroll-behavior:smooth}
+
+/* Cabeçalho sticky de ~84px: sem isso a barra cobre o título de todo link
+   de âncora. Ver 90-antipadroes.md, seção Técnico. */
+main[id],section[id],footer[id]{scroll-margin-top:110px}
 
 body{
   margin:0;
-  background:var(--fundo);
-  color:var(--creme);
+  background:var(--creme);
+  color:var(--marrom);
   font-family:var(--sans);
   font-size:var(--t-base);
-  line-height:1.65;
+  line-height:1.7;
   -webkit-font-smoothing:antialiased;
 }
 
@@ -66,388 +128,710 @@ img{max-width:100%;height:auto;display:block}
 
 h1,h2,h3{
   font-family:var(--serif);
-  color:var(--branco);
+  color:var(--tinta);
   font-weight:400;
-  line-height:1.1;
+  line-height:1.16;
   margin:0 0 .5em;
-  letter-spacing:-.01em;
+  letter-spacing:-.012em;
 }
-h1{font-size:var(--t-hero);line-height:1.02}
+h1{font-size:var(--t-hero);line-height:1.12}
 h2{font-size:var(--t-2xl)}
-h3{font-size:var(--t-xl);line-height:1.2}
+h3{font-size:var(--t-lg);line-height:1.3}
 
-p{margin:0 0 1.1em;max-width:62ch}
+p{margin:0 0 1.15em;max-width:64ch}
 
-a{color:var(--dourado);text-decoration-thickness:1px;text-underline-offset:3px}
-a:hover{color:var(--claro)}
+a{color:var(--verde-md);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--tinta)}
 
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut);position:relative}
 
-/* --- eyebrow: só em 3 das 9 seções, ver ARQUITETURA.md --- */
+/* O eyebrow do mockup, no degrau escuro do dourado. Teto de um a cada três
+   seções (90-antipadroes.md): aqui ele aparece em "Nosso café", "Nossa
+   origem" e "Peça o seu café", e em nenhum h1. */
 .eyebrow{
-  font-size:var(--t-sm);
-  letter-spacing:.18em;
+  font-size:var(--t-xs);
+  letter-spacing:.2em;
   text-transform:uppercase;
-  color:var(--dourado);
-  margin:0 0 1.2em;
-  font-weight:500;
+  color:var(--dourado-esc);
+  font-weight:700;
+  margin:0 0 14px;
 }
 
-/* --- botões: cor chapada, sem sombra, sem gradiente ---------------------
-   O metálico vive só na logo. Lição do teardown maison-deuza.            */
+/* Ornamento divisor do PT 3: fio com um losango dourado no meio. */
+/* `width`, não `max-width`: dentro de um flex em coluna com align-items
+   flex-start o divisor encolhia para o tamanho do losango e os dois fios
+   sumiam. */
+.divisor{display:flex;align-items:center;gap:10px;margin:0 0 22px;width:180px}
+.divisor::before,.divisor::after{content:"";height:1px;background:var(--dourado);flex:1}
+.divisor i{
+  width:7px;height:7px;background:var(--dourado);
+  transform:rotate(45deg);display:block;
+}
+
+/* ------------------------------- botões -------------------------------- */
 .btn{
-  display:inline-block;
+  display:inline-flex;align-items:center;gap:9px;
   font-family:var(--sans);
-  font-size:var(--t-base);
-  font-weight:600;
-  padding:15px 28px;
-  border-radius:6px;
-  text-decoration:none;
-  border:1px solid transparent;
-  transition:background .18s ease,color .18s ease,border-color .18s ease;
-}
-.btn-primario{background:var(--dourado);color:var(--fundo)} /* 7,34:1 */
-.btn-primario:hover{background:var(--claro);color:var(--fundo)}
-.btn-secundario{background:transparent;color:var(--creme);border-color:var(--borda)}
-.btn-secundario:hover{border-color:var(--sage);color:var(--branco)}
-
-/* --- placeholder marcado (padrão nascido no site da Aion) ---------------
-   Tem que renderizar VISÍVEL. Placeholder invisível é pior que nenhum.   */
-.pend{
-  background:var(--pend-bg);
-  border-bottom:2px dashed var(--pend-linha);
-  padding:0 .25em;
-  /* sem border-radius de propósito: borda de acento em um lado + canto
-     arredondado é o antipadrão `border-accent-on-rounded` do detector */
-}
-body.limpo .pend{background:transparent;border-bottom:0}
-
-.aviso-demo{
-  background:var(--dourado);
-  color:var(--fundo);
   font-size:var(--t-sm);
-  font-weight:600;
-  text-align:center;
-  padding:10px var(--gut);
-  line-height:1.4;
+  font-weight:700;
+  line-height:1.2;
+  padding:15px 28px;
+  border-radius:8px;
+  border:1px solid transparent;
+  cursor:pointer;
+  text-decoration:none;
+  transition:background-color .18s ease, color .18s ease, border-color .18s ease;
 }
-body.limpo .aviso-demo{display:none}
+.btn svg{width:18px;height:18px;flex:none}
+/* O ícone oficial do WhatsApp é um glifo cheio. As regras de ícone da casa
+   são todas de traço (`fill:none;stroke:currentColor`), então ele precisa
+   desligar as duas, em qualquer lugar onde apareça. */
+.ico-wa{fill:currentColor !important;stroke:none !important}
 
-/* Botão de alternar fica FORA da faixa, senão ele some junto com ela
-   ao entrar no modo limpo e não há como voltar. */
+/* Botão principal DOURADO com texto tinta = 7,34:1. É o par que a marca.md
+   fixa como botão, e é o do print novo. O verde saiu de botão junto com a
+   faixa verde: o manual do Nelson não tem verde, e ele volta a ser "coisa
+   pouca" (ícone e link), como a marca.md sempre pediu. */
+.btn-ouro{background:var(--dourado);color:var(--tinta);border-color:var(--dourado)}
+.btn-ouro:hover{background:#C6A250;color:var(--tinta)}
+
+/* Nas seções claras o botão é o MARROM do manual com texto creme (8,98:1).
+   Dourado só funciona como botão sobre fundo escuro: sobre creme ele tem
+   1,44:1 de contraste com o próprio fundo e deixa de ler como botão. Não é
+   acento novo: o acento continua sendo o dourado, e o marrom é neutro. */
+.btn-escuro{background:var(--escuro);color:var(--sobre-verde-2);border-color:var(--escuro)}
+.btn-escuro:hover{background:#54321F;color:#FFFFFF}
+
+/* botão de fio sobre o hero escurecido */
+.btn-claro{background:none;color:#FFFFFF;border-color:rgba(255,255,255,.55)}
+.btn-claro:hover{background:#FFFFFF;color:var(--tinta);border-color:#FFFFFF}
+
+.btn-fio{background:none;color:var(--tinta);border-color:rgba(61,33,21,.42)}
+.btn-fio:hover{background:var(--escuro);color:var(--sobre-verde-2);border-color:var(--escuro)}
+
+/* pílula de fio do cabeçalho, sobre o verde */
+.btn-pilula{
+  background:none;color:var(--sobre-verde);
+  border:1px solid rgba(214,179,95,.65);
+  border-radius:999px;padding:11px 20px;
+  font-size:var(--t-sm);font-weight:700;
+  display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+  transition:background-color .18s ease, color .18s ease;
+}
+.btn-pilula:hover{background:var(--dourado);color:var(--tinta)}
+.btn-pilula svg{width:17px;height:17px}
+
+/* ------------------------- marcação de pendência ------------------------ */
+.aviso-demo{
+  background:var(--escuro);color:var(--sobre-verde-2);
+  font-size:var(--t-sm);text-align:center;padding:11px 18px;
+}
 .alterna-btn{
   position:fixed;right:16px;bottom:16px;z-index:60;
-  font-family:var(--sans);font-size:var(--t-sm);font-weight:600;
-  background:var(--fundo);
-  color:var(--dourado);
-  border:1px solid var(--dourado);
-  border-radius:6px;
-  padding:11px 16px;
-  cursor:pointer;
+  font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+  background:var(--escuro);color:#FFFFFF;
+  border:0;border-radius:999px;padding:12px 20px;cursor:pointer;
 }
-.alterna-btn:hover{background:var(--dourado);color:var(--fundo)}
-
-/* --- imagem provisória gerada por IA ------------------------------------
-   Entra para o site ficar de pé na apresentação, e sai quando chegar a foto
-   real do cliente. O rótulo é o mesmo princípio do `.pend`: se está
-   provisório, tem que estar visível.                                      */
-.fig{position:relative;margin-bottom:18px}
-.fig img{width:100%;border-radius:8px;display:block}
-.fig .rotulo{
-  position:absolute;left:10px;top:10px;
-  background:var(--dourado);color:var(--fundo);
-  font-size:var(--t-xs);font-weight:600;
-  padding:5px 10px;border-radius:4px;
-  letter-spacing:.02em;
+/* 06/08 — a marcação de pendência era tarja #EFD09A por trás do texto. Num
+   parágrafo inteiro ela virava um bloco amarelo de quatro linhas que lia
+   como defeito de renderização, não como aviso, e foi exatamente a queixa do
+   Marcelo na "Nossa origem".
+   Agora é fio tracejado por baixo: continua dizendo "isso ainda não está
+   confirmado", não briga com o desenho da página, e some igual no modo
+   limpo. O mecanismo do integridade.md fica de pé. */
+.pend{
+  background:none;padding:0;
+  border-bottom:1px dashed rgba(107,82,28,.7);
 }
-body.limpo .fig .rotulo{display:none}
-
-/* Ilustração em traço vira marca-d'água atrás do número da etapa.
-   Pedido do cliente em 30/07: foto real em destaque, figura discreta ao fundo. */
-.etapa{position:relative}
-/* Altura travada: as fotos vêm em proporções diferentes (a do pilão é
-   retrato) e sem isso cada card empurra o próprio título para uma altura,
-   quebrando o alinhamento da fileira. */
-.etapa .fig img{height:200px;object-fit:cover}
-.etapa .selo-ilustra{
-  position:absolute;right:0;top:-14px;
-  width:82px;height:auto;
-  opacity:.16;
-  pointer-events:none;
-  border-radius:0;
+/* Nota do bloco: para o que é pendência inteira e não dá para sublinhar
+   (uma lista, uma tira de atributos). */
+.pend-nota{
+  margin:22px auto 0;max-width:60ch;text-align:center;
+  font-size:var(--t-sm);color:var(--dourado-esc);font-weight:600;
 }
+.pend-nota::before{content:"⚠ ";}
+body.limpo .aviso-demo{display:none}
+body.limpo .pend{border-bottom:0}
+body.limpo .pend-nota{display:none}
+body.limpo .rotulo{display:none}
 
-/* --- foto que ainda não existe --- */
-.foto-pend{
-  background:var(--secao);
-  border:1px dashed var(--dourado);
-  border-radius:8px;
-  min-height:260px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:24px;
-  color:var(--creme);
-  font-size:var(--t-sm);
-}
-
-/* ============================== cabeçalho ============================== */
+/* ============================== CABEÇALHO ==============================
+   PT 1: verde chapado, logo à esquerda (emblema + nome empilhado), links à
+   direita, botão de fio no fim. Chapado desde o repouso, então o texto creme
+   está garantido em 11,3:1 e não depende da foto que estiver atrás. */
+/* Transparente sobre o hero, como o print. O véu não é enfeite: sem ele o
+   texto creme depende da sorte de a foto ser escura naquele ponto. Ele
+   desce a zero, então lê como "sem cabeçalho", e vira chapa sólida assim
+   que a página rola. */
+/* 07/08: o gradiente do cabeçalho escurecia o TOPO (faixa vazia sobre o céu
+   claro do hero) e criava uma "barra cinza" acima da logo — justamente onde
+   não há texto. Removido: em repouso o cabeçalho é transparente e a
+   legibilidade da logo/nav vem do véu do próprio hero (que escurece o lado
+   esquerdo, onde a logo mora). Ao rolar, vira chapa sólida (`.solido`). */
 .topo{
   position:sticky;top:0;z-index:50;
-  background:rgba(61,33,21,.94);
-  backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--borda);
+  background:transparent;
+  transition:background-color .25s ease;
 }
-.topo .wrap{display:flex;align-items:center;gap:20px;padding-top:12px;padding-bottom:12px}
-.marca{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto}
-.marca img{width:56px;height:56px}
-.marca b{font-family:var(--serif);color:var(--branco);font-size:var(--t-lg);font-weight:400;letter-spacing:.02em}
-.nav{display:flex;gap:26px;align-items:center}
-.nav a{color:var(--creme);text-decoration:none;font-size:var(--t-sm);font-weight:500}
-.nav a:hover{color:var(--dourado)}
-.menu-btn{display:none;background:none;border:0;color:var(--creme);font-size:1.6rem;cursor:pointer;padding:6px 10px}
+.topo.solido{
+  background:var(--escuro);
+  box-shadow:0 1px 0 rgba(214,179,95,.18);
+}
+.topo .wrap{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding-top:14px;padding-bottom:14px;
+}
 
-/* ================================ hero =================================
-   Refeito em 30/07 a partir das referências do Marcelo. Maison Deuza,
-   Greydient e White Coffee fazem todas a mesma coisa: **hero centrado com
-   tipografia gigante**, imagem por baixo ou logo abaixo. Nenhuma usa
-   texto-esquerda / imagem-direita, que era o layout anterior daqui.       */
-.hero{
-  position:relative;
-  padding-top:96px;padding-bottom:88px;
-  text-align:center;
-  background-image:
-    linear-gradient(rgba(61,33,21,.62), rgba(61,33,21,.90)),
-    url("hero-escolha.webp");
-  background-size:cover;
-  background-position:center 42%;
+/* 07/08: logo maior, a pedido do Marcelo ("deixe a logo grande também") e
+   como no print — emblema de 60px e o nome em corpo maior. */
+/* 07/08: logo e nome maiores, a pedido do Marcelo. Emblema 60 → 78px, nome
+   28 → 34px, "Café" acompanhando. */
+.marca{display:flex;align-items:center;gap:16px;text-decoration:none}
+.marca img{width:78px;height:78px}
+.marca-txt{display:block;line-height:1.02}
+.marca-cafe{
+  display:block;
+  font-size:var(--t-base);letter-spacing:.38em;
+  color:var(--dourado);font-weight:600;
 }
-.hero .wrap{position:relative;max-width:940px}
-.hero h1{margin-bottom:.35em}
-.hero p.sub{
-  font-size:var(--t-lg);color:var(--creme);
-  max-width:46ch;margin-left:auto;margin-right:auto;
+.marca-nome{
+  display:block;
+  font-family:var(--serif);font-size:2.125rem;
+  color:var(--sobre-verde);letter-spacing:.01em;
 }
-.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin:36px 0 0;justify-content:center}
 
-/* rótulo da imagem provisória, já que a foto virou fundo */
-.hero .rotulo-fundo{
-  position:absolute;left:16px;top:16px;
-  background:var(--dourado);color:var(--fundo);
-  font-size:var(--t-xs);font-weight:600;
-  padding:5px 10px;border-radius:4px;
-}
-body.limpo .hero .rotulo-fundo{display:none}
+/* Botão dourado do cabeçalho: um pouco mais baixo que o botão padrão para
+   caber na barra sem esticá-la. */
+.btn-topo{padding:12px 22px;font-size:var(--t-sm)}
 
-.selos{
-  display:flex;gap:40px;flex-wrap:wrap;justify-content:center;
-  margin-top:52px;padding-top:30px;
-  border-top:1px solid rgba(239,194,148,.28);
+.nav{display:flex;align-items:center;gap:30px}
+.nav a{
+  color:var(--sobre-verde);text-decoration:none;
+  font-size:var(--t-sm);font-weight:600;
+  border-bottom:1px solid transparent;padding-bottom:3px;
 }
-.selos li{list-style:none;font-size:var(--t-sm);color:var(--creme)}
-.selos b{display:block;color:var(--branco);font-size:var(--t-base);font-weight:600}
-.selos ul{margin:0;padding:0}
+.nav a:hover,.nav a.aqui{border-bottom-color:var(--dourado)}
 
-/* ============ cabeçalho de seção, padrão das referências ===============
-   White Coffee, Deuza e Greydient abrem toda seção igual: rótulo pequeno
-   acima, título grande, tudo centrado numa coluna estreita. O corpo abaixo
-   é que varia de seção para seção, e é ele que sustenta o ritmo.        */
-.sec-head{
-  max-width:720px;margin:0 auto 48px;
-  text-align:center;
+.menu-btn{
+  display:none;background:none;border:0;cursor:pointer;
+  font-size:var(--t-lg);line-height:1;padding:8px 10px;color:var(--sobre-verde);
 }
-.sec-head .eyebrow{margin-bottom:.7em}
-.sec-head h2{margin-bottom:.4em}
+
+/* ================================ HERO =================================
+   PT 1: texto à esquerda sobre creme, paisagem sangrando pela direita com
+   uma passagem para o creme, e o pacote na frente.
+
+   🔴 A foto é de SERRA, não de lavoura. A família compra o grão maduro de
+   produtores: cafezal, terreiro e colheita afirmariam uma etapa que ela não
+   executa. Ver 90-antipadroes.md, "o que reprova é a cena de produção". */
+/* margem negativa da altura do cabeçalho: a foto passa por baixo dele e o
+   cabeçalho transparente fica sobre a imagem, como no print. */
+/* 06/08 (2º retorno) — fundo PRETO, a pedido do Marcelo ("essa cor escura da
+   esquerda, que está marrom, quero preta"). Era #2D190F. */
+/* margem negativa = ALTURA do cabeçalho (106px com a logo maior de 07/08), não
+   mais 72px. Com o cabeçalho transparente, se o hero não subir a altura toda
+   sobra uma faixa do fundo creme do body acima da foto — foi o que apareceu ao
+   aumentar a logo. O hero sobe 106px e a foto passa por baixo do cabeçalho. */
+.hero{position:relative;background:#000;overflow:hidden;margin-top:-106px}
+
+/* 🔴 Histórico do hero, para não repetir os dois erros já cometidos:
+   1) foto ajustada pela ALTURA e ancorada à direita → sobrava uma chapa de
+      cor à esquerda com emenda vertical dura ("quadrado marrom gigante").
+   2) foto em `cover` cobrindo a largura inteira → sem quadrado, mas o pacote
+      ficava GIGANTE (em 1920 o rótulo inteiro ficava legível), porque `cover`
+      preenche a altura e o pacote ocupa quase toda a altura da foto-fonte.
+
+   06/08 (2º retorno) — a foto é dimensionada pela LARGURA do seu contêiner
+   (54%, teto 820px) e ancorada embaixo à direita. Assim o pacote encolhe de
+   forma proporcional em qualquer tela, e o preto preenche o resto. Não há
+   emenda dura porque o véu preto cobre a borda da foto e dissolve nela — o
+   erro do "quadrado" era a emenda, não o escurecimento. */
+/* 06/08 (3º retorno): a foto volta a cobrir a LARGURA INTEIRA — a paisagem
+   aparece atrás do texto, como no print de referência do Marcelo. Nada de
+   painel na direita nem de máscara: `cover` na tela toda. O `object-position`
+   escolhe o enquadramento (pacote e saca embaixo à direita, horizonte no
+   meio). */
+.hero-arte{position:absolute;inset:0;z-index:0}
+/* 07/08: foto nova (hero-wallpaper.webp, 1812x868, larga = 2,09:1). Como o
+   hero tem ~680px de altura, a 1440 o `cover` a mostra quase inteira sem
+   ampliar (escala .795). O pacote fica à direita, o texto sobre a serra à
+   esquerda. `object-position:center` porque a composição já é equilibrada. */
+.hero-arte img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:center}
+
+/* Véu LEVE sobre a esquerda — a queixa foi "o escurecimento é bem leve",
+   e o anterior era preto chapado cobrindo metade. Aqui a paisagem continua
+   visível atrás do texto, só rebaixada o suficiente para o branco ler. O
+   ponto do texto cai sobre as montanhas escuras da esquerda, não sobre o
+   sol do centro; medido, o branco fica acima de 4,5:1 na faixa do título.
+   Uma passagem de cima segura o cabeçalho transparente sobre o céu claro. */
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.10) 16%, rgba(0,0,0,0) 30%),
+    linear-gradient(90deg,
+      rgba(0,0,0,.62) 0%,
+      rgba(0,0,0,.46) 26%,
+      rgba(0,0,0,.24) 46%,
+      rgba(0,0,0,.06) 66%,
+      rgba(0,0,0,0) 80%);
+}
+/* 07/08: min-height baixou de 680 → 600 a pedido do Marcelo ("tá com muito
+   zoom"). Com a foto larga (2,09:1) em `cover`, um contêiner MAIS BAIXO fica
+   com proporção mais larga que a imagem, então o `cover` passa a ajustar pela
+   LARGURA e mostra a cena inteira (serra + saca + pacote) em vez de ampliar o
+   centro. Em 1280px+ o contêiner já é mais largo que a foto e não há corte
+   lateral. */
+.hero .wrap{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  align-items:center;
+  padding-top:174px;padding-bottom:60px;
+  min-height:720px;
+  z-index:2;
+}
+.hero-txt{position:relative;z-index:2;max-width:540px}
+/* Eyebrow do print, sobre a foto: versalete claro. Não é o .eyebrow dourado
+   das seções claras — aqui o fundo é foto e ele vai em creme. */
+/* 07/08: cor pedida pelo Marcelo — dourado #D6B35F. Sobre a foto escurecida
+   do hero (véu na faixa do texto) ele mantém o mesmo par de contraste do
+   dourado sobre o verde, acima de 6:1. */
+.hero-eyebrow{
+  font-size:var(--t-xs);letter-spacing:.24em;text-transform:uppercase;
+  color:var(--dourado);font-weight:700;margin:0 0 16px;
+}
+.hero-txt h1{margin-bottom:20px;color:#FFFFFF}
+.hero-txt h1 em{font-style:normal;color:var(--dourado)}
+/* 08/08: a linha pontilhada de pendência saiu do h1 a pedido do Marcelo (ele
+   achou feia no título grande). A pendência de origem continua marcada no
+   parágrafo da "Nossa origem" e registrada no CLAUDE.md. */
+.hero-sub{max-width:44ch;margin-bottom:30px;color:#FFFFFF}
+.hero-acao{display:flex;flex-wrap:wrap;gap:14px}
+
+/* ============================== FAIXA VERDE ===========================
+   07/08: pedida pelo Marcelo, recebe os 4 atributos. Verde #20301C, texto
+   creme (11,3:1) e ícones dourados (6,98:1). */
+.faixa{background:#20301C}
+.faixa-grid{
+  list-style:none;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+  padding-top:30px;padding-bottom:30px;
+}
+.faixa-item{display:flex;align-items:center;justify-content:center;gap:12px}
+.faixa-item .ic{width:34px;height:34px;flex:none;color:var(--dourado)}
+.faixa-nome{
+  margin:0;font-size:var(--t-base);font-weight:600;line-height:1.2;
+  color:var(--sobre-verde);
+}
+
+/* ---- vocabulário dos ícones desenhados dos prints ----
+   Os dois prints usam a mesma gramática: massa cheia para folha, grão e
+   montanha, fio fino para roseta, haste e linhas de terra. `.ic` é a massa
+   cheia; `.ic-fio` desliga o preenchimento e liga o traço, e vale tanto no
+   próprio <svg> quanto num <g> dentro dele. */
+.ic{fill:currentColor;stroke:none}
+.ic .ic-fio,.ic.ic-fio{
+  fill:none;stroke:currentColor;stroke-width:1.35;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+/* A montanha tem massa cheia E contorno no mesmo caminho: é assim que as
+   calotas de neve aparecem vazadas com fio em volta, como no print. */
+.ic-mont path{
+  fill:currentColor;stroke:currentColor;stroke-width:1.4;
+  stroke-linejoin:round;stroke-linecap:round;
+}
+/* Rasgo de papel removido em 07/08 a pedido do Marcelo. O hero agora encosta
+   direto na faixa verde. */
+
+/* ======================= NOSSO CAFÉ (parte original) ==================
+   Texto à esquerda, pacote à direita. (Restaurado em 08/08 — a extensão
+   grão/moído fica na seção .opcoes logo abaixo, não aqui dentro.) */
+.cafe{background:var(--creme-fundo);padding:104px 0;position:relative;overflow:hidden}
+.cafe-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.cafe-produto{margin:0;display:flex;align-items:center;justify-content:center}
+.cafe-produto img{
+  width:auto;max-width:100%;max-height:600px;
+  object-fit:contain;
+  filter:drop-shadow(0 26px 34px rgba(61,33,21,.30));
+}
+.cafe-txt{display:flex;flex-direction:column;align-items:flex-start}
+.cafe-txt h2{font-size:var(--t-3xl)}
+.cafe-txt p{max-width:44ch}
+.cafe-txt .btn{padding-left:48px;padding-right:48px}
+.atributos{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:28px 0 32px}
+.atributo{display:grid;gap:8px}
+.atributo .selo{
+  width:42px;height:42px;border-radius:50%;border:1px solid var(--dourado);
+  display:flex;align-items:center;justify-content:center;
+}
+.atributo .selo svg{
+  width:20px;height:20px;stroke:var(--dourado-esc);stroke-width:1.5;fill:none;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.atributo b{font-size:var(--t-sm);color:var(--tinta);display:block}
+.atributo span{font-size:var(--t-sm);color:var(--marrom);display:block}
+
+/* ============= EXTENSÃO grão/moído (.opcoes) ==========================
+   08/08: as DUAS fotos reais (fundo transparente), em tamanho grande —
+   sem recorte circular, sem borda — foto + rótulo + descrição, lado a
+   lado. Mesma cor da parte de cima. */
+.opcoes{background:var(--creme-fundo);padding:14px 0 96px}
+.opcoes .sec-head{margin-bottom:40px}
+.opcoes-duo{
+  display:grid;grid-template-columns:1fr 1fr;gap:34px 56px;
+  max-width:1080px;margin:0 auto;
+}
+.opcoes-opc{display:flex;align-items:center;gap:26px}
+.opcoes-foto{
+  width:230px;height:auto;flex:none;object-fit:contain;
+}
+.opcoes-opc b{
+  font-family:var(--serif);font-weight:400;font-size:var(--t-xl);
+  color:var(--tinta);display:block;line-height:1.2;
+}
+.opcoes-opc p{margin:6px 0 0;font-size:var(--t-sm);color:var(--marrom);max-width:32ch}
+.opcoes-specs{
+  list-style:none;margin:44px auto 0;padding:26px 0 0;max-width:900px;
+  border-top:1px solid rgba(118,77,54,.20);
+  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center;
+}
+.opcoes-specs li{display:grid;gap:3px}
+.opcoes-specs b{font-family:var(--serif);font-weight:400;font-size:var(--t-lg);color:var(--tinta)}
+.opcoes-specs span{font-size:var(--t-sm);color:var(--marrom)}
+
+/* Desenhos de planta que o Marcelo mandou (`Planta desenho 1/2/3`).
+   Substituíram o ornamento em SVG que eu tinha desenhado: ilustração de
+   verdade em vez de traço feito na mão, que é a regra do 90-antipadroes.md. */
+.planta{position:absolute;pointer-events:none;z-index:0}
+.planta img{width:100%}
+
+/* desenho 2 na "Nosso café". 07/08: com o texto na esquerda e a foto na
+   direita, a planta acompanha o texto — foi para a ESQUERDA, espelhada,
+   ancorada embaixo. */
+.planta-cafe{left:-46px;right:auto;bottom:0;top:auto;width:430px;opacity:.9;transform:scaleX(-1)}
+
+/* PT 5: desenho 1 na direita do formulário, desenho 3 na esquerda por trás
+   da xícara e um pouco acima dela */
+.planta-form-dir{right:-56px;bottom:-24px;top:auto;width:400px;opacity:.9}
+/* O arquivo do desenho 3 vinha CHAPADO, e dependia de uma máscara radial
+   para se dissolver no fundo. Como o galho mora no canto de baixo à
+   esquerda da arte e o centro da máscara caía na parte vazia, ele sumia
+   inteiro. Hoje o arquivo tem alfa de verdade (mesmo tratamento das plantas
+   1 e 2) e não precisa de máscara nenhuma. */
+.planta-form-esq{left:-58px;bottom:96px;top:auto;width:360px;opacity:1}
+/* Grande como na referência, mas o limite é a borda esquerda da caixa do
+   formulário: passando dela, a xícara cobre os rótulos dos campos. */
+.xicara-form{
+  position:absolute;left:-96px;bottom:-52px;top:auto;
+  width:340px;z-index:1;pointer-events:none;
+}
+
+/* Cabeçalho centralizado de seção. Morava dentro do bloco do processo e saiu
+   junto quando a seção foi removida; o formulário usa. */
+.sec-head{max-width:720px;margin:0 auto 56px;text-align:center}
 .sec-head p{margin:0 auto;max-width:52ch}
 
-/* ====================== 2. para quem revende ===========================
-   Coluna única, segunda pessoa. Grid de ícone 2x3 é o formato mais
-   genérico que existe (00-anatomia.md).                                 */
-.publico{padding-top:76px;padding-bottom:76px}
-.publico ul{list-style:none;margin:0 auto;padding:0;max-width:820px}
-.publico li{
-  padding:22px 0;
-  border-bottom:1px solid var(--borda);
-  display:flex;gap:20px;align-items:baseline;flex-wrap:wrap;
-}
-.publico li b{color:var(--branco);font-family:var(--serif);font-size:var(--t-xl);font-weight:400;min-width:230px}
-.publico li span{flex:1;min-width:260px}
-/* A barra lateral grossa colorida é `side-tab`, o antipadrão que o detector
-   chama de sinal mais reconhecível de UI gerada por IA. O destaque aqui vem
-   do tamanho do texto e do fundo, sem tarja. */
-.dor{
-  position:relative;overflow:hidden;
-  margin:38px auto 0;padding:30px 32px;
-  background:rgba(138,154,91,.10);
-  border-radius:8px;
-  font-size:var(--t-lg);
-  max-width:760px;
-}
-.dor p{margin:0;max-width:none;position:relative;z-index:1}
-.dor .folha{
-  position:absolute;right:-30px;bottom:-40px;
-  width:230px;opacity:.20;
-  pointer-events:none;
-  border-radius:0;
+.fig{position:relative;margin:0}
+.fig img{border-radius:var(--r);width:100%}
+.rotulo{
+  position:absolute;left:12px;bottom:12px;
+  background:rgba(32,48,28,.9);color:var(--sobre-verde);
+  font-size:var(--t-xs);font-weight:600;
+  padding:6px 12px;border-radius:6px;
 }
 
-/* faixa de paisagem: respiro visual entre seções, sem texto por cima */
-.faixa-paisagem{display:block;line-height:0}
-.faixa-paisagem img{width:100%;height:280px;object-fit:cover;display:block}
-@media (max-width:760px){ .faixa-paisagem img{height:180px} }
+/* reveal na entrada: só transform e opacity */
+.revela{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}
+.revela.dentro{opacity:1;transform:none}
+.revela.d1{transition-delay:.08s}
 
-/* ============ 3. o beneficiamento — SEÇÃO-ASSINATURA ===================
-   Única faixa horizontal numerada da página. Nenhum concorrente tem
-   esse processo, então é a ousadia da página e o resto fica quieto.    */
-.processo{background:var(--secao);padding-top:80px;padding-bottom:80px}
-.processo h2{max-width:16ch}
-.etapas{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:22px;
-  margin-top:48px;position:relative;
+/* ========================= NOSSA ORIGEM (PT 4) =========================
+   Texto à esquerda, paisagem à direita sangrando até a borda, e o selo
+   redondo montado na junção das duas. */
+/* 06/08 — seção refeita a pedido do Marcelo: foto DEITADA, encostando na
+   borda direita, e seção mais baixa.
+
+   O truque de sangria: a coluna esquerda do `.wrap` termina sempre em 50% da
+   largura da página. Acima de 1200px porque a calha lateral é
+   (100% - 1200)/2 e a coluna vale 600; abaixo, porque é 24 + (100% - 48)/2.
+   Os dois dão exatamente 50%. Então a foto é absoluta de `left:50%` até
+   `right:0` e não precisa de conta nenhuma com 100vw — que, aliás, contaria
+   a barra de rolagem e criaria overflow horizontal. */
+/* O recuo vertical mora na SEÇÃO — tirar dela e passar para a coluna de
+   texto faz o detector acusar `cramped-padding`, e ele está certo: quem tem
+   fundo colorido é a seção. A foto é que sai do recuo, com um deslocamento
+   negativo do MESMO tamanho, e sangra até a primeira linha da seção como no
+   PT 4. Só para cima: para baixo ela para no fim do bloco, senão invade a
+   tira de atributos. */
+/* 07/08: a calha horizontal saiu do .wrap e passou para a PRÓPRIA seção. Até a
+   8ª rodada a foto sangrava até a borda (`right:0`), e era esse sangramento
+   que fazia o detector aceitar a seção colorida com padding horizontal 0.
+   Agora a foto é contida, então a seção precisa do próprio recuo lateral para
+   não cair em `cramped-padding` — as .wrap de dentro zeram o padding e o
+   conteúdo mantém os mesmos 24px das outras seções. */
+.origem{background:var(--origem);position:relative;padding:62px var(--gut)}
+.origem .wrap{padding-left:0;padding-right:0}
+.origem-topo{position:relative}
+.origem-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;min-height:376px}
+.origem-txt{padding:0 56px 0 0}
+.origem-txt h2{font-size:var(--t-3xl)}
+.origem-txt p{max-width:46ch}
+.origem-txt .btn{margin-top:6px}
+
+/* 07/08: a foto deixou de sangrar até a borda da tela e virou uma figura
+   CONTIDA na coluna direita, com as pontas arredondadas, a pedido do Marcelo.
+   Sem posição absoluta: agora é o próprio item direito do grid. */
+.origem-foto{position:relative;margin:0}
+.origem-foto > img{
+  width:100%;aspect-ratio:3/2;object-fit:cover;object-position:center 60%;
+  border-radius:20px;
+  box-shadow:0 20px 44px rgba(61,33,21,.20);
 }
-.etapa .num{
-  font-family:var(--serif);
-  font-size:var(--t-2xl);
-  color:var(--dourado);
-  display:block;line-height:1;margin-bottom:14px;
+
+/* Selo redondo (arte `Selo Bahia` que o Marcelo mandou). 07/08: montado na
+   BORDA ESQUERDA da foto, centrado na vertical e deslocado -50% em X — fica
+   metade dentro da foto e metade fora, "passando pela metade". */
+.selo-lugar{
+  position:absolute;left:0;top:50%;transform:translate(-50%,-50%);
+  z-index:3;width:132px;
+  filter:drop-shadow(0 8px 16px rgba(61,33,21,.24));
 }
-.etapa .traco{height:2px;background:var(--sage);margin-bottom:20px;opacity:.85}
-.etapa h3{font-size:var(--t-lg);margin-bottom:.35em}
-.etapa p{font-size:var(--t-sm);margin:0;color:var(--creme)}
-.etapa .foto-pend{min-height:190px;margin-bottom:18px}
-/* Ilustração em traço, no mesmo vocabulário da logo. O fundo #3D2115 vem
-   embutido na arte e contrasta com o #54321F da seção, virando card. */
-.etapa img{
+.selo-lugar img{width:100%}
+
+/* ==================== PARA QUEM ATENDE (B2B) ==========================
+   08/08: bloco reintroduzido (o "para quem é" do 00-anatomia.md). Grade de
+   perfis: cada um tem ícone e rótulo PRÓPRIOS, então carrega informação real
+   e não é o "container preguiçoso" de cards iguais do 90-antipadroes.md. */
+/* 08/08: remodelado no print 2 — 7 perfis numa linha, separados por fio
+   vertical, ícone em traço em cima e o nome em duas linhas. Sem cartão.
+   Faixa CURTA a pedido do Marcelo: recuo enxuto e cabeçalho compacto. */
+.publico{background:var(--origem);padding:46px 0}
+.publico .sec-head{margin-bottom:24px}
+.publico .divisor{margin-left:auto;margin-right:auto;margin-bottom:0}
+.publico-grid{
+  list-style:none;margin:30px 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(7,1fr);
+}
+.publico-item{
+  text-align:center;display:grid;justify-items:center;align-content:start;gap:14px;
+  padding:6px 12px;
+  border-left:1px solid rgba(118,77,54,.22);
+}
+.publico-item:first-child{border-left:0}
+.publico-item svg{
+  width:40px;height:40px;color:var(--verde-md);
+  fill:none;stroke:currentColor;stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.publico-item b{font-size:var(--t-sm);font-weight:600;color:var(--tinta);line-height:1.4}
+
+/* ==================== COMO COMPRAR (print 1) =========================
+   08/08: banner "Imagem banner etapas" (xícara com a logo à direita) de fundo,
+   com véu escuro à esquerda para o texto. Os 3 passos ficam na coluna esquerda
+   sobre o escuro; a xícara aparece à direita. Ícones dourados. */
+.passos{position:relative;background:var(--escuro);padding:80px 0;overflow:hidden}
+.passos-bg{position:absolute;inset:0;z-index:0;background:url(banner-etapas.webp) right center/cover no-repeat}
+.passos::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,
+    rgba(28,17,9,.95) 0%, rgba(28,17,9,.88) 36%,
+    rgba(28,17,9,.48) 60%, rgba(28,17,9,0) 84%);
+}
+.passos-wrap{position:relative;z-index:2}
+.passos-txt{max-width:740px}
+.passos .eyebrow{color:var(--dourado)}
+.passos h2{color:var(--sobre-verde)}
+.passos-grid{
+  list-style:none;margin:36px 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:26px;
+}
+.passo{display:grid;gap:14px;align-content:start}
+.passo-topo{display:flex;align-items:center;gap:13px}
+.passo-num{
+  width:32px;height:32px;border-radius:50%;flex:none;
+  background:var(--dourado);color:var(--tinta);
+  font-family:var(--serif);font-size:var(--t-lg);
+  display:flex;align-items:center;justify-content:center;
+}
+/* 08/08: ícones MAIORES a pedido do Marcelo. */
+.passo-ic{width:54px;height:54px;color:var(--dourado);flex:none}
+.passo-ic svg{width:100%;height:100%}
+/* 08/08: a linha é VERTICAL (em pé), desce do marcador e fica à ESQUERDA do
+   texto — não mais horizontal. É o border-left do parágrafo. */
+.passo p{
+  margin:0 0 0 16px;
+  padding-left:20px;
+  border-left:2px solid rgba(214,179,95,.5);
+  font-size:var(--t-sm);color:var(--sobre-verde-2);max-width:24ch;
+}
+
+/* ====================== PEÇA O SEU CAFÉ (PT 5) ========================= */
+/* Recuo de baixo curto de propósito: na referência a xícara e o galho
+   descem até encostar no rodapé, e com 100px sobrava uma faixa de creme
+   vazia embaixo deles. */
+/* 06/08: seção mais baixa a pedido do Marcelo. O recuo de cima caiu de 88
+   para 64px e o cabeçalho de seção encolheu junto — o formulário não ficou
+   mais apertado, só parou de flutuar no meio de creme vazio. */
+.pedido{background:var(--creme-fundo);padding:64px 0 30px;position:relative;overflow:hidden}
+.pedido .sec-head{margin-bottom:24px}
+.pedido .sec-head p{margin-bottom:0}
+.pedido-caixa{max-width:820px;margin:0 auto;position:relative;z-index:2}
+.form-duplo{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.form-campo{margin-bottom:14px}
+label{display:block;font-size:var(--t-sm);font-weight:600;color:var(--tinta);margin-bottom:7px}
+input,select,textarea{
   width:100%;
+  font-family:var(--sans);font-size:var(--t-base);color:var(--tinta);
+  background:var(--campo);
+  border:1px solid rgba(118,77,54,.34);
   border-radius:8px;
-  margin-bottom:18px;
-  background:var(--fundo);
+  padding:11px 15px;
+}
+textarea{min-height:82px;resize:vertical}
+/* placeholder pede os mesmos 4,5:1 do corpo. O #8A6A52 anterior dava 4,18
+   sobre o campo e reprovava. */
+input::placeholder,textarea::placeholder{color:var(--marrom)}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--verde-md);outline-offset:1px}
+.form-ajuda{font-size:var(--t-sm);color:var(--marrom);margin:2px 0 16px;max-width:60ch}
+.form-envio{width:100%;justify-content:center;padding:17px 28px;font-size:var(--t-base)}
+
+/* ============================ RODAPÉ (PT 6) ============================ */
+/* 10/08: a casinha SAIU do fundo (estava gravada num print, cover recortava
+   e reposicionava ela de um jeito diferente em cada largura — por isso
+   competia com o texto e parecia desnivelada). Fundo voltou a ser o marrom
+   chapado, e a casinha é agora um elemento próprio (.rodape-casa), abaixo
+   das colunas, centralizado no `.wrap` — simétrica de verdade. */
+.rodape{
+  background:var(--escuro);
+  color:var(--sobre-verde-2);padding:70px 0 0;
+}
+.rodape-grid{
+  display:grid;grid-template-columns:1.3fr 1fr 1.2fr 1.3fr;gap:44px;
+  padding-bottom:52px;
+}
+.rodape-casa{display:flex;justify-content:center;margin:0 0 40px}
+.rodape-casa img{width:190px;height:auto;opacity:.92}
+.rodape h3{
+  font-family:var(--sans);font-size:var(--t-xs);
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dourado);font-weight:700;margin:0 0 18px;
+}
+.rodape .marca-nome{color:#FFFFFF}
+.rodape p{font-size:var(--t-sm);max-width:32ch;margin:16px 0 0}
+.rodape ul{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.rodape a{color:var(--sobre-verde-2);text-decoration:none;font-size:var(--t-sm)}
+.rodape a:hover{color:#FFFFFF;text-decoration:underline}
+.rodape-linha{display:flex;align-items:center;gap:9px}
+.rodape-linha svg{width:16px;height:16px;flex:none;stroke:var(--dourado);stroke-width:1.5;fill:none}
+.sociais{display:flex;gap:12px;margin-top:18px}
+.sociais a{
+  width:36px;height:36px;border:1px solid rgba(239,194,148,.4);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+}
+.sociais svg{width:17px;height:17px;stroke:var(--sobre-verde-2);stroke-width:1.5;fill:none}
+.sociais a:hover{border-color:var(--dourado)}
+.rodape-pe{
+  border-top:1px solid rgba(239,194,148,.2);
+  padding:22px 0 26px;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-size:var(--t-xs);
 }
 
-/* ============================ 4. produtos ==============================
-   Padrão do White Coffee: a foto domina, o texto embaixo é mínimo (nome,
-   uma linha de descrição, preço à direita). Sem card, sem moldura, sem
-   padding em volta da imagem.                                           */
-.produtos{padding-top:76px;padding-bottom:76px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:8px}
-.card .foto-pend{min-height:300px;margin-bottom:16px;background:var(--secao)}
-.card h3{
-  font-family:var(--sans);
-  font-size:var(--t-sm);
-  font-weight:600;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:var(--branco);
-  margin-bottom:.3em;
-}
-.card .linha{display:flex;justify-content:space-between;gap:14px;align-items:baseline}
-.card .linha p{font-size:var(--t-sm);margin:0;max-width:34ch}
-.card .preco{font-size:var(--t-sm);color:var(--dourado);white-space:nowrap}
-
-/* ============ colagem assimétrica (atmosfera) =========================
-   White e Deuza usam a mesma ideia: imagens de tamanhos diferentes fora
-   de alinhamento, com respiro, servindo de respiro entre blocos de texto.
-   Substituiu a faixa de paisagem em barra, que era plana demais.        */
-.colagem{padding-top:20px;padding-bottom:76px}
-.colagem-grid{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  grid-auto-rows:34px;
-  gap:16px;
-  align-items:stretch;
-}
-.colagem-grid figure{margin:0;position:relative}
-.colagem-grid img{width:100%;height:100%;object-fit:cover;border-radius:6px;display:block}
-.c-a{grid-column:1 / span 7;  grid-row:1 / span 9}
-.c-b{grid-column:8 / span 5;  grid-row:2 / span 5}
-.c-c{grid-column:8 / span 3;  grid-row:7 / span 5}
-.c-d{grid-column:11 / span 2; grid-row:8 / span 4}
-@media (max-width:760px){
-  .colagem-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:100px}
-  .c-a{grid-column:1 / span 2;grid-row:auto / span 2}
-  .c-b{grid-column:1 / span 1;grid-row:auto / span 1}
-  .c-c{grid-column:2 / span 1;grid-row:auto / span 1}
-  .c-d{display:none}
+/* ============================== RESPONSIVO ============================== */
+@media (max-width:1080px){
+  :root{--t-hero:2.875rem;--t-3xl:2.375rem}
+  .nav{gap:20px}
+  .rodape-grid{grid-template-columns:1fr 1fr;gap:40px}
+  /* perfis B2B: 7 numa linha só cabe no desktop. Abaixo, vira grade sem os
+     fios verticais (o espaçamento separa). */
+  .publico-grid{grid-template-columns:repeat(4,1fr);row-gap:34px;column-gap:16px}
+  .publico-item{border-left:0;padding:12px 10px}
 }
 
-/* ===================== 5. como virar revendedor ======================== */
-.passos{background:var(--secao);padding-top:72px;padding-bottom:72px}
-.passos ol{
-  list-style:none;margin:40px 0 0;padding:0;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:34px;counter-reset:p;
-}
-.passos li{counter-increment:p}
-.passos li::before{
-  content:counter(p);
-  font-family:var(--serif);
-  font-size:var(--t-2xl);
-  color:var(--dourado);
-  display:block;line-height:1;margin-bottom:12px;
-}
-.passos h3{font-size:var(--t-lg)}
-.passos p{font-size:var(--t-sm);margin:0}
+@media (max-width:900px){
+  .menu-btn{display:block;order:-1}
+  .topo .wrap{flex-wrap:wrap;row-gap:0}
+  .nav{display:none;width:100%;flex-direction:column;align-items:flex-start;gap:16px}
+  .topo.aberto .nav{display:flex;padding:14px 0 4px}
+  .topo .btn-topo{margin-left:auto}
 
-/* ============================ 6. quem faz ============================== */
-.quem{padding-top:72px;padding-bottom:72px}
-.quem-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:52px;align-items:center}
+  /* faixa verde: 4 → 2 colunas */
+  .faixa-grid{grid-template-columns:1fr 1fr;gap:18px 24px}
+  /* perfis B2B: 4 → 3 colunas */
+  .publico-grid{grid-template-columns:repeat(3,1fr)}
 
-/* ============================== 8. FAQ ================================= */
-.faq{padding-top:72px;padding-bottom:72px}
-.faq-lista{max-width:780px;margin-top:36px}
-.faq details{border-bottom:1px solid var(--borda)}
-.faq summary{
-  cursor:pointer;padding:20px 0;
-  font-family:var(--serif);font-size:var(--t-lg);color:var(--branco);
-  list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center;
-}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";color:var(--dourado);font-size:var(--t-xl);line-height:1}
-.faq details[open] summary::after{content:"–"}
-.faq details p{padding-bottom:20px;margin:0;font-size:var(--t-base)}
-
-/* ============================ 9. contato =============================== */
-.contato{background:var(--secao);padding-top:72px;padding-bottom:72px}
-.contato-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
-.dados{list-style:none;margin:0;padding:0}
-.dados li{padding:12px 0;border-bottom:1px solid rgba(239,194,148,.22);font-size:var(--t-base)}
-.dados strong{display:block;color:var(--branco);font-size:var(--t-sm);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
-
-.rodape{padding:34px 0;font-size:var(--t-sm);color:var(--creme)}
-.rodape .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.rodape .legal{font-size:var(--t-xs)} /* não interativo, pode 13px */
-
-/* ============================ responsivo ==============================
-   No celular encolhe ESPAÇAMENTO, nunca o corpo do texto.
-   Padding literal + media query de propósito: o detector não resolve
-   clamp() em padding e acusa cramped-padding falso (99-checklist.md).  */
-@media (max-width:980px){
-  .hero-grid,.quem-grid,.contato-grid{grid-template-columns:1fr;gap:34px}
-  .etapas{grid-template-columns:repeat(2,1fr)}
-  .cards{grid-template-columns:repeat(2,1fr)}
-  .passos ol{grid-template-columns:1fr;gap:26px}
-}
-
-@media (max-width:760px){
-  :root{--gut:18px;--t-2xl:2rem;--t-3xl:2.4rem}
-  .menu-btn{display:block}
-  .nav{
-    display:none;position:absolute;top:100%;left:0;right:0;
-    flex-direction:column;gap:0;align-items:stretch;
-    background:var(--fundo);border-bottom:1px solid var(--borda);
-    padding:8px 0;
+  /* No celular a foto vira faixa em cima e o texto desce para a chapa
+     preta: com a foto atrás do texto não há gradiente que segure contraste
+     em 390px. Branco sobre preto dá 21:1. A foto volta a ser `cover`, porque
+     aqui ela é uma faixa própria de 300px, não o fundo do texto. */
+  .hero{display:flex;flex-direction:column}
+  .hero-arte{position:relative;inset:auto;right:auto;bottom:auto;top:auto;width:100%;height:300px;order:-1}
+  .hero-arte img{width:100%;height:100%;object-fit:cover;object-position:64% center}
+  /* O véu horizontal do desktop escurecia o LADO ESQUERDO da faixa de foto,
+     que aqui não tem texto nenhum por cima: some, e fica só a passagem de
+     cima, que é a que segura o cabeçalho transparente. */
+  .hero::after{
+    background:linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.12) 20%, rgba(0,0,0,0) 36%);
   }
-  .nav.aberto{display:flex}
-  .nav a{padding:14px var(--gut);font-size:var(--t-base)}
-  .topo .wrap{position:relative}
-  .hero{padding-top:44px;padding-bottom:44px}
-  .publico,.produtos,.quem,.faq{padding-top:48px;padding-bottom:48px}
-  .processo,.passos,.contato{padding-top:52px;padding-bottom:52px}
-  .etapas,.cards{grid-template-columns:1fr}
-  .publico li b{min-width:0}
+  .hero .wrap{grid-template-columns:1fr;min-height:0;padding-top:40px;padding-bottom:64px}
+
+  .cafe-grid,.origem-grid{grid-template-columns:1fr}
+  .cafe-produto{order:-1}
+  /* extensão grão/moído: os 2 formatos empilham, os 4 dados viram 2x2 */
+  .opcoes-duo{grid-template-columns:1fr;gap:22px;max-width:520px}
+  .opcoes-specs{grid-template-columns:1fr 1fr;gap:24px 22px}
+  .passos-grid{grid-template-columns:1fr;gap:22px}
+  .passos::after{background:linear-gradient(180deg, rgba(28,17,9,.72) 0%, rgba(28,17,9,.9) 55%)}
+  .passos-bg{background-position:center top;opacity:.5}
+  .origem{padding:56px var(--gut)}
+  .origem-txt{padding:0 0 36px}
+  /* numa coluna só a foto ocupa a largura toda. O selo não pode mais
+     "passar pela metade" pela esquerda — metade dele sairia da tela — então
+     encosta DENTRO da foto, ainda à esquerda, centrado na vertical. */
+  .origem-topo,.origem-grid{min-height:0}
+  .selo-lugar{left:14px;top:50%;transform:translateY(-50%);width:100px}
+  .planta-cafe,.planta-form-dir,.planta-form-esq{display:none}
+  .xicara-form{
+    position:relative;left:auto;top:auto;bottom:auto;transform:none;
+    width:210px;margin:0 auto 24px;
+  }
+  .cafe-produto img{max-height:440px}
+}
+
+@media (max-width:620px){
+  /* cabeçalho numa linha só: hambúrguer, logo e o botão dourado compacto. */
+  .topo .wrap{flex-wrap:nowrap;gap:10px}
+  .btn-topo{padding:9px 14px;font-size:var(--t-xs)}
+  .marca img{width:46px;height:46px}
+  .marca-nome{font-size:var(--t-lg)}
+  .marca-cafe{font-size:var(--t-xs)}
+  .topo .btn-topo{margin-left:0}
+
+  :root{--t-hero:2.25rem;--t-2xl:1.875rem;--t-3xl:1.875rem;--gut:20px}
+  /* no celular encolhe espaçamento, não texto: --t-base fica em 17,5px */
+  .cafe,.pedido,.publico{padding:64px 0}
+  .passos{padding:56px 0}
+  .opcoes{padding:8px 0 64px}
+  /* imagem grande empilha sobre o texto, senão a foto grande aperta a
+     descrição numa faixa estreita demais pra ler */
+  .opcoes-opc{flex-direction:column;text-align:center;gap:14px}
+  .opcoes-foto{width:190px}
+  .opcoes-opc p{max-width:none}
+  /* perfis B2B: 3 → 2 colunas */
+  .publico-grid{grid-template-columns:1fr 1fr}
+  /* faixa verde: 2 → 1 coluna, ícone à esquerda do rótulo */
+  .faixa-grid{grid-template-columns:1fr;gap:14px;justify-items:start}
+  .faixa-item{justify-content:flex-start}
+  .atributos{grid-template-columns:1fr;gap:16px}
+  .atributo{grid-template-columns:42px 1fr;align-items:center;column-gap:14px}
+  .atributo .selo{grid-row:span 2}
+  .form-duplo{grid-template-columns:1fr;gap:0}
+  .rodape-grid{grid-template-columns:1fr;gap:34px}
 }
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  *{transition:none!important}
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    transition-duration:.001ms !important;
+  }
+  .revela{opacity:1;transform:none}
 }

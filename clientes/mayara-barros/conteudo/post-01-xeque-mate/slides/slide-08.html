@@ -1,0 +1,75 @@
+<!doctype html><html><head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=EB+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden}
+.slide{width:1080px;height:1350px;position:relative;display:flex;flex-direction:column;
+  padding:64px 84px 56px;background:#F3ECDF;color:#2B2622}
+.slide.cream2{background:#EBE0CE}
+.slide.dark{background:#3D4854;color:#F3ECDF}
+/* cabeçalho-rótulo */
+.bar{display:flex;justify-content:space-between;align-items:center;
+  font-family:'Jost',sans-serif;font-weight:500;font-size:24px;letter-spacing:.03em;
+  text-transform:uppercase;color:#2B2622;padding-bottom:22px;
+  border-bottom:1px solid rgba(43,38,34,.22)}
+.dark .bar{color:#F3ECDF;border-bottom:1px solid rgba(243,236,223,.28)}
+.bar .mid{color:#8A5A3C;font-weight:600}
+.dark .bar .mid{color:#D9A67C}
+/* corpo do slide */
+.body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:30px;padding:38px 0}
+.eyebrow{font-family:'Jost',sans-serif;font-weight:600;font-size:26px;letter-spacing:.04em;
+  text-transform:uppercase;color:#8A5A3C}
+.dark .eyebrow{color:#D9A67C}
+.rule{width:80px;height:3px;background:#8A5A3C;border:0}
+h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:104px;line-height:1;
+  letter-spacing:-.01em}
+h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:70px;line-height:1.05;
+  letter-spacing:-.005em}
+h2 em{font-style:italic;color:#8A5A3C}
+.dark h2 em{color:#E3B489}
+p{font-family:'EB Garamond',serif;font-weight:500;font-size:39px;line-height:1.5;max-width:21ch}
+.big-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;
+  font-size:76px;line-height:1.12;letter-spacing:-.005em}
+.ficha{font-family:'Jost',sans-serif;font-weight:400;font-size:24px;letter-spacing:.02em;
+  color:#6B7A88;text-transform:none}
+.dark .ficha{color:#AEB9C4}
+.ficha b{font-weight:600;color:#2B2622}
+.dark .ficha b{color:#F3ECDF}
+/* rodapé assinatura */
+.foot{display:flex;justify-content:flex-end;align-items:center;
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:28px;
+  color:#8A5A3C;padding-top:18px;border-top:1px solid rgba(43,38,34,.14)}
+.dark .foot{color:#E3B489;border-top:1px solid rgba(243,236,223,.18)}
+/* moldura da obra */
+.frame{background:#F3ECDF;padding:14px;border:1px solid rgba(43,38,34,.18);
+  box-shadow:0 18px 40px rgba(43,38,34,.22)}
+.frame img{display:block;width:100%;height:100%;object-fit:cover}
+/* capa */
+.cover-art{flex:1;min-height:0;display:flex;padding:34px 0 30px}
+.cover-art .frame{width:100%}
+.cover-art .frame img{height:100%}
+.cover-title{display:flex;flex-direction:column;gap:14px}
+.cover-title h1{font-size:96px}
+.cover-title .sub{font-family:'EB Garamond',serif;font-style:italic;font-weight:500;
+  font-size:40px;color:#6B7A88}
+/* split obra + texto */
+.split{flex:1;min-height:0;display:grid;grid-template-columns:.92fr 1.08fr;gap:52px;align-items:center}
+.split .frame{height:76%;align-self:center}
+.split .txt{display:flex;flex-direction:column;gap:26px}
+/* faixa de crise */
+.crise{background:#7A4A2E;color:#F3ECDF;padding:34px 40px;border-radius:14px;
+  font-family:'EB Garamond',serif;font-weight:500;font-size:34px;line-height:1.4}
+.crise b{font-weight:600}
+.cta-sign{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;
+  font-size:44px;color:#8A5A3C;margin-top:8px}
+</style></head><body>
+<div class="slide "><div class="bar"><span>Mayara Barros</span><span class="mid">@universpsiquee</span><span>CRP 03/36219</span></div>
+  <div class="body">
+    <div class="eyebrow">Antes de desistir do jogo</div>
+    <hr class="rule">
+    <h2>Se hoje parece xeque-mate, talvez seja só a hora de olhar de novo.</h2>
+    <p>Com menos medo e mais presença. Salva este post para quando o jogo apertar.</p>
+    <div class="crise">Se o peso estiver grande demais para carregar sozinho, o <b>CVV</b> atende de graça, 24 horas, no <b>188</b>.</div>
+    <div class="cta-sign">Ciência com afeto · Mayara Barros · CRP 03/36219</div>
+  </div><div class="foot">Ciência com afeto</div></div></body></html>

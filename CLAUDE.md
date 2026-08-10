@@ -136,8 +136,11 @@ editor.
 Antes de **entregar**, rodar o checklist, a varredura de antipadrões, e o detector:
 
 ```
-npx --yes impeccable@3.4.0 detect "clientes/<nome>/site"
+node .claude/skills/impeccable/scripts/detect.mjs "clientes/<nome>/site"
 ```
+
+Se a skill não estiver instalada nesse clone, o mesmo detector roda via
+`npx --yes impeccable@3.5.0 detect "clientes/<nome>/site"`.
 
 Saída `0` é limpo, `2` achou coisa. Regra de acessibilidade (`low-contrast`,
 `undersized-ui-text`, `tiny-text`, `skipped-heading`) se corrige, não se dispensa.
@@ -154,8 +157,119 @@ Quando o Marcelo corrigir algo de design, a correção vira linha em
 chat volta como erro no próximo site: o Claude não guarda nada entre conversas,
 só o que está em arquivo.
 
-Para peça visual que não é site (carrossel, post, anúncio), continua valendo o
-roteamento de estilo da seção abaixo.
+Para peça visual que não é site (carrossel, post, anúncio), vale a seção abaixo
+mais o roteamento de estilo.
+
+---
+
+## Trabalho de carrossel e post: leitura obrigatória
+
+Antes de escrever a primeira linha de copy de carrossel, post ou story, ler:
+
+1. `_memoria/conteudo/00-formatos.md` — os sete formatos narrativos. **Escolher UM
+   antes de escrever.** Formato é por que o slide 4 existe; layout é como ele
+   parece. As duas coisas são escolhidas, nessa ordem
+2. `_memoria/conteudo/10-legibilidade.md` — os pisos de fonte, contraste e
+   densidade. Corpo tem piso de 34px e nada de leitura fica abaixo de 24px:
+   a peça é renderizada a 1080px e lida num celular de 390px
+3. `_memoria/conteudo/90-antipadroes.md` — o que denuncia carrossel feito por IA
+4. `_memoria/integridade.md` — dado que falta vira `[FALTA: ...]` marcado
+
+Antes de **entregar**, rodar `_memoria/conteudo/99-checklist.md`: condições de
+veto primeiro, rubrica depois. Se a conferência não rodou nesta mensagem, não dá
+pra dizer que passou.
+
+O conteúdo dessa pasta foi extraído do `opensquad` em 03/08/2026. O framework
+**não** foi adotado, e o motivo está escrito em
+`_memoria/conteudo/91-o-que-veio-do-opensquad.md` — junto com duas decisões que
+continuam abertas pro Marcelo (contador de slide, e travar identidade de
+carrossel por cliente).
+
+Quando o Marcelo corrigir algo de peça social, a correção vira linha em
+`_memoria/conteudo/90-antipadroes.md` **com o porquê junto**, mesma regra do site.
+
+---
+
+## Impeccable (instalado por inteiro em 08/08/2026)
+
+Até 07/08/2026 a Horus usava **só** o detector, via `npx`. Em 08/08/2026 o pacote
+completo foi instalado: a skill `/impeccable` com 23 comandos, os 4 agentes e os
+dois hooks. O motivo da rejeição original (a convenção `DESIGN.md` colidir com
+`marca.md` e `briefing.md`) foi resolvido, não ignorado — está na regra de
+contexto por cliente, abaixo.
+
+**O que está onde:**
+
+| Peça | Caminho | Versionado? |
+|---|---|---|
+| Skill (23 comandos) | `.claude/skills/impeccable/` | ❌ dependência, 2 MB de terceiro |
+| 4 agentes | `.claude/agents/impeccable-*.md` | ✅ |
+| 2 hooks | `.claude/settings.json` | ✅ |
+| Exceções do detector | `.impeccable/config.json` | ✅ |
+
+Reinstalar num clone novo: `npx --yes impeccable@3.5.0 install`. Sem a pasta da
+skill, os hooks viram no-op silencioso e o `/verificar` segue funcionando via
+`npx` — nada quebra, só deixa de acontecer.
+
+**Os hooks:** rodam depois de todo Edit/Write em arquivo de UI (`.html`, `.css`,
+`.tsx`, `.jsx`, `.vue`, `.svelte`, `.astro`) e uma passada completa no Stop.
+Markdown não dispara nada, então trabalho em `_memoria/` e briefing é silencioso.
+Os slides de carrossel foram testados e **não** dão falso positivo, apesar do piso
+de 34px de `_memoria/conteudo/10-legibilidade.md`.
+
+### ⚠️ A ordem de precedência (o que vence o quê)
+
+O impeccable manda "go all out", "dream big and bold" e "the brief wins". Isso é
+bom conselho de design e **péssimo conselho pra cliente de conselho regulado**.
+A ordem, do mais forte pro mais fraco:
+
+```
+compliance do cliente (CFO / CFP)  >  integridade.md  >  briefing.md + marca.md
+  >  _memoria/design/ e _memoria/conteudo/  >  impeccable
+```
+
+Na prática:
+
+- **Compliance trava**, sempre. O impeccable não conhece CFO nem CFP: um
+  `/impeccable bolder` pode sugerir superlativo, promessa de resultado ou
+  depoimento. Recusar sem negociar.
+- **`marca.md` do cliente vence** a direção visual que o impeccable propuser. O
+  impeccable preenche o que a marca deixou em aberto, não substitui a marca.
+- **`integridade.md` vence** o impulso de completar. Nenhum comando do impeccable
+  autoriza inventar número, formação ou depoimento pra "fechar" o layout: o que
+  falta vira `[FALTA: ...]`.
+- O detector continua sendo **prova**, não opinião — o `/verificar` não muda.
+
+### ⚠️ `DESIGN.md` e `PRODUCT.md`: nunca na raiz
+
+O impeccable resolve contexto pela **pasta mais próxima do alvo** que tem
+`PRODUCT.md`. Isso foi testado neste repo e funciona: com `PRODUCT.md` em
+`clientes/aion-psicologia/`, o `projectRoot` dele passa a ser essa pasta.
+
+- ❌ **Proibido** `DESIGN.md` ou `PRODUCT.md` na raiz. A raiz tem cinco clientes
+  com cinco marcas diferentes mais o site da própria Horus. Um `DESIGN.md` de
+  raiz achataria os cinco num só, que é exatamente a colisão que fez o pacote
+  ser rejeitado da primeira vez.
+- ✅ Se for usar, um par por cliente: `clientes/<nome>/PRODUCT.md` e
+  `clientes/<nome>/DESIGN.md`, **derivados** do `briefing.md` e do `marca.md`
+  daquele cliente — nunca concorrendo com eles. `briefing.md` e `marca.md`
+  continuam sendo a fonte; o par do impeccable é tradução pra ferramenta.
+- ✅ Pro site da agência, o par vai em `site/`, junto do `CLAUDE.md` e do
+  `PLANO.md` que já moram lá.
+- Rodar `/impeccable init` **sem `--target`** aponta pra raiz. Sempre passar o
+  alvo: `--target clientes/<nome>/site/index.html`.
+
+### Comandos que pedem cuidado
+
+- `/impeccable init`, `document`, `extract` — escrevem `PRODUCT.md`/`DESIGN.md`.
+  Só com `--target` apontando pra pasta do cliente (regra acima).
+- `/impeccable bolder`, `delight`, `overdrive`, `clarify` — mexem em copy e tom.
+  Em cliente regulado, o texto que sair passa pelo compliance antes de existir no
+  arquivo.
+- `/impeccable live` — abre navegador e servidor local. Não usar em entrega de
+  cliente sem o Marcelo estar junto.
+- `/impeccable audit`, `critique`, `polish`, `layout`, `typeset`, `optimize`,
+  `harden`, `adapt` — os mais seguros aqui: mexem em mecânica, não em afirmação.
 
 ---
 
@@ -207,18 +321,14 @@ pontuais e rápidas, a busca nativa ainda resolve sem gastar crédito.
 
 ---
 
-## Higgsfield (geração de imagens)
+## Geração de imagens (API da OpenAI)
 
-MCP + CLI configurados (login/chave ficam só localmente, fora do git). O MCP
-remoto (`https://mcp.higgsfield.ai/mcp`) usa OAuth, sem API key, e roda por
-dentro da conversa; o CLI `higgsfield` (comando `higgsfield` ou `higgs`, nunca
-`hf`, que colide com o Hugging Face CLI) gera pelo terminal. Conta
-firehagge@gmail.com, plano starter, workspace "Private".
-
-Modelo padrão bom e barato: **nano_banana_pro** (cerca de 2 créditos por imagem
-em 1k, fotorrealista). Custo com `get_cost:true` antes de gerar. Fluxo:
-`generate_image` → `job_status(sync:true)` → baixar o `rawUrl` (no Windows daqui,
-`Invoke-WebRequest` do PowerShell; o curl do Git Bash deu erro de SSL).
+Higgsfield foi cancelado (poucos créditos por mês) — removido do `.mcp.json` em
+05/08/2026. Geração de imagem agora é via **API da OpenAI**, direto (sem MCP),
+usada pela skill `/carrossel` quando `OPENAI_API_KEY` estiver configurada no
+`.env` local. É cobrança por uso (pay-as-you-go), separada de qualquer
+assinatura do ChatGPT (Plus/Go/Pro) — precisa de chave própria em
+platform.openai.com com cartão cadastrado.
 
 Usar para imagens de site e peça. Em cliente regulado, a imagem também passa pelo
 compliance (Dr. Giovanni: sem paciente, sem antes/depois, sem promessa; só
@@ -333,16 +443,30 @@ não publica sem revisão do profissional responsável.
   `integridade.md`, leitura obrigatória antes de escrever sobre cliente
 - `_memoria/design/` — o que a agência sabe sobre site. Leitura obrigatória antes
   de qualquer HTML (ver seção acima)
+- `_memoria/conteudo/` — o que a agência sabe sobre carrossel e post: formatos
+  narrativos, pisos de legibilidade, antipadrões, checklist. Leitura obrigatória
+  antes de qualquer copy de peça social
 - `.impeccable/config.json` — exceções do detector de design, cada uma com o
-  motivo escrito. Versionado de propósito. Só o detector do impeccable foi
-  adotado; os 23 comandos e a convenção `DESIGN.md` dele ficaram de fora porque
-  colidem com `marca.md` e `briefing.md` e não conhecem compliance
+  motivo escrito. Versionado de propósito. O impeccable **completo** foi
+  instalado em 08/08/2026 (antes disso só o detector rodava): ver a seção
+  "Impeccable" mais abaixo
 - `_conselho/` — sistema de decisão: constituição, cargos, mentes, meta-avaliadores
 - `equipe/` — descrição das funções da operação (SOW), com tipo de executor e autonomia
 - `referencias/` — biblioteca de teardowns de sites reais, da agência inteira.
   Gerada pela skill `/estudar-site`. **Não confundir** com
   `clientes/<nome>/referencias-*/`, que é material daquele cliente só
-- `identidade/` — marca **da agência** (peças institucionais)
+- `identidade/` — marca **da agência** (peças institucionais). O `design-guide.md`
+  foi preenchido em 04/08/2026 e deixou de ser buraco declarado
+- `templates/` — modelos do MazyOS: perfis de `CLAUDE.md`, catálogo de ferramentas
+  e exemplos de identidade. Base para skill nova (ver "Criação de skills" acima)
+- `dados/`, `marketing/`, `scripts/` — pastas do esqueleto do MazyOS, hoje só com
+  `README.md`. Vazias de propósito até a operação pedir
+- `saidas/` — arquivo solto de trabalho (imagens geradas, logo de cliente). Não é
+  entrega: entrega mora na pasta do cliente
+- `site/` — **site institucional da própria Hórus**, não de cliente. Por isso mora
+  na raiz e não em `clientes/`. Tem `CLAUDE.md` e `PLANO.md` próprios: ler os dois
+  antes de mexer em qualquer coisa visual lá. O estudo das dez referências que
+  definiram a linguagem está em `referencias/agencias-ia-dez-sites.md`
 - `clientes/<nome>/` — cada cliente: `briefing.md` (dossiê completo) + `marca.md`
   (identidade visual do cliente) + entregas
 
@@ -453,3 +577,33 @@ verificado, e a Horus não dá parecer sobre isso.
 **Não é setor regulado** por conselho, mas valem as regras de alimento: sem alegação
 de saúde ou funcional, sem superlativo, e nada de jargão de café especial (nota de
 degustação, pontuação SCA, altitude, variedade) que o cliente não tenha dito.
+
+### Cliente #5 — Mayara Barros (Psicologia, arte e filosofia, Salvador/BA)
+
+Pasta: `clientes/mayara-barros/`, criada em 03/08/2026. ⚠️ **Não é cliente pagante:**
+é a namorada do Marcelo. Mora em `clientes/` porque funciona como conta (briefing,
+marca, compliance e entregas recorrentes) e porque as skills da casa leem desse
+caminho. Se o Marcelo preferir separar, é só mover a pasta.
+
+Objetivo: sair de Acompanhante Terapêutica e passar a **atender por conta própria**,
+online e em Salvador. Máquina: **INSTAGRAM** (foco definido pelo Marcelo). Site e
+Google Meu Negócio ficaram de fora por ora. O eixo de conteúdo é dela: arte,
+filosofia e psicologia.
+
+Perfil `@universpsiquee`: **0 posts**, 191 seguidores em 03/08/2026. Assinatura dela:
+"Ciência com afeto". A `instagram/estrategia.md` e a `instagram/stories.md` estão
+prontas. A direção visual **"Galeria"** (pintura clássica de domínio público
+emoldurada + ficha técnica + leitura psicológica, modo claro) está travada no
+`marca.md`, e o **post #1 "Xeque-Mate + Frankl" está renderizado (8 slides)** via
+`build.js` (HTML→PNG). Há um kit em `gpt-projeto/` para carregar essa identidade num
+GPT do ChatGPT: a divisão é Claude rascunha e renderiza, ChatGPT opina, Claude
+aplica. **Não gerar carrossel por IA de imagem** (quebra texto e falsifica a obra).
+
+**⚠️ Compliance CFP — mesma régua da Aion** (Res. 011/2018): sem depoimento de
+paciente em nenhum formato, sem promessa de cura ou prazo, sem autoteste, CRP
+visível.
+
+✅ **CRP 03/36219 confirmado ativo** (Marcelo, 03/08): ela está formada, a bio é que
+está desatualizada em "estudante". Já pode sair "psicóloga" e o CRP nas peças. Falta
+só o **e-Psi** (Res. CFP 011/2018) para liberar o CTA de atendimento **online** —
+não trava conteúdo.

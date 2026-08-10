@@ -103,7 +103,7 @@ A regra que fica:
 ## 4. Antes de dizer que está pronto
 
 - [ ] **Detector rodado e zerado ou justificado:**
-      `npx --yes impeccable@3.4.0 detect "clientes/<nome>/site"`
+      `npx --yes impeccable@3.5.0 detect "clientes/<nome>/site"`
       (saída `0` = limpo, `2` = achou coisa. Regra de acessibilidade se corrige,
       não se dispensa. Detalhe em `.claude/skills/verificar/SKILL.md`)
       **A justificativa vai por escrito no `CLAUDE.md` do cliente**, não no chat:

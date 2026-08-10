@@ -1,0 +1,930 @@
+/* ==========================================================================
+   Hórus Agência — site institucional (versão 3, 05/08/2026)
+
+   Refeito a partir de dez referências que o Marcelo mandou. O que elas têm em
+   comum e o que virou regra aqui está em `site/PLANO.md`.
+
+   Cor e tipo saem de identidade/design-guide.md. O fundo agora é MEDIDO no
+   arquivo da marca (#0A0B0F), não estimado.
+
+   Forma: pílula para controle clicável, 16px para superfície. Duas formas, e o
+   antipadrão da casa autoriza pílula justamente em botão e tag.
+
+   Elevação: declarada UMA vez, por fio. Não existe sombra escura larga por
+   baixo de borda de 1px nesta folha (card fantasma).
+
+   Brilho: na v3 não existe nenhum. A permissão da marca é condicional (azul da
+   marca E atrás de um objeto de verdade), a arte do hero saiu a pedido do
+   Marcelo, e gradiente radial sozinho atrás do título seria `dark-glow` com
+   outro nome. Quem sustenta a cena é o metal correndo no aro do botão.
+
+   Vidro: linguagem de superfície da v3, feita de LUZ e não de desfoque.
+   Ver os tokens `--vidro*` abaixo.
+   ========================================================================== */
+
+/* ---------- 1. Tokens ---------- */
+
+:root {
+  --tinta:    #0A0B0F;  /* medido no PNG da marca                          */
+  --tinta-2:  #101319;  /* faixa alternada                                 */
+  --carta:    #14181F;  /* superfície de card                              */
+  --fio:      #232A36;  /* fio e borda                                     */
+  --grafite:  #3B3F46;  /* borda forte (cor oficial do manual)             */
+  --azul:     #2563EB;  /* marca, preenchimento, CTA. 3,4:1                */
+  --azul-esc: #1D4FD8;  /* hover do CTA                                    */
+  --azul-luz: #60A5FA;  /* link e texto de apoio. 7,9:1                    */
+  --dourado:  #F4C430;  /* acento pontual, o ponto no centro da forma       */
+  --osso:     #E5E7EB;  /* texto principal. 15,2:1                         */
+  --osso-2:   #A2ABBA;  /* texto secundário. 7,6:1                         */
+
+  /* Sete degraus, razão mínima de 1,25. Nada de clamp: valor fluido esconde
+     a escala e produz tamanho que não está em degrau nenhum. */
+  --t-13: 0.8125rem;
+  --t-17: 1.0625rem;
+  --t-22: 1.375rem;
+  --t-28: 1.75rem;
+  --t-40: 2.5rem;
+  --t-64: 4rem;
+  --t-80: 5rem;
+  --t-112: 7rem;   /* degrau de cartaz, só no nome do Icarus. Razão 1,4 */
+
+  --display: "Sora", system-ui, sans-serif;
+  --corpo:   "Archivo", system-ui, sans-serif;
+
+  --raio: 16px;
+  --pilula: 999px;
+
+  /* Vidro. O botão de metal líquido trouxe uma linguagem para a página inteira,
+     e ela é feita de LUZ, não de desfoque: fundo translúcido claríssimo, fio de
+     borda claro e um brilho especular de 1px na aresta de cima, que é onde a
+     luz bateria num objeto de vidro escuro.
+     `backdrop-filter` fica reservado ao cabeçalho, que é o único painel que
+     passa por cima de outro conteúdo. Vidro desfocando fundo chapado é efeito
+     sem função, e isso continua sendo antipadrão da casa. */
+  --vidro:     linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+  --vidro-fio: rgba(255,255,255,.10);
+  --vidro-luz: inset 0 1px 0 rgba(255,255,255,.13);
+
+  --cabecalho: 72px;
+  --largura: 1280px;
+  --medida: 66ch;
+
+  --curva: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- 2. Base ---------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--tinta);
+  color: var(--osso);
+  font-family: var(--corpo);
+  font-size: var(--t-17);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin: 0;
+  text-wrap: balance;
+}
+h1 .azul, h2 .azul { color: var(--azul-luz); }
+
+p { margin: 0; }
+a { color: var(--azul-luz); text-underline-offset: 3px; }
+a:hover { color: var(--osso); }
+
+/* `height:auto` junto de width/height no HTML. Sem isso a altura intrínseca
+   fica de pé e a arte do hero empurra o CTA para fora da tela. */
+img { max-width: 100%; height: auto; display: block; }
+
+section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
+
+:focus-visible { outline: 2px solid var(--azul-luz); outline-offset: 3px; border-radius: 4px; }
+
+.envelope { width: 100%; max-width: var(--largura); margin-inline: auto; }
+.faixa { padding: 120px 24px; }
+.faixa-2 { background: var(--tinta-2); }
+
+/* ---------- 3. Rótulo de seção (pílula) ---------- */
+/* Padrão presente em nove das dez referências: rótulo miúdo em caixa alta,
+   tracking largo, com um ponto ou fio na frente. Vale como categoria de
+   seção; o hero usa a variação com ponto aceso. */
+
+.rotulo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--display);
+  font-size: var(--t-13);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--azul-luz);
+  background: var(--vidro);
+  border: 1px solid var(--vidro-fio);
+  box-shadow: var(--vidro-luz);
+  border-radius: var(--pilula);
+  padding: 7px 16px;
+  margin-bottom: 22px;
+}
+.rotulo::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--azul-luz);
+  flex: none;
+}
+
+/* ---------- 4. Botão de metal líquido ---------- */
+/* Porte para WebGL nativo do componente React que o Marcelo mandou. Três
+   camadas empilhadas, exatamente como no original:
+
+     z0  .metal-tela   canvas do shader, ocupa a pílula inteira
+     z1  .metal-face   pílula de vidro escuro recuada 2px, que tampa o miolo
+     z2  .metal-txt    o rótulo
+
+   O que sobra visível do shader é um aro de 2px correndo em volta. O metal
+   escorre em preto, azul da marca e branco, então o efeito fica na família da
+   marca em vez de prata genérica.
+
+   Elevação declarada UMA vez, por sombra. Não há borda por baixo dela: o
+   card fantasma de `90-antipadroes.md` é justamente a soma das duas. */
+
+.metal {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 30px;
+  border-radius: var(--pilula);
+  text-decoration: none;
+  isolation: isolate;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow:
+    0 20px 26px rgba(0,0,0,.42),
+    0 7px 10px rgba(0,0,0,.30),
+    0 2px 4px rgba(0,0,0,.24);
+  transition: transform .2s var(--curva), box-shadow .25s var(--curva);
+}
+.metal:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 22px 30px rgba(37,99,235,.16),
+    0 10px 14px rgba(0,0,0,.34),
+    0 2px 4px rgba(0,0,0,.26);
+}
+.metal:active { transform: translateY(1px); }
+
+.metal-tela {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%;
+  border-radius: inherit;
+  display: block;
+}
+/* Aro parado, para quem não tem WebGL. O botão continua um botão. */
+.metal-parado .metal-tela {
+  background: conic-gradient(from 210deg,
+    #0A0B0F, #2563EB 18%, #E9EEF7 32%, #1C2432 48%,
+    #2563EB 66%, #F2F5FA 78%, #0A0B0F);
+}
+
+.metal-face {
+  position: absolute; inset: 2px; z-index: 1;
+  border-radius: var(--pilula);
+  background: linear-gradient(180deg, #1A1E26 0%, #05070A 100%);
+  box-shadow: var(--vidro-luz);
+}
+
+.metal-txt {
+  position: relative; z-index: 2;
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--display);
+  font-size: var(--t-17);
+  font-weight: 600;
+  color: #EDF1F7;                     /* 15,1:1 sobre a face. O #666666 do
+                                         componente original dava 2,9:1 e
+                                         reprovava em contraste. */
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0,0,0,.55);
+}
+.metal-txt .seta { font-size: var(--t-13); }
+.metal-mini { padding: 11px 22px; }
+
+/* A onda do clique nasce onde o dedo tocou. */
+.metal-onda {
+  position: absolute; z-index: 3;
+  width: 20px; height: 20px; border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255,255,255,.42), transparent 70%);
+  animation: onda .6s ease-out forwards;
+}
+@keyframes onda {
+  from { transform: translate(-50%,-50%) scale(0);   opacity: .6; }
+  to   { transform: translate(-50%,-50%) scale(4.6); opacity: 0;  }
+}
+
+/* ---------- 4b. Superfície de vidro ---------- */
+/* A mesma lógica da face do botão, disponível para o resto da página. */
+
+.vidro {
+  background: var(--vidro);
+  border: 1px solid var(--vidro-fio);
+  box-shadow: var(--vidro-luz);
+}
+
+/* ---------- 5. Cabeçalho ---------- */
+
+/* A faixa azul de demonstração saiu em 05/08/2026. As marcações de pendência
+   abaixo ficam: elas são a régua de integridade, e some com elas só quando o
+   dado existir de verdade. */
+.pend {
+  background: rgba(244,196,48,.14);
+  border-bottom: 1px dashed var(--dourado);
+  color: var(--dourado);
+  padding: 0 3px;
+}
+
+/* O cabeçalho é o único painel da página que passa por cima de outro
+   conteúdo, então é o único lugar em que o desfoque tem o que desfocar. */
+.topo {
+  position: sticky; top: 0; z-index: 40;
+  height: var(--cabecalho);
+  display: flex; align-items: center;
+  padding-inline: 24px;
+  background: rgba(10,11,15,.72);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  border-bottom: 1px solid transparent;
+  transition: background .3s var(--curva), border-color .3s var(--curva);
+}
+.topo.rolado { background: rgba(10,11,15,.9); border-bottom-color: var(--vidro-fio); }
+.topo .envelope { display: flex; align-items: center; gap: 32px; }
+
+.marca { display: flex; align-items: center; gap: 13px; text-decoration: none; margin-right: auto; }
+.marca img { width: 34px; height: 28px; }
+.marca .nome {
+  font-family: var(--display); font-size: var(--t-22); font-weight: 700;
+  letter-spacing: 0.05em; color: var(--osso); line-height: 1;
+}
+.marca .descritiva {
+  font-size: var(--t-13); letter-spacing: 0.24em; color: var(--osso-2);
+  border-left: 1px solid var(--grafite); padding-left: 13px; line-height: 1;
+}
+
+.menu { display: flex; align-items: center; gap: 30px; }
+.menu a { color: var(--osso-2); text-decoration: none; font-size: var(--t-17); }
+.menu a:hover { color: var(--osso); }
+/* `.menu a` vence `.metal` em especificidade. O rótulo do botão mora num
+   filho (`.metal-txt`), então a cor do menu não o alcança, mas as duas linhas
+   abaixo mantêm isso explícito: especificidade que se anula é antipadrão
+   registrado, e já mordeu este cabeçalho uma vez. */
+.menu a.metal, .menu a.metal:hover { color: inherit; }
+
+.hamburguer {
+  display: none;
+  background: var(--vidro); border: 1px solid var(--vidro-fio);
+  box-shadow: var(--vidro-luz);
+  border-radius: var(--pilula); color: var(--osso);
+  padding: 9px 16px; font: inherit; font-size: var(--t-17); cursor: pointer;
+}
+
+/* ---------- 6. Hero ---------- */
+/* Composição centralizada. A arte 3D de fundo saiu em 05/08/2026 a pedido do
+   Marcelo: a dobra agora é tipografia sobre o preto da marca, no formato das
+   referências que ele mandou. O que sustenta a cena no lugar da foto é o metal
+   correndo no aro do botão, que é objeto renderizado de verdade e não
+   gradiente. Nenhum brilho solto entrou no lugar da foto, porque brilho sem
+   objeto atrás é `dark-glow` e continua proibido. */
+
+.hero {
+  position: relative;
+  min-height: calc(100dvh - var(--cabecalho));
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 40px 24px 44px;
+  overflow: hidden;
+  text-align: center;
+}
+.hero .envelope { max-width: 1080px; position: relative; z-index: 1; }
+.hero .envelope > * { position: relative; z-index: 1; }
+
+/* Renderizado a 60% da resolução da tela e esticado pelo CSS. A cena é toda
+   suave, então a perda não aparece, e o custo por quadro cai à metade. */
+.hero-fundo {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.hero h1 {
+  font-size: var(--t-80);
+  letter-spacing: -0.03em;
+  max-width: 19ch;
+  margin-inline: auto;
+}
+
+/* ---------- 6b. A palavra que gira ---------- */
+/* Pilha em grid: as quatro palavras ocupam a MESMA célula, então a caixa tem
+   sempre a largura da mais larga e o título não pula de linha a cada troca.
+   Bloco, para a palavra cair sozinha na última linha. Só transform e opacity. */
+
+/* A palavra troca letra por letra, decodificando. O fantasma ocupa a mesma
+   célula de grid com a palavra mais longa e fica invisível: é ele que define
+   a largura da caixa, senão o título reflui a cada troca.
+   `tabular-nums` e a fonte de largura fixa não resolvem aqui porque a Sora é
+   proporcional; quem estabiliza é a caixa, não a letra. */
+.gira {
+  display: grid;
+  justify-items: center;
+  margin-top: .04em;
+}
+.gira > span {
+  grid-area: 1 / 1;
+  color: var(--azul-luz);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+.gira-fantasma { visibility: hidden; }
+
+.hero-lead {
+  font-size: var(--t-22); color: var(--osso-2);
+  max-width: 52ch; margin: 26px auto 0; line-height: 1.5;
+}
+.hero-acao { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 38px; justify-content: center; }
+
+/* A faixa de credenciais (4 negócios, 3 setores, 1 bloco, 0 dado inventado)
+   saiu do hero em 05/08/2026 a pedido do Marcelo. Os quatro números continuam
+   verdadeiros e continuam no repositório: se um dia voltarem, voltam medidos. */
+
+/* ---------- 7. Faixa de palavras ---------- */
+/* O ÚNICO marquee da página. A esteira de capacidades que morava no hero saiu:
+   dois marquees numa página é antipadrão registrado, e a seção de serviços diz
+   a mesma coisa melhor.
+   O texto é vazado, que é o vidro da linguagem aplicado à tipografia: contorno
+   claro e miolo quase transparente.
+   ⚠️ O símbolo ampliado ao fundo contraria a regra do design-guide ("símbolo
+   como marca-d'água está proibido"). Entrou a pedido do Marcelo em 05/08/2026,
+   com duas defesas: aparece UMA vez na página, e é o único lugar em que o
+   símbolo aparece grande. */
+
+/* Sem fundo e sem fio: o símbolo é a superfície da faixa, e qualquer chapa
+   por cima dele é justamente o "cinza na frente do símbolo" que o Marcelo
+   mandou tirar em 05/08/2026. Sem fundo próprio a faixa também deixa de ser
+   um container com boundary visível, então `cramped-padding` sai de cena. */
+.faixa-palavras {
+  position: relative;
+  overflow: hidden;
+  padding: 96px 24px;
+}
+.fp-simbolo {
+  position: absolute; z-index: 0;
+  left: 50%; top: 50%;
+  width: 340px; height: auto;
+  transform: translate(-50%, -50%);
+  opacity: .55;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(ellipse 62% 62% at 50% 50%, #000 34%, transparent 82%);
+  mask-image: radial-gradient(ellipse 62% 62% at 50% 50%, #000 34%, transparent 82%);
+}
+
+/* O texto que corre precisa entrar e sair pela borda, senão vira caixa de
+   texto rolando. Margem negativa resolveria e anula o recuo da faixa, que é
+   justamente o que o detector cobra. Quem devolve o sangramento é a própria
+   animação, que começa 24px à esquerda: o trilho nunca deixa a borda
+   descoberta, nem no quadro zero nem na volta do laço. */
+.fp-trilho {
+  position: relative; z-index: 1;
+  display: flex; width: max-content;
+  animation: correr 42s linear infinite;
+}
+.fp-trilho span {
+  display: flex; align-items: center;
+  font-family: var(--display);
+  font-size: var(--t-64);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  /* Letra totalmente vazada: miolo transparente de verdade, só o contorno.
+     É o que deixa o símbolo aparecer POR DENTRO das letras, e não só entre
+     elas. Sem `color:transparent` o miolo mantém um véu que apaga o olho. */
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(229,231,235,.55);
+}
+/* O separador é o ponto azul da marca, e é ele que carrega a cor aqui. */
+.fp-trilho i {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--azul-luz);
+  margin-inline: 44px;
+  flex: none;
+  -webkit-text-stroke: 0;
+}
+/* Não existe pausa no hover. A versão anterior tinha, e o efeito era o texto
+   parar sozinho quando o mouse encostava, o que lê como bug e não como
+   recurso. Faixa que corre, corre sempre. */
+/* Parte 24px à esquerda para cobrir o recuo: quem devolve o sangramento é o
+   `overflow:hidden` da faixa, que recorta na borda de verdade. Sem esse
+   deslocamento sobra um vão de 24px na beirada esquerda no instante em que o
+   laço reinicia. O recuo da faixa continua lá, e é ele que o detector cobra:
+   quem estava zerando era o media query do celular, não isto. */
+@keyframes correr {
+  from { transform: translateX(-24px); }
+  to   { transform: translateX(calc(-50% - 24px)); }
+}
+
+
+/* ---------- 7b. Seção 1 · A Hórus ---------- */
+/* As formas do fundo vieram do shape-landing-hero. Duas mudanças: a paleta é a
+   da marca (o original usa indigo, rosa, violeta e âmbar, que é exatamente o
+   gradiente que a casa proíbe), e cada forma tem borda e gradiente próprios,
+   então é objeto e não mancha de luz solta. */
+
+.sobre {
+  position: relative;
+  overflow: hidden;
+  padding: 150px 24px 140px;
+}
+.formas { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.forma {
+  position: absolute;
+  border-radius: var(--pilula);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: var(--vidro-luz);
+  filter: blur(2px);
+  opacity: 0;
+  animation: entra-forma 1.6s var(--curva) forwards, boia 15s ease-in-out infinite 1.6s;
+}
+.f1 {
+  width: 620px; height: 150px; left: -110px; top: 12%;
+  transform: rotate(12deg);
+  background: linear-gradient(90deg, rgba(37,99,235,.22), transparent 78%);
+  animation-delay: 0s, 1.6s;
+}
+.f2 {
+  width: 500px; height: 122px; right: -90px; top: 58%;
+  transform: rotate(-15deg);
+  background: linear-gradient(90deg, rgba(96,165,250,.18), transparent 78%);
+  animation-delay: .18s, 1.9s;
+}
+.f3 {
+  width: 320px; height: 84px; left: 6%; bottom: 8%;
+  transform: rotate(-8deg);
+  background: linear-gradient(90deg, rgba(37,99,235,.16), transparent 78%);
+  animation-delay: .32s, 2.2s;
+}
+.f4 {
+  width: 220px; height: 58px; right: 18%; top: 14%;
+  transform: rotate(20deg);
+  background: linear-gradient(90deg, rgba(244,196,48,.10), transparent 78%);
+  animation-delay: .46s, 2.5s;
+}
+.f5 {
+  width: 160px; height: 42px; left: 22%; top: 40%;
+  transform: rotate(-24deg);
+  background: linear-gradient(90deg, rgba(96,165,250,.14), transparent 78%);
+  animation-delay: .58s, 2.8s;
+}
+@keyframes entra-forma { to { opacity: 1; } }
+/* Deriva mínima. Só transform, e amplitude baixa: forma girando muito vira
+   protetor de tela. */
+@keyframes boia {
+  50% { translate: 0 -16px; }
+}
+
+.sobre .envelope { position: relative; z-index: 1; }
+
+.titulao {
+  font-size: var(--t-64);
+  max-width: 21ch;
+  letter-spacing: -0.03em;
+}
+/* O invólucro recorta, e a palavra cai de dentro da linha. Sem o recorte ela
+   aparece boiando no meio do nada e o efeito perde o sentido. */
+.cai { display: inline-block; overflow: hidden; vertical-align: bottom; }
+.cai > span {
+  display: inline-block;
+  transform: translateY(105%);
+  opacity: 0;
+  transition: transform .8s var(--curva), opacity .8s var(--curva);
+}
+.caiu .cai > span { transform: none; opacity: 1; }
+
+.sobre-texto {
+  margin-top: 34px;
+  max-width: var(--medida);
+  font-size: var(--t-22);
+  line-height: 1.55;
+  color: var(--osso-2);
+}
+
+/* ---------- 7c. Seção 2 · Serviços ---------- */
+/* Um painel por serviço, cada um ocupando a tela, no formato do print que o
+   Marcelo mandou em 05/08/2026. Três colunas: número grande à esquerda, título
+   e texto no meio, ficha técnica à direita.
+   A ficha é o que impede o formato de virar seis slides iguais: sem ela, seis
+   telas cheias com um título no meio são a mesma tela seis vezes. */
+
+#servicos { background: var(--tinta-2); }
+.sv-topo { padding: 120px 24px 40px; }
+
+.sv {
+  min-height: 100dvh;
+  display: flex; align-items: center;
+  padding: 80px 24px;
+  border-top: 1px solid var(--fio);
+}
+.sv-grade {
+  display: grid;
+  grid-template-columns: minmax(0, 200px) minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 0 64px;
+  align-items: start;
+}
+
+.sv-num {
+  display: block;
+  font-family: var(--display);
+  font-size: var(--t-64);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--osso);
+}
+/* Rótulo técnico de duas linhas curtas, em monoespaçada. É etiqueta, não texto
+   corrido: o uso que a casa permite para fonte de código. */
+.sv-rot {
+  margin-top: 16px;
+  font-family: ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: var(--t-13);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.7;
+  color: var(--osso-2);
+}
+
+/* O fio vertical à esquerda do título é o que amarra as três colunas na mesma
+   linha de leitura, e é o que o print faz. */
+.sv-meio { border-left: 1px solid var(--fio); padding-left: 48px; }
+.sv-meio h3 {
+  font-size: var(--t-64);
+  letter-spacing: -0.035em;
+  max-width: 15ch;
+}
+.sv-txt {
+  margin-top: 28px;
+  max-width: 52ch;
+  color: var(--osso-2);
+  font-size: var(--t-17);
+}
+
+.sv-btn {
+  display: inline-flex; align-items: center; gap: 14px;
+  margin-top: 40px;
+  padding: 16px 26px;
+  border: 1px solid var(--vidro-fio);
+  background: var(--vidro);
+  box-shadow: var(--vidro-luz);
+  color: var(--osso);
+  text-decoration: none;
+  font-family: ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: var(--t-13);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: border-color .25s var(--curva), color .25s var(--curva);
+}
+.sv-btn:hover { border-color: var(--azul-luz); color: var(--osso); }
+
+/* Ficha técnica: chave e valor por linha, com fio. Monoespaçada porque é dado
+   tabular, que é exatamente para o que ela serve. */
+.sv-ficha { margin: 10px 0 0; }
+.sv-ficha > div {
+  display: grid;
+  grid-template-columns: minmax(0, 11ch) minmax(0, 1fr);
+  gap: 0 24px;
+  padding: 15px 0;
+  border-top: 1px solid var(--fio);
+}
+.sv-ficha > div:last-child { border-bottom: 1px solid var(--fio); }
+.sv-ficha dt, .sv-ficha dd {
+  margin: 0;
+  font-family: ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: var(--t-13);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.6;
+}
+.sv-ficha dt { color: var(--osso-2); }
+.sv-ficha dd { color: var(--osso); }
+
+/* ---------- 7d. Icarus ---------- */
+/* Formato do cartaz de produto: linha miúda em monoespaçada, nome em escala
+   máxima, parágrafo curto embaixo. A monoespaçada aqui é rótulo técnico de
+   três palavras, não texto corrido: é o uso que a casa permite. */
+
+.icarus { padding: 130px 24px; background: var(--tinta-2); }
+.ic-linha {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: var(--t-13);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--osso-2);
+}
+.ic-nome {
+  font-family: var(--display);
+  font-size: var(--t-112);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: .95;
+  margin-top: 26px;
+}
+.ic-texto {
+  margin-top: 34px;
+  max-width: 58ch;
+  font-size: var(--t-22);
+  line-height: 1.55;
+  color: var(--osso-2);
+}
+.ic-texto b { color: var(--osso); font-weight: 600; }
+
+/* ---------- 7e. Portfólio ---------- */
+/* A tira corre da direita para a esquerda conforme a pessoa rola, por animação
+   de rolagem NATIVA do CSS. Sem listener de scroll, que é regra da casa.
+   Onde `animation-timeline` não existe (hoje, Safari e Firefox), o bloco
+   `@supports` abaixo transforma a janela num carrossel que se arrasta. */
+
+/* ⚠️ `overflow: clip`, não `hidden`. `hidden` cria um CONTÊINER DE ROLAGEM, e
+   `animation-timeline: view()` se amarra ao contêiner de rolagem mais próximo:
+   com `hidden` aqui, a tira media a própria posição dentro de uma caixa em que
+   ela nunca se move, e ficava congelada num deslocamento fixo. `clip` recorta
+   igual e não vira rolável, então a linha do tempo volta a ser a da página. */
+.portfolio { padding: 130px 0; overflow: clip; }
+.portfolio .envelope { padding-inline: 24px; margin-bottom: 56px; }
+.pf-janela { overflow: clip; }
+.pf-tira {
+  display: flex; gap: 28px;
+  width: max-content;
+  padding-inline: 24px;
+}
+.pf-item { width: 520px; max-width: 82vw; flex: none; }
+.pf-tela {
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--vidro-fio);
+  border-radius: var(--raio);
+  background: var(--vidro), var(--carta);
+  box-shadow: var(--vidro-luz);
+  display: grid; place-items: center;
+  padding: 24px;
+  text-align: center;
+}
+.pf-item h3 { font-size: var(--t-22); margin-top: 24px; }
+.pf-item p { color: var(--osso-2); margin-top: 12px; }
+
+/* A animação é amarrada à POSIÇÃO da seção na tela, não a um gatilho. Por isso
+   ela anda nos dois sentidos de graça: rolando para baixo a tira vai para a
+   esquerda, rolando para cima ela volta, e parar no meio deixa a tira parada
+   no meio. Nada disso precisa de listener de scroll. */
+@supports (animation-timeline: view()) {
+  /* Em longhand de propósito: o atalho `animation:` zera a duração em `0s`, e
+     com linha do tempo de rolagem a duração precisa ser `auto` para valer a
+     faixa inteira. Com `0s` a tira também congela. */
+  .pf-tira {
+    animation-name: corre-tira;
+    animation-duration: auto;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+  /* O percurso é o que sobra da tira além da janela, e isso muda com a
+     largura da tela: quanto mais estreita a janela, mais a tira precisa andar.
+     Por isso o valor desce por breakpoint. Andar demais deixa um vazio no fim
+     da fila; andar de menos deixa o último card sem aparecer inteiro. */
+  @keyframes corre-tira {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-34%); }
+  }
+  @media (max-width: 1200px) {
+    @keyframes corre-tira {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-46%); }
+    }
+  }
+}
+/* Sem `animation-timeline` (hoje Safari e Firefox), quem faz o mesmo trabalho
+   é o laço em JS, que só roda com a seção na tela. A classe abaixo entra por
+   JS e existe para o caso de o laço não subir: aí a tira vira um carrossel de
+   arrastar, em vez de ficar uma fila cortada e parada. */
+@supports not (animation-timeline: view()) {
+  .pf-janela:not(.pf-manual) { overflow-x: auto; scroll-snap-type: x mandatory; }
+  .pf-janela:not(.pf-manual) .pf-item { scroll-snap-align: start; }
+}
+
+/* ---------- 7f. O nome no pé, em hex dump ---------- */
+/* Uma grade de bytes com a palavra acesa por dentro e uma onda atravessando.
+   Substituiu o cartaz pixelado em 05/08/2026, a pedido do Marcelo. */
+
+.hexdump {
+  border-top: 1px solid var(--fio);
+  padding: 22px 24px 26px;
+  line-height: 0;
+  overflow: hidden;
+}
+.hexdump canvas { width: 100%; display: block; }
+
+/* ---------- 8. Cabeçalho de seção ---------- */
+
+.faixa h2 { font-size: var(--t-40); max-width: 22ch; }
+.abertura { color: var(--osso-2); max-width: var(--medida); margin-top: 20px; }
+
+/* As seções A diferença, A Máquina, Para quem é, O que não vai ao ar, Como
+   começa e Perguntas saíram em 05/08/2026 a pedido do Marcelo, e o CSS delas
+   saiu junto. O trilho numerado da Máquina era o elemento-assinatura da
+   página: ver PLANO.md para o que ocupou o lugar dele.
+   O histórico continua no git, então nada disso se perdeu. */
+
+/* ---------- 16. Chamada final e contato ---------- */
+
+/* Alinhada à esquerda e em escala de cartaz, no formato das referências que o
+   Marcelo mandou em 05/08/2026. Era centralizada até então. */
+.chamada { padding: 140px 24px 128px; }
+.chamada h2 { font-size: var(--t-80); max-width: 15ch; letter-spacing: -0.035em; }
+.chamada .abertura { margin-top: 26px; }
+.chamada .hero-acao { justify-content: flex-start; margin-top: 42px; }
+
+.canais { list-style: none; padding: 0; margin: 64px 0 0; max-width: 760px; }
+.canais li {
+  border-bottom: 1px solid var(--fio); padding: 20px 0;
+  display: flex; gap: 20px; flex-wrap: wrap; align-items: baseline; text-align: left;
+}
+.canais .canal-nome {
+  font-size: var(--t-13); letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--osso-2); width: 124px; flex: none;
+}
+.canais .canal-valor { font-size: var(--t-17); }
+
+/* Rodapé em colunas, no formato do print da Menzzo: marca e dado legal à
+   esquerda, colunas de link à direita. */
+.rodape {
+  border-top: 1px solid var(--fio);
+  padding: 72px 24px 64px;
+  font-size: var(--t-17);
+  color: var(--osso-2);
+}
+.rodape-grade {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr));
+  gap: 40px 48px;
+  align-items: start;
+}
+.rodape .marca img { width: 34px; height: 28px; }
+.rd-assinatura {
+  margin-top: 20px;
+  font-family: var(--display); font-size: var(--t-22); font-weight: 600;
+  color: var(--osso);
+}
+.rd-legal { margin-top: 18px; font-size: var(--t-13); line-height: 1.8; }
+
+.rd-col { display: flex; flex-direction: column; align-items: flex-start; }
+/* Título de coluna de rodapé. É `h2` porque não pode pular nível abaixo do
+   `h1` do hero, e o visual não depende da tag. */
+.rd-col h2 {
+  font-family: var(--display);
+  font-size: var(--t-13); font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--osso);
+  margin-bottom: 18px;
+}
+.rd-col a, .rd-col p {
+  color: var(--osso-2);
+  font-size: var(--t-17);
+  text-decoration: none;
+  padding: 6px 0;
+}
+.rd-col a:hover { color: var(--osso); }
+.rd-onde { line-height: 1.6; }
+
+/* ---------- 17. Revelação na rolagem ---------- */
+/* Só transform e opacity, que não recalculam layout. */
+
+.rev { opacity: 0; transform: translateY(20px); transition: opacity .7s var(--curva), transform .7s var(--curva); }
+.rev.visivel { opacity: 1; transform: none; }
+
+/* ---------- 18. Responsivo ---------- */
+/* No celular encolhe espaçamento, nunca texto. */
+
+/* A dobra encolhe pela ALTURA, não só pela largura, e é o que quase ninguém
+   testa. Em notebook de 720 a 800px de janela o hero já vinha no limite na v2, e
+   a terceira linha do título novo estourava. Regra da casa é que quando o hero
+   não cabe o problema é a escala, não a regra. A escala desce um degrau. */
+@media (min-width: 861px) and (max-height: 900px) {
+  .hero h1 { font-size: var(--t-64); }
+  .hero-lead { margin-top: 18px; }
+  .hero-acao { margin-top: 26px; }
+}
+@media (min-width: 861px) and (max-height: 780px) {
+  .hero { padding-top: 14px; }
+  .hero .rotulo { margin-bottom: 12px; }
+  .hero-lead { font-size: var(--t-17); }
+}
+
+@media (max-width: 1040px) {
+  .hero h1 { font-size: var(--t-64); }
+  .titulao { font-size: var(--t-40); }
+  .ic-nome { font-size: var(--t-80); }
+  .chamada h2 { font-size: var(--t-64); }
+  .fp-trilho span { font-size: var(--t-40); }
+  .fp-simbolo { width: 300px; }
+  /* A ficha desce para baixo do texto: em duas colunas apertadas ela quebra
+     chave e valor em duas linhas cada, e vira lista, não ficha. */
+  .sv-grade { grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: 0 40px; }
+  .sv-meio { padding-left: 36px; }
+  .sv-meio h3 { font-size: var(--t-40); }
+  .sv-ficha { grid-column: 2; margin-top: 44px; }
+  .rodape-grade { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 44px; }
+}
+
+@media (max-width: 860px) {
+  .hamburguer { display: block; }
+  .menu {
+    display: none; position: absolute; top: var(--cabecalho); left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: rgba(10,11,15,.9);
+    backdrop-filter: blur(18px) saturate(1.4);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    border-bottom: 1px solid var(--vidro-fio);
+    padding: 12px 24px 22px;
+  }
+  .menu.aberto { display: flex; }
+  .menu a { padding: 15px 0; border-bottom: 1px solid var(--fio); }
+  /* `.menu a` vence `.metal` em especificidade e zerava o recuo horizontal do
+     botão, que virava uma pílula estrangulada. Mesma família do bug de
+     especificidade registrado em 90-antipadroes.md. */
+  .menu .metal { margin-top: 18px; justify-content: center; border-bottom: 0; padding: 13px 24px; }
+  .marca .descritiva { display: none; }
+
+  .faixa { padding: 80px 24px; }
+  .chamada { padding: 88px 24px; }
+  .hero h1 { font-size: var(--t-40); }
+  .faixa h2 { font-size: var(--t-28); }
+  .chamada h2 { font-size: var(--t-28); }
+  .canais .canal-nome { width: 100%; }
+
+  .sobre { padding: 90px 24px 84px; }
+  .icarus { padding: 88px 24px; }
+  .portfolio { padding: 88px 0; }
+  .titulao { font-size: var(--t-28); }
+  .ic-nome { font-size: var(--t-40); }
+  .chamada h2 { font-size: var(--t-40); }
+  .sobre-texto, .ic-texto { font-size: var(--t-17); }
+  .faixa-palavras { padding: 52px 24px; }
+  .fp-trilho span { font-size: var(--t-28); }
+  .fp-trilho i { width: 7px; height: 7px; margin-inline: 26px; }
+  .sv-topo { padding: 80px 24px 24px; }
+  .sv { padding: 64px 24px; min-height: auto; }
+  .sv-grade { grid-template-columns: 1fr; gap: 0; }
+  .sv-num { font-size: var(--t-40); }
+  .sv-meio { border-left: 0; padding-left: 0; margin-top: 28px; }
+  .sv-meio h3 { font-size: var(--t-28); }
+  .sv-ficha { grid-column: 1; margin-top: 36px; }
+  .pf-item { width: 340px; }
+}
+
+@media (max-width: 600px) {
+  /* No celular o título do hero ocupa quatro linhas com a palavra que gira. */
+  .hero { padding-top: 20px; }
+  .hero-lead { margin-top: 18px; font-size: var(--t-17); }
+  .hero-acao { margin-top: 26px; }
+  .sv-ficha > div { grid-template-columns: 1fr; gap: 4px; }
+  .rodape-grade { grid-template-columns: 1fr; gap: 36px; }
+  /* A tira anda menos: com card estreito, 42% passaria do fim da fila. */
+  @supports (animation-timeline: view()) {
+    @keyframes corre-tira {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-58%); }
+    }
+  }
+}
+
+/* ---------- 19. Movimento reduzido ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rev { opacity: 1; transform: none; transition: none; }
+  /* A palavra do título não gira: fica a primeira, e a frase continua
+     verdadeira sozinha. O metal do botão congela num quadro só. */
+  /* Nada corre, nada boia, nada cai. Tudo aparece pronto e legível. */
+  .fp-trilho { animation: none; }
+  .forma { animation: none; opacity: 1; }
+  .cai > span { transform: none; opacity: 1; transition: none; }
+  .pf-tira { animation: none; transform: none !important; }
+  .pf-janela { overflow-x: auto; }
+  * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}

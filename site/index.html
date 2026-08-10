@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hórus Agência | Nós construímos máquinas, sistemas e marcas</title>
+<meta name="description" content="Agência de marketing digital com IA. Sites, desenvolvimento web, automação, CRM, Google Meu Negócio e conteúdo. Engenharia visual, inteligência artificial e nada publicado por acaso.">
+
+<!-- noindex enquanto os dados de contato não existirem.
+     Retirar no dia da publicação, e não antes. -->
+<meta name="robots" content="noindex, nofollow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hórus Agência">
+<meta property="og:title" content="Hórus Agência | Nós construímos máquinas, sistemas e marcas">
+<meta property="og:description" content="Sites, desenvolvimento web, automação com IA, CRM, Google Meu Negócio e conteúdo. Engenharia visual, inteligência artificial e nada publicado por acaso.">
+<meta property="og:image" content="assets/compartilhar.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/simbolo.webp" type="image/webp">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<!-- A faixa de demonstração saiu em 05/08/2026 a pedido do Marcelo. As marcações
+     douradas de pendência continuam no lugar: elas são a regra de integridade,
+     não a faixa. Ver _memoria/integridade.md. -->
+
+<header class="topo" id="topo">
+  <div class="envelope">
+    <a class="marca" href="#topo">
+      <img src="assets/simbolo.webp" width="34" height="28" alt="Hórus Agência">
+      <span class="nome">HÓRUS</span>
+      <span class="descritiva">AGÊNCIA</span>
+    </a>
+    <button class="hamburguer" type="button" id="abre-menu" aria-expanded="false" aria-controls="menu">Menu</button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a href="#sobre">A Hórus</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#icarus">Icarus</a>
+      <a href="#portfolio">Portfólio</a>
+      <!-- Botão de metal líquido, versão miúda. Estrutura em três camadas:
+           tela do shader (o aro vivo), face de vidro escuro por cima, e o
+           rótulo por último. Detalhe em assets/site.css §4. -->
+      <a class="metal metal-mini" href="#contato">
+        <canvas class="metal-tela" aria-hidden="true"></canvas>
+        <span class="metal-face" aria-hidden="true"></span>
+        <span class="metal-txt">Começar projeto <span class="seta" aria-hidden="true">&#8599;</span></span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= HERO ================= -->
+  <!-- Composição centralizada. UM botão só na página inteira: "Começar projeto".
+       Título e subtítulo trocados em 05/08/2026 (noite): a versão anterior
+       prendia a agência a Salvador e descrevia o método em vez de afirmar o
+       que a casa faz. -->
+  <section class="hero">
+    <!-- Fundo animado em WebGL, nas cores da marca. É superfície renderizada,
+         não gradiente radial solto: a diferença entre isto e o `dark-glow`
+         proibido é que aqui existe um objeto desenhando, e a intensidade é
+         baixa de propósito (o título mantém 14:1 sobre o ponto mais claro). -->
+    <canvas class="hero-fundo" aria-hidden="true"></canvas>
+
+    <div class="envelope">
+      <!-- A última palavra troca LETRA POR LETRA, decodificando até virar a
+           próxima. As quatro são o que a Hórus de fato constrói, e nenhuma
+           promete resultado, o que a régua de integridade exige.
+           O fantasma invisível ao lado segura a largura da caixa na palavra
+           mais longa: sem ele o título reflui a cada troca. -->
+      <h1 class="rev">Nós construímos
+        <span class="gira" data-gira data-palavras="MÁQUINAS,SISTEMAS,MARCAS,PRESENÇA"><span class="gira-fantasma" aria-hidden="true">MÁQUINAS</span><span class="gira-txt">MÁQUINAS</span></span>
+      </h1>
+
+      <p class="hero-lead rev">Engenharia visual. Inteligência artificial. Nada publicado por acaso.</p>
+      <div class="hero-acao rev">
+        <a class="metal" href="#contato">
+          <canvas class="metal-tela" aria-hidden="true"></canvas>
+          <span class="metal-face" aria-hidden="true"></span>
+          <span class="metal-txt">Começar projeto <span class="seta" aria-hidden="true">&#8599;</span></span>
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ================= FAIXA DE PALAVRAS ================= -->
+  <!-- O UM marquee da página. Sem fundo e sem fio: o símbolo da marca é a
+       superfície, e as palavras são só contorno, então dá para ver o olho
+       através das letras.
+       ⚠️ O símbolo ampliado ao fundo foi pedido pelo Marcelo em 05/08/2026 e
+       contraria uma regra escrita em identidade/design-guide.md. Ver PLANO.md. -->
+  <section class="faixa-palavras">
+    <!-- Arquivo próprio, de 420px. O `simbolo.webp` do cabeçalho tem 96px de
+         largura: esticado para 340 aqui, borrava. -->
+    <img class="fp-simbolo" src="assets/simbolo-grande.webp" width="420" height="348" alt="" aria-hidden="true" decoding="async">
+    <div class="fp-trilho" aria-hidden="true">
+      <span>Inovação<i></i>Impacto<i></i>Inspiração<i></i></span>
+      <span>Inovação<i></i>Impacto<i></i>Inspiração<i></i></span>
+    </div>
+  </section>
+
+  <!-- ================= SEÇÃO 1 · A HÓRUS ================= -->
+  <!-- Entrada no formato do shape-landing-hero: formas giradas e desfocadas
+       flutuando ao fundo, e o título caindo palavra por palavra quando a seção
+       entra. As formas são objetos com borda e gradiente próprios, não mancha
+       de luz solta, e a paleta é a da marca, não o indigo/rosa/violeta do
+       componente original. -->
+  <section class="sobre" id="sobre">
+    <div class="formas" aria-hidden="true">
+      <span class="forma f1"></span>
+      <span class="forma f2"></span>
+      <span class="forma f3"></span>
+      <span class="forma f4"></span>
+      <span class="forma f5"></span>
+    </div>
+
+    <div class="envelope">
+      <h2 class="titulao" data-cai>Cada peça que entra no ar continua funcionando depois que a gente sai.</h2>
+      <p class="sobre-texto rev">A Hórus cresceu por repetição. Cada site, cada perfil e cada campanha que entrou no ar virou regra escrita, e as regras viraram um sistema que hoje roda a agência inteira: a IA produz em escala, e gente responde pelo que vai ao ar. Atendemos de clínica que presta contas a conselho profissional a negócio que vende no próprio bairro, e a régua é a mesma nos dois. Nada aparece numa página nossa sem ter saído de um documento seu.</p>
+    </div>
+  </section>
+
+  <!-- ================= SEÇÃO 2 · SERVIÇOS ================= -->
+  <!-- Um painel por serviço, cada um ocupando a tela, no formato do print que
+       o Marcelo mandou: número grande e rótulo à esquerda, título e texto no
+       meio, ficha técnica à direita. Seis painéis, e a ficha é o que impede o
+       formato de virar seis slides iguais.
+       ⚠️ Nenhuma linha da ficha inventa número, prazo ou cliente: todas
+       descrevem a entrega, que é o que a régua de integridade permite. -->
+  <section id="servicos">
+    <div class="sv-topo envelope">
+      <p class="rotulo rev">Serviços</p>
+      <h2 class="rev">Seis frentes, e a ordem em que elas entram <span class="azul">é o produto</span>.</h2>
+    </div>
+
+    <article class="sv">
+      <div class="sv-grade envelope">
+        <div class="sv-esq">
+          <span class="sv-num">01</span>
+          <p class="sv-rot">Inteligência artificial<br>Automação de operação</p>
+        </div>
+        <div class="sv-meio">
+          <h3>IA e automação de operação</h3>
+          <p class="sv-txt">Automação com IA para tirar do seu dia o trabalho que se repete: responder o que já tem resposta, triar mensagem que chega, preparar conteúdo e montar relatório. A máquina produz em escala, e nada clínico ou sensível vai ao ar sem alguém assinar embaixo.</p>
+          <a class="sv-btn" href="#contato">Começar projeto <span class="seta" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <dl class="sv-ficha">
+          <div><dt>Entrega</dt><dd>Atendimento automático · Conteúdo · Relatório</dd></div>
+          <div><dt>Produção</dt><dd>IA sob roteiro escrito, não improviso</dd></div>
+          <div><dt>Revisão</dt><dd>Humana, antes de qualquer publicação</dd></div>
+          <div><dt>Regulado</dt><dd>Responsável técnico aprova o que sai</dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <article class="sv">
+      <div class="sv-grade envelope">
+        <div class="sv-esq">
+          <span class="sv-num">02</span>
+          <p class="sv-rot">Site institucional<br>Landing page</p>
+        </div>
+        <div class="sv-meio">
+          <h3>Sites e WordPress</h3>
+          <p class="sv-txt">Site institucional e landing page escritos do zero, ou em cima do WordPress que você já paga. Abre rápido no celular, diz o que você faz para quem chegou sem te conhecer, e mora num endereço que é seu.</p>
+          <a class="sv-btn" href="#contato">Começar projeto <span class="seta" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <dl class="sv-ficha">
+          <div><dt>Entrega</dt><dd>Site institucional · Landing page</dd></div>
+          <div><dt>Base</dt><dd>HTML e CSS nativos, ou o WordPress que existe</dd></div>
+          <div><dt>Domínio</dt><dd>Registrado no seu nome, hospedagem na sua conta</dd></div>
+          <div><dt>Conferência</dt><dd>Contraste medido · Celular · Peso de página</dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <article class="sv">
+      <div class="sv-grade envelope">
+        <div class="sv-esq">
+          <span class="sv-num">03</span>
+          <p class="sv-rot">Sistema sob medida<br>Integração</p>
+        </div>
+        <div class="sv-meio">
+          <h3>Desenvolvimento web</h3>
+          <p class="sv-txt">Quando a página não resolve sozinha: área de cliente, painel que puxa dado de onde ele já está, formulário que vai parar em algum lugar de verdade, e integração entre as ferramentas que você usa e que hoje não se falam.</p>
+          <a class="sv-btn" href="#contato">Começar projeto <span class="seta" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <dl class="sv-ficha">
+          <div><dt>Entrega</dt><dd>Área de cliente · Painel · Integração</dd></div>
+          <div><dt>Dado</dt><dd>Puxado de onde já mora, sem digitar duas vezes</dd></div>
+          <div><dt>Formulário</dt><dd>Com destino real. Sem servidor, a gente avisa</dd></div>
+          <div><dt>Entrega final</dt><dd>Código e acesso ficam com você</dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <article class="sv">
+      <div class="sv-grade envelope">
+        <div class="sv-esq">
+          <span class="sv-num">04</span>
+          <p class="sv-rot">Busca local<br>Mapa e avaliação</p>
+        </div>
+        <div class="sv-meio">
+          <h3>Google Meu Negócio</h3>
+          <p class="sv-txt">O perfil que decide se você aparece quando alguém procura o seu serviço no seu bairro. Verificação, categoria certa, foto, horário que confere, e resposta de avaliação escrita como gente escreve.</p>
+          <a class="sv-btn" href="#contato">Começar projeto <span class="seta" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <dl class="sv-ficha">
+          <div><dt>Entrega</dt><dd>Perfil verificado · Categoria · Foto · Horário</dd></div>
+          <div><dt>Alcance</dt><dd>Busca e mapa de quem procura por perto</dd></div>
+          <div><dt>Manutenção</dt><dd>Resposta de avaliação, uma a uma</dd></div>
+          <div><dt>Condição</dt><dd>Endereço verificável na cidade do perfil</dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <article class="sv">
+      <div class="sv-grade envelope">
+        <div class="sv-esq">
+          <span class="sv-num">05</span>
+          <p class="sv-rot">Captura e registro<br>Atendimento</p>
+        </div>
+        <div class="sv-meio">
+          <h3>CRM e atendimento</h3>
+          <p class="sv-txt">O lugar onde o contato para de se perder. Quem chegou, por onde entrou, o que pediu e em que pé está, num painel só, com o atendimento respondendo o básico fora do horário em vez de deixar a mensagem esfriar até segunda.</p>
+          <a class="sv-btn" href="#contato">Começar projeto <span class="seta" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <dl class="sv-ficha">
+          <div><dt>Entrega</dt><dd>Painel de contato · Atendimento fora do horário</dd></div>
+          <div><dt>Registro</dt><dd>Quem chegou · Por onde · Em que pé está</dd></div>
+          <div><dt>Limite</dt><dd>Nada clínico é respondido pela máquina</dd></div>
+          <div><dt>Base</dt><dd>Fica na sua conta, exportável quando quiser</dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <article class="sv">
+      <div class="sv-grade envelope">
+        <div class="sv-esq">
+          <span class="sv-num">06</span>
+          <p class="sv-rot">Conteúdo contínuo<br>Redes sociais</p>
+        </div>
+        <div class="sv-meio">
+          <h3>Carrossel, post e posicionamento</h3>
+          <p class="sv-txt">Conteúdo saindo em ritmo sem depender de você lembrar de postar entre dois atendimentos. Carrossel, post e texto de blog alimentando o perfil e o site ao mesmo tempo, na linguagem que o seu conselho permite.</p>
+          <a class="sv-btn" href="#contato">Começar projeto <span class="seta" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <dl class="sv-ficha">
+          <div><dt>Entrega</dt><dd>Carrossel · Post · Texto de blog</dd></div>
+          <div><dt>Ritmo</dt><dd>Calendário fechado antes do mês começar</dd></div>
+          <div><dt>Aprovação</dt><dd>Você vê tudo antes de ir ao ar</dd></div>
+          <div><dt>Limite</dt><dd>Sem promessa, sem superlativo, sem antes e depois</dd></div>
+        </dl>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= ICARUS ================= -->
+  <!-- ⚠️ INTEGRIDADE: o Icarus está em pesquisa, sem uma linha de código e sem
+       cliente instalado (README do projeto, 05/08/2026). A seção diz isso na
+       cara, e não promete resultado, prazo nem cliente. -->
+  <section class="icarus" id="icarus">
+    <div class="envelope">
+      <p class="ic-linha">Produto próprio / Agente de IA implantável</p>
+      <h2 class="ic-nome">ICARUS</h2>
+      <p class="ic-texto">Um agente de IA que a Hórus está construindo para rodar <b>dentro</b> da empresa do cliente, na máquina dela ou num servidor dela, e não numa aba de navegador de terceiro. A ideia é entregar para a máquina o processo que se repete todo dia: responder o que já tem resposta, organizar o que chega e preparar o que alguém só precisa aprovar. <b>Em desenvolvimento por Marcelo e Antonio</b>, ainda sem instalação em cliente.</p>
+    </div>
+  </section>
+
+  <!-- ================= PORTFÓLIO ================= -->
+  <!-- Corre da direita para a esquerda conforme a pessoa rola, por animação de
+       rolagem nativa do CSS (`animation-timeline: view()`). Sem listener de
+       scroll, que é regra da casa. Onde o navegador não suporta, a tira vira
+       um carrossel que se arrasta com o dedo.
+       ⚠️ PENDÊNCIA QUE TRAVA PUBLICAÇÃO: nenhum cliente autorizou uso do nome
+       nem da tela como portfólio. Enquanto isso não vier por escrito, cada
+       moldura mostra o segmento e a entrega, sem nome, sem logo e sem print. -->
+  <section class="portfolio" id="portfolio">
+    <div class="envelope">
+      <p class="rotulo rev">Portfólio</p>
+      <h2 class="rev">O que já foi ao ar.</h2>
+    </div>
+
+    <div class="pf-janela">
+      <div class="pf-tira">
+        <article class="pf-item">
+          <div class="pf-tela"><span class="pend">tela a entrar quando o cliente autorizar</span></div>
+          <h3>Site institucional, dez páginas</h3>
+          <p>Psicologia clínica, Salvador. Uma página por serviço, registro profissional de cada pessoa visível, e nenhum depoimento, que o conselho da categoria veda em qualquer formato.</p>
+        </article>
+        <article class="pf-item">
+          <div class="pf-tela"><span class="pend">tela a entrar quando o cliente autorizar</span></div>
+          <h3>Google Meu Negócio e site</h3>
+          <p>Torrefação artesanal, interior da Bahia. Perfil verificado no ar e um site que fala com revendedor, com a origem do produto reescrita a partir do que o cliente de fato faz.</p>
+        </article>
+        <article class="pf-item">
+          <div class="pf-tela"><span class="pend">tela a entrar quando o cliente autorizar</span></div>
+          <h3>Site institucional</h3>
+          <p>Odontologia, Salvador. Construído dentro da resolução do conselho: sem antes e depois, sem promessa de resultado, com registro e responsável técnico visíveis em toda página.</p>
+        </article>
+        <article class="pf-item">
+          <div class="pf-tela"><span class="pend">tela a entrar quando o cliente autorizar</span></div>
+          <h3>Presença local do zero</h3>
+          <p>Estúdio de atividade física, Salvador. Negócio sem site e sem perfil ativo. O primeiro bloco foi aparecer na busca de quem procura aquele serviço no próprio bairro.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CHAMADA FINAL ================= -->
+  <!-- Alinhada à esquerda e em escala de cartaz, no formato das referências que
+       o Marcelo mandou. A pergunta é a da Máquina: quem lê já passou pelo
+       trilho e sabe que os blocos existem em ordem. -->
+  <section class="chamada" id="contato">
+    <div class="envelope">
+      <p class="rotulo rev">Inicie uma conversa</p>
+      <h2 class="rev">Qual bloco do seu negócio <span class="azul">ainda não existe</span>?</h2>
+      <p class="abertura rev">Chame no WhatsApp e diga em duas linhas o que o seu negócio faz. A gente devolve por escrito o que dá para construir, em que ordem e por quê. Não precisa preparar nada, e a primeira conversa não custa.</p>
+      <div class="hero-acao rev">
+        <a class="metal" href="#contato">
+          <canvas class="metal-tela" aria-hidden="true"></canvas>
+          <span class="metal-face" aria-hidden="true"></span>
+          <span class="metal-txt">Começar projeto <span class="seta" aria-hidden="true">&#8599;</span></span>
+        </a>
+      </div>
+
+      <!-- Não existe formulário nesta página, de propósito. Formulário sem
+           servidor engole a mensagem e quem escreveu acha que foi ignorado.
+           Ver _memoria/design/50-copy-de-interface.md. -->
+      <ul class="canais rev">
+        <li><span class="canal-nome">WhatsApp</span><span class="canal-valor pend">a preencher</span></li>
+        <li><span class="canal-nome">E-mail</span><span class="canal-valor pend">a preencher</span></li>
+        <li><span class="canal-nome">Instagram</span><span class="canal-valor pend">@horuspublicidade, a confirmar</span></li>
+        <li><span class="canal-nome">Atendimento</span><span class="canal-valor">Salvador e interior da Bahia, presencial e a distância</span></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<!-- Rodapé em colunas, no formato do print da Menzzo: marca e dado legal à
+     esquerda, depois navegação, serviços e contato.
+     A quarta coluna do print ("Ferramentas") não existe aqui: a Hórus não tem
+     ferramenta pública para listar, e coluna inventada é pior que coluna a
+     menos. -->
+<footer class="rodape">
+  <div class="envelope rodape-grade">
+    <div class="rd-marca">
+      <a class="marca" href="#topo">
+        <img src="assets/simbolo.webp" width="34" height="28" alt="Hórus Agência">
+        <span class="nome">HÓRUS</span>
+      </a>
+      <p class="rd-assinatura">Visão que conecta.</p>
+      <p class="rd-legal">&copy; Hórus Agência | 2026</p>
+      <p class="rd-legal">CNPJ: <span class="pend">a preencher</span><br>E-mail: <span class="pend">a preencher</span></p>
+    </div>
+
+    <nav class="rd-col" aria-label="Rodapé, navegação">
+      <h2>Navegação</h2>
+      <a href="#sobre">A Hórus</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#icarus">Icarus</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#contato">Contato</a>
+    </nav>
+
+    <nav class="rd-col" aria-label="Rodapé, serviços">
+      <h2>Serviços</h2>
+      <a href="#servicos">IA e automação</a>
+      <a href="#servicos">Sites e WordPress</a>
+      <a href="#servicos">Desenvolvimento web</a>
+      <a href="#servicos">Google Meu Negócio</a>
+      <a href="#servicos">CRM e atendimento</a>
+      <a href="#servicos">Carrossel e post</a>
+    </nav>
+
+    <div class="rd-col">
+      <h2>Conecte-se</h2>
+      <p class="pend">e-mail a preencher</p>
+      <p class="pend">WhatsApp a preencher</p>
+      <p class="pend">@horuspublicidade, a confirmar</p>
+      <p class="rd-onde">Salvador e interior da Bahia,<br>presencial e a distância</p>
+    </div>
+  </div>
+</footer>
+
+<!-- O nome em hex dump, com uma onda atravessando. Os bytes que caem dentro da
+     letra acendem; os de fora ficam no ruído. Feito em canvas, com a máscara da
+     palavra amostrada de um canvas fora da tela: assim a letra sai da fonte de
+     verdade e não de um mapa de bits escrito na mão. -->
+<div class="hexdump" role="img" aria-label="Hórus">
+  <canvas id="hex"></canvas>
+</div>
+
+<script>
+(function () {
+  var reduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Menu do celular. A navegação some abaixo de 860px e precisa de substituto:
+     display:none sem nada no lugar é antipadrão registrado da casa. */
+  var botao = document.getElementById('abre-menu');
+  var menu = document.getElementById('menu');
+  botao.addEventListener('click', function () {
+    var aberto = menu.classList.toggle('aberto');
+    botao.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+    botao.textContent = aberto ? 'Fechar' : 'Menu';
+  });
+  menu.addEventListener('click', function (e) {
+    if (e.target.closest('a')) {
+      menu.classList.remove('aberto');
+      botao.setAttribute('aria-expanded', 'false');
+      botao.textContent = 'Menu';
+    }
+  });
+
+  /* A última palavra do título troca LETRA POR LETRA: a posição vai fechando
+     da esquerda para a direita, e o que ainda não fechou embaralha. É o efeito
+     de decodificação, e é o que o Marcelo pediu no lugar do deslize.
+     A largura da caixa é segurada por um fantasma invisível com a palavra mais
+     longa, senão o título reflui a cada troca.
+     Em movimento reduzido nada troca: fica a primeira palavra, e a frase
+     continua verdadeira sozinha. */
+  var EMBARALHA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  document.querySelectorAll('[data-gira]').forEach(function (caixa) {
+    var palavras = (caixa.getAttribute('data-palavras') || '').split(',');
+    var texto = caixa.querySelector('.gira-txt');
+    var fantasma = caixa.querySelector('.gira-fantasma');
+    if (palavras.length < 2 || !texto || reduzido) return;
+
+    /* O fantasma recebe tantos "M" quanto a palavra mais longa tem letras. A
+       palavra mais longa em NÚMERO DE LETRAS nem sempre é a mais larga em
+       pixels, e durante o embaralho aparecem letras que não estão em nenhuma
+       das palavras: com o "M", que é a mais larga da fonte, a caixa nunca
+       cresce e o título centralizado não balança. */
+    if (fantasma) {
+      var maior = palavras.reduce(function (a, b) { return Math.max(a, b.length); }, 0);
+      fantasma.textContent = new Array(maior + 1).join('M');
+    }
+
+    var i = 0, relogio = null;
+    function trocar(destino) {
+      var passo = 0;
+      clearInterval(relogio);
+      relogio = setInterval(function () {
+        passo++;
+        var saida = '';
+        for (var k = 0; k < destino.length; k++) {
+          saida += k < passo ? destino[k] : EMBARALHA[(Math.random() * 26) | 0];
+        }
+        texto.textContent = saida;
+        if (passo >= destino.length) { clearInterval(relogio); texto.textContent = destino; }
+      }, 58);
+    }
+
+    setInterval(function () {
+      i = (i + 1) % palavras.length;
+      trocar(palavras[i]);
+    }, 2800);
+  });
+
+  /* O título da seção 1 cai palavra por palavra quando a seção entra, junto
+     com as formas do fundo. Cada palavra vira um <span> com atraso em cascata;
+     o `overflow:hidden` do invólucro é o que faz a palavra "cair" de dentro da
+     linha em vez de aparecer no meio do nada. */
+  document.querySelectorAll('[data-cai]').forEach(function (alvo) {
+    var palavras = alvo.textContent.trim().split(/\s+/);
+    alvo.textContent = '';
+    palavras.forEach(function (p, i) {
+      var fora = document.createElement('span');
+      fora.className = 'cai';
+      var dentro = document.createElement('span');
+      dentro.textContent = p;
+      dentro.style.transitionDelay = Math.min(i, 14) * 55 + 'ms';
+      fora.appendChild(dentro);
+      alvo.appendChild(fora);
+      alvo.appendChild(document.createTextNode(' '));
+    });
+    if (reduzido || !('IntersectionObserver' in window)) { alvo.classList.add('caiu'); return; }
+    var olhoCai = new IntersectionObserver(function (e) {
+      if (e[0].isIntersecting) { alvo.classList.add('caiu'); olhoCai.disconnect(); }
+    }, { threshold: 0.2 });
+    olhoCai.observe(alvo);
+  });
+
+  /* ---- O nome no pé, em hex dump com onda ----------------------------
+     Uma grade de bytes em hexadecimal. Os que caem DENTRO do desenho da
+     palavra acendem; os de fora ficam no ruído de fundo. Uma onda senoidal
+     atravessa da esquerda para a direita mexendo no brilho e trocando o valor
+     dos bytes que ela toca, então o dump "respira" como terminal vivo.
+
+     A máscara da palavra é amostrada de um canvas fora da tela: a letra sai da
+     fonte de verdade, não de um mapa de bits escrito na mão, e continua certa
+     em qualquer largura. */
+  (function () {
+    var tela = document.getElementById('hex');
+    if (!tela || !tela.getContext) return;
+    var ct = tela.getContext('2d');
+
+    /* Grade densa de propósito. Com célula larga a palavra sai com traço de
+       duas células e o olho não fecha a letra: quem define a espessura do traço
+       é o corpo da fonte, e o corpo é limitado pelo NÚMERO DE LINHAS. Mais
+       linhas, letra mais gorda. */
+    var CEL_L = 15, CEL_A = 11, LINHAS = 23;
+    var cols = 0, mascara = [], t = 0, rodando = false, visivel = true;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    function medir() {
+      var larguraCSS = tela.parentNode.clientWidth;
+      cols = Math.max(8, Math.floor(larguraCSS / CEL_L));
+      tela.width = Math.round(cols * CEL_L * dpr);
+      tela.height = Math.round(LINHAS * CEL_A * dpr);
+      tela.style.height = (LINHAS * CEL_A) + 'px';
+      ct.setTransform(dpr, 0, 0, dpr, 0, 0);
+      calcularMascara();
+    }
+
+    /* Desenha HÓRUS num canvas do tamanho da GRADE (uma célula = um pixel) e
+       lê o alfa de cada pixel. Cada pixel vira uma célula acesa. */
+    function calcularMascara() {
+      var m = document.createElement('canvas');
+      m.width = cols; m.height = LINHAS;
+      var mc = m.getContext('2d');
+      mc.fillStyle = '#000';
+      mc.textBaseline = 'alphabetic';
+      mc.textAlign = 'center';
+      var corpo = 10;
+      mc.font = '700 ' + corpo + 'px Sora, system-ui, sans-serif';
+      var w = mc.measureText('HÓRUS').width || 1;
+      corpo = Math.max(4, Math.floor(corpo * (cols - 4) / w));
+      /* Trava pela altura também, e a conta reserva DUAS linhas em cima: a
+         altura de maiúscula é ~0.72 do corpo, e o acento do Ó vive acima
+         disso. Com uma linha só de folga ele saía cortado. */
+      corpo = Math.min(corpo, Math.floor((LINHAS - 4) / 0.72));
+      mc.font = '700 ' + corpo + 'px Sora, system-ui, sans-serif';
+      mc.fillText('HÓRUS', cols / 2, LINHAS - 2);
+
+      var dados = mc.getImageData(0, 0, cols, LINHAS).data;
+      mascara = [];
+      for (var i = 0; i < cols * LINHAS; i++) mascara.push(dados[i * 4 + 3] > 90);
+    }
+
+    var HEX = '0123456789ABCDEF';
+    function byte(semente) {
+      var n = (Math.sin(semente * 12.9898) * 43758.5453) % 1;
+      n = Math.abs(n);
+      return HEX[(n * 16) | 0] + HEX[((n * 256) | 0) % 16];
+    }
+
+    function pintar() {
+      ct.clearRect(0, 0, tela.width, tela.height);
+      ct.font = '600 10px ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace';
+      ct.textBaseline = 'middle';
+      for (var y = 0; y < LINHAS; y++) {
+        for (var x = 0; x < cols; x++) {
+          var dentro = mascara[y * cols + x];
+          /* A onda: uma faixa senoidal que anda no eixo x e ondula no y. */
+          var onda = Math.sin((x * 0.26) - t * 1.7 + Math.sin(y * 0.5) * 0.9);
+          var pico = Math.max(0, onda);
+          /* A palavra tem que ser legível no vale da onda também, então o
+             piso de dentro é alto e o teto de fora é baixo. Com 0.42 contra
+             0.17 a letra sumia no ruído: a onda modulava tanto o dentro
+             quanto o fora, e os dois se encontravam no meio. */
+          var alfa = dentro ? 0.72 + pico * 0.28 : 0.030 + pico * 0.055;
+          ct.fillStyle = dentro
+            ? 'rgba(229,231,235,' + alfa.toFixed(3) + ')'
+            : 'rgba(96,165,250,' + alfa.toFixed(3) + ')';
+          /* Só os bytes que a onda está tocando trocam de valor. O resto fica
+             parado, senão a grade inteira pisca e vira chuvisco. */
+          var semente = pico > 0.55 ? (x * 7 + y * 31 + Math.floor(t * 5)) : (x * 7 + y * 31);
+          ct.fillText(byte(semente), x * CEL_L + 2, y * CEL_A + CEL_A / 2);
+        }
+      }
+    }
+
+    function quadro() {
+      if (!rodando) return;
+      t += 0.03;
+      pintar();
+      requestAnimationFrame(quadro);
+    }
+    function ligar() { if (!rodando && !reduzido && visivel) { rodando = true; requestAnimationFrame(quadro); } }
+    function desligar() { rodando = false; }
+
+    medir(); pintar();
+    /* A Sora chega depois do primeiro quadro; sem recalcular, a máscara fica
+       com o desenho da fonte do sistema. */
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { calcularMascara(); pintar(); });
+    }
+    window.addEventListener('resize', function () { medir(); pintar(); });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) {
+        visivel = e[0].isIntersecting;
+        visivel ? ligar() : desligar();
+      }).observe(tela);
+    } else { ligar(); }
+    document.addEventListener('visibilitychange', function () {
+      document.hidden ? desligar() : ligar();
+    });
+  })();
+
+  /* ---- Portfólio: a tira anda com a rolagem, nos dois sentidos ----------
+     Onde existe `animation-timeline: view()` quem faz isso é o CSS, e de graça.
+     Onde não existe (hoje Safari e Firefox), este laço faz o mesmo: lê a
+     posição da seção a cada quadro e converte em deslocamento. Não é listener
+     de scroll, que é o que a casa proíbe, e só roda com a seção na tela. */
+  (function () {
+    var janela = document.querySelector('.pf-janela');
+    var tira = document.querySelector('.pf-tira');
+    if (!janela || !tira) return;
+    if (reduzido) return;
+    if (window.CSS && CSS.supports && CSS.supports('animation-timeline: view()')) return;
+
+    janela.classList.add('pf-manual');
+    var rodando = false;
+
+    function quadro() {
+      if (!rodando) return;
+      var r = janela.getBoundingClientRect();
+      /* 0 quando a tira acaba de entrar por baixo, 1 quando acaba de sair
+         por cima. Sobra é o quanto a tira é mais larga que a janela. */
+      var progresso = (window.innerHeight - r.top) / (window.innerHeight + r.height);
+      progresso = Math.min(1, Math.max(0, progresso));
+      var sobra = Math.max(0, tira.scrollWidth - janela.clientWidth);
+      tira.style.transform = 'translateX(' + (-progresso * sobra).toFixed(1) + 'px)';
+      requestAnimationFrame(quadro);
+    }
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) {
+        rodando = e[0].isIntersecting;
+        if (rodando) requestAnimationFrame(quadro);
+      }, { rootMargin: '120px 0px' }).observe(janela);
+    } else { rodando = true; requestAnimationFrame(quadro); }
+  })();
+
+  /* ---- Botão de metal líquido ----------------------------------------
+     Porte para WebGL nativo do componente que o Marcelo mandou (React +
+     @paper-design/shaders). Este site é HTML e CSS nativos por decisão
+     registrada em PLANO.md, e o efeito é um shader de vinte linhas: não
+     compensa arrastar React, Tailwind e um passo de build para dentro dele.
+     O que se vê é um aro de 2px de metal correndo em volta de uma pílula de
+     vidro escuro. Sem WebGL, o aro vira um gradiente cônico parado e o botão
+     continua um botão. */
+
+  var VERT = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+  /* Os números abaixo são os parâmetros do componente que o Marcelo mandou,
+     um a um: repetition 4, softness 0.5, shiftRed/shiftBlue 0.3, angle 45,
+     scale 8, shape 1 (lente circular), offset (0.1, -0.1), speed 0.6.
+     A primeira tentativa era um dobramento de domínio tingido de azul da
+     marca, e ficou diferente do que ele viu. Isto aqui é cromo: cinza puro,
+     faixas largas e franja de cor só na quina, que é o que o original faz. */
+  var FRAG = [
+    'precision mediump float;',
+    'uniform vec2 u_res;uniform float u_t;',
+    'const float REPET=2.6;',
+    'const float SOFT=0.72;',
+    /* Campo de altura do metal. A ondulação é ESTÁTICA e quem anda é o campo
+       inteiro, deslocado no eixo x pelo tempo: assim as faixas correm sempre
+       no mesmo sentido, em vez de balançar para os dois lados. A versão
+       anterior somava tempo em dois eixos e o movimento lia como aleatório. */
+    'float campo(vec2 p){',
+    '  return p.x+0.30*sin(p.y*1.6+p.x*0.35);',
+    '}',
+    /* Dobra o campo em faixas. O triangular (`abs(v*2-1)`) evita a costura
+       dura que o `fract` sozinho deixa entre uma faixa e a próxima. */
+    'float faixa(vec2 uv,float desloc){',
+    '  float c=0.7071;',                    /* ângulo 45 */
+    '  vec2 p=vec2(uv.x*c-uv.y*c,uv.x*c+uv.y*c);',
+    '  float v=fract(campo(p+vec2(desloc-u_t,0.0))*REPET);',
+    '  v=abs(v*2.0-1.0);',
+    '  return smoothstep(0.5-SOFT*0.5,0.5+SOFT*0.5,v);',
+    '}',
+    'void main(){',
+    '  vec2 uv=(gl_FragCoord.xy-0.5*u_res)/min(u_res.x,u_res.y);',
+    '  uv=uv*0.86+vec2(0.1,-0.1);',
+    /* Deslocamento de canal: vermelho e azul leem o campo de pontos
+       diferentes, e a quina ganha a franja do metal polido.
+       ⚠️ Aqui é fácil errar para mais, e já errei duas vezes. A 0.030 o aro
+       virava arco-íris; a 0.007 ainda pintava demais. A 0.0035 sobra só o
+       reflexo, que é o que o componente original mostra. */
+    '  float r=faixa(uv, 0.0035);',
+    '  float g=faixa(uv, 0.0);',
+    '  float b=faixa(uv,-0.0035);',
+    /* Rampa curta: o metal vive entre cinza-escuro e prata, nunca entre preto
+       e branco. Faixa de contraste larga é o que fazia o aro gritar. */
+    '  gl_FragColor=vec4(mix(0.085,0.760,r),mix(0.085,0.760,g),mix(0.088,0.775,b),1.0);',
+    '}'
+  ].join('\n');
+
+  function compilar(gl, tipo, fonte) {
+    var s = gl.createShader(tipo);
+    gl.shaderSource(s, fonte); gl.compileShader(s);
+    return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null;
+  }
+
+  function metalizar(botao) {
+    var tela = botao.querySelector('.metal-tela');
+    if (!tela) return;
+
+    var gl = null;
+    try {
+      gl = tela.getContext('webgl', { alpha: false, antialias: false, depth: false, stencil: false })
+        || tela.getContext('experimental-webgl');
+    } catch (e) { gl = null; }
+
+    /* Sem WebGL o botão não fica quebrado, fica parado. */
+    if (!gl) { botao.classList.add('metal-parado'); return; }
+
+    var vs = compilar(gl, gl.VERTEX_SHADER, VERT);
+    var fs = compilar(gl, gl.FRAGMENT_SHADER, FRAG);
+    if (!vs || !fs) { botao.classList.add('metal-parado'); return; }
+
+    var prog = gl.createProgram();
+    gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { botao.classList.add('metal-parado'); return; }
+    gl.useProgram(prog);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+    var loc = gl.getAttribLocation(prog, 'p');
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+    var uRes = gl.getUniformLocation(prog, 'u_res');
+    var uT = gl.getUniformLocation(prog, 'u_t');
+    var t = 1.4, vel = 0.22, visivel = true, ultimo = 0, rodando = false;
+
+    function medir() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var l = Math.max(1, Math.round(botao.offsetWidth * dpr));
+      var a = Math.max(1, Math.round(botao.offsetHeight * dpr));
+      if (tela.width !== l || tela.height !== a) {
+        tela.width = l; tela.height = a;
+        gl.viewport(0, 0, l, a);
+      }
+      gl.uniform2f(uRes, tela.width, tela.height);
+    }
+
+    function pintar() {
+      gl.uniform1f(uT, t);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    }
+
+    function quadro(agora) {
+      if (!rodando) return;
+      var dt = ultimo ? Math.min((agora - ultimo) / 1000, 0.05) : 0;
+      ultimo = agora;
+      t += dt * vel;
+      pintar();
+      requestAnimationFrame(quadro);
+    }
+
+    function ligar() {
+      if (rodando || reduzido || !visivel) return;
+      rodando = true; ultimo = 0;
+      requestAnimationFrame(quadro);
+    }
+    function desligar() { rodando = false; }
+
+    medir(); pintar();
+    window.addEventListener('resize', function () { medir(); pintar(); });
+
+    /* Botão fora da tela não gasta bateria de ninguém. */
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) {
+        visivel = e[0].isIntersecting;
+        visivel ? ligar() : desligar();
+      }).observe(botao);
+    } else { ligar(); }
+    document.addEventListener('visibilitychange', function () {
+      document.hidden ? desligar() : ligar();
+    });
+
+    if (reduzido) return;   /* fica no quadro parado, sem laço */
+    ligar();
+
+    /* O metal acelera no mouse e dá um empurrão no clique. Os três valores
+       caíram para um terço em 05/08/2026: o Marcelo achou o movimento rápido
+       demais, e num aro de 2px velocidade alta lê como cintilação. */
+    botao.addEventListener('mouseenter', function () { vel = 0.45; });
+    botao.addEventListener('mouseleave', function () { vel = 0.22; });
+    botao.addEventListener('click', function () {
+      vel = 0.9;
+      setTimeout(function () { vel = botao.matches(':hover') ? 0.45 : 0.22; }, 320);
+    });
+  }
+
+  document.querySelectorAll('.metal').forEach(metalizar);
+
+  /* ---- Fundo animado do hero ------------------------------------------
+     Campo de ondas em domínio dobrado, nas três cores da marca sobre o preto
+     medido no arquivo dela. Duas condições que ele cumpre e que separam isto
+     do `dark-glow` proibido: existe um objeto renderizando (não é gradiente
+     radial jogado atrás do título), e a intensidade é baixa o bastante para o
+     título manter 14:1 no ponto mais claro da cena.
+     Renderiza a 60% da resolução e o CSS estica: a cena é toda suave, a perda
+     não aparece, e o custo por quadro cai à metade. */
+  (function () {
+    var tela = document.querySelector('.hero-fundo');
+    if (!tela) return;
+
+    var FUNDO = [
+      'precision mediump float;',
+      'uniform vec2 u_res;uniform float u_t;',
+      'float onda(vec2 p){',
+      '  float v=0.0,a=0.55;',
+      '  for(int i=0;i<4;i++){',
+      '    v+=a*sin(p.x+sin(p.y*1.25+u_t*0.14)*1.5);',
+      '    p=vec2(p.y,p.x)*1.72+vec2(1.3,-0.7);',
+      '    a*=0.55;',
+      '  }',
+      '  return v;',
+      '}',
+      'void main(){',
+      '  vec2 c=gl_FragCoord.xy-0.5*u_res;',
+      '  vec2 uv=c/max(u_res.x,u_res.y)*2.6;',
+      '  float v=0.5+0.5*onda(uv+vec2(u_t*0.07,0.0));',
+      '  vec3 col=vec3(0.039,0.043,0.059);',                     /* #0A0B0F */
+      '  col=mix(col,vec3(0.145,0.388,0.920),smoothstep(0.42,0.96,v)*0.17);', /* #2563EB */
+      '  col=mix(col,vec3(0.376,0.647,0.980),smoothstep(0.78,1.00,v)*0.09);', /* #60A5FA */
+      /* O dourado é a cor mais rara da marca: entra num fiapo, no pico. */
+      '  col=mix(col,vec3(0.957,0.769,0.188),smoothstep(0.95,1.00,v)*0.05);',
+      /* Escurece o miolo, que é onde mora o texto. */
+      '  float r=length(c/u_res);',
+      '  col*=0.72+smoothstep(0.10,0.55,r)*0.28;',
+      /* Grão: sem ele, gradiente escuro em tela grande faz degrau visível. */
+      '  col+=(fract(sin(dot(gl_FragCoord.xy,vec2(12.9898,78.233)))*43758.5453)-0.5)*0.014;',
+      '  gl_FragColor=vec4(col,1.0);',
+      '}'
+    ].join('\n');
+
+    var gl = null;
+    try { gl = tela.getContext('webgl', { alpha: false, antialias: false, depth: false }); } catch (e) { gl = null; }
+    if (!gl) return;
+
+    var vs = compilar(gl, gl.VERTEX_SHADER, VERT);
+    var fs = compilar(gl, gl.FRAGMENT_SHADER, FUNDO);
+    if (!vs || !fs) return;
+    var prog = gl.createProgram();
+    gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+    gl.useProgram(prog);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+    var loc = gl.getAttribLocation(prog, 'p');
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+    var uRes = gl.getUniformLocation(prog, 'u_res');
+    var uT = gl.getUniformLocation(prog, 'u_t');
+    var t = 0, ultimo = 0, rodando = false, visivel = true;
+
+    function medir() {
+      var pai = tela.parentNode;
+      var l = Math.max(1, Math.round(pai.clientWidth * 0.6));
+      var a = Math.max(1, Math.round(pai.clientHeight * 0.6));
+      if (tela.width !== l || tela.height !== a) {
+        tela.width = l; tela.height = a;
+        gl.viewport(0, 0, l, a);
+      }
+      gl.uniform2f(uRes, tela.width, tela.height);
+    }
+    function pintar() { gl.uniform1f(uT, t); gl.drawArrays(gl.TRIANGLES, 0, 3); }
+    function quadro(agora) {
+      if (!rodando) return;
+      var dt = ultimo ? Math.min((agora - ultimo) / 1000, 0.05) : 0;
+      ultimo = agora; t += dt;
+      pintar();
+      requestAnimationFrame(quadro);
+    }
+    function ligar() { if (!rodando && !reduzido && visivel) { rodando = true; ultimo = 0; requestAnimationFrame(quadro); } }
+    function desligar() { rodando = false; }
+
+    medir(); pintar();
+    window.addEventListener('resize', function () { medir(); pintar(); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) {
+        visivel = e[0].isIntersecting;
+        visivel ? ligar() : desligar();
+      }).observe(tela);
+    } else { ligar(); }
+    document.addEventListener('visibilitychange', function () { document.hidden ? desligar() : ligar(); });
+    ligar();
+  })();
+
+  /* A onda do clique. Nasce onde o dedo tocou e morre em 600ms. */
+  document.querySelectorAll('.metal').forEach(function (botao) {
+    botao.addEventListener('click', function (ev) {
+      if (reduzido) return;
+      var caixa = botao.getBoundingClientRect();
+      var onda = document.createElement('span');
+      onda.className = 'metal-onda';
+      onda.style.left = (ev.clientX - caixa.left) + 'px';
+      onda.style.top = (ev.clientY - caixa.top) + 'px';
+      botao.appendChild(onda);
+      setTimeout(function () { onda.remove(); }, 620);
+    });
+  });
+
+  /* Cabeçalho ganha fio e opacidade ao sair do topo. IntersectionObserver
+     numa sentinela, nunca listener de scroll. */
+  var topo = document.getElementById('topo');
+  var sentinela = document.createElement('div');
+  sentinela.style.cssText = 'height:1px';
+  document.body.prepend(sentinela);
+  new IntersectionObserver(function (e) {
+    topo.classList.toggle('rolado', !e[0].isIntersecting);
+  }).observe(sentinela);
+
+  if (reduzido || !('IntersectionObserver' in window)) {
+    document.querySelectorAll('.rev').forEach(function (el) { el.classList.add('visivel'); });
+    document.querySelectorAll('.estagio').forEach(function (el) { el.classList.add('aceso'); });
+    return;
+  }
+
+  /* O hero entra na carga, não na rolagem. A faixa de credenciais fica
+     exatamente na borda inferior da dobra, e com `rootMargin` negativo ela
+     nunca cruzava o limiar do observador: ficava invisível até alguém rolar,
+     e no print saía um vazio no fim do hero. Nada acima da dobra pode depender
+     de rolagem para aparecer. */
+  document.querySelectorAll('.hero .rev').forEach(function (el, i) {
+    el.style.transitionDelay = i * 90 + 'ms';
+    requestAnimationFrame(function () { el.classList.add('visivel'); });
+  });
+
+  /* Revelação na rolagem, em cascata dentro de cada seção.
+     Motivo: hierarquia. O conteúdo entra na ordem em que se lê. */
+  var olho = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var irmaos = Array.prototype.slice.call(e.target.parentNode.children).filter(function (n) {
+        return n.classList && n.classList.contains('rev');
+      });
+      e.target.style.transitionDelay = Math.min(irmaos.indexOf(e.target), 5) * 70 + 'ms';
+      e.target.classList.add('visivel');
+      olho.unobserve(e.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+  document.querySelectorAll('.rev:not(.visivel)').forEach(function (el) { olho.observe(el); });
+
+  /* O trilho da Máquina acende na ordem. A animação comunica a ordem,
+     que é o argumento comercial da seção. */
+  var trilho = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('aceso'); trilho.unobserve(e.target); }
+    });
+  }, { threshold: 0.45 });
+  document.querySelectorAll('.estagio').forEach(function (el) { trilho.observe(el); });
+})();
+</script>
+
+</body>
+</html>

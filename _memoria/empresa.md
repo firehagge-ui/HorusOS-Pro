@@ -23,8 +23,11 @@ Entrega por prioridade, um bloco por vez — nunca "product-dump":
 
 Também: SEO local, propostas comerciais, relatórios.
 
-**Ferramentas:** Firecrawl (pesquisa/scrape web) e Higgsfield (geração de imagens,
-modelo nano_banana_pro), via MCP + CLI. Detalhe operacional no `CLAUDE.md` da raiz.
+**Ferramentas:** Firecrawl (pesquisa/scrape web) via MCP, e **API da OpenAI** para
+geração de imagem, direto, sem MCP. Detalhe operacional no `CLAUDE.md` da raiz.
+⚠️ O **Higgsfield saiu em 05/08/2026** (assinatura cancelada, poucos créditos por
+mês) e foi removido do `.mcp.json`. A API da OpenAI é cobrança por uso, com chave
+própria em platform.openai.com, separada de qualquer assinatura do ChatGPT.
 Para imagem, o `ffmpeg` local converte tudo para WebP no tamanho de exibição antes
 de entrar em qualquer HTML: imagem gerada por IA sai em 2k e pesa megabytes.
 
@@ -37,6 +40,19 @@ site que funciona, antipadrões, onde estudar, checklist) e o acervo de estudo e
 A regra de leitura obrigatória antes de qualquer HTML está no `CLAUDE.md` da raiz.
 Existe porque o Claude não guarda nada entre conversas: correção que morre no chat
 volta como erro no próximo site.
+
+## Sistema de conteúdo (desde 03/08/2026)
+
+O que a agência sabe sobre **carrossel, post e story** vive em
+**`_memoria/conteudo/`**: os sete formatos narrativos, os pisos de legibilidade
+(corpo com piso de 34px, nada de leitura abaixo de 24px), os antipadrões de peça
+social e o checklist de entrega. Leitura obrigatória antes de qualquer copy de peça
+social, igual ao `design/` antes de HTML.
+
+O conteúdo foi extraído do **opensquad** em 03/08/2026 e o framework **não** foi
+adotado. O motivo, mais duas decisões que continuam abertas para o Marcelo (contador
+de slide e travar identidade de carrossel por cliente), estão em
+`_memoria/conteudo/91-o-que-veio-do-opensquad.md`.
 
 ## Sistema de decisão (desde 26/07/2026)
 
@@ -92,16 +108,51 @@ A descrição de cada função da operação está em `equipe/`, com tipo de exe
   artesanal, **B2B** (revenda para padaria, mercado, cafeteria, escritório).
   Distrito Serrana, Brejões/BA. MEI ativo desde 20/03/2026 — o negócio tem 4
   meses. Contexto completo em `clientes/grao-da-serra/` (briefing + marca).
-  Status em 30/07/2026: **Google Meu Negócio em montagem** (perfil de área de
-  atendimento, endereço oculto), e **site institucional de graça**, entregue como
-  peça de portfólio da agência. CRM foi pedido por ele e é trabalho pago, com
-  escopo próprio.
+  Status em 03/08/2026: **Google Meu Negócio no ar e verificado**; **site
+  institucional escrito**, em versão clara, com detector zerado (a primeira versão,
+  escura, foi rejeitada e está em `Backup 1/`). O que trava é material do cliente
+  (fotos do pacote e do dono, produtos com preço), mais o escopo e a autorização de
+  portfólio, que nunca foram fechados. CRM foi pedido por ele e é trabalho pago,
+  com escopo próprio.
   Dois pontos que atravessam o projeto: a família **não tem lavoura** (o pai
   compra o grão maduro de produtores e faz pilagem, secagem, torra e moagem), e o
   nome colide com uma marca de café de 1995 que já detém `graodaserra.com.br`.
   Setor **não regulado** por conselho, mas valem as regras de alimento (sem
   alegação de saúde).
   Origem: o sócio do Marcelo já era amigo do Nelson.
+- **Mayara Barros Soares** (cliente #5, **não pagante**) — psicologia com eixo em
+  arte e filosofia, Salvador/BA. Pasta criada em 03/08/2026 em
+  `clientes/mayara-barros/`. É a namorada do Marcelo, e mora em `clientes/` porque
+  funciona como conta (tem briefing, marca, compliance de conselho e entregas
+  recorrentes) e porque as skills da casa leem desse caminho.
+  Objetivo: sair de Acompanhante Terapêutica e passar a atender por conta própria,
+  online e em Salvador. Foco definido pelo Marcelo: **redes sociais**. Site e Google
+  Meu Negócio ficaram de fora por ora.
+  Status: `instagram/estrategia.md` e `instagram/stories.md` prontos, `marca.md`
+  preenchido com a direção visual **"Galeria"** (pintura clássica emoldurada + ficha
+  + leitura psicológica, modo claro), e o **post #1 "Xeque-Mate + Frankl" renderizado
+  (8 slides)**. Há também um kit em `gpt-projeto/` para carregar a identidade num GPT
+  do ChatGPT. Perfil `@universpsiquee` com 0 posts e 191 seguidores.
+  ✅ CRP **03/36219 confirmado ativo** (a bio é que está desatualizada em "estudante").
+  Falta só o **e-Psi** para o CTA de atendimento online. Setor regulado pelo **CFP**,
+  igual à Aion.
+
+## Peças e produtos da própria Hórus
+
+Não são clientes, e por isso não moram em `clientes/`:
+
+- **`site/`** — site institucional da agência, na raiz. Tem `CLAUDE.md` e `PLANO.md`
+  próprios, e a home foi refeita várias vezes entre 04 e 05/08/2026. O estudo das
+  dez referências que definiram a linguagem está em
+  `referencias/agencias-ia-dez-sites.md`
+- **`identidade/`** — marca da agência (peça institucional). Não confundir com
+  `clientes/<nome>/marca.md`, que é a marca do cliente e vence em peça de cliente
+- **Icarus** — agente de IA implantável, produto da Hórus, iniciado em 01/08/2026.
+  Mora **fora deste repositório**, em `E:\Users\hagge\Downloads\Icarus`, por decisão
+  de segurança: o agente roda shell e se conecta a WhatsApp de terceiros.
+  Estado em 05/08/2026: **pesquisa concluída, nada construído**, sem cliente.
+  Em desenvolvimento pelo Marcelo e pelo Antonio. Não entra na fila de prioridade da
+  agência por conta própria
 
 ## Regras do sistema
 

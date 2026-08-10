@@ -5,8 +5,11 @@
 
 ## Fase da agência
 
-Início de operação da Horus, com **quatro clientes em paralelo** (um formal, três
-por oportunidade). O modelo "A Máquina" nasceu pra ser provado no caso #1, mas
+Início de operação da Horus, com **cinco pastas em `clientes/`**: quatro contas
+(uma formal, três por oportunidade) e uma **não pagante**, a Mayara Barros
+(cliente #5, aberta em 03/08/2026), que ocupa a pasta por usar o mesmo processo.
+Para efeito de fila de prioridade e de contagem comercial, **as contas continuam
+sendo quatro**. O modelo "A Máquina" nasceu pra ser provado no caso #1, mas
 quem avançou de verdade foi a Aion (cliente #3), e em 26/07/2026 o Marcelo
 oficializou a Aion como prioridade. Consequência prática: **a demo de venda da
 agência passa a ser o site da Aion, não o do Dr. Giovanni.**
@@ -147,6 +150,19 @@ Três coisas atravessam esse projeto:
 - Setor regulado pelo **CFP** (Res. 011/2018), mais restritivo que odonto num
   ponto: **depoimento de paciente é vedado**, mesmo autorizado
 
+## Cliente #5 (não pagante, fora da fila de prioridade)
+
+**Mayara Barros Soares:** psicologia com eixo em arte e filosofia, Salvador/BA.
+Pasta aberta em 03/08/2026. Não é conta comercial e não disputa prioridade com os
+quatro clientes acima; entra quando sobra espaço.
+
+Foco definido pelo Marcelo: **Instagram**. Site e Google Meu Negócio ficaram de fora.
+Estratégia, roteiro de stories, `marca.md` (direção "Galeria") e o **post #1
+"Xeque-Mate + Frankl" (8 slides) já prontos**. CRP **03/36219 confirmado ativo** (a
+bio é que está velha), então nada trava conteúdo; falta só o **e-Psi** para o CTA de
+atendimento online. Setor regulado pelo **CFP**, mesma régua da Aion.
+Próximo passo natural: post #2 (Camus/Sísifo), fechando a série.
+
 ## Cliente #4 (paralelo, fora da fila de prioridade acima)
 
 **Nelson — Café Grão da Serra:** café 100% arábica, artesanal, **B2B**, do Distrito
@@ -154,10 +170,22 @@ Serrana, Brejões/BA. Chegou por relação (o sócio do Marcelo já era amigo de
 o site foi oferecido **de graça, por portfólio**, depois de a faixa de R$ 2.000 a
 2.500 ter sido ancorada. Não é prospecção formal.
 
-Foco atual: **Google Meu Negócio** (material em
-`clientes/grao-da-serra/google-meu-negocio/`), depois o **site institucional**.
-O **CRM** foi pedido por ele e é trabalho pago, com escopo próprio — não deixar
-virar extensão do grátis.
+**Estado em 03/08/2026:**
+
+- ✅ **Google Meu Negócio no ar e verificado** (31/07). A verificação passou na hora,
+  sem vídeo, porque usamos o endereço do MEI. Lição que vale para todo cliente com
+  CNPJ: usar o endereço do registro poupa dias de verificação
+- ✅ **Site institucional escrito**, em versão **clara** (`site/index.html`).
+  Detector zerado, 705 KB. É a segunda tentativa: a primeira, escura, foi rejeitada
+  pelo Marcelo ("pedi natureza, não vi verde, tá genérico") e ficou em `Backup 1/`
+- ⏳ **O CRM** foi pedido por ele e é trabalho pago, com escopo próprio. Não começar
+  antes do site entregue, e não deixar virar extensão do grátis
+
+**O que trava o site é material do cliente**, não produção: fotos do pacote e do
+Nelson, lista de produtos com peso e preço, e a autorização para falar do pai.
+Continua em aberto o **escopo/prazo** e a **autorização de uso como portfólio**, que
+é o pagamento da Horus nesse projeto. Lista viva no topo de
+`clientes/grao-da-serra/CLAUDE.md`.
 
 Três coisas que definem o projeto:
 
@@ -204,10 +232,15 @@ decisão de risco ALTO e boa candidata a `/conselho`.
 - Novos clientes por prospecção formal. Depende de ter um case pronto, e desde
   26/07/2026 o candidato a case é a **Aion**, não mais o Dr. Giovanni (a
   Permita-se Fitness entrou à parte, por oportunidade, não conta como prospecção)
-- Voz e marca institucional da própria **Horus**. Hoje é um buraco declarado:
-  `identidade/design-guide.md` está com cor, tipografia e voz **em branco**, e
-  `_memoria/preferencias.md` diz "a definir". Preencher quando for produzir
-  conteúdo da agência, com decisão do Marcelo, sem inventar
+- ✅ **Marca institucional da Hórus fechada em 04 e 05/08/2026.** Deixou de ser
+  buraco declarado: `identidade/design-guide.md` tem paleta (com o fundo
+  `#0A0B0F` **medido** no arquivo da marca), tipografia (Sora e Archivo no site,
+  Montserrat só no logotipo), elementos, tom de voz e os arquivos de logo.
+  O site institucional da agência está em `site/`, com a home pronta.
+  ⏳ **O que continua aberto:** a assinatura verbal do manual ("Estratégia que
+  transforma") usa verbo de folheto, que a casa proíbe em copy, e a decisão entre
+  restringi-la a peça institucional ou reescrever o manual é do Marcelo.
+  Falta também o logo em vetor: o que existe é bitmap recortado do board
 - Fases 2-4 do Dr. Giovanni (CRM, conteúdo, ads), só depois do site no ar e da
   retomada do cliente
 

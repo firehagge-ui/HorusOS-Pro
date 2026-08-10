@@ -333,6 +333,11 @@ As perguntas que ele **não** respondeu continuam válidas e estão lá.
 - [ ] Criar o perfil **na conta Google dele**, com a Horus como gerente
 - [ ] Gravar o vídeo de verificação (roteiro em `google-meu-negocio/perfil.md`)
 
+> ⏱️ **Estado em 03/08/2026:** Google Meu Negócio no ar e verificado. Site em versão
+> **clara**, detector zerado, 705 KB. A versão escura foi rejeitada pelo Marcelo e
+> está em `Backup 1/`. O resumo operacional completo está no topo do `CLAUDE.md`
+> desta pasta.
+
 **Bloqueiam o site:**
 - [x] ✅ **Paleta oficial recebida** (30/07/2026), 9 cores, com contraste WCAG
       calculado em `marca.md`. Conclusão: **o site é escuro**, porque os dourados

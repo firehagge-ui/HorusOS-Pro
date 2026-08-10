@@ -4,420 +4,659 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- ⚠️ noindex enquanto for demonstração. RETIRAR no dia da publicação, e não antes. -->
+<!-- ⚠️ noindex enquanto for demonstração. RETIRAR no dia da publicação. -->
 <meta name="robots" content="noindex, nofollow">
 
-<title>Café Grão da Serra | Café artesanal 100% arábica em Brejões, Bahia</title>
-<meta name="description" content="Café 100% arábica, puro e de torra artesanal. Grão escolhido maduro e beneficiado de forma artesanal. Venda para consumo e para revenda em Brejões e Salvador.">
+<title>Café Grão da Serra | Café artesanal do interior da Bahia</title>
+<meta name="description" content="Café 100% arábica, puro, de torra artesanal. Grão escolhido maduro, seco no sol, pilado no pilão e torrado aos poucos em Brejões, na Bahia. Para tomar em casa ou para revender.">
 
-<!-- TODO: imagem de compartilhamento 1200x630. Sem ela o link no WhatsApp abre cinza. -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Café Grão da Serra | Café artesanal 100% arábica">
-<meta property="og:description" content="A gente não planta. A gente escolhe. Café puro, pilado e torrado de forma artesanal no interior da Bahia.">
+<meta property="og:title" content="Café Grão da Serra | Café artesanal do interior da Bahia">
+<meta property="og:description" content="Café puro, 100% arábica, torrado à mão em Brejões, na Bahia. Pacote de 250 g. Para tomar em casa ou revender.">
 <meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="assets/og-capa.webp">
+<meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icone-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/icone-180.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Source Sans 3 no lugar de Inter: o detector marca Inter como fonte saturada
-     ("usada em tantos sites que deixou de ser distintiva"). -->
-<link href="https://fonts.googleapis.com/css2?family=Prata&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Café Grão da Serra",
+  "description": "Café torrado 100% arábica, artesanal, beneficiado no Distrito Serrana, em Brejões, na Bahia.",
+  "telephone": "+5575991467309",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Brejões",
+    "addressRegion": "BA",
+    "addressCountry": "BR"
+  },
+  "sameAs": ["https://www.instagram.com/graodaserra__"]
+}
+</script>
 </head>
 <body>
 
 <div class="aviso-demo">
   Demonstração. O que está destacado ainda depende de informação do cliente.
 </div>
-
 <button type="button" class="alterna-btn" id="alterna" aria-pressed="false">Ver versão limpa</button>
 
-<header class="topo">
+<!-- ============================ CABEÇALHO (PT 1) ==========================
+     Verde chapado, logo à esquerda com o nome empilhado, links à direita e o
+     botão de fio no fim, igual à referência. -->
+<header class="topo" id="topo-barra">
   <div class="wrap">
-    <a class="marca" href="#topo">
-      <img src="assets/logo-topo.png" width="56" height="56" alt="Café Grão da Serra">
-      <b>Café Grão da Serra</b>
-    </a>
     <button class="menu-btn" id="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">☰</button>
-    <nav class="nav" id="nav">
-      <a href="#revenda">Para quem revende</a>
-      <a href="#processo">O processo</a>
-      <a href="#produtos">Produtos</a>
-      <a href="#duvidas">Dúvidas</a>
+
+    <a class="marca" href="#topo">
+      <img src="assets/logo-topo.png" width="78" height="78" alt="">
+      <span class="marca-txt">
+        <span class="marca-cafe">Café</span>
+        <span class="marca-nome">Grão da Serra</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Seções do site">
+      <a href="#topo" class="aqui">Início</a>
+      <a href="#cafe">Nossos Cafés</a>
+      <a href="#origem">Origem</a>
+      <a href="#fornecimento">Fornecimento</a>
       <a href="#contato">Contato</a>
     </nav>
+
+    <!-- Botão dourado "Solicitar Orçamento" do print, no lugar da pílula do
+         WhatsApp. O ângulo é B2B (revenda), e o botão abre o formulário, que
+         monta a mensagem e cai no WhatsApp do Nelson do mesmo jeito. -->
+    <a class="btn btn-ouro btn-topo" href="#pedido">Solicitar Orçamento</a>
   </div>
 </header>
 
 <main id="topo">
 
-  <!-- ============================ 1. HERO ============================ -->
+  <!-- ================================ HERO ================================
+       07/08: refeito no print novo do Marcelo. Foto nova de fundo
+       (WALLPAPER HOME → hero-wallpaper.webp): serra, pacote, saca de grãos e
+       pé de café. É larga (1812x868), então cobre a tela sem ampliar demais
+       — resolve o "muito grande" das rodadas anteriores. Sem rasgo de papel
+       (removido a pedido); o hero encosta direto na faixa verde.
+
+       🔴 A copy do print foi ajustada. O print dizia "cultivados com cuidado"
+       e "Cafés Especiais": a família NÃO planta (compra o grão) e "café
+       especial" é jargão que a marca.md proíbe sem fonte. O que ficou afirma
+       a escolha e a torra, que é o que eles de fato fazem.
+       ⚠️ "Da Serra de Brejões" é a LOCALIZAÇÃO do negócio (o MEI fica no
+       Distrito Serrana, Brejões), não uma credencial de origem do grão, que
+       segue sem confirmação. Marcado como pendência. -->
   <section class="hero">
-    <span class="rotulo-fundo">Imagem provisória</span>
+    <div class="hero-arte" aria-hidden="true">
+      <img src="assets/hero-wallpaper.webp" width="1812" height="868" alt="" fetchpriority="high">
+    </div>
+
     <div class="wrap">
-      <p class="eyebrow">Brejões, Bahia</p>
-      <h1>A gente não planta.<br>A gente escolhe.</h1>
-      <p class="sub">
-        Café 100% arábica, puro, escolhido ainda maduro e beneficiado de forma
-        artesanal, do terreiro à torra.
-      </p>
-      <div class="hero-ctas">
-        <a class="btn btn-primario" href="https://wa.me/5575991467309?text=Ol%C3%A1%21%20Quero%20revender%20o%20caf%C3%A9%20de%20voc%C3%AAs.">Quero revender</a>
-        <a class="btn btn-secundario" href="https://wa.me/5575991467309?text=Ol%C3%A1%21%20Quero%20comprar%20caf%C3%A9.">Comprar para mim</a>
-      </div>
-      <div class="selos">
-        <ul>
-          <li><b>100% arábica</b> grãos selecionados</li>
-        </ul>
-        <ul>
-          <li><b>Torra artesanal</b> em pequena quantidade</li>
-        </ul>
-        <ul>
-          <li><b>Café puro</b> sem mistura</li>
-        </ul>
+      <div class="hero-txt">
+        <p class="hero-eyebrow">Café arábico da Serra de Brejões / BA</p>
+        <h1>Da Serra de Brejões</h1>
+
+        <p class="hero-sub">
+          Café 100% arábica, escolhido maduro, torrado com cuidado e entregue
+          com confiança para empresas que valorizam qualidade em cada detalhe.
+        </p>
+
+        <div class="hero-acao">
+          <a class="btn btn-ouro" href="#pedido">Solicitar Orçamento</a>
+          <a class="btn btn-claro" href="#cafe">Nossos Cafés</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ==================== 2. PARA QUEM REVENDE ====================== -->
-  <section class="publico" id="revenda">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>Para quem vende café todo dia</h2>
-        <p>
-          Cada ponto tem uma necessidade diferente, e a gente ajusta o
-          fornecimento ao que o seu vende.
-        </p>
+  <!-- =============================== FAIXA VERDE ==========================
+       07/08: pedida pelo Marcelo. Recebe os três atributos que estavam no
+       hero mais o novo "Fornecimento B2B". O verde saiu do site em 06/08 por
+       alinhamento ao manual do Nelson; volta agora por pedido explícito do
+       Marcelo — pedido do cliente vence a diretriz interna, e fica
+       registrado. Verde #20301C: creme 11,3:1, dourado 6,98:1.
+       Os nomes são RÓTULOS de atributo (<p>), não títulos de seção, então
+       não entram no sumário de headings (evita skipped-heading). -->
+  <section class="faixa" id="fornecimento" aria-label="Diferenciais do Café Grão da Serra">
+    <ul class="faixa-grid wrap">
+      <li class="faixa-item">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
+          <defs>
+            <mask id="mk-grao-a2">
+              <rect x="-3" y="-3" width="30" height="30" fill="#fff"/>
+              <path d="M9.5 3.9c-1.6 2 .6 3.2-.6 5.2s.8 3.1-.5 5.1" stroke="#000" stroke-width="1.35" fill="none" stroke-linecap="round"/>
+              <ellipse cx="15.1" cy="15" rx="6.45" ry="7.85" fill="#000"/>
+            </mask>
+            <mask id="mk-grao-b2">
+              <rect x="-3" y="-3" width="30" height="30" fill="#fff"/>
+              <path d="M15.2 9.3c-1.5 1.9.5 3-.6 4.8s.7 2.9-.5 4.7" stroke="#000" stroke-width="1.35" fill="none" stroke-linecap="round"/>
+            </mask>
+          </defs>
+          <g transform="rotate(-18 12 12)">
+            <ellipse cx="9.4" cy="9.5" rx="5.5" ry="7" mask="url(#mk-grao-a2)"/>
+            <ellipse cx="15.1" cy="15" rx="5.2" ry="6.6" mask="url(#mk-grao-b2)"/>
+          </g>
+        </svg>
+        <p class="faixa-nome">Grãos 100% arábica</p>
+      </li>
+      <li class="faixa-item">
+        <svg class="ic ic-mont" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M1.6 19.2 8.6 8.4 12.4 14.2 15.3 5.4 22.4 19.2Z
+            M8.6 9.4 6.4 12.8C7 13.5 7.4 12.6 8 13.1 8.6 13.6 9.1 12.7 9.7 13.2 10.2 13.6 10.6 13.3 10.9 12.9Z
+            M15.3 6.4 13.9 10.7C14.5 11.4 15.1 10.5 15.7 11 16.3 11.5 16.9 10.9 17.5 10.7Z"/>
+        </svg>
+        <p class="faixa-nome">Do interior da Bahia</p>
+      </li>
+      <li class="faixa-item">
+        <svg class="ic ic-fio" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2.8A2.35 2.35 0 0 1 15.45 3.72A2.35 2.35 0 0 1 17.98 6.25A2.35 2.35 0 0 1 18.9 9.7A2.35 2.35 0 0 1 17.98 13.15A2.35 2.35 0 0 1 15.45 15.68A2.35 2.35 0 0 1 12 16.6A2.35 2.35 0 0 1 8.55 15.68A2.35 2.35 0 0 1 6.02 13.15A2.35 2.35 0 0 1 5.1 9.7A2.35 2.35 0 0 1 6.02 6.25A2.35 2.35 0 0 1 8.55 3.72A2.35 2.35 0 0 1 12 2.8Z"/>
+          <circle cx="12" cy="9.7" r="4.5"/>
+          <path d="M9.8 9.9 11.3 11.4 14.3 8"/>
+          <path d="M9.3 15.7 6.2 21.5 9 21.1 9.9 23.6 12.5 18.7"/>
+          <path d="M14.7 15.7 17.8 21.5 15 21.1 14.1 23.6 11.5 18.7"/>
+        </svg>
+        <p class="faixa-nome">Torra artesanal</p>
+      </li>
+      <li class="faixa-item">
+        <!-- 08/08: ícone trocado a pedido do Marcelo. Caixas empilhadas =
+             fornecimento em volume, mais claro que uma caixa só. -->
+        <svg class="ic ic-fio" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="2.5" y="12.5" width="8" height="7" rx="1"/>
+          <rect x="13.5" y="12.5" width="8" height="7" rx="1"/>
+          <rect x="8" y="4.5" width="8" height="7" rx="1"/>
+        </svg>
+        <p class="faixa-nome">Fornecimento B2B</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- =========================== NOSSA ORIGEM (PT 4) ======================
+       🔴 O texto do mockup foi REESCRITO. Ele dizia "cultivado na região da
+       Serra de Brejão" e "famílias que vivem do campo": a família do Nelson
+       NÃO planta e NÃO colhe, compra o grão maduro de produtores e faz o
+       beneficiamento. O que dá para afirmar é o lugar onde ELES estão e o
+       trabalho que ELES fazem.
+
+       ⚠️ A origem do grão que o pai compra continua sem confirmação, então a
+       região não aparece aqui como credencial do produto. -->
+  <section class="origem" id="origem">
+
+    <!-- 07/08: seção reorganizada a pedido do Marcelo.
+         · Foto CONTIDA (não sangra mais até a borda), com as pontas
+           arredondadas, dentro da coluna direita.
+         · Selo montado na BORDA ESQUERDA da foto, centrado na vertical e
+           deslocado -50% em X: fica metade dentro, metade fora, "passando
+           pela metade", como ele pediu.
+         · Os três atributos (altitude / clima / solo) SAÍRAM. Repetiam palavra
+           por palavra o parágrafo e empilhavam a mesma credencial de origem
+           que ainda não foi confirmada. Quem "ressalta o quão bom é a Serra
+           de Brejões" agora é a própria foto (serra, mata, cafezal, a cidade
+           no vale) mais o selo e o parágrafo — sem três cards iguais, que é
+           o container preguiçoso do 90-antipadroes.md.
+         ⚠️ O parágrafo continua afirmando que o grão vem da região (altitude,
+         clima, solo), então segue marcado com .pend + a nota abaixo. Uma
+         pergunta ao Nelson libera. -->
+    <div class="origem-topo">
+      <div class="wrap origem-grid">
+        <div class="origem-txt revela">
+          <p class="eyebrow">Nossa origem</p>
+          <h2>Do interior da Bahia para a sua xícara.</h2>
+          <p class="pend">
+            A Serra de Brejões, no coração da Bahia, oferece o terreno
+            perfeito para cafés: altitude, clima e solo fértil que resultam em
+            grãos de alta qualidade e sabor marcante. É de lá que nasce o
+            Grão da Serra.
+          </p>
+          <a class="btn btn-fio" href="#pedido">Peça o seu café</a>
+        </div>
+
+        <figure class="origem-foto revela d1">
+          <img src="assets/vista-brejoes.webp" width="1040" height="693" loading="lazy" decoding="async" alt="Vista da Serra de Brejões, na Bahia, com a cidade no vale e o café em primeiro plano">
+          <div class="selo-lugar" aria-hidden="true">
+            <img src="assets/selo-bahia.webp" width="340" height="340" decoding="async" alt="">
+          </div>
+        </figure>
       </div>
 
-      <ul>
-        <li>
-          <b>Padaria e mercadinho</b>
-          <span>Seu cliente já entra para levar o pão. O café bom é o que faz ele voltar antes da hora.</span>
+      <div class="wrap">
+        <p class="pend-nota">
+          Depende de confirmar com o Nelson de onde vem o grão que o pai compra.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== NOSSO CAFÉ (PT 3) ======================== -->
+  <section class="cafe" id="cafe">
+    <!-- 07/08: texto à ESQUERDA, foto à DIREITA (pedido do Marcelo). A planta
+         acompanha o texto, à esquerda, espelhada. -->
+    <div class="planta planta-cafe" aria-hidden="true">
+      <img src="assets/planta-2.webp" width="460" height="690" loading="lazy" decoding="async" alt="">
+    </div>
+
+    <!-- PARTE ORIGINAL (restaurada): texto à esquerda, pacote à direita. -->
+    <div class="wrap cafe-grid">
+      <div class="cafe-txt revela">
+        <p class="eyebrow">Nosso café</p>
+        <h2>Qualidade que você sente em cada xícara.</h2>
+        <div class="divisor" aria-hidden="true"><i></i></div>
+        <p>
+          Grãos selecionados, torra artesanal e um cuidado que vai da escolha
+          do grão à entrega. Tudo para um café marcante no seu dia a dia e no
+          seu negócio.
+        </p>
+
+        <div class="atributos">
+          <div class="atributo">
+            <span class="selo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></svg></span>
+            <b>Aroma intenso</b>
+            <span>torrado e marcante</span>
+          </div>
+          <div class="atributo">
+            <span class="selo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg></span>
+            <b>Café puro</b>
+            <span>selecionado e artesanal</span>
+          </div>
+          <div class="atributo">
+            <span class="selo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></span>
+            <b>250 g</b>
+            <span>peso líquido</span>
+          </div>
+        </div>
+
+        <a class="btn btn-escuro" href="#pedido">Quero experimentar</a>
+      </div>
+
+      <figure class="cafe-produto revela d1">
+        <img src="assets/novo-produto.webp" width="820" height="858" loading="lazy" decoding="async" alt="Pacote do Café Grão da Serra, 100% arábica, com grãos e ramo de café">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ==================== EXTENSÃO DA SESSÃO 2 — grãos/moído ==============
+       08/08: extensão (mesma cor). Recebe as DUAS imagens novas posicionadas
+       como a referência: foto + rótulo + descrição, lado a lado. A parte de
+       cima do "Nosso café" (texto + pacote) fica intacta. -->
+  <section class="opcoes" id="formatos">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Como você preferir</p>
+        <h2>Em grãos ou moído</h2>
+        <p>O mesmo café, no formato que a sua operação usa no dia a dia.</p>
+      </div>
+
+      <div class="opcoes-duo">
+        <div class="opcoes-opc revela">
+          <img class="opcoes-foto" src="assets/foto-graos-real.webp" width="640" height="427" loading="lazy" decoding="async" alt="Grãos de café torrados">
+          <div>
+            <b>Grãos</b>
+            <p>Grãos selecionados e cuidado em cada detalhe, para um café fresco e cheio de sabor.</p>
+          </div>
+        </div>
+        <div class="opcoes-opc revela d1">
+          <img class="opcoes-foto" src="assets/foto-moido-real.webp" width="640" height="427" loading="lazy" decoding="async" alt="Café moído">
+          <div>
+            <b>Moído</b>
+            <p>Pronto para o dia a dia, prático e sem abrir mão da qualidade.</p>
+          </div>
+        </div>
+      </div>
+
+      <ul class="opcoes-specs">
+        <li><b>250 g</b><span>peso líquido</span></li>
+        <li><b>100% arábica</b><span>café puro</span></li>
+        <li><b>Torra artesanal</b><span>feita aos poucos</span></li>
+        <li><b>Sob medida</b><span>no volume que precisar</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==================== PARA QUEM ATENDE (B2B) =========================
+       08/08: bloco aprovado pelo Conselho. É o "para quem é" do
+       00-anatomia.md — o de maior impacto num B2B, e que tinha sido removido.
+       Os perfis são o público-alvo (descreve para quem serve, não afirma
+       clientes que já existem), alinhados ao campo "Você é" do formulário.
+       Sem alegação de origem, saúde ou superlativo. -->
+  <section class="publico" id="publico">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Para empresas que valorizam qualidade</p>
+        <h2>Feito para o seu negócio.</h2>
+        <div class="divisor" aria-hidden="true"><i></i></div>
+      </div>
+
+      <ul class="publico-grid">
+        <li class="publico-item revela">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8z"/><path d="M17 9.5h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M8 2.6c-.6.8-.6 1.6 0 2.4M12 2.6c-.6.8-.6 1.6 0 2.4"/></svg>
+          <b>Cafeterias<br>e Coffee Shops</b>
         </li>
-        <li>
-          <b>Cafeteria e lanchonete</b>
-          <span>O café que você serve é o que fica na memória de quem sentou na sua mesa.</span>
+        <li class="publico-item revela">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>
+          <b>Restaurantes<br>e Bares</b>
         </li>
-        <li>
-          <b>Mercearia e empório</b>
-          <span>Produto com procedência, embalado, com margem de revenda que fecha a conta.</span>
+        <li class="publico-item revela">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 19.5h20"/><path d="M4 19.5a8 8 0 0 1 16 0"/><path d="M12 6.5v-2"/><path d="M9.5 4.5h5"/></svg>
+          <b>Hotéis<br>e Pousadas</b>
         </li>
-        <li>
-          <b>Escritório e consultório</b>
-          <span>Entrega combinada, na quantidade que você usa, sem você precisar lembrar de repor.</span>
+        <li class="publico-item revela">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 12h13l-1.5 8.2a1 1 0 0 1-1 .8H8a1 1 0 0 1-1-.8z"/><path d="M4.5 12a7.5 7.5 0 0 1 15 0z"/><path d="M12 3.2v3"/></svg>
+          <b>Padarias<br>e Confeitarias</b>
+        </li>
+        <li class="publico-item revela">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9.5" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/><path d="M2 3h2.2l2.3 11.2a1 1 0 0 0 1 .8h9.1a1 1 0 0 0 1-.78L20.5 7.5H5.3"/></svg>
+          <b>Mercados<br>e Empórios</b>
+        </li>
+        <li class="publico-item revela">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16"/><path d="M14 10h4a1 1 0 0 1 1 1v10"/><path d="M7 8h3M7 12h3M7 16h3"/><path d="M3 21h18"/></svg>
+          <b>Empresas<br>e Escritórios</b>
+        </li>
+        <li class="publico-item revela">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5h12v11H2z"/><path d="M14 8h3.5l3 3.5V16H14z"/><circle cx="6" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg>
+          <b>Revendedores<br>e Distribuidores</b>
         </li>
       </ul>
+    </div>
+  </section>
 
-      <div class="dor">
-        <img class="folha" src="assets/folhas.webp" width="700" height="700" loading="lazy" decoding="async" alt="">
-        <p>
-          Se você já ficou sem café numa sexta-feira, já recebeu um lote com torra
-          velha, ou já teve que trocar de marca porque o sabor mudou do nada, é
-          exatamente disso que a gente cuida.
-        </p>
+  <!-- ==================== COMO FUNCIONA O PEDIDO =========================
+       08/08: bloco aprovado pelo Conselho. Os 3 passos são o fluxo REAL do
+       formulário sem servidor: ele monta a mensagem e abre o WhatsApp já
+       preenchido. Honesto sobre isso (50-copy-de-interface.md). Faixa escura
+       para quebrar a sequência de cremes e destacar o caminho de compra. -->
+  <section class="passos" id="como-funciona">
+    <div class="passos-bg" aria-hidden="true"></div>
+    <div class="wrap passos-wrap">
+      <div class="passos-txt">
+        <p class="eyebrow">Como comprar</p>
+        <h2>Simples, rápido<br>e direto com a gente.</h2>
+
+        <ol class="passos-grid">
+          <li class="passo revela">
+            <div class="passo-topo">
+              <span class="passo-num">1</span>
+              <span class="passo-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4M12 16h4M8 11h.01M8 16h.01"/></svg></span>
+            </div>
+            <p>Preencha o formulário com suas informações e necessidades.</p>
+          </li>
+          <li class="passo revela d1">
+            <div class="passo-topo">
+              <span class="passo-num">2</span>
+              <span class="passo-ic"><svg class="ico-wa" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg></span>
+            </div>
+            <p>Fale conosco no WhatsApp e receba seu orçamento personalizado.</p>
+          </li>
+          <li class="passo revela d2">
+            <div class="passo-topo">
+              <span class="passo-num">3</span>
+              <span class="passo-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22v-9"/><path d="M15.17 2.21a1.67 1.67 0 0 1 1.63 0L21 4.57a1.93 1.93 0 0 1 0 3.36L8.82 14.79a1.66 1.66 0 0 1-1.64 0L3 12.43a1.93 1.93 0 0 1 0-3.36z"/><path d="M20 13v3.87a2.06 2.06 0 0 1-1.11 1.83l-6 3.08a1.93 1.93 0 0 1-1.78 0l-6-3.08A2.06 2.06 0 0 1 4 16.87V13"/><path d="M21 12.43a1.93 1.93 0 0 0 0-3.36L8.83 2.2a1.64 1.64 0 0 0-1.63 0L3 4.57a1.93 1.93 0 0 0 0 3.36z"/></svg></span>
+            </div>
+            <p>Feche seu pedido e receba seu café com agilidade e segurança.</p>
+          </li>
+        </ol>
       </div>
     </div>
   </section>
 
-  <!-- ============ 3. O BENEFICIAMENTO — seção-assinatura ============= -->
-  <section class="processo" id="processo">
+  <!-- ======================= PEÇA O SEU CAFÉ (PT 5) =======================
+       Formulário sem servidor: monta a mensagem e abre o WhatsApp já
+       preenchido. O texto de ajuda diz isso ao usuário, que é a regra do
+       50-copy-de-interface.md — formulário sem servidor não finge que
+       enviou. -->
+  <section class="pedido" id="pedido">
+    <!-- Planta 3: some do site em 05/08 sem erro nenhum no console.
+         Duas causas somadas: o arquivo era OPACO e dependia de uma máscara
+         radial para se dissolver no fundo, e o centro dessa máscara caía na
+         parte VAZIA do desenho — o galho fica no canto de baixo à esquerda
+         da arte, e com `left:-130px` ele saía inteiro da tela.
+         06/08: o fundo chapado do arquivo virou alfa de verdade (mesmo
+         tratamento das plantas 1 e 2), a máscara saiu, e ele voltou para o
+         lugar do PT 5: à esquerda, atrás da xícara e um pouco acima dela. -->
+    <div class="planta planta-form-esq" aria-hidden="true">
+      <img src="assets/planta-3.webp" width="740" height="913" loading="lazy" decoding="async" alt="">
+    </div>
+    <div class="xicara-form" aria-hidden="true">
+      <img src="assets/xicara.webp" width="620" height="699" loading="lazy" decoding="async" alt="">
+    </div>
+    <div class="planta planta-form-dir" aria-hidden="true">
+      <img src="assets/planta-1.webp" width="460" height="690" loading="lazy" decoding="async" alt="">
+    </div>
+
     <div class="wrap">
       <div class="sec-head">
-        <p class="eyebrow">O que acontece antes do pacote</p>
-        <h2>O trabalho está na escolha e no beneficiamento</h2>
-        <p>
-          A gente não tem lavoura. O que a nossa família faz há anos é escolher o
-          grão certo e cuidar de cada etapa depois dele colhido, uma de cada vez.
-        </p>
+        <p class="eyebrow">Como comprar</p>
+        <h2>Peça o seu café</h2>
+        <p>Preencha os dados abaixo e faça seu pedido pelo WhatsApp.</p>
       </div>
 
-      <div class="etapas">
-        <article class="etapa">
-          <span class="num">01</span>
-          <div class="traco"></div>
-          <img class="selo-ilustra" src="assets/etapa-01-escolha.webp" width="82" height="62" loading="lazy" decoding="async" alt="">
-          <figure class="fig">
-            <img src="assets/proc-01-escolha.webp" width="560" height="420" loading="lazy" decoding="async" alt="Mãos passando por um monte de grãos de café secos">
-            <span class="rotulo">Provisória</span>
-          </figure>
-          <h3>A escolha</h3>
-          <p>O grão é comprado de produtor, já maduro, e escolhido um a um. É aqui que o café é decidido.</p>
-        </article>
-
-        <article class="etapa">
-          <span class="num">02</span>
-          <div class="traco"></div>
-          <img class="selo-ilustra" src="assets/etapa-02-secagem.webp" width="82" height="62" loading="lazy" decoding="async" alt="">
-          <figure class="fig">
-            <img src="assets/proc-02-secagem.webp" width="560" height="420" loading="lazy" decoding="async" alt="Grãos de café secando ao sol em um terreiro">
-            <span class="rotulo">Provisória</span>
-          </figure>
-          <h3>A secagem</h3>
-          <p>Secagem ao sol, no tempo que for preciso, até o grão chegar no ponto certo de umidade.</p>
-        </article>
-
-        <article class="etapa">
-          <span class="num">03</span>
-          <div class="traco"></div>
-          <img class="selo-ilustra" src="assets/etapa-03-pilagem.webp" width="82" height="62" loading="lazy" decoding="async" alt="">
-          <figure class="fig">
-            <img src="assets/proc-03-pilagem.webp" width="560" height="560" loading="lazy" decoding="async" alt="Pilão de madeira com grãos de café dentro">
-            <span class="rotulo">Provisória</span>
-          </figure>
-          <h3>A pilagem</h3>
-          <p>No pilão, do jeito tradicional, para soltar a casca seca sem maltratar o grão.</p>
-        </article>
-
-        <article class="etapa">
-          <span class="num">04</span>
-          <div class="traco"></div>
-          <img class="selo-ilustra" src="assets/etapa-04-torra.webp" width="82" height="62" loading="lazy" decoding="async" alt="">
-          <figure class="fig">
-            <img src="assets/proc-04-torra.webp" width="560" height="420" loading="lazy" decoding="async" alt="Grãos de café recém torrados saindo do torrador">
-            <span class="rotulo">Provisória</span>
-          </figure>
-          <h3>A torra</h3>
-          <p>Torra artesanal, em pequena quantidade, acompanhada de perto. Depois vem a moagem.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================== 4. PRODUTOS ========================= -->
-  <section class="produtos" id="produtos">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>Nossos cafés</h2>
-        <p>
-          <span class="pend">Os produtos, os tamanhos de pacote e as opções em grão
-          ou moído ainda precisam ser confirmados com o cliente.</span>
-        </p>
-      </div>
-
-      <div class="cards">
-        <article class="card">
-          <div class="foto-pend">FALTA A FOTO<br>do pacote</div>
-          <h3><span class="pend">Produto a confirmar</span></h3>
-          <div class="linha">
-            <p><span class="pend">Moagem a confirmar</span></p>
-            <span class="preco pend">peso</span>
+      <div class="pedido-caixa">
+        <form id="form-pedido" novalidate>
+          <div class="form-duplo">
+            <div class="form-campo">
+              <label for="p-nome">Nome completo</label>
+              <input type="text" id="p-nome" name="nome" placeholder="Seu nome" autocomplete="name" required>
+            </div>
+            <div class="form-campo">
+              <label for="p-fone">WhatsApp</label>
+              <input type="tel" id="p-fone" name="fone" placeholder="(00) 00000-0000" autocomplete="tel">
+            </div>
           </div>
-        </article>
-        <article class="card">
-          <div class="foto-pend">FALTA A FOTO<br>do pacote</div>
-          <h3><span class="pend">Produto a confirmar</span></h3>
-          <div class="linha">
-            <p><span class="pend">Moagem a confirmar</span></p>
-            <span class="preco pend">peso</span>
+
+          <div class="form-duplo">
+            <div class="form-campo">
+              <label for="p-tipo">Você é</label>
+              <select id="p-tipo" name="tipo">
+                <option>Consumidor, para tomar em casa</option>
+                <option>Padaria ou mercadinho</option>
+                <option>Cafeteria ou lanchonete</option>
+                <option>Mercearia ou empório</option>
+                <option>Escritório ou consultório</option>
+                <option>Outro</option>
+              </select>
+            </div>
+            <div class="form-campo">
+              <label for="p-cidade">Sua cidade</label>
+              <input type="text" id="p-cidade" name="cidade" autocomplete="address-level2">
+            </div>
           </div>
-        </article>
-        <article class="card">
-          <div class="foto-pend">FALTA A FOTO<br>do pacote</div>
-          <h3><span class="pend">Produto a confirmar</span></h3>
-          <div class="linha">
-            <p><span class="pend">Moagem a confirmar</span></p>
-            <span class="preco pend">peso</span>
+
+          <div class="form-duplo">
+            <div class="form-campo">
+              <label for="p-qtd">Quantidade de café</label>
+              <input type="text" id="p-qtd" name="qtd" placeholder="ex: 20 pacotes por mês">
+            </div>
+            <div class="form-campo">
+              <label for="p-moagem">Em grão ou moído</label>
+              <select id="p-moagem" name="moagem">
+                <option>Moído</option>
+                <option>Em grão</option>
+                <option>Ainda não sei</option>
+              </select>
+            </div>
           </div>
-        </article>
-      </div>
-    </div>
-  </section>
 
-  <!-- =================== 5. COMO VIRAR REVENDEDOR ==================== -->
-  <section class="passos">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>Como começar a revender</h2>
-      </div>
-      <ol>
-        <li>
-          <h3>Você chama no WhatsApp</h3>
-          <p>Não precisa saber ainda quanto quer, nem ter feito conta nenhuma. Só diga que tipo de ponto você tem.</p>
-        </li>
-        <li>
-          <h3>A gente combina quantidade e entrega</h3>
-          <p>Você diz quanto costuma vender e a gente ajusta o pedido e a data de entrega junto com você.</p>
-        </li>
-        <li>
-          <h3>Você recebe e revende</h3>
-          <p>Quando estiver acabando, é só chamar de novo. A ideia é você nunca ficar sem.</p>
-        </li>
-      </ol>
-      <p style="margin-top:34px">
-        <a class="btn btn-primario" href="https://wa.me/5575991467309?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20revender%20o%20caf%C3%A9%20de%20voc%C3%AAs.">Falar sobre revenda</a>
-      </p>
-    </div>
-  </section>
+          <div class="form-campo">
+            <label for="p-obs">Observações (opcional)</label>
+            <textarea id="p-obs" name="obs" placeholder="Alguma observação sobre seu pedido?"></textarea>
+          </div>
 
-  <!-- ========================== 6. QUEM FAZ ========================== -->
-  <section class="quem">
-    <div class="wrap quem-grid">
-      <div class="foto-pend">FALTA FOTO<br>do Nelson trabalhando</div>
-      <div>
-        <h2>Quem faz</h2>
-        <p>
-          O Café Grão da Serra é tocado pelo <strong>Nelson</strong>, de Serrana,
-          distrito de Brejões, na Bahia. É ele quem responde o WhatsApp, separa os
-          pedidos e entrega.
-        </p>
-        <p>
-          <span class="pend">O beneficiamento é feito pelo pai dele, que escolhe o
-          grão e cuida da secagem, da pilagem e da torra. Esta parte só entra no ar
-          depois de o Nelson autorizar falar do pai no site.</span>
-        </p>
-      </div>
-    </div>
-  </section>
+          <p class="form-ajuda">
+            Nada é enviado por aqui. O botão abre a conversa no WhatsApp com o
+            texto já montado, e você confere antes de mandar.
+          </p>
 
-  <!-- Colagem assimétrica, no padrão que White Coffee e Maison Deuza usam como
-       respiro entre blocos de texto. Sem legenda de propósito: paisagem com
-       texto vira afirmação de origem, e a origem do grão não foi confirmada. -->
-  <section class="colagem">
-    <div class="wrap">
-      <div class="colagem-grid">
-        <figure class="c-a fig">
-          <img src="assets/paisagem-serra.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Paisagem de serras ao amanhecer">
-          <span class="rotulo">Imagem provisória</span>
-        </figure>
-        <figure class="c-b">
-          <img src="assets/proc-02-secagem.webp" width="560" height="420" loading="lazy" decoding="async" alt="Café secando ao sol no terreiro">
-        </figure>
-        <figure class="c-c">
-          <img src="assets/folhas.webp" width="700" height="700" loading="lazy" decoding="async" alt="Ramo de café com folhas verdes">
-        </figure>
-        <figure class="c-d">
-          <img src="assets/proc-04-torra.webp" width="560" height="420" loading="lazy" decoding="async" alt="Grãos recém torrados">
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!--
-    ⚠️ SEÇÃO 7 "DE ONDE VEM" foi deixada FORA de propósito.
-    Só entra depois de o cliente confirmar que o grão vem de produtores da região
-    Serrana / Brejões. Enquanto não confirmar, não vira texto vago sobre "a serra".
-    Ver clientes/grao-da-serra/briefing.md e site/ARQUITETURA.md.
-  -->
-
-  <!-- ============================ 8. FAQ ============================= -->
-  <section class="faq" id="duvidas">
-    <div class="wrap">
-      <h2>Dúvidas</h2>
-      <div class="faq-lista">
-
-        <details>
-          <summary>Vocês vendem para revenda?</summary>
-          <p>Vendemos. Atendemos padaria, mercadinho, cafeteria, mercearia, escritório e consultório, além de quem quer comprar para tomar em casa.</p>
-        </details>
-
-        <details>
-          <summary>Tem quantidade mínima de pedido?</summary>
-          <p><span class="pend">A confirmar com o cliente.</span></p>
-        </details>
-
-        <details>
-          <summary>Para onde vocês entregam?</summary>
-          <p>Atendemos Brejões e Salvador. <span class="pend">As demais cidades da região ainda precisam ser confirmadas.</span></p>
-        </details>
-
-        <details>
-          <summary>Quanto tempo demora a entrega?</summary>
-          <p><span class="pend">A confirmar com o cliente.</span></p>
-        </details>
-
-        <details>
-          <summary>Como funciona o pagamento?</summary>
-          <p><span class="pend">A confirmar com o cliente.</span></p>
-        </details>
-
-        <details>
-          <summary>O café é vendido em grão ou moído?</summary>
-          <p><span class="pend">A confirmar com o cliente.</span></p>
-        </details>
-
-        <details>
-          <summary>Vocês emitem nota?</summary>
-          <p><span class="pend">A confirmar com o cliente.</span> O Café Grão da Serra tem CNPJ ativo, registrado como MEI.</p>
-        </details>
-
-        <details>
-          <summary>O que é café pilado?</summary>
-          <p>É o café que passa pelo pilão depois de seco, para soltar a casca. É o jeito tradicional de beneficiar, feito aos poucos e sem pressa, em vez de tudo de uma vez na máquina.</p>
-        </details>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================== 9. CONTATO =========================== -->
-  <section class="contato" id="contato">
-    <div class="wrap contato-grid">
-      <div>
-        <p class="eyebrow">Fale com a gente</p>
-        <h2>Quem atende é o Nelson</h2>
-        <p>
-          Sem atendente e sem robô. A mensagem chega direto em quem prepara e
-          entrega o café.
-        </p>
-        <p style="margin-top:26px">
-          <a class="btn btn-primario" href="https://wa.me/5575991467309?text=Ol%C3%A1%21%20Vim%20pelo%20site.">Chamar no WhatsApp</a>
-        </p>
-      </div>
-      <div>
-        <ul class="dados">
-          <li>
-            <strong>WhatsApp</strong>
-            <a href="https://wa.me/5575991467309">(75) 99146-7309</a>
-          </li>
-          <li>
-            <strong>Instagram</strong>
-            <a href="https://www.instagram.com/graodaserra__" rel="noopener">@graodaserra__</a>
-          </li>
-          <li>
-            <strong>Onde estamos</strong>
-            Serrana, Brejões, Bahia
-          </li>
-          <li>
-            <strong>Atendimento</strong>
-            Todos os dias, das 7h às 20h
-          </li>
-        </ul>
+          <button type="submit" class="btn btn-escuro form-envio">
+            <svg class="ico-wa" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            Pedir pelo WhatsApp
+          </button>
+        </form>
       </div>
     </div>
   </section>
 
 </main>
 
-<footer class="rodape">
+<!-- ============================== RODAPÉ (PT 6) ========================== -->
+<footer class="rodape" id="contato">
   <div class="wrap">
-    <span>Café Grão da Serra · Brejões, Bahia</span>
-    <span class="legal">CNPJ 65.816.871/0001-23</span>
+    <div class="rodape-grid">
+      <div>
+        <a class="marca" href="#topo">
+          <img src="assets/logo-topo.png" width="78" height="78" loading="lazy" alt="">
+          <span class="marca-txt">
+            <span class="marca-cafe">Café</span>
+            <span class="marca-nome">Grão da Serra</span>
+          </span>
+        </a>
+        <p>O sabor da Bahia, direto do interior para a sua casa.</p>
+        <div class="sociais">
+          <a href="https://www.instagram.com/graodaserra__" rel="noopener" aria-label="Instagram do Café Grão da Serra">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>
+          </a>
+          <a href="https://wa.me/5575991467309" rel="noopener" aria-label="WhatsApp do Café Grão da Serra">
+            <svg class="ico-wa" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h3>Navegação</h3>
+        <ul>
+          <li><a href="#topo">Início</a></li>
+          <li><a href="#cafe">Nosso café</a></li>
+          <li><a href="#origem">Origem</a></li>
+          <li><a href="#pedido">Como comprar</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Contato</h3>
+        <ul>
+          <li class="rodape-linha">
+            <svg class="ico-wa" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            <a href="https://wa.me/5575991467309">(75) 99146-7309</a>
+          </li>
+          <li class="rodape-linha">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>
+            <a href="https://www.instagram.com/graodaserra__" rel="noopener">@graodaserra__</a>
+          </li>
+          <li class="rodape-linha">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Serrana, Brejões, Bahia</span>
+          </li>
+          <li class="rodape-linha">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <span>Todos os dias, das 7h às 20h</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Produzido na Bahia</h3>
+        <p>
+          Valorizamos nossa terra, nossa gente e a tradição que faz do nosso
+          café algo especial.
+        </p>
+      </div>
+    </div>
+
+    <div class="rodape-casa">
+      <img src="assets/casinha-rodape.webp" width="190" height="126" loading="lazy" decoding="async" alt="">
+    </div>
+
+    <div class="rodape-pe">
+      <span>© 2026 Café Grão da Serra. Todos os direitos reservados.</span>
+      <span>CNPJ 65.816.871/0001-23</span>
+    </div>
   </div>
 </footer>
 
 <script>
+(function(){
+  var reduz = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  var topo = document.getElementById('topo-barra');
+
+  /* ---- cabeçalho: transparente sobre o hero, sólido depois ---- */
+  var marcaSolido = function(){ topo.classList.toggle('solido', window.scrollY > 70); };
+  window.addEventListener('scroll', marcaSolido, { passive:true });
+  marcaSolido();
+
+  /* ---- menu do celular ---- */
   var btn = document.getElementById('menu-btn');
-  var nav = document.getElementById('nav');
   btn.addEventListener('click', function(){
-    var aberto = nav.classList.toggle('aberto');
+    var aberto = topo.classList.toggle('aberto');
     btn.setAttribute('aria-expanded', aberto ? 'true' : 'false');
   });
-  nav.addEventListener('click', function(e){
-    if (e.target.tagName === 'A') {
-      nav.classList.remove('aberto');
+  topo.addEventListener('click', function(e){
+    if (e.target.closest('.nav a')) {
+      topo.classList.remove('aberto');
       btn.setAttribute('aria-expanded','false');
     }
   });
 
+  /* ---- alterna as marcações de pendência ---- */
   var alterna = document.getElementById('alterna');
   alterna.addEventListener('click', function(){
     var limpo = document.body.classList.toggle('limpo');
     alterna.textContent = limpo ? 'Ver pendências' : 'Ver versão limpa';
     alterna.setAttribute('aria-pressed', limpo ? 'true' : 'false');
   });
+
+  /* ---- formulário monta a mensagem e abre o WhatsApp já preenchido ---- */
+  var form = document.getElementById('form-pedido');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var nome = document.getElementById('p-nome');
+    if (!nome.value.trim()) { nome.focus(); return; }
+
+    var L = [];
+    L.push('Olá! Vim pelo site e queria fazer um pedido.');
+    L.push('');
+    L.push('Nome: ' + nome.value.trim());
+
+    var fone = document.getElementById('p-fone').value.trim();
+    if (fone) L.push('WhatsApp: ' + fone);
+
+    L.push('Sou: ' + document.getElementById('p-tipo').value);
+
+    var cidade = document.getElementById('p-cidade').value.trim();
+    if (cidade) L.push('Cidade: ' + cidade);
+
+    var qtd = document.getElementById('p-qtd').value.trim();
+    if (qtd) L.push('Quantidade: ' + qtd);
+
+    L.push('Moagem: ' + document.getElementById('p-moagem').value);
+
+    var obs = document.getElementById('p-obs').value.trim();
+    if (obs) { L.push(''); L.push('Observação: ' + obs); }
+
+    window.open('https://wa.me/5575991467309?text=' + encodeURIComponent(L.join('\n')), '_blank', 'noopener');
+  });
+
+  /* ---- reveal na entrada ----
+     Só opacity e transform. Sem IntersectionObserver, ou com movimento
+     reduzido, o conteúdo simplesmente já nasce visível. */
+  var revelaveis = document.querySelectorAll('.revela');
+  if (reduz.matches || !('IntersectionObserver' in window)) {
+    for (var r = 0; r < revelaveis.length; r++) revelaveis[r].classList.add('dentro');
+  } else {
+    var obs = new IntersectionObserver(function(entradas){
+      entradas.forEach(function(en){
+        if (en.isIntersecting) { en.target.classList.add('dentro'); obs.unobserve(en.target); }
+      });
+    }, { threshold:.18, rootMargin:'0px 0px -8% 0px' });
+    for (var r2 = 0; r2 < revelaveis.length; r2++) obs.observe(revelaveis[r2]);
+  }
+})();
 </script>
 
 </body>
