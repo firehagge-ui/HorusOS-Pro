@@ -145,6 +145,67 @@ Mapa quando é presencial, dados em lista escaneável, um caminho de contato
 
 ---
 
+## Dois princípios que atravessam as seções
+
+Não são um slot na ordem de 1 a 8: valem em qualquer seção que precise convencer.
+
+### Encenar a prova, não afirmá-la
+
+Qualidade dita é adjetivo; qualidade **mostrada** é prova. Em vez de escrever
+"atendimento de excelência", "engenharia de precisão", "café selecionado", o site que
+convence **mostra o mecanismo** e deixa o visitante concluir sozinho — conclusão
+própria convence mais que afirmação alheia.
+
+O adjetivo é barato e reversível: "qualidade superior" cabe no site de qualquer
+concorrente sem trocar uma palavra (o teste do `90-antipadroes.md`). O mecanismo
+visível, não: ver as peças de um produto se separarem com o peso de cada uma, ver o
+processo em etapas, ver a estrutura que o concorrente esconde — isso é verificável de
+olho, e o leitor fecha a conta sozinho.
+
+Como se aplica, por segmento (é de propósito que não é um só):
+- **Giovanni:** as etapas do implante mostradas passo a passo, no lugar de "tratamento
+  de excelência".
+- **Aion:** o que de fato acontece numa avaliação neuropsicológica, etapa a etapa, no
+  lugar de "profissionais qualificados".
+- **Grão da Serra:** o beneficiamento (escolha do grão → pilagem → secagem → torra →
+  moagem), que prova o "a gente não planta, a gente escolhe" sem lavoura.
+- **Permita-se:** um trecho real de uma aula, no lugar de "aulas dinâmicas".
+
+Duas travas:
+- **Só se encena o que existe.** O poder vem do dado/processo real; encenar sem
+  substância (tabela de specs sem número medido, etapas inventadas) é estética de ficha
+  técnica vazia, e num cliente de saúde ou alimento vira alegação falsa (`integridade.md`).
+- **Em regulado, encenar ≠ prometer.** Mostrar o processo é informativo; mostrar
+  resultado garantido ou antes/depois é vedado (CFO/CFP).
+
+→ *Origem: convergência de 4 teardowns independentes (WRK, Linearity, HydraDB, For
+Living) + o "caminho do café" do Arbor, 14/08/2026. Ver `referencias/`.*
+
+### Vender o freio
+
+A maior objeção que o visitante já tem sobre a categoria vira o **maior argumento**,
+dita na cara em vez de escondida.
+
+A objeção não some por ser ignorada — ela já está na cabeça de quem lê, sem resposta.
+Nomeá-la e reenquadrá-la desarma a desconfiança que trava o contato. É o oposto de
+maquiar: é entregar a parte "chata" de propósito e mostrar que ela é, na verdade, o
+cuidado.
+
+O exemplo de ouro é da própria casa. A **revisão humana de compliance** hoje é regra
+cumprida em silêncio ("conteúdo clínico não publica sem o profissional responsável").
+Reenquadrada, é venda: *"toda peça sobre o seu tratamento passa pelo profissional antes
+de ir ao ar"* — o freio que parecia burocracia vira prova de responsabilidade. Vale pro
+Giovanni, Aion, Mayara, e pra própria Horus vendendo o serviço. Outro caso: o Grão
+transforma a ausência de lavoura (que soaria fraqueza) em diferencial ("a gente não
+planta, a gente escolhe").
+
+Trava: reenquadrar honestamente, nunca girar mentira. O freio tem que ser real.
+
+→ *Origem: Cofounder (SaaS de IA, que responde o medo de "perder o controle pra IA" com
+"nada é publicado sem sua aprovação"), 14/08/2026. Ver `referencias/cofounder.md`.*
+
+---
+
 ## O que quase sempre sobra
 
 - Seção "nossos valores" com três palavras genéricas

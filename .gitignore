@@ -18,6 +18,13 @@ Thumbs.db
 # MCP (contém chave de API do Firecrawl em texto puro)
 .mcp.json
 
+# Codex — espelho do MCP, contém a MESMA chave do Firecrawl em texto puro.
+# Ignorar igual ao .mcp.json. O resto do .codex/ (hooks, agentes) pode ir.
+.codex/config.toml
+
+# Scratch de medição de viewport (harness de teste descartável)
+_m*.html
+
 # Dependências
 node_modules/
 

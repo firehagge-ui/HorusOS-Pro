@@ -33,9 +33,14 @@ de entrar em qualquer HTML: imagem gerada por IA sai em 2k e pesa megabytes.
 
 ## Sistema de design (desde 26/07/2026)
 
-O conhecimento de site da agência vive em **`_memoria/design/`** (anatomia de um
-site que funciona, antipadrões, onde estudar, checklist) e o acervo de estudo em
-**`referencias/`** (teardowns de sites reais, gerados pela skill `/estudar-site`).
+O conhecimento de site da agência vive em **`_memoria/design/`** (anatomia,
+antipadrões, checklist, onde estudar; e desde 14/08/2026 os quatro fundamentos de
+teoria — tipografia, cor, layout, composição — que são a camada de *porquê* por
+baixo dos antipadrões, leitura de consulta e não de gatilho). O acervo de estudo
+fica em **`referencias/`** (teardowns de sites reais, gerados pela skill
+`/estudar-site`), e o arsenal reutilizável em **`_biblioteca/`**: `motion/`
+(GSAP/Lenis/WebGL) e `inspiracoes/` (fichas de padrão de componente/interação, o
+nível entre o teardown de página e o snippet de código).
 
 A regra de leitura obrigatória antes de qualquer HTML está no `CLAUDE.md` da raiz.
 Existe porque o Claude não guarda nada entre conversas: correção que morre no chat
@@ -106,15 +111,17 @@ A descrição de cada função da operação está em `equipe/`, com tipo de exe
   Setor regulado (CFP) — compliance obrigatório em toda entrega.
   Origem: contato do sócio do Marcelo com uma das psicólogas da equipe.
 - **Nelson — Café Grão da Serra** (cliente #4) — café torrado 100% arábica,
-  artesanal, **B2B** (revenda para padaria, mercado, cafeteria, escritório).
-  Distrito Serrana, Brejões/BA. MEI ativo desde 20/03/2026 — o negócio tem 4
-  meses. Contexto completo em `clientes/grao-da-serra/` (briefing + marca).
-  Status em 03/08/2026: **Google Meu Negócio no ar e verificado**; **site
-  institucional escrito**, em versão clara, com detector zerado (a primeira versão,
-  escura, foi rejeitada e está em `Backup 1/`). O que trava é material do cliente
-  (fotos do pacote e do dono, produtos com preço), mais o escopo e a autorização de
-  portfólio, que nunca foram fechados. CRM foi pedido por ele e é trabalho pago,
-  com escopo próprio.
+  artesanal, **B2B e B2C** (revenda para padaria, mercado, cafeteria, escritório,
+  e venda ao consumidor final — confirmado pelo Nelson em 11/08/2026).
+  Distrito Serrana, Brejões/BA. MEI ativo desde 20/03/2026 (negócio novo).
+  Contexto completo em `clientes/grao-da-serra/` (briefing + marca).
+  **Google Meu Negócio no ar e verificado** desde 31/07/2026. **Site institucional
+  NO AR** desde 11/08/2026 (https://graodaserra.netlify.app/, 27 rodadas de
+  polimento, aprovado pelo Nelson) — status sempre atual em "ONDE PARAMOS" no topo
+  de `clientes/grao-da-serra/CLAUDE.md`. O site não trava mais; o que segue aberto é
+  a **autorização de uso como portfólio** (o pagamento da Horus no projeto) e as
+  fotos reais. CRM foi pedido por ele, é trabalho pago com escopo próprio, e é o
+  próximo bloco.
   Dois pontos que atravessam o projeto: a família **não tem lavoura** (o pai
   compra o grão maduro de produtores e faz pilagem, secagem, torra e moagem), e o
   nome colide com uma marca de café de 1995 que já detém `graodaserra.com.br`.
@@ -132,8 +139,7 @@ A descrição de cada função da operação está em `equipe/`, com tipo de exe
   Status: `instagram/estrategia.md` e `instagram/stories.md` prontos, `marca.md`
   preenchido com a direção visual **"Galeria"** (pintura clássica emoldurada + ficha
   + leitura psicológica, modo claro), e o **post #1 "Xeque-Mate + Frankl" renderizado
-  (8 slides)**. Há também um kit em `gpt-projeto/` para carregar a identidade num GPT
-  do ChatGPT. Perfil `@universpsiquee` com 0 posts e 191 seguidores.
+  (8 slides)**. Perfil `@universpsiquee` com 0 posts e 191 seguidores.
   ✅ CRP **03/36219 confirmado ativo** (a bio é que está desatualizada em "estudante").
   Falta só o **e-Psi** para o CTA de atendimento online. Setor regulado pelo **CFP**,
   igual à Aion.

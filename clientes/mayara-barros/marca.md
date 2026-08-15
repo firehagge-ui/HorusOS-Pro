@@ -171,8 +171,10 @@ carrossel novo parte dele; não reinventar a cada peça.
 slide de texto (eyebrow+régua+h2+corpo), citação em slide escuro, CTA com faixa de
 crise. Alternar fundo claro/escuro, nunca dois iguais seguidos.
 
-**Como rodar:** `node build.js` gera os HTML; render por Chrome headless a
-1080×1350 (comando no `CLAUDE.md` desta pasta). Sempre olhar o slide 1 antes do lote.
+**Como rodar:** `node build.js` gera os HTML; render a **1080×1440 (3:4, feed 2026)**.
+⚠️ O `chrome --headless --screenshot --window-size` **trava a altura em 1350** nesta
+máquina (ignora o valor pedido) — o render usa `puppeteer-core` com `setViewport(1080,
+1440)` + `clip`, não o CLI direto. Sempre olhar o slide 1 antes do lote.
 
 ## Direito de imagem das obras
 

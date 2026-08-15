@@ -83,6 +83,19 @@ ou fundo próprio: mínimo 8px de respiro, ideal 12 a 16px. Filho encostado no f
 de cima é o defeito mais fácil de ver e o mais fácil de não olhar.
 → *Origem: detector, 5 casos na Aion (`passo` e `faq-lista`). Regra `cramped-padding`.*
 
+**Tira de especificação repetindo fato já dito em outra parte da mesma página.**
+Depois de duas fotos grandes ou de um bloco de produto, a mão vai para uma fileira
+de 3 a 4 itens ("250g · 100% arábica · Torra artesanal · Sob medida") pra preencher
+o espaço abaixo. Antes de publicar, conferir cada item contra o resto da página: se
+o mesmo fato já apareceu numa faixa de atributos, num parágrafo ou num selo em
+outra seção, a tira não é reforço, é reciclagem — informação real, sem função nova.
+E o item que sobra, o único não repetido, ainda precisa passar pelo `integridade.md`:
+plausível (o formulário aceita quantidade livre, por exemplo) não é confirmado.
+→ *Origem: Grão da Serra, 10/08/2026. A tira abaixo de "Em grãos ou moído" repetia
+3 de 4 itens já ditos na faixa verde do topo e na seção anterior, e o 4º ("sob
+medida") não tinha confirmação do cliente. Removida sem substituto — as duas
+seções seguintes já continuavam a narrativa.*
+
 **Hero de número grande com rótulo pequeno**, mais três estatísticas de apoio e um
 acento colorido. É a resposta de template pra "faça um hero de impacto". Só usa se
 o número for de verdade e for mesmo a coisa mais característica do cliente.
@@ -579,6 +592,20 @@ perder.
 → *Origem: Marcelo no Grão da Serra, 05/08/2026, comparando o hero com o print de
 referência: "a imagem da hero não está ajustada de acordo com a referência".*
 
+**Ornamento gravado dentro de um `background` com `cover` não é elemento
+posicionável.** Colar uma casinha, um selo ou qualquer desenho pequeno dentro de
+uma imagem de fundo usada com `background-size:cover` parece simples, e quebra
+assim que a seção muda de altura: `cover` recalcula recorte e posição a cada
+proporção diferente de container, então o ornamento pousa num lugar diferente em
+cada largura de tela — às vezes em cima de um texto de verdade. Ajustar
+`background-position` não resolve, só desloca o problema para outro breakpoint. A
+saída é extrair o ornamento como imagem própria (com alfa real) e posicioná-lo
+como qualquer outro elemento do layout, herdando alinhamento do texto ao redor em
+vez de flutuar sozinho.
+→ *Origem: rodapé do Grão da Serra, 10/08/2026. A casinha estava gravada em
+`rodape-fundo.webp`; em desktop largo ela caía em cima da linha do CNPJ. Virou
+`<img>` própria, dentro da coluna de texto que ela ilustra.*
+
 **PNG com o xadrez de transparência DESENHADO dentro.** Imagem baixada de banco ou
 exportada errado vem com o quadriculado cinza claro pintado no lugar do alfa. No
 site ele aparece como um retângulo quadriculado em cima do fundo da seção, e o
@@ -732,6 +759,17 @@ sobre fundo liso: `alfa = 1 - min(pixel/fundo)`, cor por desmultiplicação), e 
 ornamento passa a poder ir a qualquer lugar.
 → *Origem: Grão da Serra, 06/08/2026. A planta 3 sumiu do formulário por isso, e a
 queixa chegou como "não sei o que você fez com ela".*
+
+**Processar um PNG que já veio com alfa de verdade.** Antes de recortar, mascarar ou
+aplicar high-pass/tint numa imagem que o cliente mandou, **conferir o canal alfa**
+(`Image.open(x).mode == "RGBA"` e os cantos com alfa 0). Se ela já é transparente, é
+**converter e colar** — nada de recorte por luminância nem cor chapada, que só embaçam
+ou deixam halo. O erro simétrico é o de cima: um PNG do mesmo desenho vinha com fundo
+PRETO opaco (glow) e exigia recorte; a versão seguinte já veio transparente e era só
+colar. **Descobrir qual é ANTES de escolher o caminho** poupa rodadas.
+→ *Origem: Grão da Serra, 11/08/2026. Duas rodadas gastas "consertando" a planta 4
+com fundo preto (halo, depois embaçado); o PNG transparente resolvia com uma conversão.
+A queixa foi "é só você colar, não tem muito trabalho não".*
 
 **Tarja de destaque como marcação de pendência em parágrafo inteiro.** Fundo
 amarelo atrás de uma palavra funciona; atrás de quatro linhas vira um bloco que o

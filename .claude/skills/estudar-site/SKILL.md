@@ -36,6 +36,14 @@ O `branding` devolve fontes, hex da paleta, raio de canto, sombra de botão e
 tecnologia. O `markdown` devolve a estrutura de seções e o texto, que é onde
 está o aprendizado de copy.
 
+⚠️ **O `branding` mente às vezes — sempre cruzar com o print.** No Fiomet
+(14/08/2026) o branding jurou `colorScheme: light`, fundo `#FFFFFF` e
+`border-radius: 0`; o print mostrava fundo carvão quase preto e botão pílula.
+Provável causa: o scrape pegou CSS de default, de subpágina ou de estado não
+pintado. Regra: hex, tema e raio do branding só valem quando o **print confirma**.
+Onde branding e print brigam, o print vence para o visual, e o valor do branding
+vira *aparente*, não medido.
+
 Se precisar ver o layout, renderizar com o Edge headless em modo `--headless=old`
 (o `new` é instável nesta máquina) e salvar o print junto do teardown:
 

@@ -165,26 +165,27 @@ Próximo passo natural: post #2 (Camus/Sísifo), fechando a série.
 
 ## Cliente #4 (paralelo, fora da fila de prioridade acima)
 
-**Nelson — Café Grão da Serra:** café 100% arábica, artesanal, **B2B**, do Distrito
-Serrana, Brejões/BA. Chegou por relação (o sócio do Marcelo já era amigo dele), e
+**Nelson — Café Grão da Serra:** café 100% arábica, artesanal, **B2B e B2C**, do
+Distrito Serrana, Brejões/BA. Chegou por relação (o sócio do Marcelo já era amigo dele), e
 o site foi oferecido **de graça, por portfólio**, depois de a faixa de R$ 2.000 a
 2.500 ter sido ancorada. Não é prospecção formal.
 
-**Estado em 03/08/2026:**
+**Estado:**
 
 - ✅ **Google Meu Negócio no ar e verificado** (31/07). A verificação passou na hora,
   sem vídeo, porque usamos o endereço do MEI. Lição que vale para todo cliente com
   CNPJ: usar o endereço do registro poupa dias de verificação
-- ✅ **Site institucional escrito**, em versão **clara** (`site/index.html`).
-  Detector zerado, 705 KB. É a segunda tentativa: a primeira, escura, foi rejeitada
-  pelo Marcelo ("pedi natureza, não vi verde, tá genérico") e ficou em `Backup 1/`
-- ⏳ **O CRM** foi pedido por ele e é trabalho pago, com escopo próprio. Não começar
-  antes do site entregue, e não deixar virar extensão do grátis
+- ✅ **Site institucional NO AR** desde 11/08/2026: **https://graodaserra.netlify.app/**
+  (Netlify). 27 rodadas de polimento; o Nelson aprovou. A primeira versão, escura, foi
+  rejeitada pelo Marcelo ("pedi natureza, não vi verde, tá genérico") e ficou em
+  `Backup 1/`. Status sempre atual em "ONDE PARAMOS" no topo de
+  `clientes/grao-da-serra/CLAUDE.md`
+- ⏳ **O CRM** foi pedido por ele e é trabalho pago, com escopo próprio. Agora que o
+  site está entregue, é o próximo trabalho. Não deixar virar extensão do grátis
 
-**O que trava o site é material do cliente**, não produção: fotos do pacote e do
-Nelson, lista de produtos com peso e preço, e a autorização para falar do pai.
-Continua em aberto o **escopo/prazo** e a **autorização de uso como portfólio**, que
-é o pagamento da Horus nesse projeto. Lista viva no topo de
+**O site não trava mais** (publicado). Seguem em aberto: a **autorização de uso como
+portfólio** (o pagamento da Horus nesse projeto) e, no Google Meu Negócio, cadastrar
+produtos, subir fotos reais e pedir as primeiras avaliações. Lista viva no topo de
 `clientes/grao-da-serra/CLAUDE.md`.
 
 Três coisas que definem o projeto:
@@ -198,8 +199,9 @@ Três coisas que definem o projeto:
   da Serra da Mantiqueira, com e-commerce nacional. SEO pelo nome é briga perdida.
   Mas o MEI dele fica no **Distrito Serrana**, e "Serrana de Itiruçu/Brejões" é
   região cafeeira reconhecida — o nome é o lugar onde ele está, e é o território
-  que nenhum homônimo pode reivindicar. ❓ Falta confirmar se o grão vem de
-  produtores de lá
+  que nenhum homônimo pode reivindicar. ✅ **Origem confirmada** (Marcelo, 11/08/2026,
+  junto com a aprovação do site pelo Nelson): o grão vem da região — liberado usar a
+  origem, a região e a tradição cafeeira de Brejões como credencial
 - **O Google Meu Negócio vai ser de Brejões, não de Salvador.** Ele atende Salvador,
   mas não vai ranquear no Maps da capital. Salvador se ganha por site, Instagram e
   prospecção direta de revendedor

@@ -14,6 +14,20 @@
   pintura para a vida de quem lê ("Fora do quadro").
 - **v3.2:** slide de **ciência removido** a pedido do Marcelo. **8 slides**, é a
   versão no ar. Fundos realocados para manter a alternância. O `build.js` gera esta.
+- **v3.3 (12/08):** dois pedidos da Mayara via Marcelo. **(1) Tom menos coach** — ela
+  sentiu que soava "basta olhar pra fora que você acha um caminho". Reescritos os
+  slides 1, 4, 5, 6, 7 e 8: o eixo saiu de *"ainda há uma jogada / o que vira o jogo"*
+  para *"às vezes o xeque-mate é real, mas ninguém relê sozinho"*, com Frankl no
+  sentido correto (a atitude diante do que não muda, não a superação). Registrado em
+  `_memoria/conteudo/90-antipadroes.md`, "Tom de coach". **(2) Tamanho 1080×1440 (3:4)**
+  — o feed do Instagram em 2026 exibe e recorta a grade em 3:4; o 4:5 (1080×1350) ficava
+  cortado na miniatura. `build.js` agora gera 1440 de altura.
+- **v3.4 (12/08):** virada de **eixo** a pedido do Marcelo — o xadrez como metáfora de
+  superação ainda soava coach. O carrossel passou a fazer a **associação explícita
+  entre o quadro e o livro "Em Busca de Sentido"**, com o **anjo** de Retzsch como fio
+  (a figura que não é peça do jogo = o sentido de Frankl). Capa mantida. Slides 2 a 8
+  reescritos. A lenda do enxadrista (Morphy) **saiu**: "achar a jogada vencedora no
+  tabuleiro" contradiz o eixo Frankl (a jogada não está nas peças).
 
 ⚠️ Consequência assumida do v3.2: o carrossel perde a perna isolada de "ciência". O
 que resta de clínico está diluído no slide do movimento ("os dados reais", "leitura
@@ -39,41 +53,50 @@ abertura do slide do movimento.
 
 ---
 
-## Roteiro slide a slide (v3.2, o que está renderizado)
+## Roteiro slide a slide (v3.4, o que está renderizado)
 
 Cabeçalho em todos: `Mayara Barros · @universpsiquee · CRP 03/36219`.
 Rodapé: *Ciência com afeto*. Sem contador de slide.
 
-1. **CAPA** (obra emoldurada, creme) — "Ainda há uma jogada." / sub "Mesmo quando o
-   tabuleiro diz xeque-mate."
-2. **A OBRA** (split, recorte do rapaz, cream2) — "Há quase dois séculos, este homem
-   está em *xeque-mate*." / "Ele apostou a própria alma numa partida contra o diabo.
-   E perdeu. Pelo menos é o que parece." / ficha: Moritz Retzsch · Os Jogadores de
+O eixo é a **associação entre o quadro e o livro "Em Busca de Sentido"**, costurada
+pelo **anjo** que Retzsch pintou atrás do rapaz derrotado (uma figura que não é peça
+do jogo = imagem do que Frankl chamou de sentido).
+
+1. **CAPA** (obra emoldurada, creme) — "Xeque-mate." / sub "Todo mundo já olhou o
+   próprio tabuleiro e pensou isso." (**mantida a pedido do Marcelo**; não promete
+   virada, cria identificação)
+2. **O QUADRO** (split, recorte do rapaz, cream2) — "Há quase dois séculos, este homem
+   está em *xeque-mate*." / "Ele apostou a própria alma numa partida de xadrez contra
+   o diabo. E, pelo tabuleiro, perdeu." / ficha: Moritz Retzsch · Os Jogadores de
    Xadrez · séc. XIX
-3. **A LENDA** (escuro) — eyebrow "A história que não morre" / "Então um enxadrista
-   olhou a tela e disse: *o rei ainda tem uma jogada*." / "Provavelmente nunca
-   aconteceu. Mas a lenda atravessou gerações."
-4. **DO QUADRO PARA A VIDA** (a ponte, creme) — eyebrow "Fora do quadro" / "Todo
-   mundo já sentou nesse lado do *tabuleiro*." / "Aquele em que a partida parece
-   perdida e não há mais o que fazer. E é justo no aperto que a saída fica mais
-   difícil de enxergar."
-5. **O MOVIMENTO** (cream2) — eyebrow "O movimento" / "O que vira o jogo é voltar a
-   olhar o *tabuleiro*." / "Não a versão que o medo conta, os dados reais da partida.
-   Trocar a leitura automática pela observação do que está de fato ali é parte do que
-   se treina na terapia."
-6. **FRANKL** (creme) — eyebrow "Quem já esteve no pior tabuleiro" / "Viktor Frankl
-   achou uma jogada onde não havia nenhuma." / "Sobrevivente de um campo de
-   concentração, escreveu que, quando não se pode mudar a situação, ainda resta
-   escolher a atitude diante dela." / ficha: Viktor Frankl · Em Busca de Sentido · 1946
-7. **REFLEXÃO** (escuro, Nietzsche) — "*Quem tem um porquê para viver suporta quase
-   todo como.*" / "A frase é de Nietzsche, e Frankl a repetia. Ter um sentido não
-   tira o peso do tabuleiro. Ele devolve a pergunta que o medo calou: qual é a sua
-   próxima jogada?"
-8. **CTA** (creme) — eyebrow "Antes de desistir do jogo" / "Se hoje parece
-   xeque-mate, talvez seja só a hora de olhar de novo." / "Com menos medo e mais
-   presença. Salva este post para quando o jogo apertar." / faixa de crise: "Se o
-   peso estiver grande demais para carregar sozinho, o CVV atende de graça, 24 horas,
-   no 188." / assinatura: Ciência com afeto · Mayara Barros · CRP 03/36219
+3. **O ANJO** (escuro) — eyebrow "O que o pintor escondeu" / "Atrás do rapaz derrotado,
+   há um *anjo*." / "Retzsch o pintou parado no meio da cena, calado. Uma figura que
+   não é peça do jogo, justo no momento em que o jogo está perdido." (abre o fio da
+   associação)
+4. **A PONTE** (creme) — eyebrow "Um século depois" / "Um homem viveu esse xeque-mate
+   *de verdade*." / "Viktor Frankl foi preso num campo de concentração. Ali, tudo o
+   que se pode tirar de uma pessoa foi tirado. O tabuleiro mais cruel que já existiu."
+5. **A DESCOBERTA** (cream2) — eyebrow "A jogada que sobra" / "A última liberdade não
+   estava nas *peças*." / "Frankl escreveu que, quando não se pode mudar a situação,
+   ainda resta escolher a atitude diante dela. O adversário controla o tabuleiro. Não
+   controla isso."
+6. **O SENTIDO** (creme) — eyebrow "O que fica de pé" / "O que sobrevive ao xeque-mate
+   não é uma peça. É o *sentido*." / "Foi o que Frankl chamou de sentido, e virou o
+   nome do livro que ele escreveu depois do campo. Não uma saída no tabuleiro: um
+   porquê que sustenta o pior dos comos." / ficha: Viktor Frankl · Em Busca de Sentido · 1946
+7. **REFLEXÃO / DE VOLTA AO QUADRO** (escuro, Nietzsche) — "*Quem tem um porquê para
+   viver suporta quase todo como.*" / "A frase é de Nietzsche, e Frankl a repetia no
+   campo. Talvez seja por isso que Retzsch pôs um anjo atrás do rapaz: mesmo em
+   xeque-mate, há algo na cena que o tabuleiro não alcança." (fecha a associação:
+   anjo = sentido)
+8. **CTA** (creme) — eyebrow "Não jogar sozinho" / "Às vezes o sentido é difícil de
+   enxergar *sozinho*." / "O trabalho do psicólogo é sentar do seu lado e ajudar a
+   procurar o que o tabuleiro não mostra, quando a partida parece perdida. Quando
+   quiser, meu direct está aberto." / assinatura: Ciência com afeto · Mayara Barros ·
+   CRP 03/36219 / CVV como nota discreta no pé do slide:
+   "Em crise agora? O CVV atende 24h, de graça, no 188."
+   ⚠️ Convite "meu direct está aberto" abre conversa sem prometer atendimento online
+   (depende do e-Psi). Sem promessa de resultado (CFP).
 
 **Fundo alternado:** 1 creme · 2 cream2 · 3 escuro · 4 creme · 5 cream2 · 6 creme ·
 7 escuro · 8 creme. Nunca dois iguais seguidos.
@@ -98,8 +121,11 @@ gancho nos primeiros 125.
 
 ## Arte renderizada
 
-8 PNGs em `post-01-xeque-mate/slides/`, 1080×1350, ~2,8 MB no total. Estilo
-**Galeria, modo claro**. Gerador: `build.js` (fonte única) → Chrome headless.
+8 PNGs em `post-01-xeque-mate/slides/`, 1080×1440 (3:4, formato do feed 2026), ~2,9 MB
+no total. Estilo **Galeria, modo claro**. Gerador: `build.js` (fonte única) →
+`puppeteer-core` apontando pro Chrome instalado. ⚠️ O `chrome --headless --screenshot
+--window-size` **trava a altura em 1350** nesta máquina; por isso o render usa
+`puppeteer-core` com `setViewport(1080,1440)` + `clip`, não o CLI direto.
 Fontes: **Cormorant Garamond**, **EB Garamond**, **Jost** — nenhuma na lista de
 antipadrões.
 

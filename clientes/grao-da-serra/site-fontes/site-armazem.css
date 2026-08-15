@@ -1,0 +1,249 @@
+/* ============================================================
+   Café Grão da Serra — VERSÃO "ARMAZÉM" (v4, concept-seed nº 5)
+   O mundo do antigo armazém de secos e molhados, onde café se
+   vendia a granel por peso. Parede caiada, placa esmaltada,
+   carimbo de borracha, etiqueta de papel pardo, estêncil de
+   engradado. Tipografia SLAB de placa (não a serifa das outras
+   versões). Latitude visual liberada pelo Marcelo; leis de
+   integridade/compliance seguem valendo (ver PRODUCT.md).
+   ============================================================ */
+
+:root{
+  --parede:#E8DDC7;      /* parede caiada — superfície base */
+  --parede-2:#DFD1B3;    /* faixa mais funda */
+  --tinta:#382719;       /* tinta / madeira escura — texto principal (10:1) */
+  --tinta-2:#5C4632;     /* texto de apoio (5,8:1) */
+  --esmalte:#2E4636;     /* verde de placa esmaltada */
+  --esmalte-esc:#22362A;
+  --creme:#F3ECDA;       /* creme sobre verde/escuro */
+  --carimbo:#A63D28;     /* vermelho de carimbo — selo, preço (grande) */
+  --carimbo-esc:#8A3120; /* carimbo escuro — rótulo pequeno no claro (6:1) */
+  --linha:#CBBA94;       /* fio discreto no claro */
+  --brass:#9A6B2F;       /* latão discreto */
+
+  --gut:clamp(20px, 5vw, 60px);
+  --maxw:1180px;
+
+  --fonte-placa:"Alfa Slab One", Georgia, serif;   /* placa esmaltada / signage */
+  --fonte-corpo:"Libre Franklin", system-ui, -apple-system, sans-serif;
+
+  --raio:6px;
+  --transic:.4s cubic-bezier(.22,.61,.36,1);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+body{
+  margin:0;color:var(--tinta);font-family:var(--fonte-corpo);font-size:18px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;
+  /* textura de parede caiada: grão sutil por gradientes, sem imagem externa */
+  background:
+    radial-gradient(circle at 20% 15%, rgba(255,255,255,.35), rgba(255,255,255,0) 40%),
+    radial-gradient(circle at 80% 60%, rgba(160,130,90,.10), rgba(160,130,90,0) 45%),
+    var(--parede);
+}
+img{max-width:100%;height:auto;display:block}
+main[id],section[id]{scroll-margin-top:96px}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding-inline:var(--gut)}
+
+h1,h2,h3{font-family:var(--fonte-placa);font-weight:400;color:var(--tinta);
+  line-height:1.02;letter-spacing:.005em;margin:0}
+a{color:inherit}
+
+/* rótulo de seção = etiqueta carimbada (não é eyebrow de estilo; é objeto do mundo) */
+.tag{display:inline-block;font-family:var(--fonte-corpo);font-weight:700;font-size:.72rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--carimbo-esc);
+  border:1.5px solid var(--carimbo-esc);border-radius:3px;padding:5px 11px;transform:rotate(-1.5deg)}
+
+/* carimbo circular (selo de borracha) */
+.carimbo{display:inline-grid;place-items:center;text-align:center;border-radius:50%;
+  border:2.5px solid var(--carimbo);color:var(--carimbo);font-family:var(--fonte-placa);
+  transform:rotate(-8deg);line-height:.95;opacity:.92}
+
+/* ---------- botões ---------- */
+.btn{display:inline-flex;align-items:center;gap:.55em;font-family:var(--fonte-corpo);
+  font-weight:700;font-size:1rem;padding:15px 30px;border-radius:var(--raio);
+  text-decoration:none;cursor:pointer;border:2px solid transparent;letter-spacing:.01em;
+  transition:transform var(--transic), background var(--transic), color var(--transic), border-color var(--transic)}
+.btn:hover{transform:translateY(-2px)}
+.btn-esmalte{background:var(--esmalte);color:var(--creme)}
+.btn-esmalte:hover{background:#375441}
+.btn-fio{background:transparent;color:var(--tinta);border-color:var(--tinta)}
+.btn-fio:hover{background:var(--tinta);color:var(--parede)}
+.btn svg{width:20px;height:20px}
+
+/* ============================ AVISO / TOGGLE ============================ */
+.aviso-demo{background:var(--tinta);color:var(--parede);font-size:.82rem;text-align:center;padding:8px 16px}
+body.limpo .aviso-demo{display:none}
+.alterna-btn{position:fixed;right:14px;bottom:14px;z-index:60;background:var(--esmalte);color:var(--creme);
+  border:2px solid var(--creme);border-radius:4px;padding:9px 15px;font-family:var(--fonte-corpo);
+  font-size:.8rem;font-weight:700;cursor:pointer;box-shadow:0 8px 22px rgba(56,39,25,.3)}
+.pend{border-bottom:1.5px dashed var(--carimbo);padding-bottom:2px}
+body.limpo .pend{border-bottom:none;padding-bottom:0}
+.pend-nota{font-size:.85rem;color:var(--tinta-2);margin:14px 0 0;display:flex;gap:.5em;align-items:flex-start}
+.pend-nota::before{content:"⚠";color:var(--carimbo)}
+body.limpo .pend-nota{display:none}
+
+/* ============================ CABEÇALHO ============================ */
+.topo{position:fixed;top:0;left:0;right:0;z-index:50;padding:13px 0;border-bottom:2px solid transparent;
+  transition:background var(--transic), border-color var(--transic)}
+.topo.solido{background:var(--parede);border-bottom-color:var(--tinta)}
+.topo .wrap{display:flex;align-items:center;gap:24px}
+.marca{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
+.marca img{width:48px;height:48px}
+.marca-txt{display:flex;flex-direction:column;line-height:1}
+.marca-cafe{font-family:var(--fonte-corpo);font-size:.66rem;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:var(--carimbo-esc)}
+.marca-nome{font-family:var(--fonte-placa);font-size:1.15rem;color:var(--tinta);margin-top:4px;letter-spacing:.01em}
+.nav{margin-left:auto;display:flex;gap:26px}
+.nav a{font-size:.86rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--tinta);text-decoration:none;position:relative;padding:4px 0}
+.nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-3px;height:2px;background:var(--carimbo);transition:right .3s}
+.nav a:hover::after,.nav a.aqui::after{right:0}
+.btn-topo{padding:10px 20px;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em}
+.menu-btn{display:none;background:none;border:none;color:var(--tinta);font-size:1.6rem;cursor:pointer;line-height:1;padding:4px 8px}
+
+/* ============================ HERO — placa esmaltada ============================ */
+.hero{padding:calc(96px + clamp(40px,7vw,80px)) 0 clamp(48px,7vw,86px);text-align:center}
+.placa{position:relative;max-width:860px;margin:0 auto;background:var(--esmalte);
+  border-radius:14px;padding:clamp(34px,6vw,66px) clamp(24px,5vw,60px);
+  box-shadow:inset 0 0 0 4px var(--esmalte-esc), inset 0 0 0 7px rgba(243,236,218,.85), 0 24px 48px rgba(34,25,15,.32);
+  color:var(--creme)}
+/* parafusos de canto da placa (grounded: placa esmaltada real tem furos) */
+.placa::before,.placa::after{content:"";position:absolute;width:13px;height:13px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #6b7d70, #1c2b22);top:16px}
+.placa::before{left:16px}.placa::after{right:16px}
+.placa .furo-b{position:absolute;bottom:16px;width:13px;height:13px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #6b7d70, #1c2b22)}
+.placa .furo-b.e{left:16px}.placa .furo-b.d{right:16px}
+.placa-top{font-family:var(--fonte-corpo);font-weight:700;font-size:.8rem;letter-spacing:.34em;
+  text-transform:uppercase;color:#B9CBBE;margin-bottom:18px}
+.placa h1{color:var(--creme);font-size:clamp(2.5rem,6.2vw,4.7rem);line-height:1;letter-spacing:.01em}
+.placa-sub{font-family:var(--fonte-placa);font-size:clamp(1rem,2vw,1.4rem);color:var(--brass);
+  color:#D8B15E;margin-top:14px;letter-spacing:.06em}
+.hero-sub{max-width:52ch;margin:30px auto 30px;font-size:clamp(1.05rem,1.5vw,1.2rem);color:var(--tinta-2)}
+.hero-acao{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+/* selo carimbado sobreposto no canto da placa */
+.hero-selo{position:absolute;right:-14px;bottom:-22px;width:clamp(88px,12vw,120px);height:clamp(88px,12vw,120px);
+  font-size:.66rem;letter-spacing:.12em;padding:10px;background:var(--parede);z-index:2}
+.hero-selo b{font-size:1.5em;display:block;letter-spacing:0}
+
+/* ============================ SEÇÃO base ============================ */
+.sec{padding:clamp(58px,8vw,108px) 0}
+.sec-2{background:var(--parede-2)}
+.faixa-verde{background:var(--esmalte);color:var(--creme)}
+.faixa-verde h2,.faixa-verde h3{color:var(--creme)}
+.faixa-verde .tag{color:#EBC77E;border-color:#EBC77E}
+.sec-head{text-align:center;max-width:640px;margin:0 auto clamp(38px,5vw,60px)}
+.sec-head .tag{margin-bottom:18px}
+.sec-head h2{font-size:clamp(1.9rem,4vw,3rem)}
+.sec-head p{margin-top:16px;color:var(--tinta-2);font-size:1.1rem}
+.faixa-verde .sec-head p{color:#DCE4DA}
+
+/* ============================ O CAFÉ (produto + etiqueta) ============================ */
+.cafe-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,5vw,70px);align-items:center}
+.cafe-fig{position:relative;display:flex;justify-content:center}
+.cafe-fig img{width:min(100%,360px);filter:drop-shadow(0 24px 40px rgba(56,39,25,.32))}
+.cafe-txt h2{font-size:clamp(2rem,4vw,3rem)}
+.cafe-txt p.lead{margin:20px 0 28px;font-size:1.14rem;color:var(--tinta-2);max-width:46ch}
+/* etiqueta de papel pardo amarrada, com specs carimbadas */
+.etiqueta{background:#D8C39C;border:1px dashed var(--tinta-2);border-radius:6px;
+  padding:22px 24px;max-width:420px;position:relative;box-shadow:0 10px 22px rgba(56,39,25,.14)}
+.etiqueta::before{content:"";position:absolute;top:-9px;left:34px;width:16px;height:16px;border-radius:50%;
+  border:2px solid var(--tinta-2);background:var(--parede)}
+.etiqueta dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 16px}
+.etiqueta dt{font-weight:700;color:var(--tinta);font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;align-self:center}
+.etiqueta dd{margin:0;font-family:var(--fonte-placa);font-size:1.15rem;color:var(--carimbo-esc);text-align:right}
+
+/* ============================ COMO É FEITO (estêncil de engradado) ============================ */
+.feito-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.crate{text-align:center}
+.crate-face{position:relative;aspect-ratio:1/1;border-radius:6px;overflow:hidden;
+  background:var(--esmalte-esc);border:3px solid #24170d;box-shadow:inset 0 0 0 2px rgba(243,236,218,.14)}
+.crate-face img{width:100%;height:100%;object-fit:cover;opacity:.95}
+.crate-n{position:absolute;top:8px;left:10px;font-family:var(--fonte-placa);color:var(--creme);font-size:1rem;z-index:2}
+.crate h3{font-size:1.16rem;margin:14px 0 6px}
+.crate p{color:var(--tinta-2);font-size:.94rem;line-height:1.45}
+
+/* ============================ ATACADO / PARA O NEGÓCIO (lista de gêneros) ============================ */
+.generos{max-width:900px;margin:0 auto;border-top:2px solid currentColor}
+.genero{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:baseline;
+  padding:20px 0;border-bottom:1px solid rgba(243,236,218,.22)}
+.genero .g-n{font-family:var(--fonte-placa);color:#EBC77E;font-size:1.05rem}
+.genero .g-nome{font-family:var(--fonte-placa);color:var(--creme);font-size:clamp(1.15rem,2vw,1.5rem)}
+.genero .g-desc{color:#DCE4DA;font-size:.98rem;max-width:40ch;justify-self:start}
+@media (min-width:721px){.genero .g-desc{justify-self:end;text-align:right}}
+
+/* ============================ FORNECIMENTO / PEDIDO ============================ */
+.nota{max-width:720px;margin:0 auto;background:#EFE7D3;border:2px solid var(--tinta);border-radius:8px;
+  padding:clamp(22px,4vw,42px);position:relative;box-shadow:0 22px 46px rgba(56,39,25,.16)}
+.nota-cabec{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--tinta);
+  padding-bottom:14px;margin-bottom:24px;flex-wrap:wrap;gap:8px}
+.nota-cabec b{font-family:var(--fonte-placa);font-size:1.2rem;letter-spacing:.04em}
+.nota-cabec span{font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--carimbo-esc)}
+.form-duplo{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+.form-campo{display:flex;flex-direction:column;gap:7px}
+.form-campo label{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta)}
+.form-campo input,.form-campo select,.form-campo textarea{font-family:var(--fonte-corpo);font-size:1rem;color:var(--tinta);
+  background:var(--parede);border:none;border-bottom:2px solid var(--tinta-2);border-radius:0;padding:10px 4px;
+  transition:border-color .25s}
+.form-campo input::placeholder,.form-campo textarea::placeholder{color:#9A855F}
+.form-campo input:focus,.form-campo select:focus,.form-campo textarea:focus{outline:none;border-bottom-color:var(--carimbo)}
+.form-campo textarea{min-height:80px;resize:vertical;border:2px solid var(--tinta-2);border-radius:6px;padding:10px}
+.form-ajuda{font-size:.88rem;color:var(--tinta-2);margin:6px 0 20px;line-height:1.5}
+.form-envio{width:100%;justify-content:center;font-size:1.05rem;padding:16px;text-transform:uppercase;letter-spacing:.06em}
+
+/* ============================ RODAPÉ ============================ */
+.rodape{background:var(--tinta);color:var(--parede);padding:clamp(50px,7vw,82px) 0 32px}
+.rodape-grid{display:grid;grid-template-columns:1.4fr 1fr 1.2fr 1.2fr;gap:40px}
+.rodape .marca-nome{color:var(--parede)}
+.rodape .marca-cafe{color:#D8B15E}
+.rodape .marca img{width:52px;height:52px}
+.rodape-grid>div>p{color:#CDBFA6;font-size:.96rem;margin:18px 0 0;max-width:34ch}
+.sociais{display:flex;gap:12px;margin-top:20px}
+.sociais a{width:42px;height:42px;display:grid;place-items:center;border-radius:4px;border:2px solid #D8B15E;color:var(--parede);transition:background .25s,transform .25s}
+.sociais a:hover{background:rgba(216,177,94,.16);transform:translateY(-2px)}
+.sociais svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7}
+.sociais .ico-wa{fill:currentColor;stroke:none}
+.rodape h3{font-family:var(--fonte-corpo);font-weight:700;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:#D8B15E;margin-bottom:18px}
+.rodape ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.rodape ul a{color:var(--parede);text-decoration:none;font-size:.96rem}
+.rodape ul a:hover{color:#fff}
+.rodape-linha{display:flex;gap:10px;align-items:flex-start;color:var(--parede);font-size:.96rem}
+.rodape-linha svg{width:19px;height:19px;flex-shrink:0;margin-top:2px;fill:none;stroke:#D8B15E;stroke-width:1.7}
+.rodape-linha .ico-wa{fill:#D8B15E;stroke:none}
+.rodape-casa{margin-top:22px}
+.rodape-casa img{width:156px;opacity:.9}
+.rodape-pe{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:44px;padding-top:22px;border-top:1px solid rgba(216,177,94,.3);font-size:.84rem;color:#CDBFA6}
+
+/* ============================ REVEAL ============================ */
+.revela{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1)}
+.revela.dentro{opacity:1;transform:none}
+.revela.d1{transition-delay:.08s}.revela.d2{transition-delay:.16s}.revela.d3{transition-delay:.24s}
+@media (prefers-reduced-motion:reduce){.revela{opacity:1;transform:none;transition:none}.btn:hover{transform:none}}
+
+/* ============================ RESPONSIVO ============================ */
+@media (max-width:940px){
+  .nav{position:fixed;inset:0 0 auto 0;flex-direction:column;gap:0;background:var(--tinta);padding:82px 24px 26px;
+    transform:translateY(-100%);transition:transform .4s cubic-bezier(.22,.61,.36,1);margin-left:0}
+  .topo.aberto .nav{transform:translateY(0)}
+  .nav a{padding:15px 0;border-bottom:1px solid rgba(216,177,94,.25);width:100%;color:var(--parede)}
+  .nav a::after{display:none}
+  .menu-btn{display:block;margin-left:auto}
+  .btn-topo{display:none}
+  .cafe-grid{grid-template-columns:1fr;gap:36px}
+  .cafe-fig{order:-1}.cafe-fig img{width:min(66%,300px)}
+  .feito-grid{grid-template-columns:repeat(2,1fr);gap:26px}
+}
+@media (max-width:600px){
+  body{font-size:17px}
+  .feito-grid{grid-template-columns:1fr 1fr}
+  .generos{border-top-width:2px}
+  .genero{grid-template-columns:auto 1fr;gap:6px 14px}
+  .genero .g-desc{grid-column:1 / -1}
+  .form-duplo{grid-template-columns:1fr;gap:0}
+  .form-campo{margin-bottom:18px}
+  .rodape-grid{grid-template-columns:1fr;gap:34px}
+  .rodape-pe{flex-direction:column}
+  .hero-selo{right:6px;bottom:-30px}
+}

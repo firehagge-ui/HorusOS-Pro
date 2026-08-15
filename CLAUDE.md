@@ -126,7 +126,17 @@ Antes de escrever a primeira linha de HTML de qualquer site ou landing page, ler
 3. `_memoria/design/99-checklist.md` — o que conferir antes de entregar
 4. `_memoria/design/50-copy-de-interface.md` — se a peça tem formulário, botão,
    bot ou qualquer texto de interface
-5. `referencias/README.md` — se já existe teardown do segmento do cliente
+5. `_memoria/design/60-motion.md` — a doutrina de movimento (quando/quanto animar,
+   o arsenal vendorizado em `_biblioteca/motion/`, a trava de compliance). Ler
+   antes de adicionar qualquer animação, background interativo ou efeito de scroll
+6. `referencias/README.md` — se já existe teardown do segmento do cliente
+
+**Consulta (não gatilho):** os quatro fundamentos de teoria — `10-tipografia.md`,
+`20-cor.md`, `30-layout-espaco.md`, `40-composicao.md` — não entram na leitura
+obrigatória acima, pra não inchar o pré-voo. São a camada de *porquê* por baixo do
+`90-antipadroes.md`: abrir quando a decisão for daquele assunto (montar a escala de
+tipo, a paleta, o ritmo de layout, o foco de uma tela). Cada um fecha ligando o
+princípio ao antipadrão que ele explica.
 
 **O passe duplo do `00-anatomia.md` não é opcional:** escrever o plano (cor, tipo,
 layout, assinatura), atacar o plano com a pergunta "eu chegaria aqui em qualquer
@@ -140,7 +150,7 @@ node .claude/skills/impeccable/scripts/detect.mjs "clientes/<nome>/site"
 ```
 
 Se a skill não estiver instalada nesse clone, o mesmo detector roda via
-`npx --yes impeccable@3.5.0 detect "clientes/<nome>/site"`.
+`npx --yes impeccable@4.0.4 detect "clientes/<nome>/site"`.
 
 Saída `0` é limpo, `2` achou coisa. Regra de acessibilidade (`low-contrast`,
 `undersized-ui-text`, `tiny-text`, `skipped-heading`) se corrige, não se dispensa.
@@ -202,6 +212,15 @@ Quando o Marcelo corrigir algo de peça social, a correção vira linha em
 
 ## Impeccable (instalado por inteiro em 08/08/2026)
 
+> ⚠️ **Versão instalada verificada em 10/08/2026: `4.0.4`** (li o `version:` do
+> `.claude/skills/impeccable/SKILL.md`). O texto que dizia 3.5.0 era documentação
+> vencida. **Para gerar versões visualmente divergentes** (não só reskin), o 4.0
+> tem o torneio de conceitos: rodar `node .claude/skills/impeccable/scripts/concept-seed.mjs
+> --scope direction --mode <persuade|operate|read|experience>` de dentro da pasta
+> do cliente (ele usa `process.cwd()` e **exige `PRODUCT.md`** ali). Sem rodar esse
+> script, as versões tendem a convergir para o padrão — foi o que aconteceu nas
+> primeiras tentativas do site do Grão da Serra. Ver a 20ª rodada no CLAUDE.md dele.
+
 Até 07/08/2026 a Horus usava **só** o detector, via `npx`. Em 08/08/2026 o pacote
 completo foi instalado: a skill `/impeccable` com 23 comandos, os 4 agentes e os
 dois hooks. O motivo da rejeição original (a convenção `DESIGN.md` colidir com
@@ -217,7 +236,7 @@ contexto por cliente, abaixo.
 | 2 hooks | `.claude/settings.json` | ✅ |
 | Exceções do detector | `.impeccable/config.json` | ✅ |
 
-Reinstalar num clone novo: `npx --yes impeccable@3.5.0 install`. Sem a pasta da
+Reinstalar num clone novo: `npx --yes impeccable@4.0.4 install`. Sem a pasta da
 skill, os hooks viram no-op silencioso e o `/verificar` segue funcionando via
 `npx` — nada quebra, só deixa de acontecer.
 
@@ -465,6 +484,12 @@ não publica sem revisão do profissional responsável.
 - `referencias/` — biblioteca de teardowns de sites reais, da agência inteira.
   Gerada pela skill `/estudar-site`. **Não confundir** com
   `clientes/<nome>/referencias-*/`, que é material daquele cliente só
+- `_biblioteca/` — arsenal reutilizável da agência, em duas camadas. `motion/`
+  (desde 10/08/2026): GSAP/Lenis/WebGL vendorizados + snippets, doutrina em
+  `_memoria/design/60-motion.md`. `inspiracoes/` (desde 14/08/2026): fichas de
+  **padrão de componente/interação** (hero, card, transição, objeto-motion...),
+  o nível entre o teardown de página (`referencias/`) e o snippet de código.
+  Prateleira por função, serve a casa inteira, não a um cliente
 - `identidade/` — marca **da agência** (peças institucionais). O `design-guide.md`
   foi preenchido em 04/08/2026 e deixou de ser buraco declarado
 - `templates/` — modelos do Horus OS: perfis de `CLAUDE.md`, catálogo de ferramentas
@@ -558,10 +583,12 @@ Aion Psicologia em Santa Catarina (@aionpsicologiasc), não é esta.
 
 ### Cliente #4 — Nelson (Café Grão da Serra, Brejões/BA)
 
-Pasta: `clientes/grao-da-serra/`. Café torrado 100% arábica, artesanal, **B2B**
-(revenda para padaria, mercado, cafeteria, escritório). MEI ativo desde 20/03/2026,
+Pasta: `clientes/grao-da-serra/`. Café torrado 100% arábica, artesanal, **B2B e B2C**
+(revenda para padaria, mercado, cafeteria, escritório — e também venda ao consumidor
+final, confirmado pelo Nelson em 11/08/2026). MEI ativo desde 20/03/2026,
 Distrito Serrana, Brejões/BA. Ele opera sozinho e responde o próprio WhatsApp.
-Máquina: **GOOGLE MEU NEGÓCIO** (prioridade atual) → SITE institucional → CRM.
+Máquina: GOOGLE MEU NEGÓCIO → **SITE institucional NO AR (https://graodaserra.netlify.app/,
+11/08/2026)** → CRM (próximo, pago).
 
 Chegou por relação (o sócio do Marcelo já era amigo dele). O site é **de graça, por
 portfólio**, depois de a faixa de R$ 2.000 a 2.500 ter sido ancorada. O **CRM foi
@@ -575,9 +602,10 @@ para foto também: cafezal de banco de imagem falseia a origem. O diferencial re
 a escolha do grão e o beneficiamento: **"a gente não planta, a gente escolhe"**.
 
 **O nome é o lugar.** O MEI fica no Distrito Serrana, e "Serrana de Itiruçu/Brejões"
-é região cafeeira reconhecida. ⚠️ Mas ainda **não foi confirmado que o grão vem de
-lá**: até confirmar, não usar a região, a altitude nem a tradição cafeeira de
-Brejões como credencial do produto.
+é região cafeeira reconhecida. ✅ **Origem confirmada (Marcelo, 11/08/2026, junto com
+a aprovação do site pelo Nelson): o grão vem da região** — liberado usar a origem, a
+região e a tradição cafeeira de Brejões como credencial. (Até 10/08 isso era pendência
+e o texto da origem ficava marcado com `.pend`; a confirmação removeu a marcação.)
 
 **Homônimos:** `graodaserra.com.br` é de um Café Gourmet de 1995 da Serra da
 Mantiqueira/SP, com e-commerce nacional; existe ainda um CAFE GRAO DA SERRA LTDA-ME
@@ -605,9 +633,8 @@ Perfil `@universpsiquee`: **0 posts**, 191 seguidores em 03/08/2026. Assinatura 
 prontas. A direção visual **"Galeria"** (pintura clássica de domínio público
 emoldurada + ficha técnica + leitura psicológica, modo claro) está travada no
 `marca.md`, e o **post #1 "Xeque-Mate + Frankl" está renderizado (8 slides)** via
-`build.js` (HTML→PNG). Há um kit em `gpt-projeto/` para carregar essa identidade num
-GPT do ChatGPT: a divisão é Claude rascunha e renderiza, ChatGPT opina, Claude
-aplica. **Não gerar carrossel por IA de imagem** (quebra texto e falsifica a obra).
+`build.js` (HTML→PNG). **Não gerar carrossel por IA de imagem** (quebra texto e
+falsifica a obra).
 
 **⚠️ Compliance CFP — mesma régua da Aion** (Res. 011/2018): sem depoimento de
 paciente em nenhum formato, sem promessa de cura ou prazo, sem autoteste, CRP

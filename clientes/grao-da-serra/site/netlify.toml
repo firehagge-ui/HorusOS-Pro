@@ -1,0 +1,24 @@
+# Deploy do site do Café Grão da Serra no Netlify.
+# É site estático (HTML/CSS), sem build. A pasta publicada é a própria raiz
+# do que for enviado (arraste a pasta `site/` em app.netlify.com/drop, ou
+# aponte o base directory para clientes/grao-da-serra/site num deploy por Git).
+
+[build]
+  publish = "."
+  command = ""
+
+# Assets versionados por conteúdo: cache longo e imutável.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# HTML sempre revalidado, mais cabeçalhos de segurança.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), camera=(), microphone=()"

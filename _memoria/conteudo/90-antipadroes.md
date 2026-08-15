@@ -33,6 +33,19 @@ fazendo sentido, reescrever.
 emocional: dado sem impacto é esquecido antes do próximo post. O penúltimo slide
 de conteúdo precisa ser o que incomoda, não o que informa.
 
+**Tom de coach / autoajuda motivacional.** "Sempre há uma saída", "basta olhar pra
+dentro", "você é mais forte do que pensa", "qual é a sua próxima jogada". Promete
+virada e joga a solução no colo de quem lê, como se bastasse querer enxergar. Em
+peça de psicólogo é problema duplo: soa raso e afasta justamente o público que
+percebe profundidade (o eixo arte + filosofia da Mayara existe pra fugir disso), e
+beira a promessa de resultado vedada pelo CFP. O antídoto não é pessimismo, é
+honestidade clínica — nem toda situação muda, e o que a terapia oferece não é a
+jogada mágica, é não reler o tabuleiro sozinho e poder escolher a atitude diante do
+que não muda (é Frankl, que é o oposto do coach).
+→ *Origem: a Mayara achou o post #1 "muito coach" ("a impressão é que basta olhar
+pra fora que você acha um caminho"), 12/08/2026. O eixo foi reescrito de "ainda há
+uma jogada" para "às vezes o xeque-mate é real, mas ninguém relê sozinho".*
+
 **CTA genérico.** "Nos siga", "link na bio", "salve este post" solto. Revela que
 ninguém pensou no próximo passo de quem leu. CTA bom cita o conteúdo:
 *"Salva. Da próxima vez que te oferecerem café mais barato, você vai saber a
@@ -75,6 +88,19 @@ padrão no Instagram.*
 sem motivo narrativo, espaçamento que parece erro. Qualquer slide, solto, tem que
 ser reconhecível como parte daquele carrossel. Por isso o sistema de design se
 escreve **antes** do primeiro HTML, não durante.
+
+**Objeto que muda entre slides (imagem de IA que deriva).** A planta do slide 2
+vira árvore no 6, o grão de café muda de cor, a xícara troca de formato, o número
+de objetos na cena não bate. Denuncia geração de IA slide a slide sem âncora: cada
+geração independente é um sorteio, e o modelo não repete o objeto sozinho. O olho
+registra a série inteira como "peça amadora" mesmo sem saber nomear o quê. É a
+mesma falha da fonte que escorrega, mas no pixel gerado em vez do CSS. O porquê e a
+cura estão no Passo 4 da `/carrossel`: se o objeto tem que ser idêntico em vários
+slides, **não se gera N vezes** (gera uma e reposiciona o mesmo arquivo); quando é
+série de cenas diferentes, trava com cena-mestra + style lock fixo + objetos
+nomeados literalmente + seed fixa, e confere lado a lado antes do lote.
+→ *Origem: pedido do Marcelo em 14/08/2026 ("elementos do slide 1 fiéis no slide 8,
+plantas não viram árvores").*
 
 **Slide 1 igual aos outros.** A capa precisa de tratamento tipográfico maior e
 layout distinto. É o único slide que compete contra o feed inteiro; os outros

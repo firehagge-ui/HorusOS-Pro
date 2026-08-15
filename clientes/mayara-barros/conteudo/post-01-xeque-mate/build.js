@@ -1,4 +1,4 @@
-// Gera 8 slides standalone (1080x1350) do post #1 — estilo "Galeria", modo claro.
+// Gera 8 slides standalone (1080x1440, formato 3:4 do feed) do post #1 — estilo "Galeria", modo claro.
 // Fonte única de verdade do conteúdo + design system. Roda: node build.js
 // v3.2 (03/08/2026): slide de ciência removido a pedido do Marcelo (8 slides).
 // Copy revisada (cada slide deixa gancho pro próximo). Cores e sistema mantidos.
@@ -24,9 +24,9 @@ const HEAD = `
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=EB+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{width:1080px;height:1350px;overflow:hidden}
-.slide{width:1080px;height:1350px;position:relative;display:flex;flex-direction:column;
-  padding:64px 84px 56px;background:${C.cream};color:${C.ink}}
+html,body{width:1080px;height:1440px;overflow:hidden}
+.slide{width:1080px;height:1440px;position:relative;display:flex;flex-direction:column;
+  padding:80px 84px 68px;background:${C.cream};color:${C.ink}}
 .slide.cream2{background:${C.cream2}}
 .slide.dark{background:${C.slateDeep};color:${C.cream}}
 /* cabeçalho-rótulo */
@@ -84,6 +84,9 @@ p{font-family:'EB Garamond',serif;font-weight:500;font-size:39px;line-height:1.5
 .crise b{font-weight:600}
 .cta-sign{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;
   font-size:44px;color:${C.terra};margin-top:8px}
+/* CVV — nota discreta no pé do slide de CTA */
+.cvv{margin-top:auto;padding-top:10px;color:${C.slate}}
+.cvv b{color:${C.terra};font-weight:600}
 </style>`;
 
 const BAR = `<div class="bar"><span>Mayara Barros</span><span class="mid">@universpsiquee</span><span>CRP 03/36219</span></div>`;
@@ -101,8 +104,8 @@ const slides = [];
 slides.push(page(`
   <div class="cover-art"><div class="frame"><img src="../obra-web.jpg"></div></div>
   <div class="cover-title">
-    <h1>Ainda há uma jogada.</h1>
-    <div class="sub">Mesmo quando o tabuleiro diz xeque-mate.</div>
+    <h1>Xeque-mate.</h1>
+    <div class="sub">Todo mundo já olhou o próprio tabuleiro e pensou isso.</div>
   </div>`, ""));
 
 // 2 — A OBRA (split com o rapaz)
@@ -111,7 +114,7 @@ slides.push(page(`
     <div class="frame"><img src="../obra-rapaz.jpg"></div>
     <div class="txt">
       <h2>Há quase dois séculos, este homem está em <em>xeque-mate</em>.</h2>
-      <p>Ele apostou a própria alma numa partida contra o diabo. E perdeu. Pelo menos é o que parece.</p>
+      <p>Ele apostou a própria alma numa partida de xadrez contra o diabo. E, pelo tabuleiro, perdeu.</p>
       <div class="ficha"><b>Moritz Retzsch</b> · Os Jogadores de Xadrez · séc. XIX</div>
     </div>
   </div>`, "cream2"));
@@ -119,38 +122,38 @@ slides.push(page(`
 // 3 — A LENDA (dark)
 slides.push(page(`
   <div class="body">
-    <div class="eyebrow">A história que não morre</div>
+    <div class="eyebrow">O que o pintor escondeu</div>
     <hr class="rule">
-    <h2>Então um enxadrista olhou a tela e disse: <em>o rei ainda tem uma jogada</em>.</h2>
-    <p>Provavelmente nunca aconteceu. Mas a lenda atravessou gerações.</p>
+    <h2>Atrás do rapaz derrotado, há um <em>anjo</em>.</h2>
+    <p>Retzsch o pintou parado no meio da cena, calado. Uma figura que não é peça do jogo, justo no momento em que o jogo está perdido.</p>
   </div>`, "dark"));
 
 // 4 — DO QUADRO PARA A VIDA (a ponte: sai da lenda e chega em quem lê)
 slides.push(page(`
   <div class="body">
-    <div class="eyebrow">Fora do quadro</div>
+    <div class="eyebrow">Um século depois</div>
     <hr class="rule">
-    <h2>Todo mundo já sentou nesse lado do <em>tabuleiro</em>.</h2>
-    <p>Aquele em que a partida parece perdida e não há mais o que fazer. E é justo no aperto que a saída fica mais difícil de enxergar.</p>
+    <h2>Um homem viveu esse xeque-mate <em>de verdade</em>.</h2>
+    <p>Viktor Frankl foi preso num campo de concentração. Ali, tudo o que se pode tirar de uma pessoa foi tirado. O tabuleiro mais cruel que já existiu.</p>
   </div>`, ""));
 
 // 5 — O MOVIMENTO (slide de ciência cortado a pedido do Marcelo, 03/08. Fundo
 // passou a cream2 para não colar dois cremes seguidos com o slide 4)
 slides.push(page(`
   <div class="body">
-    <div class="eyebrow">O movimento</div>
+    <div class="eyebrow">A jogada que sobra</div>
     <hr class="rule">
-    <h2>O que vira o jogo é voltar a olhar o <em>tabuleiro</em>.</h2>
-    <p>Não a versão que o medo conta, os dados reais da partida. Trocar a leitura automática pela observação do que está de fato ali é parte do que se treina na terapia.</p>
+    <h2>A última liberdade não estava nas <em>peças</em>.</h2>
+    <p>Frankl escreveu que, quando não se pode mudar a situação, ainda resta escolher a atitude diante dela. O adversário controla o tabuleiro. Não controla isso.</p>
   </div>`, "cream2"));
 
 // 6 — FRANKL (fundo passou a creme para manter a alternância)
 slides.push(page(`
   <div class="body">
-    <div class="eyebrow">Quem já esteve no pior tabuleiro</div>
+    <div class="eyebrow">O que fica de pé</div>
     <hr class="rule">
-    <h2>Viktor Frankl achou uma jogada onde não havia nenhuma.</h2>
-    <p>Sobrevivente de um campo de concentração, escreveu que, quando não se pode mudar a situação, ainda resta escolher a atitude diante dela.</p>
+    <h2>O que sobrevive ao xeque-mate não é uma peça. É o <em>sentido</em>.</h2>
+    <p>Foi o que Frankl chamou de sentido, e virou o nome do livro que ele escreveu depois do campo. Não uma saída no tabuleiro: um porquê que sustenta o pior dos comos.</p>
     <div class="ficha"><b>Viktor Frankl</b> · Em Busca de Sentido · 1946</div>
   </div>`, ""));
 
@@ -158,18 +161,18 @@ slides.push(page(`
 slides.push(page(`
   <div class="body">
     <div class="big-quote">“Quem tem um porquê para viver suporta quase todo como.”</div>
-    <p>A frase é de Nietzsche, e Frankl a repetia. Ter um sentido não tira o peso do tabuleiro. Ele devolve a pergunta que o medo calou: qual é a sua próxima jogada?</p>
+    <p>A frase é de Nietzsche, e Frankl a repetia no campo. Talvez seja por isso que Retzsch pôs um anjo atrás do rapaz: mesmo em xeque-mate, há algo na cena que o tabuleiro não alcança.</p>
   </div>`, "dark"));
 
-// 8 — CTA + crise
+// 8 — CTA (presença do psicólogo + convite) + CVV discreto no pé
 slides.push(page(`
   <div class="body">
-    <div class="eyebrow">Antes de desistir do jogo</div>
+    <div class="eyebrow">Não jogar sozinho</div>
     <hr class="rule">
-    <h2>Se hoje parece xeque-mate, talvez seja só a hora de olhar de novo.</h2>
-    <p>Com menos medo e mais presença. Salva este post para quando o jogo apertar.</p>
-    <div class="crise">Se o peso estiver grande demais para carregar sozinho, o <b>CVV</b> atende de graça, 24 horas, no <b>188</b>.</div>
+    <h2>Às vezes o sentido é difícil de enxergar <em>sozinho</em>.</h2>
+    <p>O trabalho do psicólogo é sentar do seu lado e ajudar a procurar o que o tabuleiro não mostra, quando a partida parece perdida. Quando quiser, meu direct está aberto.</p>
     <div class="cta-sign">Ciência com afeto · Mayara Barros · CRP 03/36219</div>
+    <div class="ficha cvv">Em crise agora? O <b>CVV</b> atende 24h, de graça, no <b>188</b>.</div>
   </div>`, ""));
 
 slides.forEach((html, i) => {
@@ -179,7 +182,7 @@ slides.forEach((html, i) => {
 // preview único
 fs.writeFileSync(
   path.join(__dirname, "preview.html"),
-  `<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:#555;display:flex;flex-wrap:wrap;gap:16px;padding:16px}iframe{width:1080px;height:1350px;border:0;transform:scale(.4);transform-origin:top left;margin:0 -648px -810px 0}</style></head><body>${slides
+  `<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:#555;display:flex;flex-wrap:wrap;gap:16px;padding:16px}iframe{width:1080px;height:1440px;border:0;transform:scale(.4);transform-origin:top left;margin:0 -648px -864px 0}</style></head><body>${slides
     .map((_, i) => `<iframe src="slides/slide-${String(i + 1).padStart(2, "0")}.html"></iframe>`)
     .join("")}</body></html>`
 );

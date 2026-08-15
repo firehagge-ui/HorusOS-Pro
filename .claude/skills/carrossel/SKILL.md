@@ -226,15 +226,66 @@ sentido, ele não diz nada — reescrever.
 
 Só se o usuário pediu carrossel com foto IA.
 
-1. Montar prompt em inglês (a API funciona melhor em inglês)
-2. Padrão genérico de prompt:
+> **A trava de imagem é irmã da trava de CSS.** O Passo 5 fixa cor e fonte pra
+> não escorregar entre slides. Este passo faz o mesmo pro **pixel gerado**: sem
+> ele, o objeto do slide 1 vira outra coisa no slide 8 (o grão muda de cor, a
+> planta vira árvore, a xícara troca de formato). Cada geração solta é um sorteio
+> independente; consistência exige âncora. É o antipadrão "objeto que muda entre
+> slides" em `_memoria/conteudo/90-antipadroes.md`.
+
+#### A regra que vem antes de tudo: às vezes não se gera 8 vezes
+
+Modelo generativo **não garante** identidade perfeita de objeto entre gerações,
+por mais travado que seja o prompt. Então, antes de gerar:
+
+> **Se o mesmo objeto precisa aparecer idêntico em vários slides, o certo quase
+> sempre é NÃO gerar N vezes.** Gerar uma vez (ou usar foto/asset real) e
+> **reposicionar o mesmo arquivo** via CSS/composição nos outros slides. Regerar o
+> que tem que ser idêntico é convidar a variação.
+
+Geração slide a slide só se justifica quando **cada slide mostra uma cena
+diferente** (não o mesmo objeto repetido). E mesmo aí, valem as travas abaixo.
+
+#### As quatro travas de consistência
+
+**1. Cena-mestra, não N sorteios.** Gerar primeiro UMA imagem-âncora (o objeto ou
+a cena que dá o tom da série), aprovar, e derivar as demais **por edição/variação
+a partir dela** (image edit, passando a âncora como imagem de entrada), não por
+prompt novo do zero. É o que trava o mesmo objeto entre gerações.
+
+**2. Bloco de "style lock" fixo.** Um trecho de prompt **idêntico**, colado em
+toda geração da série. O que muda entre slides é só o conteúdo; o estilo, nunca.
+Montar uma vez, no início, e repetir literal:
 
 ```
-Professional [TIPO] photography of [ASSUNTO],
-[DETALHES], [AMBIENTE/CONTEXTO],
-[ESTILO DE LUZ] lighting, shallow depth of field,
-shot from [ÂNGULO], [ESTILO/ESTÉTICA],
-editorial quality
+STYLE LOCK (colar igual em todos os prompts da série):
+palette: [os mesmos 2-4 hex do sistema de design], nothing else
+lighting: [ex: soft directional window light, warm]
+lens/angle: [ex: 50mm, eye-level, shallow depth of field]
+render: [ex: editorial photography, matte finish, subtle film grain]
+mood: [ex: calm, artisanal, unhurried]
+```
+
+**3. Objetos nomeados e travados.** Listar os objetos recorrentes com descrição
+**literal e específica**, e repetir a mesma frase exata em cada prompt. Vago =
+deriva.
+- ❌ "coffee beans" → cada geração inventa um grão diferente
+- ✅ "medium-roast arabica coffee beans, whole, matte dark brown, no oil sheen"
+
+**4. Seed fixa quando a ferramenta expõe.** Onde houver parâmetro de seed, fixar
+o mesmo valor pra série inteira.
+
+#### Como montar cada prompt
+
+1. Prompt em inglês (a API funciona melhor em inglês).
+2. Estrutura: **conteúdo do slide** + **objetos nomeados (trava 3)** + **STYLE
+   LOCK literal (trava 2)**. O style lock vai igual em todos; o começo é o que
+   muda.
+
+```
+[conteúdo específico deste slide],
+[objetos nomeados, descrição literal repetida da série],
+STYLE LOCK: [bloco fixo, idêntico em todos]
 ```
 
 3. Gerar via script (se `scripts/gerar-imagem.js` existir):
@@ -242,11 +293,18 @@ editorial quality
 node --env-file=.env scripts/gerar-imagem.js "PROMPT" "marketing/conteudo/<pasta>/foto-<nome>.png"
 ```
 
-Se não tiver o script ainda, instruir o usuário a configurar `OPENAI_API_KEY` no `.env` e criar o script (ou usar outra ferramenta de geração de imagem).
+Se não tiver o script ainda, instruir o usuário a configurar `OPENAI_API_KEY` no
+`.env` e criar o script (ou usar outra ferramenta). Se o script suportar imagem de
+entrada, usar a âncora aprovada como referência nas gerações seguintes (trava 1).
 
-4. Mostrar a foto pro usuário antes de continuar.
+4. **Conferência lado a lado antes do lote.** Colocar as imagens da série lado a
+   lado e checar: mesma forma, mesma cor, mesmo número de objetos, mesma luz. É o
+   análogo visual do "renderizar e olhar o slide 1" que a skill já exige pro texto.
+   Objeto que derivou volta pra geração antes de virar PNG do carrossel.
 
-**CHECKPOINT:** Foto aprovada → seguir. Se não, ajustar prompt e regenerar.
+**CHECKPOINT:** Série aprovada como conjunto (não foto por foto isolada) → seguir.
+Se um objeto derivou, ajustar a trava que falhou e regerar aquele slide a partir da
+âncora.
 
 ### Passo 5 — Sistema de design (antes do primeiro HTML)
 
@@ -351,9 +409,10 @@ Se sim, chamar `/publicar-tema` com o mesmo tema.
 - Linguagem segue `_memoria/preferencias.md` estritamente
 - Sempre considerar a sequência de capa no feed antes de definir capa nova
 - Sempre gerar legenda automaticamente ao final, salvando em `legenda.md`
-- Fotos IA: sempre pedir aprovação antes de usar no carrossel
+- Fotos IA: sempre pedir aprovação antes de usar no carrossel, **e aprovar a série como conjunto**, não foto por foto isolada
 - Fotos IA: prompts em inglês
 - Fotos IA: nunca gerar fotos de pessoas/rostos identificáveis
+- Fotos IA: consistência entre slides é obrigatória (ver Passo 4). Objeto que tem que ser idêntico em vários slides **não** se gera N vezes: gera uma e reposiciona o mesmo arquivo. Quando gera séries, usar cena-mestra + style lock fixo + objetos nomeados + seed fixa, e conferir lado a lado antes do lote
 - HTMLs: um único arquivo `carrossel.html` com todos os slides + `render.js` na mesma pasta. Inline CSS
 - Render: reutilizar `node_modules` quando possível (não rodar `npm install` em cada pasta)
 - Não repetir layout entre slides — usar variação visual

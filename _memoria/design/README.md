@@ -76,15 +76,27 @@ fique visível.
 | Arquivo | O que tem |
 |---|---|
 | `00-anatomia.md` | O passe duplo antes do HTML, o elemento-assinatura, e a estrutura de um site que funciona, seção por seção |
+| `10-tipografia.md` | Por que a hierarquia de tipo funciona: escala modular, medida e entrelinha, pareamento, kerning, peso e caixa antes de tamanho novo |
+| `20-cor.md` | Por que a paleta funciona: 60/30/10, contraste como hierarquia, temperatura e saturação, o acento único, mesma cor = mesmo sentido |
+| `30-layout-espaco.md` | Por que a página respira ou aperta: as 4 famílias de layout, a unidade de 8, whitespace como estrutura, as 5 alavancas da hierarquia, proximidade |
+| `40-composicao.md` | Para onde o olho vai: ponto focal único, entrada e percurso, tensão e assimetria, o second read, foco por subtração |
 | `50-copy-de-interface.md` | Botão, rótulo, erro, tela vazia, confirmação. O texto pequeno que faz a coisa funcionar |
+| `60-motion.md` | A doutrina de movimento: quando o motion se paga, o arsenal (GSAP/Lenis/WebGL), o teto por página, `reduced-motion`, a trava de compliance e os antipadrões de animação. O arsenal vendorizado fica em `_biblioteca/motion/` |
+| `70-publicacao.md` | Colocar o site no ar: tirar o modo demo, limpar a pasta, `netlify.toml`/`robots`/`404`, publicar no Netlify, os erros 401/404 de estreia, e o `og:image` absoluto pós-domínio. Ler antes de publicar |
 | `90-antipadroes.md` | Catálogo dos "tells". Cresce a cada correção. Traz o mapa entre as regras do detector e as seções daqui |
 | `91-onde-estudar.md` | As fontes de estudo, e o que cada uma serve |
 | `99-checklist.md` | O que rodar antes de escrever a primeira linha e antes de entregar, incluindo a tabela de contraste medida da paleta terrosa |
 
-Tipografia, cor e layout **não têm arquivo próprio**: moram dentro de
-`90-antipadroes.md`, organizados por seção, porque cada regra ali nasceu de um erro
-concreto e não de teoria. Se um assunto crescer a ponto de pedir arquivo próprio,
-ele sai de lá, e esta tabela é atualizada junto.
+Tipografia, cor, layout e composição **ganharam arquivo próprio** em 14/08/2026
+(`10` a `40`) — a promoção que este parágrafo previa. Antes moravam só como regra
+dentro de `90-antipadroes.md`; agora têm a **camada de teoria** por baixo, o
+*porquê* que faz o Claude derivar a decisão certa num caso novo em vez de só
+reconhecer o tell depois de errar. As duas camadas convivem: o antipadrões continua
+sendo a folha (o erro concreto), e os quatro fundamentos são a raiz (o princípio que
+o explica) — cada fundamento fecha com uma tabela ligando os dois. **São leitura de
+consulta, não de gatilho:** abrem quando a decisão é daquele assunto (montar escala,
+paleta, ritmo, foco), não antes de todo site. O gatilho obrigatório do `CLAUDE.md`
+segue enxuto: anatomia, antipadrões, checklist.
 
 ---
 

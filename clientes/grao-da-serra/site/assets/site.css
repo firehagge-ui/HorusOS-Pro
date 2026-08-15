@@ -99,7 +99,7 @@
   --t-3xl:  3rem;       /* 48,0px */
   --t-hero: 3.5rem;     /* 56,0px — cai em media query */
 
-  --serif: "Prata", Georgia, serif;
+  --serif: "DM Serif Display", Georgia, serif;
   --sans:  "Source Sans 3", system-ui, -apple-system, sans-serif;
 
   --maxw: 1200px;
@@ -122,7 +122,15 @@ body{
   font-size:var(--t-base);
   line-height:1.7;
   -webkit-font-smoothing:antialiased;
+  /* 10/08: sem seleção/cópia (pedido do Marcelo, peça de portfólio). Os campos
+     do formulário voltam a permitir seleção logo abaixo, senão não dá pra
+     digitar/corrigir. */
+  -webkit-user-select:none;user-select:none;
 }
+/* imagens não arrastáveis (evita salvar arrastando pro desktop) */
+img{-webkit-user-drag:none;user-drag:none}
+/* formulário precisa de seleção pra ser usável */
+input,textarea,select{-webkit-user-select:text;user-select:text}
 
 img{max-width:100%;height:auto;display:block}
 
@@ -352,11 +360,16 @@ body.limpo .rotulo{display:none}
    escolhe o enquadramento (pacote e saca embaixo à direita, horizonte no
    meio). */
 .hero-arte{position:absolute;inset:0;z-index:0}
-/* 07/08: foto nova (hero-wallpaper.webp, 1812x868, larga = 2,09:1). Como o
+/* 07/08: foto de fundo (11/08: hero-home.webp, 1812x868, larga = 2,09:1). Como o
    hero tem ~680px de altura, a 1440 o `cover` a mostra quase inteira sem
    ampliar (escala .795). O pacote fica à direita, o texto sobre a serra à
    esquerda. `object-position:center` porque a composição já é equilibrada. */
-.hero-arte img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:center}
+/* 10/08: object-position enviesado à DIREITA e um pouco acima do centro. A
+   queixa foi que o pacote (à direita da foto) não aparecia inteiro: com `cover`
+   e `center`, telas largas cortavam a lateral direita (pacote) e telas altas
+   cortavam o topo. Ancorar em 74%/40% mantém o pacote e o topo dele sempre no
+   quadro; a serra da esquerda, atrás do texto, é o que cede o corte. */
+.hero-arte img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:74% 40%}
 
 /* Véu LEVE sobre a esquerda — a queixa foi "o escurecimento é bem leve",
    e o anterior era preto chapado cobrindo metade. Aqui a paisagem continua
@@ -385,7 +398,7 @@ body.limpo .rotulo{display:none}
   display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
   align-items:center;
   padding-top:174px;padding-bottom:60px;
-  min-height:720px;
+  min-height:820px;
   z-index:2;
 }
 .hero-txt{position:relative;z-index:2;max-width:540px}
@@ -406,10 +419,17 @@ body.limpo .rotulo{display:none}
 .hero-sub{max-width:44ch;margin-bottom:30px;color:#FFFFFF}
 .hero-acao{display:flex;flex-wrap:wrap;gap:14px}
 
-/* ============================== FAIXA VERDE ===========================
-   07/08: pedida pelo Marcelo, recebe os 4 atributos. Verde #20301C, texto
-   creme (11,3:1) e ícones dourados (6,98:1). */
-.faixa{background:#20301C}
+/* 12/08: selos de diferencial DENTRO do hero — só no celular (ver o HTML e a
+   media query). No desktop ficam ocultos; quem mostra os 4 atributos é a
+   .faixa marrom. */
+.hero-selos{display:none}
+
+/* ============================== FAIXA (marrom) =======================
+   07/08: pedida pelo Marcelo, recebe os 4 atributos.
+   10/08: fundo trocado de verde #20301C para o marrom oficial #3D2115, para
+   alinhar 100% à paleta do Instagram (o feed não tem verde). Texto creme
+   #F8E4CF sobre #3D2115 = 12,6:1; ícones dourados #D6B35F = 7,34:1. */
+.faixa{background:var(--escuro)}
 .faixa-grid{
   list-style:none;margin:0 auto;
   display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
@@ -446,17 +466,29 @@ body.limpo .rotulo{display:none}
    grão/moído fica na seção .opcoes logo abaixo, não aqui dentro.) */
 .cafe{background:var(--creme-fundo);padding:104px 0;position:relative;overflow:hidden}
 .cafe-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-.cafe-produto{margin:0;display:flex;align-items:center;justify-content:center}
+/* 13/08: "Nosso café" ganhou o saco de grãos (volume/atacado) ao lado do pacote
+   de 250 g (varejo), pedido do Nelson. Composição em família: pacote na frente
+   à esquerda, saco menor e mais baixo à direita, sobrepondo de leve — conta os
+   dois canais que a copy do hero reforça, sem virar duas fotos empilhadas soltas.
+   Grid de célula única (ambas em 1/1): o pacote, mais alto, define a altura, sem
+   precisar de position:absolute. */
+.cafe-produto{margin:0;display:grid;place-items:center}
+/* O PNG transparente pede drop-shadow, que acompanha o alfa do recorte — nada
+   de border-radius nem box-shadow, que só servem a foto retangular. */
 .cafe-produto img{
-  width:auto;max-width:100%;max-height:600px;
-  object-fit:contain;
-  filter:drop-shadow(0 26px 34px rgba(61,33,21,.30));
+  grid-area:1/1;object-fit:contain;
+  filter:drop-shadow(0 22px 30px rgba(61,33,21,.32));
 }
+.cafe-pacote{width:min(78%,430px);max-height:720px;z-index:2;justify-self:start;align-self:start}
+.cafe-saco{width:min(60%,320px);z-index:1;justify-self:end;align-self:end;transform:translateY(8%)}
+/* 10/08: textos mais juntos na vertical a pedido do Marcelo (estavam muito
+   espaçados). Aperto o eyebrow→h2→parágrafo→atributos→botão. */
 .cafe-txt{display:flex;flex-direction:column;align-items:flex-start}
-.cafe-txt h2{font-size:var(--t-3xl)}
-.cafe-txt p{max-width:44ch}
+.cafe-txt .eyebrow{margin-bottom:8px}
+.cafe-txt h2{font-size:var(--t-3xl);margin-bottom:.32em}
+.cafe-txt p{max-width:44ch;margin-bottom:.7em}
 .cafe-txt .btn{padding-left:48px;padding-right:48px}
-.atributos{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:28px 0 32px}
+.atributos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:18px 0 24px}
 .atributo{display:grid;gap:8px}
 .atributo .selo{
   width:42px;height:42px;border-radius:50%;border:1px solid var(--dourado);
@@ -469,33 +501,10 @@ body.limpo .rotulo{display:none}
 .atributo b{font-size:var(--t-sm);color:var(--tinta);display:block}
 .atributo span{font-size:var(--t-sm);color:var(--marrom);display:block}
 
-/* ============= EXTENSÃO grão/moído (.opcoes) ==========================
-   08/08: as DUAS fotos reais (fundo transparente), em tamanho grande —
-   sem recorte circular, sem borda — foto + rótulo + descrição, lado a
-   lado. Mesma cor da parte de cima. */
-.opcoes{background:var(--creme-fundo);padding:14px 0 96px}
-.opcoes .sec-head{margin-bottom:40px}
-.opcoes-duo{
-  display:grid;grid-template-columns:1fr 1fr;gap:34px 56px;
-  max-width:1080px;margin:0 auto;
-}
-.opcoes-opc{display:flex;align-items:center;gap:26px}
-.opcoes-foto{
-  width:230px;height:auto;flex:none;object-fit:contain;
-}
-.opcoes-opc b{
-  font-family:var(--serif);font-weight:400;font-size:var(--t-xl);
-  color:var(--tinta);display:block;line-height:1.2;
-}
-.opcoes-opc p{margin:6px 0 0;font-size:var(--t-sm);color:var(--marrom);max-width:32ch}
-.opcoes-specs{
-  list-style:none;margin:44px auto 0;padding:26px 0 0;max-width:900px;
-  border-top:1px solid rgba(118,77,54,.20);
-  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center;
-}
-.opcoes-specs li{display:grid;gap:3px}
-.opcoes-specs b{font-family:var(--serif);font-weight:400;font-size:var(--t-lg);color:var(--tinta)}
-.opcoes-specs span{font-size:var(--t-sm);color:var(--marrom)}
+/* 10/08: a seção "Como você preferir / Em grãos ou moído" (.opcoes #formatos)
+   foi REMOVIDA a pedido do Marcelo — HTML e CSS. As fotos foto-graos-real.webp
+   e foto-moido-real.webp ficam órfãs em assets; mover para site-fontes se não
+   voltarem. */
 
 /* Desenhos de planta que o Marcelo mandou (`Planta desenho 1/2/3`).
    Substituíram o ornamento em SVG que eu tinha desenhado: ilustração de
@@ -507,6 +516,10 @@ body.limpo .rotulo{display:none}
    direita, a planta acompanha o texto — foi para a ESQUERDA, espelhada,
    ancorada embaixo. */
 .planta-cafe{left:-46px;right:auto;bottom:0;top:auto;width:430px;opacity:.9;transform:scaleX(-1)}
+/* 11/08: segunda planta na direita da "Nosso café" (Planta 4), atrás do
+   pacote, sangrando/cortada pela borda direita a pedido do Marcelo. PNG sem
+   fundo colado direto — sem tratamento (o glow claro some no bege da seção). */
+.planta-cafe-dir{right:-150px;left:auto;bottom:-20px;top:auto;width:470px;opacity:.95}
 
 /* PT 5: desenho 1 na direita do formulário, desenho 3 na esquerda por trás
    da xícara e um pouco acima dela */
@@ -567,10 +580,13 @@ body.limpo .rotulo{display:none}
    Agora a foto é contida, então a seção precisa do próprio recuo lateral para
    não cair em `cramped-padding` — as .wrap de dentro zeram o padding e o
    conteúdo mantém os mesmos 24px das outras seções. */
-.origem{background:var(--origem);position:relative;padding:62px var(--gut)}
+/* 10/08: seções 1 (origem), 3 (público) e 4 (passos) ganharam altura a pedido
+   do Marcelo — deixaram de ser "faixas" e passam a ocupar a tela como a seção 2
+   (café, 104px). Recuo vertical subiu para ~100px em cada. */
+.origem{background:var(--origem);position:relative;padding:100px var(--gut)}
 .origem .wrap{padding-left:0;padding-right:0}
 .origem-topo{position:relative}
-.origem-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;min-height:376px}
+.origem-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;min-height:460px}
 .origem-txt{padding:0 56px 0 0}
 .origem-txt h2{font-size:var(--t-3xl)}
 .origem-txt p{max-width:46ch}
@@ -603,32 +619,37 @@ body.limpo .rotulo{display:none}
 /* 08/08: remodelado no print 2 — 7 perfis numa linha, separados por fio
    vertical, ícone em traço em cima e o nome em duas linhas. Sem cartão.
    Faixa CURTA a pedido do Marcelo: recuo enxuto e cabeçalho compacto. */
-.publico{background:var(--origem);padding:46px 0}
+.publico{background:var(--origem);padding:100px 0}
 .publico .sec-head{margin-bottom:24px}
 .publico .divisor{margin-left:auto;margin-right:auto;margin-bottom:0}
 .publico-grid{
   list-style:none;margin:30px 0 0;padding:0;
-  display:grid;grid-template-columns:repeat(7,1fr);
+  display:grid;grid-template-columns:repeat(8,1fr);
 }
 .publico-item{
-  text-align:center;display:grid;justify-items:center;align-content:start;gap:14px;
-  padding:6px 12px;
+  text-align:center;display:grid;justify-items:center;align-content:start;gap:18px;
+  padding:18px 12px;
   border-left:1px solid rgba(118,77,54,.22);
 }
 .publico-item:first-child{border-left:0}
+/* 10/08: ícones em MARROM a pedido do Marcelo (eram verde). Uso o --tinta
+   (#3D2115) e não o --marrom (#764D36), que sobre o creme claro fica em 2:1 e
+   o detector marca low-contrast. O escuro lê como marrom e passa folgado. */
 .publico-item svg{
-  width:40px;height:40px;color:var(--verde-md);
+  width:48px;height:48px;color:var(--tinta);
   fill:none;stroke:currentColor;stroke-width:1.5;
   stroke-linecap:round;stroke-linejoin:round;
 }
 .publico-item b{font-size:var(--t-sm);font-weight:600;color:var(--tinta);line-height:1.4}
+/* 12/08: negrito extra do "Para tomar em casa" removido a pedido do Marcelo —
+   ele achou a letra mais escura/diferente das demais. Peso igual aos outros 7. */
 
 /* ==================== COMO COMPRAR (print 1) =========================
    08/08: banner "Imagem banner etapas" (xícara com a logo à direita) de fundo,
    com véu escuro à esquerda para o texto. Os 3 passos ficam na coluna esquerda
    sobre o escuro; a xícara aparece à direita. Ícones dourados. */
-.passos{position:relative;background:var(--escuro);padding:80px 0;overflow:hidden}
-.passos-bg{position:absolute;inset:0;z-index:0;background:url(banner-etapas.webp) right center/cover no-repeat}
+.passos{position:relative;background:var(--escuro);padding:100px 0;overflow:hidden}
+.passos-bg{position:absolute;inset:0;z-index:0;background:url(cafe-como-comprar.webp) right center/cover no-repeat}
 .passos::after{
   content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(90deg,
@@ -645,10 +666,12 @@ body.limpo .rotulo{display:none}
 }
 .passo{display:grid;gap:14px;align-content:start}
 .passo-topo{display:flex;align-items:center;gap:13px}
+/* 10/08: número em SANS negrito (era serif/DM Serif Display, ficou pesado e
+   estranho num círculo pequeno). Limpo e legível. */
 .passo-num{
-  width:32px;height:32px;border-radius:50%;flex:none;
+  width:34px;height:34px;border-radius:50%;flex:none;
   background:var(--dourado);color:var(--tinta);
-  font-family:var(--serif);font-size:var(--t-lg);
+  font-family:var(--sans);font-weight:700;font-size:1.05rem;
   display:flex;align-items:center;justify-content:center;
 }
 /* 08/08: ícones MAIORES a pedido do Marcelo. */
@@ -697,18 +720,20 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--verde-md);outlin
 /* 10/08: a casinha SAIU do fundo (estava gravada num print, cover recortava
    e reposicionava ela de um jeito diferente em cada largura — por isso
    competia com o texto e parecia desnivelada). Fundo voltou a ser o marrom
-   chapado, e a casinha é agora um elemento próprio (.rodape-casa), abaixo
-   das colunas, centralizado no `.wrap` — simétrica de verdade. */
+   chapado. A casinha é agora uma imagem própria, DENTRO da 4ª coluna
+   ("Produzido na Bahia"), abaixo do parágrafo — a posição que o Marcelo
+   confirmou pelo print: sob o texto, alinhada com ele, não centralizada na
+   largura inteira do rodapé. */
+/* 10/08: casinha REMOVIDA do rodapé a pedido do Marcelo, e o rodapé ficou mais
+   baixo (recuos 70→44 e 52→34). O casinha-rodape.webp fica órfão em assets. */
 .rodape{
   background:var(--escuro);
-  color:var(--sobre-verde-2);padding:70px 0 0;
+  color:var(--sobre-verde-2);padding:44px 0 0;
 }
 .rodape-grid{
   display:grid;grid-template-columns:1.3fr 1fr 1.2fr 1.3fr;gap:44px;
-  padding-bottom:52px;
+  padding-bottom:34px;
 }
-.rodape-casa{display:flex;justify-content:center;margin:0 0 40px}
-.rodape-casa img{width:190px;height:auto;opacity:.92}
 .rodape h3{
   font-family:var(--sans);font-size:var(--t-xs);
   letter-spacing:.18em;text-transform:uppercase;
@@ -747,7 +772,11 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--verde-md);outlin
 }
 
 @media (max-width:900px){
-  .menu-btn{display:block;order:-1}
+  /* 12/08: hambúrguer REMOVIDO no celular a pedido do Marcelo — o header fica só
+     com a logo e o botão "Solicitar Orçamento". A navegação no celular passa a
+     ser pelos botões do hero e pela rolagem (o menu de âncoras não abre mais).
+     No desktop nada muda: o .nav continua visível e o hambúrguer nunca aparece. */
+  .menu-btn{display:none}
   .topo .wrap{flex-wrap:wrap;row-gap:0}
   .nav{display:none;width:100%;flex-direction:column;align-items:flex-start;gap:16px}
   .topo.aberto .nav{display:flex;padding:14px 0 4px}
@@ -758,26 +787,43 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--verde-md);outlin
   /* perfis B2B: 4 → 3 colunas */
   .publico-grid{grid-template-columns:repeat(3,1fr)}
 
-  /* No celular a foto vira faixa em cima e o texto desce para a chapa
-     preta: com a foto atrás do texto não há gradiente que segure contraste
-     em 390px. Branco sobre preto dá 21:1. A foto volta a ser `cover`, porque
-     aqui ela é uma faixa própria de 300px, não o fundo do texto. */
-  .hero{display:flex;flex-direction:column}
-  .hero-arte{position:relative;inset:auto;right:auto;bottom:auto;top:auto;width:100%;height:300px;order:-1}
-  .hero-arte img{width:100%;height:100%;object-fit:cover;object-position:64% center}
-  /* O véu horizontal do desktop escurecia o LADO ESQUERDO da faixa de foto,
-     que aqui não tem texto nenhum por cima: some, e fica só a passagem de
-     cima, que é a que segura o cabeçalho transparente. */
+  /* 12/08: hero como no print — a imagem volta a ser o FUNDO (cover) com o texto
+     e os botões POR CIMA, no lugar da faixa de foto em cima + texto no preto.
+     SÓ no celular; o desktop não muda. Como aqui o texto é de largura cheia sobre
+     a foto (no desktop ele fica só à esquerda), o véu é mais forte no topo e na
+     base para o branco/dourado lerem. */
+  .hero{display:block}
+  .hero-arte{position:absolute;inset:0;width:auto;height:auto;order:0}
+  /* 12/08: enquadramento no celular. 38% (muito à esquerda) escondeu o pacote;
+     50% caía no centro escuro da foto e, com o véu escuro mantido, o produto
+     sumia de novo. 58% assenta sobre a saca/pacote (região iluminada), que
+     aparece mesmo com o escurecimento. SÓ mobile. */
+  .hero-arte img{width:100%;height:100%;object-fit:cover;object-position:58% center}
+  /* 12/08: escurecimento mantido a pedido do Marcelo (ele confirmou que quer o
+     fundo escuro). Segura o texto branco e os selos de diferencial sobre a foto. */
   .hero::after{
-    background:linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.12) 20%, rgba(0,0,0,0) 36%);
+    background:linear-gradient(180deg,
+      rgba(0,0,0,.6) 0%, rgba(0,0,0,.5) 30%,
+      rgba(0,0,0,.48) 60%, rgba(0,0,0,.66) 100%);
   }
-  .hero .wrap{grid-template-columns:1fr;min-height:0;padding-top:40px;padding-bottom:64px}
+  .hero .wrap{grid-template-columns:1fr;min-height:600px;padding-top:124px;padding-bottom:48px;align-content:start}
+
+  /* 12/08: no celular a faixa marrom some e os 4 diferenciais aparecem aqui,
+     dentro do hero, abaixo dos botões (2×2 sobre a foto). */
+  .faixa{display:none}
+  .hero-selos{
+    display:grid;grid-template-columns:1fr 1fr;gap:16px 18px;
+    list-style:none;margin:26px 0 0;padding:0;
+  }
+  .hero-selos li{display:flex;align-items:center;gap:10px}
+  .hero-selos .ic{width:27px;height:27px;flex:none;color:var(--dourado)}
+  .hero-selos span{font-size:var(--t-sm);font-weight:600;color:#FFFFFF;line-height:1.2}
 
   .cafe-grid,.origem-grid{grid-template-columns:1fr}
-  .cafe-produto{order:-1}
-  /* extensão grão/moído: os 2 formatos empilham, os 4 dados viram 2x2 */
-  .opcoes-duo{grid-template-columns:1fr;gap:22px;max-width:520px}
-  .opcoes-specs{grid-template-columns:1fr 1fr;gap:24px 22px}
+  /* 12/08: no celular o TEXTO vem primeiro, o pacote depois (o Marcelo apontou
+     que o produto aparecia antes dos textos). O `order:-1` que subia o pacote
+     saiu — SÓ no mobile; no desktop o pacote continua à direita, ao lado do
+     texto. */
   .passos-grid{grid-template-columns:1fr;gap:22px}
   .passos::after{background:linear-gradient(180deg, rgba(28,17,9,.72) 0%, rgba(28,17,9,.9) 55%)}
   .passos-bg{background-position:center top;opacity:.5}
@@ -788,12 +834,12 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--verde-md);outlin
      encosta DENTRO da foto, ainda à esquerda, centrado na vertical. */
   .origem-topo,.origem-grid{min-height:0}
   .selo-lugar{left:14px;top:50%;transform:translateY(-50%);width:100px}
-  .planta-cafe,.planta-form-dir,.planta-form-esq{display:none}
-  .xicara-form{
-    position:relative;left:auto;top:auto;bottom:auto;transform:none;
-    width:210px;margin:0 auto 24px;
-  }
-  .cafe-produto img{max-height:440px}
+  /* 12/08: a xícara também some no celular (entra na lista das plantas). Antes
+     ela virava relative e subia para o topo da seção do formulário, aparecendo
+     ANTES dos campos — o Marcelo apontou isso. No celular o formulário fica
+     limpo; a xícara e as plantas seguem no desktop. */
+  .planta-cafe,.planta-cafe-dir,.planta-form-dir,.planta-form-esq,.xicara-form{display:none}
+  .cafe-pacote{max-height:440px}
 }
 
 @media (max-width:620px){
@@ -809,17 +855,12 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--verde-md);outlin
   /* no celular encolhe espaçamento, não texto: --t-base fica em 17,5px */
   .cafe,.pedido,.publico{padding:64px 0}
   .passos{padding:56px 0}
-  .opcoes{padding:8px 0 64px}
-  /* imagem grande empilha sobre o texto, senão a foto grande aperta a
-     descrição numa faixa estreita demais pra ler */
-  .opcoes-opc{flex-direction:column;text-align:center;gap:14px}
-  .opcoes-foto{width:190px}
-  .opcoes-opc p{max-width:none}
   /* perfis B2B: 3 → 2 colunas */
   .publico-grid{grid-template-columns:1fr 1fr}
-  /* faixa verde: 2 → 1 coluna, ícone à esquerda do rótulo */
-  .faixa-grid{grid-template-columns:1fr;gap:14px;justify-items:start}
-  .faixa-item{justify-content:flex-start}
+  /* faixa: 2 → 1 coluna. 12/08: tags CENTRALIZADAS a pedido do Marcelo (eram
+     alinhadas à esquerda). Ícone + rótulo centrados na linha. SÓ no mobile. */
+  .faixa-grid{grid-template-columns:1fr;gap:14px;justify-items:center}
+  .faixa-item{justify-content:center}
   .atributos{grid-template-columns:1fr;gap:16px}
   .atributo{grid-template-columns:42px 1fr;align-items:center;column-gap:14px}
   .atributo .selo{grid-row:span 2}
