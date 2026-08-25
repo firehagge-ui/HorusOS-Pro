@@ -1,0 +1,351 @@
+/* BASALT — site de prática. Paleta mineral, um acento cobre, sans com caráter. */
+
+:root{
+  --basalto:#17181A;
+  --basalto-2:#1F2124;   /* degrau um passo acima, p/ separar superfícies no escuro */
+  --pedra:#ECE6DC;
+  --cal:#F7F4EE;
+  --tinta:#14161A;
+  --grafite:#575C63;      /* texto secundário sobre claro — 5.2:1 s/ pedra */
+  --cobre:#B5623A;        /* acento: título grande e preenchimento */
+  --cobre-cl:#D98A5E;     /* cobre clareado — texto/detalhe SOBRE basalto */
+  --cobre-es:#8A4520;     /* degrau escuro — link e texto pequeno SOBRE claro */
+  --linha:#D8CFC0;        /* fio sobre claro */
+  --linha-esc:#33363A;    /* fio sobre escuro */
+  --creme-mut:#B7AE9F;    /* texto secundário sobre basalto */
+
+  --fonte-disp:"Bricolage Grotesque",system-ui,sans-serif;
+  --fonte-corpo:"Hanken Grotesk",system-ui,sans-serif;
+  --fonte-mono:"Spline Sans Mono",ui-monospace,monospace;
+
+  --calha:clamp(20px,5vw,80px);
+  --max:1200px;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--pedra);
+  color:var(--tinta);
+  font-family:var(--fonte-corpo);
+  font-size:18px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+h1,h2,h3{font-family:var(--fonte-disp);font-weight:700;line-height:1.04;letter-spacing:-.02em;margin:0}
+p{margin:0}
+a{color:inherit}
+img{max-width:100%;height:auto;display:block}
+em{font-style:normal;color:var(--cobre-es);font-weight:600}
+
+main[id],section[id]{scroll-margin-top:92px}
+
+/* ---------- utilitários de seção ---------- */
+.kicker{
+  font-family:var(--fonte-mono);font-size:13px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--grafite);margin:0 0 22px;
+}
+.kicker-cobre{color:var(--cobre-cl)}
+.eyebrow{
+  font-family:var(--fonte-mono);font-size:13px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--cobre-es);margin:0 0 18px;
+}
+.sec-titulo{font-size:34px;letter-spacing:-.025em;max-width:16ch}
+.sec-titulo-claro{color:var(--cal);max-width:20ch}
+.sec-intro{margin-top:20px;color:var(--grafite);max-width:52ch;font-size:19px}
+
+/* ---------- botões ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--cobre);color:var(--cal);
+  font-family:var(--fonte-corpo);font-weight:600;font-size:17px;
+  padding:15px 26px;border-radius:14px;text-decoration:none;
+  transition:transform .25s ease,background .25s ease;
+}
+.btn:hover{background:#9E5230;transform:translateY(-2px)}
+.btn-mini{padding:10px 18px;font-size:15px;border-radius:11px}
+.btn-grande{padding:19px 38px;font-size:19px;border-radius:16px}
+.link-seta{
+  display:inline-flex;align-items:center;gap:.5em;text-decoration:none;
+  font-weight:600;color:var(--cal);font-size:17px;
+}
+.hero .link-seta{color:var(--cal)}
+.link-seta::after{content:"→";transition:transform .25s ease}
+.link-seta:hover::after{transform:translateX(5px)}
+
+/* ---------- cabeçalho ---------- */
+.topo{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:center;gap:24px;
+  padding:16px var(--calha);
+  background:rgba(23,24,26,.82);
+  backdrop-filter:saturate(1.2) blur(10px);
+  -webkit-backdrop-filter:saturate(1.2) blur(10px);
+  border-bottom:1px solid var(--linha-esc);
+}
+.marca{display:inline-flex;align-items:center;gap:11px;text-decoration:none;color:var(--cal)}
+.marca-glifo{
+  width:18px;height:18px;flex:none;
+  background:var(--cobre-cl);
+  clip-path:polygon(50% 0,100% 38%,82% 100%,18% 100%,0 38%); /* prisma mineral */
+}
+.marca-nome{font-family:var(--fonte-disp);font-weight:800;letter-spacing:.16em;font-size:18px}
+.menu{margin-left:auto;display:flex;gap:28px}
+.menu a{
+  text-decoration:none;color:var(--creme-mut);font-size:15.5px;font-weight:500;
+  transition:color .2s ease;
+}
+.menu a:hover{color:var(--cal)}
+
+/* ---------- 1. HERO ---------- */
+.hero{
+  background:var(--basalto);color:var(--cal);
+  padding:clamp(56px,9vw,120px) var(--calha) clamp(64px,8vw,104px);
+  display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,72px);align-items:center;
+  background-image:linear-gradient(180deg,#1C1E21 0%,var(--basalto) 60%);
+}
+.hero-titulo{
+  font-size:52px;font-weight:700;letter-spacing:-.035em;margin:0 0 26px;color:var(--cal);
+}
+.reveal-titulo{visibility:hidden}
+.hero-sub{font-size:20px;color:var(--creme-mut);max-width:44ch;margin:0 0 34px}
+.hero-cta{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+
+/* objeto do hero: maquete tipográfica do rótulo sobre basalto, slot de foto */
+.hero-obj{display:flex;justify-content:center}
+.pote{
+  position:relative;margin:0;width:min(100%,360px);aspect-ratio:4/5;
+  border-radius:20px;overflow:hidden;
+  background:
+    radial-gradient(120% 90% at 50% 0%,#232528 0%,#131416 78%);
+  border:1px solid var(--linha-esc);
+  display:flex;align-items:center;justify-content:center;
+}
+.pote-rotulo{
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  padding:26px 30px;text-align:center;
+  border:1px solid rgba(217,138,94,.35);border-radius:14px;
+  background:rgba(20,21,23,.4);
+}
+.pote-marca{font-family:var(--fonte-disp);font-weight:800;letter-spacing:.22em;font-size:26px;color:var(--cal)}
+.pote-linha{font-family:var(--fonte-mono);letter-spacing:.32em;font-size:13px;color:var(--cobre-cl)}
+.pote-peso{font-family:var(--fonte-mono);font-size:12px;letter-spacing:.1em;color:var(--creme-mut);margin-top:6px}
+.slot-nota{
+  position:absolute;bottom:12px;right:14px;
+  font-family:var(--fonte-mono);font-size:11px;letter-spacing:.06em;
+  color:var(--creme-mut);opacity:.7;
+}
+.slot-nota-claro{color:var(--grafite)}
+
+/* ---------- 2. CREDENCIAIS ---------- */
+.credenciais{background:var(--cal);padding:clamp(30px,4vw,44px) var(--calha);border-bottom:1px solid var(--linha)}
+.cred-lista{
+  list-style:none;margin:0 auto;padding:0;max-width:var(--max);
+  display:grid;grid-template-columns:repeat(4,1fr);gap:28px;
+}
+.cred-lista li{display:flex;flex-direction:column;gap:6px}
+.cred-dado{font-family:var(--fonte-disp);font-weight:700;font-size:38px;color:var(--tinta);letter-spacing:-.03em}
+.cred-rot{font-size:15px;color:var(--grafite);line-height:1.4;max-width:24ch}
+
+/* ---------- 3. PARA QUEM É ---------- */
+.para-quem{
+  max-width:var(--max);margin:0 auto;
+  padding:clamp(72px,10vw,128px) var(--calha);
+}
+.para-quem .sec-titulo{margin-bottom:48px;font-size:38px}
+.quem-col{max-width:60ch}
+.quem-col p{font-size:23px;line-height:1.5;color:var(--tinta);margin-bottom:26px}
+.quem-fecho{color:var(--grafite);font-size:20px !important;border-top:1px solid var(--linha);padding-top:26px;margin-top:8px}
+
+/* ---------- 4. O MECANISMO (assinatura) ---------- */
+.dentro{background:var(--basalto);color:var(--cal)}
+.dentro-sticky{max-width:var(--max);margin:0 auto;padding:clamp(72px,9vw,120px) var(--calha)}
+.dentro-cabeca{margin-bottom:clamp(40px,6vw,72px)}
+.dentro-titulo{font-size:48px;color:var(--cal);letter-spacing:-.03em}
+.dose{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,5vw,72px);align-items:start}
+.dose-figura{position:sticky;top:110px}
+.cristal{
+  margin:0;position:relative;aspect-ratio:1/1;border-radius:20px;overflow:hidden;
+  background:
+    radial-gradient(140% 120% at 30% 20%,#2A2C30 0%,#141517 70%);
+  border:1px solid var(--linha-esc);
+}
+.cristal::after{ /* respiro mineral, sem virar spotlight de título */
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(217,138,94,.10),transparent 55%);
+}
+.dose-camadas{list-style:none;margin:0;padding:0;counter-reset:c}
+.camada{
+  padding:30px 0;border-top:1px solid var(--linha-esc);
+  display:grid;grid-template-columns:auto 1fr;gap:6px 24px;align-items:baseline;
+}
+.camada:first-child{border-top:none}
+.camada-num{
+  grid-row:span 2;font-family:var(--fonte-mono);font-weight:500;font-size:30px;
+  color:var(--cobre-cl);letter-spacing:-.02em;min-width:5ch;
+}
+.camada-total .camada-num{color:var(--cal)}
+.camada-nome{font-family:var(--fonte-disp);font-weight:600;font-size:22px;color:var(--cal)}
+.camada-desc{font-size:16.5px;color:var(--creme-mut);line-height:1.55;max-width:46ch}
+.camada-total{border-top:1px solid var(--cobre)}
+.camada-total .camada-nome{color:var(--cobre-cl)}
+
+/* ---------- 5. COMO TOMAR ---------- */
+.tomar{max-width:var(--max);margin:0 auto;padding:clamp(72px,10vw,128px) var(--calha)}
+.tomar-cabeca{margin-bottom:56px;max-width:40ch}
+.passos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,44px)}
+.passo{padding-top:24px;border-top:2px solid var(--tinta)}
+.passo-num{font-family:var(--fonte-mono);font-size:15px;color:var(--cobre-es);letter-spacing:.1em}
+.passo-tit{font-size:23px;margin:14px 0 12px}
+.passo p{font-size:17px;color:var(--grafite)}
+.tomar-nota{
+  margin-top:48px;padding:22px 26px;background:var(--cal);border-radius:14px;
+  font-size:16.5px;color:var(--grafite);max-width:70ch;position:relative;
+}
+.tomar-nota::before{
+  content:"Nota";display:inline-block;margin-right:12px;
+  font-family:var(--fonte-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--cobre-es);vertical-align:2px;
+}
+
+/* ---------- 6. A LINHA ---------- */
+.linha{max-width:var(--max);margin:0 auto;padding:clamp(72px,10vw,128px) var(--calha)}
+.linha-cabeca{margin-bottom:56px}
+.produtos{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.5vw,36px)}
+.produto{display:flex;flex-direction:column;background:var(--cal);border-radius:18px;overflow:hidden}
+.produto-foto{
+  aspect-ratio:4/3;position:relative;
+  background:
+    radial-gradient(120% 100% at 50% 20%,#F1ECE3 0%,#DFD6C6 100%);
+  border-bottom:1px solid var(--linha);
+}
+.produto-foto::after{
+  content:"foto do produto";position:absolute;inset:auto 12px 10px 12px;
+  font-family:var(--fonte-mono);font-size:10.5px;letter-spacing:.06em;color:var(--grafite);
+  opacity:.5;line-height:1.3;text-align:right;
+}
+.produto-txt{padding:24px 24px 28px;display:flex;flex-direction:column;gap:10px;flex:1}
+.produto-nome{font-size:24px}
+.produto-linha{font-size:16px;color:var(--grafite);flex:1}
+.produto-preco{display:flex;align-items:baseline;gap:12px;margin-top:8px}
+.preco-valor{font-family:var(--fonte-disp);font-weight:700;font-size:22px;color:var(--tinta)}
+.preco-det{font-family:var(--fonte-mono);font-size:13px;color:var(--grafite);letter-spacing:.04em}
+
+/* ---------- 7. O QUE NÃO TEM ---------- */
+.rotulo-aberto{
+  background:var(--basalto);color:var(--cal);
+  padding:clamp(72px,10vw,128px) var(--calha);
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,80px);align-items:start;
+  max-width:calc(var(--max) + var(--calha)*2);margin:0 auto;
+}
+.nao-intro{margin-top:24px;color:var(--creme-mut);font-size:18px;max-width:44ch}
+.nao-lista{list-style:none;margin:0;padding:0}
+.nao-lista li{
+  display:grid;grid-template-columns:auto 1fr;gap:6px 20px;align-items:baseline;
+  padding:22px 0;border-top:1px solid var(--linha-esc);
+}
+.nao-lista li:first-child{border-top:none}
+.nao-item{
+  font-family:var(--fonte-disp);font-weight:600;font-size:20px;color:var(--cal);
+  position:relative;padding-left:34px;
+}
+.nao-item::before{ /* "riscado", o que ficou de fora */
+  content:"";position:absolute;left:0;top:.62em;width:22px;height:2px;background:var(--cobre-cl);
+}
+.nao-motivo{font-size:16px;color:var(--creme-mut);grid-column:2}
+
+/* ---------- 8. FAQ ---------- */
+.faq{max-width:920px;margin:0 auto;padding:clamp(72px,10vw,128px) var(--calha)}
+.faq-cabeca{margin-bottom:48px}
+.faq-item{border-top:1px solid var(--linha)}
+.faq-item:last-child{border-bottom:1px solid var(--linha)}
+.faq-item summary{
+  list-style:none;cursor:pointer;padding:24px 44px 24px 0;position:relative;
+  font-family:var(--fonte-disp);font-weight:600;font-size:20.5px;color:var(--tinta);
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{
+  content:"+";position:absolute;right:4px;top:50%;transform:translateY(-50%);
+  font-family:var(--fonte-mono);font-size:24px;color:var(--cobre-es);transition:transform .3s ease;
+}
+.faq-item[open] summary::after{content:"–"}
+.faq-corpo{padding:0 44px 26px 0}
+.faq-corpo p{font-size:17px;color:var(--grafite);margin-bottom:12px}
+.faq-nota{
+  font-size:14.5px !important;color:var(--grafite);
+  margin-top:14px;padding-top:14px;font-style:italic;
+}
+
+/* ---------- 9. CTA FINAL ---------- */
+.fechar{
+  background:var(--basalto);color:var(--cal);text-align:center;
+  padding:clamp(80px,11vw,150px) var(--calha);
+  background-image:linear-gradient(180deg,var(--basalto) 0%,#1C1E21 100%);
+}
+.fechar-titulo{font-size:44px;color:var(--cal);max-width:20ch;margin:0 auto 22px;letter-spacing:-.03em}
+.fechar-sub{font-size:19px;color:var(--creme-mut);max-width:52ch;margin:0 auto 40px}
+.fechar-cta{display:flex;flex-direction:column;align-items:center;gap:18px}
+.fechar-selo{font-family:var(--fonte-mono);font-size:14px;letter-spacing:.08em;color:var(--creme-mut)}
+
+/* ---------- RODAPÉ ---------- */
+.rodape{background:#101113;color:var(--creme-mut);padding:clamp(48px,6vw,72px) var(--calha) 40px}
+.rodape-topo{
+  max-width:var(--max);margin:0 auto 32px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  padding-bottom:32px;border-bottom:1px solid var(--linha-esc);
+}
+.rodape-nav{display:flex;gap:26px;flex-wrap:wrap}
+.rodape-nav a{text-decoration:none;color:var(--creme-mut);font-size:15px;transition:color .2s}
+.rodape-nav a:hover{color:var(--cal)}
+.disclaimer{max-width:var(--max);margin:0 auto 24px;font-size:13.5px;line-height:1.6;color:#8A857B}
+.rodape-fim{
+  max-width:var(--max);margin:0 auto;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-family:var(--fonte-mono);font-size:12.5px;letter-spacing:.05em;color:#736E65;
+}
+
+/* ---------- MOTION: estado inicial + fallback ---------- */
+.reveal{opacity:0;transform:translateY(24px)}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none}
+  .reveal-titulo{visibility:visible}
+  *{scroll-behavior:auto !important}
+}
+
+/* ---------- RESPONSIVO ---------- */
+@media (min-width:900px){
+  .hero-titulo{font-size:80px}
+  .sec-titulo{font-size:42px}
+  .para-quem .sec-titulo{font-size:52px}
+  .dentro-titulo{font-size:68px}
+  .fechar-titulo{font-size:60px}
+}
+
+@media (max-width:860px){
+  .menu{display:none}
+  .hero{grid-template-columns:1fr;gap:44px}
+  .hero-obj{order:-1}
+  .pote{width:min(100%,300px)}
+  .dose{grid-template-columns:1fr;gap:32px}
+  .dose-figura{position:static}
+  .cristal{aspect-ratio:16/10;max-width:420px}
+  .rotulo-aberto{grid-template-columns:1fr;gap:36px}
+  .cred-lista{grid-template-columns:repeat(2,1fr);gap:24px 20px}
+  .produtos{grid-template-columns:1fr;max-width:420px}
+  .passos{grid-template-columns:1fr;gap:0}
+  .passo{border-top:1px solid var(--linha);padding:26px 0}
+  .passo:first-child{border-top:2px solid var(--tinta)}
+}
+
+@media (max-width:480px){
+  body{font-size:17px}
+  .hero-titulo{font-size:40px}
+  .sec-titulo,.para-quem .sec-titulo{font-size:31px}
+  .dentro-titulo{font-size:37px}
+  .fechar-titulo{font-size:33px}
+  .quem-col p{font-size:20px}
+  .cred-lista{grid-template-columns:1fr;gap:20px}
+  .camada{grid-template-columns:1fr;gap:4px}
+  .camada-num{grid-row:auto}
+}

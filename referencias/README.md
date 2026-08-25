@@ -32,6 +32,21 @@ decisão sair de um caso real em vez do viés médio do modelo. Ver
 | [Cofounder](cofounder.md) | SaaS / agente de IA pra fundador | 9 | Reenquadrar categoria assustadora com mundo visual calmo + registro duplo (ilustração × tipografia de terminal); **"human in the loop" vendido como recurso** (espelha a revisão-humana de compliance da casa) |
 | [Burrito Madre](burrito-madre.md) | Fast-casual mexicano (alimento, B2C) | 8 | Como food vende apetite: **corte transversal + ingrediente derramando + promessa de consistência** no lugar de superlativo. Vale pra qualquer alimento, e a "consistência" serve onde superlativo é vedado (regulados) |
 | [For Living Milano](for-living.md) | Interiores de luxo sob medida (contract / FF&E) | 9 | Produto físico premium se vende por **material + geografia + processo**, não por catálogo; lavagem monocromática unifica fotos desiguais (resgata cliente que só tem foto de celular) |
+| [Suplementos: Momentous, Ritual, Seed](suplementos-tres-sites.md) | Suplemento premium (nutrição/fitness/saúde) | 8 | **Primeiro acervo de nutrição.** O segmento inteiro encena a prova (infográfico do mecanismo, número duro no hero, cadeia rastreável) e converge todo pro branco-clínico-sans, que é justo o antipadrão que a assinatura tem que quebrar sem perder credibilidade |
+
+> **Lote de 24/08/2026 (lessestudio, akis.studio, xmethod):** três sites que o
+> Marcelo mandou para o site da própria Hórus, e o pedido foi de **seção**, não de
+> página: o wordmark abaixo do rodapé (lessestudio), o rodapé e a seção acima dele
+> (akis.studio), e o portfólio que corre com a rolagem (xmethod). Por isso não
+> viraram linha nesta tabela: o que se estudou não foi a página inteira, e teardown
+> de página com base em três seções seria teardown inventado. **O que saiu está em
+> `_biblioteca/inspiracoes/`**, que é a camada certa para padrão de componente:
+> `interacao/scroll-horizontal-preso.md`, `secao/assinatura-wordmark-no-pe.md` e
+> `secao/cta-em-cartao-de-vidro.md`. Os três padrões estão aplicados em `site/`
+> desde 24/08/2026, e o que virou doutrina entrou em `90-antipadroes.md` (régua
+> divisória entre seções, vazio de um lado só, wordmark feito com `font-size`).
+>
+> Se algum dos três for estudado por inteiro depois, aí sim vira arquivo aqui.
 
 > **Lote de 14/08/2026 (WRK → For Living):** nove referências que o Marcelo mandou,
 > a maioria de motion/interação premium e fora do segmento dos clientes. Estudadas

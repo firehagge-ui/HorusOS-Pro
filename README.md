@@ -34,9 +34,9 @@ carrega a memória do negócio e você já começa a trabalhar.
 > só serve para instalar o sistema do zero num negócio novo.
 
 Falta um passo local em cada máquina nova: o `.mcp.json` (chave do Firecrawl)
-e a `OPENAI_API_KEY` no `.env` ficam **fora do git** e precisam ser recriados
-à mão. Ver o `.gitignore` e a seção "Firecrawl" / "Geração de imagens" do
-`CLAUDE.md`.
+fica **fora do git** e precisa ser recriado à mão. Ver o `.gitignore` e a seção
+"Firecrawl" do `CLAUDE.md`. Não há chave de geração de imagem: imagem se gera
+manualmente pelo ChatGPT e vídeo pelo Gemini (ver "Geração de mídia" no `CLAUDE.md`).
 
 ---
 

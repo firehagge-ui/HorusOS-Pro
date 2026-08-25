@@ -41,7 +41,7 @@
 | Portfólio | travado num deslocamento fixo | anda e **volta** com a rolagem, nos dois sentidos |
 | Chamada final | "Pronto para construir algo que dura?" | "Qual bloco do seu negócio ainda não existe?" |
 | Rodapé | uma linha com logo e dado legal | **quatro colunas**, no formato do print da Menzzo |
-| Nome no pé | pixelado | **hex dump com onda atravessando** |
+| Nome no pé | pixelado | hex dump com onda (v6) → **SVG com gradiente e luz no ponteiro** (24/08/2026) |
 
 **Por que a ficha técnica existe.** Sem ela, seis telas cheias com um título no
 meio são a mesma tela seis vezes, e o formato de painel deixa de valer o
@@ -68,7 +68,7 @@ nenhuma dá erro no console.
 
 ```
 hero → faixa de palavras → A HÓRUS → SERVIÇOS → ICARUS → PORTFÓLIO
-     → chamada final → rodapé → HÓRUS pixelado
+     → chamada final → rodapé → assinatura HÓRUS
 ```
 
 | | v4 | v5 |
@@ -140,7 +140,7 @@ hero  →  faixa de palavras  →  A HÓRUS  →  SERVIÇOS  →  ICARUS  →  P
 | Produto próprio | não aparecia | **Icarus**, em formato de cartaz |
 | Trabalho | grade 2x2 de card, sem foto | **Portfólio**, tira que corre com a rolagem |
 | Chamada final | centralizada | **cartaz à esquerda**, com pergunta no lugar de afirmação |
-| Pé | rodapé e fim | rodapé mais **HÓRUS pixelado** em escala de cartaz |
+| Pé | rodapé e fim | rodapé mais a **assinatura HÓRUS** em escala de cartaz |
 | Menu | A diferença · A Máquina · O que não vai ao ar · Trabalho · Perguntas | A Hórus · Serviços · Icarus · A Máquina · Portfólio |
 
 **Por que a esteira do hero virou a faixa de palavras.** Dois marquees numa página
@@ -163,10 +163,28 @@ a 7% de opacidade com máscara radial, e é o único lugar em que o símbolo apa
 grande. **Se o Marcelo quiser voltar atrás, o substituto já existe no manual:** o
 feixe de linhas em onda, que existe justamente para esse papel.
 
-**O portfólio corre sem uma linha de JavaScript.** `animation-timeline: view()`
-amarra a tira à posição da seção na tela. A regra da casa proíbe listener de
-scroll, e não precisou: onde o navegador não suporta (hoje Safari e Firefox), um
-`@supports not` transforma a tira num carrossel que se arrasta com o dedo.
+**O portfólio corre sem uma linha de JavaScript.** A seção é um trilho de 300vh, a
+janela prende com `position: sticky` e a tira anda com `animation-timeline` amarrada
+a uma `view-timeline` nomeada na própria seção. A regra da casa proíbe listener de
+scroll, e não precisou: onde o navegador não suporta, um laço de
+`requestAnimationFrame` faz a mesma conta, e sem JS nenhum a tira vira um carrossel
+que se arrasta com o dedo.
+
+Reescrito em 24/08/2026 a partir de web3.xmethod.de. Três decisões que vieram de lá:
+
+1. **A tira não anda o trilho todo.** Fica parada nos primeiros 30% e nos últimos
+   30%; só o miolo de 40% move. A espera da entrada é o que faz a pessoa registrar
+   "isto prendeu" antes de qualquer coisa deslizar, e a da saída devolve o último
+   card em vez de arrancá-lo da tela no instante em que ele chega.
+2. **O percurso deixou de ser chute.** Era uma tabela de porcentagens por breakpoint
+   (`-34%`, `-46%`, `-58%`) que acertava nos breakpoints e errava entre eles. Virou
+   `translateX(calc(-100% + 100cqw))`: a largura da tira menos a da janela, lida por
+   container query. Medido, o último card para **rente à margem direita** a 1440, a
+   900 e a 390 de tela, sem uma linha de ajuste.
+3. **A faixa `contain 0%` a `contain 100%`** começa e termina exatamente onde o
+   `sticky` prende e solta, então a conta não depende da altura do monitor.
+
+Ficha do padrão em `_biblioteca/inspiracoes/interacao/scroll-horizontal-preso.md`.
 
 **⚠️ O portfólio está sem imagem, e isso não é falta de produção.** Nenhum dos
 quatro clientes autorizou uso do nome nem da tela. Cada moldura carrega segmento e

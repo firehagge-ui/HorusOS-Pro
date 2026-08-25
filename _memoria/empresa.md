@@ -23,11 +23,13 @@ Entrega por prioridade, um bloco por vez — nunca "product-dump":
 
 Também: SEO local, propostas comerciais, relatórios.
 
-**Ferramentas:** Firecrawl (pesquisa/scrape web) via MCP, e **API da OpenAI** para
-geração de imagem, direto, sem MCP. Detalhe operacional no `CLAUDE.md` da raiz.
-⚠️ O **Higgsfield saiu em 05/08/2026** (assinatura cancelada, poucos créditos por
-mês) e foi removido do `.mcp.json`. A API da OpenAI é cobrança por uso, com chave
-própria em platform.openai.com, separada de qualquer assinatura do ChatGPT.
+**Ferramentas:** Firecrawl (pesquisa/scrape web) via MCP. **Não há API de geração
+de mídia.** Imagem se gera **manualmente pelo ChatGPT**; vídeo, **manualmente pelo
+Gemini** (Google AI Pro). Assinatura de consumidor não dá acesso programático, então
+o asset vem de fora e o Horus OS monta em volta. Detalhe no `CLAUDE.md` da raiz.
+⚠️ O **Higgsfield saiu em 05/08/2026** (removido do `.mcp.json`) e a **API da OpenAI
+nunca existiu na operação** (correção do Marcelo, 20/08/2026): ignorar qualquer
+menção a `OPENAI_API_KEY`.
 Para imagem, o `ffmpeg` local converte tudo para WebP no tamanho de exibição antes
 de entrar em qualquer HTML: imagem gerada por IA sai em 2k e pesa megabytes.
 

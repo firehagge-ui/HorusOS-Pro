@@ -184,17 +184,25 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
 }
 .metal:active { transform: translateY(1px); }
 
+/* Contêiner da tela do shader. O ShaderMount do @paper-design cria o próprio
+   <canvas> aqui dentro; forçamos ele a preencher a pílula e herdar o raio. */
 .metal-tela {
   position: absolute; inset: 0; z-index: 0;
-  width: 100%; height: 100%;
   border-radius: inherit;
-  display: block;
+  overflow: hidden;
 }
-/* Aro parado, para quem não tem WebGL. O botão continua um botão. */
+.metal-tela canvas {
+  position: absolute !important; inset: 0 !important;
+  width: 100% !important; height: 100% !important;
+  display: block !important;
+  border-radius: inherit !important;
+}
+/* Aro parado, para quem não tem WebGL2 (ou o bundle não carregou). Cromo prata
+   polido, na mesma família do shader — poucas faixas largas e brilho de metal. */
 .metal-parado .metal-tela {
   background: conic-gradient(from 210deg,
-    #0A0B0F, #2563EB 18%, #E9EEF7 32%, #1C2432 48%,
-    #2563EB 66%, #F2F5FA 78%, #0A0B0F);
+    #1C2432, #C9D2DE 16%, #F4F7FB 30%, #9AA6B6 46%,
+    #E9EEF7 64%, #FBFCFE 80%, #1C2432);
 }
 
 .metal-face {
@@ -540,7 +548,6 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
   min-height: 100dvh;
   display: flex; align-items: center;
   padding: 80px 24px;
-  border-top: 1px solid var(--fio);
 }
 .sv-grade {
   display: grid;
@@ -661,19 +668,28 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
    `@supports` abaixo transforma a janela num carrossel que se arrasta. */
 
 /* ⚠️ `overflow: clip`, não `hidden`. `hidden` cria um CONTÊINER DE ROLAGEM, e
-   `animation-timeline: view()` se amarra ao contêiner de rolagem mais próximo:
-   com `hidden` aqui, a tira media a própria posição dentro de uma caixa em que
-   ela nunca se move, e ficava congelada num deslocamento fixo. `clip` recorta
-   igual e não vira rolável, então a linha do tempo volta a ser a da página. */
-.portfolio { padding: 130px 0; overflow: clip; }
+   a linha do tempo de rolagem se amarra ao contêiner mais próximo: com
+   `hidden` aqui, a seção mediria a própria posição dentro de uma caixa em que
+   ela nunca se move, e a tira ficava congelada. `clip` recorta igual e não
+   vira rolável, então a linha do tempo volta a ser a da página. */
+.portfolio { overflow: clip; }
+.pf-pin { padding: 130px 0; }
 .portfolio .envelope { padding-inline: 24px; margin-bottom: 56px; }
-.pf-janela { overflow: clip; }
-.pf-tira {
-  display: flex; gap: 28px;
-  width: max-content;
-  padding-inline: 24px;
+
+/* A janela é do tamanho do ENVELOPE, não da tela. É o que faz o último card
+   terminar rente à margem do texto, e não solto na borda do monitor. A tira
+   transborda dela e quem recorta é o `overflow: clip` da seção, então os cards
+   seguem sangrando até a beira da tela enquanto correm.
+   `container-type: inline-size` não é enfeite: é o que permite ao `@keyframes`
+   lá embaixo ler a largura desta caixa em `cqw` e calcular o percurso exato,
+   em vez de chutar uma porcentagem por breakpoint como era antes. */
+.pf-pista {
+  width: 100%; max-width: var(--largura);
+  margin-inline: auto; padding-inline: 24px;
+  container-type: inline-size;
 }
-.pf-item { width: 520px; max-width: 82vw; flex: none; }
+.pf-tira { display: flex; flex: none; gap: 28px; width: max-content; }
+.pf-item { width: 520px; flex: none; }
 .pf-tela {
   aspect-ratio: 16 / 10;
   border: 1px solid var(--vidro-fio);
@@ -687,11 +703,36 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
 .pf-item h3 { font-size: var(--t-22); margin-top: 24px; }
 .pf-item p { color: var(--osso-2); margin-top: 12px; }
 
-/* A animação é amarrada à POSIÇÃO da seção na tela, não a um gatilho. Por isso
-   ela anda nos dois sentidos de graça: rolando para baixo a tira vai para a
-   esquerda, rolando para cima ela volta, e parar no meio deixa a tira parada
-   no meio. Nada disso precisa de listener de scroll. */
+/* O PISO, que vale sem linha do tempo de rolagem e sem JS: a tira é um
+   carrossel que se arrasta com o dedo. A fila nunca fica cortada e parada. */
+.pf-pista { overflow-x: auto; scroll-snap-type: x mandatory; }
+.pf-item { scroll-snap-align: start; }
+
+/* ---------- 7e-bis. O portfólio preso, correndo na horizontal ----------
+   Estudado em web3.xmethod.de (ver referencias/). A seção vira um trilho alto,
+   a janela PRENDE no alto da tela e a tira anda para a esquerda enquanto a
+   pessoa rola. Três coisas que o clone comum erra, e que estão copiadas aqui
+   de propósito:
+
+   1. O percurso não é um chute. É `larguraDaTira menos larguraDaJanela`, que em
+      CSS vira `translateX(-100% + 100cqw)`: `-100%` é a tira inteira (a caixa é
+      `max-content`) e somar a janela de volta faz o ÚLTIMO card parar rente à
+      margem direita. Nem vazio no fim da fila, nem card cortado, em nenhuma
+      largura de tela. Foi isso que aposentou as porcentagens por breakpoint.
+   2. Ela NÃO anda o trilho todo. Fica parada nos primeiros 30% e nos últimos
+      30%; só o miolo de 40% move. A espera da entrada é o que faz a pessoa
+      registrar "isto prendeu, presta atenção" ANTES de qualquer coisa deslizar,
+      e a da saída evita que o último card seja arrancado da tela.
+   3. A faixa `contain` começa e termina exatamente onde o `sticky` prende e
+      solta, então a conta não depende da altura da tela. */
 @supports (animation-timeline: view()) {
+  .portfolio { min-height: 300vh; view-timeline-name: --pf; }
+  .pf-pin {
+    position: sticky; top: 0;
+    height: 100dvh; padding: var(--cabecalho) 0 0;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .pf-pista { overflow: visible; scroll-snap-type: none; }
   /* Em longhand de propósito: o atalho `animation:` zera a duração em `0s`, e
      com linha do tempo de rolagem a duração precisa ser `auto` para valer a
      faixa inteira. Com `0s` a tira também congela. */
@@ -700,44 +741,50 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
     animation-duration: auto;
     animation-timing-function: linear;
     animation-fill-mode: both;
-    animation-timeline: view();
-    animation-range: entry 0% exit 100%;
+    animation-timeline: --pf;
+    animation-range: contain 0% contain 100%;
   }
-  /* O percurso é o que sobra da tira além da janela, e isso muda com a
-     largura da tela: quanto mais estreita a janela, mais a tira precisa andar.
-     Por isso o valor desce por breakpoint. Andar demais deixa um vazio no fim
-     da fila; andar de menos deixa o último card sem aparecer inteiro. */
-  @keyframes corre-tira {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-34%); }
-  }
-  @media (max-width: 1200px) {
-    @keyframes corre-tira {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-46%); }
-    }
-  }
-}
-/* Sem `animation-timeline` (hoje Safari e Firefox), quem faz o mesmo trabalho
-   é o laço em JS, que só roda com a seção na tela. A classe abaixo entra por
-   JS e existe para o caso de o laço não subir: aí a tira vira um carrossel de
-   arrastar, em vez de ficar uma fila cortada e parada. */
-@supports not (animation-timeline: view()) {
-  .pf-janela:not(.pf-manual) { overflow-x: auto; scroll-snap-type: x mandatory; }
-  .pf-janela:not(.pf-manual) .pf-item { scroll-snap-align: start; }
 }
 
-/* ---------- 7f. O nome no pé, em hex dump ---------- */
-/* Uma grade de bytes com a palavra acesa por dentro e uma onda atravessando.
-   Substituiu o cartaz pixelado em 05/08/2026, a pedido do Marcelo. */
-
-.hexdump {
-  border-top: 1px solid var(--fio);
-  padding: 22px 24px 26px;
-  line-height: 0;
-  overflow: hidden;
+/* A mesma coisa, ligada por JS onde `animation-timeline` ainda não existe. A
+   classe entra pelo script; sem script nada disso vale, e sobra o carrossel.
+   Trilho de três telas sem ninguém para movê-lo seria três telas de nada. */
+.portfolio.pf-pinado { min-height: 300vh; }
+.portfolio.pf-pinado .pf-pin {
+  position: sticky; top: 0;
+  height: 100dvh; padding: var(--cabecalho) 0 0;
+  display: flex; flex-direction: column; justify-content: center;
 }
-.hexdump canvas { width: 100%; display: block; }
+.portfolio.pf-pinado .pf-pista { overflow: visible; scroll-snap-type: none; }
+
+@keyframes corre-tira {
+  0%, 30%   { transform: translate3d(0, 0, 0); }
+  70%, 100% { transform: translate3d(calc(-100% + 100cqw), 0, 0); }
+}
+
+/* ---------- 7f. A assinatura no pé ----------
+   O nome em escala de cartaz, abaixo do rodapé. Estudado em lessestudio.com
+   (ver referencias/): lá o wordmark gigante NÃO é texto com `font-size`, é um
+   desenho vetorial pintado por gradiente. A diferença importa aqui: o SVG
+   escala pela proporção do `viewBox`, então a palavra ocupa a mesma fatia da
+   largura em qualquer tela, sem `clamp()` e sem abrir um degrau novo na escala
+   de tipo do PLANO.md. A escala de tipo continua servindo o que se lê; isto é
+   desenho, e desenho se mede por proporção.
+
+   São duas camadas do MESMO desenho. A de baixo é um gradiente de grafite com
+   franja azul no alto, que deixa a palavra quase encostada no fundo, como
+   relevo. A de cima é uma luz que só acende no ponteiro e no lugar em que ele
+   está: em repouso a assinatura é discreta, e é o gesto de passar por ela que
+   revela. Mesmo princípio do lessestudio, que mantém o wordmark quase invisível
+   e guarda todo o drama para a luz.
+   Substituiu o hex dump em 24/08/2026, a pedido do Marcelo. */
+
+.assinatura { padding: 96px 24px 44px; line-height: 0; }
+.assinatura svg { width: 100%; height: auto; display: block; }
+/* Sem ponteiro (toque) a luz nunca acende, e a camada de grafite se sustenta
+   sozinha: a assinatura não depende do efeito para existir. */
+.as-luz { opacity: 0; transition: opacity .5s var(--curva); }
+.assinatura:hover .as-luz { opacity: 1; }
 
 /* ---------- 8. Cabeçalho de seção ---------- */
 
@@ -753,13 +800,38 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
 /* ---------- 16. Chamada final e contato ---------- */
 
 /* Alinhada à esquerda e em escala de cartaz, no formato das referências que o
-   Marcelo mandou em 05/08/2026. Era centralizada até então. */
+   Marcelo mandou em 05/08/2026. Era centralizada até então.
+
+   O que veio de akis.studio (ver referencias/) em 24/08/2026 foi a CAIXA, não a
+   diagramação: lá o convite não fica solto na página, mora num painel com recuo
+   generoso e ASSIMÉTRICO (mais ar em cima do que embaixo) e com a luz do
+   gradiente ancorada fora do centro, a um terço da esquerda. O alinhamento
+   continua o nosso, porque isso o Marcelo já decidiu; copiou-se o continente.
+   E como no akis não há fio nenhum separando esta seção do rodapé: quem separa
+   é a caixa acabar e o ar começar. */
 .chamada { padding: 140px 24px 128px; }
+.ch-cartao {
+  position: relative;
+  border: 1px solid var(--vidro-fio);
+  border-radius: var(--raio);
+  /* Vidro da casa: feito de LUZ, não de desfoque. O `backdrop-filter` do akis
+     não entra: aqui ele continua reservado ao cabeçalho (ver §4). O gradiente
+     radial a 33% 0% é a única coisa que se leva de lá. */
+  background:
+    radial-gradient(120% 92% at 33% 0%, rgba(96,165,250,.11) 0%, rgba(96,165,250,0) 62%),
+    var(--vidro), var(--carta);
+  box-shadow: var(--vidro-luz);
+  padding: 128px 64px 104px;
+}
 .chamada h2 { font-size: var(--t-80); max-width: 15ch; letter-spacing: -0.035em; }
 .chamada .abertura { margin-top: 26px; }
-.chamada .hero-acao { justify-content: flex-start; margin-top: 42px; }
+.chamada .hero-acao { justify-content: flex-start; margin-top: 48px; }
 
-.canais { list-style: none; padding: 0; margin: 64px 0 0; max-width: 760px; }
+/* Sem `max-width`: dentro do cartão, a lista precisa chegar às duas margens.
+   Com 760px num painel de 1232 ela deixava metade do cartão vazia à direita, e
+   vazio de um lado só lê como desequilíbrio, não como ar. Cheia, a régua das
+   linhas dá piso ao cartão. */
+.canais { list-style: none; padding: 0; margin: 72px 0 0; }
 .canais li {
   border-bottom: 1px solid var(--fio); padding: 20px 0;
   display: flex; gap: 20px; flex-wrap: wrap; align-items: baseline; text-align: left;
@@ -773,8 +845,7 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
 /* Rodapé em colunas, no formato do print da Menzzo: marca e dado legal à
    esquerda, colunas de link à direita. */
 .rodape {
-  border-top: 1px solid var(--fio);
-  padding: 72px 24px 64px;
+  padding: 112px 24px 64px;
   font-size: var(--t-17);
   color: var(--osso-2);
 }
@@ -799,7 +870,11 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
   font-family: var(--display);
   font-size: var(--t-13); font-weight: 600;
   letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--osso);
+  /* Rótulo colorido acima de cada lista, como no rodapé do akis.studio. Sem
+     fio nenhum separando as colunas, é a cor do rótulo que marca onde uma
+     lista começa. `--azul-luz` e não `--azul`: 7,9:1 contra 3,4:1, e a regra
+     do PLANO.md é que `--azul` nunca carrega texto pequeno. */
+  color: var(--azul-luz);
   margin-bottom: 18px;
 }
 .rd-col a, .rd-col p {
@@ -849,6 +924,8 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
   .sv-meio h3 { font-size: var(--t-40); }
   .sv-ficha { grid-column: 2; margin-top: 44px; }
   .rodape-grade { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 44px; }
+  .ch-cartao { padding: 104px 44px 88px; }
+  .pf-item { width: 420px; }
 }
 
 @media (max-width: 860px) {
@@ -879,7 +956,11 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
 
   .sobre { padding: 90px 24px 84px; }
   .icarus { padding: 88px 24px; }
-  .portfolio { padding: 88px 0; }
+  /* No celular o trilho encurta: a corrida é a mesma, o percurso de rolagem
+     até ela é que não precisa de três telas. */
+  .portfolio, .portfolio.pf-pinado { min-height: 220vh; }
+  .pf-pin { padding: 88px 0; }
+  .ch-cartao { padding: 72px 26px 64px; }
   .titulao { font-size: var(--t-28); }
   .ic-nome { font-size: var(--t-40); }
   .chamada h2 { font-size: var(--t-40); }
@@ -895,6 +976,7 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
   .sv-meio h3 { font-size: var(--t-28); }
   .sv-ficha { grid-column: 1; margin-top: 36px; }
   .pf-item { width: 340px; }
+  .assinatura { padding: 64px 24px 32px; }
 }
 
 @media (max-width: 600px) {
@@ -904,13 +986,10 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
   .hero-acao { margin-top: 26px; }
   .sv-ficha > div { grid-template-columns: 1fr; gap: 4px; }
   .rodape-grade { grid-template-columns: 1fr; gap: 36px; }
-  /* A tira anda menos: com card estreito, 42% passaria do fim da fila. */
-  @supports (animation-timeline: view()) {
-    @keyframes corre-tira {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-58%); }
-    }
-  }
+  /* O percurso da tira NÃO precisa mais de ajuste por breakpoint: a conta
+     `-100% + 100cqw` já é exata em qualquer largura. O que muda aqui é só a
+     largura do card. */
+  .pf-item { width: 78vw; }
 }
 
 /* ---------- 19. Movimento reduzido ---------- */
@@ -924,7 +1003,18 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
   .fp-trilho { animation: none; }
   .forma { animation: none; opacity: 1; }
   .cai > span { transform: none; opacity: 1; transition: none; }
+  /* Nada prende e nada corre: a seção volta ao fluxo normal e a tira vira o
+     carrossel de arrastar. Um trilho de três telas com movimento desligado
+     seria três telas de vazio. */
+  .portfolio, .portfolio.pf-pinado { min-height: 0; }
+  .pf-pin, .portfolio.pf-pinado .pf-pin {
+    position: static; height: auto; padding: 88px 0; display: block;
+  }
   .pf-tira { animation: none; transform: none !important; }
-  .pf-janela { overflow-x: auto; }
+  .pf-pista, .portfolio.pf-pinado .pf-pista {
+    overflow-x: auto; scroll-snap-type: x mandatory;
+  }
+  /* A luz da assinatura não acende: fica só o grafite, que já é a palavra. */
+  .as-luz { opacity: 0 !important; transition: none; }
   * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }

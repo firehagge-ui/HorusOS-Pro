@@ -343,18 +343,28 @@ pontuais e rápidas, a busca nativa ainda resolve sem gastar crédito.
 
 ---
 
-## Geração de imagens (API da OpenAI)
+## Geração de mídia (imagem e vídeo) — manual e externa
 
-Higgsfield foi cancelado (poucos créditos por mês) — removido do `.mcp.json` em
-05/08/2026. Geração de imagem agora é via **API da OpenAI**, direto (sem MCP),
-usada pela skill `/carrossel` quando `OPENAI_API_KEY` estiver configurada no
-`.env` local. É cobrança por uso (pay-as-you-go), separada de qualquer
-assinatura do ChatGPT (Plus/Go/Pro) — precisa de chave própria em
-platform.openai.com com cartão cadastrado.
+⚠️ **Correção de 20/08/2026 (Marcelo): não existe API de imagem na operação.**
+Higgsfield foi cancelado em 05/08/2026 (removido do `.mcp.json`), e a **API da
+OpenAI nunca chegou a existir** — o Marcelo não tem chave. Qualquer texto que
+mencione `OPENAI_API_KEY` está vencido.
 
-Usar para imagens de site e peça. Em cliente regulado, a imagem também passa pelo
-compliance (Dr. Giovanni: sem paciente, sem antes/depois, sem promessa; só
-tecnologia, ambiente e laboratório).
+Estado atual:
+
+- **Imagem:** única forma é **direto pelo ChatGPT** (interface, manual). Não há
+  chave/API pra gerar imagem automaticamente aqui. Quando a peça precisar de
+  imagem, o Marcelo gera no ChatGPT e traz o arquivo; o Horus OS monta em volta
+  (copy, layout, código).
+- **Vídeo:** o Marcelo gera **pelo Gemini** (app, manual — ele tem Google AI Pro
+  / Google One). Também não é API: assinatura de consumidor não libera acesso
+  programático (mesmo caso do ChatGPT Plus/Go/Pro).
+
+Ou seja, geração de mídia é etapa **manual e externa**; o sistema entra na
+montagem em volta do asset, não na geração.
+
+Em cliente regulado, a imagem também passa pelo compliance (Dr. Giovanni: sem
+paciente, sem antes/depois, sem promessa; só tecnologia, ambiente e laboratório).
 
 ---
 

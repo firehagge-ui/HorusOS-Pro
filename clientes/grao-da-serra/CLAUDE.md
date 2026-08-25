@@ -3,6 +3,242 @@
 > Projeto criado em 29/07/2026. Pasta dedicada — instruções aqui sobrescrevem as
 > da raiz quando relevantes.
 
+## 🚀 Trigésima-quarta rodada (19/08) — site preparado para REPUBLICAR no Netlify
+
+O Marcelo pediu para preparar o site atualizado para postar no Netlify. Verificação
+completa feita:
+- **Órfãos removidos:** `saco-graos.webp` (177 KB) e `secao-2-produto.webp` (237 KB)
+  saíram de `assets/` para `site-fontes/` — a foto única `produtos-cena.webp` substituiu
+  os dois. Confirmado por grep que nenhum HTML/CSS os referencia. Pasta que vai ao ar
+  caiu de 1,6 MB para **1,2 MB**.
+- **Detector exit 0.** `over=0` em 1920/1440/1280/1024/768/390/360/320.
+- **Rotas HTTP 200:** `/`, `/404.html`, `/robots.txt`, `/sitemap.xml`,
+  `/assets/produtos-cena.webp`, `/assets/og-capa.webp`.
+- **Deploy files conferidos:** `netlify.toml` (publish ".", sem build, cache imutável de
+  assets, HTML revalidado, headers de segurança), `robots.txt` (Allow + sitemap com URL
+  real), `sitemap.xml` (URL real). `<head>` com canonical + og:url + og:image **absolutos**
+  (`https://graodaserra.netlify.app/...`), JSON-LD LocalBusiness (tel +5575991467309,
+  @graodaserra__).
+- **Render da home inteira conferido:** todas as seções carregam, "Nosso café" com a foto
+  nova e o merge, sem quebras.
+
+**Como o Marcelo publica** (não dá para eu publicar por ele — é a conta Netlify dele):
+1. **Drag-and-drop** (como foi da 1ª vez): arrastar a pasta `clientes/grao-da-serra/site/`
+   em app.netlify.com/drop → atualiza o site `graodaserra`.
+2. **Git contínuo:** se o repo estiver conectado, `git push` com base directory
+   `clientes/grao-da-serra/site`.
+
+Pasta pronta em `site/`: `index.html`, `404.html`, `robots.txt`, `netlify.toml`,
+`sitemap.xml`, `assets/`.
+
+## ✅ Trigésima-terceira rodada (18/08) — seção 2 revertida ao layout de ANTES (mantendo fundo+foto)
+
+O Marcelo pediu para **voltar a "Nosso café" ao layout de antes do print 1**, mantendo só
+duas coisas das rodadas recentes: a **cor de fundo (#F2CDA6)** e a **foto nova** (a cena
+única dos dois produtos).
+
+- Restaurados os **textos, ícones e cores originais**: `.cafe-grid`/`.cafe-txt`/
+  `.atributos` (esses estilos nunca tinham sido apagados). Título **"Qualidade que você
+  sente em cada xícara."**, parágrafo original, atributos **Aroma intenso / Café puro /
+  250 g** com os ícones originais (xícara / gota / caixa), botão **"Quero experimentar"**.
+- **Removidos** os botões "Pedir em grãos / Pedir moído" (e o JS de pré-seleção que os
+  servia). Saíram também os estilos `.cafe-grid2`/`.cafe-lado`/`.cafe-atrib`/`.cafe-cena`/
+  `.cena-btns`/`.prod-btn` do print 1.
+- **Foto maior:** `.cafe-grid` foi p/ `.66fr 1.62fr` (a coluna da imagem ganhou peso). A
+  `.cena-img` (foto única) fica na `figure.cafe-produto`, com a máscara de merge mantida.
+- **Plantas mais para os cantos:** `.planta-cafe` left -46→-120, `.planta-cafe-dir`
+  right -150→-230 (sangram mais pelas bordas). A da direita segue com z-index:2.
+
+⚠️ Efeito colateral do peso maior na imagem: a coluna de texto ficou estreita e
+"Aroma intenso" quebra em 2 linhas nos atributos. Se incomodar, equilibrar o grid
+(ex.: `.72fr 1.5fr`) alivia sem perder muito tamanho.
+
+**Verificado:** detector exit 0. `over=0` em 1920→320. Render (página inteira + crop, p/
+as duas plantas carregarem): estrutura de antes, foto grande e mesclada, plantas nos
+cantos. ⚠️ Ainda NÃO republicado no Netlify.
+
+## ✅ Trigésima-segunda rodada (17/08) — foto corrigida usada + merge + planta preservada
+
+O Marcelo **regenerou a foto com o rótulo corrigido** (`ChatGPT...21_01_38.png`, ficou na
+pasta Downloads dele). Conferi no zoom (`site-fontes/produtos-cena-fonte.png`): rótulo
+agora **correto** — TORRADO E MARCANTE · CAFÉ PURO ARTESANAL / SELECIONADO E MOÍDO ·
+QUALIDADE PREMIUM / DA SERRA DE BREJÕES · (75) 99146-7309 · @graodaserra_ ·
+"Estrategicamente escolhido para destacar sabor e aroma". Sem "cultivo", contato certo.
+(Único detalhe mínimo: o acento de "moído" saiu como "moîdo" na arte — imperceptível no
+tamanho real, é a embalagem, não copy nossa.) **O bloqueio da 31ª está RESOLVIDO.**
+
+**Feito (pedido: foto grande + fundo mesclado + não cobrir a planta da direita):**
+- Foto nova → `produtos-cena.webp` (1400×933, 105 KB); fonte substituída em
+  `site-fontes/produtos-cena-fonte.png`.
+- Cor de fundo da foto = **#D9B18E**. `.cafe` background atualizado. Sobre ele os tons
+  de marca reprovam no corpo, então os textos da seção usam degraus mais escuros **só
+  aqui**: eyebrow/`h2 em`/ícones em **#523A0F** (âmbar, 5,39) e a sub-linha dos
+  atributos em **#5E3D2A** (4,88).
+  🔁 **Foram 4 versões da foto** (o Marcelo foi refinando o rótulo/qualidade): a final é
+  a de **18/08 (nome 18_37_20)**, rótulo nítido e idêntico ao real (AROMA INTENSO /
+  torrado e marcante · café puro artesanal / selecionado e moído · qualidade premium /
+  da Serra de Brejões · 7309 · @graodaserra_ · "dos grãos à xícara: todo o cuidado").
+  Fundo dela = **#F2CDA6** (claro), e por ser claro os **tons de marca voltaram** (eyebrow
+  `--dourado-esc`, sub-linhas `--marrom`) — os degraus escuros das versões anteriores
+  saíram. Cada versão veio com um bege diferente; a conta a cada troca é sempre: amostrar
+  a cor da foto → checar contraste → só escurecer texto se reprovar.
+  ⚠️ **Detalhe de render:** o lazy de `planta-4.webp` é intermitente no headless (carrega
+  a foto OU a planta, raramente as duas). Pro screenshot de entrega, renderizei a página
+  inteira numa viewport alta e/ou compus os dois renders. No browser real ambas carregam.
+- Imagem **maior**: `.cafe-grid2` foi p/ `.72fr 1.5fr`.
+- **Merge:** a foto tem vinheta leve, então a cor sólida não bate 100% nas bordas.
+  Máscara `linear-gradient` no `.cena-img` dissolve topo e base da foto no fundo (miolo
+  intacto) — sem linha de retângulo.
+- **Planta da direita preservada:** com a foto grande, o galho (`.planta-cafe-dir`,
+  planta-4) ficava coberto. Pus **z-index:2** nela (a cena é z-index 1) — reaparece na
+  borda direita, sobre a margem da foto, sem tapar os produtos. As duas plantas (2 esq,
+  4 dir) emolduram a cena.
+
+**Verificado:** detector exit 0. `over=0` em 1920→320. Render desktop 1440 (merge sem
+retângulo, foto grande, planta 4 à direita na frente, rótulo legível e correto) e mobile
+390 (empilha texto → atributos → foto → botões).
+
+⚠️ **Ainda NÃO republicado no Netlify.** Agora a seção está pronta e SEM bloqueio de
+rótulo — dá pra publicar quando o Marcelo quiser.
+
+## ⚠️ Trigésima-primeira rodada (17/08) — foto única dos 2 produtos + fundo mesclado (rótulo BLOQUEIA — RESOLVIDO na 32ª)
+
+O Marcelo mandou uma **foto única com os dois produtos** (`ChatGPT Image 17 de ago...png`,
+salva em assets) e pediu: pôr a foto grande na posição destacada (direita) e deixar o
+**fundo da seção na mesma cor da foto**, pra a imagem se fundir (parecer um cenário só).
+
+**Feito (a mecânica, que ficou ótima):**
+- Cor do fundo da foto amostrada = **#E4C9AD** (mediana da faixa de topo). `.cafe`
+  passou de `var(--creme-fundo)` para `#E4C9AD` **só nesta seção** (a var não mudou,
+  senão quebraria o fundo das plantas do formulário). Contraste conferido sobre #E4C9AD:
+  tinta 9,29 · marrom 4,59 · dourado-esc 4,65 — todos passam AA.
+- Plantas 2 e 4 conferidas com **alfa real** (não viram retângulo com a cor nova).
+- Foto convertida `ChatGPT...png` (2 MB) → **`produtos-cena.webp`** (1200×800, 59 KB);
+  PNG-fonte → `site-fontes/produtos-cena-fonte.png`.
+- HTML: os dois `<figure class="prod">` viraram **uma `.cafe-cena`** (img única +
+  os dois botões "Pedir em grãos/moído" embaixo). `.cafe-grid2` foi p/ `.78fr 1.42fr`
+  (mais peso à imagem). Detector exit 0, `over=0` em todas as larguras.
+
+🔴 **BLOQUEIO DE PUBLICAÇÃO — o rótulo do pacote na foto foi reescrito pela IA** (li no
+zoom, `site-fontes/produtos-cena-fonte.png`):
+- **"CULTIVADO NA REGIÃO"**, **"DA TERRA AO GRÃO"**, **"diretamente do cultivo até à sua
+  xícara"** → afirmam cultivo (a família NÃO planta). Linha vermelha do cliente.
+- **Instagram errado:** "@graodoserra_" (o certo é **@graodaserra__**, com "da" e dois `_`).
+- **Telefone borrado/errado:** termina em "730S" (o certo é **99146-7309**).
+- **"TORRADO E BALANCEADO":** "balanceado" é nota sensorial não confirmada.
+- Texto todo tremido (reconstrução de IA). A embalagem que **já está no site**
+  (`secao-2-produto.webp`) tem o rótulo REAL e legível — é a referência do que é verdade.
+
+**A foto entrou como PLACEHOLDER visual** (pra mostrar o merge). Não vai ao ar com esse
+rótulo. Aguardando decisão do Marcelo: (A) eu recompor a cena com as embalagens reais
+sobre o fundo mesclado; (B) ele regenerar a foto travando o rótulo real; (C) manter só
+como rascunho. **Rótulo real, pra referência:** AROMA INTENSO / torrado e marcante ·
+CAFÉ PURO ARTESANAL / selecionado e moído · QUALIDADE PREMIUM / da Serra de Brejões ·
+(75) 99146-7309 · @graodaserra__ · "Dos grãos à xícara: todo o cuidado".
+
+## ✅ Trigésima rodada (17/08) — "Nosso café" refeita no layout do print 1
+
+O Marcelo não gostou da 29ª (achou limpa demais) e mandou **dois prints**: o print 1
+(uma variação de layout bem mais rica, hero de produto) e o print 2 (foto nova do
+pacote com fundo escuro/glow, para substituir a embalagem).
+
+**Decisões dele (via pergunta):** **sem ambientação por ora** (monto a estrutura, as
+imagens ambientadas entram na 2ª rodada) e **sem seletor** "Em grãos/Moído" (os dois já
+aparecem lado a lado; seletor decorativo = antipadrão).
+
+**O que ficou** (seção `#cafe`, layout do print 1):
+- **Esquerda:** eyebrow, h2 **"Do grão / à sua xícara."** ("xícara" em `--dourado-esc`
+  âmbar, porque dourado puro reprova contraste sobre creme), parágrafo, e **3 atributos
+  novos** (Grãos selecionados / Da Serra de Brejões / Torrado com cuidado) com ícones
+  lucide folha/montanha/coração. Isso **aposentou** os atributos antigos (aroma/café
+  puro/**250 g**) — resolve de vez a fricção do "250 g" ao lado do saco de volume.
+- **Direita:** os dois formatos grandes lado a lado, legenda serif caixa-alta **"EM
+  GRÃOS" / "MOÍDO"** + divisor dourado + descrição + **botão escuro "Pedir em grãos /
+  Pedir moído"**. O botão leva ao `#pedido` e **pré-seleciona o formato** no campo
+  `#p-moagem` (JS novo: `data-formato` → `.value`). Dá função real ao botão.
+- HTML `.cafe-wrap`/`.cafe-head`/`.cafe-formatos` → `.cafe-grid2`/`.cafe-lado`/
+  `.cafe-produtos`.
+
+**Adaptações obrigatórias do print (travas do cliente), feitas:**
+- 🔴 O print é mockup de **"Serra da Bahia"** — a marca é **Grão da Serra**, mantida.
+- 🔴 "Comprar em grãos/moído" → **"Pedir..."**: o site é **institucional, não loja**
+  (briefing), venda pelo WhatsApp/formulário, sem carrinho.
+- "Do grão à sua xícara" ✅ pode: é a linguagem do próprio rótulo ("dos grãos à xícara")
+  e começa no grão, não afirma plantio (diferente de "do pé à xícara").
+- "que só o Café Grão da Serra oferece" (superlativo no print) → **"a mesma qualidade e
+  o mesmo cuidado do café em grão"**, sem superlativo.
+
+🔴 **Pendências de imagem (bloqueiam a 2ª rodada):**
+1. **Ambientação** (grãos caindo, pó de café ao lado) — o Marcelo vai mandar os arquivos
+   OU eu gero via OpenAI. Sem os arquivos, os produtos ficam limpos como estão agora.
+2. **Print 2 (embalagem nova):** veio só como print no chat (baixa-res, fundo escuro com
+   glow). Para trocar preciso do PNG em alta. **E a embalagem que já está no site
+   (`secao-2-produto.webp`) é praticamente essa mesma, já com alfa** — se a nova não for
+   melhor resolução, a atual serve.
+
+**Verificado:** detector exit 0. `over=0` em 1920/1440/1280/1024/768/390/360/320.
+Render desktop 1440 (texto+atributos à esquerda, dois produtos+botões à direita, planta 2
+emoldurando) e mobile 390 (tudo em 1 coluna). ⚠️ Decode lazy de novo: a planta 4 sai
+"quebrada" no headless (carrega no browser real).
+
+⚠️ **Ainda NÃO republicado no Netlify.**
+
+## ✅ Vigésima-nona rodada (15/08) — "Nosso café" reorganizada: os dois FORMATOS (grão x moído)
+
+🔴 **Correção de fato do Nelson (15/08):** o saco **transparente** é o café **em grão**;
+o pacote **bege** de 250 g é o **moído**. Isso **corrige** o entendimento da 28ª rodada,
+que tratava as duas embalagens como *varejo (pacote) x atacado (saco de volume)* — era
+suposição minha, o Nelson nunca disse "atacado". A distinção real é **tipo de produto
+(grão x moído)**, não canal de venda. Alt-texts e comentários atualizados; a palavra
+"atacado" saiu da seção.
+
+**Pedido do Marcelo:** pôr os dois produtos **um do lado do outro, abaixo do texto** (em
+vez de ao lado dele), e usar as skills de design pra fazer bem. Usei a `taste-skill`
+(modo redesign-preserve: marca travada, não inventa cor nem fonte) + os antipadrões.
+
+**O que ficou** (seção `#cafe`):
+- **Texto em cima** (eyebrow, h2, parágrafo, 3 atributos, 1 CTA). O parágrafo agora amarra
+  os dois formatos: *"...Você escolhe como levar: em grão ou já moído."*
+- **Dois formatos embaixo** (`.cafe-formatos`), **sem painel atrás**. Imagens
+  **alinhadas pela base**; o pacote (moído), mais alto, sobe naturalmente. Divisor
+  vertical dourado fino no meio. Legenda em DM Serif **"Em grão" / "Moído"** + 1 linha
+  de descrição cada.
+  🔴 **A 1ª versão tinha um painel claro (`--campo` #F6EBD9) agrupando o par; o Marcelo
+  apontou que virou "fundo branco por detrás dos produtos, não ficou bem ajustado".**
+  Removido. As duas embalagens têm **alfa real** (conferido: RGBA, cantos alpha 0), então
+  assentam direto no creme `--creme-fundo` da seção, com a transparência mostrando o próprio
+  creme (o saco de grão deixa o creme passar pelo plástico). O que une o par agora é só o
+  divisor + o alinhamento pela base + as plantas 2 e 4 que emolduram. **Lição:** dois
+  produtos paritários não pedem caixa; o painel foi a mão indo pro container preguiçoso que
+  o `90-antipadroes.md` descreve, só que em versão "clara" em vez de card.
+- **Um CTA só** ("Quero experimentar" → #pedido). **Sem "Saiba mais" por produto**: o
+  mockup que o Marcelo mandou tinha, mas duplicaria a intenção e não há página de produto.
+- HTML: `.cafe-grid`/`.cafe-txt`/`.cafe-produto` viraram `.cafe-wrap`/`.cafe-head`/
+  `.cafe-formatos`. Regras mobile mortas (`.cafe-grid`, `.cafe-pacote`) removidas; no
+  celular o palco empilha em 1 coluna e o divisor vira horizontal.
+
+⚠️ **O mockup do Marcelo (proposta de layout) trazia copy vetada** — apontei antes de
+codar e **não** entrou: "do cultivo à entrega" e "do campo à sua porta" (a família não
+planta/colhe), "torra média", "sabor balanceado/finalização limpa" (perfil sensorial),
+"Qualidade premium/superior/Origem única" (superlativo), "Serra de Brejões – BA" (tracinho).
+O layout foi aproveitado; a copy foi reescrita dentro da régua.
+
+**Nota de integridade sobre os atributos:** mantive os 3 (aroma intenso / café puro / 250 g).
+O "250 g" refere-se ao pacote moído, que está ali à direita — tem referente, não é falso.
+Se o Marcelo achar que confunde com o saco de grão (que é volume), troco por "Torra
+artesanal".
+
+**Verificado:** detector do impeccable **exit 0**. `over=0` em 1920/1440/1024/768/390/360/320
+(probe iframe same-origin). Render desktop 1440 (texto + palco com os dois produtos
+alinhados + plantas 2 e 4 emoldurando) e mobile 390 (tudo em 1 coluna, formatos empilhados
+com divisor horizontal). ⚠️ **Armadilha de decode lazy de novo:** no iframe alto as imagens
+mais abaixo saem como "quebrado" (alt-text) — é o `naturalWidth 0` intermitente já
+registrado, não caminho errado (as 4 imagens dão HTTP 200). Com `--virtual-time-budget`
+alto elas decodificam.
+
+⚠️ **Ainda NÃO republicado no Netlify** — o que está no ar segue a versão anterior.
+Republicar (re-arrastar `site/` ou push) para estas mudanças irem ao ar.
+
 ## ✅ Vigésima-oitava rodada (13/08) — copy do hero + saco de grãos na "Nosso café"
 
 Retorno do Marcelo, dois pedidos.

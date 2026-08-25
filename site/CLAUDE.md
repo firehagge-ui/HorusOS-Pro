@@ -32,9 +32,12 @@ Até essa data estava em branco.
 | Serviços | **Um painel de tela cheia por serviço**, com ficha técnica | 05/08/2026 (noite), Marcelo |
 | Fundo do hero | **Shader em WebGL** nas cores da marca. Sem rótulo em cima | 05/08/2026 (noite), Marcelo |
 | Rodapé | Quatro colunas, no formato do print da Menzzo | 05/08/2026 (noite), Marcelo |
-| Nome no pé | **Hex dump com onda**. Era pixelado | 05/08/2026 (noite), Marcelo |
+| Nome no pé | **HÓRUS em SVG, pintado por gradiente**, com uma luz que segue o ponteiro. Era hex dump com onda, e antes disso pixelado | 24/08/2026, Marcelo |
 | Marquee | **Um só**: a faixa de palavras. A esteira do hero saiu por causa dela | 05/08/2026 (noite) |
-| Portfólio | Tira que corre com a rolagem, **sem imagem** até haver autorização | 05/08/2026 (noite) |
+| Portfólio | **Trilho preso**: a janela prende no alto da tela e a tira corre na horizontal. Parada nos primeiros 30% e nos últimos 30% do trilho. Continua **sem imagem** até haver autorização | 24/08/2026, Marcelo |
+| Fios entre seções | **Não existem.** Quem separa é o ar, a troca de fundo e a largura do contêiner | 24/08/2026, Marcelo |
+| Chamada final | Mora dentro de um **cartão de vidro** com recuo assimétrico. Continua alinhada à esquerda | 24/08/2026, Marcelo |
+| Rótulo de coluna do rodapé | Em `--azul-luz`. Sem fio separando as colunas, é a cor do rótulo que marca onde a lista começa | 24/08/2026, Marcelo |
 | Icarus | Ganhou seção própria, declarada como **em desenvolvimento** | 05/08/2026 (noite), Marcelo |
 | Linguagem visual | Escura e cinematográfica, das dez referências. Estudo em `referencias/agencias-ia-dez-sites.md` | 05/08/2026, Marcelo |
 | Arte do hero | Forma 3D abstrata em azul e dourado. **O falcão foi rejeitado** | 05/08/2026, Marcelo |

@@ -25,7 +25,8 @@ A maioria dos scripts depende de:
 
 **.env** na raiz do projeto com as chaves de API:
 ```bash
-OPENAI_API_KEY=sk-...               # pra gerar-imagem.js
+# Não há chave de geração de imagem: imagem se gera manualmente pelo ChatGPT
+# e vídeo pelo Gemini (o asset vem de fora, ver "Geração de mídia" no CLAUDE.md).
 META_PAGE_ACCESS_TOKEN=...          # pra postar-instagram.js + postar-facebook.js
 META_PAGE_ID=...
 META_IG_USER_ID=...

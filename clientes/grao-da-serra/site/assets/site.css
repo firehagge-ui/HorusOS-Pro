@@ -464,30 +464,30 @@ body.limpo .rotulo{display:none}
 /* ======================= NOSSO CAFÉ (parte original) ==================
    Texto à esquerda, pacote à direita. (Restaurado em 08/08 — a extensão
    grão/moído fica na seção .opcoes logo abaixo, não aqui dentro.) */
-.cafe{background:var(--creme-fundo);padding:104px 0;position:relative;overflow:hidden}
-.cafe-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-/* 13/08: "Nosso café" ganhou o saco de grãos (volume/atacado) ao lado do pacote
-   de 250 g (varejo), pedido do Nelson. Composição em família: pacote na frente
-   à esquerda, saco menor e mais baixo à direita, sobrepondo de leve — conta os
-   dois canais que a copy do hero reforça, sem virar duas fotos empilhadas soltas.
-   Grid de célula única (ambas em 1/1): o pacote, mais alto, define a altura, sem
-   precisar de position:absolute. */
-.cafe-produto{margin:0;display:grid;place-items:center}
-/* O PNG transparente pede drop-shadow, que acompanha o alfa do recorte — nada
-   de border-radius nem box-shadow, que só servem a foto retangular. */
-.cafe-produto img{
-  grid-area:1/1;object-fit:contain;
-  filter:drop-shadow(0 22px 30px rgba(61,33,21,.32));
-}
-.cafe-pacote{width:min(78%,430px);max-height:720px;z-index:2;justify-self:start;align-self:start}
-.cafe-saco{width:min(60%,320px);z-index:1;justify-self:end;align-self:end;transform:translateY(8%)}
-/* 10/08: textos mais juntos na vertical a pedido do Marcelo (estavam muito
-   espaçados). Aperto o eyebrow→h2→parágrafo→atributos→botão. */
+/* 18/08: fundo da seção = a MESMA cor do fundo da foto dos produtos (#F2CDA6),
+   pedido do Marcelo, pra a imagem se fundir com a seção (parecer um cenário só).
+   Amostrado da foto (4ª versão, rótulo nítido). É claro o bastante para os tons
+   de marca passarem no contraste, então esta seção volta a usá-los. */
+.cafe{background:#F2CDA6;padding:104px 0;position:relative;overflow:hidden}
+/* 18/08: de volta ao layout de antes do print 1 — texto à esquerda, a foto dos
+   dois produtos à direita. Mantidos o fundo #F2CDA6 e a foto nova. A coluna da
+   imagem ganhou mais peso (imagem maior, pedido do Marcelo). Sobre #F2CDA6 os
+   tons de marca passam (--dourado-esc 4,93, --marrom 4,87), então a seção usa a
+   paleta padrão original. */
+.cafe-grid{display:grid;grid-template-columns:.66fr 1.62fr;gap:36px;align-items:center}
+
 .cafe-txt{display:flex;flex-direction:column;align-items:flex-start}
 .cafe-txt .eyebrow{margin-bottom:8px}
 .cafe-txt h2{font-size:var(--t-3xl);margin-bottom:.32em}
 .cafe-txt p{max-width:44ch;margin-bottom:.7em}
 .cafe-txt .btn{padding-left:48px;padding-right:48px}
+
+/* a foto grande dos dois produtos. Fundo da seção = fundo da foto, e a máscara
+   dissolve topo/base, então a imagem se funde na seção (merge sem retângulo). */
+.cafe-produto{margin:0;display:flex;justify-content:center;align-items:center}
+.cena-img{width:100%;max-width:100%;height:auto;display:block;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 9%,#000 91%,transparent 100%);
+  mask-image:linear-gradient(to bottom,transparent 0,#000 9%,#000 91%,transparent 100%)}
 .atributos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:18px 0 24px}
 .atributo{display:grid;gap:8px}
 .atributo .selo{
@@ -515,11 +515,15 @@ body.limpo .rotulo{display:none}
 /* desenho 2 na "Nosso café". 07/08: com o texto na esquerda e a foto na
    direita, a planta acompanha o texto — foi para a ESQUERDA, espelhada,
    ancorada embaixo. */
-.planta-cafe{left:-46px;right:auto;bottom:0;top:auto;width:430px;opacity:.9;transform:scaleX(-1)}
+/* 18/08: plantas mais para os cantos (o Marcelo). Sangram mais pelas bordas. */
+.planta-cafe{left:-120px;right:auto;bottom:0;top:auto;width:430px;opacity:.9;transform:scaleX(-1)}
 /* 11/08: segunda planta na direita da "Nosso café" (Planta 4), atrás do
    pacote, sangrando/cortada pela borda direita a pedido do Marcelo. PNG sem
    fundo colado direto — sem tratamento (o glow claro some no bege da seção). */
-.planta-cafe-dir{right:-150px;left:auto;bottom:-20px;top:auto;width:470px;opacity:.95}
+/* z-index:2 = na FRENTE da foto (a cena é z-index 1). Com a foto grande, o galho
+   ficava atrás/coberto; à frente ele reaparece na borda direita, sobre a margem
+   da foto (fundo), sem tapar os produtos. Pedido do Marcelo (17/08). */
+.planta-cafe-dir{right:-230px;left:auto;bottom:-20px;top:auto;width:470px;opacity:.95;z-index:2}
 
 /* PT 5: desenho 1 na direita do formulário, desenho 3 na esquerda por trás
    da xícara e um pouco acima dela */
@@ -819,11 +823,9 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--verde-md);outlin
   .hero-selos .ic{width:27px;height:27px;flex:none;color:var(--dourado)}
   .hero-selos span{font-size:var(--t-sm);font-weight:600;color:#FFFFFF;line-height:1.2}
 
-  .cafe-grid,.origem-grid{grid-template-columns:1fr}
-  /* 12/08: no celular o TEXTO vem primeiro, o pacote depois (o Marcelo apontou
-     que o produto aparecia antes dos textos). O `order:-1` que subia o pacote
-     saiu — SÓ no mobile; no desktop o pacote continua à direita, ao lado do
-     texto. */
+  .origem-grid{grid-template-columns:1fr}
+  /* no celular a seção empilha: texto/atributos primeiro, foto depois. */
+  .cafe-grid{grid-template-columns:1fr;gap:28px}
   .passos-grid{grid-template-columns:1fr;gap:22px}
   .passos::after{background:linear-gradient(180deg, rgba(28,17,9,.72) 0%, rgba(28,17,9,.9) 55%)}
   .passos-bg{background-position:center top;opacity:.5}
@@ -839,7 +841,6 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--verde-md);outlin
      ANTES dos campos — o Marcelo apontou isso. No celular o formulário fica
      limpo; a xícara e as plantas seguem no desktop. */
   .planta-cafe,.planta-cafe-dir,.planta-form-dir,.planta-form-esq,.xicara-form{display:none}
-  .cafe-pacote{max-height:440px}
 }
 
 @media (max-width:620px){

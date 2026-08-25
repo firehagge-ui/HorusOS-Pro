@@ -47,7 +47,7 @@
            tela do shader (o aro vivo), face de vidro escuro por cima, e o
            rótulo por último. Detalhe em assets/site.css §4. -->
       <a class="metal metal-mini" href="#contato">
-        <canvas class="metal-tela" aria-hidden="true"></canvas>
+        <span class="metal-tela" aria-hidden="true"></span>
         <span class="metal-face" aria-hidden="true"></span>
         <span class="metal-txt">Começar projeto <span class="seta" aria-hidden="true">&#8599;</span></span>
       </a>
@@ -82,7 +82,7 @@
       <p class="hero-lead rev">Engenharia visual. Inteligência artificial. Nada publicado por acaso.</p>
       <div class="hero-acao rev">
         <a class="metal" href="#contato">
-          <canvas class="metal-tela" aria-hidden="true"></canvas>
+          <span class="metal-tela" aria-hidden="true"></span>
           <span class="metal-face" aria-hidden="true"></span>
           <span class="metal-txt">Começar projeto <span class="seta" aria-hidden="true">&#8599;</span></span>
         </a>
@@ -275,20 +275,25 @@
   </section>
 
   <!-- ================= PORTFÓLIO ================= -->
-  <!-- Corre da direita para a esquerda conforme a pessoa rola, por animação de
-       rolagem nativa do CSS (`animation-timeline: view()`). Sem listener de
-       scroll, que é regra da casa. Onde o navegador não suporta, a tira vira
-       um carrossel que se arrasta com o dedo.
+  <!-- A seção é um TRILHO alto: `.pf-pin` prende no alto da tela e a tira corre
+       da direita para a esquerda enquanto a pessoa rola, por animação de rolagem
+       nativa do CSS. Sem listener de scroll, que é regra da casa. Formato
+       estudado em web3.xmethod.de: ela fica parada nos primeiros 30% do trilho,
+       anda no miolo de 40% e para de novo nos últimos 30%. A espera da entrada
+       é de propósito, e é o que a maioria dos clones corta.
+       Onde o navegador não tem linha do tempo de rolagem, o mesmo desenho entra
+       por JS; sem JS, a tira vira um carrossel que se arrasta com o dedo.
        ⚠️ PENDÊNCIA QUE TRAVA PUBLICAÇÃO: nenhum cliente autorizou uso do nome
        nem da tela como portfólio. Enquanto isso não vier por escrito, cada
        moldura mostra o segmento e a entrega, sem nome, sem logo e sem print. -->
   <section class="portfolio" id="portfolio">
+   <div class="pf-pin">
     <div class="envelope">
       <p class="rotulo rev">Portfólio</p>
       <h2 class="rev">O que já foi ao ar.</h2>
     </div>
 
-    <div class="pf-janela">
+    <div class="pf-pista">
       <div class="pf-tira">
         <article class="pf-item">
           <div class="pf-tela"><span class="pend">tela a entrar quando o cliente autorizar</span></div>
@@ -312,20 +317,26 @@
         </article>
       </div>
     </div>
+   </div>
   </section>
 
   <!-- ================= CHAMADA FINAL ================= -->
   <!-- Alinhada à esquerda e em escala de cartaz, no formato das referências que
        o Marcelo mandou. A pergunta é a da Máquina: quem lê já passou pelo
-       trilho e sabe que os blocos existem em ordem. -->
+       trilho e sabe que os blocos existem em ordem.
+       O painel `.ch-cartao` veio de akis.studio: o convite mora dentro de uma
+       caixa de vidro com recuo assimétrico, em vez de ficar solto no fim da
+       página. Sem fio nenhum entre ela e o rodapé: o que separa é a caixa
+       acabar. -->
   <section class="chamada" id="contato">
     <div class="envelope">
+     <div class="ch-cartao">
       <p class="rotulo rev">Inicie uma conversa</p>
       <h2 class="rev">Qual bloco do seu negócio <span class="azul">ainda não existe</span>?</h2>
       <p class="abertura rev">Chame no WhatsApp e diga em duas linhas o que o seu negócio faz. A gente devolve por escrito o que dá para construir, em que ordem e por quê. Não precisa preparar nada, e a primeira conversa não custa.</p>
       <div class="hero-acao rev">
         <a class="metal" href="#contato">
-          <canvas class="metal-tela" aria-hidden="true"></canvas>
+          <span class="metal-tela" aria-hidden="true"></span>
           <span class="metal-face" aria-hidden="true"></span>
           <span class="metal-txt">Começar projeto <span class="seta" aria-hidden="true">&#8599;</span></span>
         </a>
@@ -340,6 +351,7 @@
         <li><span class="canal-nome">Instagram</span><span class="canal-valor pend">@horuspublicidade, a confirmar</span></li>
         <li><span class="canal-nome">Atendimento</span><span class="canal-valor">Salvador e interior da Bahia, presencial e a distância</span></li>
       </ul>
+     </div>
     </div>
   </section>
 
@@ -391,14 +403,62 @@
   </div>
 </footer>
 
-<!-- O nome em hex dump, com uma onda atravessando. Os bytes que caem dentro da
-     letra acendem; os de fora ficam no ruído. Feito em canvas, com a máscara da
-     palavra amostrada de um canvas fora da tela: assim a letra sai da fonte de
-     verdade e não de um mapa de bits escrito na mão. -->
-<div class="hexdump" role="img" aria-label="Hórus">
-  <canvas id="hex"></canvas>
+<!-- A assinatura no pé: o nome em escala de cartaz, abaixo do rodapé.
+     Estudada em lessestudio.com, onde o wordmark gigante não é texto com
+     `font-size` e sim um desenho vetorial pintado por gradiente. Aqui vale a
+     mesma escolha: o SVG escala pela proporção do `viewBox`, então a palavra
+     ocupa a mesma fatia da largura em qualquer tela, sem `clamp()` e sem abrir
+     um degrau novo na escala de tipo. Substituiu o hex dump em 24/08/2026.
+
+     Duas camadas do mesmo desenho. Embaixo, grafite com franja azul no alto:
+     a palavra fica quase encostada no fundo, como relevo. Em cima, uma luz que
+     só acende quando o ponteiro passa, e no lugar em que ele está. Em repouso a
+     assinatura é discreta; o gesto é que revela. -->
+<div class="assinatura" role="img" aria-label="Hórus">
+  <svg viewBox="0 0 1200 320" aria-hidden="true" focusable="false">
+    <defs>
+      <!-- Grafite de cima para baixo. O primeiro degrau puxa para o azul da
+           marca: é a mesma franja de cor quase invisível do botão de metal. -->
+      <linearGradient id="as-grafite" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0"    stop-color="#3B4A66"/>
+        <stop offset="0.52" stop-color="#1A202B"/>
+        <stop offset="1"    stop-color="#0F131A"/>
+      </linearGradient>
+      <!-- A luz. `userSpaceOnUse` para o centro andar na régua do viewBox: é
+           `cx`/`cy`/`fx`/`fy` que o script move, um quadro por vez. -->
+      <radialGradient id="as-brilho" gradientUnits="userSpaceOnUse"
+                      cx="600" cy="110" r="300" fx="600" fy="110">
+        <stop offset="0"    stop-color="#E5E7EB" stop-opacity=".92"/>
+        <stop offset="0.42" stop-color="#60A5FA" stop-opacity=".40"/>
+        <stop offset="1"    stop-color="#60A5FA" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <!-- Peso 700 e não 800: 800 não está no arquivo que a página baixa, e pedir
+         mais um peso ao Google Fonts por uma palavra decorativa é peso morto.
+
+         `textLength` com `lengthAdjust="spacing"` é o cinto de segurança, e não
+         enfeite: ele TRAVA o avanço da palavra em 1160 das 1200 unidades do
+         viewBox, mexendo só no espaço ENTRE as letras, nunca no desenho delas.
+         Sem isso, a palavra depende da métrica da fonte que estiver desenhando:
+         medido, o texto passava de 1283 unidades e o S saía cortado na borda, e
+         enquanto a Sora não chega quem desenha é a fonte do sistema, com outra
+         largura. Com o trava, sobra e falta viram espaço, não corte.
+         O corpo 317 com a linha de base em 298 é o que deixa 20 unidades de
+         folga para o acento do Ó, que sobe acima da altura de maiúscula. -->
+    <g font-family="Sora, system-ui, sans-serif" font-weight="700"
+       font-size="317" letter-spacing="-11" text-anchor="middle">
+      <text x="600" y="298" textLength="1160" lengthAdjust="spacing"
+            fill="url(#as-grafite)">HÓRUS</text>
+      <text class="as-luz" x="600" y="298" textLength="1160" lengthAdjust="spacing"
+            fill="url(#as-brilho)">HÓRUS</text>
+    </g>
+  </svg>
 </div>
 
+<!-- Motor do botão de metal líquido: @paper-design/shaders vendorizado como
+     script clássico (funciona em file://). Precisa carregar antes do script
+     abaixo, que o instancia. Doutrina de vendorização: _biblioteca/motion/. -->
+<script src="assets/paper-shaders.js"></script>
 <script>
 (function () {
   var reduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -489,148 +549,81 @@
     olhoCai.observe(alvo);
   });
 
-  /* ---- O nome no pé, em hex dump com onda ----------------------------
-     Uma grade de bytes em hexadecimal. Os que caem DENTRO do desenho da
-     palavra acendem; os de fora ficam no ruído de fundo. Uma onda senoidal
-     atravessa da esquerda para a direita mexendo no brilho e trocando o valor
-     dos bytes que ela toca, então o dump "respira" como terminal vivo.
-
-     A máscara da palavra é amostrada de um canvas fora da tela: a letra sai da
-     fonte de verdade, não de um mapa de bits escrito na mão, e continua certa
-     em qualquer largura. */
+  /* ---- A assinatura no pé: a luz que segue o ponteiro -----------------
+     A palavra tem duas camadas do mesmo desenho: grafite embaixo, luz em cima.
+     Aqui só se move o CENTRO da luz, para o ponto em que o ponteiro está. O
+     acender e o apagar são do CSS (`:hover` sobre `.as-luz`), então sem
+     ponteiro nada acende e a camada de grafite se sustenta sozinha.
+     Um quadro por vez com requestAnimationFrame: não é listener de scroll, e
+     mexer em atributo de gradiente não recalcula layout nenhum. */
   (function () {
-    var tela = document.getElementById('hex');
-    if (!tela || !tela.getContext) return;
-    var ct = tela.getContext('2d');
+    var caixa = document.querySelector('.assinatura');
+    if (!caixa || reduzido) return;
+    var desenho = caixa.querySelector('svg');
+    var luz = caixa.querySelector('#as-brilho');
+    if (!desenho || !luz) return;
 
-    /* Grade densa de propósito. Com célula larga a palavra sai com traço de
-       duas células e o olho não fecha a letra: quem define a espessura do traço
-       é o corpo da fonte, e o corpo é limitado pelo NÚMERO DE LINHAS. Mais
-       linhas, letra mais gorda. */
-    var CEL_L = 15, CEL_A = 11, LINHAS = 23;
-    var cols = 0, mascara = [], t = 0, rodando = false, visivel = true;
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var pendente = false, x = 600, y = 110;
 
-    function medir() {
-      var larguraCSS = tela.parentNode.clientWidth;
-      cols = Math.max(8, Math.floor(larguraCSS / CEL_L));
-      tela.width = Math.round(cols * CEL_L * dpr);
-      tela.height = Math.round(LINHAS * CEL_A * dpr);
-      tela.style.height = (LINHAS * CEL_A) + 'px';
-      ct.setTransform(dpr, 0, 0, dpr, 0, 0);
-      calcularMascara();
+    function aplicar() {
+      pendente = false;
+      var cx = x.toFixed(0), cy = y.toFixed(0);
+      luz.setAttribute('cx', cx); luz.setAttribute('fx', cx);
+      luz.setAttribute('cy', cy); luz.setAttribute('fy', cy);
     }
 
-    /* Desenha HÓRUS num canvas do tamanho da GRADE (uma célula = um pixel) e
-       lê o alfa de cada pixel. Cada pixel vira uma célula acesa. */
-    function calcularMascara() {
-      var m = document.createElement('canvas');
-      m.width = cols; m.height = LINHAS;
-      var mc = m.getContext('2d');
-      mc.fillStyle = '#000';
-      mc.textBaseline = 'alphabetic';
-      mc.textAlign = 'center';
-      var corpo = 10;
-      mc.font = '700 ' + corpo + 'px Sora, system-ui, sans-serif';
-      var w = mc.measureText('HÓRUS').width || 1;
-      corpo = Math.max(4, Math.floor(corpo * (cols - 4) / w));
-      /* Trava pela altura também, e a conta reserva DUAS linhas em cima: a
-         altura de maiúscula é ~0.72 do corpo, e o acento do Ó vive acima
-         disso. Com uma linha só de folga ele saía cortado. */
-      corpo = Math.min(corpo, Math.floor((LINHAS - 4) / 0.72));
-      mc.font = '700 ' + corpo + 'px Sora, system-ui, sans-serif';
-      mc.fillText('HÓRUS', cols / 2, LINHAS - 2);
-
-      var dados = mc.getImageData(0, 0, cols, LINHAS).data;
-      mascara = [];
-      for (var i = 0; i < cols * LINHAS; i++) mascara.push(dados[i * 4 + 3] > 90);
-    }
-
-    var HEX = '0123456789ABCDEF';
-    function byte(semente) {
-      var n = (Math.sin(semente * 12.9898) * 43758.5453) % 1;
-      n = Math.abs(n);
-      return HEX[(n * 16) | 0] + HEX[((n * 256) | 0) % 16];
-    }
-
-    function pintar() {
-      ct.clearRect(0, 0, tela.width, tela.height);
-      ct.font = '600 10px ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace';
-      ct.textBaseline = 'middle';
-      for (var y = 0; y < LINHAS; y++) {
-        for (var x = 0; x < cols; x++) {
-          var dentro = mascara[y * cols + x];
-          /* A onda: uma faixa senoidal que anda no eixo x e ondula no y. */
-          var onda = Math.sin((x * 0.26) - t * 1.7 + Math.sin(y * 0.5) * 0.9);
-          var pico = Math.max(0, onda);
-          /* A palavra tem que ser legível no vale da onda também, então o
-             piso de dentro é alto e o teto de fora é baixo. Com 0.42 contra
-             0.17 a letra sumia no ruído: a onda modulava tanto o dentro
-             quanto o fora, e os dois se encontravam no meio. */
-          var alfa = dentro ? 0.72 + pico * 0.28 : 0.030 + pico * 0.055;
-          ct.fillStyle = dentro
-            ? 'rgba(229,231,235,' + alfa.toFixed(3) + ')'
-            : 'rgba(96,165,250,' + alfa.toFixed(3) + ')';
-          /* Só os bytes que a onda está tocando trocam de valor. O resto fica
-             parado, senão a grade inteira pisca e vira chuvisco. */
-          var semente = pico > 0.55 ? (x * 7 + y * 31 + Math.floor(t * 5)) : (x * 7 + y * 31);
-          ct.fillText(byte(semente), x * CEL_L + 2, y * CEL_A + CEL_A / 2);
-        }
-      }
-    }
-
-    function quadro() {
-      if (!rodando) return;
-      t += 0.03;
-      pintar();
-      requestAnimationFrame(quadro);
-    }
-    function ligar() { if (!rodando && !reduzido && visivel) { rodando = true; requestAnimationFrame(quadro); } }
-    function desligar() { rodando = false; }
-
-    medir(); pintar();
-    /* A Sora chega depois do primeiro quadro; sem recalcular, a máscara fica
-       com o desenho da fonte do sistema. */
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(function () { calcularMascara(); pintar(); });
-    }
-    window.addEventListener('resize', function () { medir(); pintar(); });
-
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (e) {
-        visivel = e[0].isIntersecting;
-        visivel ? ligar() : desligar();
-      }).observe(tela);
-    } else { ligar(); }
-    document.addEventListener('visibilitychange', function () {
-      document.hidden ? desligar() : ligar();
+    caixa.addEventListener('pointermove', function (e) {
+      /* Mede o SVG, não a caixa: a caixa tem recuo em cima e embaixo, e medir
+         por ela deslocaria a luz para fora da palavra. */
+      var r = desenho.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      /* Do pixel da tela para a régua do viewBox, que é 1200 por 320. */
+      x = ((e.clientX - r.left) / r.width) * 1200;
+      y = ((e.clientY - r.top) / r.height) * 320;
+      if (!pendente) { pendente = true; requestAnimationFrame(aplicar); }
     });
   })();
 
-  /* ---- Portfólio: a tira anda com a rolagem, nos dois sentidos ----------
-     Onde existe `animation-timeline: view()` quem faz isso é o CSS, e de graça.
-     Onde não existe (hoje Safari e Firefox), este laço faz o mesmo: lê a
-     posição da seção a cada quadro e converte em deslocamento. Não é listener
-     de scroll, que é o que a casa proíbe, e só roda com a seção na tela. */
+  /* ---- Portfólio: a tira corre com a rolagem ---------------------------
+     Onde existe linha do tempo de rolagem, quem faz isto é o CSS, de graça
+     (ver §7e-bis de site.css). Onde não existe, este laço faz a MESMA conta:
+     lê o quanto a seção já andou dentro do próprio trilho e converte em
+     deslocamento, com as mesmas esperas de 30% na entrada e 30% na saída.
+     Não é listener de scroll, que é o que a casa proíbe, e só roda com a
+     seção na tela. */
   (function () {
-    var janela = document.querySelector('.pf-janela');
+    var secao = document.querySelector('.portfolio');
+    var pista = document.querySelector('.pf-pista');
     var tira = document.querySelector('.pf-tira');
-    if (!janela || !tira) return;
+    if (!secao || !pista || !tira) return;
     if (reduzido) return;
     if (window.CSS && CSS.supports && CSS.supports('animation-timeline: view()')) return;
 
-    janela.classList.add('pf-manual');
+    /* Só AGORA a seção vira trilho alto. Sem este script ela fica no fluxo
+       normal e a tira é um carrossel de arrastar: trilho de três telas sem
+       ninguém para movê-lo seriam três telas de nada. */
+    secao.classList.add('pf-pinado');
     var rodando = false;
+
+    function largura(el) {
+      var e = getComputedStyle(el);
+      return el.clientWidth - parseFloat(e.paddingLeft) - parseFloat(e.paddingRight);
+    }
 
     function quadro() {
       if (!rodando) return;
-      var r = janela.getBoundingClientRect();
-      /* 0 quando a tira acaba de entrar por baixo, 1 quando acaba de sair
-         por cima. Sobra é o quanto a tira é mais larga que a janela. */
-      var progresso = (window.innerHeight - r.top) / (window.innerHeight + r.height);
-      progresso = Math.min(1, Math.max(0, progresso));
-      var sobra = Math.max(0, tira.scrollWidth - janela.clientWidth);
-      tira.style.transform = 'translateX(' + (-progresso * sobra).toFixed(1) + 'px)';
+      var r = secao.getBoundingClientRect();
+      var curso = r.height - window.innerHeight;
+      /* 0 quando a seção prende no alto, 1 quando ela solta. É a mesma faixa
+         que o CSS chama de `contain 0%` a `contain 100%`. */
+      var p = curso > 0 ? -r.top / curso : 0;
+      p = Math.min(1, Math.max(0, p));
+      /* As esperas: parada até 30%, andando até 70%, parada depois. */
+      var q = Math.min(1, Math.max(0, (p - 0.30) / 0.40));
+      /* O percurso é o que sobra da tira além da janela. Mesma conta do
+         `-100% + 100cqw` do CSS, escrita em pixel. */
+      var sobra = Math.max(0, tira.scrollWidth - largura(pista));
+      tira.style.transform = 'translate3d(' + (-q * sobra).toFixed(1) + 'px,0,0)';
       requestAnimationFrame(quadro);
     }
 
@@ -638,163 +631,59 @@
       new IntersectionObserver(function (e) {
         rodando = e[0].isIntersecting;
         if (rodando) requestAnimationFrame(quadro);
-      }, { rootMargin: '120px 0px' }).observe(janela);
+      }, { rootMargin: '120px 0px' }).observe(secao);
     } else { rodando = true; requestAnimationFrame(quadro); }
   })();
 
   /* ---- Botão de metal líquido ----------------------------------------
-     Porte para WebGL nativo do componente que o Marcelo mandou (React +
-     @paper-design/shaders). Este site é HTML e CSS nativos por decisão
-     registrada em PLANO.md, e o efeito é um shader de vinte linhas: não
-     compensa arrastar React, Tailwind e um passo de build para dentro dele.
-     O que se vê é um aro de 2px de metal correndo em volta de uma pílula de
-     vidro escuro. Sem WebGL, o aro vira um gradiente cônico parado e o botão
-     continua um botão. */
+     Motor REAL do componente "Liquid Metal Button" (johuniq/21st.dev), que é o
+     @paper-design/shaders. Vendorizado em assets/paper-shaders.js e exposto como
+     window.PaperShaders — mesmo efeito do original, sem React nem passo de build
+     (a stack do site continua HTML/CSS/JS nativos). Os parâmetros abaixo são os
+     mesmos do componente. O ShaderMount cria o próprio <canvas> dentro da
+     .metal-tela; a face de vidro por cima deixa só o aro à mostra (site.css §4).
+     O ShaderMount já pausa sozinho fora da tela e com a aba oculta.
+     Sem WebGL2 ou sem o bundle, o botão cai no aro parado do CSS. */
+  function metalizar(botao) {
+    var tela = botao.querySelector('.metal-tela');
+    if (!tela || !window.PaperShaders || !window.PaperShaders.ShaderMount) {
+      botao.classList.add('metal-parado'); return;
+    }
+    var mount;
+    try {
+      mount = new window.PaperShaders.ShaderMount(
+        tela, window.PaperShaders.liquidMetalFragmentShader,
+        {
+          u_repetition: 4, u_softness: 0.5, u_shiftRed: 0.3, u_shiftBlue: 0.3,
+          u_distortion: 0, u_contour: 0, u_angle: 45, u_scale: 8, u_shape: 1,
+          u_offsetX: 0.1, u_offsetY: -0.1
+        },
+        undefined,
+        reduzido ? 0 : 0.6            /* movimento reduzido: metal parado */
+      );
+    } catch (e) { botao.classList.add('metal-parado'); return; }
 
+    if (reduzido || !mount.setSpeed) return;
+
+    /* Mesmo comportamento do componente: acelera no hover, empurrão no clique. */
+    botao.addEventListener('mouseenter', function () { mount.setSpeed(1); });
+    botao.addEventListener('mouseleave', function () { mount.setSpeed(0.6); });
+    botao.addEventListener('click', function () {
+      mount.setSpeed(2.4);
+      setTimeout(function () { mount.setSpeed(botao.matches(':hover') ? 1 : 0.6); }, 300);
+    });
+  }
+
+  document.querySelectorAll('.metal').forEach(metalizar);
+
+  /* Helpers de shader do fundo do hero (WebGL1 vanilla). O botão não usa mais
+     estes: ele roda no motor @paper-design vendorizado acima. */
   var VERT = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
-  /* Os números abaixo são os parâmetros do componente que o Marcelo mandou,
-     um a um: repetition 4, softness 0.5, shiftRed/shiftBlue 0.3, angle 45,
-     scale 8, shape 1 (lente circular), offset (0.1, -0.1), speed 0.6.
-     A primeira tentativa era um dobramento de domínio tingido de azul da
-     marca, e ficou diferente do que ele viu. Isto aqui é cromo: cinza puro,
-     faixas largas e franja de cor só na quina, que é o que o original faz. */
-  var FRAG = [
-    'precision mediump float;',
-    'uniform vec2 u_res;uniform float u_t;',
-    'const float REPET=2.6;',
-    'const float SOFT=0.72;',
-    /* Campo de altura do metal. A ondulação é ESTÁTICA e quem anda é o campo
-       inteiro, deslocado no eixo x pelo tempo: assim as faixas correm sempre
-       no mesmo sentido, em vez de balançar para os dois lados. A versão
-       anterior somava tempo em dois eixos e o movimento lia como aleatório. */
-    'float campo(vec2 p){',
-    '  return p.x+0.30*sin(p.y*1.6+p.x*0.35);',
-    '}',
-    /* Dobra o campo em faixas. O triangular (`abs(v*2-1)`) evita a costura
-       dura que o `fract` sozinho deixa entre uma faixa e a próxima. */
-    'float faixa(vec2 uv,float desloc){',
-    '  float c=0.7071;',                    /* ângulo 45 */
-    '  vec2 p=vec2(uv.x*c-uv.y*c,uv.x*c+uv.y*c);',
-    '  float v=fract(campo(p+vec2(desloc-u_t,0.0))*REPET);',
-    '  v=abs(v*2.0-1.0);',
-    '  return smoothstep(0.5-SOFT*0.5,0.5+SOFT*0.5,v);',
-    '}',
-    'void main(){',
-    '  vec2 uv=(gl_FragCoord.xy-0.5*u_res)/min(u_res.x,u_res.y);',
-    '  uv=uv*0.86+vec2(0.1,-0.1);',
-    /* Deslocamento de canal: vermelho e azul leem o campo de pontos
-       diferentes, e a quina ganha a franja do metal polido.
-       ⚠️ Aqui é fácil errar para mais, e já errei duas vezes. A 0.030 o aro
-       virava arco-íris; a 0.007 ainda pintava demais. A 0.0035 sobra só o
-       reflexo, que é o que o componente original mostra. */
-    '  float r=faixa(uv, 0.0035);',
-    '  float g=faixa(uv, 0.0);',
-    '  float b=faixa(uv,-0.0035);',
-    /* Rampa curta: o metal vive entre cinza-escuro e prata, nunca entre preto
-       e branco. Faixa de contraste larga é o que fazia o aro gritar. */
-    '  gl_FragColor=vec4(mix(0.085,0.760,r),mix(0.085,0.760,g),mix(0.088,0.775,b),1.0);',
-    '}'
-  ].join('\n');
-
   function compilar(gl, tipo, fonte) {
     var s = gl.createShader(tipo);
     gl.shaderSource(s, fonte); gl.compileShader(s);
     return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null;
   }
-
-  function metalizar(botao) {
-    var tela = botao.querySelector('.metal-tela');
-    if (!tela) return;
-
-    var gl = null;
-    try {
-      gl = tela.getContext('webgl', { alpha: false, antialias: false, depth: false, stencil: false })
-        || tela.getContext('experimental-webgl');
-    } catch (e) { gl = null; }
-
-    /* Sem WebGL o botão não fica quebrado, fica parado. */
-    if (!gl) { botao.classList.add('metal-parado'); return; }
-
-    var vs = compilar(gl, gl.VERTEX_SHADER, VERT);
-    var fs = compilar(gl, gl.FRAGMENT_SHADER, FRAG);
-    if (!vs || !fs) { botao.classList.add('metal-parado'); return; }
-
-    var prog = gl.createProgram();
-    gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
-    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { botao.classList.add('metal-parado'); return; }
-    gl.useProgram(prog);
-
-    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
-    var loc = gl.getAttribLocation(prog, 'p');
-    gl.enableVertexAttribArray(loc);
-    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-
-    var uRes = gl.getUniformLocation(prog, 'u_res');
-    var uT = gl.getUniformLocation(prog, 'u_t');
-    var t = 1.4, vel = 0.22, visivel = true, ultimo = 0, rodando = false;
-
-    function medir() {
-      var dpr = Math.min(window.devicePixelRatio || 1, 2);
-      var l = Math.max(1, Math.round(botao.offsetWidth * dpr));
-      var a = Math.max(1, Math.round(botao.offsetHeight * dpr));
-      if (tela.width !== l || tela.height !== a) {
-        tela.width = l; tela.height = a;
-        gl.viewport(0, 0, l, a);
-      }
-      gl.uniform2f(uRes, tela.width, tela.height);
-    }
-
-    function pintar() {
-      gl.uniform1f(uT, t);
-      gl.drawArrays(gl.TRIANGLES, 0, 3);
-    }
-
-    function quadro(agora) {
-      if (!rodando) return;
-      var dt = ultimo ? Math.min((agora - ultimo) / 1000, 0.05) : 0;
-      ultimo = agora;
-      t += dt * vel;
-      pintar();
-      requestAnimationFrame(quadro);
-    }
-
-    function ligar() {
-      if (rodando || reduzido || !visivel) return;
-      rodando = true; ultimo = 0;
-      requestAnimationFrame(quadro);
-    }
-    function desligar() { rodando = false; }
-
-    medir(); pintar();
-    window.addEventListener('resize', function () { medir(); pintar(); });
-
-    /* Botão fora da tela não gasta bateria de ninguém. */
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (e) {
-        visivel = e[0].isIntersecting;
-        visivel ? ligar() : desligar();
-      }).observe(botao);
-    } else { ligar(); }
-    document.addEventListener('visibilitychange', function () {
-      document.hidden ? desligar() : ligar();
-    });
-
-    if (reduzido) return;   /* fica no quadro parado, sem laço */
-    ligar();
-
-    /* O metal acelera no mouse e dá um empurrão no clique. Os três valores
-       caíram para um terço em 05/08/2026: o Marcelo achou o movimento rápido
-       demais, e num aro de 2px velocidade alta lê como cintilação. */
-    botao.addEventListener('mouseenter', function () { vel = 0.45; });
-    botao.addEventListener('mouseleave', function () { vel = 0.22; });
-    botao.addEventListener('click', function () {
-      vel = 0.9;
-      setTimeout(function () { vel = botao.matches(':hover') ? 0.45 : 0.22; }, 320);
-    });
-  }
-
-  document.querySelectorAll('.metal').forEach(metalizar);
 
   /* ---- Fundo animado do hero ------------------------------------------
      Campo de ondas em domínio dobrado, nas três cores da marca sobre o preto

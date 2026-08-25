@@ -3,7 +3,7 @@ name: carrossel
 description: >
   Cria carrosséis e posts visuais pra Instagram, TikTok, LinkedIn com a identidade visual da marca.
   Gera HTML estilizado + renderiza em PNG 1080x1350 via Playwright, com legenda pronta no final.
-  Suporta carrossel texto puro, carrossel com foto IA (gerada via OpenAI) e post único.
+  Suporta carrossel texto puro, carrossel com foto (gerada manualmente no ChatGPT e trazida pelo Marcelo) e post único.
   Use quando o usuário pedir "carrossel", "post", "conteúdo pro instagram", "criar imagem",
   "gerar foto", "post educativo", ou /carrossel.
 ---
@@ -242,7 +242,7 @@ editorial quality
 node --env-file=.env scripts/gerar-imagem.js "PROMPT" "marketing/conteudo/<pasta>/foto-<nome>.png"
 ```
 
-Se não tiver o script ainda, instruir o usuário a configurar `OPENAI_API_KEY` no `.env` e criar o script (ou usar outra ferramenta de geração de imagem).
+Não há API de imagem na operação (correção de 20/08/2026): a imagem vem **de fora, manualmente**. O Marcelo gera no ChatGPT (imagem) ou no Gemini (vídeo) e traz o arquivo; a skill monta o carrossel em volta. Passar o prompt e o STYLE LOCK como briefing da geração. Ver "Geração de mídia" no `CLAUDE.md`.
 
 4. Mostrar a foto pro usuário antes de continuar.
 

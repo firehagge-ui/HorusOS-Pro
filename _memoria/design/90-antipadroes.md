@@ -58,6 +58,27 @@ medida. Usada pra dar ar de tecnologia numa clínica, é figurino.
 
 ## Layout
 
+**Régua divisória entre seções.** O fio de 1px separando uma seção da outra é
+muleta: ele existe para tapar espaçamento que não foi resolvido. Onde o ar, a troca
+de fundo e a mudança de largura do contêiner fazem o trabalho, o fio some e a página
+fica mais cara. Medido no akis.studio: `border-top-width: 0px` no rodapé, fundo
+transparente, **zero fio na página inteira** — e a separação vem de 144px no fim de
+uma seção, 48px no começo da outra, a imagem de fundo que acaba, e o contêiner que
+muda de sangrado para contido. Dentro do rodapé, quem marca onde uma lista começa é
+o **rótulo colorido** acima dela, não uma linha.
+Fio continua certo dentro de estrutura tabular (linha de ficha técnica, linha de
+lista de canais) e como fio vertical amarrando colunas. Errado é fio **entre
+seções**.
+→ *Origem: akis.studio, 24/08/2026. Os três fios estruturais do site da Hórus (acima
+do rodapé, acima do hex dump, entre os painéis de serviço) saíram no mesmo dia. Ficha
+em `_biblioteca/inspiracoes/secao/cta-em-cartao-de-vidro.md`.*
+
+**Vazio de um lado só.** Ar distribuído lê como respiro; ar acumulado numa borda lê
+como erro de largura. Uma lista travada em 760px dentro de um painel de 1232 deixa
+metade dele vazia à direita e o olho lê desequilíbrio, não elegância. Ou o conteúdo
+vai a largura cheia, ou o painel encolhe até a medida do conteúdo.
+→ *Origem: chamada final do site da Hórus, 24/08/2026.*
+
 **Grid de ícone pequeno + texto, 2x3 ou 3x1.** O formato mais genérico que
 existe. O ícone de 22px ao lado da frase não informa nada, é enchimento.
 → *Origem: seção "Quando procurar" da Aion, refeita em 26/07/2026.*
@@ -233,6 +254,26 @@ comprimentos (uma larga de ~350px, uma média, e duas finas de 40px e 15px), mai
 entalhes fundos esparsos. E ele precisa de **duas camadas** — uma sombra
 translúcida levemente acima e o papel logo abaixo — senão não tem espessura.
 → *Origem: Grão da Serra, 06/08/2026.*
+
+**Wordmark gigante feito com `font-size`.** A palavra em escala de cartaz que fecha
+a página não é tipografia, é desenho — e desenho se mede por **proporção**, não por
+corpo de fonte. Com `font-size` (ou pior, `clamp()`/`vw`) a palavra depende da
+métrica da fonte que estiver desenhando naquele instante: passa da caixa e corta a
+última letra, muda de largura quando a webfont chega, e quebra num breakpoint.
+Medido nos dois estúdios que fazem isso bem — lessestudio e akis — **nenhum dos dois
+usa texto**: os dois usam SVG que escala pelo `viewBox`. Sem logotipo em vetor, a
+saída é SVG **inline** com `<text>` e `textLength` + `lengthAdjust="spacing"`, que
+trava o avanço mexendo só no espaço entre letras, nunca no desenho delas.
+→ *Origem: lessestudio.com e akis.studio, 24/08/2026. No site da Hórus, o texto a 350
+de corpo media 1283 de 1200 unidades do viewBox e o **S** saía cortado. Ficha em
+`_biblioteca/inspiracoes/secao/assinatura-wordmark-no-pe.md`.*
+
+**Wordmark gigante chapado em cor forte.** O primo do anterior, e é erro de direção,
+não de técnica. O que faz o nome no pé parecer caro é ele ser **quase invisível**: o
+gradiente do lessestudio vai de `rgb(16,16,16)` a `rgb(7,7,7)` sobre preto, meio
+milhar de pixels de altura que quase não se vê. Marca d'água em relevo. O drama fica
+guardado para a luz que só acende no gesto. Chapado em cor saturada, o mesmo elemento
+vira banner e barateia a página inteira.
 
 ---
 
