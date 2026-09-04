@@ -5,19 +5,25 @@
 
 ## Fase da agência
 
-Início de operação da Horus, com **cinco pastas em `clientes/`**: quatro contas
-(uma formal, três por oportunidade) e uma **não pagante**, a Mayara Barros
-(cliente #5, aberta em 03/08/2026), que ocupa a pasta por usar o mesmo processo.
-Para efeito de fila de prioridade e de contagem comercial, **as contas continuam
-sendo quatro**. O modelo "A Máquina" nasceu pra ser provado no caso #1, mas
-quem avançou de verdade foi a Aion (cliente #3), e em 26/07/2026 o Marcelo
-oficializou a Aion como prioridade. Consequência prática: **a demo de venda da
-agência passa a ser o site da Aion, não o do Dr. Giovanni.**
+Início de operação da Horus, com **seis pastas em `clientes/`**: agora **quatro contas**
+por oportunidade (Permita-se, Aion, Grão da Serra e, desde 27/08/2026, a Amparo Flores),
+uma **não pagante**, a Mayara Barros (cliente #5, aberta em 03/08/2026), que ocupa a
+pasta por usar o mesmo processo, e a pasta preservada do **ex-cliente Dr. Giovanni**
+(removido da carteira em 27/08/2026, ver seção abaixo). Para efeito de fila de prioridade
+e de contagem comercial, **as contas são quatro**. O modelo "A Máquina" nasceu pra ser provado no caso #1 (Giovanni), mas quem
+avançou de verdade foi a Aion (cliente #3), e em 26/07/2026 o Marcelo oficializou a Aion
+como prioridade — o que a saída do Giovanni só consolida. A demo de venda da agência é
+o site da Aion.
+
+⚠️ **Atualização 01/09/2026 (Marcelo): a Aion foi ENGAVETADA.** As prioridades passam a
+ser a **Amparo Flores** (cliente #6) e o **Washington / mentoria** (cliente #7, reunião
+de venda hoje). Ver a seção de prioridade abaixo e a do cliente #7.
 
 ✅ **Divergência resolvida em 26/07/2026 pelo Marcelo:** a prioridade da agência
 passou a ser a **Aion Psicologia**, não o Dr. Giovanni. As sessões de 25 e 26/07
-já eram todas na Aion, e agora o arquivo reflete a decisão. O Giovanni segue
-como cliente ativo, mas fora da linha de frente.
+já eram todas na Aion, e agora o arquivo reflete a decisão. (Naquela data o Giovanni
+seguia como cliente ativo, fora da linha de frente; foi **removido da carteira em
+27/08/2026** — ver a seção do ex-cliente #1 abaixo.)
 
 **Capacidade nova (26/07/2026), em duas levas:**
 
@@ -34,7 +40,14 @@ como cliente ativo, mas fora da linha de frente.
 As duas levas atacam o mesmo problema por ângulos diferentes: a primeira impede
 repetir erro de execução, a segunda impede decidir no impulso e entregar sem conferir.
 
-## Prioridade principal (desde 26/07/2026)
+## Prioridade principal
+
+⚠️ **Mudança em 01/09/2026 (Marcelo): a Aion foi ENGAVETADA.** As prioridades da agência
+passam a ser a **Amparo Flores** (cliente #6) e o **Washington / mentoria** (cliente #7,
+reunião de venda em 01/09). O histórico da Aion como prioridade principal (26/07 a
+01/09/2026) fica abaixo como contexto — não foi apagado, foi pausado.
+
+### Aion — engavetada em 01/09/2026 (foi a prioridade principal desde 26/07)
 
 **Aion Psicologia — cliente #3.** O site está pronto (**dez páginas** desde
 30/07/2026) e o projeto é especulativo: foi construído antes do "sim" pra ser a peça
@@ -48,14 +61,13 @@ por serviço). Ela não revoga a frase acima: o gargalo continua sendo a reuniã
 cada rodada nova adiciona pendência em vez de tirar. As seis páginas somaram 11
 perguntas novas para a cliente.
 
-## Dr. Giovanni Nascimento (cliente #1, ativo mas fora da linha de frente)
+## Dr. Giovanni Nascimento (ex-cliente #1, removido em 27/08/2026)
 
-Segue sendo cliente formal e o site continua sendo o bloco dele. Saiu da
-prioridade principal em 26/07/2026. Antes de retomar, resolver a ambiguidade das
-quatro versões de home (ver seção mais abaixo) e as pendências do §12 do briefing.
-
-Ordem da Máquina quando voltar: site → bot+CRM → conteúdo/carrossel → tráfego.
-Um bloco por vez.
+⚠️ **Removido da carteira em 27/08/2026 por decisão do Marcelo.** Deixou de ser cliente
+da agência. Era implantodontia premium em Salvador (setor regulado, CFO), esteve fora da
+linha de frente desde 26/07/2026 e nunca teve o site publicado (a pasta guardava quatro
+versões de home sem definição de qual valia). A pasta `clientes/dr-giovanni-nascimento/`
+foi **preservada** como histórico; ele não entra mais em fila, contagem nem prioridade.
 
 ## Cliente #2 (paralelo, fora da fila de prioridade acima)
 
@@ -66,7 +78,7 @@ Foco atual: **Google Meu Negócio** (conteúdo pronto em
 com a Jaqueline — endereço completo, verificação por vídeo). Depois: Instagram
 → site.
 
-## Cliente #3 (prioridade principal desde 26/07/2026)
+## Cliente #3 (ENGAVETADA em 01/09/2026 — foi prioridade principal desde 26/07/2026)
 
 **Aion Psicologia:** clínica de 20 anos no Itaigara, chegou pelo sócio do Marcelo.
 Foco atual: **site**, construído como **demo especulativa** (feito antes do "sim",
@@ -124,7 +136,9 @@ Revisão de home pedida pelo Marcelo, seção por seção. O que saiu dela:
 - **Âncora não passa mais por baixo do cabeçalho.** Era isso que fazia os links da
   seção de situações parecerem quebrados: os destinos existiam, faltava
   `scroll-margin-top`. Virou antipadrão registrado
-- Detector em **10**, zero falha de acessibilidade (ver a nota acima sobre o número)
+- Detector em **10** nesta rodada (30/07/2026), zero falha de acessibilidade (ver a
+  nota acima sobre o número). ⚠️ Número de então, não o de hoje: o placar oficial
+  (`_memoria/design/README.md`) mede de novo em 10/08/2026 e a Aion cai pra **1**
 
 ⚠️ **Fica aberto:** a leitura de que a Aion é clínica de neurodesenvolvimento
 (briefing §6) ganhou uma tensão nova. Com seis páginas competindo em busca separada,
@@ -209,6 +223,53 @@ Três coisas que definem o projeto:
 Continua em aberto: escopo do site (páginas, rodadas, prazo), **autorização de uso
 como portfólio**, logo em vetor e fotos reais do beneficiamento.
 
+## Cliente #6 ✅ FECHADO em 03/09/2026 (chegou por relação)
+
+**Amparo Flores — floricultura no Largo da Graça, Salvador/BA, desde 1972**, B2C. Pasta
+aberta em 27/08/2026, chegou pelo sócio do Marcelo. O site especulativo cumpriu o papel:
+**a reunião presencial de 03/09 fechou o cliente.** Dono: **Varo**, que **decide junto com
+a irmã** (não é decisor único). A irmã tem loja de flores própria e quer site + CRM dela:
+**segundo lead**, reunião a marcar.
+
+**Escopo em duas fases.** Fase 1 (site com o pedido caindo no WhatsApp): **R$ 1.200, sendo
+R$ 600 de entrada e R$ 600 na entrega, já comunicado ao cliente**, em produção, sem
+mensalidade. Fase 2 (checkout InfinitePay, painel/CRM com estoque, funil de recompra,
+agente **de botões**, frete): **valor não fechado e não comunicado**, a apresentar
+presencialmente. Decisões técnicas travadas: **plataforma pronta** (não custom) e **agente
+de botões** (não IA).
+
+⚠️ **Correção de premissa (03/09):** o plano de 27/08 assumia canal mal cuidado e abria com
+o **conserto do Google como isca grátis**. Os prints mostraram que **o Google já está
+reivindicado e completo e o WhatsApp Business já tem catálogo**. A isca morreu. Os três
+eixos de valor que sobraram: **coroa/urgência de luto**, **recompra (CRM de datas)** e
+**assinatura B2B da Graça e do Corredor da Vitória** (eixo novo). Detalhe em
+`clientes/amparo-flores/briefing.md` §5.1.
+
+**Não é setor regulado**; valem regras de comércio (foto real dos arranjos, sem superlativo,
+página de luto sóbria e separada; marca real roxo + laranja + creme). Travas técnicas novas
+da Fase 2 (MEI não pode emitir fiscal, nada de bot no número do cliente, estoque de flor não
+é estoque de mercado) no `CLAUDE.md` do cliente. Contexto completo em
+`clientes/amparo-flores/` (briefing + marca + `PLANO.md`).
+
+> Histórico preservado: a leitura anterior (30/08) previa levar o **agente de IA (Icarus)**
+> como visão de fase paga. Superada em 03/09 — o Marcelo travou **agente de botões**, e o
+> Icarus fica como carta para muito mais adiante, quando houver confiança construída.
+
+## Cliente #7 (em prospecção, reunião de venda em 01/09/2026)
+
+**Washington — "Daablio Dellano" · mentoria de massagem tântrica**, Salvador/BA. Chegou
+pelo sócio do Marcelo, que já entregou o dossiê completo (nicho, teardown de 4 sites de
+formação, deliberação do Conselho com confiança 62%, roteiro NEPQ da reunião) em
+`clientes/washington-daablio/dossie-reuniao-2026-09-01.md`. **Reunião de venda hoje.**
+Foco: vender o **site de mentoria** (topo da âncora da casa, **R$2.500**), posicionado
+como **formação profissional em terapia tântrica** — a figura do mestre de +27 anos é a
+credencial central. **Produção travada** até a reunião fechar três coisas: público
+escolhido, o que a mentoria entrega, e material real (nome, fotos, credenciais, provas).
+⚠️ Sem conselho profissional (não é CFO/CFP); a trava é **política de plataforma**
+(Meta/Google reprovam sensual), pagamento e imagem — reposicionar do sensual para o
+terapêutico é a decisão nº 1, e é o que libera anúncio e credibilidade. Integridade:
+número de alunos, mídia e resultado só entram se ele confirmar.
+
 ---
 
 ## Posicionamento pretendido (declarado em 26/07/2026)
@@ -236,22 +297,32 @@ decisão de risco ALTO e boa candidata a `/conselho`.
   Permita-se Fitness entrou à parte, por oportunidade, não conta como prospecção)
 - ✅ **Marca institucional da Hórus fechada em 04 e 05/08/2026.** Deixou de ser
   buraco declarado: `identidade/design-guide.md` tem paleta (com o fundo
-  `#0A0B0F` **medido** no arquivo da marca), tipografia (Sora e Archivo no site,
-  Montserrat só no logotipo), elementos, tom de voz e os arquivos de logo.
+  `#0A0B0F` **medido** no arquivo da marca), tipografia (⚠️ **no site**, em **28/08/2026
+  migrado para a identidade n8n: DM Sans** com títulos peso 300, sobre void `#0e0918` +
+  ember/electric — venceu o par Sora/Hanken de 26/08; **nas peças/carrossel** segue
+  Sora + Archivo; Montserrat só no logotipo),
+  elementos, tom de voz e os arquivos de logo.
   O site institucional da agência está em `site/`, com a home pronta.
   ⏳ **O que continua aberto:** a assinatura verbal do manual ("Estratégia que
   transforma") usa verbo de folheto, que a casa proíbe em copy, e a decisão entre
   restringi-la a peça institucional ou reescrever o manual é do Marcelo.
   Falta também o logo em vetor: o que existe é bitmap recortado do board
-- Fases 2-4 do Dr. Giovanni (CRM, conteúdo, ads), só depois do site no ar e da
-  retomada do cliente
+- **Site institucional da Hórus:** ⚠️ estados antigos venceram. Em 28/08/2026 o Marcelo
+  migrou o site para a **identidade n8n** (void violeta + ember/electric, DM Sans): a
+  matriz "por que a Hórus" saiu e os serviços viraram **pilha de scroll**. Mas evoluiu:
+  em **31/08 o AMARELO da marca (#F4C430) voltou** (o laranja saiu) e o site está na
+  **v23 (01/09)**, com os cards de serviço em mockups reais de device. **Estado atual
+  sempre em `site/CLAUDE.md`** (não congelar versão aqui) + `identidade/design-guide.md`.
+  Do Conselho continua de pé: **só publicar quando o `noindex` sair e houver fonte de
+  tráfego**. (O gargalo "apresentar a Aion" ficou moot: a Aion foi engavetada em 01/09.)
+  Log em `_conselho/logs/2026-08-27-posicionamento-site-cunha-compliance.md`
 
-## Ambiguidade no site do Dr. Giovanni
+## Ambiguidade no site do Dr. Giovanni (encerrada — ex-cliente)
 
-A pasta `clientes/dr-giovanni-nascimento/site/` tem **quatro versões de home**:
-`index.html`, `index-novo.html`, `index-editorial.html`, `index-taste.html`.
-Nada no contexto diz qual é a boa. Isso é risco: em uma sessão nova, o Claude não
-sabe qual editar e pode mexer na errada. **Definir qual vale e arquivar as outras.**
+⚠️ **Moot desde 27/08/2026:** o Dr. Giovanni foi removido da carteira. A pasta
+`clientes/dr-giovanni-nascimento/site/` ainda guarda as quatro versões de home
+(`index.html`, `index-novo.html`, `index-editorial.html`, `index-taste.html`), mas não
+é mais trabalho ativo, então não há o que definir. Fica só como histórico.
 
 ## Achados da varredura de 26/07/2026
 
@@ -286,12 +357,8 @@ fila de estudo para `/estudar-site`.
 
 ## Pendências que travam produção
 
-**Do cliente #1 (Marcelo/cliente fornece):** ticket médio, capacidade de
-atendimento, objetivo, depoimentos autorizados, horários, acesso ao domínio/Wix,
-logo com grafia corrigida ("Giovanni"). Lista viva em
-`clientes/dr-giovanni-nascimento/briefing.md` (§12).
-
-Nada disso impede começar o site com placeholders — só impede publicar no ar.
+**Do ex-cliente #1 (Dr. Giovanni):** não se aplica mais — removido da carteira em
+27/08/2026. As pendências dele deixaram de ser trabalho da agência.
 
 **Do cliente #3 (só a cliente tem):** sala atual, telefone
 fixo ativo, CRP da pessoa jurídica, responsável técnica, os 2 profissionais que
@@ -314,6 +381,8 @@ fotos no mesmo fundo. Pedir junto com o resto.
 
 ## Regra que atravessa tudo
 
-Clientes de setor regulado seguem o compliance do próprio cliente. Para o Dr.
-Giovanni: CFO / Res. CFO-118/2012 (sem antes/depois, sem promessa de resultado,
-sem preço como chamariz, CRO+RT sempre visíveis). Ver briefing §11.
+Clientes de setor regulado seguem o compliance do próprio cliente. Hoje isso vale para
+a **Aion e a Mayara (CFP / Res. CFP 011/2018)**: CRP visível, sem promessa, sem
+depoimento, sem superlativo. A régua do CFO/odonto saiu da operação com a remoção do Dr.
+Giovanni em 27/08/2026, mas continua registrada como referência em
+`_conselho/cargos/compliance.md` para o dia em que entrar outro cliente de odonto.

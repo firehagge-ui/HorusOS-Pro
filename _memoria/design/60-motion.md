@@ -197,6 +197,36 @@ depois ele descansa. Nada de loop infinito em cima de texto de leitura.
 
 ---
 
+## Padrões de scroll que já rodaram em produção (26/08/2026)
+
+O GSAP + Lenis saíram de "vendorizados e disponíveis" para **usados de verdade**
+no site institucional da Hórus (guiado por prints numerados do Marcelo). Quatro
+padrões que funcionaram e valem para o próximo site que justificar motion pesado:
+
+- **Jornada de objeto por overlay FIXO + trilho de rolagem.** Um elemento
+  (a esfera dourada) vive num `position: fixed` centralizado, sempre visível; uma
+  seção alta e vazia (`min-height: 460vh`) serve só de **comprimento de rolagem**,
+  e um `ScrollTrigger scrub` sobre ela dirige a linha do tempo do overlay (descer,
+  "big bang", desenhar a logo, subir). Sem `pin`: o overlay é fixo, então não briga
+  com pin de outras seções. Liga com uma classe no `<html>` só no desktop+motion;
+  sem ela, o overlay é `display:none` e a seção mostra um fallback legível.
+- **Empilhar cards por `sticky` puro.** `position: sticky; top: calc(... + var(--i)*16px)`;
+  cada card cobre o anterior porque pinta por cima. **Não escurecer o card coberto**
+  (ver antipadrão abaixo). O GSAP não precisa entrar nisso.
+- **Cortina (seção puxada revelando a próxima).** A seção seguinte entra deslizando
+  da direita como painel FIXO opaco (classe ligada por `onUpdate` acima de ~70% do
+  progresso, desligada no `onLeave`), enquanto a atual recua um pouco por baixo. A
+  tentativa com margem negativa **não** revelou a próxima (só fundo preto); o painel
+  fixo deslizando por cima é o que funciona.
+- **Barras de transição.** Faixas horizontais fixas em `scaleX: 0` que varrem a tela
+  (fecham em preto) e retraem, amarradas a um `scrub` sobre a entrada da seção-alvo.
+
+Tudo com `transform`/`opacity`, guard de `prefers-reduced-motion` e gate de desktop
+(pin e scrub em tela estreita brigam com o toque). DrawSVG desenhou o Olho de Hórus
+em volta da esfera e a linha curva dos "4 passos".
+
+---
+
 ## Como uma correção entra aqui
 
 Igual ao resto da casa: o Marcelo corrige algo de movimento no chat, e a correção

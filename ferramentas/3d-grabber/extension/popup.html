@@ -1,0 +1,24 @@
+<meta charset="utf-8">
+<style>
+  :root { color-scheme: dark }
+  body { width: 340px; margin: 0; padding: 12px; font: 13px system-ui; background: #16161a; color: #e7e7ea }
+  h2 { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #8b8b96; margin: 14px 0 6px }
+  h2:first-child { margin-top: 0 }
+  .row { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 6px; background: #1f1f25 }
+  .row + .row { margin-top: 4px }
+  .name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+  .tag { font-size: 10px; padding: 1px 5px; border-radius: 3px; background: #7c3aed; text-transform: uppercase }
+  .dim { color: #8b8b96; font-size: 11px }
+  button { border: 0; border-radius: 6px; padding: 5px 10px; background: #7c3aed; color: #fff; cursor: pointer; font: inherit }
+  button:disabled { background: #33333c; color: #6a6a75; cursor: default }
+  #export, #turn { width: 100%; padding: 9px; margin-top: 6px }
+  #turn { background: #33333c }
+</style>
+<h2>Arquivos baixados pelo site</h2>
+<div id="files" class="dim">nenhum</div>
+<h2>Cena three.js viva</h2>
+<div id="scene" class="dim">lendo…</div>
+<button id="export" disabled>Exportar cena → GLB</button>
+<button id="turn" disabled>Turntable 0/90/180/270 → PNG</button>
+<p class="dim" style="margin:8px 0 0">Turntable alimenta img2threejs quando a cena nao e extraivel.</p>
+<script src="popup.js"></script>

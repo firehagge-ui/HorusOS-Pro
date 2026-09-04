@@ -1,0 +1,118 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Hórus Agência — deploy do site institucional (agenciahorus.netlify.app)
+# Escrito em 01/09/2026.
+#
+# ⚠️ POR QUE EXISTE UM PASSO DE BUILD NUM SITE DE HTML PURO
+#
+# Este repositório é a operação inteira da agência: sete clientes com briefing,
+# compliance e entregas, a memória do negócio e os logs do Conselho. A pasta
+# `site/` também guarda documentação interna (CLAUDE.md com 62 KB de decisões e
+# pendências, PLANO.md) e 34 MB de arte-fonte em `site-fontes/`.
+#
+# Apontar `publish` direto para `site/` colocaria tudo isso no ar em endereço
+# público e adivinhável: agenciahorus.netlify.app/CLAUDE.md serviria o arquivo
+# com as travas de publicação, os nomes dos clientes e o histórico de decisão.
+# Por isso o publish é uma pasta GERADA, montada por uma lista explícita do que
+# pode ir (`site/build-deploy.mjs`). O padrão é negar: arquivo novo em `site/`
+# não vai ao ar até alguém escrevê-lo naquela lista.
+# ─────────────────────────────────────────────────────────────────────────────
+
+[build]
+  command = "node site/build-deploy.mjs"
+  publish = "site/_publish"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+
+# ── Cabeçalhos ───────────────────────────────────────────────────────────────
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # ⚠️ PREVIEW FECHADO (decisão do Marcelo, 01/09/2026). Este cabeçalho é o
+    # terceiro trinco, junto com a <meta robots> do index.html e o Disallow do
+    # robots.txt. Ele cobre o que a meta tag não alcança: imagem, vídeo, PDF e
+    # qualquer arquivo que o buscador encontre sem passar pelo HTML.
+    # Para abrir ao Google, apagar os três — não adianta apagar um só.
+    X-Robots-Tag = "noindex, nofollow"
+
+    # O site não tem formulário, login nem chamada externa: nada aqui precisa
+    # ser afrouxado para funcionar. As duas exceções são o Google Fonts (CSS em
+    # googleapis, arquivo de fonte em gstatic) e o 'unsafe-inline', que o site
+    # exige de verdade — o JS e boa parte do estilo são inline no index.html.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; object-src 'none'"
+
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+# O HTML revalida sempre. Sem isso, uma rodada de ajuste sobe e o visitante que
+# já entrou continua vendo a versão velha até o cache dele expirar — e numa
+# reunião de venda isso é o pior momento possível para descobrir.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# CSS e JS mudam a cada rodada e NÃO têm hash no nome. Uma hora de cache é o
+# meio-termo: alivia o servidor sem prender o visitante numa folha vencida.
+[[headers]]
+  for = "/assets/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+[[headers]]
+  for = "/assets/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+# Imagem, vídeo e ícone são estáveis: quando mudam, mudam de conteúdo com o
+# mesmo nome raramente, e um dia de cache não atrapalha.
+[[headers]]
+  for = "/assets/video/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/assets/stack/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/assets/portfolio/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/assets/servicos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+
+# ── Redirecionamentos ────────────────────────────────────────────────────────
+# A home é a única página que existe. Um link velho para uma página que ainda
+# não foi produzida (/servicos, /sobre, /cases) cairia na 404; enquanto elas não
+# existem, o visitante vai para a âncora equivalente da home em vez de bater
+# numa parede. Quando a página real nascer, a linha correspondente sai daqui.
+
+[[redirects]]
+  from = "/servicos"
+  to = "/#servicos"
+  status = 302
+
+[[redirects]]
+  from = "/portfolio"
+  to = "/#portfolio"
+  status = 302
+
+[[redirects]]
+  from = "/sobre"
+  to = "/#sobre"
+  status = 302
+
+[[redirects]]
+  from = "/contato"
+  to = "/#contato"
+  status = 302

@@ -1,0 +1,315 @@
+/* Soleira, arquitetura de interiores
+   Projeto conceitual da Hórus. Plano em ../PLANO.md
+   Tudo aqui vem do plano: paleta escura monocromática, anil do azulejo,
+   Syne + Public Sans + IBM Plex Mono, e a régua do projeto como assinatura. */
+
+:root{
+  --noite:#171614;
+  --pedra:#1F1E1B;
+  --pedra-2:#26241F;
+  --cal:#EDE9E1;
+  --cal-2:#A8A296;
+  --anil:#4A6FA5;
+  --anil-cl:#9BB6DC;
+  --linha:#302D28;
+
+  /* escala de tipo: 8 degraus */
+  --t-mono:13px;
+  --t-min:15px;
+  --t-corpo:17.5px;
+  --t-lead:21px;
+  --t-h3:25px;
+  --t-h2p:34px;
+  --t-h2:46px;
+  --t-h1:52px;
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *{animation:none !important;transition:none !important}
+}
+
+body{
+  margin:0;
+  background:var(--noite);
+  color:var(--cal);
+  font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:var(--t-corpo);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+
+img{max-width:100%;height:auto;display:block}
+
+h1,h2,h3{
+  font-family:"Syne","Public Sans",system-ui,sans-serif;
+  font-weight:700;
+  letter-spacing:-.02em;
+  line-height:1.06;
+  margin:0;
+  text-wrap:balance;
+}
+h1{font-size:var(--t-h1);font-weight:800}
+h2{font-size:var(--t-h2)}
+h3{font-size:var(--t-h3);line-height:1.2;letter-spacing:-.01em}
+p{margin:0 0 18px}
+
+a{color:var(--anil-cl)}
+a:hover{color:var(--cal)}
+:focus-visible{outline:2px solid var(--anil-cl);outline-offset:3px}
+
+.pular{position:absolute;left:-999px;top:0;background:var(--cal);color:var(--noite);padding:12px 18px;z-index:99}
+.pular:focus{left:12px;top:12px}
+
+/* ---------- botão ---------- */
+.btn{
+  display:inline-block;
+  background:var(--cal);
+  color:var(--noite);
+  font-family:"Public Sans",sans-serif;
+  font-weight:600;font-size:var(--t-corpo);line-height:1.2;
+  text-decoration:none;
+  padding:16px 28px;
+  border:1px solid var(--cal);
+  border-radius:2px;
+  transition:background .18s ease,color .18s ease;
+}
+.btn:hover{background:var(--anil-cl);border-color:var(--anil-cl);color:var(--noite)}
+.btn-largo{width:100%;text-align:center;cursor:pointer;font-family:inherit}
+.link-forte{font-weight:600;color:var(--anil-cl);text-underline-offset:5px}
+
+/* ---------- topo ---------- */
+.topo{position:sticky;top:0;z-index:40;background:rgba(23,22,20,.9);backdrop-filter:blur(10px)}
+.topo-in{max-width:1280px;margin:0 auto;padding:18px 34px;display:flex;align-items:center;gap:34px}
+.marca{
+  font-family:"Syne",sans-serif;font-weight:800;font-size:23px;letter-spacing:-.02em;
+  color:var(--cal);text-decoration:none;margin-right:auto;
+}
+.menu{display:flex;gap:30px}
+.menu a{color:var(--cal-2);text-decoration:none;font-size:var(--t-min);font-weight:500;padding:6px 0;border-bottom:1px solid transparent}
+.menu a:hover{color:var(--cal);border-bottom-color:var(--anil)}
+.btn-topo{padding:11px 20px;font-size:var(--t-min)}
+
+/* ---------- hero: foto em largura cheia, texto embaixo ---------- */
+.hero{padding:0 0 96px}
+.hero-foto{position:relative;overflow:hidden}
+.hero-foto img{width:100%;height:470px;object-fit:cover;object-position:center 62%}
+.hero-texto{
+  max-width:1280px;margin:0 auto;padding:56px 34px 0;
+  display:grid;grid-template-columns:1.38fr .62fr;gap:52px;align-items:end;
+}
+.hero h1{max-width:15em}
+.lead{font-size:var(--t-lead);color:var(--cal-2);margin:0 0 26px}
+.hero-acoes{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+
+/* ---------- faixas ---------- */
+.faixa{padding:104px 34px}
+.faixa-pedra{background:var(--pedra)}
+.faixa-contato{background:var(--pedra-2)}
+
+.secao-cab{max-width:1280px;margin:0 auto 56px}
+.secao-cab h2{max-width:15em;margin-bottom:16px}
+.secao-cab p{max-width:46em;color:var(--cal-2);font-size:var(--t-lead);margin:0}
+
+/* ---------- 2. casa de brisa ---------- */
+.metodo-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:.9fr 1.1fr;gap:64px}
+.metodo-texto h2{margin-bottom:20px}
+.metodo-lead{font-size:var(--t-lead);color:var(--cal);margin-bottom:20px}
+.metodo-texto p{color:var(--cal-2)}
+.decisoes{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.decisoes li{padding:26px 0;border-top:1px solid var(--linha)}
+.decisoes li:last-child{border-bottom:1px solid var(--linha)}
+.dec-num{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:var(--t-mono);letter-spacing:.1em;color:var(--anil-cl);
+  display:block;margin-bottom:10px;
+}
+.decisoes h3{margin-bottom:8px}
+.decisoes p{color:var(--cal-2);margin:0;max-width:44em}
+
+/* ---------- 3. projetos ---------- */
+.projetos{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:44px 32px}
+.proj img{border-radius:2px;transition:transform .5s ease;aspect-ratio:4/3;object-fit:cover;width:100%}
+.proj:hover img{transform:scale(1.02)}
+.proj h3{font-size:var(--t-h3);margin:20px 0 14px}
+.proj-ficha{margin:0 0 14px;display:grid;gap:0}
+.proj-ficha>div{display:grid;grid-template-columns:76px 1fr;gap:14px;padding:7px 0;border-top:1px solid var(--linha)}
+.proj-ficha>div:last-child{border-bottom:1px solid var(--linha)}
+.proj-ficha dt{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:var(--t-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--cal-2);
+}
+.proj-ficha dd{margin:0;font-size:var(--t-min);font-weight:500}
+.proj-nota{color:var(--cal-2);font-size:var(--t-min);margin:0}
+
+/* ---------- 4. a régua do projeto (elemento-assinatura) ---------- */
+.regua{
+  max-width:1280px;margin:0 auto;padding:0;list-style:none;
+  display:grid;grid-template-columns:repeat(5,1fr);gap:0;
+  border-top:1px solid var(--anil);
+}
+.regua li{position:relative;padding:34px 26px 0 0}
+.regua li::before{
+  content:"";position:absolute;left:0;top:0;width:1px;height:16px;background:var(--anil);
+}
+.regua li::after{
+  content:"";position:absolute;left:0;top:-4px;width:7px;height:7px;border-radius:50%;
+  background:var(--anil);
+}
+.regua-num{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:var(--t-mono);letter-spacing:.12em;color:var(--anil-cl);
+  display:block;margin-bottom:12px;
+}
+.regua h3{margin-bottom:6px}
+.regua-prazo{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:var(--t-min);color:var(--cal);margin:0 0 14px;
+}
+.regua p{color:var(--cal-2);font-size:var(--t-min);margin-bottom:12px}
+.regua-entrega{color:var(--cal);font-size:var(--t-min);margin:0}
+
+/* ---------- 5. escopo ---------- */
+.escopo-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1.15fr;gap:64px}
+.escopo-tit{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:var(--t-mono);font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  padding-bottom:14px;margin-bottom:8px;border-bottom:1px solid var(--linha);
+}
+.escopo-sim{color:var(--anil-cl)}
+.escopo-nao{color:var(--cal-2)}
+.escopo-col ul{list-style:none;margin:0;padding:0}
+.escopo-col li{padding:16px 0;border-bottom:1px solid var(--linha);color:var(--cal-2)}
+.escopo-col li strong{color:var(--cal);font-weight:600}
+
+/* ---------- 6. materiais ---------- */
+.materiais-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start}
+.materiais-foto img{border-radius:2px}
+.materiais-texto h2{margin-bottom:18px;max-width:14em}
+.materiais-lead{font-size:var(--t-lead);color:var(--cal-2);margin-bottom:26px}
+.materiais-lista{margin:0;display:grid;gap:0}
+.materiais-lista>div{display:grid;grid-template-columns:190px 1fr;gap:26px;padding:18px 0;border-top:1px solid var(--linha)}
+.materiais-lista>div:last-child{border-bottom:1px solid var(--linha)}
+.materiais-lista dt{font-weight:600}
+.materiais-lista dd{margin:0;color:var(--cal-2);font-size:var(--t-min)}
+
+/* ---------- 7. faq ---------- */
+.faq{max-width:920px;margin:0 auto;border-top:1px solid var(--linha)}
+.faq details{border-bottom:1px solid var(--linha)}
+.faq summary{cursor:pointer;list-style:none;font-size:var(--t-lead);font-weight:600;padding:22px 44px 22px 0;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:8px;top:19px;font-size:26px;line-height:1;color:var(--anil-cl);font-weight:400}
+.faq details[open] summary::after{content:"–"}
+.faq summary:hover{color:var(--anil-cl)}
+.faq details p{padding:0 44px 24px 0;margin:0;color:var(--cal-2);max-width:54em}
+
+/* ---------- 8. contato ---------- */
+.contato-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.contato-texto h2{margin-bottom:18px;max-width:12em}
+.contato-lead{font-size:var(--t-lead);color:var(--cal-2);margin-bottom:28px}
+.contato-checklist-tit{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:var(--t-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--cal-2);margin-bottom:12px;
+}
+.contato-checklist{list-style:none;margin:0;padding:0}
+.contato-checklist li{padding:13px 0;border-top:1px solid var(--linha);color:var(--cal-2)}
+.contato-checklist li:last-child{border-bottom:1px solid var(--linha)}
+
+.form{background:var(--noite);border:1px solid var(--linha);border-radius:2px;padding:32px}
+.form-aviso{
+  font-size:var(--t-min);color:var(--cal-2);
+  background:var(--pedra);border:1px solid var(--linha);border-radius:2px;
+  padding:14px 16px;margin:0 0 24px;
+}
+.form-aviso b{
+  display:block;font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:var(--t-mono);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--anil-cl);font-weight:600;margin-bottom:6px;
+}
+.campo{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.campo label{font-size:var(--t-min);font-weight:600;color:var(--cal)}
+.campo input,.campo textarea{
+  font-family:"Public Sans",sans-serif;font-size:var(--t-corpo);color:var(--cal);
+  background:var(--pedra);border:1px solid var(--linha);border-radius:2px;
+  padding:13px 14px;
+}
+.campo input::placeholder,.campo textarea::placeholder{color:#7E786D}
+.campo input:focus,.campo textarea:focus{outline:none;border-color:var(--anil-cl)}
+.form-nota{font-size:var(--t-min);color:var(--cal-2);margin:16px 0 0}
+
+/* ---------- rodapé ---------- */
+.rodape{background:var(--noite);padding:80px 34px 64px}
+.rodape-in{max-width:1280px;margin:0 auto}
+.rodape-marca{font-family:"Syne",sans-serif;font-weight:800;font-size:var(--t-h2);letter-spacing:-.02em;margin:0 0 40px;line-height:1}
+.rodape-cols{display:grid;grid-template-columns:repeat(3,minmax(0,260px));gap:40px;margin-bottom:44px}
+.rodape-cols dl{margin:0}
+.rodape-cols dt{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:var(--t-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--anil-cl);margin-bottom:12px;
+}
+.rodape-cols dd{margin:0;color:var(--cal-2);font-size:var(--t-min);line-height:1.7}
+.rodape-nota{color:#7E786D;font-size:var(--t-min);margin:0;max-width:46em}
+
+/* ---------- entrada ---------- */
+.rev{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
+.rev.dentro{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.rev{opacity:1;transform:none}}
+
+/* a soleira: a lâmina de luz que revela a foto do projeto */
+.soleira-rev{clip-path:inset(0 0 100% 0);transition:clip-path .9s cubic-bezier(.22,.61,.36,1)}
+.soleira-rev.dentro{clip-path:inset(0 0 0 0)}
+@media (prefers-reduced-motion: reduce){.soleira-rev{clip-path:none}}
+
+/* ---------- telas médias ---------- */
+@media (max-width:1080px){
+  :root{--t-h1:42px;--t-h2:35px;--t-h2p:28px;--t-h3:22px;--t-lead:19px}
+  .hero-foto img{height:420px}
+  .hero-texto{grid-template-columns:1fr;gap:28px;padding:40px 24px 0}
+  .metodo-grid,.escopo-grid,.materiais-grid,.contato-grid{grid-template-columns:1fr;gap:40px}
+  .projetos{grid-template-columns:repeat(2,1fr);gap:36px 24px}
+  .regua{grid-template-columns:1fr;border-top:0;border-left:1px solid var(--anil)}
+  .regua li{padding:24px 0 24px 26px}
+  .regua li::before{left:0;top:0;width:16px;height:1px}
+  .regua li::after{left:-3px;top:-3px}
+  .menu{display:none}
+  .faixa{padding:72px 24px}
+  .topo-in{padding:16px 24px;gap:18px}
+}
+
+/* ---------- celular ---------- */
+@media (max-width:560px){
+  :root{--t-h1:34px;--t-h2:30px;--t-h3:21px;--t-lead:18px}
+  .faixa{padding:56px 20px}
+  .topo-in{padding:14px 20px}
+  .btn-topo{display:none}
+  .projetos{grid-template-columns:1fr;gap:40px}
+  .materiais-lista>div,.proj-ficha>div{grid-template-columns:1fr;gap:4px}
+  .rodape-cols{grid-template-columns:1fr;gap:28px}
+  .form{padding:24px 20px}
+  .hero-foto img{height:330px}
+  .hero{padding-bottom:64px}
+}
+
+/* ---------- respiro: a foto que dá nome ao estúdio ---------- */
+.soleira-faixa{
+  margin:0;background:var(--noite);padding:0 34px 104px;
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center;
+}
+.soleira-faixa img{width:100%;height:auto;border-radius:2px}
+.soleira-faixa figcaption{
+  color:var(--cal);font-family:"Syne","Public Sans",sans-serif;
+  font-weight:600;font-size:var(--t-h3);line-height:1.32;letter-spacing:-.01em;
+  max-width:22em;
+}
+@media (max-width:1080px){
+  .soleira-faixa{grid-template-columns:1fr;gap:28px;padding:0 24px 72px}
+  .soleira-faixa img{max-width:420px}
+  .soleira-faixa figcaption{font-size:var(--t-lead);font-weight:500}
+}
+@media (max-width:560px){
+  .soleira-faixa{padding:0 20px 56px}
+}

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Soleira">
+  <rect width="32" height="32" fill="#171614"/>
+  <rect x="6" y="4" width="20" height="20" fill="#EDE9E1"/>
+  <path d="M26 4 L26 14 L12 24 L6 24 Z" fill="#C9C3B8"/>
+  <rect x="6" y="24" width="20" height="4" fill="#4A6FA5"/>
+</svg>

@@ -18,7 +18,10 @@ quando deveria, o Crítico invalida a sessão.
 
 ## Travas por cliente (fonte: CLAUDE.md da raiz)
 
-**Dr. Giovanni Nascimento (odonto, CFO / Res. 118/2012 e 196/2019)**
+**Odonto / CFO — régua de referência (Res. CFO 118/2012 e 196/2019)**
+> ⚠️ Era a trava do Dr. Giovanni, **ex-cliente removido da carteira em 27/08/2026**.
+> Fica aqui como **referência da régua de odonto** para o dia em que entrar outro
+> cliente do CFO. O CRO-BA 16772 abaixo é o dele, específico; num cliente novo, trocar.
 - Obrigatório: CRO-BA 16772 e responsável técnico visíveis, linguagem informativa,
   consentimento LGPD
 - Vedado: antes/depois **no site** (pessoa jurídica não pode pela 196/2019),

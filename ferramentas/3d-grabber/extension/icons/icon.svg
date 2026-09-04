@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="28" fill="#7c3aed"/>
+  <!-- cubo isometrico: 3 faces em opacidades diferentes leem melhor que outline a 16px -->
+  <path d="M64 20 104 44 64 68 24 44Z" fill="#fff"/>
+  <path d="M24 44 64 68 64 108 24 84Z" fill="#fff" opacity=".55"/>
+  <path d="M104 44 104 84 64 108 64 68Z" fill="#fff" opacity=".78"/>
+</svg>

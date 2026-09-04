@@ -46,7 +46,73 @@ Os cinco hexes abaixo são os oficiais do manual.
   cores do manual, mas está no arquivo, e medir é melhor que estimar.
   A primeira versão do site usava `#0A0C12`, que era chute e errou por pouco
 
-**Regras de uso:**
+⚠️ **31/08/2026 — no SITE institucional o AMARELO da marca (#F4C430) VOLTOU e o
+laranja (ember n8n) saiu.** O Marcelo apontou que o laranja era cor importada do
+n8n e a logo tem amarelo. O token `--ember` do `site/assets/site.css` passou a
+carregar o amarelo `#F4C430` (gradiente amarelo→dourado `#dca514`), propagando para
+todos os CTAs, acentos e marcadores. O fundo do hero (fundido com a Seção 1) usa
+amarelo à esquerda + azul da logo (`#2563EB`/`#60A5FA`) à direita, no esquema do
+print 4. ⚠️ **Texto sobre amarelo é escuro** (`var(--tinta)`), nunca branco (branco
+sobre amarelo reprova WCAG). O ELECTRIC azul→violeta segue nos links/foco/conexão.
+Isto vale para o **site institucional**; peças/carrossel e clientes seguem as regras
+abaixo. Detalhe da rodada em `site/CLAUDE.md` (v13). O bloco n8n abaixo é o contexto
+anterior (amarelo tinha saído na migração de 28/08); esta linha o corrige.
+
+⚠️ **28/08/2026 (fim do dia) — o SITE institucional migrou para a IDENTIDADE n8n.**
+O Marcelo mandou o design system do n8n como referência e pediu para aplicar ao site
+inteiro. O amarelo saiu de vez (⚠️ revertido em 31/08, ver acima). A identidade n8n do
+**site institucional** (não das peças/carrossel, que seguem a paleta da casa abaixo):
+
+- **Fundo VOID violeta-preto** `#0e0918` (nunca `#000` puro; o subtom violeta é
+  proposital). Superfícies por DEGRAU DE COR: void → `#1a1624` (card) → `#1b1728`
+  (painel). Elevação por cor, não por sombra externa.
+- **EMBER** `linear-gradient(30deg, #fd8925, #ff0c00)` — laranja→vermelho, **SÓ em
+  CTA primário**. É o único quente-cromático acima da dobra.
+- **ELECTRIC** `linear-gradient(141deg, #077ac7, #6b21ef)` — azul→violeta, em link,
+  foco, linha de conexão, estado ativo.
+- **Texto:** ash `#d1cece` (corpo, nunca branco puro no corpo), fog `#9d9797`
+  (secundário), branco `#ffffff` só em título/ênfase.
+- **Tipografia:** UMA família geométrica leve. geomanist não é web-livre → **DM Sans**
+  (o substituto do próprio manual), peso **300 no display** (o título "sussurra",
+  line-height apertado ~0.94, tracking negativo) e 400 no corpo.
+- **Formas:** botão/input 8px, card 16px, painel 24px, pílula só em tag/ícone.
+- **Header:** fixo, efeito glass, arredondado, sem contorno.
+
+🔴 **Texto de MARCA (o Marcelo mandou anotar, vale para qualquer peça da Hórus):**
+*"A Hórus usa o que há de melhor do mercado e o que há de mais moderno em tecnologia.
+Nós nos esforçamos para projetar experiências modernas e estratégicas para marcas de
+todos os tamanhos, alinhadas às tendências e tecnologias atuais, com uma equipe
+criativa e especializada. Com estratégias digitais inteligentes, desenvolvemos
+experiências mensuráveis e de alta qualidade para todos os setores."*
+
+Fica em `site/assets/site.css §1` a verdade dos tokens. Detalhe da migração em
+`site/CLAUDE.md` (v12). O bloco abaixo (paleta com papéis, âmbar/azul) é **histórico**
+do mesmo dia, já superado pela identidade n8n.
+
+⚠️ **28/08/2026 — a identidade do SITE ganhou paleta com PAPÉIS (não uma cor só).**
+Contexto: uma primeira tentativa promoveu o dourado a co-primária e virou uma landing
+"liquid-glass" de uma cor só; o Marcelo rejeitou ("ficou brega, sem identidade") — o
+card foi salvo em `_biblioteca/inspiracoes/card/card-vidro-liquido/` e a landing
+descartada. Depois, estudando 5 referências (lessestudio, xmethod, wibify, amphora,
+matveyan), o **site institucional** foi recolorido com um sistema de papéis:
+
+- **Chão:** carvão quente `#17130E` (medido). Ink `#F0EBE1` / `#B7AE9C`.
+- **Âmbar `#E7B34A` + azul `#5B8DEF` são co-primárias** (o azul VOLTOU; estava banido
+  desde 26/08, quando tudo virou âmbar). Dourado `#F4C430` segue como brilho pontual.
+- **Conjunto disciplinado de acentos** dá cor própria a cada card sem virar arco-íris,
+  mesma saturação/valor, só o matiz muda: âmbar, azul, verde-água `#3FBFA3`, coral
+  `#F0785C`, violeta `#A98BF0`. Usado nos 5 compromissos e nas 4 etapas.
+- **As seções VIAJAM por cores diferentes ao rolar** (hero âmbar→azul, serviços
+  azul/teal, compromisso policromo, etapas azul→coral). É o antídoto ao "uma cor só".
+- **Camada técnica:** `JetBrains Mono` nos números de seção, rótulos e fichas (dá cara
+  de instrumento). Display segue Sora, corpo Hanken Grotesk.
+
+⚠️ Isto vale para o **site institucional** (é a verdade do `site/assets/site.css`).
+As peças/carrossel seguem a paleta da casa abaixo. Em **site de cliente**, cada
+cliente segue o `marca.md` dele. A regra "dourado raro" abaixo continua valendo
+para PEÇAS e clientes; no site institucional o dourado divide o palco com o azul.
+
+**Regras de uso (peças e clientes):**
 - O **dourado é a cor mais rara da marca**. No logo ele é um ponto só (a pupila).
   Usar como acento pontual, nunca como cor de fundo nem de bloco inteiro
 - Marca nasceu em fundo escuro, mas o manual aprova fundo claro e fundo colorido.
@@ -84,6 +150,15 @@ disso; texto corrido sofre.
   geométrica e conversa com o traço do logotipo; Archivo é grotesca de abertura
   fechada e lê bem em corpo pequeno. Nenhuma das duas está na lista de queimadas
   (Montserrat, Poppins, DM Sans, Inter, Fraunces, Instrument Serif)
+- ⚠️ **O SITE institucional divergiu em 26/08/2026** (pedido do Marcelo: "muda a
+  fonte do site pra algo melhor"). Depois de passar por Bricolage e Fraunces (as duas
+  descartadas), a **Direção C** fechou o site em: **Sora** (display) + **Hanken
+  Grotesk** (corpo) + **Newsreader** itálico no acento (`.ouro-it`). É a verdade do
+  `site/assets/site.css`. É **só o site** por ora — as peças/carrossel continuam em
+  Sora + Archivo. Se o Marcelo quiser padronizar a casa toda no par do site, esta
+  linha vira a decisão.
+  Nota: o detector do impeccable reprovou **Inter** e **Instrument Serif** (as
+  duas já estavam na lista de queimadas acima), o que confirmou a escolha final.
 
 ---
 

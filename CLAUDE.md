@@ -178,6 +178,14 @@ revelar de padrão vira linha em `_memoria/design/` (anatomia ou antipadrões). 
 não se reaproveita é a aparência; o que se reaproveita é a **estrutura e o raciocínio**.
 Analisar referência por cima e já montar é o erro que essa regra existe para cortar.
 
+**Print NUMERADO do Marcelo é especificação, não inspiração** (26/08/2026). Quando
+ele manda "print 1", "print 2"... amarrados a uma seção ("igual ao print 3", "a
+qualidade que gostaria"), aquilo é o alvo exato: seguir a estrutura, a proporção e
+o comportamento do print à risca, não uma leitura livre. Foi assim o site
+institucional inteiro desta data (a esfera da home, o big bang da orbital, a
+formação da logo, os cards de serviço, a seção circular de garantia, o portfólio
+trionn). Entregar "parecido" quando o print é numerado é subentregar.
+
 Quando o Marcelo corrigir algo de design, a correção vira linha em
 `_memoria/design/90-antipadroes.md` **com o porquê junto**. Correção que morre no
 chat volta como erro no próximo site: o Claude não guarda nada entre conversas,
@@ -281,9 +289,9 @@ O impeccable resolve contexto pela **pasta mais próxima do alvo** que tem
 `PRODUCT.md`. Isso foi testado neste repo e funciona: com `PRODUCT.md` em
 `clientes/aion-psicologia/`, o `projectRoot` dele passa a ser essa pasta.
 
-- ❌ **Proibido** `DESIGN.md` ou `PRODUCT.md` na raiz. A raiz tem cinco clientes
-  com cinco marcas diferentes mais o site da própria Horus. Um `DESIGN.md` de
-  raiz achataria os cinco num só, que é exatamente a colisão que fez o pacote
+- ❌ **Proibido** `DESIGN.md` ou `PRODUCT.md` na raiz. A raiz tem seis clientes
+  com seis marcas diferentes mais o site da própria Horus. Um `DESIGN.md` de
+  raiz achataria os seis num só, que é exatamente a colisão que fez o pacote
   ser rejeitado da primeira vez.
 - ✅ Se for usar, um par por cliente: `clientes/<nome>/PRODUCT.md` e
   `clientes/<nome>/DESIGN.md`, **derivados** do `briefing.md` e do `marca.md`
@@ -322,6 +330,17 @@ um estilo visual. As skills se dividem em dois níveis:
   **site / landing page / portfólio** pra fugir do visual "cara de IA".
 - **shadcn** — CLI de componentes React/Tailwind. Só se o cliente for
   construir site/CRM em React; não serve pra carrossel/post (HTML → imagem).
+- **design-dna** (instalada 28/08/2026) — extrai/define/aplica a identidade de
+  uma referência em três dimensões (tokens, estilo, efeitos visuais). Usar quando
+  o Marcelo manda um design system ou referências e quer a identidade estruturada.
+- **frontend-design** (Anthropic, instalada 28/08/2026) — direção de design
+  intencional e anti-template (tipografia, direção estética).
+- **scrollcraft** (instalada 28/08/2026) — landing scroll-driven premium (seções
+  que pinam/avançam, trilhos, ground que muda de cor). Doutrina de scroll; usar
+  junto de `60-motion.md`.
+- **3d-grabber** — ⚠️ **NÃO é skill, é extensão de Chrome** (em `ferramentas/`).
+  Captura assets 3D (GLB, splats) de qualquer site. Carregar via
+  `chrome://extensions` (modo dev). Não é invocável pelo Claude.
 
 **Estilos de marca (~33 skills, escolher UM):** cada nome em
 `.claude/skills/<nome>/` é um guia de tokens de uma estética nomeada,
@@ -356,29 +375,31 @@ pontuais e rápidas, a busca nativa ainda resolve sem gastar crédito.
 
 ---
 
-## Geração de mídia (imagem e vídeo) — manual e externa
+## Geração de mídia (imagem e vídeo)
 
-⚠️ **Correção de 20/08/2026 (Marcelo): não existe API de imagem na operação.**
-Higgsfield foi cancelado em 05/08/2026 (removido do `.mcp.json`), e a **API da
-OpenAI nunca chegou a existir** — o Marcelo não tem chave. Qualquer texto que
-mencione `OPENAI_API_KEY` está vencido.
+✅ **Atualização de 26/08/2026 (Marcelo): o Higgsfield voltou e está ATIVO.** As
+skills `higgsfield-*` estão disponíveis e o CLU `higgsfield` está logado na conta
+do Marcelo (`firehagge@gmail.com`, **plano starter**). Foi o que gerou todas as
+imagens 3D do site institucional (torus de vidro, cristais, orbe, etc.) nesta
+data. Como usar: `higgsfield generate create <modelo> --prompt "..." --wait`
+(ver a skill `higgsfield-generate` para o catálogo de modelos).
 
-Estado atual:
+- **Imagem:** funciona no plano starter. Modelo padrão **GPT Image 2**
+  (`gpt_image_2`). Gera on-brand direto do prompt; o Horus OS baixa o resultado e
+  monta em volta.
+- **Vídeo:** os modelos de vídeo (Seedance etc.) **exigem plano Pro/Ultimate** —
+  no starter retornam `"Pro" or "Ultimate" plan required`. Enquanto o plano for
+  starter, animação 3D se resolve com **WebGL/canvas/SVG na mão** (foi o caminho
+  da jornada da esfera do site), e o Higgsfield entra só para **imagem**.
 
-- **Imagem:** única forma é **direto pelo ChatGPT** (interface, manual). Não há
-  chave/API pra gerar imagem automaticamente aqui. Quando a peça precisar de
-  imagem, o Marcelo gera no ChatGPT e traz o arquivo; o Horus OS monta em volta
-  (copy, layout, código).
-- **Vídeo:** o Marcelo gera **pelo Gemini** (app, manual — ele tem Google AI Pro
-  / Google One). Também não é API: assinatura de consumidor não libera acesso
-  programático (mesmo caso do ChatGPT Plus/Go/Pro).
+> Histórico (mantido como contexto, já superado): entre 20/08 e 25/08/2026 o
+> registro dizia que "não existe API de imagem", que o Higgsfield tinha sido
+> cancelado em 05/08 e que a imagem só saía manual pelo ChatGPT e o vídeo pelo
+> Gemini. Isso **venceu** com a volta do Higgsfield em 26/08. Qualquer texto que
+> mencione `OPENAI_API_KEY` continua vencido (essa chave nunca existiu).
 
-Ou seja, geração de mídia é etapa **manual e externa**; o sistema entra na
-montagem em volta do asset, não na geração. A skill `/carrossel` que dependia de
-`OPENAI_API_KEY` precisa desse asset vindo de fora quando a peça pedir foto.
-
-Em cliente regulado, a imagem também passa pelo compliance (Dr. Giovanni: sem
-paciente, sem antes/depois, sem promessa; só tecnologia, ambiente e laboratório).
+Em cliente regulado, a imagem também passa pelo compliance (cliente de saúde: sem
+paciente, sem antes/depois, sem promessa; só ambiente, tecnologia e equipe).
 
 ---
 
@@ -497,6 +518,11 @@ não publica sem revisão do profissional responsável.
   instalado em 08/08/2026 (antes disso só o detector rodava): ver a seção
   "Impeccable" mais abaixo
 - `_conselho/` — sistema de decisão: constituição, cargos, mentes, meta-avaliadores
+- `_conhecimento/network/` — **o oráculo do network destilado** (desde 03/09/2026). Cards
+  extraídos dos 4 grupos de network do Marcelo, via Q&A do NotebookLM. Hoje: preço
+  praticado de site/loja/CRM/bot, mensalidade, stack e travas legais. **Consultar antes de
+  precificar projeto de site ou sistema.** Material privado: extrair princípio, nunca colar
+  frase ou nome, e **nunca usar em peça de cliente**. Regras no `README.md` da pasta
 - `equipe/` — descrição das funções da operação (SOW), com tipo de executor e autonomia
 - `referencias/` — biblioteca de teardowns de sites reais, da agência inteira.
   Gerada pela skill `/estudar-site`. **Não confundir** com
@@ -513,8 +539,21 @@ não publica sem revisão do profissional responsável.
   e exemplos de identidade. Base para skill nova (ver "Criação de skills" acima)
 - `dados/`, `marketing/`, `scripts/` — pastas do esqueleto do Horus OS, hoje só com
   `README.md`. Vazias de propósito até a operação pedir
+- `portfolio/` — **peças conceituais da casa** (desde 27/08/2026): sites completos
+  construídos para demonstrar capacidade numa reunião, não para cliente pagante.
+  Hoje: `amendoa-preta/` (doceria de encomenda) e `soleira-interiores/` (arquitetura
+  de interiores). Cada um tem `PLANO.md` com o passe duplo registrado. ⚠️ **Regra de
+  honestidade ao apresentar:** pode dizer "projeto nosso", nunca "cliente nosso".
+  Detalhe em `portfolio/README.md`
 - `saidas/` — arquivo solto de trabalho (imagens geradas, logo de cliente). Não é
   entrega: entrega mora na pasta do cliente
+- `ferramentas/` — **ferramentas externas ou infraestrutura própria** que não são
+  skill do Claude (desde 28/08/2026). Hoje: `3d-grabber/` (extensão de Chrome MV3
+  que captura assets 3D de sites; carregar via `chrome://extensions` em modo dev) e
+  `mcp-prospeccao/` (servidor MCP local, stdio via `.mcp.json`, desde 29/08/2026:
+  `check_site`, `lookup_cnpj`, `check_meta_ads`. Audita o que o agente Gemini Spark
+  traz na prospecção — confirma site de verdade e se a empresa já roda anúncio —
+  ver `ferramentas/mcp-prospeccao/README.md`)
 - `site/` — **site institucional da própria Hórus**, não de cliente. Por isso mora
   na raiz e não em `clientes/`. Tem `CLAUDE.md` e `PLANO.md` próprios: ler os dois
   antes de mexer em qualquer coisa visual lá. O estudo das dez referências que
@@ -529,27 +568,17 @@ não publica sem revisão do profissional responsável.
 - Produzir por prioridade, um bloco por vez. Nada de "product-dump"
 - Cliente de setor regulado: o compliance do cliente **trava** a entrega
 
-### Cliente #1 — Dr. Giovanni Nascimento (Implantodontia, Salvador/BA)
+### Ex-cliente #1 — Dr. Giovanni Nascimento (removido em 27/08/2026)
 
-Pasta: `clientes/dr-giovanni-nascimento/`. Clínica premium de implantodontia,
-foco B2C. Máquina: **SITE** → BOT+CRM → CARROSSEL → TRÁFEGO.
-
-⚠️ **Fora da linha de frente desde 26/07/2026** (decisão do Marcelo: a prioridade
-da agência é a Aion). O site continua sendo o bloco dele, mas antes de retomar é
-preciso definir qual das **quatro versões de home** vale (`index.html`,
-`index-novo.html`, `index-editorial.html`, `index-taste.html`) e arquivar as outras.
-
-**⚠️ Compliance CFO — trava toda entrega (site, post, bot, ad):**
-Publicidade odontológica = CFO / Código de Ética (Res. CFO-118/2012) + Res. CFO-196/2019 (publicidade e imagens).
-- **Obrigatório:** CRO-BA 16772 + responsável técnico visíveis; linguagem
-  informativa; depoimento só com autorização; consentimento LGPD.
-- **Proibido:** antes/depois NO SITE (pessoa jurídica é vedada pela 196/2019 — ver nota abaixo); promessa/garantia de resultado; preço/promoção como
-  chamariz; superlativo ("o melhor", "nº 1"); conselho clínico que substitua consulta.
-- **Antes/depois (196/2019):** não é proibição absoluta, é permissão restrita. Só o **próprio Dr. (pessoa física)** que executou pode divulgar (diagnóstico=antes, resultado final=depois), com TCLE assinado + nome/CRO/especialidade, sem o "durante". **Clínica/site (pessoa jurídica) NÃO pode.** Site segue sem antes/depois; IA simulando antes/depois também é vedada.
-- **Conteúdo automático (carrossel/bot):** nada clínico publica sem revisão humana do Dr./RT.
-
-Na dúvida entre copy mais vendedora e compliance, **o compliance vence.** Grafia
-correta do nome: **"Giovanni"** (logo atual grafa "Geovani" — pendência).
+⚠️ **Removido da carteira em 27/08/2026** (decisão do Marcelo). Deixou de ser cliente da
+agência. Era implantodontia premium em Salvador (setor regulado pelo CFO), esteve fora
+da linha de frente desde 26/07/2026 e nunca teve o site publicado. A pasta
+`clientes/dr-giovanni-nascimento/` foi **preservada** como histórico (briefing, marca e
+as quatro versões de home), mas ele não entra mais em fila, contagem nem prioridade, e o
+número **#1 fica vago** (os demais clientes mantêm os identificadores #2 a #5 para não
+quebrar as referências cruzadas). A régua de publicidade odontológica (CFO / Res. CFO
+118/2012 e 196/2019) continua registrada como referência em
+`_conselho/cargos/compliance.md`, para o dia em que entrar outro cliente de odonto.
 
 ### Cliente #2 — Jaqueline (Permita-se Fitness, Salvador/BA)
 
@@ -570,7 +599,9 @@ Pasta: `clientes/aion-psicologia/`. Clínica de psicologia com mais de 20 anos, 
 avaliação e intervenção neuropsicológica, orientação familiar, orientação profissional,
 grupo de apoio parental. Máquina: **SITE** → link na bio → blog → carrossel automático.
 
-⭐ **Prioridade principal da agência desde 26/07/2026.** O site tem **dez páginas**
+⚠️ **ENGAVETADA desde 01/09/2026 (Marcelo).** Foi a **prioridade principal da agência de
+26/07 a 01/09/2026**; saiu da linha de frente por ora (as prioridades passaram a ser a
+Amparo Flores e o Washington/mentoria). O histórico abaixo fica como contexto. O site tem **dez páginas**
 prontas: home, contato, política de privacidade, `especialidades.html` (índice) e
 **uma página por serviço** (6, desde 30/07/2026). Não falta produção: falta **dado
 que só a cliente tem**. O próximo passo real é apresentar pra ela, não continuar
@@ -661,3 +692,98 @@ visível.
 está desatualizada em "estudante". Já pode sair "psicóloga" e o CRP nas peças. Falta
 só o **e-Psi** (Res. CFP 011/2018) para liberar o CTA de atendimento **online** —
 não trava conteúdo.
+
+### Cliente #6 — Amparo Flores (Floricultura, Graça/Salvador)
+
+Pasta: `clientes/amparo-flores/`, criada em 27/08/2026. Floricultura tradicional de rua
+no Largo da Graça, **desde 1972** (mais de 50 anos), B2C. Chegou por relação (o sócio do
+Marcelo).
+
+✅ **CLIENTE FECHADO em 03/09/2026**, na reunião presencial na loja. Dono: **Varo**, que
+**decide junto com a irmã** (ela tem loja de flores própria e quer site + CRM dela:
+**segundo lead**, reunião a marcar). Escopo em duas fases: **Fase 1 = site com o pedido
+caindo no WhatsApp, R$ 1.200 (R$ 600 de entrada + R$ 600 na entrega), já comunicado ao
+cliente**, sem mensalidade; **Fase 2 = checkout InfinitePay + painel/CRM com estoque +
+funil de recompra + agente de botões + frete, com valor NÃO comunicado**, a apresentar
+presencialmente (referência interna: R$ 3.000 a 4.000 + R$ 250 a 350/mês, ver
+`_conhecimento/network/`). Travas técnicas: **agente de botões, não IA**; **plataforma
+pronta, não custom**; **MEI não emite fiscal para terceiro**; **nada de bot rodando dentro
+do número do cliente** (risco de ban); **estoque de flor não é estoque de mercado**.
+Detalhe no `CLAUDE.md` do cliente.
+
+⚠️ **A máquina de 27/08 foi superada.** Ela abria com "conserto do Google (isca grátis) →
+WhatsApp organizado", e os prints de 03/09 mostraram que **o Google já está reivindicado e
+completo e o WhatsApp Business já tem catálogo**: a isca morreu e o degrau de entrada
+esvaziou. Os três eixos de valor que sobraram são **coroa/urgência de luto**, **recompra
+(CRM de datas)** e **assinatura B2B da Graça e do Corredor da Vitória** (eixo novo). Ver
+`briefing.md` §5.1. Logs do Conselho: `2026-08-27-amparo-flores-oferta.md` (oferta,
+superada em parte) e `2026-09-03-amparo-flores-fechamento-reuniao.md` (fechamento, com o
+desfecho e a lição registrados). O roteiro de reunião original é
+`clientes/amparo-flores/reuniao-27-08-2026.md`.
+
+🔴 **WhatsApp de pedidos: (71) 9118-8740** (`wa.me/557191188740`), com 8 dígitos. De 27/08 a
+03/09 o site inteiro usou `99118-8740`, errado, porque **presumi o nono dígito em vez de
+perguntar**. Corrigido nos 8 arquivos em 03/09. **Nunca presumir dígito de contato de
+cliente.**
+
+**Site (`clientes/amparo-flores/site/`) — virou E-COMMERCE em 02/09/2026** (o Marcelo
+pediu loja, não institucional com catálogo, e mandou 3 lojas de referência: gisaflores,
+mirlaflores, floresenbrasil, estudadas com Firecrawl). 7 páginas: `index.html` (home de
+loja: hero com **fundo de fotos passando** sob véu roxo + barra de confiança + tiles de
+categoria + grade "Mais pedidos"), `loja.html` (grade com filtros de categoria/faixa de
+preço/ordenação, o coração da loja), `produto.html` (PDP, lê `?id=`, quantidade, relacionados),
+`carrinho.html` ("sua cesta"), `luto.html` (coroas, sóbria), `a-casa.html` e `contato.html`
+(secundárias). **Loja funcional de verdade:** motor em `produtos.js` (15 produtos, preços
+reais do §2.1, foto real onde existe e placeholder marcado onde falta), **carrinho em
+localStorage** com contador no cabeçalho, e **checkout que monta a mensagem no WhatsApp,
+sem gateway** (ponte honesta, sem pagamento falso). ⚠️ A trava mantida: as 3 referências
+prometem "entrega em 90 min/mesmo dia"; a Amparo **não copia o prazo** (gatilho travado),
+usa "retirada na loja + entrega em Salvador combinada no WhatsApp". Tipografia Newsreader +
+**Hanken Grotesk** (Instrument Sans saiu, o detector marca como `overused-font`). Detector
+limpo (exit 0). Fotos provisórias do Instagram em 640px, a trocar por alta. `PLANO.md` guarda
+o passe duplo; anatomia de e-commerce do segmento em `referencias/floricultura-tres-sites.md`.
+
+**Não é setor regulado, mas valem regras de comércio/alimento:**
+- 🔴 Marca real da logo: **roxo/violeta + laranja/marigold + creme**. Roxo é raro em
+  floricultura (vem das orquídeas dela) e é a assinatura. **Roxo chapado, nunca
+  gradiente com glow.** Detalhe em `marca.md`.
+- 🔴 **Foto real dos arranjos dela, nunca banco de imagem.**
+- 🔴 Sem superlativo, sem promessa, sem "entrega em 1 hora" copiada dos intermediários.
+- 🔴 **Página de luto sóbria e separada** (creme/pedra, sem o laranja festivo).
+- **WhatsApp: (71) 9118-8740** (celular de pedidos, `wa.me/557191188740`; o fixo
+  (71) 3235-5898 é da loja). ⚠️ Corrigido em 03/09/2026, era `99118-8740`.
+
+### Cliente #7 — Washington / "Daablio Dellano" (mentoria de massagem tântrica, Salvador/BA)
+
+Pasta: `clientes/washington-daablio/`, criada em 01/09/2026. Chegou pelo sócio do Marcelo,
+que entregou o dossiê completo (nicho + teardown + Conselho + roteiro NEPQ) em
+`dossie-reuniao-2026-09-01.md`. Instagram @spamassagezen (~9k seg.). Quer vender uma
+**mentoria** por site. Nome de marca nas peças: **Delano** (ele disse na reunião que
+"W Delano é a marca"; grafia a confirmar antes do site).
+
+**Status (02/09/2026):** reunião de venda feita em 01/09; **proposta comercial enviada**
+(`clientes/washington-daablio/proposta-delano.pdf`). Público confirmado: **massoterapeutas**
+(trilho de formação profissional). Produto: mentoria = **aula gravada** + mini-mentorias no
+social. Autoridade confirmada: **+3.000 alunos formados, 18 anos de professor, ~28 anos de
+estrada** (não +27; ele falou "28, indo pra 29" — confirmar o exato antes do site). Detalhe
+da reunião e do que falta em `pos-reuniao-2026-09-01.md`.
+
+**Oferta da Horus (mudou de R$2.500 cheio para faseada, decisão de 01-02/09/2026):** Fase 1
+**R$1.200** (site de autoridade + Google Meu Negócio; à vista no Pix ou 3× R$400 sem juros)
+e Fase 2 **R$1.500** (seção de venda da mentoria acoplada ao site, só quando ele gravar os
+vídeos). Faseamento aprovado pelo cliente. Lógica de preço no log
+`_conselho/logs/2026-09-01-washington-estrutura-de-preco.md` (não concentrar receita na
+Fase 2, que depende de evento incerto). **Produção da Fase 1 destrava** quando ele mandar o
+material: fotos boas, logo/cores, encarte da revista Joyce Pascovitch, módulos da mentoria,
+depoimento autorizado.
+
+**⚠️ Compliance — NÃO é conselho profissional** (não há CFO/CFP para "terapeuta tântrico").
+A trava é outra e trava igual:
+- **Plataforma:** Meta/Google **reprovam conteúdo sensual** — copy tipo "prazer tântrico"
+  derruba anúncio e restringe a conta. Reposicionar do sensual para o **terapêutico** é a
+  decisão nº 1 (o nicho inteiro faz isso: "tantra não é prostituição").
+- **Pagamento e imagem:** produto lido como adulto sofre com gateway; manter a separação
+  "terapia ≠ serviço sexual" protege reputação e venda.
+- **Sem promessa** (nem sexual, nem de renda). **Depoimento de aluno só com autorização
+  por escrito.** GMB cadastrado como *massoterapeuta/terapeuta*, nunca "massagem tântrica".
+- **Marca visual:** terapêutica, serena, adulta — o oposto do clichê "spa sensual".

@@ -9,8 +9,24 @@
 conteúdo/carrossel, tráfego — usando IA pra produzir e publicar em escala.
 **Perfil:** Agência (equipe pequena) atendendo múltiplos clientes em paralelo.
 **Atende clientes:** negócios locais / profissionais que precisam de presença
-digital que gera agenda (o primeiro caso é uma clínica de implantodontia premium).
+digital que gera agenda (as contas prioritárias hoje são a **Amparo Flores** e o
+**Washington/mentoria** (reunião 01/09); a Aion está **engavetada desde 01/09/2026**).
 **Contato operacional:** Marcelo.
+
+## Princípios, visão e objetivos (declarado pelo Marcelo, 28/08/2026)
+
+Texto de marca a citar em qualquer peça da Hórus (também em `identidade/design-guide.md`):
+
+- **Visão:** projetar experiências modernas e estratégicas para marcas de todos os
+  tamanhos, alinhadas às tendências e tecnologias atuais.
+- **Como:** usando o que há de melhor e mais moderno no mercado em tecnologia, com uma
+  equipe criativa e especializada.
+- **Objetivo:** entregar soluções estratégicas e de alta qualidade para todos os
+  setores, com estratégias digitais inteligentes que geram **experiências mensuráveis**,
+  não só bonitas de olhar.
+- **Princípio de execução (integridade):** estratégia e execução na mesma casa; o
+  cliente aprova antes de ir ao ar e é dono do que foi feito (site, contas, acessos);
+  preço fechado antes, sem surpresa; nada sensível vai ao ar sem o responsável assinar.
 
 ## Serviços (a "Máquina")
 
@@ -23,15 +39,56 @@ Entrega por prioridade, um bloco por vez — nunca "product-dump":
 
 Também: SEO local, propostas comerciais, relatórios.
 
-**Ferramentas:** Firecrawl (pesquisa/scrape web) via MCP. **Não há API de geração
-de mídia.** Imagem se gera **manualmente pelo ChatGPT**; vídeo, **manualmente pelo
-Gemini** (Google AI Pro). Assinatura de consumidor não dá acesso programático, então
-o asset vem de fora e o Horus OS monta em volta. Detalhe no `CLAUDE.md` da raiz.
-⚠️ O **Higgsfield saiu em 05/08/2026** (removido do `.mcp.json`) e a **API da OpenAI
-nunca existiu na operação** (correção do Marcelo, 20/08/2026): ignorar qualquer
-menção a `OPENAI_API_KEY`.
-Para imagem, o `ffmpeg` local converte tudo para WebP no tamanho de exibição antes
-de entrar em qualquer HTML: imagem gerada por IA sai em 2k e pesa megabytes.
+**Catálogo completo de serviços (o que a Hórus faz — declarado pelo Marcelo em
+28/08/2026, atualizado em 31/08/2026, presente no site institucional `site/index.html`):**
+
+1. **Sites e desenvolvimento web** — sites comerciais claros, site corporativo, landing
+   page, UX/UI, WordPress. Estrutura clara · CMS editável · rápido no celular · SEO
+   pronto para o Google · contato e WhatsApp · formulários que funcionam · o cliente é
+   dono do site · suporte opcional.
+2. **Agente e atendimento 24/7 (Bot + CRM)** — card NOVO no site (31/08/2026). Atendimento
+   automatizado com IA integrado a um CRM simples: responde na hora · qualifica o lead ·
+   agenda sozinho · histórico organizado · WhatsApp e site · passa pro humano quando
+   precisa. É o bloco 2 da "Máquina". ⚠️ **Não confundir com o Icarus** (produto próprio,
+   ainda em desenvolvimento, sem cliente): aqui é a oferta de SERVIÇO, e a peça não cita o
+   Icarus nem promete resultado.
+3. **Sistemas sob medida** (ex-"Software", reposicionado em 31/08/2026 a pedido do Marcelo,
+   que achou o card "Software" vago) — para quando o site comum não basta: sistema de
+   agendamento · painel de gestão · área de cliente (login) · automações e integrações ·
+   controle de estoque · pagamentos · relatórios. Linguagem de negócio, sem jargão de dev
+   (saiu "SaaS, API, DevOps"). ⚠️ **O CRM NÃO fica aqui** — para não confundir, o CRM vive
+   só no card 2 (Agente/Bot+CRM), onde é o pipeline que o bot alimenta (decisão do Marcelo,
+   01/09/2026).
+4. **Loja virtual** (ex-"Comércio eletrônico") — catálogo organizado · página de produto ·
+   checkout simples · pagamento online · frete e entrega · cupom e promoção · retorno do
+   cliente · relatórios de venda. Saiu o jargão ERP/PIM.
+5. **Marketing e anúncios (campanhas)** — estratégia de campanha · páginas de destino ·
+   Google Ads · anúncios em redes sociais · direção criativa · rastreamento e atribuição
+   · roteiro de testes · relatórios.
+6. **Conteúdo e blogs** — estratégia de conteúdo · planejamento editorial · carrosséis e
+   posts · artigos de SEO · blog e newsletter · FAQ e guias · atualizações de conteúdo ·
+   avaliação de desempenho. ⚠️ O **card de Conteúdo foi removido da seção de serviços do
+   site** em 01/09/2026 (decisão do Marcelo); o serviço continua na oferta (é o bloco 3 da
+   Máquina), só não aparece como card na home institucional. Reavaliar se volta.
+7. **Visibilidade local** — otimização do Google e do Google Meu Negócio · SEO local ·
+   otimização do perfil · fotos e avaliações · páginas de reserva · mapa e rotas.
+
+A "Máquina" acima (Site → Bot+CRM → Conteúdo → Tráfego) é a forma **empacotada** de
+entregar isso para negócio local, na ordem de prioridade; este catálogo é a **oferta
+completa**. Fonte viva: a seção de serviços de `site/index.html`.
+
+**Ferramentas:** Firecrawl (pesquisa/scrape web) via MCP, e o **Higgsfield** (CLI
+logado na conta do Marcelo, plano starter) para geração de imagem.
+✅ **Atualização de 26/08/2026: o Higgsfield voltou e está ATIVO** — superou o registro
+antigo de que teria saído em 05/08 e de que a imagem sairia manualmente pelo ChatGPT e
+o vídeo pelo Gemini. Imagem funciona no starter via **GPT Image 2** (`gpt_image_2`); os
+modelos de **vídeo exigem plano Pro/Ultimate**, então enquanto o plano for starter a
+animação se resolve com WebGL/canvas/SVG na mão. Catálogo e uso no `CLAUDE.md` da raiz
+e na skill `higgsfield-generate`.
+⚠️ A **API da OpenAI nunca existiu na operação** (correção do Marcelo, 20/08/2026):
+ignorar qualquer menção a `OPENAI_API_KEY`.
+Para imagem, o resultado é convertido para **WebP no tamanho de exibição** antes de
+entrar em qualquer HTML: imagem gerada por IA sai em 2k e pesa megabytes.
 
 ## Sistema de design (desde 26/07/2026)
 
@@ -78,19 +135,19 @@ A descrição de cada função da operação está em `equipe/`, com tipo de exe
 
 ## Clientes ativos
 
-- **Dr. Giovanni Nascimento** (cliente #1) — implantodontista, Salvador/BA.
-  Contexto completo em `clientes/dr-giovanni-nascimento/` (briefing + marca).
-  Status em 26/07/2026: **fora da linha de frente** por decisão do Marcelo. O
-  bloco dele continua sendo o **site**, com quatro versões de home na pasta e
-  nenhuma definição de qual vale. Setor regulado (CFO) — compliance obrigatório
-  em toda entrega.
+> ⚠️ **Dr. Giovanni Nascimento (ex-cliente #1, implantodontia) foi removido da
+> carteira em 27/08/2026** (decisão do Marcelo). Deixou de ser cliente da agência.
+> A pasta `clientes/dr-giovanni-nascimento/` foi **preservada** (briefing, marca e
+> site continuam no repositório como histórico), mas ele não entra mais na contagem
+> de clientes nem na fila de prioridade. O número #1 fica vago; os demais (#2 a #5)
+> mantêm os identificadores para não quebrar as referências cruzadas.
 - **Jaqueline — Permita-se Fitness** (cliente #2) — estúdio multi-modalidade
   (hidroginástica, pilates, zumba, boxe, dança, ballet kids, nutricionista),
   Boca do Rio, Salvador/BA. Contexto completo em `clientes/permita-se-fitness/`
   (briefing + marca). Status: criando o **Google Meu Negócio** — presença
   digital começando do zero (sem Instagram ativo, sem site).
-- **Aion Psicologia** (cliente #3, em prospecção — **prioridade principal da
-  agência desde 26/07/2026**) — clínica de psicologia com mais
+- **Aion Psicologia** (cliente #3, em prospecção — foi **prioridade principal de
+  26/07 a 01/09/2026; ENGAVETADA desde 01/09/2026** por decisão do Marcelo) — clínica de psicologia com mais
   de 20 anos, Itaigara, Salvador/BA. Equipe de psicólogos, serviços de psicoterapia,
   avaliação e intervenção neuropsicológica, orientação familiar e profissional,
   grupo de apoio parental. Atende **presencial e online**. Contexto completo em
@@ -146,6 +203,35 @@ A descrição de cada função da operação está em `equipe/`, com tipo de exe
   Falta só o **e-Psi** para o CTA de atendimento online. Setor regulado pelo **CFP**,
   igual à Aion.
 
+- **Amparo Flores** (cliente #6, ✅ **FECHADO em 03/09/2026**) — floricultura tradicional
+  no Largo da Graça, Salvador/BA, **desde 1972**, B2C. Pasta criada em 27/08/2026 em
+  `clientes/amparo-flores/`. Chegou por relação (sócio do Marcelo). A **reunião presencial
+  na loja em 03/09 fechou o cliente**: o site especulativo cumpriu o papel de peça de venda.
+  Dono **Varo**, que **decide junto com a irmã** (ela tem loja própria e quer site + CRM
+  dela: **segundo lead**). Escopo em duas fases: **Fase 1** (site com pedido caindo no
+  WhatsApp) **R$ 1.200, já comunicado**, em produção; **Fase 2** (checkout, painel/CRM com
+  estoque, recompra, agente de botões, frete) **sem valor comunicado**, a apresentar
+  presencialmente. ⚠️ A máquina antiga (conserto do Google como isca → WhatsApp organizado)
+  **foi superada**: os prints de 03/09 mostraram Google reivindicado e completo e WhatsApp
+  Business com catálogo. Os eixos que sobraram: **coroa/luto, recompra e assinatura B2B da
+  Graça**. **Não é setor regulado**, valem regras de comércio. Marca real: **roxo + laranja
+  + creme** (da logo). WhatsApp de pedidos **(71) 9118-8740** (corrigido em 03/09/2026, era
+  99118-8740, um "9" presumido a mais).
+- **Washington — "Daablio Dellano" · mentoria de massagem tântrica** (cliente #7,
+  **em prospecção**) — Salvador/BA. Pasta criada em 01/09/2026 em
+  `clientes/washington-daablio/`; chegou pelo sócio do Marcelo, que já fez o dossiê de
+  nicho + Conselho + roteiro da reunião (`dossie-reuniao-2026-09-01.md`). **Reunião de
+  venda hoje (01/09/2026).** Instagram @spamassagezen (~9k seg., canal quente); produto
+  novo desejado: **mentoria vendida por site**. Decisão do Conselho (confiança 62%):
+  seguir como **formação profissional em terapia tântrica**, com a figura do mestre de
+  +27 anos como âncora — **produção travada até a reunião** entregar público escolhido,
+  definição do produto e material real (nome, fotos, credenciais, provas).
+  ⚠️ **Compliance NÃO é conselho profissional** (não é CFO/CFP): a trava é **política de
+  plataforma** (Meta/Google reprovam conteúdo sensual), processador de pagamento e risco
+  de imagem — reposicionar do sensual para o terapêutico é a decisão nº 1. Integridade:
+  nada de número de alunos, mídia ou resultado sem ele confirmar. Faixa da Horus pelo
+  site: topo da âncora da casa (R$2.500).
+
 ## Peças e produtos da própria Hórus
 
 Não são clientes, e por isso não moram em `clientes/`:
@@ -159,9 +245,13 @@ Não são clientes, e por isso não moram em `clientes/`:
 - **Icarus** — agente de IA implantável, produto da Hórus, iniciado em 01/08/2026.
   Mora **fora deste repositório**, em `E:\Users\hagge\Downloads\Icarus`, por decisão
   de segurança: o agente roda shell e se conecta a WhatsApp de terceiros.
-  Estado em 05/08/2026: **pesquisa concluída, nada construído**, sem cliente.
-  Em desenvolvimento pelo Marcelo e pelo Antonio. Não entra na fila de prioridade da
-  agência por conta própria
+  Estado em 30/08/2026: **pesquisa concluída e fundação técnica decidida, nada
+  construído ainda**, sem cliente. Fundação (superou o desenho de 01/08, que punha
+  o Hermes como corpo em produção): **n8n em produção no cliente, Hermes só como
+  oficina de dev**. Plano v1 consolidado em `PLANO-V1.md` na pasta do Icarus
+  (arquitetura Docker + Coolify, WhatsApp em dois trilhos, cérebro Haiku 4.5, preço,
+  primeiro caso/demo = Amparo). Em desenvolvimento pelo Marcelo e pelo Antonio. Não
+  entra na fila de prioridade da agência por conta própria
 
 ## Regras do sistema
 

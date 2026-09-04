@@ -6,22 +6,38 @@
 <title>Hórus Agência | Nós construímos máquinas, sistemas e marcas</title>
 <meta name="description" content="Agência de marketing digital com IA. Sites, desenvolvimento web, automação, CRM, Google Meu Negócio e conteúdo. Engenharia visual, inteligência artificial e nada publicado por acaso.">
 
-<!-- noindex enquanto os dados de contato não existirem.
-     Retirar no dia da publicação, e não antes. -->
+<!-- 01/09/2026 — o site subiu na Netlify (agenciahorus.netlify.app) como
+     PREVIEW FECHADO, decisão do Marcelo. O `noindex` continua de propósito:
+     o portfólio ainda está sem imagem por falta de autorização, não existe
+     página Sobre nem CNPJ, e essas pendências não devem entrar em busca.
+     Para abrir ao Google um dia: apagar a linha `robots` abaixo E trocar o
+     Disallow do `robots.txt` na raiz. As duas coisas, não só uma. -->
 <meta name="robots" content="noindex, nofollow">
 
+<link rel="canonical" href="https://agenciahorus.netlify.app/">
+<meta name="theme-color" content="#0A0B0F">
+
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://agenciahorus.netlify.app/">
 <meta property="og:site_name" content="Hórus Agência">
 <meta property="og:title" content="Hórus Agência | Nós construímos máquinas, sistemas e marcas">
 <meta property="og:description" content="Sites, desenvolvimento web, automação com IA, CRM, Google Meu Negócio e conteúdo. Engenharia visual, inteligência artificial e nada publicado por acaso.">
-<meta property="og:image" content="assets/compartilhar.jpg">
+<!-- og:image PRECISA ser absoluta: o WhatsApp e o Facebook buscam a imagem
+     fora do contexto da página, e caminho relativo simplesmente não resolve. -->
+<meta property="og:image" content="https://agenciahorus.netlify.app/assets/compartilhar.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Hórus Agência — presença digital para negócios ambiciosos">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
+
 <link rel="icon" href="assets/simbolo.webp" type="image/webp">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
@@ -30,376 +46,936 @@
      douradas de pendência continuam no lugar: elas são a regra de integridade,
      não a faixa. Ver _memoria/integridade.md. -->
 
+<!-- Cabeçalho em painel de vidro flutuante, estudado em estrela.studio
+     (referencias/estrela-studio.md). Três mudanças de 25/08/2026:
+
+     1. A barra deixou de ir de ponta a ponta e virou um painel com margem. Sem
+        isso não existe "ao redor" para o aro acender: barra colada nas bordas
+        só tem uma aresta visível.
+     2. Marca e links à esquerda, ação sozinha à direita, com o vão vazio entre
+        eles — a divisão do web3.xmethod.de. O botão colado nos links lia como o
+        quinto link, só que pintado.
+     3. O botão daqui não é mais o metal líquido: é vidro, e acende no hover.
+        O metal continua existindo, e agora só na home (hero e chamada final),
+        que é o que o Marcelo pediu ao querer os dois botões diferentes. -->
+<!-- 25/08→26/08: o botão de contato SAIU de dentro da barra e virou painel de
+     vidro PRÓPRIO, separado por um vão, no formato do web3.xmethod.de. Antes ele
+     morava na mesma barra e lia como o quinto link, só que pintado; agora são
+     dois blocos flutuantes do mesmo material (a divisão em blocos do
+     estrela.studio), e o vão vazio entre eles é o que faz o botão ler como
+     decisão, não como item de menu. -->
+<!-- Cabeçalho refeito em 26/08/2026 (print 1 do Marcelo): faixa de largura total,
+     SEM o painel de vidro flutuante e SEM o símbolo do olho — só o nome. Três zonas:
+     HÓRUS à esquerda, nav centralizada em caixa alta sem fundo, botão BRANCO à
+     direita. Ao rolar para baixo a nav some; título e botão ficam sempre. Volta ao
+     rolar para cima. -->
 <header class="topo" id="topo">
-  <div class="envelope">
+  <div class="topo-linha">
     <a class="marca" href="#topo">
-      <img src="assets/simbolo.webp" width="34" height="28" alt="Hórus Agência">
+      <img class="marca-logo" src="assets/simbolo.webp" alt="" aria-hidden="true" width="30" height="30">
       <span class="nome">HÓRUS</span>
-      <span class="descritiva">AGÊNCIA</span>
     </a>
-    <button class="hamburguer" type="button" id="abre-menu" aria-expanded="false" aria-controls="menu">Menu</button>
     <nav class="menu" id="menu" aria-label="Principal">
-      <a href="#sobre">A Hórus</a>
+      <a href="#sobre">Sobre</a>
       <a href="#servicos">Serviços</a>
-      <a href="#icarus">Icarus</a>
       <a href="#portfolio">Portfólio</a>
-      <!-- Botão de metal líquido, versão miúda. Estrutura em três camadas:
-           tela do shader (o aro vivo), face de vidro escuro por cima, e o
-           rótulo por último. Detalhe em assets/site.css §4. -->
-      <a class="metal metal-mini" href="#contato">
-        <span class="metal-tela" aria-hidden="true"></span>
-        <span class="metal-face" aria-hidden="true"></span>
-        <span class="metal-txt">Começar projeto <span class="seta" aria-hidden="true">&#8599;</span></span>
-      </a>
     </nav>
+    <div class="topo-dir">
+      <button class="hamburguer" type="button" id="abre-menu"
+              aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
+        <span class="hb-caixa" aria-hidden="true"><i></i><i></i></span>
+      </button>
+      <a class="topo-cta btn-roll" href="#contato" id="cta-topo">
+        <span class="roll">
+          <span class="roll-t">Contate-nos <span class="seta" aria-hidden="true">&#8599;</span></span>
+          <span class="roll-t" aria-hidden="true">Contate-nos <span class="seta" aria-hidden="true">&#8599;</span></span>
+        </span>
+      </a>
+    </div>
   </div>
 </header>
 
 <main>
 
-  <!-- ================= HERO ================= -->
+  <!-- ================= HERO + SEÇÃO 1 (fundidas em 31/08/2026) ================= -->
   <!-- Composição centralizada. UM botão só na página inteira: "Começar projeto".
        Título e subtítulo trocados em 05/08/2026 (noite): a versão anterior
        prendia a agência a Salvador e descrevia o método em vez de afirmar o
        que a casa faz. -->
-  <section class="hero">
-    <!-- Fundo animado em WebGL, nas cores da marca. É superfície renderizada,
-         não gradiente radial solto: a diferença entre isto e o `dark-glow`
-         proibido é que aqui existe um objeto desenhando, e a intensidade é
-         baixa de propósito (o título mantém 14:1 sobre o ponto mais claro). -->
-    <canvas class="hero-fundo" aria-hidden="true"></canvas>
+  <section class="hero" id="sobre">
+    <!-- Vídeo de fundo VOLTOU (31/08/2026, pedido do Marcelo): hero e Seção 1
+         fundidos numa seção só, com o vídeo (Higgsfield) sangrando por baixo das
+         duas. Ele vem em tons roxos; aqui é dessaturado e repintado num AZUL
+         ESCURO igual ao da logo (mix-blend-mode: color), sem violeta. -->
+    <!-- 01/09/2026, preparação do deploy: o vídeo saiu do CloudFront do Higgsfield
+         e passou a ser servido do próprio site. Duas razões: URL de CDN de terceiro
+         expira sem aviso (e o hero fica preto acima da dobra), e o arquivo original
+         tinha 27 MB a 22 Mbps. Como o CSS já joga fora cor e detalhe fino
+         (grayscale .94 + blur 1.4px + brightness .8), recomprimir a 1440px/CRF 30
+         é indistinguível a olho: 27 MB → 411 KB no MP4 e 214 KB no WebM.
+         O `poster` cobre o quadro enquanto o vídeo carrega, para o hero nunca
+         abrir num retângulo vazio. Original guardado em site-fontes/. -->
+    <video class="hero-video" autoplay loop muted playsinline preload="auto"
+           poster="assets/video/hero-poster.jpg" aria-hidden="true">
+      <source src="assets/video/hero-1440.webm" type="video/webm">
+      <source src="assets/video/hero-1440.mp4" type="video/mp4">
+    </video>
+    <div class="hero-tint" aria-hidden="true"></div>
 
+    <div class="hero-topo">
+      <div class="envelope">
+        <h1 class="rev">Presença digital para negócios <span class="h1-am">ambiciosos.</span></h1>
+
+        <p class="hero-lead rev">Produzimos soluções com o que há de mais novo em tecnologia e inteligência artificial, unindo design, estratégia e desenvolvimento numa execução só.</p>
+
+        <div class="hero-acao rev">
+          <a class="btn-azul js-glow" href="#contato">
+            <span class="cta-brilho" aria-hidden="true"></span>
+            <span class="cta-lbl">Fale conosco <span class="seta" aria-hidden="true">&#8599;</span></span>
+          </a>
+          <a class="btn-linha btn-roll" href="#servicos">
+            <span class="roll">
+              <span class="roll-t">Nossos serviços</span>
+              <span class="roll-t" aria-hidden="true">Nossos serviços</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Seção 1 (reescrita 31/08/2026, 2ª rodada · proporções do print 1) ==
+         Kicker + headline de duas cores no topo, e um bento de três cards, cada um
+         com ARTE ANIMADA à esquerda e mais texto à direita (proporcional ao print):
+         cubo azul = estratégia, gráfico = tecnologia (card alto, coluna 2), e um
+         card "casa" (órbita) que recebeu o texto do 'A Hórus combina...' com título
+         novo. Sem fundo próprio: herda o vídeo/tint do hero acima. -->
+    <div class="valores">
+      <div class="envelope">
+        <div class="s1-head">
+          <p class="s1-kicker rev">O digital mudou. Sua empresa também deveria mudar.</p>
+          <h2 class="s1-titulo rev">Soluções pensadas para o negócio.<br><span class="s1-am">Construídas para gerar resultados.</span></h2>
+        </div>
+
+        <div class="s1-bento">
+          <!-- Estratégia · cubo azul animado à esquerda -->
+          <article class="s1-card rev">
+            <div class="s1-art s1-art--cubo" aria-hidden="true">
+              <div class="cubo">
+                <span class="cubo-l cubo-l3"></span>
+                <span class="cubo-l cubo-l2"></span>
+                <span class="cubo-l cubo-l1"></span>
+              </div>
+            </div>
+            <div class="s1-txt">
+              <h3>Estratégia antes da execução</h3>
+              <span class="s1-linha" aria-hidden="true"></span>
+              <p>Antes da primeira linha de código, a gente estuda o negócio, o público, os concorrentes e as metas. Cada tela, cada texto e cada botão nasce de uma decisão com propósito, para o que a gente constrói resolver o problema certo e não só parecer bonito.</p>
+            </div>
+          </article>
+
+          <!-- Tecnologia · gráfico animado, card mais alto (coluna 2) -->
+          <article class="s1-card s1-card--alto rev">
+            <div class="s1-art s1-art--grafico" aria-hidden="true">
+              <svg viewBox="0 0 340 260" role="img" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                  <linearGradient id="gLine" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0" stop-color="#dca514"/>
+                    <stop offset="1" stop-color="#F4C430"/>
+                  </linearGradient>
+                  <linearGradient id="gFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#F4C430" stop-opacity=".28"/>
+                    <stop offset="1" stop-color="#F4C430" stop-opacity="0"/>
+                  </linearGradient>
+                  <radialGradient id="gDot">
+                    <stop offset="0" stop-color="#ffe9a8"/>
+                    <stop offset="1" stop-color="#F4C430"/>
+                  </radialGradient>
+                </defs>
+                <rect class="pan pan2" x="34" y="70" width="150" height="96" rx="12"/>
+                <rect class="pan pan1" x="60" y="52" width="150" height="96" rx="12"/>
+                <path class="area" d="M40 196 C90 190 108 150 150 140 C196 129 214 92 300 60 L300 210 L40 210 Z" fill="url(#gFill)"/>
+                <path class="linha" d="M40 196 C90 190 108 150 150 140 C196 129 214 92 300 60" fill="none" stroke="url(#gLine)" stroke-width="3.5" stroke-linecap="round"/>
+                <circle class="dot" cx="300" cy="60" r="7" fill="url(#gDot)"/>
+              </svg>
+            </div>
+            <div class="s1-txt">
+              <h3>Tecnologia que trabalha por você</h3>
+              <span class="s1-linha" aria-hidden="true"></span>
+              <p>Criamos sites, sistemas, automações e experiências digitais com o que há de mais moderno em tecnologia e inteligência artificial. Tudo pensado para reduzir atrito, tirar a tarefa repetitiva do caminho e abrir espaço para a sua empresa crescer sem travar.</p>
+            </div>
+          </article>
+
+          <!-- Casa (órbita animada) · recebeu o texto do "A Hórus combina..." -->
+          <article class="s1-card rev">
+            <div class="s1-art s1-art--orbita" aria-hidden="true">
+              <div class="orb">
+                <span class="orb-ring orb-r1"></span>
+                <span class="orb-ring orb-r2"></span>
+                <span class="orb-core"></span>
+                <span class="orb-spin orb-spin1"><i class="orb-dot orb-d1"></i></span>
+                <span class="orb-spin orb-spin2"><i class="orb-dot orb-d2"></i></span>
+                <span class="orb-spin orb-spin3"><i class="orb-dot orb-d3"></i></span>
+              </div>
+            </div>
+            <div class="s1-txt">
+              <h3>Uma casa, do plano ao ar</h3>
+              <span class="s1-linha" aria-hidden="true"></span>
+              <p>A Hórus combina estratégia, design, tecnologia e inteligência artificial para transformar desafios de negócio em experiências digitais que funcionam e que podem ser acompanhadas, otimizadas e escaladas. Do primeiro plano ao site no ar, é tudo sob o mesmo teto.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= NOSSO STACK · duas fileiras opostas (31/08/2026) ========
+       Prova de competência, NÃO "integrações" (a Hórus não é app). Duas fileiras:
+       a de cima corre da direita para a esquerda, a de baixo ao contrário. Cada
+       logo é o ícone COLORIDO oficial (SVG Logos, gilbarbara/logos, em
+       `assets/stack/`) dentro de uma CAIXA DE VIDRO, com um brilho de cor ao
+       fundo (print n8n). Logos pretos (github/notion/vercel/openai/framer) levam
+       `tile-i--inv` para clarear no tile escuro. Cada fileira é o conjunto
+       DUPLICADO, para o laço ser contínuo. ⚠️ Uso nominativo ("ferramentas que
+       usamos"), sem sugerir parceria oficial. -->
+  <section class="stack" aria-labelledby="stack-tit">
+    <img class="stack-logo" src="assets/simbolo-grande.png" alt="" aria-hidden="true">
+    <div class="stack-head">
+      <p class="stack-eyebrow" id="stack-tit">Nosso stack</p>
+      <p class="stack-sub">As ferramentas com que a gente projeta, desenvolve e coloca no ar.</p>
+    </div>
+
+    <div class="stack-mask">
+        <div class="stack-row stack-row--a">
+          <!-- conjunto 1 (lido por leitor de tela) -->
+          <span class="tile"><img class="tile-i" src="assets/stack/figma.svg" alt="Figma" loading="lazy"></span>
+          <span class="tile"><img class="tile-i tile-i--inv" src="assets/stack/framer.svg" alt="Framer" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/photoshop.svg" alt="Adobe Photoshop" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/webflow.svg" alt="Webflow" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/html.svg" alt="HTML" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/css.svg" alt="CSS" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/javascript.svg" alt="JavaScript" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/typescript.svg" alt="TypeScript" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/react.svg" alt="React" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/nextjs.svg" alt="Next.js" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/tailwind.svg" alt="Tailwind CSS" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/vite.svg" alt="Vite" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/gsap.svg" alt="GSAP" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/astro.svg" alt="Astro" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/node.svg" alt="Node.js" loading="lazy"></span>
+          <!-- conjunto 2 (cópia só para o laço) -->
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/figma.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i tile-i--inv" src="assets/stack/framer.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/photoshop.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/webflow.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/html.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/css.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/javascript.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/typescript.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/react.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/nextjs.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/tailwind.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/vite.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/gsap.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/astro.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/node.svg" alt="" loading="lazy"></span>
+        </div>
+        <div class="stack-row stack-row--b">
+          <!-- conjunto 1 (lido por leitor de tela) -->
+          <span class="tile"><img class="tile-i tile-i--inv" src="assets/stack/vercel.svg" alt="Vercel" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/netlify.svg" alt="Netlify" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/cloudflare.svg" alt="Cloudflare" loading="lazy"></span>
+          <span class="tile"><img class="tile-i tile-i--inv" src="assets/stack/github.svg" alt="GitHub" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/docker.svg" alt="Docker" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/shopify.svg" alt="Shopify" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/wordpress.svg" alt="WordPress" loading="lazy"></span>
+          <span class="tile"><img class="tile-i tile-i--inv" src="assets/stack/notion.svg" alt="Notion" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/supabase.svg" alt="Supabase" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/firebase.svg" alt="Firebase" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/ganalytics.svg" alt="Google Analytics" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/gads.svg" alt="Google Ads" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/meta.svg" alt="Meta" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/whatsapp.svg" alt="WhatsApp" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/slack.svg" alt="Slack" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/discord.svg" alt="Discord" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/gmail.svg" alt="Gmail" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/mailchimp.svg" alt="Mailchimp" loading="lazy"></span>
+          <span class="tile"><img class="tile-i" src="assets/stack/gcal.svg" alt="Google Calendar" loading="lazy"></span>
+          <span class="tile"><img class="tile-i tile-i--inv" src="assets/stack/openai.svg" alt="OpenAI" loading="lazy"></span>
+          <!-- conjunto 2 (cópia só para o laço) -->
+          <span class="tile" aria-hidden="true"><img class="tile-i tile-i--inv" src="assets/stack/vercel.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/netlify.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/cloudflare.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i tile-i--inv" src="assets/stack/github.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/docker.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/shopify.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/wordpress.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i tile-i--inv" src="assets/stack/notion.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/supabase.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/firebase.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/ganalytics.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/gads.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/meta.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/whatsapp.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/slack.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/discord.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/gmail.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/mailchimp.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/gcal.svg" alt="" loading="lazy"></span>
+          <span class="tile" aria-hidden="true"><img class="tile-i tile-i--inv" src="assets/stack/openai.svg" alt="" loading="lazy"></span>
+        </div>
+    </div>
+  </section>
+
+  <!-- ================= SEÇÃO SERVIÇOS · PILHA (28/08/2026) =====================
+       Refeita na identidade n8n (Marcelo, prints 3 e 4). Ao rolar, cada serviço
+       SURGE POR CIMA do anterior: são painéis `position: sticky` de tela cheia que
+       se cobrem (o de baixo fica preso no topo, o de cima sobe e o tampa). Cada um
+       tem número, categoria, título, descrição e uma lista de capacidades, com um
+       mock relacionado ao lado. Alguns painéis são void, outros com um banho de cor
+       (electric/ember, print 4). Sem imagem 3D, sem JS de roleta. -->
+  <section class="svcs" id="servicos">
+    <!-- Cabeçalho da seção em FLUXO NORMAL (Marcelo, 31/08): ele NÃO é sticky —
+         rola para cima e sai do viewport naturalmente. O empilhamento (sticky) é
+         só dos cards abaixo. A linha divisória que ficava acima do título saiu. -->
+    <div class="svcs-intro envelope">
+      <p class="svcs-eyebrow">Nossos serviços</p>
+      <h2 class="svcs-titulo">O que a Hórus instala.</h2>
+      <p class="svcs-sub">Instalamos um bloco por vez, na ordem que o seu negócio precisa. Sem product-dump, sem pacote inchado.</p>
+    </div>
+
+    <div class="svcs-stack">
+
+      <!-- 01 · Sites — mock de dispositivos (print 6): navegador + celular violeta com
+           detalhe amarelo, e o conteúdo ROLANDO em loop (o site "se movimentando"). -->
+      <article class="svc svc--void">
+        <div class="svc-in envelope">
+          <div class="svc-txt">
+            <span class="svc-num">01</span>
+            <p class="svc-cat">Sites e desenvolvimento web</p>
+            <h3 class="svc-h">Sites que explicam a oferta e carregam rápido.</h3>
+            <p class="svc-desc">Sites comerciais claros que dizem o que você faz, abrem rápido no celular e facilitam o contato por telefone ou WhatsApp. E o site é seu.</p>
+            <ul class="svc-caps">
+              <li>Estrutura clara</li><li>CMS editável</li><li>Rápido no celular</li><li>SEO pronto para o Google</li>
+              <li>Contato e WhatsApp</li><li>Formulários que funcionam</li><li>Você é o dono do site</li><li>Suporte opcional</li>
+            </ul>
+          </div>
+          <div class="svc-vis" aria-hidden="true">
+            <div class="mock mock-devices">
+              <div class="dv-laptop">
+                <div class="dv-topbar"><i></i><i></i><i></i><span class="dv-nav"><b></b><b></b><b></b></span></div>
+                <div class="dv-view">
+                  <div class="dv-scroll">
+                    <div class="dv-hero"><span class="dv-badge"></span></div>
+                    <div class="dv-lines"><i></i><i></i></div>
+                    <div class="dv-cards"><span></span><span></span><span></span></div>
+                    <div class="dv-wide"></div>
+                    <div class="dv-hero"><span class="dv-badge"></span></div>
+                    <div class="dv-lines"><i></i><i></i></div>
+                    <div class="dv-cards"><span></span><span></span><span></span></div>
+                    <div class="dv-wide"></div>
+                  </div>
+                  <span class="dv-clickring"></span>
+                  <span class="dv-cursor"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 2.5l15.5 9.2-7 1.2 3.6 6.7-3 1.5-3.6-6.8-5.5 4.4z"/></svg></span>
+                </div>
+              </div>
+              <div class="dv-phone">
+                <div class="dv-notch"></div>
+                <div class="dv-pview">
+                  <div class="dv-pscroll">
+                    <div class="dv-pbadge"></div>
+                    <div class="dv-phero"></div>
+                    <div class="dv-pline"></div><div class="dv-pline dv-short"></div>
+                    <div class="dv-pbtn"></div>
+                    <div class="dv-pbadge"></div>
+                    <div class="dv-phero"></div>
+                    <div class="dv-pline"></div><div class="dv-pline dv-short"></div>
+                    <div class="dv-pbtn"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 02 · Agente (Bot + CRM) — chat de verdade com avatares (pessoa e bot), 3
+           falas + confirmação (print 1), e o CRM ao lado. -->
+      <article class="svc svc--elec">
+        <div class="svc-in envelope">
+          <div class="svc-txt">
+            <span class="svc-num">02</span>
+            <p class="svc-cat">Agente e atendimento 24/7</p>
+            <h3 class="svc-h">Um agente que responde, qualifica e agenda sozinho.</h3>
+            <p class="svc-desc">Atendimento automatizado com IA, integrado a um CRM simples: seus contatos são respondidos na hora, qualificados e agendados, 24 horas por dia, sem você depender do celular.</p>
+            <ul class="svc-caps">
+              <li>Resposta na hora</li><li>Qualifica o lead</li><li>Agenda sozinho</li><li>Integrado ao CRM</li>
+              <li>Histórico organizado</li><li>WhatsApp e site</li><li>Passa pro humano quando precisa</li><li>Você acompanha tudo</li>
+            </ul>
+          </div>
+          <div class="svc-vis" aria-hidden="true">
+            <div class="mock mock-agente">
+              <div class="ag-chat">
+                <div class="ag-row ag-user">
+                  <span class="ag-ava ag-ava-user"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg></span>
+                  <span class="ag-bubble">Olá! Gostaria de agendar uma avaliação.</span>
+                </div>
+                <div class="ag-row ag-bot">
+                  <span class="ag-bubble">Claro! Qual dia e horário funciona melhor para você?</span>
+                  <span class="ag-ava ag-ava-bot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 8V4.5"/><circle cx="12" cy="3.2" r="1.3" fill="currentColor" stroke="none"/><circle cx="9.3" cy="13.5" r="1.15" fill="currentColor" stroke="none"/><circle cx="14.7" cy="13.5" r="1.15" fill="currentColor" stroke="none"/></svg></span>
+                </div>
+                <div class="ag-row ag-user">
+                  <span class="ag-ava ag-ava-user"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg></span>
+                  <span class="ag-bubble">Amanhã às 10:00, pode ser?</span>
+                </div>
+                <div class="ag-confirm"><span class="ag-check">✓</span> Agendamento confirmado · Amanhã · 10:00</div>
+              </div>
+              <div class="ag-crm">
+                <p class="ag-crm-t">CRM</p>
+                <ul>
+                  <li><i class="ag-dot ag-azul"></i>Novos leads <b data-count="12">0</b></li>
+                  <li><i class="ag-dot ag-ambar"></i>Em atendimento <b data-count="8">0</b></li>
+                  <li><i class="ag-dot ag-verde"></i>Agendados <b data-count="20">0</b></li>
+                  <li><i class="ag-dot ag-cinza"></i>Clientes <b data-count="56">0</b></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 03 · Sistemas sob medida — mock estilo print 2 (painel de dados: KPI,
+           barras, progressos, número automatizado, tags). "Criamos sistemas." -->
+      <article class="svc svc--void">
+        <div class="svc-in envelope">
+          <div class="svc-txt">
+            <span class="svc-num">03</span>
+            <p class="svc-cat">Sistemas sob medida</p>
+            <h3 class="svc-h">Criamos o sistema que o seu negócio precisa.</h3>
+            <p class="svc-desc">Sistemas de gestão e plataformas sob medida para centralizar os seus dados e automatizar o trabalho repetitivo. Feitos para o seu processo, não um molde genérico.</p>
+            <ul class="svc-caps">
+              <li>Sistema de agendamento</li><li>Painel de gestão</li><li>Área de cliente (login)</li><li>Automações e integrações</li>
+              <li>Controle de estoque</li><li>Pagamentos</li><li>Relatórios</li><li>Feito para o seu processo</li>
+            </ul>
+          </div>
+          <div class="svc-vis" aria-hidden="true">
+            <!-- 03 · Sistemas = print 7: laptop inclinado (mockup real) com um painel
+                 de gestão na tela + celular inclinado (espelhado) com a visão geral.
+                 A UI é sobreposta na tela via matrix3d medido do próprio PNG, então
+                 as informações ficam na MESMA angulação do device. -->
+            <div class="mock mock--dash dev-scene">
+              <div class="dev-frame dev-frame--lap-ang">
+                <div class="dev-lyr">
+                  <img class="dev-img" src="assets/servicos/dev-laptop-angulo.webp" alt="" loading="lazy" width="1200" height="800">
+                  <div class="dev-screen dev-screen--lap-ang">
+                    <div class="ui-dash">
+                      <aside class="ud-side">
+                        <span class="ud-logo"></span>
+                        <span class="ud-i ud-i--on"></span><span class="ud-i"></span><span class="ud-i"></span><span class="ud-i"></span><span class="ud-i"></span>
+                      </aside>
+                      <div class="ud-main">
+                        <div class="ud-head"><b>Dashboard</b><span class="ud-chip">Este mês</span></div>
+                        <div class="ud-row1">
+                          <div class="ud-card ud-clients">
+                            <span class="pn-label">Clientes ativos</span>
+                            <b class="ud-num" data-count="234" data-prefix="+">+0</b>
+                            <span class="ud-delta">↑ 12% no mês</span>
+                            <ul class="ud-mini"><li>Premium <b data-count="87">0</b></li><li>Básico <b data-count="147">0</b></li></ul>
+                          </div>
+                          <div class="ud-card ud-graf">
+                            <span class="pn-label">Resumo mensal</span>
+                            <svg class="ud-bars" viewBox="0 0 170 76" preserveAspectRatio="none">
+                              <rect x="4"   y="40" width="18" height="36" rx="3"/><rect x="30"  y="22" width="18" height="54" rx="3"/><rect x="56"  y="46" width="18" height="30" rx="3"/>
+                              <rect x="82"  y="14" width="18" height="62" rx="3"/><rect x="108" y="30" width="18" height="46" rx="3"/><rect x="134" y="8"  width="18" height="68" rx="3"/>
+                            </svg>
+                            <div class="ud-months"><span>Jan</span><span>Fev</span><span>Mar</span><span>Abr</span><span>Mai</span><span>Jun</span></div>
+                          </div>
+                        </div>
+                        <div class="ud-prog">
+                          <div class="ud-prow"><span class="pn-label">Pedidos</span><em class="ud-bar" style="--v:88%"></em><b data-count="1243">0</b></div>
+                          <div class="ud-prow"><span class="pn-label">Faturas</span><em class="ud-bar ud-bar--a" style="--v:62%"></em><b data-count="892">0</b></div>
+                        </div>
+                        <div class="ud-bottom">
+                          <div class="ud-auto"><span class="pn-label">Operações/mês</span><b class="ud-big" data-count="39944">0</b><span class="ud-delta">↑ Automatizado</span></div>
+                          <div class="ud-donut">
+                            <span class="ud-ring"></span>
+                            <ul class="ud-leg"><li><i style="--c:#7c8cff"></i>Gestão</li><li><i style="--c:#34d399"></i>Automação</li><li><i style="--c:#f4c430"></i>Integrações</li></ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="dev-frame dev-frame--ph-ang">
+                <div class="dev-lyr">
+                  <img class="dev-img dev-img--flip" src="assets/servicos/dev-phone-angulo.webp" alt="" loading="lazy" width="760" height="1140">
+                  <div class="dev-screen dev-screen--ph-ang">
+                    <div class="ui-mob">
+                      <div class="um-head"><span class="um-burger"><i></i><i></i></span><b>Visão geral</b><span class="um-bell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6Z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span></div>
+                      <div class="um-rev">
+                        <span class="pn-label">Receita mensal</span>
+                        <b class="um-big" data-count="59786" data-prefix="R$ ">R$ 0</b>
+                        <span class="um-delta">↑ 12% vs mês passado</span>
+                        <svg class="um-line" viewBox="0 0 260 70" fill="none" preserveAspectRatio="none">
+                          <defs><linearGradient id="um-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#34d399" stop-opacity=".32"/><stop offset="1" stop-color="#34d399" stop-opacity="0"/></linearGradient></defs>
+                          <path class="um-area" d="M4 54 C40 50 60 40 96 42 C140 44 160 24 200 18 C226 14 244 12 256 9 L256 66 L4 66 Z" fill="url(#um-fill)"/>
+                          <path class="um-stroke" pathLength="100" d="M4 54 C40 50 60 40 96 42 C140 44 160 24 200 18 C226 14 244 12 256 9" stroke="#34d399" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                      </div>
+                      <span class="um-sec">Atividades recentes</span>
+                      <ul class="um-acts">
+                        <li><i class="um-dot um-azul"></i><span class="um-txt"><b>Novo pedido</b><em>#1234</em></span><time>10:24</time></li>
+                        <li><i class="um-dot um-verde"></i><span class="um-txt"><b>Pagamento recebido</b><em>R$ 1.250,00</em></span><time>Ontem</time></li>
+                        <li><i class="um-dot um-ambar"></i><span class="um-txt"><b>Estoque atualizado</b><em>45 itens</em></span><time>Ontem</time></li>
+                      </ul>
+                      <span class="um-btn">Ver relatório completo →</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 04 · Loja virtual — mock estilo print 3 (carrinho + pagamento, linha de
+           vendas subindo, total de vendas). -->
+      <article class="svc svc--ember">
+        <div class="svc-in envelope">
+          <div class="svc-txt">
+            <span class="svc-num">04</span>
+            <p class="svc-cat">Loja virtual</p>
+            <h3 class="svc-h">Da vitrine ao pedido confirmado, sem fricção.</h3>
+            <p class="svc-desc">Uma jornada de compra clara: catálogo organizado, página de produto que vende, checkout simples e o cliente voltando. Do primeiro clique ao pedido confirmado.</p>
+            <ul class="svc-caps">
+              <li>Catálogo organizado</li><li>Página de produto</li><li>Checkout simples</li><li>Pagamento online</li>
+              <li>Frete e entrega</li><li>Cupom e promoção</li><li>Retorno do cliente</li><li>Relatórios de venda</li>
+            </ul>
+          </div>
+          <div class="svc-vis" aria-hidden="true">
+            <!-- 04 · Loja = print 3: laptop reto com a página de produto (o tênis),
+                 celular reto com o "Pedido confirmado", card de Vendas flutuando e o
+                 chip do carrinho. Devices são mockups reais (PNG->WebP transparente). -->
+            <div class="mock mock--shop dev-scene">
+              <span class="shop-dust" aria-hidden="true"></span>
+              <span class="shop-outline shop-outline--a" aria-hidden="true"></span>
+              <span class="shop-outline shop-outline--b" aria-hidden="true"></span>
+              <div class="dev-frame dev-frame--lap-front">
+                <img class="dev-img" src="assets/servicos/dev-laptop-frente.webp" alt="" loading="lazy" width="1200" height="800">
+                <div class="dev-screen dev-screen--lap-front">
+                  <div class="ui-shop">
+                    <div class="us-bar">
+                      <span class="us-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2 11.2a1 1 0 0 0 1 .8h9a1 1 0 0 0 1-.8L20.5 8H6.2"/><circle cx="9" cy="20" r="1.2"/><circle cx="18" cy="20" r="1.2"/></svg></span>
+                      <span class="us-nav"><i></i><i></i><i></i><i></i></span>
+                      <span class="us-cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2 11.2a1 1 0 0 0 1 .8h9a1 1 0 0 0 1-.8L20.5 8H6.2"/><circle cx="9" cy="20" r="1.2"/><circle cx="18" cy="20" r="1.2"/></svg><em>2</em></span>
+                    </div>
+                    <div class="us-body">
+                      <div class="us-prod"><img class="us-shoe" src="assets/servicos/produto-tenis.webp" alt="" loading="lazy"></div>
+                      <div class="us-info">
+                        <span class="us-l us-l1"></span><span class="us-l us-l2"></span>
+                        <span class="us-stars">★★★★<i>★</i></span>
+                        <b class="us-price">R$ 219,90</b>
+                        <div class="us-buyrow"><span class="us-buy">COMPRAR AGORA</span><span class="us-heart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-9.2-8.4C1.3 9 2.4 5.6 5.6 5.1 7.6 4.8 9.2 6 12 8.6 14.8 6 16.4 4.8 18.4 5.1c3.2.5 4.3 3.9 2.8 6.5C19 15.5 12 20 12 20Z"/></svg></span></div>
+                      </div>
+                    </div>
+                    <div class="us-badges">
+                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h11v9H2zM13 9h5l3 3v3h-8z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Frete rápido</span>
+                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.4 3 7.4 7 8.5 4-1.1 7-4.1 7-8.5V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>Pagamento seguro</span>
+                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="2.5" y="13" width="4" height="6" rx="1.5"/><rect x="17.5" y="13" width="4" height="6" rx="1.5"/><path d="M20 19a3 3 0 0 1-3 3h-3"/></svg>Suporte</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dev-frame dev-frame--ph-front">
+                <img class="dev-img" src="assets/servicos/dev-phone-frente.webp" alt="" loading="lazy" width="640" height="1280">
+                <div class="dev-screen dev-screen--ph-front">
+                  <div class="ui-ok">
+                    <span class="uk-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"/></svg></span>
+                    <b class="uk-title">Pedido confirmado!</b>
+                    <p class="uk-sub">Obrigado pela sua compra. Seu pedido #12345 foi recebido com sucesso.</p>
+                    <span class="uk-btn">ACOMPANHAR PEDIDO</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="shop-float shop-sales">
+                <span class="pn-label">Vendas</span>
+                <b class="ss-big" data-count="59786" data-prefix="R$ ">R$ 0</b>
+                <span class="ss-delta">↑ 12% vs mês passado</span>
+                <svg class="ss-spark" viewBox="0 0 120 34" fill="none" preserveAspectRatio="none"><path class="ss-line" pathLength="100" d="M4 28 L24 24 L44 26 L64 17 L84 19 L104 8 L116 5" stroke="#F4C430" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="shop-float shop-cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2 11.2a1 1 0 0 0 1 .8h9a1 1 0 0 0 1-.8L20.5 8H6.2"/><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/></svg></span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 05 · Marketing — dashboard de tráfego, fiel ao print 4. -->
+      <article class="svc svc--void">
+        <div class="svc-in envelope">
+          <div class="svc-txt">
+            <span class="svc-num">05</span>
+            <p class="svc-cat">Marketing e anúncios</p>
+            <h3 class="svc-h">Campanhas com uma mensagem e métricas transparentes.</h3>
+            <p class="svc-desc">Campanhas focadas em lançamentos, ofertas e demanda local, com uma mensagem, uma página de destino e números que você entende.</p>
+            <ul class="svc-caps">
+              <li>Estratégia de campanha</li><li>Páginas de destino</li><li>Google Ads</li><li>Anúncios em redes sociais</li>
+              <li>Direção criativa</li><li>Rastreamento e atribuição</li><li>Roteiro de testes</li><li>Relatórios</li>
+            </ul>
+          </div>
+          <div class="svc-vis" aria-hidden="true">
+            <!-- 05 · Marketing = print 1 (painel de campanhas roxo): investimento +
+                 dropdown, leads/custo com sparkline, e o gráfico grande com eixos. -->
+            <div class="mock mock-camp">
+              <div class="cp-top">
+                <span class="cp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M4 15l4-4 4 3 7-8"/><path d="M15 6h4v4"/></svg></span>
+                <span class="cp-inv"><span class="pn-label">Investimento</span><b data-count="1250" data-dec="2" data-prefix="R$ ">R$ 0</b></span>
+                <span class="cp-drop">Últimos 30 dias<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+              </div>
+              <div class="cp-cells">
+                <div class="cp-cell">
+                  <span class="pn-label">Leads gerados</span>
+                  <span class="cp-cell-l"><b data-count="184">0</b><i class="tf-up">↑ 62%</i></span>
+                  <svg class="cp-spark" viewBox="0 0 90 30" fill="none" preserveAspectRatio="none"><path class="cp-sparkline" pathLength="100" d="M2 24 L14 21 L26 25 L38 16 L50 19 L62 10 L74 13 L88 4" stroke="#8b6bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="cp-cell">
+                  <span class="pn-label">Custo por lead</span>
+                  <span class="cp-cell-l"><b data-count="6.79" data-dec="2" data-prefix="R$ ">R$ 0</b><i class="tf-down">↓ 28%</i></span>
+                  <svg class="cp-spark" viewBox="0 0 90 30" fill="none" preserveAspectRatio="none"><path class="cp-sparkline" pathLength="100" d="M2 8 L14 12 L26 9 L38 15 L50 13 L62 20 L74 18 L88 25" stroke="#8b6bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
+              <div class="cp-panel">
+                <span class="cp-panel-t">Desempenho das campanhas</span>
+                <div class="cp-plot">
+                  <svg class="cp-chart" viewBox="0 0 300 128" fill="none" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="cp-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7c4dff" stop-opacity=".38"/><stop offset="1" stop-color="#7c4dff" stop-opacity="0"/></linearGradient>
+                    </defs>
+                    <line class="cp-grid" x1="0" y1="6"   x2="300" y2="6"/>
+                    <line class="cp-grid" x1="0" y1="36"  x2="300" y2="36"/>
+                    <line class="cp-grid" x1="0" y1="66"  x2="300" y2="66"/>
+                    <line class="cp-grid" x1="0" y1="96"  x2="300" y2="96"/>
+                    <line class="cp-grid" x1="0" y1="120" x2="300" y2="120"/>
+                    <path class="cp-area" d="M4 108 C46 104 66 92 104 90 C150 88 168 60 210 48 C244 38 268 24 296 18 L296 124 L4 124 Z" fill="url(#cp-fill)"/>
+                    <path class="cp-line" pathLength="100" d="M4 108 C46 104 66 92 104 90 C150 88 168 60 210 48 C244 38 268 24 296 18" stroke="#8b6bff" stroke-width="3" stroke-linecap="round"/>
+                    <circle class="cp-dot" cx="296" cy="18" r="4.5" fill="#b9a3ff"/>
+                  </svg>
+                  <span class="cp-yaxis"><span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span></span>
+                  <span class="cp-pill">+62%</span>
+                </div>
+                <div class="cp-xaxis"><span>05 mai</span><span>12 mai</span><span>19 mai</span><span>26 mai</span><span>02 jun</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 06 · Visibilidade local — mock fiel ao print 5 (Desempenho Local: mapa,
+           stats, avaliação, e a fileira de ações do Google). -->
+      <article class="svc svc--elec">
+        <div class="svc-in envelope">
+          <div class="svc-txt">
+            <span class="svc-num">06</span>
+            <p class="svc-cat">Visibilidade local</p>
+            <h3 class="svc-h">Apareça quando procuram o seu serviço.</h3>
+            <p class="svc-desc">Otimização do Google e do Google Meu Negócio, mais páginas de reserva, para você ser encontrado por quem já está procurando na sua região.</p>
+            <ul class="svc-caps">
+              <li>Google Meu Negócio</li><li>SEO local</li><li>Otimização do perfil</li><li>Categoria e horário</li>
+              <li>Fotos e avaliações</li><li>Páginas de reserva</li><li>Mapa e rotas</li><li>Presença local</li>
+            </ul>
+          </div>
+          <div class="svc-vis" aria-hidden="true">
+            <div class="mock mock-local">
+              <div class="lc-head"><span class="lc-h-t"><i class="lc-hi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l4-4 3 3 5-6"/><path d="M16 8h4v4"/></svg></i>Desempenho local</span><span class="lc-drop">30 dias</span></div>
+              <div class="lc-body">
+                <div class="lc-map">
+                  <svg class="lc-mapsvg" viewBox="0 0 300 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="lc-route-g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#4aa3ff"/><stop offset="1" stop-color="#6b3df0"/></linearGradient>
+                    </defs>
+                    <g class="lc-min"><path class="lc-st" d="M-115 -10 Q-15 170 91 350"/><path class="lc-st" d="M-66 -10 Q39 170 139 350"/><path class="lc-st" d="M20 -10 Q129 170 225 350"/><path class="lc-st" d="M74 -10 Q164 170 246 350"/><path class="lc-st" d="M169 -10 Q242 170 344 350"/><path class="lc-st" d="M203 -10 Q299 170 386 350"/><path class="lc-st" d="M-10 71 Q150 -5 310 -67"/><path class="lc-st" d="M-10 116 Q150 49 310 -26"/><path class="lc-st" d="M-10 210 Q150 136 310 59"/><path class="lc-st" d="M-10 250 Q150 185 310 97"/></g>
+                    <g class="lc-maj"><path class="lc-st" d="M-13 -10 Q58 170 139 350"/><path class="lc-st" d="M112 -10 Q220 170 316 350"/><path class="lc-st" d="M260 -10 Q365 170 466 350"/><path class="lc-st" d="M-10 165 Q150 82 310 -0"/><path class="lc-st" d="M-10 307 Q150 221 310 139"/></g>
+                    <path class="lc-routeline" pathLength="100" d="M40 300 C74 266 106 244 128 214 C144 194 150 194 150 186" stroke="url(#lc-route-g)" fill="none"/>
+                    <circle class="lc-routestart" cx="40" cy="300" r="6"/>
+                  </svg>
+                  <span class="lc-target"></span>
+                  <span class="lc-pinglow"></span>
+                  <span class="lc-pin"></span>
+                  <span class="lc-poi lc-poi--a"></span>
+                  <span class="lc-poi lc-poi--b"></span>
+                </div>
+                <div class="lc-side">
+                  <div class="lc-stat"><span class="pn-label">Visualizações totais</span><span class="lc-stat-l"><b data-count="48.2" data-dec="1" data-suffix=" mil">0</b><i class="tf-up">↑62%</i></span></div>
+                  <div class="lc-stat"><span class="pn-label">Ações no Google</span><span class="lc-stat-l"><b data-count="1.3" data-dec="1" data-suffix=" mil">0</b><i class="tf-up">↑40%</i></span></div>
+                  <div class="lc-stat"><span class="pn-label">Avaliação média</span><span class="lc-stat-l"><span class="lc-stars"><i></i><i></i><i></i><i></i><i></i></span><b>4,9</b></span></div>
+                </div>
+              </div>
+              <!-- Rodapé refeito (Marcelo): saem as tags que repetiam o que já está
+                   na coluna (Visualizações) ou eram vagas (Como chegar); entram ações
+                   reais do perfil, cada uma com o ícone certo. -->
+              <div class="lc-foot">
+                <div class="lc-fc"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M5 3l6 18 2.3-7.4L21 11 5 3Z"/></svg></i><b data-count="3.2" data-dec="1" data-suffix=" mil">0</b><span>Cliques no site</span></div>
+                <div class="lc-fc"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M6 3h3l1.5 5-2 1.5a11 11 0 0 0 5 5l1.5-2 5 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4 5a2 2 0 0 1 2-2Z"/></svg></i><b data-count="1.1" data-dec="1" data-suffix=" mil">0</b><span>Ligações</span></div>
+                <div class="lc-fc"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2.4-7.6L3 11Z"/></svg></i><b data-count="820">0</b><span>Rotas traçadas</span></div>
+                <div class="lc-fc"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4V5Z"/></svg></i><b data-count="96">0</b><span>Mensagens</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Seção "Por que a Hórus · matriz" REMOVIDA em 28/08/2026 a pedido do Marcelo.
+       Continua no histórico do git. -->
+
+  <!-- ================= PROMESSAS DE QUALIDADE ================= -->
+  <!-- Seção nova (26/08/2026), no formato do "Unsere fünf Qualitätsversprechen"
+       do amphora-it.com: um cabeçalho e cinco promessas em fileira. Colocada
+       entre Serviços e Icarus, que é onde a reafirmação de padrão cai bem: logo
+       depois de dizer O QUE faz, dizer COMO garante.
+       ⚠️ As cinco são diferenciais REAIS da casa (integridade, revisão humana,
+       conferência medida, posse do cliente, compliance do conselho). Nenhuma é
+       promessa de resultado — o que a régua proíbe —, são promessas de método. -->
+  <!-- 5 padrões em FILEIRA de cards (28/08, print do Marcelo): glass granulado,
+       ícone shimmer (ember↔electric, o efeito do CTA) no topo, hover que levanta.
+       Sem cores únicas por card, compacto para caber na tela. O orbital saiu. -->
+  <section class="qualidade">
     <div class="envelope">
-      <!-- A última palavra troca LETRA POR LETRA, decodificando até virar a
-           próxima. As quatro são o que a Hórus de fato constrói, e nenhuma
-           promete resultado, o que a régua de integridade exige.
-           O fantasma invisível ao lado segura a largura da caixa na palavra
-           mais longa: sem ele o título reflui a cada troca. -->
-      <h1 class="rev">Nós construímos
-        <span class="gira" data-gira data-palavras="MÁQUINAS,SISTEMAS,MARCAS,PRESENÇA"><span class="gira-fantasma" aria-hidden="true">MÁQUINAS</span><span class="gira-txt">MÁQUINAS</span></span>
-      </h1>
-
-      <p class="hero-lead rev">Engenharia visual. Inteligência artificial. Nada publicado por acaso.</p>
-      <div class="hero-acao rev">
-        <a class="metal" href="#contato">
-          <span class="metal-tela" aria-hidden="true"></span>
-          <span class="metal-face" aria-hidden="true"></span>
-          <span class="metal-txt">Começar projeto <span class="seta" aria-hidden="true">&#8599;</span></span>
-        </a>
+      <div class="qp-topo">
+        <p class="qp-eyebrow">Nosso compromisso</p>
+        <h2 class="qp-titulo">Nossos <span class="qp-em">cinco</span> compromissos</h2>
+        <p class="qp-sub">Só ficamos satisfeitos quando você está.</p>
       </div>
-    </div>
 
-  </section>
-
-  <!-- ================= FAIXA DE PALAVRAS ================= -->
-  <!-- O UM marquee da página. Sem fundo e sem fio: o símbolo da marca é a
-       superfície, e as palavras são só contorno, então dá para ver o olho
-       através das letras.
-       ⚠️ O símbolo ampliado ao fundo foi pedido pelo Marcelo em 05/08/2026 e
-       contraria uma regra escrita em identidade/design-guide.md. Ver PLANO.md. -->
-  <section class="faixa-palavras">
-    <!-- Arquivo próprio, de 420px. O `simbolo.webp` do cabeçalho tem 96px de
-         largura: esticado para 340 aqui, borrava. -->
-    <img class="fp-simbolo" src="assets/simbolo-grande.webp" width="420" height="348" alt="" aria-hidden="true" decoding="async">
-    <div class="fp-trilho" aria-hidden="true">
-      <span>Inovação<i></i>Impacto<i></i>Inspiração<i></i></span>
-      <span>Inovação<i></i>Impacto<i></i>Inspiração<i></i></span>
-    </div>
-  </section>
-
-  <!-- ================= SEÇÃO 1 · A HÓRUS ================= -->
-  <!-- Entrada no formato do shape-landing-hero: formas giradas e desfocadas
-       flutuando ao fundo, e o título caindo palavra por palavra quando a seção
-       entra. As formas são objetos com borda e gradiente próprios, não mancha
-       de luz solta, e a paleta é a da marca, não o indigo/rosa/violeta do
-       componente original. -->
-  <section class="sobre" id="sobre">
-    <div class="formas" aria-hidden="true">
-      <span class="forma f1"></span>
-      <span class="forma f2"></span>
-      <span class="forma f3"></span>
-      <span class="forma f4"></span>
-      <span class="forma f5"></span>
-    </div>
-
-    <div class="envelope">
-      <h2 class="titulao" data-cai>Cada peça que entra no ar continua funcionando depois que a gente sai.</h2>
-      <p class="sobre-texto rev">A Hórus cresceu por repetição. Cada site, cada perfil e cada campanha que entrou no ar virou regra escrita, e as regras viraram um sistema que hoje roda a agência inteira: a IA produz em escala, e gente responde pelo que vai ao ar. Atendemos de clínica que presta contas a conselho profissional a negócio que vende no próprio bairro, e a régua é a mesma nos dois. Nada aparece numa página nossa sem ter saído de um documento seu.</p>
+      <div class="qp-fila">
+        <article class="qp-card">
+          <span class="qp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <h3>Conformidade legal</h3>
+          <p>Aviso legal, privacidade e cookies já entram prontos. Seu site nasce dentro da lei.</p>
+        </article>
+        <article class="qp-card">
+          <span class="qp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 4.6L18 9l-4.3 1.4L12 15l-1.7-4.6L6 9l4.3-1.4L12 3Z"/><path d="M19 14l.9 2.3L22 17l-2.1.7L19 20l-.9-2.3L16 17l2.1-.7L19 14Z"/></svg></span>
+          <h3>Revisão até aprovar</h3>
+          <p>A gente refina o design até você aprovar. Rodada de revisão faz parte, sem custo extra.</p>
+        </article>
+        <article class="qp-card">
+          <span class="qp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0l-7-7A2 2 0 0 1 3 12.2V4a1 1 0 0 1 1-1h8.2a2 2 0 0 1 1.4.6l7 7a2 2 0 0 1 0 2.8Z"/><circle cx="7.5" cy="7.5" r="1.4"/></svg></span>
+          <h3>Preço fechado antes</h3>
+          <p>O valor é combinado antes da primeira linha. Sem surpresa na fatura.</p>
+        </article>
+        <article class="qp-card">
+          <span class="qp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span>
+          <h3>Você aprova o resultado</h3>
+          <p>Só vai ao ar quando você estiver satisfeito. O risco fica com a gente, não com você.</p>
+        </article>
+        <article class="qp-card">
+          <span class="qp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <h3>Esboço antes do pedido</h3>
+          <p>Você vê a proposta antes de decidir. Primeiro convence, depois contrata.</p>
+        </article>
+      </div>
     </div>
   </section>
 
-  <!-- ================= SEÇÃO 2 · SERVIÇOS ================= -->
-  <!-- Um painel por serviço, cada um ocupando a tela, no formato do print que
-       o Marcelo mandou: número grande e rótulo à esquerda, título e texto no
-       meio, ficha técnica à direita. Seis painéis, e a ficha é o que impede o
-       formato de virar seis slides iguais.
-       ⚠️ Nenhuma linha da ficha inventa número, prazo ou cliente: todas
-       descrevem a entrega, que é o que a régua de integridade permite. -->
-  <section id="servicos">
-    <div class="sv-topo envelope">
-      <p class="rotulo rev">Serviços</p>
-      <h2 class="rev">Seis frentes, e a ordem em que elas entram <span class="azul">é o produto</span>.</h2>
-    </div>
-
-    <article class="sv">
-      <div class="sv-grade envelope">
-        <div class="sv-esq">
-          <span class="sv-num">01</span>
-          <p class="sv-rot">Inteligência artificial<br>Automação de operação</p>
-        </div>
-        <div class="sv-meio">
-          <h3>IA e automação de operação</h3>
-          <p class="sv-txt">Automação com IA para tirar do seu dia o trabalho que se repete: responder o que já tem resposta, triar mensagem que chega, preparar conteúdo e montar relatório. A máquina produz em escala, e nada clínico ou sensível vai ao ar sem alguém assinar embaixo.</p>
-          <a class="sv-btn" href="#contato">Começar projeto <span class="seta" aria-hidden="true">&#8594;</span></a>
-        </div>
-        <dl class="sv-ficha">
-          <div><dt>Entrega</dt><dd>Atendimento automático · Conteúdo · Relatório</dd></div>
-          <div><dt>Produção</dt><dd>IA sob roteiro escrito, não improviso</dd></div>
-          <div><dt>Revisão</dt><dd>Humana, antes de qualquer publicação</dd></div>
-          <div><dt>Regulado</dt><dd>Responsável técnico aprova o que sai</dd></div>
-        </dl>
-      </div>
-    </article>
-
-    <article class="sv">
-      <div class="sv-grade envelope">
-        <div class="sv-esq">
-          <span class="sv-num">02</span>
-          <p class="sv-rot">Site institucional<br>Landing page</p>
-        </div>
-        <div class="sv-meio">
-          <h3>Sites e WordPress</h3>
-          <p class="sv-txt">Site institucional e landing page escritos do zero, ou em cima do WordPress que você já paga. Abre rápido no celular, diz o que você faz para quem chegou sem te conhecer, e mora num endereço que é seu.</p>
-          <a class="sv-btn" href="#contato">Começar projeto <span class="seta" aria-hidden="true">&#8594;</span></a>
-        </div>
-        <dl class="sv-ficha">
-          <div><dt>Entrega</dt><dd>Site institucional · Landing page</dd></div>
-          <div><dt>Base</dt><dd>HTML e CSS nativos, ou o WordPress que existe</dd></div>
-          <div><dt>Domínio</dt><dd>Registrado no seu nome, hospedagem na sua conta</dd></div>
-          <div><dt>Conferência</dt><dd>Contraste medido · Celular · Peso de página</dd></div>
-        </dl>
-      </div>
-    </article>
-
-    <article class="sv">
-      <div class="sv-grade envelope">
-        <div class="sv-esq">
-          <span class="sv-num">03</span>
-          <p class="sv-rot">Sistema sob medida<br>Integração</p>
-        </div>
-        <div class="sv-meio">
-          <h3>Desenvolvimento web</h3>
-          <p class="sv-txt">Quando a página não resolve sozinha: área de cliente, painel que puxa dado de onde ele já está, formulário que vai parar em algum lugar de verdade, e integração entre as ferramentas que você usa e que hoje não se falam.</p>
-          <a class="sv-btn" href="#contato">Começar projeto <span class="seta" aria-hidden="true">&#8594;</span></a>
-        </div>
-        <dl class="sv-ficha">
-          <div><dt>Entrega</dt><dd>Área de cliente · Painel · Integração</dd></div>
-          <div><dt>Dado</dt><dd>Puxado de onde já mora, sem digitar duas vezes</dd></div>
-          <div><dt>Formulário</dt><dd>Com destino real. Sem servidor, a gente avisa</dd></div>
-          <div><dt>Entrega final</dt><dd>Código e acesso ficam com você</dd></div>
-        </dl>
-      </div>
-    </article>
-
-    <article class="sv">
-      <div class="sv-grade envelope">
-        <div class="sv-esq">
-          <span class="sv-num">04</span>
-          <p class="sv-rot">Busca local<br>Mapa e avaliação</p>
-        </div>
-        <div class="sv-meio">
-          <h3>Google Meu Negócio</h3>
-          <p class="sv-txt">O perfil que decide se você aparece quando alguém procura o seu serviço no seu bairro. Verificação, categoria certa, foto, horário que confere, e resposta de avaliação escrita como gente escreve.</p>
-          <a class="sv-btn" href="#contato">Começar projeto <span class="seta" aria-hidden="true">&#8594;</span></a>
-        </div>
-        <dl class="sv-ficha">
-          <div><dt>Entrega</dt><dd>Perfil verificado · Categoria · Foto · Horário</dd></div>
-          <div><dt>Alcance</dt><dd>Busca e mapa de quem procura por perto</dd></div>
-          <div><dt>Manutenção</dt><dd>Resposta de avaliação, uma a uma</dd></div>
-          <div><dt>Condição</dt><dd>Endereço verificável na cidade do perfil</dd></div>
-        </dl>
-      </div>
-    </article>
-
-    <article class="sv">
-      <div class="sv-grade envelope">
-        <div class="sv-esq">
-          <span class="sv-num">05</span>
-          <p class="sv-rot">Captura e registro<br>Atendimento</p>
-        </div>
-        <div class="sv-meio">
-          <h3>CRM e atendimento</h3>
-          <p class="sv-txt">O lugar onde o contato para de se perder. Quem chegou, por onde entrou, o que pediu e em que pé está, num painel só, com o atendimento respondendo o básico fora do horário em vez de deixar a mensagem esfriar até segunda.</p>
-          <a class="sv-btn" href="#contato">Começar projeto <span class="seta" aria-hidden="true">&#8594;</span></a>
-        </div>
-        <dl class="sv-ficha">
-          <div><dt>Entrega</dt><dd>Painel de contato · Atendimento fora do horário</dd></div>
-          <div><dt>Registro</dt><dd>Quem chegou · Por onde · Em que pé está</dd></div>
-          <div><dt>Limite</dt><dd>Nada clínico é respondido pela máquina</dd></div>
-          <div><dt>Base</dt><dd>Fica na sua conta, exportável quando quiser</dd></div>
-        </dl>
-      </div>
-    </article>
-
-    <article class="sv">
-      <div class="sv-grade envelope">
-        <div class="sv-esq">
-          <span class="sv-num">06</span>
-          <p class="sv-rot">Conteúdo contínuo<br>Redes sociais</p>
-        </div>
-        <div class="sv-meio">
-          <h3>Carrossel, post e posicionamento</h3>
-          <p class="sv-txt">Conteúdo saindo em ritmo sem depender de você lembrar de postar entre dois atendimentos. Carrossel, post e texto de blog alimentando o perfil e o site ao mesmo tempo, na linguagem que o seu conselho permite.</p>
-          <a class="sv-btn" href="#contato">Começar projeto <span class="seta" aria-hidden="true">&#8594;</span></a>
-        </div>
-        <dl class="sv-ficha">
-          <div><dt>Entrega</dt><dd>Carrossel · Post · Texto de blog</dd></div>
-          <div><dt>Ritmo</dt><dd>Calendário fechado antes do mês começar</dd></div>
-          <div><dt>Aprovação</dt><dd>Você vê tudo antes de ir ao ar</dd></div>
-          <div><dt>Limite</dt><dd>Sem promessa, sem superlativo, sem antes e depois</dd></div>
-        </dl>
-      </div>
-    </article>
-  </section>
-
-  <!-- ================= ICARUS ================= -->
-  <!-- ⚠️ INTEGRIDADE: o Icarus está em pesquisa, sem uma linha de código e sem
-       cliente instalado (README do projeto, 05/08/2026). A seção diz isso na
-       cara, e não promete resultado, prazo nem cliente. -->
+  <!-- ================= ICARUS (ENGAVETADO 26/08/2026, pedido do Marcelo) =======
+       Seção retirada do fluxo. Fica aqui, recuperável, para quando o Icarus tiver
+       algo construído. Também saiu do menu.
   <section class="icarus" id="icarus">
     <div class="envelope">
       <p class="ic-linha">Produto próprio / Agente de IA implantável</p>
       <h2 class="ic-nome">ICARUS</h2>
-      <p class="ic-texto">Um agente de IA que a Hórus está construindo para rodar <b>dentro</b> da empresa do cliente, na máquina dela ou num servidor dela, e não numa aba de navegador de terceiro. A ideia é entregar para a máquina o processo que se repete todo dia: responder o que já tem resposta, organizar o que chega e preparar o que alguém só precisa aprovar. <b>Em desenvolvimento por Marcelo e Antonio</b>, ainda sem instalação em cliente.</p>
+      <p class="ic-texto">Um agente de IA que a Hórus está construindo para rodar dentro da empresa do cliente, na máquina dela ou num servidor dela, e não numa aba de navegador de terceiro. Em desenvolvimento por Marcelo e Antonio, ainda sem instalação em cliente.</p>
     </div>
   </section>
+  ================================================================================ -->
 
   <!-- ================= PORTFÓLIO ================= -->
-  <!-- A seção é um TRILHO alto: `.pf-pin` prende no alto da tela e a tira corre
-       da direita para a esquerda enquanto a pessoa rola, por animação de rolagem
-       nativa do CSS. Sem listener de scroll, que é regra da casa. Formato
-       estudado em web3.xmethod.de: ela fica parada nos primeiros 30% do trilho,
-       anda no miolo de 40% e para de novo nos últimos 30%. A espera da entrada
-       é de propósito, e é o que a maioria dos clones corta.
-       Onde o navegador não tem linha do tempo de rolagem, o mesmo desenho entra
-       por JS; sem JS, a tira vira um carrossel que se arrasta com o dedo.
-       ⚠️ PENDÊNCIA QUE TRAVA PUBLICAÇÃO: nenhum cliente autorizou uso do nome
-       nem da tela como portfólio. Enquanto isso não vier por escrito, cada
-       moldura mostra o segmento e a entrega, sem nome, sem logo e sem print. -->
+  <!-- Refeito em 26/08/2026 no formato do trionn.com (Selected Work): título
+       PRESO à esquerda e os trabalhos numa FILEIRA à direita que corre na
+       horizontal só quando a seção está alinhada (presa no alto). Três cards, na
+       proporção do print (3:2, paisagem). Saiu a tag "Portfólio".
+       Ao passar o terceiro card, a seção é puxada como CORTINA para a esquerda,
+       revelando a seção seguinte (os 4 passos) — o mesmo gesto do fim da seção
+       do trionn. A cortina e a corrida horizontal são montadas pelo GSAP.
+       ⚠️ PENDÊNCIA: nenhum cliente autorizou nome nem tela. Os visuais são
+       arte ABSTRATA da marca (não são print de cliente), e o texto diz só o
+       segmento e a entrega — sem nome, sem logo, sem captura de tela. -->
   <section class="portfolio" id="portfolio">
    <div class="pf-pin">
-    <div class="envelope">
-      <p class="rotulo rev">Portfólio</p>
-      <h2 class="rev">O que já foi ao ar.</h2>
-    </div>
+    <div class="pf-grid envelope">
+      <div class="pf-lado">
+        <h2 class="pf-h2">Trabalhos em <span class="ouro">destaque</span></h2>
+      </div>
 
-    <div class="pf-pista">
-      <div class="pf-tira">
-        <article class="pf-item">
-          <div class="pf-tela"><span class="pend">tela a entrar quando o cliente autorizar</span></div>
-          <h3>Site institucional, dez páginas</h3>
-          <p>Psicologia clínica, Salvador. Uma página por serviço, registro profissional de cada pessoa visível, e nenhum depoimento, que o conselho da categoria veda em qualquer formato.</p>
-        </article>
-        <article class="pf-item">
-          <div class="pf-tela"><span class="pend">tela a entrar quando o cliente autorizar</span></div>
-          <h3>Google Meu Negócio e site</h3>
-          <p>Torrefação artesanal, interior da Bahia. Perfil verificado no ar e um site que fala com revendedor, com a origem do produto reescrita a partir do que o cliente de fato faz.</p>
-        </article>
-        <article class="pf-item">
-          <div class="pf-tela"><span class="pend">tela a entrar quando o cliente autorizar</span></div>
-          <h3>Site institucional</h3>
-          <p>Odontologia, Salvador. Construído dentro da resolução do conselho: sem antes e depois, sem promessa de resultado, com registro e responsável técnico visíveis em toda página.</p>
-        </article>
-        <article class="pf-item">
-          <div class="pf-tela"><span class="pend">tela a entrar quando o cliente autorizar</span></div>
-          <h3>Presença local do zero</h3>
-          <p>Estúdio de atividade física, Salvador. Negócio sem site e sem perfil ativo. O primeiro bloco foi aparecer na busca de quem procura aquele serviço no próprio bairro.</p>
-        </article>
+      <div class="pf-pista">
+        <div class="pf-tira">
+          <article class="pf-item">
+            <div class="pf-tela"><img src="assets/portfolio/pf-1.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="pf-legenda">
+              <h3>Site institucional, dez páginas</h3>
+              <p>Psicologia clínica, Salvador. Uma página por serviço, registro profissional visível e nenhum depoimento, que o conselho da categoria veda.</p>
+            </div>
+          </article>
+          <article class="pf-item">
+            <div class="pf-tela"><img src="assets/portfolio/pf-2.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="pf-legenda">
+              <h3>Google Meu Negócio e site</h3>
+              <p>Torrefação artesanal, interior da Bahia. Perfil verificado no ar e um site que fala com revendedor, com a origem reescrita a partir do que o cliente faz.</p>
+            </div>
+          </article>
+          <article class="pf-item">
+            <div class="pf-tela"><img src="assets/portfolio/pf-3.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="pf-legenda">
+              <h3>Site institucional</h3>
+              <p>Odontologia, Salvador. Dentro da resolução do conselho: sem antes e depois, sem promessa, com registro e responsável técnico visíveis em toda página.</p>
+            </div>
+          </article>
+        </div>
       </div>
     </div>
    </div>
   </section>
 
-  <!-- ================= CHAMADA FINAL ================= -->
-  <!-- Alinhada à esquerda e em escala de cartaz, no formato das referências que
-       o Marcelo mandou. A pergunta é a da Máquina: quem lê já passou pelo
-       trilho e sabe que os blocos existem em ordem.
-       O painel `.ch-cartao` veio de akis.studio: o convite mora dentro de uma
-       caixa de vidro com recuo assimétrico, em vez de ficar solto no fim da
-       página. Sem fio nenhum entre ela e o rodapé: o que separa é a caixa
-       acabar. -->
-  <section class="chamada" id="contato">
-    <div class="envelope">
-     <div class="ch-cartao">
-      <p class="rotulo rev">Inicie uma conversa</p>
-      <h2 class="rev">Qual bloco do seu negócio <span class="azul">ainda não existe</span>?</h2>
-      <p class="abertura rev">Chame no WhatsApp e diga em duas linhas o que o seu negócio faz. A gente devolve por escrito o que dá para construir, em que ordem e por quê. Não precisa preparar nada, e a primeira conversa não custa.</p>
-      <div class="hero-acao rev">
-        <a class="metal" href="#contato">
-          <span class="metal-tela" aria-hidden="true"></span>
-          <span class="metal-face" aria-hidden="true"></span>
-          <span class="metal-txt">Começar projeto <span class="seta" aria-hidden="true">&#8599;</span></span>
-        </a>
-      </div>
+  <!-- ================= COMO COMEÇA · 4 PASSOS ================= -->
+  <!-- Seção nova (26/08/2026), no formato do "So einfach geht's, in 4 Schritten"
+       do amphora-it.com: quatro passos numerados, ligados por um fio, do
+       primeiro contato ao ar. Colocada depois do portfólio (pedido do Marcelo);
+       é a seção que a CORTINA do portfólio revela.
+       Os passos descrevem o processo real da casa (o passe duplo, a conferência
+       medida, a posse do cliente) — sem prazo prometido, que a régua proíbe. -->
+  <section class="passos" id="passos">
+    <!-- Degradê em movimento, bem visível (Marcelo, 01/09): aurora azul/violeta/amarelo
+         que desliza e respira ao fundo da seção. Atrás do conteúdo (z-index 0). -->
+    <div class="ps-aurora" aria-hidden="true"></div>
+    <div class="ps-topo envelope">
+      <p class="ps-eyebrow">Como começa</p>
+      <h2 class="ps-titulo">É muito fácil, <span class="ps-em">em quatro passos</span>.</h2>
+      <p class="ps-sub">É assim que a ideia vira site, sistema ou presença no ar.</p>
+    </div>
 
-      <!-- Não existe formulário nesta página, de propósito. Formulário sem
-           servidor engole a mensagem e quem escreveu acha que foi ignorado.
-           Ver _memoria/design/50-copy-de-interface.md. -->
-      <ul class="canais rev">
-        <li><span class="canal-nome">WhatsApp</span><span class="canal-valor pend">a preencher</span></li>
-        <li><span class="canal-nome">E-mail</span><span class="canal-valor pend">a preencher</span></li>
-        <li><span class="canal-nome">Instagram</span><span class="canal-valor pend">@horuspublicidade, a confirmar</span></li>
-        <li><span class="canal-nome">Atendimento</span><span class="canal-valor">Salvador e interior da Bahia, presencial e a distância</span></li>
-      </ul>
-     </div>
+    <!-- Linha do tempo horizontal (print 5): quatro passos numerados, ligados por um
+         fio electric. Saiu o zigue-zague e a linha degradê arco-íris. -->
+    <div class="ps-tl envelope">
+      <span class="ps-fio" aria-hidden="true"></span>
+      <div class="ps-etapa">
+        <span class="ps-n">01</span>
+        <h3>Consulta inicial <span class="ps-em">gratuita</span></h3>
+        <p>A gente conversa sobre os seus objetivos, por e-mail, telefone ou WhatsApp. Sem compromisso.</p>
+      </div>
+      <div class="ps-etapa">
+        <span class="ps-n">02</span>
+        <h3><span class="ps-em">Esboço</span> antes do sim</h3>
+        <p>Você vê uma proposta do seu projeto antes de decidir. Primeiro convence, depois contrata.</p>
+      </div>
+      <div class="ps-etapa">
+        <span class="ps-n">03</span>
+        <h3>A gente <span class="ps-em">desenvolve</span></h3>
+        <p>Com o projeto aprovado, começa a construção, e você acompanha o andamento de perto.</p>
+      </div>
+      <div class="ps-etapa">
+        <span class="ps-n">04</span>
+        <h3><span class="ps-em">Lançamento</span> e posse</h3>
+        <p>Vai ao ar quando você aprovar, e fica seu: o endereço, as contas e os acessos são seus.</p>
+      </div>
+    </div>
+
+    <div class="ps-cta">
+      <a class="cta-ember" href="#contato">
+        <span class="cta-txt">Começar projeto <span class="seta" aria-hidden="true">&#8599;</span></span>
+      </a>
     </div>
   </section>
 
-</main>
+  <!-- ================= CHAMADA FINAL ================= -->
+  <!-- Refeita em 26/08/2026 a pedido do Marcelo: SAIU o cartão de vidro. Agora a
+       seção cobre a tela inteira, com o MESMO fundo animado da home (as fitas
+       azul e dourada), título centralizado sem cor de acento e sem brilho solto.
+       O botão de metal acelera o aro no hover e troca a cor da face; a luz solta
+       que ele jogava atrás no hover saiu (era `dark-glow` disfarçado).
+       Não existe formulário, de propósito: sem servidor, ele engoliria a
+       mensagem. Ver _memoria/design/50-copy-de-interface.md. -->
+  </main>
 
-<!-- Rodapé em colunas, no formato do print da Menzzo: marca e dado legal à
-     esquerda, depois navegação, serviços e contato.
-     A quarta coluna do print ("Ferramentas") não existe aqui: a Hórus não tem
-     ferramenta pública para listar, e coluna inventada é pior que coluna a
-     menos. -->
+  <!-- Encerramento: a chamada e o rodapé dividem UM fundo animado só (o gradiente
+       móvel antigo da home). O rodapé perdeu o fundo próprio e virou uma coisa só
+       com a penúltima seção — pedido do Marcelo, 26/08/2026. -->
+  <div class="encerra">
+    <!-- Shader âmbar da chamada REMOVIDO (28/08). O fundo é void + brilho
+         ember/electric via CSS (.encerra). -->
+    <div class="encerra-glow" aria-hidden="true"></div>
+
+    <section class="chamada" id="contato">
+      <div class="envelope">
+        <h2 class="ch-titulo rev">Pronto para criar<br>algo incrível?</h2>
+      <div class="ch-acao rev">
+        <!-- Botão "glow" AZUL da Hórus. O componente que o Marcelo mandou é
+             React/shadcn/Tailwind; aqui foi PORTADO para vanilla (a stack do site
+             é HTML/CSS/JS nativo — regra da casa: porta o efeito, não instala o
+             framework). Chapa azul com halo pulsante e o ícone de sparkles. -->
+        <a class="glow-btn" href="https://wa.me/5571999127514" aria-label="Começar projeto">
+          <span class="glow-txt">Começar projeto</span>
+          <svg class="glow-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z"/><path d="M19 14l.7 2L22 16.7l-2 .7L19 20l-.7-2L16 16.7l2-.7L19 14Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+<!-- Rodapé refeito em 25/08/2026, no formato do web3.xmethod.de
+     (referencias/xmethod-web3.md): três linhas e nada mais.
+
+     Saíram as colunas Navegação e Serviços. O motivo é o da referência: numa
+     página só, quem chega ao rodapé já passou por tudo, e repetir o menu ali é
+     ocupar espaço com o que a pessoa acabou de recusar. O que falta a ela é
+     COMO FALAR, e por isso o contato é que ganha escala.
+
+     O e-mail e o telefone aparecem sem rótulo, também como lá: o formato do
+     dado já diz o que ele é, e "E-mail: " na frente de um endereço é ruído.
+     Saíram ainda o CNPJ (não existe dado) e a linha de atendimento. -->
 <footer class="rodape">
-  <div class="envelope rodape-grade">
-    <div class="rd-marca">
-      <a class="marca" href="#topo">
-        <img src="assets/simbolo.webp" width="34" height="28" alt="Hórus Agência">
-        <span class="nome">HÓRUS</span>
-      </a>
-      <p class="rd-assinatura">Visão que conecta.</p>
+  <div class="envelope">
+
+    <div class="rd-topo">
+      <div class="rd-marca">
+        <a class="marca" href="#topo">
+          <img src="assets/simbolo.webp" width="34" height="28" alt="Hórus Agência">
+          <span class="nome">HÓRUS</span>
+        </a>
+        <p class="rd-assinatura">Visão que conecta.</p>
+      </div>
+
+      <div class="rd-contato">
+        <a class="rd-email" href="mailto:contato.horus@gmail.com">contato.horus@gmail.com</a>
+        <a class="rd-fone" href="https://wa.me/5571999127514">(71) 99912-7514</a>
+      </div>
+    </div>
+
+    <div class="rd-pe">
       <p class="rd-legal">&copy; Hórus Agência | 2026</p>
-      <p class="rd-legal">CNPJ: <span class="pend">a preencher</span><br>E-mail: <span class="pend">a preencher</span></p>
+
+      <!-- Rede social é ÍCONE, não link escrito: o desenho do Instagram é
+           reconhecido sem legenda, e o nome ao lado seria a mesma informação
+           duas vezes. O rótulo vive no `aria-label`, que serve o leitor de tela.
+           O anel dourado de pendência e o ícone de WhatsApp saíram em 26/08/2026
+           a pedido do Marcelo. -->
+      <ul class="rd-redes">
+        <li>
+          <a class="rd-rede" href="https://www.instagram.com/horuspublicidade/"
+             aria-label="Instagram da Hórus"
+             rel="me noopener" target="_blank">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor"
+                 stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <rect x="3" y="3" width="18" height="18" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+        </li>
+      </ul>
     </div>
 
-    <nav class="rd-col" aria-label="Rodapé, navegação">
-      <h2>Navegação</h2>
-      <a href="#sobre">A Hórus</a>
-      <a href="#servicos">Serviços</a>
-      <a href="#icarus">Icarus</a>
-      <a href="#portfolio">Portfólio</a>
-      <a href="#contato">Contato</a>
-    </nav>
-
-    <nav class="rd-col" aria-label="Rodapé, serviços">
-      <h2>Serviços</h2>
-      <a href="#servicos">IA e automação</a>
-      <a href="#servicos">Sites e WordPress</a>
-      <a href="#servicos">Desenvolvimento web</a>
-      <a href="#servicos">Google Meu Negócio</a>
-      <a href="#servicos">CRM e atendimento</a>
-      <a href="#servicos">Carrossel e post</a>
-    </nav>
-
-    <div class="rd-col">
-      <h2>Conecte-se</h2>
-      <p class="pend">e-mail a preencher</p>
-      <p class="pend">WhatsApp a preencher</p>
-      <p class="pend">@horuspublicidade, a confirmar</p>
-      <p class="rd-onde">Salvador e interior da Bahia,<br>presencial e a distância</p>
-    </div>
   </div>
 </footer>
 
@@ -429,8 +1005,8 @@
       <radialGradient id="as-brilho" gradientUnits="userSpaceOnUse"
                       cx="600" cy="110" r="300" fx="600" fy="110">
         <stop offset="0"    stop-color="#E5E7EB" stop-opacity=".92"/>
-        <stop offset="0.42" stop-color="#60A5FA" stop-opacity=".40"/>
-        <stop offset="1"    stop-color="#60A5FA" stop-opacity="0"/>
+        <stop offset="0.42" stop-color="#E7B34A" stop-opacity=".40"/>
+        <stop offset="1"    stop-color="#E7B34A" stop-opacity="0"/>
       </radialGradient>
     </defs>
     <!-- Peso 700 e não 800: 800 não está no arquivo que a página baixa, e pedir
@@ -455,6 +1031,23 @@
   </svg>
 </div>
 
+  </div><!-- /.encerra -->
+
+<!-- Arsenal de motion vendorizado (GSAP + Lenis), copiado de _biblioteca/motion
+     para dentro do site em 26/08/2026 para ele ficar autossuficiente no deploy.
+     GSAP ScrollTrigger é o motor da coreografia de scroll desta versão: a home
+     coberta pela seção seguinte, o ponto que desce e o círculo que vira logo, os
+     cards de serviço empilhando e o portfólio puxado como cortina. Lenis dá o
+     scroll suave (a "suavidade" do estrela.studio). Doutrina: 60-motion.md. -->
+<script src="assets/vendor/gsap/gsap.min.js"></script>
+<script src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/gsap/SplitText.min.js"></script>
+<script src="assets/vendor/gsap/DrawSVGPlugin.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
+
+<!-- As barras pretas de transição saíram em 26/08/2026 (Marcelo). Agora a chamada
+     final surge com o título e o botão aparecendo, sobre o shader do fundo. -->
+
 <!-- Motor do botão de metal líquido: @paper-design/shaders vendorizado como
      script clássico (funciona em file://). Precisa carregar antes do script
      abaixo, que o instancia. Doutrina de vendorização: _biblioteca/motion/. -->
@@ -463,21 +1056,73 @@
 (function () {
   var reduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* Habilita os estados iniciais do motion dos mocks (sob `.js` no CSS): sem esta
+     classe, tudo aparece estático — o fallback de quem tem o JS desligado. */
+  document.documentElement.classList.add('js');
+
+  /* ---- Scroll suave (Lenis) + ponte com o ScrollTrigger -----------------
+     A inércia do estrela.studio. Liga o respeito ao `prefers-reduced-motion`
+     sozinho: quem pediu menos movimento fica com a rolagem seca do navegador,
+     e toda a coreografia de scroll abaixo cai para o layout estático. */
+  var lenis = null;
+  if (window.Lenis && !reduzido) {
+    lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+    window.lenis = lenis;            /* exposto para o utilitário de screenshot */
+    function rafLenis(t){ lenis.raf(t); requestAnimationFrame(rafLenis); }
+    requestAnimationFrame(rafLenis);
+  }
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+    if (window.SplitText) { try { gsap.registerPlugin(SplitText); } catch(e){} }
+    if (window.DrawSVGPlugin) { try { gsap.registerPlugin(DrawSVGPlugin); } catch(e){} }
+    if (lenis) {
+      lenis.on('scroll', ScrollTrigger.update);
+      /* O CSS `scroll-behavior:smooth` briga com o Lenis; com ele ativo, a
+         âncora é o Lenis quem resolve. */
+      document.documentElement.style.scrollBehavior = 'auto';
+      document.querySelectorAll('a[href^="#"]').forEach(function(a){
+        a.addEventListener('click', function(e){
+          var alvo = document.querySelector(a.getAttribute('href'));
+          if (alvo) { e.preventDefault(); lenis.scrollTo(alvo, { offset: 0 }); }
+        });
+      });
+    }
+  }
+
   /* Menu do celular. A navegação some abaixo de 860px e precisa de substituto:
      display:none sem nada no lugar é antipadrão registrado da casa. */
   var botao = document.getElementById('abre-menu');
   var menu = document.getElementById('menu');
-  botao.addEventListener('click', function () {
-    var aberto = menu.classList.toggle('aberto');
+  function estadoMenu(aberto) {
+    menu.classList.toggle('aberto', aberto);
+    botao.classList.toggle('aberto', aberto);
     botao.setAttribute('aria-expanded', aberto ? 'true' : 'false');
-    botao.textContent = aberto ? 'Fechar' : 'Menu';
+    /* O gatilho não tem mais texto visível: o rótulo vive no `aria-label`, e é
+       ele que precisa mudar de "Abrir" para "Fechar". Trocar `textContent`
+       apagaria os dois traços do ícone. */
+    botao.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+  }
+  botao.addEventListener('click', function () {
+    estadoMenu(!menu.classList.contains('aberto'));
   });
   menu.addEventListener('click', function (e) {
-    if (e.target.closest('a')) {
-      menu.classList.remove('aberto');
-      botao.setAttribute('aria-expanded', 'false');
-      botao.textContent = 'Menu';
-    }
+    if (e.target.closest('a')) estadoMenu(false);
+  });
+
+  /* Brilho radial que segue o ponteiro (porte vanilla do componente button-2):
+     vale para todo botão `.js-glow` (header branco e "Fale conosco" azul). A
+     posição vai para as CSS vars --mx/--my do `.cta-brilho`, e a opacidade liga
+     no enter, desliga no leave. */
+  document.querySelectorAll('.js-glow').forEach(function (bt) {
+    var brilho = bt.querySelector('.cta-brilho');
+    if (!brilho) return;
+    bt.addEventListener('mousemove', function (e) {
+      var r = bt.getBoundingClientRect();
+      brilho.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      brilho.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+    bt.addEventListener('mouseenter', function () { brilho.style.opacity = '1'; });
+    bt.addEventListener('mouseleave', function () { brilho.style.opacity = '0'; });
   });
 
   /* A última palavra do título troca LETRA POR LETRA: a posição vai fechando
@@ -549,6 +1194,27 @@
     olhoCai.observe(alvo);
   });
 
+  /* ---- Compromissos: as caixas abrem sozinhas, EM ORDEM -----------------
+     Nunca todas ao mesmo tempo: um card por vez ganha `.aberto` (mostra o texto),
+     ciclando 1→5. Para quando o ponteiro entra na órbita (aí manda o hover) e em
+     movimento reduzido. */
+  (function () {
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.ql-card'));
+    var orbita = document.querySelector('.ql-orbita');
+    if (cards.length < 2 || reduzido) return;
+    var i = -1, pausado = false;
+    if (orbita) {
+      orbita.addEventListener('pointerenter', function () { pausado = true; cards.forEach(function (c) { c.classList.remove('aberto'); }); });
+      orbita.addEventListener('pointerleave', function () { pausado = false; });
+    }
+    setInterval(function () {
+      if (pausado) return;
+      cards.forEach(function (c) { c.classList.remove('aberto'); });
+      i = (i + 1) % cards.length;
+      cards[i].classList.add('aberto');
+    }, 2600);
+  })();
+
   /* ---- A assinatura no pé: a luz que segue o ponteiro -----------------
      A palavra tem duas camadas do mesmo desenho: grafite embaixo, luz em cima.
      Aqui só se move o CENTRO da luz, para o ponto em que o ponteiro está. O
@@ -597,6 +1263,9 @@
     var tira = document.querySelector('.pf-tira');
     if (!secao || !pista || !tira) return;
     if (reduzido) return;
+    /* No desktop com GSAP, quem move a fileira é o bloco de pin (mais abaixo).
+       Este laço é só o piso para quando o GSAP não está disponível. */
+    if (window.gsap && window.ScrollTrigger && window.innerWidth >= 861) return;
     if (window.CSS && CSS.supports && CSS.supports('animation-timeline: view()')) return;
 
     /* Só AGORA a seção vira trilho alto. Sem este script ela fica no fluxo
@@ -665,12 +1334,14 @@
 
     if (reduzido || !mount.setSpeed) return;
 
-    /* Mesmo comportamento do componente: acelera no hover, empurrão no clique. */
-    botao.addEventListener('mouseenter', function () { mount.setSpeed(1); });
+    /* Acelera no hover, empurrão no clique. O botão da chamada (metal-cta)
+       acelera MAIS forte no hover — pedido do Marcelo, 26/08/2026. */
+    var vHover = botao.classList.contains('metal-cta') ? 3 : 1;
+    botao.addEventListener('mouseenter', function () { mount.setSpeed(vHover); });
     botao.addEventListener('mouseleave', function () { mount.setSpeed(0.6); });
     botao.addEventListener('click', function () {
-      mount.setSpeed(2.4);
-      setTimeout(function () { mount.setSpeed(botao.matches(':hover') ? 1 : 0.6); }, 300);
+      mount.setSpeed(vHover + 1.4);
+      setTimeout(function () { mount.setSpeed(botao.matches(':hover') ? vHover : 0.6); }, 300);
     });
   }
 
@@ -693,11 +1364,294 @@
      título manter 14:1 no ponto mais claro da cena.
      Renderiza a 60% da resolução e o CSS estica: a cena é toda suave, a perda
      não aparece, e o custo por quadro cai à metade. */
+  /* ---- Fundo do hero: shader "Plasma" (21st.dev Shader Builder) --------------
+     Portado do componente React para o WebGL1 nativo da casa. O componente já era
+     WebGL puro (sem three.js), então o porte é fiel: mesma matemática (fbm + campo
+     de senos + pós de contraste/vinheta/grão). As ÚNICAS mudanças de parâmetro:
+     a paleta virou a da Hórus (tinta → azul → dourado → tinta) e o `hue` foi
+     zerado, porque o original tingia um cinza e agora as cores já são reais.
+     Contexto GL próprio; pausa fora da tela e com a aba oculta. */
   (function () {
-    var tela = document.querySelector('.hero-fundo');
+    var tela = document.querySelector('.hero-plasma');
     if (!tela) return;
+    var gl = null;
+    try { gl = tela.getContext('webgl', { antialias: false, alpha: false, depth: false }); } catch (e) {}
+    if (!gl) return;
 
+    var VERT_P = 'attribute vec2 a_position;void main(){gl_Position=vec4(a_position,0.0,1.0);}';
+    var FRAG_P = `#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
+uniform vec3 u_colors[8];
+uniform vec4 u_scene;
+uniform vec4 u_shape;
+uniform vec4 u_surface;
+uniform vec4 u_finish;
+uniform vec4 u_transform;
+uniform vec4 u_space;
+uniform vec4 u_cursor;
+#define u_resolution u_scene.xy
+#define u_time u_scene.z
+#define u_colorCount u_scene.w
+#define u_scale u_shape.x
+#define u_intensity u_shape.y
+#define u_paramA u_shape.z
+#define u_warp u_shape.w
+#define u_detail u_surface.x
+#define u_contrast u_surface.y
+#define u_brightness u_surface.z
+#define u_saturation u_surface.w
+#define u_hue u_finish.x
+#define u_vignette u_finish.y
+#define u_blur u_finish.z
+#define u_grain u_finish.w
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+#define u_seed u_transform.x
+#else
+#define u_seed mod(u_transform.x, 31.0)
+#endif
+#define u_rotate u_transform.y
+#define u_drift u_transform.z
+#define u_oklab u_transform.w
+#define u_offset u_space.xy
+#define u_mouse u_space.zw
+#define u_cursorPresence u_cursor.x
+#define u_cursorEffect u_cursor.y
+#define u_cursorStrength u_cursor.z
+#define u_cursorRadius u_cursor.w
+float hash21(vec2 p){
+#ifndef GL_FRAGMENT_PRECISION_HIGH
+  p = mod(p, 31.0);
+#endif
+  p = fract(p * vec2(234.34, 435.345));
+  p += dot(p, p + 34.23);
+  return fract(p.x * p.y);
+}
+float grainHash(vec2 p){
+  vec3 p3 = fract(vec3(p.xyx) * 0.1031);
+  p3 += dot(p3, p3.yzx + 33.33);
+  return fract((p3.x + p3.y) * p3.z);
+}
+float noise(vec2 p){
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+  vec2 u = f * f * (3.0 - 2.0 * f);
+  return mix(mix(hash21(i), hash21(i + vec2(1.0,0.0)), u.x),
+             mix(hash21(i + vec2(0.0,1.0)), hash21(i + vec2(1.0,1.0)), u.x), u.y);
+}
+float fbm(vec2 p){
+  float v = 0.0; float a = 0.5;
+  for (int i = 0; i < 5; i++){ v += a * noise(p); p = p * 2.03 + vec2(17.0, 9.2); a *= 0.5; }
+  return v;
+}
+vec3 srgbToLinear(vec3 c){ return mix(c/12.92, pow((c+0.055)/1.055, vec3(2.4)), step(0.04045, c)); }
+vec3 linearToSrgb(vec3 c){ return mix(c*12.92, 1.055*pow(max(c,vec3(0.0)), vec3(1.0/2.4))-0.055, step(0.0031308, c)); }
+vec3 linToOklab(vec3 c){
+  float l = 0.4122214708*c.r + 0.5363325363*c.g + 0.0514459929*c.b;
+  float m = 0.2119034982*c.r + 0.6806995451*c.g + 0.1073969566*c.b;
+  float s = 0.0883024619*c.r + 0.2817188376*c.g + 0.6299787005*c.b;
+  l = pow(max(l,0.0), 1.0/3.0); m = pow(max(m,0.0), 1.0/3.0); s = pow(max(s,0.0), 1.0/3.0);
+  return vec3(0.2104542553*l + 0.7936177850*m - 0.0040720468*s,
+              1.9779984951*l - 2.4285922050*m + 0.4505937099*s,
+              0.0259040371*l + 0.7827717662*m - 0.8086757660*s);
+}
+vec3 oklabToLin(vec3 c){
+  float l = c.x + 0.3963377774*c.y + 0.2158037573*c.z;
+  float m = c.x - 0.1055613458*c.y - 0.0638541728*c.z;
+  float s = c.x - 0.0894841775*c.y - 1.2914855480*c.z;
+  l = l*l*l; m = m*m*m; s = s*s*s;
+  return vec3(4.0767416621*l - 3.3077115913*m + 0.2309699292*s,
+              -1.2684380046*l + 2.6097574011*m - 0.3413193965*s,
+              -0.0041960863*l - 0.7034186147*m + 1.7076147010*s);
+}
+vec3 mixColour(vec3 a, vec3 b, float t){
+  if (u_oklab > 0.5){
+    vec3 la = linToOklab(srgbToLinear(a));
+    vec3 lb = linToOklab(srgbToLinear(b));
+    return clamp(linearToSrgb(oklabToLin(mix(la, lb, t))), 0.0, 1.0);
+  }
+  return mix(a, b, t);
+}
+vec3 palette(float x){
+  float n = max(u_colorCount - 1.0, 1.0);
+  float f = clamp(x, 0.0, 1.0) * n;
+  vec3 col = u_colors[0];
+  for (int i = 0; i < 7; i++){
+    if (float(i) < n) col = mixColour(col, u_colors[i+1], smoothstep(0.0, 1.0, clamp(f - float(i), 0.0, 1.0)));
+  }
+  return col;
+}
+vec3 hueRotate(vec3 col, float a){
+  const mat3 toYIQ = mat3(0.299,0.596,0.211, 0.587,-0.274,-0.523, 0.114,-0.322,0.312);
+  const mat3 toRGB = mat3(1.0,1.0,1.0, 0.956,-0.272,-1.106, 0.621,-0.647,1.703);
+  vec3 yiq = toYIQ * col;
+  float ca = cos(a), sa = sin(a);
+  yiq = vec3(yiq.x, yiq.y*ca - yiq.z*sa, yiq.y*sa + yiq.z*ca);
+  return toRGB * yiq;
+}
+vec3 shade(vec2 uv, vec2 p, float t){
+  float k = 2.0 + u_intensity * 6.0;
+  float v = sin(p.x*k + t) + sin(p.y*k*0.8 - t*0.7) + sin((p.x+p.y)*k*0.6 + t*0.5) + sin(length(p)*k*1.2 - t);
+  return palette(0.5 + 0.5*sin(v + u_seed));
+}
+void main(){
+  vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+  vec2 screenUv = uv;
+  vec2 p = (gl_FragCoord.xy - 0.5*u_resolution.xy) / min(u_resolution.x, u_resolution.y);
+  float cursorMask = 0.0;
+  uv = p * min(u_resolution.x, u_resolution.y) / u_resolution.xy + 0.5;
+  p *= u_scale;
+  if (abs(u_rotate) > 0.0001){ float cr = cos(u_rotate), sr = sin(u_rotate); p = mat2(cr,-sr,sr,cr) * p; }
+  p += u_offset;
+  if (u_drift > 0.0001) p += u_drift * vec2(sin(u_time*0.31), cos(u_time*0.23));
+  if (u_warp > 0.0){ p += u_warp * (vec2(fbm(p*u_detail + u_seed), fbm(p*u_detail + vec2(5.2,1.3))) - 0.5); }
+  vec3 col;
+  if (u_blur > 0.0){
+    float e = u_blur; float pe = e * u_scale;
+    vec2 uvE = vec2(e) * min(u_resolution.x, u_resolution.y) / u_resolution.xy;
+    col  = shade(uv, p, u_time) * 0.36;
+    col += shade(uv + vec2(uvE.x,0.0), p + vec2(pe,0.0), u_time) * 0.16;
+    col += shade(uv - vec2(uvE.x,0.0), p - vec2(pe,0.0), u_time) * 0.16;
+    col += shade(uv + vec2(0.0,uvE.y), p + vec2(0.0,pe), u_time) * 0.16;
+    col += shade(uv - vec2(0.0,uvE.y), p - vec2(0.0,pe), u_time) * 0.16;
+  } else { col = shade(uv, p, u_time); }
+  if (abs(u_contrast - 1.0) > 0.0001) col = (col - 0.5) * u_contrast + 0.5;
+  if (abs(u_saturation - 1.0) > 0.0001){ float luma = dot(col, vec3(0.299,0.587,0.114)); col = mix(vec3(luma), col, u_saturation); }
+  if (abs(u_hue) > 0.0001) col = hueRotate(col, u_hue);
+  if (abs(u_brightness) > 0.0001) col += u_brightness;
+  if (u_vignette > 0.0001){ float vd = length(screenUv - 0.5) * 1.41421356; col *= 1.0 - u_vignette * smoothstep(0.35, 1.0, vd); }
+  if (u_grain > 0.0001) col += (grainHash(gl_FragCoord.xy + vec2(u_seed*17.0, u_seed*31.0)) - 0.5) * u_grain;
+  gl_FragColor = vec4(clamp(col, 0.0, 1.0), 1.0);
+}`;
+
+    function compP(t, s){ var sh = gl.createShader(t); gl.shaderSource(sh, s); gl.compileShader(sh); return sh; }
+    var progP = gl.createProgram();
+    gl.attachShader(progP, compP(gl.VERTEX_SHADER, VERT_P));
+    gl.attachShader(progP, compP(gl.FRAGMENT_SHADER, FRAG_P));
+    gl.linkProgram(progP);
+    if (!gl.getProgramParameter(progP, gl.LINK_STATUS)) return;
+    gl.useProgram(progP);
+
+    var bufP = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, bufP);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+    var locP = gl.getAttribLocation(progP, 'a_position');
+    gl.enableVertexAttribArray(locP);
+    gl.vertexAttribPointer(locP, 2, gl.FLOAT, false, 0, 0);
+
+    var UP = {
+      colors: gl.getUniformLocation(progP, 'u_colors'),
+      scene: gl.getUniformLocation(progP, 'u_scene'),
+      shape: gl.getUniformLocation(progP, 'u_shape'),
+      surface: gl.getUniformLocation(progP, 'u_surface'),
+      finish: gl.getUniformLocation(progP, 'u_finish'),
+      transform: gl.getUniformLocation(progP, 'u_transform'),
+      space: gl.getUniformLocation(progP, 'u_space'),
+      cursor: gl.getUniformLocation(progP, 'u_cursor')
+    };
+    /* Paleta QUENTE (Marcelo, 26/08): carvão quente → âmbar → dourado → carvão.
+       O acento do site virou quente, então o plasma acompanha. */
+    gl.uniform3fv(UP.colors, new Float32Array([
+      0.090,0.075,0.055,  0.906,0.702,0.290,  0.957,0.769,0.188,  0.090,0.075,0.055,
+      0.090,0.075,0.055,  0.090,0.075,0.055,  0.090,0.075,0.055,  0.090,0.075,0.055
+    ]));
+    gl.uniform4f(UP.shape,     1.5,  0.48, 0.5,  0.0);   /* scale, intensity, paramA, warp */
+    gl.uniform4f(UP.surface,   2.4,  0.95, -0.30, 1.05); /* detail, contrast, brightness, saturation */
+    gl.uniform4f(UP.finish,    0.0,  0.62, 0.016, 0.16); /* hue(0, cores reais), vignette, blur, grain */
+    gl.uniform4f(UP.transform, 7.0,  0.0,  0.30, 0.0);   /* seed, rotate, drift, oklab */
+    gl.uniform4f(UP.cursor,    0.0,  2.0,  0.65, 0.30);
+    var COUNT_P = 4.0, TSCALE_P = 0.55;
+
+    var reduzidoP = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var startP = performance.now(), rodandoP = false, visivelP = true;
+
+    function medirP(){
+      var w = Math.max(1, tela.clientWidth), h = Math.max(1, tela.clientHeight);
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var rw = Math.round(w*dpr), rh = Math.round(h*dpr);
+      var s = Math.min(1, Math.sqrt(2000000 / Math.max(1, rw*rh)));
+      rw = Math.max(1, Math.round(rw*s)); rh = Math.max(1, Math.round(rh*s));
+      if (tela.width !== rw || tela.height !== rh){ tela.width = rw; tela.height = rh; gl.viewport(0,0,rw,rh); }
+    }
+    function pintarP(now){
+      gl.uniform4f(UP.scene, tela.width, tela.height, ((now-startP)/1000)*TSCALE_P, COUNT_P);
+      gl.uniform4f(UP.space, 0.0, 0.0, 0.0, 0.0);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    }
+    function quadroP(now){ if (!rodandoP) return; medirP(); pintarP(now); requestAnimationFrame(quadroP); }
+    function ligarP(){ if (!rodandoP && visivelP){ rodandoP = true; requestAnimationFrame(quadroP); } }
+    function desligarP(){ rodandoP = false; }
+
+    medirP(); pintarP(performance.now());
+    if (reduzidoP) return;
+    window.addEventListener('resize', function(){ medirP(); if (!rodandoP) pintarP(performance.now()); });
+    if ('IntersectionObserver' in window){
+      new IntersectionObserver(function(e){ visivelP = e[0].isIntersecting; visivelP ? ligarP() : desligarP(); }).observe(tela);
+    }
+    document.addEventListener('visibilitychange', function(){ document.hidden ? desligarP() : ligarP(); });
+    ligarP();
+  })();
+
+  (function () {
+   /* Roda nos canvas `.hero-fundo` que NÃO são o plasma do hero (hoje, só o da
+      chamada final). O hero usa o shader Plasma, com init próprio abaixo. */
+   document.querySelectorAll('.hero-fundo:not(.hero-plasma)').forEach(function (tela) {
+
+    /* Fundo do hero refeito em 26/08/2026 a pedido do Marcelo (print 2). É a
+       matemática do shader que ele mandou — linha brilhante por
+       `intensidade/abs(p.y - linha)`, com separação de canais de cor — PORTADA
+       para o WebGL1 nativo do site em vez de carregar o three.js. Isso é a
+       otimização pedida: sem 150 KB de biblioteca, rodando a 60% de resolução e
+       pausando fora da tela, como o resto do site.
+       A modificação: a linha não é mais reta. Vira um VALE (parábola abrindo
+       para cima) — desce vindo do alto à esquerda, funda no ponto mais baixo do
+       centro e sobe para a direita. São duas fitas do mesmo vale, deslocadas e
+       com fase própria: a azul pesa à esquerda (a descida) e a dourada à direita
+       (a subida), e elas se cruzam embaixo, que é o desenho do print. O miolo de
+       cima fica escuro, onde mora o título (mantém 14:1). */
+    /* PORTE do WebGL shader que o Marcelo mandou (three.js → WebGL1 nativo, sem
+       three.js, mantendo a stack vanilla da casa). A matemática é a mesma: uma
+       linha brilhante por `intensidade/abs(p.y + sin(...)*escala)`. Duas mudanças:
+       (1) em vez do split R/G/B (que dá franja arco-íris, proibida na marca), são
+       DUAS linhas nas cores da marca — azul e dourada — que se INCLINAM para
+       lados opostos e se ENCONTRAM no centro-baixo (pedido do Marcelo: "deixe
+       essas duas linhas se encontrando"); (2) o campo desce, então o cruzamento
+       fica abaixo do título, que mantém o escuro em cima (14:1). */
     var FUNDO = [
+      'precision highp float;',
+      'uniform vec2 u_res;uniform float u_t;',
+      'void main(){',
+      '  vec2 p = (gl_FragCoord.xy*2.0 - u_res)/min(u_res.x,u_res.y);',
+      '  vec3 col = vec3(0.039,0.043,0.059);',                   /* #0A0B0F */
+      /* desce o campo: o encontro das linhas cai no terço de baixo, longe do texto */
+      '  float y = p.y + 0.50;',
+      /* curva compartilhada, ondulando devagar, com um detalhe fino por cima */
+      '  float base = 0.24*sin(p.x*1.15 + u_t*0.33) + 0.05*sin(p.x*4.5 - u_t*0.5);',
+      /* duas linhas que se cruzam em x=0: a azul inclina para a direita, a dourada
+         para a esquerda; longe do centro elas se abrem num X */
+      '  float lb = y + base + 0.30*p.x;',
+      '  float lg = y + base - 0.30*p.x;',
+      '  float gB = min(0.020/(abs(lb)+0.008), 1.4);',
+      '  float gG = min(0.019/(abs(lg)+0.008), 1.4);',
+      '  vec3 azul = vec3(0.30,0.56,1.00);',                     /* azul da marca */
+      '  vec3 ouro = vec3(0.98,0.78,0.22);',                     /* #F4C430 */
+      '  col += azul*gB*0.50;',
+      '  col += ouro*gG*0.44;',
+      /* núcleo branco-quente onde as duas linhas coincidem: o ponto de encontro */
+      '  col += vec3(1.0)*pow(min(gB,gG),1.9)*0.22;',
+      /* Grão: sem ele, gradiente escuro em tela grande faz degrau visível. */
+      '  col += (fract(sin(dot(gl_FragCoord.xy,vec2(12.9898,78.233)))*43758.5453)-0.5)*0.015;',
+      '  gl_FragColor = vec4(col,1.0);',
+      '}'
+    ].join('\n');
+
+    /* O fundo ANTIGO da home (o gradiente que ficava se movendo), guardado para
+       a chamada final: o Marcelo pediu que a penúltima seção usasse o fundo que
+       a home tinha antes das fitas. Campo de ondas em domínio dobrado, nas cores
+       da marca. Roda no canvas `.chamada-fundo`. */
+    var FUNDO_CHAMADA = [
       'precision mediump float;',
       'uniform vec2 u_res;uniform float u_t;',
       'float onda(vec2 p){',
@@ -713,26 +1667,25 @@
       '  vec2 c=gl_FragCoord.xy-0.5*u_res;',
       '  vec2 uv=c/max(u_res.x,u_res.y)*2.6;',
       '  float v=0.5+0.5*onda(uv+vec2(u_t*0.07,0.0));',
-      '  vec3 col=vec3(0.039,0.043,0.059);',                     /* #0A0B0F */
-      '  col=mix(col,vec3(0.145,0.388,0.920),smoothstep(0.42,0.96,v)*0.17);', /* #2563EB */
-      '  col=mix(col,vec3(0.376,0.647,0.980),smoothstep(0.78,1.00,v)*0.09);', /* #60A5FA */
-      /* O dourado é a cor mais rara da marca: entra num fiapo, no pico. */
-      '  col=mix(col,vec3(0.957,0.769,0.188),smoothstep(0.95,1.00,v)*0.05);',
-      /* Escurece o miolo, que é onde mora o texto. */
+      '  vec3 col=vec3(0.090,0.075,0.055);',
+      '  col=mix(col,vec3(0.784,0.596,0.220),smoothstep(0.42,0.96,v)*0.18);',
+      '  col=mix(col,vec3(0.906,0.702,0.290),smoothstep(0.78,1.00,v)*0.10);',
+      '  col=mix(col,vec3(0.957,0.769,0.188),smoothstep(0.95,1.00,v)*0.07);',
       '  float r=length(c/u_res);',
-      '  col*=0.72+smoothstep(0.10,0.55,r)*0.28;',
-      /* Grão: sem ele, gradiente escuro em tela grande faz degrau visível. */
+      '  col*=0.70+smoothstep(0.10,0.55,r)*0.30;',
       '  col+=(fract(sin(dot(gl_FragCoord.xy,vec2(12.9898,78.233)))*43758.5453)-0.5)*0.014;',
       '  gl_FragColor=vec4(col,1.0);',
       '}'
     ].join('\n');
+
+    var frag = tela.classList.contains('chamada-fundo') ? FUNDO_CHAMADA : FUNDO;
 
     var gl = null;
     try { gl = tela.getContext('webgl', { alpha: false, antialias: false, depth: false }); } catch (e) { gl = null; }
     if (!gl) return;
 
     var vs = compilar(gl, gl.VERTEX_SHADER, VERT);
-    var fs = compilar(gl, gl.FRAGMENT_SHADER, FUNDO);
+    var fs = compilar(gl, gl.FRAGMENT_SHADER, frag);
     if (!vs || !fs) return;
     var prog = gl.createProgram();
     gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
@@ -780,6 +1733,7 @@
     } else { ligar(); }
     document.addEventListener('visibilitychange', function () { document.hidden ? desligar() : ligar(); });
     ligar();
+   });
   })();
 
   /* A onda do clique. Nasce onde o dedo tocou e morre em 600ms. */
@@ -796,6 +1750,36 @@
     });
   });
 
+  /* ---- A luz do cabeçalho segue o ponteiro ----------------------------
+     Estudado em estrela.studio (referencias/estrela-studio.md). Lá o aro de
+     luz é fixo; aqui ele acompanha o ponteiro, que é a leitura que o Marcelo
+     fez do efeito e a mesma mecânica que a assinatura no pé já usa.
+
+     O CSS faz o trabalho todo (site.css §5): duas camadas ancoradas em `--mx`
+     e `--my`, uma enchendo o painel e outra recortada em moldura de 1px pela
+     máscara. Este laço só entrega a posição, uma vez por quadro. Nada de
+     medir no listener: `getBoundingClientRect` a cada movimento do ponteiro
+     força recálculo de layout, e a barra é sticky. */
+  (function () {
+    var barra = document.querySelector('.topo-barra');
+    if (!barra || !window.matchMedia('(hover: hover)').matches) return;
+
+    var pendente = false, px = 0, py = 0;
+
+    function aplicar() {
+      pendente = false;
+      barra.style.setProperty('--mx', px.toFixed(1) + 'px');
+      barra.style.setProperty('--my', py.toFixed(1) + 'px');
+    }
+
+    barra.addEventListener('pointermove', function (e) {
+      var r = barra.getBoundingClientRect();
+      px = e.clientX - r.left;
+      py = e.clientY - r.top;
+      if (!pendente) { pendente = true; requestAnimationFrame(aplicar); }
+    });
+  })();
+
   /* Cabeçalho ganha fio e opacidade ao sair do topo. IntersectionObserver
      numa sentinela, nunca listener de scroll. */
   var topo = document.getElementById('topo');
@@ -805,6 +1789,9 @@
   new IntersectionObserver(function (e) {
     topo.classList.toggle('rolado', !e[0].isIntersecting);
   }).observe(sentinela);
+
+  /* Esconder a nav ao rolar foi REMOVIDO (Marcelo, 31/08): o header fica fixo com
+     a navegação sempre visível. A classe `.nav-oculta` deixou de ser aplicada. */
 
   if (reduzido || !('IntersectionObserver' in window)) {
     document.querySelectorAll('.rev').forEach(function (el) { el.classList.add('visivel'); });
@@ -817,7 +1804,10 @@
      nunca cruzava o limiar do observador: ficava invisível até alguém rolar,
      e no print saía um vazio no fim do hero. Nada acima da dobra pode depender
      de rolagem para aparecer. */
-  document.querySelectorAll('.hero .rev').forEach(function (el, i) {
+  /* Só o BLOCO DE CIMA do hero (título/subtítulo/botões) entra na carga. A Seção 1
+     (`.valores`), embora fique dentro de `.hero`, é revelada pela rolagem — por isso
+     o seletor é `.hero-topo .rev`, não `.hero .rev`. */
+  document.querySelectorAll('.hero-topo .rev').forEach(function (el, i) {
     el.style.transitionDelay = i * 90 + 'ms';
     requestAnimationFrame(function () { el.classList.add('visivel'); });
   });
@@ -845,6 +1835,251 @@
     });
   }, { threshold: 0.45 });
   document.querySelectorAll('.estagio').forEach(function (el) { trilho.observe(el); });
+
+  /* ==================================================================
+     COREOGRAFIA DE SCROLL (GSAP ScrollTrigger)
+     Só roda com movimento ligado (este bloco está depois do return de
+     movimento reduzido) e só se o GSAP carregou. Sem ele, cada seção fica
+     no seu estado de repouso, legível.
+     ================================================================== */
+  if (!window.gsap || !window.ScrollTrigger) return;
+
+  /* ---- Seção 2 (abordagem): as palavras SURGEM em cascata --------------
+     SplitText fatia a frase grande em palavras e cada uma sobe de dentro da linha
+     quando a seção entra. Roda no desktop e no celular (não é presa). Sem
+     SplitText, a frase aparece pronta (já é o repouso). */
+  (function () {
+    if (!window.SplitText) return;
+    /* Todos os [data-split] surgem em cascata: a frase da abordagem E o título
+       de serviços (Marcelo pediu a animação de texto surgindo em serviços). */
+    document.querySelectorAll('[data-split]').forEach(function (alvo) {
+      var split;
+      try { split = new SplitText(alvo, { type: 'lines,words', linesClass: 'linha-mask' }); }
+      catch (e) { return; }
+      gsap.set(split.words, { yPercent: 118, opacity: 0 });
+      gsap.to(split.words, {
+        yPercent: 0, opacity: 1, duration: 0.9, ease: 'power3.out', stagger: 0.03,
+        scrollTrigger: { trigger: alvo, start: 'top 82%', once: true }
+      });
+    });
+  })();
+
+  /* A coreografia presa (cobrir a home, o palco da Visão, o portfólio na
+     horizontal) é de DESKTOP. No celular pin e scrub em tela estreita brigam
+     com o toque e escondem conteúdo: lá as seções ficam no fluxo normal, com o
+     portfólio virando uma fileira que se arrasta com o dedo. */
+  if (!window.matchMedia('(min-width: 861px)').matches) return;
+
+  /* ---- Serviços: a ROLETA (prints 6/9/10) -----------------------------
+     A seção prende no alto e, conforme a pessoa rola, troca o serviço: o índice
+     01–06 acende o atual, o título/descrição do centro cruzam e a imagem 3D da
+     direita troca (a anterior e a próxima ficam desfocadas atrás). É um pin com
+     N degraus; cada degrau ativa um serviço. Sem isto (mobile/movimento
+     reduzido) a seção é uma lista simples, que é o piso legível. */
+  (function () {
+    var secao = document.querySelector('.roleta');
+    if (!secao) return;
+    var itens = gsap.utils.toArray('.rol-item');
+    var imgs  = gsap.utils.toArray('.rol-img');
+    var nums  = gsap.utils.toArray('.rol-num');
+    var roda  = document.querySelector('.rol-roda');
+    var palco = document.querySelector('.rol-palco');
+    var stack = document.querySelector('.rol-stack');
+    var PASSO = 14;   /* graus entre números na roda (igual ao --a do HTML) */
+    var ITEM_H = 340; /* altura do slot de cada serviço (igual ao CSS rol-on).
+                         Maior (era 220): mais distância vertical + espaço p/ as pills. */
+    var N = itens.length;
+    if (!N) return;
+
+    secao.classList.add('rol-on');
+    ScrollTrigger.refresh();
+
+    function centro() { return (palco ? palco.clientHeight : window.innerHeight * 0.62) / 2 - ITEM_H / 2; }
+
+    /* Desenha o estado da roleta para um t contínuo (0..N-1): a roda gira, a
+       pilha de serviços translada para cima e cada serviço ganha blur/opacidade
+       conforme a distância do centro. O de cima sobe e desfoca; o de baixo entra. */
+    function desenhar(t) {
+      if (roda) roda.style.setProperty('--rot', (-t * PASSO) + 'deg');
+      if (stack) stack.style.transform = 'translateY(' + (centro() - t * ITEM_H) + 'px)';
+      itens.forEach(function (el, k) {
+        var d = Math.abs(k - t);
+        el.style.opacity = Math.max(0.12, 1 - d * 0.55);
+        el.style.filter = 'blur(' + Math.min(9, d * 4.2) + 'px)';
+      });
+    }
+
+    var atual = -1;
+    function ativar(i) {
+      if (i === atual) return;
+      atual = i;
+      imgs.forEach(function (el, k) { el.classList.toggle('ativo', k === i); });
+      nums.forEach(function (el, k) { el.classList.toggle('ativo', k === i); });
+    }
+    ativar(0); desenhar(0);
+
+    ScrollTrigger.create({
+      trigger: '.rol-pin', start: 'top top',
+      end: function () { return '+=' + (N * window.innerHeight * 0.7); },
+      pin: '.rol-pin', scrub: 0.6, invalidateOnRefresh: true,
+      /* SNAP travado: ao rolar, a roleta PULA para o próximo número e trava nele,
+         em vez de acompanhar o dedo continuamente (Marcelo: "sem esse motion de
+         rolar", "como se lockasse no próximo"). Duração curta + ease forte dá a
+         sensação de lock por degrau. */
+      snap: { snapTo: 1 / (N - 1), duration: 0.35, delay: 0.02, ease: 'power3.inOut' },
+      onUpdate: function (self) {
+        var t = self.progress * (N - 1);
+        desenhar(t);
+        var i = Math.round(t);
+        if (i > N - 1) i = N - 1;
+        ativar(i);
+      }
+    });
+  })();
+
+  /* ---- 4. Portfólio: fileira que corre e a cortina para a esquerda -----
+     A seção prende; a fileira corre na horizontal (só quando alinhada); ao
+     passar o terceiro card, o painel é puxado como cortina para a esquerda,
+     revelando a seção seguinte (os 4 passos) — o gesto do fim do trionn.com. */
+  (function () {
+    var secao = document.querySelector('.portfolio');
+    var pin   = document.querySelector('.pf-pin');
+    var tira  = document.querySelector('.pf-tira');
+    var pista = document.querySelector('.pf-pista');
+    if (!secao || !pin || !tira || !pista) return;
+
+    /* MOTION DO PORTFÓLIO REATIVADO (31/08/2026, pedido do Marcelo): a seção
+       PRENDE (pin) e a fileira desliza da DIREITA para a ESQUERDA conforme a
+       rolagem (scrub). Sem cortina (aquele efeito dava bug e ficou removido).
+       Só no desktop e com movimento permitido; no celular/reduzido a fileira é a
+       pista arrastável do CSS (.pf-pista). Precisa do GSAP + ScrollTrigger. */
+    if (reduzido || window.innerWidth < 861) return;
+    if (!window.gsap || !window.ScrollTrigger) return;
+
+    secao.classList.add('pf-gsap');
+
+    function percurso() { return Math.max(0, tira.scrollWidth - pista.clientWidth); }
+
+    var lado = secao.querySelector('.pf-lado');
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: secao, start: 'top top',
+        end: function () { return '+=' + percurso(); },
+        pin: pin, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1
+      }
+    });
+    /* corrida horizontal dos três cards; o título acompanha indo para a esquerda */
+    tl.to(tira, { x: function () { return -percurso(); }, ease: 'none', duration: 3 }, 0);
+    if (lado) tl.to(lado, { x: function () { return -percurso() * 0.5; }, ease: 'none', duration: 3 }, 0);
+    /* Ao fim da corrida o pin solta e os 4 passos entram no fluxo normal. */
+  })();
+
+  /* ---- 5. Etapas: a linha se desenha e ACENDE cada card ao tocá-lo -------
+     A linha (DrawSVG) se traça com a rolagem; a cada limiar de progresso o card
+     correspondente "liga" (ganha a cor dele) e, no fim, a linha chega no botão,
+     que passa a brilhar (pedido do Marcelo). */
+  (function () {
+    var path = document.querySelector('.ps-path');
+    var passos = gsap.utils.toArray('.ps-passo');
+    var cta = document.querySelector('.ps-cta');
+    if (!path || !window.DrawSVGPlugin) return;
+    try { gsap.set(path, { drawSVG: '0%' }); } catch (e) { return; }
+    /* limiar de progresso em que cada card acende (a linha "chega" nele) */
+    var limiares = [0.14, 0.40, 0.64, 0.85];
+    gsap.to(path, {
+      drawSVG: '100%', ease: 'none',
+      scrollTrigger: {
+        trigger: '.ps-fluxo', start: 'top 78%', end: 'bottom 82%', scrub: 1, invalidateOnRefresh: true,
+        onUpdate: function (self) {
+          passos.forEach(function (el, k) { el.classList.toggle('aceso', self.progress >= limiares[k]); });
+          if (cta) cta.classList.toggle('aceso', self.progress >= 0.98);
+        }
+      }
+    });
+  })();
+
+  /* ---- 6. Chamada final: o título e o botão SURGEM (sem as barras pretas) ----
+     As faixas pretas saíram (pedido do Marcelo). No lugar: quando a chamada entra,
+     o título sobe e aparece, o botão logo atrás, e o shader do fundo (encerra-fundo)
+     já está lá desenhando o degradê quente. */
+  (function () {
+    var titulo = document.querySelector('.ch-titulo');
+    var acao = document.querySelector('.ch-acao');
+    var encerra = document.querySelector('.encerra');
+    if (!titulo || !encerra) return;
+    gsap.set([titulo, acao], { opacity: 0, y: 40 });
+    gsap.timeline({
+      scrollTrigger: { trigger: encerra, start: 'top 72%', once: true }
+    })
+    .to(titulo, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' })
+    .to(acao, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 0.25);
+  })();
+
+  /* ---- 7. Motion de entrada dos cards de serviço ---------------------
+     Cada painel de serviço "ganha vida" quando entra na tela: o CRM conta, o
+     gráfico desenha, o chat chega, as barras sobem (pedido do Marcelo, 31/08).
+     Um IntersectionObserver marca `.svc-ativo`; os contadores [data-count] são
+     animados por JS, o resto é CSS sob `.svc-ativo`. Re-dispara ao reentrar. */
+  (function () {
+    var cards = document.querySelectorAll('.svcs-stack .svc');
+    if (!cards.length) return;
+
+    function fmt(v, dec) {
+      return v.toLocaleString('pt-BR', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+    }
+    /* estado de repouso: o número já mostra o valor final formatado */
+    function preparar(card) {
+      card.querySelectorAll('[data-count]').forEach(function (el) {
+        el._cfg = {
+          alvo: parseFloat(el.getAttribute('data-count')) || 0,
+          dec: parseInt(el.getAttribute('data-dec') || '0', 10),
+          pre: el.getAttribute('data-prefix') || '',
+          suf: el.getAttribute('data-suffix') || ''
+        };
+        el.textContent = el._cfg.pre + fmt(el._cfg.alvo, el._cfg.dec) + el._cfg.suf;
+      });
+    }
+    function contar(card) {
+      card.querySelectorAll('[data-count]').forEach(function (el) {
+        var c = el._cfg; if (!c) return;
+        var t0 = null, dur = 1000;
+        function passo(t) {
+          if (t0 === null) t0 = t;
+          var p = Math.min(1, (t - t0) / dur);
+          var e = 1 - Math.pow(1 - p, 3);      /* easeOutCubic */
+          el.textContent = c.pre + fmt(c.alvo * e, c.dec) + c.suf;
+          if (p < 1) requestAnimationFrame(passo);
+          else el.textContent = c.pre + fmt(c.alvo, c.dec) + c.suf;
+        }
+        requestAnimationFrame(passo);
+      });
+    }
+
+    cards.forEach(preparar);
+
+    if (reduzido || !('IntersectionObserver' in window)) {
+      cards.forEach(function (c) { c.classList.add('svc-ativo'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (en) {
+        if (en.isIntersecting && en.intersectionRatio >= 0.55) {
+          if (!en.target.classList.contains('svc-ativo')) {
+            en.target.classList.add('svc-ativo');
+            contar(en.target);
+          }
+        } else if (en.intersectionRatio < 0.12) {
+          en.target.classList.remove('svc-ativo');   /* re-dispara ao voltar */
+        }
+      });
+    }, { threshold: [0, 0.12, 0.55, 0.85] });
+    cards.forEach(function (c) { io.observe(c); });
+  })();
+
+  /* Depois de montar tudo, com fontes e imagens carregadas, recalibra os
+     gatilhos (as alturas mudaram). */
+  window.addEventListener('load', function () { ScrollTrigger.refresh(); });
 })();
 </script>
 

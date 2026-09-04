@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Página não encontrada | Hórus Agência</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0e0918">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+<link rel="icon" href="assets/simbolo.webp" type="image/webp">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<!-- A 404 puxa o site.css só pelos TOKENS (:root) — cor, tipo, escala e raio
+     vêm de lá, então ela nunca sai da identidade quando a paleta mudar. O
+     layout é próprio e curto: uma página de erro não carrega GSAP, Lenis nem
+     shader para dizer que a URL não existe. -->
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .erro {
+    min-height: 100dvh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 26px; padding: 80px 24px; text-align: center;
+    /* O mesmo respiro atmosférico do hero, sem o vídeo. */
+    background:
+      radial-gradient(90% 70% at 22% 30%, rgba(7,122,199,.16) 0%, transparent 62%),
+      radial-gradient(70% 60% at 84% 74%, rgba(244,196,48,.10) 0%, transparent 60%),
+      var(--tinta);
+  }
+  .erro-simbolo { width: 62px; height: auto; opacity: .9; }
+  .erro-cod {
+    font-family: var(--mono); font-size: var(--t-13);
+    letter-spacing: .18em; text-transform: uppercase; color: var(--osso-2);
+  }
+  .erro h1 {
+    font-family: var(--display); font-weight: 700;
+    font-size: var(--t-54); line-height: 1.02; letter-spacing: -.03em;
+    color: var(--branco); max-width: 16ch;
+  }
+  .erro h1 span { color: var(--dourado); }
+  .erro p {
+    font-family: var(--corpo); font-size: var(--t-17); line-height: 1.6;
+    color: var(--osso); max-width: 46ch;
+  }
+  .erro-volta {
+    margin-top: 8px;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 30px; border-radius: 999px;
+    background: var(--electric); color: var(--branco);
+    font-family: var(--corpo); font-size: var(--t-17); font-weight: 500;
+    text-decoration: none; transition: transform .25s ease, filter .25s ease;
+  }
+  .erro-volta:hover { transform: translateY(-2px); filter: brightness(1.12); color: var(--branco); }
+  @media (max-width: 860px) { .erro h1 { font-size: var(--t-40); } }
+  @media (prefers-reduced-motion: reduce) { .erro-volta { transition: none; } }
+</style>
+</head>
+<body>
+  <main class="erro">
+    <img class="erro-simbolo" src="assets/simbolo.webp" alt="" aria-hidden="true" width="62" height="52">
+    <p class="erro-cod">Erro 404</p>
+    <h1>Essa página não <span>existe.</span></h1>
+    <p>O endereço pode ter mudado de lugar, ou o link que te trouxe está velho.
+       A home continua onde sempre esteve.</p>
+    <a class="erro-volta" href="/">Voltar para a home</a>
+  </main>
+</body>
+</html>

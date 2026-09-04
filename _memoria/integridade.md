@@ -71,6 +71,38 @@ controle do que ainda está pendente.
 inclusive telefone, WhatsApp e endereço. Campo legal marcado e CTA não marcado é
 o pior dos mundos, porque o visitante clica no que está errado.
 
+### 🔴 Completar dado parcial é inventar (Amparo Flores, 27/08 a 03/09/2026)
+
+Esta regra acima **já estava escrita e foi violada mesmo assim**, o que a torna a
+lição mais cara do arquivo. O caso:
+
+O Marcelo passou o WhatsApp do cliente como **"9118-8740"**, oito dígitos. Celular
+brasileiro tem nove. Em vez de perguntar ou marcar `[FALTA: confirmar o número]`, eu
+**presumi que faltava o nono dígito** e gravei `99118-8740`, ainda por cima anotando no
+briefing que tinha "interpretado" assim, como se declarar o palpite o legitimasse. O
+número errado se espalhou por **8 arquivos do site** e ficou lá **uma semana**, até um
+print do WhatsApp Business do cliente mostrar que o número real era o de oito dígitos
+mesmo. O erro só não estourou na reunião porque o Conselho, por outro caminho, mandou
+testar o número antes.
+
+**O que isso ensina, e vale para todo cliente:**
+
+1. **Dado incompleto não se completa por dedução, nem quando a dedução é "óbvia".** Um
+   telefone com um dígito faltando, um CEP com sete números, um CNPJ truncado, um nome
+   que "provavelmente" é Álvaro: tudo isso vira `[FALTA: ...]` ou vira pergunta. Nunca
+   palpite.
+2. **Declarar o palpite não o transforma em dado.** Escrever "interpretei como X" no
+   briefing me deu a sensação de ter sido transparente, mas o que foi para o código foi
+   o palpite, sem marcação nenhuma. Transparência no rodapé não corrige invenção no CTA.
+3. **Dado de contato é o mais caro de errar**, porque falha silenciosamente: o site
+   parece perfeito e o cliente simplesmente não recebe. Ninguém reclama, o dinheiro só
+   não chega.
+
+**Regra prática:** antes de publicar qualquer site, conferir telefone, WhatsApp e
+endereço contra uma fonte que o cliente controla (print do perfil dele, mensagem dele),
+e **mandar uma mensagem de teste** para o número que está no código. Isso entra no
+`/verificar`.
+
 ---
 
 ## Fato x recomendação
@@ -118,6 +150,20 @@ Pare e verifique quando se pegar escrevendo:
 - Preenchimento de seção só porque o layout pedia texto ali
 
 A última é a mais perigosa, porque o motivo da invenção é estético.
+
+---
+
+## A honestidade também vale para fora do texto do cliente
+
+Integridade não é só não inventar sobre o cliente; é **não enganar terceiros para
+ganho operacional da Horus**. A régua nasceu no Icarus (30/08/2026): a comunidade
+ensina a "aquecer" chip de WhatsApp com anúncio falso (PS5 barato, filhote doado) e
+foto de IA em grupo de namoro, para forçar mensagens de gente enganada. **A Horus
+não faz isso.** Táticas que só funcionam porque alguém de fora foi enganado — isca
+falsa, perfil falso, avaliação plantada, engajamento comprado — estão fora, por mais
+eficazes que sejam. O caminho honesto existe (aquecimento por uso real, ou a rota
+oficial que dispensa aquecimento). Se a tática depende de mentir para quem está de
+fora, não entra na operação.
 
 ---
 

@@ -1,0 +1,26 @@
+# Amparo Flores — site de loja (peça de reunião)
+# Deploy manual: a própria pasta é publicada como está (sem build).
+
+[build]
+  publish = "."
+  command = ""
+
+# Sem framework, sem passo de build: HTML/CSS/JS estáticos.
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Imagens e assets versionados: cache longo.
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Página não encontrada volta para a home.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 404

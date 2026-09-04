@@ -51,3 +51,9 @@ dados/*
 # Sem a pasta, o hook vira no-op silencioso (o guard `[ ! -f ... ]` cobre) e o
 # /verificar continua funcionando, porque ele chama o detector via npx.
 .claude/skills/impeccable/
+
+# Netlify — pasta gerada pelo site/build-deploy.mjs a cada deploy.
+# É saída, não fonte: montada a partir de site/ por uma lista explícita.
+# Nunca editar nada aqui dentro; a edição se perde no build seguinte.
+site/_publish/
+.netlify/

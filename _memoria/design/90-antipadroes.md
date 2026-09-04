@@ -280,6 +280,14 @@ vira banner e barateia a página inteira.
 ## Cor
 
 **Roxo com brilho.** O gradiente roxo-azul com glow é a assinatura visual de IA.
+⚠️ **Corolário: roxo chapado de marca NÃO é isso.** Quando o roxo vem da logo real do
+cliente (caso Amparo Flores, 27/08/2026: roxo + laranja + creme, tirado da marca dele),
+ele é legítimo e é o oposto do antipadrão. O que denuncia IA é o **gradiente com halo**,
+não a matiz. Roxo de marca entra chapado e editorial, medido em contraste como qualquer
+cor; o proibido é o glow/gradiente roxo-azul sem motivo físico. Mesma lógica do "briefing
+explícito vence regra genérica" do creme+serifa+terracota.
+→ *Origem: site da Amparo Flores, 27/08/2026. A logo real é roxa (raro no segmento, vem
+das orquídeas dela), e virou a assinatura do site.*
 
 **Brilho radial em fundo escuro.** Primo do anterior e igualmente denunciador: o
 holofote borrado atrás do título, a mancha de luz colorida no canto da seção, a
@@ -421,6 +429,14 @@ marcado como exemplo, ou não entra.
 rótulo pseudo-artesanal ("da bancada", "notas de campo"). Frase funcional simples
 é melhor que frase bonitinha sem sentido.
 
+**Typo na primeira tela.** Erro de digitação no hero ("hollistic", "idendity") mina
+justamente a autoridade que o resto da página constrói — e num negócio que vende
+trabalho de detalhe (design, texto, código), é autodenúncia. Revisar a copy do hero é
+parte do design, não conferência de última hora: a primeira palavra errada custa a
+confiança das próximas mil certas.
+→ *Origem: teardown do lessestudio.com, 26/08/2026, um estúdio de branding com dois
+typos no próprio hero. Lição pela avessa.*
+
 **Título de hero construído sobre uma negação.** "A gente não planta. A gente
 escolhe." A frase é boa numa reunião, porque responde a uma dúvida que já foi
 levantada. No hero ela não funciona: quem chega não sabia que existia a pergunta, e
@@ -499,6 +515,14 @@ em todos os breakpoints de uma vez.
 ---
 
 ## Técnico
+
+**Card empilhado que escurece o de trás ao ser coberto.** Numa pilha de cards
+`sticky` (o próximo sobe na frente do anterior), dar `filter: brightness(<1)` no
+card coberto para "dar profundidade" fez o Marcelo apontar como **bug**: a imagem
+de trás simplesmente apaga quando a da frente chega, e lê como erro de render, não
+como camada. O empilhamento sozinho (um card opaco cobrindo o outro) já entrega a
+profundidade; escurecer é ruído.
+→ *Origem: 2ª rodada do site institucional, 26/08/2026.*
 
 **Imagem em PNG direto do gerador.** Sai em 2k ou 4k e pesa megabytes. A home da
 Aion pesava 18,7 MB e virou 719 KB só convertendo para WebP no tamanho de
@@ -744,6 +768,30 @@ cima.
 → *Origem: assinatura no pé do site da Hórus, 05/08/2026. Canvas de 96 por 24
 ampliado para a largura da página.*
 
+**Revelação por `IntersectionObserver` sem trava de duas camadas.** O padrão é o
+mesmo de sempre: o JS marca os blocos com uma classe que zera a opacidade (ou aplica
+`clip-path`) e o observador devolve a visibilidade quando cada um entra na tela. O
+problema é que **quando o observador não dispara, o conteúdo simplesmente não existe
+para o visitante**, e não há erro no console nenhum para denunciar. Medido em
+27/08/2026 nos dois sites de `portfolio/`: com `--dump-dom` no Edge headless, todos os
+elementos tinham a classe `rev` e **nenhum** tinha a classe que revela. A página
+inteira abaixo do hero estava em branco.
+
+A trava correta tem duas camadas, nesta ordem:
+
+1. Depois de ~1,6s, revelar tudo que **já está dentro da tela** (`getBoundingClientRect().top
+   < window.innerHeight`). Isso não estraga a animação de quem rola.
+2. Se depois disso **nada** foi revelado (`!document.querySelector('.dentro')`), o
+   observador está quebrado neste navegador: revelar a página inteira de uma vez.
+
+A camada 2 é a que salva. Só a camada 1 não resolve, porque o que está abaixo da
+dobra continua invisível para sempre. E as duas juntas preservam a animação no caso
+normal, que é o motivo de não bastar "revelar tudo depois de 2 segundos".
+
+→ *Origem: `portfolio/soleira-interiores` e `portfolio/amendoa-preta`, 27/08/2026.
+Vale para qualquer entrada em cascata da casa. É a aplicação prática da regra
+"nada esconde conteúdo até rolar sem fallback" do `60-motion.md`.*
+
 **`overflow:hidden` num pai mata `animation-timeline: view()`.** A pegadinha mais
 cara desta família. `hidden` **cria um contêiner de rolagem**, e a linha do tempo
 de vista se amarra ao contêiner de rolagem mais próximo: a tira passa a medir a
@@ -824,6 +872,51 @@ do `integridade.md` continua de pé.
 **Site sem favicon e sem imagem de compartilhamento.** O link no WhatsApp abre
 como retângulo cinza. É o primeiro contato de metade das pessoas.
 
+**Prometer "acende ao redor" numa barra colada nas bordas.** Cabeçalho de ponta a
+ponta tem **uma** aresta visível, a de baixo: não existe "redor" para o aro
+percorrer, e qualquer tentativa vira um fio embaixo, que é outra coisa. O efeito
+exige o painel **flutuar** — margem nos quatro lados, raio próprio — e é por isso
+que estrela.studio quebra a nav em três blocos separados em vez de fazer uma
+barra. A forma não é enfeite: é a condição do efeito.
+→ *Origem: site da Hórus, 25/08/2026, refazendo o cabeçalho.*
+
+**Sombra externa para simular vidro.** Sombra por fora faz o painel flutuar
+*acima* da página, que é o card fantasma já registrado aqui. Vidro de verdade é
+mais brilhante **na borda**, porque é ali que a espessura do material aparece:
+`box-shadow: inset 0 0 .8rem <branco 2%>, inset 0 0 .2rem <branco 20%>`. A larga
+levanta o miolo, a curta desenha o aro. Receita medida no CSS do estrela.studio, e
+bate com a regra que a casa já tinha escrito de outro jeito: vidro é feito de luz.
+→ *Origem: site da Hórus, 25/08/2026.*
+
+**Botão colado nos links do menu lê como o quinto link, só que pintado.** O que
+separa navegação de ação não é a cor do botão, é o **vão vazio** entre os dois:
+links no começo do percurso de leitura, decisão no fim dele. `margin-left: auto`
+no botão resolve, e é a divisão que web3.xmethod.de usa.
+→ *Origem: site da Hórus, 25/08/2026.*
+
+**Item de flex encolhe, o texto dentro dele não.** Numa barra com três blocos e
+`white-space: nowrap`, o `flex-shrink` padrão comprime a caixa da marca sem
+comprimir o nome dentro dela: em 390px o "HÓRUS" passou a vazar por trás do botão
+de contato **sem gerar rolagem lateral nenhuma**, então nem o detector nem o teste
+de overflow acusam. Só o print pega. `flex: none` no que não pode encolher, e
+medir `getBoundingClientRect()` dos três, não só o `scrollWidth` do pai.
+→ *Origem: site da Hórus, 25/08/2026.*
+
+**Gatilho de menu escrito ocupa 77px; em ícone ocupa 42px.** Numa barra de 390px
+com marca e CTA fixos, a palavra "Menu" é o item que menos carrega informação e o
+que mais custa largura. Vira ícone de **dois** traços (o terceiro não diz nada), e
+o rótulo migra para o `aria-label`. Cuidado com o JS que trocava `textContent`
+entre "Menu" e "Fechar": ele apaga o ícone. O que muda passa a ser o `aria-label`
+e uma classe.
+→ *Origem: site da Hórus, 25/08/2026.*
+
+**Rodapé que repete o menu do site numa página só.** Quem chega lá já passou por
+tudo e recusou cada seção uma vez; repetir a navegação é gastar o último espaço da
+página com o que a pessoa acabou de dispensar. O que falta a ela é **como falar
+com você** — e por isso o contato é que ganha a escala de título, sem "E-mail:" na
+frente: o formato do dado já diz o que ele é.
+→ *Origem: web3.xmethod.de, aplicado no site da Hórus, 25/08/2026.*
+
 ---
 
 ## O que o detector pega sozinho
@@ -864,3 +957,36 @@ detector, que pega o resto e não depende de ninguém lembrar.
 registrada com motivo** (`ignores add-value ... --reason`), nunca regra ignorada
 em silêncio. Exceção com motivo é decisão; exceção sem motivo é o começo da volta
 do erro.
+
+## Recolor global se faz remapeando o VALOR do token, não caçando cada uso (28/08/2026)
+
+Quando o Marcelo troca a paleta inteira ("chega do amarelo"), a forma certa é
+**redefinir o valor dos tokens** (`--tinta`, `--osso`, `--azul-luz`, `--dourado`...) no
+`:root` e deixar as dezenas de usos herdarem — não sair caçando cada `rgba()`. O que
+**não herda** é o valor **hardcoded** (hex/`rgba()` cru dentro das seções: fundos,
+glows, gradientes): esses têm que ser trocados à mão, e é onde a cor velha sobrevive se
+a gente esquecer. Fez a migração do site institucional para a identidade n8n ser rápida
+onde havia token e lenta onde havia cor cravada. Lição: **acento e superfície sempre em
+token**, para o próximo recolor ser um bloco de `:root`, não uma caçada.
+
+## `scale()` de container query: divisor tem que ter unidade (01/09/2026)
+
+Para encaixar uma UI de tamanho fixo (px nativo) dentro de um device responsivo, o
+truque é escalar por container query: `.layer { width: 1536px; transform: scale(...) }`.
+`scale()` exige um **número**, e `calc(100cqw / 1536)` devolve um **comprimento**
+(comprimento ÷ número = comprimento) → transform inválido, **descartado sem erro no
+console**, e o layer renderiza em tamanho nativo (aqui: a webp do laptop a 1536px dentro
+de um card de 450px mostrou só o canto transparente → card em branco). O certo é dividir
+por um comprimento: `scale(calc(100cqw / 1536px))` (comprimento ÷ comprimento = número).
+Sintoma que engana: nada quebra, o elemento só "some". Foi o Card 3 dos serviços.
+
+## `container-type` + `cqw` no mesmo nó pode resolver a ~0 (01/09/2026)
+
+Um card flutuante (`.shop-sales`) com `container-type: inline-size` e os filhos em `cqw`
+computou fonte de **0,46px** (o `cqw` resolveu contra ~5px, não contra os 149px reais do
+card) — texto sumiu sem erro. O mesmo `cqw` funcionou perfeito nas telas dos devices
+(`.dev-screen--*`), que são filhas de OUTRO container. Não valeu a pena caçar a causa: em
+**widget pequeno e de tamanho quase fixo, usar px** (padrão dos mocks planos da casa) é
+mais robusto que `cqw`. `cqw` fica para superfície que precisa escalar muito (a tela do
+device). Sintoma que engana: `visibility: visible`, `overflow: visible`, texto presente
+no DOM, e mesmo assim invisível — só a fonte computada denuncia.

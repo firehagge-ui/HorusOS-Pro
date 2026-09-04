@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "3D Grabber",
+  "version": "0.1.0",
+  "description": "Detecta e captura assets 3D de qualquer site: arquivos (.glb/.gltf/.fbx/...) e cenas three.js vivas exportadas para GLB.",
+  "permissions": [
+    "webRequest",
+    "scripting",
+    "tabs",
+    "downloads"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "inject.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": true
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "3D Grabber",
+    "default_icon": {
+      "16": "icons/16.png",
+      "32": "icons/32.png",
+      "48": "icons/48.png",
+      "128": "icons/128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "homepage_url": "https://github.com/harebeats/3d-grabber"
+}

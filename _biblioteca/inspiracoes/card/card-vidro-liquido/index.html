@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Hórus · Agência</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Hanken+Grotesk:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="./styles.css" />
+
+  <link rel="icon" type="image/webp" href="./assets/simbolo.webp" />
+</head>
+<body>
+
+  <!-- Fundo on-brand: campo iridescente azul/dourado desenhado em canvas 2D,
+       nas cores da marca. Substitui o <video> do conceito original porque
+       geracao de video exige plano Pro/Ultimate e o MP4 externo era de terceiro. -->
+  <canvas id="bg-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- Filtro de refracao "liquid glass": feTurbulence (mapa de normais) +
+       mascara de borda + tres passes de deslocamento (um por canal) = franja
+       cromatica so na aresta do vidro. Nao mexer nos valores tunados. -->
+  <svg class="glass-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="liquid-glass-refraction"
+              x="-30%" y="-30%" width="160%" height="160%"
+              color-interpolation-filters="sRGB">
+
+        <feTurbulence type="fractalNoise" baseFrequency="0.012 0.015" numOctaves="3" result="noise" />
+
+        <feColorMatrix in="SourceAlpha" type="matrix" result="boosted_alpha"
+          values="0 0 0 0 0
+                  0 0 0 0 0
+                  0 0 0 0 0
+                  0 0 0 100 0" />
+
+        <feGaussianBlur in="boosted_alpha" stdDeviation="45" result="blurred_alpha" />
+
+        <feComponentTransfer in="blurred_alpha" result="edge_mask">
+          <feFuncA type="linear" slope="-1.3" intercept="1" />
+        </feComponentTransfer>
+
+        <feComposite in="noise" in2="edge_mask" operator="arithmetic"
+                     k1="1" k2="0" k3="0" k4="0" result="masked_noise" />
+
+        <!-- dispersao cromatica: um deslocamento por canal -->
+        <feDisplacementMap in="SourceGraphic" in2="masked_noise" scale="65"
+                           xChannelSelector="R" yChannelSelector="G" result="red_displaced" />
+        <feColorMatrix in="red_displaced" type="matrix" result="red"
+          values="1 0 0 0 0
+                  0 0 0 0 0
+                  0 0 0 0 0
+                  0 0 0 1 0" />
+
+        <feDisplacementMap in="SourceGraphic" in2="masked_noise" scale="56"
+                           xChannelSelector="R" yChannelSelector="G" result="green_displaced" />
+        <feColorMatrix in="green_displaced" type="matrix" result="green"
+          values="0 0 0 0 0
+                  0 1 0 0 0
+                  0 0 0 0 0
+                  0 0 0 1 0" />
+
+        <feDisplacementMap in="SourceGraphic" in2="masked_noise" scale="47"
+                           xChannelSelector="R" yChannelSelector="G" result="blue_displaced" />
+        <feColorMatrix in="blue_displaced" type="matrix" result="blue"
+          values="0 0 0 0 0
+                  0 0 0 0 0
+                  0 0 1 0 0
+                  0 0 0 1 0" />
+
+        <feBlend in="red" in2="green" mode="screen" result="rg" />
+        <feBlend in="rg" in2="blue" mode="screen" result="chromatic_dispersion" />
+      </filter>
+    </defs>
+  </svg>
+
+  <main class="hero">
+    <div class="rule rule--left" aria-hidden="true">
+      <span class="rule__seg rule__seg--end"></span>
+      <span class="rule__plus">+</span>
+      <span class="rule__seg rule__seg--mid"></span>
+      <span class="rule__plus">+</span>
+      <span class="rule__seg rule__seg--end"></span>
+    </div>
+    <div class="rule rule--right" aria-hidden="true">
+      <span class="rule__seg rule__seg--end"></span>
+      <span class="rule__plus">+</span>
+      <span class="rule__seg rule__seg--mid"></span>
+      <span class="rule__plus">+</span>
+      <span class="rule__seg rule__seg--end"></span>
+    </div>
+
+    <nav class="nav">
+      <button id="menu-open" class="nav__item" aria-expanded="false" aria-controls="menu">
+        <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="4" y1="6" x2="20" y2="6" />
+          <line x1="4" y1="12" x2="20" y2="12" />
+          <line x1="4" y1="18" x2="20" y2="18" />
+        </svg>
+        <span class="nav__label nav__label--menu">Menu</span>
+      </button>
+
+      <!-- WhatsApp (71) 9912-7514. O numero tem 10 digitos; confirmar antes de publicar. -->
+      <a class="nav__item" href="https://wa.me/557199127514">
+        <span class="nav__dot" aria-hidden="true"></span>
+        <span class="nav__label">Começar projeto</span>
+      </a>
+    </nav>
+
+    <div class="hero-bottom">
+      <div class="lede">
+        <h1 class="lede__title">Nada publicado<br />por acaso</h1>
+        <p class="lede__body">
+          A Hórus instala a máquina que faz o seu negócio aparecer, responder,
+          publicar e anunciar. Engenharia visual e inteligência artificial, um
+          bloco por vez.
+        </p>
+        <a class="chamfer" href="https://wa.me/557199127514">
+          <span class="chamfer__glass" aria-hidden="true"></span>
+          <svg class="chamfer__outline" viewBox="0 0 260 48" preserveAspectRatio="none" aria-hidden="true">
+            <polygon points="14,0 260,0 260,34 246,48 0,48 0,14"
+                     fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+          </svg>
+          <span class="chamfer__label">Começar projeto</span>
+          <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <aside class="card group" data-glass-card>
+        <div id="dup-video-container"><canvas id="dup-image"></canvas></div>
+        <div class="card__frost" aria-hidden="true"></div>
+
+        <div class="card__head">
+          <h2 class="card__title">A máquina</h2>
+          <span class="card__index">//04</span>
+        </div>
+
+        <div class="card__body">
+          <div class="finding">
+            <h3 class="finding__title">Aparecer</h3>
+            <p class="finding__text">Site, Google Meu Negócio e SEO para o negócio ser encontrado por quem já está procurando.</p>
+          </div>
+          <div class="finding">
+            <h3 class="finding__title">Responder</h3>
+            <p class="finding__text">Atendimento, CRM e conteúdo que mantêm a conversa viva depois do primeiro clique.</p>
+          </div>
+        </div>
+
+        <svg class="card__wave" viewBox="0 0 220 50" fill="none" aria-hidden="true">
+          <path d="M0 30 C10 30 12 45 18 45 C24 45 26 10 34 10 C42 10 44 40 52 40 C60 40 62 5 70 5 C78 5 80 42 88 42 C96 42 98 15 106 15 C114 15 116 38 124 38 C132 38 134 20 142 20 C150 20 152 35 160 35 C168 35 170 22 178 22 C186 22 188 32 196 32 C204 32 210 28 220 28"
+                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none" />
+        </svg>
+      </aside>
+    </div>
+  </main>
+
+  <div class="menu" id="menu">
+    <div class="menu__backdrop" id="menu-backdrop"></div>
+    <div class="menu__panel">
+      <button id="menu-close" class="menu__close">
+        <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6 6 18" /><path d="m6 6 12 12" />
+        </svg>
+        <span>Fechar</span>
+      </button>
+
+      <nav class="menu__nav">
+        <a class="menu__link" href="#">
+          <span class="menu__linkText">A Hórus</span>
+          <svg class="menu__arrow icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+        <a class="menu__link" href="#">
+          <span class="menu__linkText">Serviços</span>
+          <svg class="menu__arrow icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+        <a class="menu__link" href="#">
+          <span class="menu__linkText">Icarus</span>
+          <svg class="menu__arrow icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+        <a class="menu__link" href="#">
+          <span class="menu__linkText">Portfólio</span>
+          <svg class="menu__arrow icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+        <a class="menu__link" href="#">
+          <span class="menu__linkText">Contato</span>
+          <svg class="menu__arrow icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+      </nav>
+
+      <div class="menu__foot">
+        <span class="menu__footLabel">Fale com a gente</span>
+        <a class="menu__mail" href="mailto:contato.horus@gmail.com">contato.horus@gmail.com</a>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./glass-card.js"></script>
+  <script type="module" src="./ui.js"></script>
+</body>
+</html>

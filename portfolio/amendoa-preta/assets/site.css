@@ -1,0 +1,341 @@
+/* Amêndoa Preta, doceria de encomenda
+   Projeto conceitual da Hórus. Plano em ../PLANO.md
+   Paleta e escala de tipo vêm do plano, nada é decidido aqui. */
+
+:root{
+  /* cor */
+  --papel:#F3EAE0;
+  --papel-2:#F8F2E9;
+  --areia:#EBDFD0;
+  --cacau:#241813;
+  --cacau-2:#4A3428;
+  --gema:#C9871B;
+  --gema-esc:#8A5A0B;
+  --verde:#2E6446;
+  --vinho:#8E2F2F;
+  --fio:#DCCDBA;
+
+  /* escala de tipo: 8 degraus, razão mínima 1,25 */
+  --t-mono:13px;
+  --t-min:15px;
+  --t-corpo:17.5px;
+  --t-lead:20px;
+  --t-h3:26px;
+  --t-h2p:34px;
+  --t-h2:44px;
+  --t-h1:62px;
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *{animation:none !important;transition:none !important}
+}
+
+body{
+  margin:0;
+  background:var(--papel);
+  color:var(--cacau);
+  font-family:"Libre Franklin",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:var(--t-corpo);
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+
+img{max-width:100%;height:auto;display:block}
+
+h1,h2,h3{
+  font-family:"Gloock",Georgia,"Times New Roman",serif;
+  font-weight:400;
+  letter-spacing:-.01em;
+  line-height:1.08;
+  margin:0;
+  text-wrap:balance;
+}
+h1{font-size:var(--t-h1)}
+h2{font-size:var(--t-h2)}
+h3{font-size:var(--t-h3);line-height:1.18}
+p{margin:0 0 18px}
+
+a{color:var(--gema-esc)}
+a:hover{color:var(--cacau)}
+:focus-visible{outline:2px solid var(--gema-esc);outline-offset:3px}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.pular{position:absolute;left:-999px;top:0;background:var(--cacau);color:var(--papel);padding:12px 18px;z-index:99}
+.pular:focus{left:12px;top:12px}
+
+/* ---------- botão e link forte ---------- */
+.btn{
+  display:inline-block;
+  background:var(--gema);
+  color:var(--cacau);
+  font-weight:600;
+  font-size:var(--t-corpo);
+  line-height:1.2;
+  text-decoration:none;
+  padding:16px 26px;
+  border:1px solid var(--gema-esc);
+  border-radius:3px;
+  transition:background .18s ease,transform .18s ease;
+}
+.btn:hover{background:#DA9829;color:var(--cacau);transform:translateY(-1px)}
+.btn-grande{padding:20px 34px;font-size:var(--t-lead)}
+.link-forte{
+  font-weight:600;
+  color:var(--gema-esc);
+  text-underline-offset:5px;
+  text-decoration-thickness:1px;
+}
+
+/* ---------- topo ---------- */
+.topo{
+  position:sticky;top:0;z-index:40;
+  background:rgba(243,234,224,.93);
+  backdrop-filter:blur(10px);
+}
+.topo-in{
+  max-width:1240px;margin:0 auto;
+  padding:16px 32px;
+  display:flex;align-items:center;gap:32px;
+}
+.marca{text-decoration:none;color:var(--cacau);display:flex;flex-direction:column;gap:2px;margin-right:auto}
+.marca-nome{font-family:"Gloock",Georgia,serif;font-size:22px;line-height:1}
+.marca-sub{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:var(--t-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--cacau-2);
+}
+.menu{display:flex;gap:28px}
+.menu a{
+  color:var(--cacau-2);text-decoration:none;font-size:var(--t-min);font-weight:500;
+  padding:6px 0;border-bottom:1px solid transparent;
+}
+.menu a:hover{color:var(--cacau);border-bottom-color:var(--gema)}
+.btn-topo{padding:12px 20px;font-size:var(--t-min)}
+
+/* ---------- hero ---------- */
+.hero{
+  max-width:1240px;margin:0 auto;
+  padding:70px 32px 96px;
+  display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
+}
+.hero-texto{max-width:34em}
+.hero h1{margin-bottom:22px}
+.lead{font-size:var(--t-lead);color:var(--cacau-2);max-width:30em;margin-bottom:28px}
+.hero-acoes{display:flex;align-items:center;gap:26px;flex-wrap:wrap;margin:28px 0 22px}
+.hero-prova{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:var(--t-min);letter-spacing:.01em;
+  color:var(--cacau-2);margin:0;
+}
+.hero-foto img{border-radius:3px;width:100%;height:600px;object-fit:cover;object-position:center 55%}
+
+/* ---------- o painel de agenda: o elemento-assinatura ---------- */
+.agenda-painel{
+  background:var(--papel-2);
+  border:1px solid var(--fio);
+  border-radius:3px;
+  padding:20px 22px 18px;
+}
+.agenda-estado{
+  display:flex;align-items:center;gap:9px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:var(--t-mono);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--verde);font-weight:600;margin:0 0 14px;
+}
+.agenda-estado .ponto{width:8px;height:8px;border-radius:50%;background:var(--verde);flex:0 0 auto}
+.agenda-estado.fechado{color:var(--vinho)}
+.agenda-estado.fechado .ponto{background:var(--vinho)}
+.agenda-dados{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:16px 24px}
+.agenda-dados dt{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:var(--t-mono);letter-spacing:.06em;text-transform:uppercase;
+  color:var(--cacau-2);margin-bottom:4px;
+}
+.agenda-dados dd{margin:0;font-size:var(--t-lead);font-weight:600;line-height:1.25}
+.agenda-dados dd .dia-semana{display:block;font-size:var(--t-min);font-weight:500;color:var(--cacau-2);text-transform:none;letter-spacing:0}
+.agenda-nota{
+  margin:16px 0 0;padding-top:14px;border-top:1px solid var(--fio);
+  font-size:var(--t-min);color:var(--cacau-2);
+}
+
+/* ---------- faixas de seção ---------- */
+.faixa{padding:96px 32px}
+.faixa-clara{background:var(--papel-2)}
+.faixa-escura{background:var(--cacau);color:var(--papel)}
+.faixa-contato{background:var(--areia)}
+
+.secao-cab{max-width:1240px;margin:0 auto 52px}
+.secao-cab h2{max-width:16em;margin-bottom:16px}
+.secao-cab p{max-width:44em;color:var(--cacau-2);font-size:var(--t-lead);margin:0}
+
+/* ---------- 2. ocasiões ---------- */
+.col{max-width:900px;margin:0 auto}
+.col h2{margin-bottom:36px;max-width:14em}
+.situacoes{list-style:none;margin:0 0 34px;padding:0}
+.situacoes li{
+  font-size:var(--t-lead);
+  line-height:1.5;
+  padding:18px 0;
+  border-bottom:1px solid var(--fio);
+}
+.situacoes li:last-child{border-bottom:0}
+.destaque{color:var(--gema-esc)}
+.col-fecho{max-width:44em;color:var(--cacau-2);margin:0}
+
+/* ---------- 3. cardápio ---------- */
+.produto{
+  max-width:1240px;margin:0 auto 64px;
+  display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:start;
+}
+.produto:last-child{margin-bottom:0}
+.produto-foto img{border-radius:3px}
+.produto-info h3{margin-bottom:14px}
+.produto-info>p{color:var(--cacau-2);max-width:40em}
+.ficha{margin:26px 0 0;display:grid;gap:0}
+.ficha>div{
+  display:grid;grid-template-columns:180px 1fr;gap:20px;
+  padding:14px 0;border-top:1px solid var(--fio);
+}
+.ficha>div:last-child{border-bottom:1px solid var(--fio)}
+.ficha dt{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:var(--t-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--cacau-2);
+  padding-top:3px;
+}
+.ficha dd{margin:0;font-weight:500}
+.ficha-obs{color:var(--cacau-2);font-weight:400;font-size:var(--t-min)}
+
+/* ---------- 4. passos ---------- */
+.passos{
+  max-width:1240px;margin:0 auto;padding:0;list-style:none;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:2px;
+  background:var(--fio);border:1px solid var(--fio);border-radius:3px;overflow:hidden;
+}
+.passos li{background:var(--papel-2);padding:34px 32px}
+.passo-num{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:var(--t-min);font-weight:600;color:var(--gema-esc);
+  display:block;margin-bottom:12px;
+}
+.passos h3{font-size:var(--t-h3);margin-bottom:12px}
+.passos p{color:var(--cacau-2);margin-bottom:12px}
+.passo-prazo{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:var(--t-mono);letter-spacing:.08em;text-transform:uppercase;
+  color:var(--cacau);margin:0;
+}
+
+/* ---------- 5. cozinha (fundo escuro) ---------- */
+.faixa-escura h2{color:var(--papel)}
+.cozinha-grid{
+  max-width:1240px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;
+}
+.cozinha-foto img{border-radius:3px}
+.cozinha-texto h2{margin-bottom:18px}
+.cozinha-nome{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:var(--t-mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gema);margin-bottom:18px;
+}
+.cozinha-texto p{color:#E4D6C6;max-width:38em}
+
+/* ---------- 6. agenda do ano ---------- */
+.tabela-agenda{max-width:1240px;margin:0 auto;overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:640px}
+thead th{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:var(--t-mono);letter-spacing:.08em;text-transform:uppercase;
+  color:var(--cacau-2);font-weight:600;text-align:left;
+  padding:0 18px 12px 0;border-bottom:1px solid var(--cacau);
+}
+tbody th,tbody td{text-align:left;padding:18px 18px 18px 0;border-bottom:1px solid var(--fio);font-weight:400}
+tbody th{font-weight:600}
+.tag{
+  display:inline-block;font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:var(--t-mono);letter-spacing:.06em;text-transform:uppercase;
+  padding:5px 10px;border-radius:2px;
+}
+.tag-aberta{background:#DCEBE1;color:#1F4D33}
+.tag-atencao{background:#F6E3C8;color:#7A4E08}
+.agenda-obs{max-width:1240px;margin:26px auto 0;color:var(--cacau-2);font-size:var(--t-min)}
+
+/* ---------- 7. faq ---------- */
+.faq{max-width:900px;margin:0 auto;border-top:1px solid var(--fio)}
+.faq details{border-bottom:1px solid var(--fio)}
+.faq summary{
+  cursor:pointer;list-style:none;
+  font-size:var(--t-lead);font-weight:600;
+  padding:22px 44px 22px 0;position:relative;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"+";position:absolute;right:8px;top:20px;
+  font-size:26px;line-height:1;color:var(--gema-esc);font-weight:400;
+}
+.faq details[open] summary::after{content:"–"}
+.faq summary:hover{color:var(--gema-esc)}
+.faq details p{padding:0 44px 24px 0;margin:0;color:var(--cacau-2);max-width:52em}
+
+/* ---------- 8. contato ---------- */
+.contato-grid{
+  max-width:1240px;margin:0 auto;
+  display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:start;
+}
+.contato-grid h2{max-width:12em;margin-bottom:18px}
+.contato-lead{font-size:var(--t-lead);color:var(--cacau-2);max-width:32em;margin-bottom:30px}
+.contato-dados{margin:0;display:grid;gap:0}
+.contato-dados>div{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:15px 0;border-top:1px solid var(--fio)}
+.contato-dados>div:last-child{border-bottom:1px solid var(--fio)}
+.contato-dados dt{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:var(--t-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--cacau-2);padding-top:3px;
+}
+.contato-dados dd{margin:0;font-weight:500}
+
+/* ---------- rodapé ---------- */
+.rodape{background:var(--cacau);color:var(--papel);padding:64px 32px}
+.rodape-in{max-width:1240px;margin:0 auto}
+.rodape-marca{font-family:"Gloock",Georgia,serif;font-size:var(--t-h2p);margin:0 0 10px;line-height:1}
+.rodape-linha{color:#E4D6C6;margin:0 0 26px}
+.rodape-nota{color:#B9A796;font-size:var(--t-min);margin:0;max-width:44em}
+
+/* ---------- entrada em cascata ---------- */
+.rev{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
+.rev.dentro{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .rev{opacity:1;transform:none}
+}
+
+/* ---------- telas médias ---------- */
+@media (max-width:1000px){
+  :root{--t-h1:44px;--t-h2:34px;--t-h2p:28px;--t-h3:23px;--t-lead:19px}
+  .hero{grid-template-columns:1fr;gap:40px;padding:44px 24px 64px}
+  .hero-foto{order:-1}
+  .hero-foto img{height:340px}
+  .produto{grid-template-columns:1fr;gap:28px}
+  .produto-foto{max-width:420px}
+  .cozinha-grid{grid-template-columns:1fr;gap:32px}
+  .contato-grid{grid-template-columns:1fr;gap:40px}
+  .passos{grid-template-columns:1fr}
+  .menu{display:none}
+  .faixa{padding:64px 24px}
+  .topo-in{padding:14px 24px;gap:16px}
+}
+
+/* ---------- celular: encolhe o espaço, nunca o texto ---------- */
+@media (max-width:560px){
+  :root{--t-h1:36px;--t-h2:29px;--t-h3:22px;--t-lead:18px}
+  .faixa{padding:52px 20px}
+  .hero{padding:32px 20px 52px}
+  .topo-in{padding:12px 20px}
+  .btn-topo{display:none}
+  .agenda-dados{grid-template-columns:1fr;gap:14px}
+  .ficha>div,.contato-dados>div{grid-template-columns:1fr;gap:4px}
+  .passos li{padding:26px 22px}
+  .agenda-painel{padding:18px 18px 16px}
+  .marca-sub{font-size:11px}
+}

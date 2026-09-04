@@ -206,6 +206,86 @@ Trava: reenquadrar honestamente, nunca girar mentira. O freio tem que ser real.
 
 ---
 
+## A informação que o segmento inteiro esconde (lote de 27/08/2026)
+
+> Achado que apareceu **igual** em dois segmentos sem nenhuma relação entre si: seis
+> sites reais de doceria de encomenda e de arquitetura de interiores, estudados no
+> mesmo dia (`referencias/doceria-encomenda-tres-sites.md` e
+> `referencias/interiores-tres-sites.md`).
+
+Nos dois, o site mostra o produto muito bem e **não responde o que trava a compra**:
+
+| Segmento | O que a página tem | O que ela não diz, e é o que segura o clique |
+|---|---|---|
+| Doceria de encomenda | foto de bolo, categorias, formulário de orçamento | **prazo mínimo, pedido mínimo, área de entrega** |
+| Interiores de alto padrão | portfólio, filosofia, foto grande | **etapas, prazo em semanas, faixa de investimento, o que está fora do escopo** |
+
+O visitante desses dois nichos chega com uma pergunta de **viabilidade**, não de
+gosto: "ainda dá tempo?", "quanto tempo isso leva?", "cabe no meu bolso?". Enquanto a
+resposta estiver atrás do formulário, o formulário é onde ele desiste.
+
+**A regra que fica:** em qualquer negócio de encomenda, projeto sob medida ou serviço
+com prazo, o bloco 4 ("como começa") tem que carregar **número**, não só encorajamento.
+Prazo em dias ou semanas, mínimo em unidades, faixa de preço de partida, e o que
+**não** está incluso. É a aplicação direta de "vender o freio": a informação chata,
+dita antes de ser perguntada, vira o argumento de quem tem o que esconder ao lado.
+
+Uma ressalva de integridade: número que entra aqui é **regra da operação**, não
+estimativa inventada. Se o cliente não sabe dizer o prazo dele, isso vira
+`[FALTA: ...]` e a pergunta vai para a reunião, porque um prazo publicado errado é
+pior que prazo nenhum.
+
+→ *Aplicado nas duas peças conceituais de `portfolio/` do mesmo dia: o painel de
+agenda da Amêndoa Preta calcula a próxima data possível ao vivo, e a régua de cinco
+etapas do Soleira mostra prazo e entregável de cada uma.*
+
+---
+
+## O que as nove agências convergem (lote de 26/08/2026)
+
+> As nove referências que o Marcelo mandou para o site da própria Hórus (lessestudio,
+> delucks, graffico, wibify, uxbert, amphora, vividmotion, estrela, xmethod) são
+> concorrentes diretos — agência web/software/IA. Estudadas com a `/estudar-site`, elas
+> convergem em quatro decisões que o site institucional tem que aguentar ao lado.
+
+### O cardápio de entregas nomeadas (refinamento do bloco 3)
+
+Card de serviço com ícone + parágrafo é o formato genérico. As agências boas trocam por
+um **cardápio de entregas nomeadas** com contador: cada serviço lista as sub-entregas
+concretas ("Brand Positioning", "Tone of Voice"...) e um `/N` que fecha a conta. É
+sistema de conteúdo comparável no lugar de decoração, e cada sub-entrega vira gancho de
+SEO long-tail se ganhar página. O ícone genérico de 22px não informa; a lista de seis
+nomes, sim.
+→ *Origem: convergência de Lesse (`/6 services`), Wibify (8 bullets fixos por card),
+Graffico (monograma de letra + página por solução) e Delucks, 26/08/2026.*
+
+### A matriz que ataca a categoria, não o concorrente (arma do "Vender o freio")
+
+Diferenciar sem superlativo e sem citar concorrente nominal: uma **matriz comparativa
+"nós × as alternativas de categoria"** (agência-com-IA × freelancer × agência tradicional
+× in-house × fazer sozinho), cruzando 4-5 critérios, com um parágrafo honesto do
+trade-off de cada uma. Ataca a decisão real do visitante ("como resolvo isso?") por
+critério, não por ego. É compliance-safe: desqualificação por critério, não promessa nem
+ataque nominal.
+→ *Origem: Amphora, 26/08/2026. Ver `referencias/amphora-it.md`.*
+
+### Portfólio como caso resolvido: a tríade de metadados
+
+Trabalho no portfólio enquadrado como **caso**, não foto: junto do visual, a tríade
+**Local / Setor / Serviços**. Transforma "imagem bonita" em "problema que a casa já
+resolveu naquele setor", e casa com os clientes reais (Salvador/Odonto/Site;
+Brejões/Café/GMN+Site).
+→ *Origem: Lesse e UXBERT, 26/08/2026.*
+
+### Numeração de seção grande como marca de autoridade
+
+Quatro referências (Estrela, Vivid Motion, Amphora, Xmethod) marcam seção com **número
+grande** (`01`/`02`/`03`), em serifa ou display. É assinatura recorrente barata. ⚠️ Só
+quando a sequência é **real** e o leitor precisa segui-la (serviços, passos): numerar
+seção sem ordem é o `01 / ÍNDICE` decorativo que o `90-antipadroes.md` já proíbe.
+
+---
+
 ## O que quase sempre sobra
 
 - Seção "nossos valores" com três palavras genéricas
@@ -234,3 +314,12 @@ problema de ritmo sem custo nenhum.
 
 E o teto de "eyebrow", aquele rótulo miúdo em caixa alta acima do título:
 **um a cada três seções**. Colocar em todas é o que cria o ritmo de template.
+
+## Serviços que empilham no scroll (n8n, 28/08/2026)
+
+Quando cada serviço deve **ocupar a tela e o próximo surgir por cima do anterior**, o
+padrão é `position: sticky; top: 0` num painel **opaco** de `min-height: 100vh`, um por
+serviço: o de baixo prende no topo, o de cima sobe e o cobre. É de graça, **sem JS e sem
+pin de GSAP**. Uma sombra `0 -30px ...` no topo de cada painel vende a chegada; fundos
+alternando (void / cor) dão o ritmo. Nasceu no site institucional da Hórus (identidade
+n8n) e vale para qualquer catálogo de serviço que queira o efeito "card stack".

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Uma URL só: o escopo aprovado tem quatro páginas e hoje existe a home.
+     Quando entrarem as páginas por bloco da Máquina, cases e Sobre, cada uma
+     ganha sua <url> aqui. Enquanto o robots.txt bloquear tudo, este arquivo
+     fica no ar mas ninguém o lê — é preparo, não publicação. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://agenciahorus.netlify.app/</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

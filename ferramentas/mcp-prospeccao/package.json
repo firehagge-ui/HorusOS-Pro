@@ -1,0 +1,17 @@
+{
+  "name": "horus-mcp-prospeccao",
+  "version": "1.0.0",
+  "description": "Servidor MCP da Horus para inteligência comercial: checagem de site e consulta de CNPJ. (Verificação de anúncio na Meta é feita via Firecrawl, não aqui.)",
+  "type": "module",
+  "bin": {
+    "horus-mcp-prospeccao": "server.mjs"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "smoke": "node smoke.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.8"
+  }
+}

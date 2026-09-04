@@ -50,3 +50,17 @@ Quando você roda uma skill que precisa de script ausente, o Claude vai:
 5. Rodar a skill
 
 Você não precisa decorar nada. Roda a skill, segue o fluxo.
+
+## `empacota-single-file.py`
+
+Transforma um site da casa (`index.html` + `assets/`) num **arquivo único** com CSS,
+JS e imagens embutidos em data URI. Serve para publicar como artefato compartilhável
+(link que abre no celular do cliente) sem precisar de hospedagem.
+
+```
+python scripts/empacota-single-file.py portfolio/amendoa-preta saida.html
+```
+
+Ele já entrega o HTML no formato que o publicador de artefato espera: sem `<!DOCTYPE>`,
+sem `<html>`, sem `<head>` e sem `<body>`, com o `<title>` cortado no `|` para virar
+nome curto. Criado em 27/08/2026 para publicar as duas peças de `portfolio/`.

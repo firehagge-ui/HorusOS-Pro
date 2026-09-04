@@ -1,0 +1,4 @@
+node_modules/
+*.glb
+*.log
+.DS_Store

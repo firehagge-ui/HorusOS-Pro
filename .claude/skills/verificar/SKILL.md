@@ -40,6 +40,7 @@ Pular passo é mentir, não é economizar tempo.
 | "Passa no compliance" | Varredura de `_conselho/cargos/compliance.md`, item por item | "Não tem nada demais" |
 | "As imagens estão ok" | Peso conferido e formato WebP no tamanho de exibição | "Converti" |
 | "Não tem dado inventado" | Cada número e afirmação com fonte, placeholder marcado onde falta | "Usei o briefing" |
+| **"Os contatos estão certos"** | **Telefone, WhatsApp e endereço conferidos contra fonte que o cliente controla (print do perfil dele, mensagem dele) + mensagem de teste enviada ao número que está no código** | "O Marcelo passou", "está no briefing" |
 | "O texto está aprovado" | Aprovação do Marcelo ou do cliente, registrada | "Ficou alinhado com a marca" |
 | "O arquivo foi criado" | Arquivo lido de volta ou listado | "Salvei" |
 | "O relatório está certo" | Número batendo com a plataforma de origem | "Puxei os dados" |

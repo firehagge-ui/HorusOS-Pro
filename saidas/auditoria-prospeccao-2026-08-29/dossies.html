@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Hórus — Dossiês de Prospecção</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0A0B0F; --surface:#14161d; --surface-2:#1b1e27; --graphite:#3B3F46;
+    --blue:#2563EB; --blue-2:#60A5FA; --gold:#F4C430;
+    --ink:#E5E7EB; --ink-dim:#9aa1ad; --ink-faint:#6b7280;
+    --green:#7CFFB2; --amber:#FFD27C; --coral:#FF9E7C;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body{ font-family:'Archivo',system-ui,sans-serif; color:var(--ink); background:var(--void); }
+  @page{ size:A4; margin:0; }
+
+  .page{ position:relative; width:210mm; min-height:297mm; background:var(--void);
+    padding:20mm 18mm 18mm; overflow:hidden; page-break-after:always;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page:last-child{ page-break-after:auto; }
+
+  h1,h2,h3,.display{ font-family:'Sora',system-ui,sans-serif; }
+  .eyebrow{ font-family:'Sora',sans-serif; font-weight:600; font-size:8pt; letter-spacing:.26em;
+    text-transform:uppercase; color:var(--blue-2); display:flex; align-items:center; gap:8px; }
+  .eyebrow::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--gold); }
+  .rule{ width:100%; height:1px; background:var(--graphite); border:0; margin:12px 0 16px; opacity:.7; }
+  p{ font-size:10pt; line-height:1.55; color:var(--ink); }
+  strong{ color:#fff; font-weight:600; }
+  .src{ color:var(--blue-2); font-size:7pt; font-family:'Sora',sans-serif; letter-spacing:.02em; }
+  .foot-note{ color:var(--ink-faint); font-size:8pt; line-height:1.5; }
+
+  .runner{ position:absolute; left:18mm; right:18mm; bottom:11mm; display:flex;
+    justify-content:space-between; align-items:center; font-family:'Sora',sans-serif;
+    font-size:7pt; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint);
+    border-top:1px solid var(--graphite); padding-top:7px; }
+  .runner .mark{ display:flex; align-items:center; gap:7px; color:var(--ink-dim); }
+  .runner .mark img{ width:12px; height:12px; opacity:.9; }
+
+  /* ===== Capa ===== */
+  .cover{ display:flex; flex-direction:column; justify-content:space-between; padding:26mm 20mm 22mm; }
+  .cover-top{ display:flex; flex-direction:column; align-items:center; text-align:center; }
+  .cover-top img.sig{ width:190px; height:auto; }
+  .cover-beam{ margin:24mm 0 20mm; }
+  .kicker{ font-family:'Sora',sans-serif; font-weight:600; font-size:9pt; letter-spacing:.3em; text-transform:uppercase; color:var(--blue-2); }
+  .cover-mid h1{ font-family:'Sora',sans-serif; font-weight:300; font-size:38pt; line-height:1.0; letter-spacing:-.02em; margin:16px 0 12px; color:#fff; }
+  .cover-mid h1 b{ font-weight:600; color:var(--ink); }
+  .cover-mid .sub{ color:var(--ink-dim); font-size:11pt; line-height:1.5; max-width:54ch; }
+  .cover-meta{ display:flex; gap:32px; margin-top:30px; }
+  .cover-meta div{ display:flex; flex-direction:column; gap:3px; }
+  .cover-meta .lab{ font-family:'Sora',sans-serif; font-size:7.5pt; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-faint); }
+  .cover-meta .val{ font-family:'Sora',sans-serif; font-size:10.5pt; color:var(--ink); font-weight:500; }
+  .cover-foot{ display:flex; justify-content:space-between; align-items:flex-end; }
+  .cover-foot .sign{ font-family:'Sora',sans-serif; font-weight:300; font-size:12pt; color:var(--ink-dim); }
+  .cover-foot .sign b{ color:var(--blue-2); font-weight:500; }
+  .conf{ font-family:'Sora',sans-serif; font-size:7.5pt; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-faint); border:1px solid var(--graphite); padding:5px 10px; border-radius:999px; }
+
+  /* ===== Sumário ===== */
+  .toc{ display:flex; flex-direction:column; gap:0; margin-top:6px; }
+  .toc-row{ display:grid; grid-template-columns:34px 1fr auto auto; align-items:center; gap:14px;
+    padding:11px 4px; border-bottom:1px solid rgba(59,63,70,.5); }
+  .toc-row .tn{ font-family:'Sora',sans-serif; font-weight:600; font-size:12pt; color:var(--ink-faint); }
+  .toc-row .tname{ font-family:'Sora',sans-serif; font-weight:600; font-size:11pt; color:#fff; }
+  .toc-row .tseg{ font-size:8.5pt; color:var(--ink-faint); margin-top:1px; }
+  .toc-row .treg{ font-size:7.5pt; font-family:'Sora',sans-serif; letter-spacing:.04em; color:var(--amber); }
+
+  /* ===== Dossiê ===== */
+  .dhead{ display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
+  .dhead .num{ font-family:'Sora',sans-serif; font-weight:700; font-size:9pt; letter-spacing:.14em; color:var(--blue-2); }
+  .dhead h2{ font-family:'Sora',sans-serif; font-weight:600; font-size:23pt; letter-spacing:-.01em; line-height:1.05; margin:6px 0 5px; color:#fff; }
+  .dhead .seg{ font-size:9.5pt; color:var(--ink-dim); }
+  .badge{ display:flex; flex-direction:column; align-items:flex-end; gap:6px; white-space:nowrap; }
+  .prio{ font-family:'Sora',sans-serif; font-size:8pt; font-weight:700; letter-spacing:.06em; padding:4px 10px; border-radius:6px; }
+  .prio.p0{ color:var(--void); background:var(--gold); }
+  .prio.p1{ color:var(--blue-2); border:1px solid var(--blue); }
+  .score{ font-family:'Sora',sans-serif; font-size:8pt; color:var(--ink-faint); letter-spacing:.1em; }
+
+  .chips{ display:grid; grid-template-columns:repeat(4,1fr); gap:9px; margin:4px 0 2px; }
+  .chip{ background:var(--surface); border:1px solid var(--graphite); border-radius:10px; padding:10px 11px; }
+  .chip .ck{ font-size:7pt; color:var(--ink-faint); font-family:'Sora',sans-serif; letter-spacing:.1em; text-transform:uppercase; }
+  .chip .cv{ font-family:'Sora',sans-serif; font-size:11pt; color:#fff; font-weight:600; margin-top:5px; line-height:1.15; }
+  .chip .cs{ display:block; margin-top:4px; }
+  .tag{ font-family:'Sora',sans-serif; font-size:6.5pt; font-weight:600; letter-spacing:.04em; padding:2px 6px; border-radius:999px; display:inline-block; }
+  .tag.clean{ color:var(--green); background:rgba(52,211,153,.12); border:1px solid rgba(52,211,153,.4); }
+  .tag.warn{ color:var(--amber); background:rgba(244,196,48,.1); border:1px solid rgba(244,196,48,.4); }
+  .tag.run{ color:var(--coral); background:rgba(240,120,92,.12); border:1px solid rgba(240,120,92,.42); }
+  .tag.na{ color:var(--ink-dim); background:rgba(154,161,173,.1); border:1px solid rgba(154,161,173,.35); }
+
+  .block{ margin-top:15px; }
+  .block .eyebrow{ margin-bottom:7px; }
+  .block p{ font-size:9.7pt; line-height:1.55; color:var(--ink-dim); max-width:74ch; }
+  .block p b, .block p strong{ color:var(--ink); }
+
+  .offer{ background:linear-gradient(180deg,var(--surface-2),var(--surface)); border:1px solid var(--graphite);
+    border-left:3px solid var(--blue); border-radius:0 12px 12px 0; padding:13px 16px; margin-top:15px; }
+  .offer .eyebrow{ color:var(--blue-2); margin-bottom:6px; }
+  .offer p{ font-size:10pt; color:var(--ink); line-height:1.5; }
+
+  .msg{ background:var(--surface); border:1px solid var(--graphite); border-radius:10px; padding:12px 15px; margin-top:15px; }
+  .msg .who{ font-family:'Sora',sans-serif; font-size:7pt; letter-spacing:.14em; text-transform:uppercase; color:var(--blue-2); margin-bottom:6px; }
+  .msg p{ font-size:9.4pt; line-height:1.55; color:var(--ink); font-style:italic; }
+
+  .comp{ margin-top:15px; background:rgba(244,196,48,.05); border:1px solid rgba(244,196,48,.32);
+    border-radius:10px; padding:11px 14px; }
+  .comp .ct{ font-family:'Sora',sans-serif; font-size:8pt; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--amber); margin-bottom:5px; display:flex; align-items:center; gap:7px; }
+  .comp p{ font-size:8.7pt; line-height:1.5; color:var(--ink-dim); }
+  .comp p b{ color:var(--amber); font-weight:600; }
+  .comp.clear{ background:rgba(96,165,250,.05); border-color:rgba(96,165,250,.3); }
+  .comp.clear .ct{ color:var(--blue-2); }
+  .comp.clear p b{ color:var(--blue-2); }
+
+  ul.clean{ list-style:none; display:flex; flex-direction:column; gap:8px; margin-top:2px; }
+  ul.clean li{ font-size:9.5pt; line-height:1.5; color:var(--ink-dim); padding-left:15px; position:relative; }
+  ul.clean li::before{ content:""; position:absolute; left:0; top:7px; width:6px; height:6px; border-radius:50%; background:var(--blue); }
+  ul.clean li b{ color:var(--ink); font-weight:600; }
+  .metrics{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:14px 0; }
+  .metric{ background:var(--surface); border:1px solid var(--graphite); border-radius:12px; padding:14px; }
+  .metric .n{ font-family:'Sora',sans-serif; font-weight:600; font-size:24pt; line-height:1; color:#fff; }
+  .metric .n.gold{ color:var(--gold); } .metric .n.blue{ color:var(--blue-2); }
+  .metric .k{ font-size:8.5pt; color:var(--ink-dim); margin-top:8px; line-height:1.35; }
+</style>
+</head>
+<body>
+
+<!-- ===== CAPA ===== -->
+<section class="page cover">
+  <div class="cover-top"><img class="sig" src="assinatura.webp" alt="Hórus Agência"></div>
+  <div class="cover-mid">
+    <div class="cover-beam">
+      <svg width="100%" height="34" viewBox="0 0 520 34" fill="none" preserveAspectRatio="none">
+        <path d="M0 17 C 70 2, 130 32, 200 17 S 330 2, 400 17 S 460 30, 520 17" stroke="#2563EB" stroke-width="1.1" opacity="0.9"/>
+        <path d="M0 22 C 70 8, 130 36, 200 22 S 330 8, 400 22 S 460 34, 520 22" stroke="#2563EB" stroke-width="0.7" opacity="0.4"/>
+        <path d="M0 12 C 70 -2, 130 26, 200 12 S 330 -2, 400 12 S 460 24, 520 12" stroke="#60A5FA" stroke-width="0.6" opacity="0.35"/>
+      </svg>
+    </div>
+    <div class="kicker">Inteligência Comercial · Prospecção</div>
+    <h1>Dossiês da<br><b>fila de ataque</b></h1>
+    <div class="sub">Um por lead. Os dez prioritários de Salvador e Feira de Santana, cada um com o dado verificado, a dor, a oferta certa e a primeira mensagem. Material para decidir a dois.</div>
+    <div class="cover-meta">
+      <div><span class="lab">Data</span><span class="val">29 · 08 · 2026</span></div>
+      <div><span class="lab">Dossiês</span><span class="val">10 leads</span></div>
+      <div><span class="lab">Método</span><span class="val">check_site + Firecrawl</span></div>
+    </div>
+  </div>
+  <div class="cover-foot">
+    <div class="sign">Visão que conecta.<br><b>Estratégia que transforma.</b></div>
+    <div class="conf">Uso interno</div>
+  </div>
+</section>
+
+<!-- ===== SUMÁRIO / COMO LER ===== -->
+<section class="page">
+  <div class="eyebrow">Como ler estes dossiês</div>
+  <h2 style="font-family:'Sora';font-weight:600;font-size:20pt;letter-spacing:-.01em;margin:10px 0 4px;color:#fff">Dez alvos, uma página cada</h2>
+  <hr class="rule">
+  <p style="max-width:70ch;color:var(--ink-dim)">Cada dossiê traz o que foi <strong>verificado</strong> (plataforma do site e anúncio na Meta), o número de avaliações do Google (fonte do agente), o <strong>gap</strong> que abre a conversa, a <strong>oferta</strong> que a Hórus vende primeiro e uma <strong>primeira mensagem</strong> pronta. Onde o setor é regulado, uma faixa de compliance mostra o que a peça pode e não pode dizer, para não prometermos o que não se entrega dentro da norma.</p>
+
+  <div class="metrics">
+    <div class="metric"><div class="n gold">3</div><div class="k">campo limpo confirmado: zero anúncio na Meta</div></div>
+    <div class="metric"><div class="n">6</div><div class="k">de setor regulado: odonto, médico ou advocacia</div></div>
+    <div class="metric"><div class="n blue">1</div><div class="k">já roda tráfego pago (Lumière)</div></div>
+  </div>
+
+  <div class="eyebrow" style="margin-top:6px">A fila</div>
+  <hr class="rule">
+  <div class="toc">
+    <div class="toc-row"><span class="tn">01</span><div><div class="tname">Bravolts</div><div class="tseg">Energia solar · Salvador</div></div><span class="treg"></span><span class="prio p0" style="font-size:7pt;padding:3px 8px">P0 · 86</span></div>
+    <div class="toc-row"><span class="tn">02</span><div><div class="tname">Couto Silva Advocacia</div><div class="tseg">Advocacia · Salvador</div></div><span class="treg">OAB</span><span class="prio p1" style="font-size:7pt;padding:3px 8px">P1 · 83</span></div>
+    <div class="toc-row"><span class="tn">03</span><div><div class="tname">Spaço Saúde</div><div class="tseg">Odonto e estética · Graça</div></div><span class="treg">CFO · CFM</span><span class="prio p1" style="font-size:7pt;padding:3px 8px">P1 · 82</span></div>
+    <div class="toc-row"><span class="tn">04</span><div><div class="tname">Harmony Odontologia</div><div class="tseg">Odontologia · Feira</div></div><span class="treg">CFO</span><span class="prio p1" style="font-size:7pt;padding:3px 8px">P1 · 82</span></div>
+    <div class="toc-row"><span class="tn">05</span><div><div class="tname">Revita Life</div><div class="tseg">Estética avançada · Feira</div></div><span class="treg">CFM?</span><span class="prio p1" style="font-size:7pt;padding:3px 8px">P1 · 82</span></div>
+    <div class="toc-row"><span class="tn">06</span><div><div class="tname">Home Stetic</div><div class="tseg">Estética · Feira (SIM)</div></div><span class="treg">estética</span><span class="prio p1" style="font-size:7pt;padding:3px 8px">P1 · 82</span></div>
+    <div class="toc-row"><span class="tn">07</span><div><div class="tname">Instituto Visagè</div><div class="tseg">Plástica ocular · Salvador</div></div><span class="treg">CFM</span><span class="prio p1" style="font-size:7pt;padding:3px 8px">P1 · 82</span></div>
+    <div class="toc-row"><span class="tn">08</span><div><div class="tname">Dr. Juan Felix</div><div class="tseg">Harmonização · Salvador</div></div><span class="treg">CFO</span><span class="prio p1" style="font-size:7pt;padding:3px 8px">P1 · 81</span></div>
+    <div class="toc-row"><span class="tn">09</span><div><div class="tname">MAR Engenharia</div><div class="tseg">Laudos B2B · Salvador</div></div><span class="treg">CREA</span><span class="prio p1" style="font-size:7pt;padding:3px 8px">P1 · 78</span></div>
+    <div class="toc-row"><span class="tn">10</span><div><div class="tname">Lumière Odontologia</div><div class="tseg">Odonto a laser · Feira</div></div><span class="treg">CFO</span><span class="prio p1" style="font-size:7pt;padding:3px 8px">P1 · 75</span></div>
+  </div>
+  <div class="runner"><span class="mark"><img src="simbolo.webp" alt="">Hórus Agência</span><span>Dossiês de prospecção · 29·08·2026</span></div>
+</section>
+
+<!-- ===== 01 BRAVOLTS ===== -->
+<section class="page">
+  <div class="dhead">
+    <div><div class="num">Dossiê 01</div><h2>Bravolts</h2><div class="seg">Energia solar fotovoltaica · Salvador (Pituaçu / Caminho das Árvores)</div></div>
+    <div class="badge"><span class="prio p0">P0 · Score 86</span><span class="score">O mais sólido</span></div>
+  </div>
+  <hr class="rule">
+  <div class="chips">
+    <div class="chip"><div class="ck">Avaliações</div><div class="cv">104 · 5,0</div><span class="cs src">[Maps]</span></div>
+    <div class="chip"><div class="ck">Site</div><div class="cv">Nenhum</div><span class="cs"><span class="tag warn">Só Instagram</span></span></div>
+    <div class="chip"><div class="ck">Anúncio Meta</div><div class="cv">Zero</div><span class="cs"><span class="tag clean">Campo limpo</span></span></div>
+    <div class="chip"><div class="ck">Contato</div><div class="cv" style="font-size:9pt">(71) 99910-9049</div><span class="cs src">WhatsApp [Maps]</span></div>
+  </div>
+  <div class="block"><div class="eyebrow">O gap</div>
+    <p>Têm a parte difícil, prova social absurda, 104 avaliações e todas nota 5. E desperdiçam na parte fácil. Quem procura orçamento cai num Instagram, sem página que explique o serviço, sem calculadora de payback, sem captação. A dor não é "não tem site", é <strong>lead qualificado que escapa porque não tem para onde ir.</strong></p>
+  </div>
+  <div class="offer"><div class="eyebrow">A oferta da Hórus</div>
+    <p>Landing page de solar com <strong>calculadora de economia e payback</strong>, o lead simula a conta antes de falar com eles, mais qualificação automática no WhatsApp. Depois, SEO local para "energia solar em Salvador".</p>
+  </div>
+  <div class="msg"><div class="who">Primeira mensagem · WhatsApp</div>
+    <p>Olá, pessoal da Bravolts! Aqui é o Marcelo, da Hórus. Acompanhei o trabalho de vocês em solar e chamou atenção: 104 avaliações e todas nota 5, reputação dessa altura é raro. Reparei que hoje quem procura orçamento cai no Instagram, sem uma página que apresente os projetos e já filtre quem está pronto pra fechar. A gente monta página de solar com calculadora de economia. Posso te mostrar em 10 minutos como ficaria?</p>
+  </div>
+  <div class="comp clear"><div class="ct">◆ Não é setor regulado, mas</div>
+    <p>Não repetir o <b>"economize até 95%"</b> do Instagram deles como promessa nossa. Sem superlativo e sem número que a gente não verificou. As 104 avaliações 5,0 pode citar: é real e é a isca mais forte.</p>
+  </div>
+  <div class="runner"><span class="mark"><img src="simbolo.webp" alt="">Hórus Agência</span><span>01 · Bravolts</span></div>
+</section>
+
+<!-- ===== 02 COUTO SILVA ===== -->
+<section class="page">
+  <div class="dhead">
+    <div><div class="num">Dossiê 02</div><h2>Couto Silva Advocacia</h2><div class="seg">Advocacia e consultoria · Salvador (Caminho das Árvores)</div></div>
+    <div class="badge"><span class="prio p1">P1 · Score 83</span><span class="score">Fluxo altíssimo</span></div>
+  </div>
+  <hr class="rule">
+  <div class="chips">
+    <div class="chip"><div class="ck">Avaliações</div><div class="cv">452 · 5,0</div><span class="cs src">[Maps]</span></div>
+    <div class="chip"><div class="ck">Site</div><div class="cv">Wix (blog)</div><span class="cs src">[verificado]</span></div>
+    <div class="chip"><div class="ck">Anúncio Meta</div><div class="cv">Provável zero</div><span class="cs"><span class="tag warn">Só LinkLei</span></span></div>
+    <div class="chip"><div class="ck">Contato</div><div class="cv" style="font-size:9pt">(71) 98315-8987</div><span class="cs src">WhatsApp [Maps]</span></div>
+  </div>
+  <div class="block"><div class="eyebrow">O gap</div>
+    <p>452 avaliações é fluxo diário enorme. O site é um blog no Wix, com Analytics mas <strong>sem WhatsApp e sem formulário</strong> na página, e o perfil do Maps joga direto no WhatsApp cru. Toda causa entra sem triagem, e advogado sênior gasta tempo filtrando o que uma página resolveria.</p>
+  </div>
+  <div class="offer"><div class="eyebrow">A oferta da Hórus</div>
+    <p>Landing pages <strong>por área do direito</strong> com triagem que qualifica a causa antes de chegar ao advogado, mais agendamento. Site próprio no lugar do blog Wix.</p>
+  </div>
+  <div class="msg"><div class="who">Primeira mensagem · WhatsApp</div>
+    <p>Olá, equipe Couto Silva! Aqui é o Marcelo, da Hórus. Difícil ver um escritório com 452 avaliações no Google, parabéns. Percebi que o contato do perfil vai direto pro WhatsApp, sem uma triagem prévia da causa. A gente estrutura páginas por área e um fluxo que organiza o lead antes de chegar em vocês. Posso mostrar uma prévia?</p>
+  </div>
+  <div class="comp"><div class="ct">⚠ Compliance · OAB (Provimento 205/2021)</div>
+    <p>Publicidade de advogado é <b>sóbria e informativa</b>. Proibido: promessa de resultado, captação mercantil, "melhor/maior escritório", sensacionalismo, mercantilizar a advocacia. O funil pode informar e organizar, <b>nunca prometer ganho de causa.</b></p>
+  </div>
+  <div class="runner"><span class="mark"><img src="simbolo.webp" alt="">Hórus Agência</span><span>02 · Couto Silva</span></div>
+</section>
+
+<!-- ===== 03 SPAÇO SAÚDE ===== -->
+<section class="page">
+  <div class="dhead">
+    <div><div class="num">Dossiê 03</div><h2>Spaço Saúde</h2><div class="seg">Odontologia e medicina estética · Salvador (Graça)</div></div>
+    <div class="badge"><span class="prio p1">P1 · Score 82</span><span class="score">Bairro nobre</span></div>
+  </div>
+  <hr class="rule">
+  <div class="chips">
+    <div class="chip"><div class="ck">Avaliações</div><div class="cv">122 · 4,9</div><span class="cs src">[Maps]</span></div>
+    <div class="chip"><div class="ck">Site</div><div class="cv">Wix grátis</div><span class="cs src">[verificado]</span></div>
+    <div class="chip"><div class="ck">Anúncio Meta</div><div class="cv">Provável zero</div><span class="cs"><span class="tag warn">Homônimos</span></span></div>
+    <div class="chip"><div class="ck">Contato</div><div class="cv" style="font-size:9pt">(71) 3235-3247</div><span class="cs src">Telefone [Maps]</span></div>
+  </div>
+  <div class="block"><div class="eyebrow">O gap</div>
+    <p>Endereço na web é um subdomínio gratuito do Wix (<strong>spacosaudessa.wixsite.com</strong>), sem domínio próprio. Diferente do que o agente disse, a página <strong>já tem WhatsApp, formulário e Analytics</strong>, então o gap real é de percepção: clínica da Graça com paciente de alto padrão apresentada por um link de plataforma grátis.</p>
+  </div>
+  <div class="offer"><div class="eyebrow">A oferta da Hórus</div>
+    <p>Site institucional em <strong>domínio próprio .com.br</strong> com a autoridade dos profissionais, landing de estética e implantes, e agendamento. O ganho é posicionamento, não "estar na internet" (já estão).</p>
+  </div>
+  <div class="msg"><div class="who">Primeira mensagem · Telefone/WhatsApp</div>
+    <p>Olá, equipe Spaço Saúde! Aqui é o Marcelo, da Hórus. Acompanho a reputação de vocês na Graça, 122 avaliações. Notei que a clínica ainda usa um endereço do Wix grátis na web, o que reduz a percepção de valor pra paciente de alto padrão. A gente migra pra um site próprio com agendamento. Podemos mostrar um comparativo rápido?</p>
+  </div>
+  <div class="comp"><div class="ct">⚠ Compliance · CFO (odonto) + CFM (médico estético)</div>
+    <p>Sem <b>antes/depois</b>, sem promessa de resultado, sem sensacionalismo, sem preço como chamariz. <b>CRO e CRM do responsável técnico visíveis.</b> Estética e odonto num mesmo endereço somam as duas réguas.</p>
+  </div>
+  <div class="runner"><span class="mark"><img src="simbolo.webp" alt="">Hórus Agência</span><span>03 · Spaço Saúde</span></div>
+</section>
+
+<!-- ===== 04 HARMONY ===== -->
+<section class="page">
+  <div class="dhead">
+    <div><div class="num">Dossiê 04</div><h2>Harmony Odontologia</h2><div class="seg">Odontologia · Feira de Santana (Santa Mônica, Ed. Premier)</div></div>
+    <div class="badge"><span class="prio p1">P1 · Score 82</span><span class="score">CNPJ em mãos</span></div>
+  </div>
+  <hr class="rule">
+  <div class="chips">
+    <div class="chip"><div class="ck">Avaliações</div><div class="cv">118 · 5,0</div><span class="cs src">[Maps]</span></div>
+    <div class="chip"><div class="ck">Site</div><div class="cv">Nenhum</div><span class="cs"><span class="tag warn">Só Instagram</span></span></div>
+    <div class="chip"><div class="ck">Anúncio Meta</div><div class="cv">Inconclusivo</div><span class="cs"><span class="tag na">Termo genérico</span></span></div>
+    <div class="chip"><div class="ck">Contato</div><div class="cv" style="font-size:9pt">(75) 99131-8319</div><span class="cs src">WhatsApp [Maps]</span></div>
+  </div>
+  <div class="block"><div class="eyebrow">O gap</div>
+    <p>No edifício médico mais valorizado de Feira, com 118 avaliações 5,0, e <strong>sem página própria</strong> para captar implantes, próteses e lentes. Bônus da auditoria: temos o <strong>CNPJ 41.307.072/0001-63</strong> (Dra. Maria Letícia Passos de Medeiros Netto, aberta em 22/03/2021), dá para rodar lookup_cnpj e ler porte antes de abordar.</p>
+  </div>
+  <div class="offer"><div class="eyebrow">A oferta da Hórus</div>
+    <p>Landing de <strong>reabilitação e estética orofacial</strong> integrada ao WhatsApp, com agendamento particular. A prova social já existe, falta o destino para ela.</p>
+  </div>
+  <div class="msg"><div class="who">Primeira mensagem · WhatsApp</div>
+    <p>Dra. Letícia, aqui é o Marcelo, da Hórus. Acompanho a reputação da Harmony no Premier, 118 avaliações 5,0. Hoje quem pesquisa reabilitação e implantes acha a ficha da clínica, mas não uma página para agendar. Estruturei um modelo de página integrada ao WhatsApp para clínicas assim. Posso te mostrar em 5 minutos?</p>
+  </div>
+  <div class="comp"><div class="ct">⚠ Compliance · CFO (Res. 118/2012 e 196/2019)</div>
+    <p>Sem <b>antes/depois</b>, sem promessa de resultado, sem valores como atrativo, sem sensacionalismo. <b>CRO do profissional e da PJ visíveis.</b> Linguagem informativa.</p>
+  </div>
+  <div class="runner"><span class="mark"><img src="simbolo.webp" alt="">Hórus Agência</span><span>04 · Harmony</span></div>
+</section>
+
+<!-- ===== 05 REVITA ===== -->
+<section class="page">
+  <div class="dhead">
+    <div><div class="num">Dossiê 05</div><h2>Revita Life</h2><div class="seg">Estética avançada · Feira de Santana (Ponto Central)</div></div>
+    <div class="badge"><span class="prio p1">P1 · Score 82</span><span class="score">Confirmar identidade</span></div>
+  </div>
+  <hr class="rule">
+  <div class="chips">
+    <div class="chip"><div class="ck">Avaliações</div><div class="cv">109 · 5,0</div><span class="cs src">[Maps]</span></div>
+    <div class="chip"><div class="ck">Site</div><div class="cv">Nenhum</div><span class="cs src">[via agente]</span></div>
+    <div class="chip"><div class="ck">Anúncio Meta</div><div class="cv">Provável zero</div><span class="cs"><span class="tag warn">Só "Clínica Revita"</span></span></div>
+    <div class="chip"><div class="ck">Contato</div><div class="cv" style="font-size:9pt">(75) 99707-7893</div><span class="cs src">WhatsApp [Maps]</span></div>
+  </div>
+  <div class="block"><div class="eyebrow">O gap</div>
+    <p>Procedimentos de estética de ticket alto sem landing page própria no Google, dependendo de contato manual. A Biblioteca de Anúncios só trouxe "Clínica Revita" mais spam, então <strong>confirmar se é a mesma empresa</strong> antes de cravar que não roda tráfego.</p>
+  </div>
+  <div class="offer"><div class="eyebrow">A oferta da Hórus</div>
+    <p>Landing de <strong>protocolo estético</strong> (o carro-chefe deles) com SEO local para Feira e captação organizada. Antes: uma checada rápida de identidade no Instagram.</p>
+  </div>
+  <div class="msg"><div class="who">Primeira mensagem · WhatsApp</div>
+    <p>Olá, equipe Revita Life! Aqui é o Marcelo, da Hórus. Vi a reputação de vocês em Feira, 109 avaliações 5,0. Notei que hoje não há uma página própria para os protocolos, o que faz muito lead se perder no caminho até o WhatsApp. A gente monta essa página com captação. Faz sentido eu te mostrar um modelo?</p>
+  </div>
+  <div class="comp"><div class="ct">⚠ Compliance · a confirmar (CFM se houver ato médico)</div>
+    <p>Se há procedimento médico, entra a régua do <b>CFM</b>: sem antes/depois, sem promessa, CRM visível. Se é estética não médica, régua mais leve, mas <b>nada de resultado garantido.</b> Descobrir o que exatamente ofertam é parte da abordagem.</p>
+  </div>
+  <div class="runner"><span class="mark"><img src="simbolo.webp" alt="">Hórus Agência</span><span>05 · Revita Life</span></div>
+</section>
+
+<!-- ===== 06 HOME STETIC ===== -->
+<section class="page">
+  <div class="dhead">
+    <div><div class="num">Dossiê 06</div><h2>Home Stetic</h2><div class="seg">Estética avançada · Feira de Santana (Bairro SIM, Pátio Artêmia)</div></div>
+    <div class="badge"><span class="prio p1">P1 · Score 82</span><span class="score">Campo limpo</span></div>
+  </div>
+  <hr class="rule">
+  <div class="chips">
+    <div class="chip"><div class="ck">Avaliações</div><div class="cv">109 · 5,0</div><span class="cs src">[Maps]</span></div>
+    <div class="chip"><div class="ck">Site</div><div class="cv">Google Sites</div><span class="cs src">[verificado]</span></div>
+    <div class="chip"><div class="ck">Anúncio Meta</div><div class="cv">Zero</div><span class="cs"><span class="tag clean">Campo limpo</span></span></div>
+    <div class="chip"><div class="ck">Contato</div><div class="cv" style="font-size:9pt">(75) 99107-8497</div><span class="cs src">WhatsApp [Maps]</span></div>
+  </div>
+  <div class="block"><div class="eyebrow">O gap</div>
+    <p>Atende os condomínios de alto padrão do Bairro SIM, mas a web é um <strong>Google Sites gratuito</strong> com idioma configurado em inglês (en-US), sem WhatsApp nem formulário na página. Interface amadora que destoa do ticket premium do público.</p>
+  </div>
+  <div class="offer"><div class="eyebrow">A oferta da Hórus</div>
+    <p>Migração para <strong>domínio próprio</strong> com landing de harmonização e drenagem, agendamento e confirmação automática. Zero anúncio ativo: dá para atacar sem concorrência de agência.</p>
+  </div>
+  <div class="msg"><div class="who">Primeira mensagem · WhatsApp</div>
+    <p>Olá, time Home Stetic! Aqui é o Marcelo, da Hórus. A localização de vocês no Pátio Artêmia é forte pros condomínios do SIM. Notei que a página atual roda num link gratuito do Google Sites, o que limita o ranqueamento e a percepção. A gente estrutura um site próprio com agendamento. Faz sentido mostrar um modelo?</p>
+  </div>
+  <div class="comp"><div class="ct">⚠ Compliance · estética</div>
+    <p>Se há biomédico ou profissional de saúde, valem as réguas do conselho dele. Em qualquer caso: <b>sem antes/depois clínico, sem promessa de resultado</b>, sem sensacionalismo. Confirmar quem é o responsável técnico.</p>
+  </div>
+  <div class="runner"><span class="mark"><img src="simbolo.webp" alt="">Hórus Agência</span><span>06 · Home Stetic</span></div>
+</section>
+
+<!-- ===== 07 VISAGÈ ===== -->
+<section class="page">
+  <div class="dhead">
+    <div><div class="num">Dossiê 07</div><h2>Instituto Visagè</h2><div class="seg">Plástica ocular e dermatologia · Salvador (Caminho das Árvores)</div></div>
+    <div class="badge"><span class="prio p1">P1 · Score 82</span><span class="score">Autoridade cirúrgica</span></div>
+  </div>
+  <hr class="rule">
+  <div class="chips">
+    <div class="chip"><div class="ck">Avaliações</div><div class="cv">84 · 5,0</div><span class="cs src">[Maps]</span></div>
+    <div class="chip"><div class="ck">Site</div><div class="cv">Nenhum</div><span class="cs"><span class="tag warn">Só Instagram</span></span></div>
+    <div class="chip"><div class="ck">Anúncio Meta</div><div class="cv">Provável zero</div><span class="cs"><span class="tag warn">Homônimos</span></span></div>
+    <div class="chip"><div class="ck">Contato</div><div class="cv" style="font-size:9pt">(71) 3052-8279</div><span class="cs src">Telefone [Maps]</span></div>
+  </div>
+  <div class="block"><div class="eyebrow">O gap</div>
+    <p>Cirurgia plástica ocular (blefaroplastia, ptose) e dermatologia <strong>sem portal institucional próprio</strong>: o tráfego do Maps vai direto ao Instagram. Procedimento cirúrgico exige esclarecimento e autoridade que um feed não sustenta, e é aí que o lead cirúrgico particular se perde.</p>
+  </div>
+  <div class="offer"><div class="eyebrow">A oferta da Hórus</div>
+    <p>Portal de <strong>autoridade médica</strong> por procedimento, com conteúdo que esclarece e pré-agendamento, mais SEO local para "plástica ocular em Salvador".</p>
+  </div>
+  <div class="msg"><div class="who">Primeira mensagem · Telefone/WhatsApp</div>
+    <p>Olá, equipe Instituto Visagè! Aqui é o Marcelo, da Hórus. Vemos o trabalho de vocês em plástica ocular no Iguatemi Business. Notei que quem acha a clínica no Google é mandado direto ao Instagram, sem uma página que detalhe procedimentos e agendamento. A gente cria portais de autoridade médica para isso. Gostariam de conhecer um modelo?</p>
+  </div>
+  <div class="comp"><div class="ct">⚠ Compliance · CFM (Res. 1.974/2011 e afins)</div>
+    <p>Sem <b>antes/depois</b>, sem promessa, sem sensacionalismo, sem autopromoção de "melhor". <b>CRM e RQE visíveis</b> (o RQE 14803 já aparece no material deles). Publicidade médica é a mais restrita da lista.</p>
+  </div>
+  <div class="runner"><span class="mark"><img src="simbolo.webp" alt="">Hórus Agência</span><span>07 · Instituto Visagè</span></div>
+</section>
+
+<!-- ===== 08 JUAN FELIX ===== -->
+<section class="page">
+  <div class="dhead">
+    <div><div class="num">Dossiê 08</div><h2>Dr. Juan Felix</h2><div class="seg">Harmonização orofacial · Salvador (Caminho das Árvores)</div></div>
+    <div class="badge"><span class="prio p1">P1 · Score 81</span><span class="score">Campo limpo</span></div>
+  </div>
+  <hr class="rule">
+  <div class="chips">
+    <div class="chip"><div class="ck">Avaliações</div><div class="cv">76 · 5,0</div><span class="cs src">[Maps]</span></div>
+    <div class="chip"><div class="ck">Site</div><div class="cv">Nenhum</div><span class="cs src">[via agente]</span></div>
+    <div class="chip"><div class="ck">Anúncio Meta</div><div class="cv">Zero</div><span class="cs"><span class="tag clean">Campo limpo</span></span></div>
+    <div class="chip"><div class="ck">Contato</div><div class="cv" style="font-size:9pt">(71) 99229-3873</div><span class="cs src">WhatsApp [Maps]</span></div>
+  </div>
+  <div class="block"><div class="eyebrow">O gap</div>
+    <p>Speaker e professor com 76 avaliações 5,0, operando <strong>sem landing page própria</strong> de captação para protocolos faciais de alto valor. Autoridade pessoal forte e zero infraestrutura para converter quem chega buscando Full Face.</p>
+  </div>
+  <div class="offer"><div class="eyebrow">A oferta da Hórus</div>
+    <p>Landing de alta conversão para <strong>harmonização e Full Face</strong>, com a autoridade dele como eixo, integrada ao WhatsApp. Campo limpo: sem agência concorrendo.</p>
+  </div>
+  <div class="msg"><div class="who">Primeira mensagem · WhatsApp</div>
+    <p>Olá, Dr. Juan! Aqui é o Marcelo, da Hórus. Parabéns pelas 76 avaliações 5,0 no Caminho das Árvores. Vi que seu canal principal no Google leva pro Instagram, e muito paciente de Full Face desiste antes de agendar. A gente monta uma página exclusiva integrada ao WhatsApp. Posso te enviar uma prévia de como ficaria?</p>
+  </div>
+  <div class="comp"><div class="ct">⚠ Compliance · CFO (se cirurgião-dentista)</div>
+    <p>Harmonização orofacial por dentista segue o <b>CFO</b>: sem antes/depois, sem promessa de resultado, sem valores como chamariz. <b>CRO visível.</b> Confirmar a formação para saber a régua exata.</p>
+  </div>
+  <div class="runner"><span class="mark"><img src="simbolo.webp" alt="">Hórus Agência</span><span>08 · Dr. Juan Felix</span></div>
+</section>
+
+<!-- ===== 09 MAR ENGENHARIA ===== -->
+<section class="page">
+  <div class="dhead">
+    <div><div class="num">Dossiê 09</div><h2>MAR Engenharia Condominial</h2><div class="seg">Laudos prediais e fachadas B2B · Salvador (Salvador Trade Center)</div></div>
+    <div class="badge"><span class="prio p1">P1 · Score 78</span><span class="score">B2B síndicos</span></div>
+  </div>
+  <hr class="rule">
+  <div class="chips">
+    <div class="chip"><div class="ck">Avaliações</div><div class="cv">12 · 5,0</div><span class="cs src">[Maps]</span></div>
+    <div class="chip"><div class="ck">Site</div><div class="cv">Nenhum</div><span class="cs src">[via agente]</span></div>
+    <div class="chip"><div class="ck">Anúncio Meta</div><div class="cv">Provável zero</div><span class="cs"><span class="tag warn">Outras engenharias</span></span></div>
+    <div class="chip"><div class="ck">Contato</div><div class="cv" style="font-size:9pt">(71) 99387-0159</div><span class="cs src">WhatsApp [Maps]</span></div>
+  </div>
+  <div class="block"><div class="eyebrow">O gap</div>
+    <p>Atuação B2B em reformas de fachada e laudos técnicos para condomínios, com presença restrita ao Instagram (@mar.laudos). Síndico e administradora <strong>exigem portfólio institucional</strong> antes de aprovar em assembleia, e hoje não existe onde mostrar obra e credencial.</p>
+  </div>
+  <div class="offer"><div class="eyebrow">A oferta da Hórus</div>
+    <p>Site de <strong>portfólio B2B de obras</strong> mais landing de captação para laudos técnicos e AVCB, pensado para o processo de decisão de síndico e administradora.</p>
+  </div>
+  <div class="msg"><div class="who">Primeira mensagem · WhatsApp</div>
+    <p>Olá, pessoal da MAR Engenharia! Aqui é o Marcelo, da Hórus. Vi a atuação de vocês em laudos e fachadas no Salvador Trade Center. Pra contratação de condomínio, um dossiê digital e um portfólio de obras acelera a aprovação em assembleia. A gente estrutura isso pra empresas de engenharia. Gostariam de ver um modelo?</p>
+  </div>
+  <div class="comp clear"><div class="ct">◆ CREA · sobriedade B2B</div>
+    <p>Engenharia tem publicidade menos restrita, mas B2B pede <b>sobriedade e prova técnica</b>: caso de obra, ART/registro, credencial. Nada de superlativo. A confiança aqui se vende com portfólio, não com adjetivo.</p>
+  </div>
+  <div class="runner"><span class="mark"><img src="simbolo.webp" alt="">Hórus Agência</span><span>09 · MAR Engenharia</span></div>
+</section>
+
+<!-- ===== 10 LUMIÈRE ===== -->
+<section class="page">
+  <div class="dhead">
+    <div><div class="num">Dossiê 10</div><h2>Lumière Odontologia</h2><div class="seg">Odontologia a laser · Feira de Santana (Kalilândia)</div></div>
+    <div class="badge"><span class="prio p1">P1 · Score 75</span><span class="score">Abordar com cuidado</span></div>
+  </div>
+  <hr class="rule">
+  <div class="chips">
+    <div class="chip"><div class="ck">Avaliações</div><div class="cv">172 · 5,0</div><span class="cs src">[Maps]</span></div>
+    <div class="chip"><div class="ck">Site</div><div class="cv">Canva grátis</div><span class="cs src">[verificado]</span></div>
+    <div class="chip"><div class="ck">Anúncio Meta</div><div class="cv">Roda</div><span class="cs"><span class="tag run">Tem verba</span></span></div>
+    <div class="chip"><div class="ck">Contato</div><div class="cv" style="font-size:9pt">(75) 3301-9355</div><span class="cs src">Telefone [Maps]</span></div>
+  </div>
+  <div class="block"><div class="eyebrow">O gap</div>
+    <p>Pioneira em odontologia a laser em Feira, 172 avaliações 5,0, e a página oficial é um <strong>subdomínio grátis do Canva</strong> sem SEO nem formulário. Diferença dos outros: <strong>é a única que aparece rodando anúncio com o nome exato</strong> na Biblioteca. Tem verba, o que é bom sinal, mas pode já ter alguém na conta.</p>
+  </div>
+  <div class="offer"><div class="eyebrow">A oferta da Hórus</div>
+    <p>Portal em <strong>domínio próprio</strong> focado na tecnologia a laser, com SEO para dominar a Kalilândia e funil de agendamento. Antes: descobrir quem cuida do tráfego atual.</p>
+  </div>
+  <div class="msg"><div class="who">Primeira mensagem · Telefone/WhatsApp</div>
+    <p>Olá, equipe Lumière! Aqui é o Marcelo, da Hórus. Vocês têm um dos posicionamentos mais fortes da Kalilândia, com o laser e 172 avaliações 5,0. Vi que a página oficial ainda roda no domínio grátis do Canva, o que trava o ranqueamento orgânico. A gente monta um portal próprio pra valorizar essa tecnologia. Posso mostrar?</p>
+  </div>
+  <div class="comp"><div class="ct">⚠ Compliance · CFO &nbsp;+&nbsp; nota de tráfego</div>
+    <p>Régua do <b>CFO</b>: sem antes/depois, sem promessa, CRO visível. E lembrar: <b>já roda anúncio</b>, então na conversa não assumir que estão do zero, perguntar quem cuida hoje antes de propor.</p>
+  </div>
+  <div class="runner"><span class="mark"><img src="simbolo.webp" alt="">Hórus Agência</span><span>10 · Lumière</span></div>
+</section>
+
+<!-- ===== FECHO ===== -->
+<section class="page cover">
+  <div class="cover-top"><img class="sig" src="assinatura.webp" alt="Hórus Agência" style="width:150px"></div>
+  <div style="max-width:60ch; align-self:center; text-align:center">
+    <div class="kicker" style="color:var(--blue-2)">Para decidir a dois</div>
+    <h1 style="font-family:'Sora';font-weight:300;font-size:25pt;line-height:1.14;letter-spacing:-.01em;margin:18px 0 16px;color:#fff">Comecem pelos três de<br>campo limpo. Deixem o<br><b style="font-weight:600;color:var(--blue-2)">regulado para depois do sim.</b></h1>
+    <p style="color:var(--ink-dim);font-size:10.5pt;line-height:1.6">Bravolts, Home Stetic e Dr. Juan Felix não têm agência na frente e o gap é óbvio. Os seis de setor regulado valem tanto quanto, mas exigem que a peça nasça dentro da norma, e é por isso que cada dossiê já traz a trava. Escolham dois ou três para atacar esta semana, e a Hórus monta o mockup do primeiro.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="sign" style="font-size:11pt">Visão que conecta.<br><b style="color:var(--blue-2)">Estratégia que transforma.</b></div>
+    <div class="conf">Hórus · 2026</div>
+  </div>
+</section>
+
+</body>
+</html>

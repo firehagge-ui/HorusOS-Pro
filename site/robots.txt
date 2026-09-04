@@ -1,0 +1,18 @@
+# Hórus Agência — agenciahorus.netlify.app
+#
+# 01/09/2026: o site está no ar como PREVIEW FECHADO (decisão do Marcelo).
+# O bloqueio é de propósito, não é esquecimento: o portfólio ainda está sem
+# imagem por falta de autorização de cliente, não existe página Sobre nem
+# CNPJ no rodapé, e nada disso deve entrar em busca antes de existir.
+#
+# PARA ABRIR AO GOOGLE, três coisas ao mesmo tempo (uma só não resolve):
+#   1. apagar a linha `Disallow: /` daqui e descomentar o `Allow: /`
+#   2. apagar a <meta name="robots" content="noindex, nofollow"> do index.html
+#   3. apagar o bloco X-Robots-Tag do netlify.toml
+# Descomentar o Sitemap abaixo no mesmo dia.
+
+User-agent: *
+Disallow: /
+# Allow: /
+
+# Sitemap: https://agenciahorus.netlify.app/sitemap.xml
