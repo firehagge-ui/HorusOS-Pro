@@ -103,7 +103,4 @@ decisão de design sair de um caso concreto, não do viés médio do modelo.
 
 ---
 
-## Crédito
 
-Construído sobre o **MazyOS** de [mazzeoia.com.br](https://mazzeoia.com.br),
-adaptado para a operação da Hórus.
