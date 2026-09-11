@@ -1,0 +1,1108 @@
+{
+  "_nota": "Classificação de licença das fontes que aparecem no acervo. Corrija aqui, não no código. situacao: livre | comercial | restrita | trial | sistema | marca. 'sub' são substitutos livres, do mais próximo ao menos, por critério de DESENHO.",
+  "livre": {
+    "inter": "g",
+    "inter tight": "g",
+    "inter display": "g",
+    "instrument serif": "g",
+    "instrument sans": "g",
+    "jetbrains mono": "g",
+    "manrope": "g",
+    "anton": "g",
+    "orbitron": "g",
+    "space mono": "g",
+    "space grotesk": "g",
+    "playfair display": "g",
+    "fraunces": "g",
+    "crimson pro": "g",
+    "dm mono": "g",
+    "dm sans": "g",
+    "dm serif display": "g",
+    "open sans": "g",
+    "roboto": "g",
+    "roboto mono": "g",
+    "poppins": "g",
+    "plus jakarta sans": "g",
+    "nunito sans": "g",
+    "source sans pro": "g",
+    "source sans 3": "g",
+    "source serif 4": "g",
+    "ibm plex mono": "g",
+    "ibm plex sans": "g",
+    "ibm plex serif": "g",
+    "be vietnam pro": "g",
+    "chakra petch": "g",
+    "michroma": "g",
+    "karla": "g",
+    "barlow condensed": "g",
+    "raleway": "g",
+    "work sans": "g",
+    "azeret mono": "g",
+    "silkscreen": "g",
+    "great vibes": "g",
+    "mr dafoe": "g",
+    "special elite": "g",
+    "imprima": "g",
+    "viaoda libre": "g",
+    "almarai": "g",
+    "morganite": "g",
+    "bricolage grotesque": "g",
+    "geist": "g",
+    "geist mono": "g",
+    "rethink sans": "g",
+    "old standard tt": "g",
+    "archivo": "g",
+    "public sans": "g",
+    "hanken grotesk": "g",
+    "outfit": "g",
+    "sora": "g",
+    "syne": "g",
+    "unbounded": "g",
+    "cormorant": "g",
+    "libre caslon display": "g",
+    "newsreader": "g",
+    "literata": "g",
+    "spectral": "g",
+    "lora": "g",
+    "figtree": "g",
+    "onest": "g",
+    "switzer": "f",
+    "satoshi": "f",
+    "general sans": "f",
+    "ranade": "f",
+    "sentient": "f",
+    "clash grotesk": "f",
+    "cabinet grotesk": "f",
+    "supreme": "f",
+    "zodiak": "f",
+    "gambetta": "f",
+    "erode": "f",
+    "melodrama": "f",
+    "boska": "f",
+    "author": "f",
+    "excon": "f",
+    "chillax": "f",
+    "panchang": "f",
+    "bespoke serif": "f",
+    "mona sans": "v",
+    "monasans": "v",
+    "hubot sans": "v",
+    "cal sans": "v",
+    "calsans": "v",
+    "redaction": "v",
+    "metropolis": "v",
+    "open sauce one": "v",
+    "open sauce sans": "v"
+  },
+  "sistema": [
+    "arial",
+    "helvetica",
+    "times",
+    "times new roman",
+    "georgia",
+    "courier new",
+    "verdana",
+    "tahoma",
+    "system-ui",
+    "-apple-system",
+    "ui-sans-serif",
+    "ui-monospace",
+    "ui-serif",
+    "sans-serif",
+    "serif",
+    "monospace",
+    "system sans-serif",
+    "system sans",
+    "garamond"
+  ],
+  "restrita": {
+    "sf pro": "Apple — licença cobre interface de app das plataformas Apple. NÃO pode ser servida na web.",
+    "sf mono": "Apple — mesma restrição.",
+    "segoe ui": "Microsoft — licenciada com o Windows. Só como fallback.",
+    "yu gothic": "Microsoft/Morisawa — licenciada com o sistema. Só como fallback.",
+    "google sans": "Google — proprietária, uso restrito a produtos Google. Não é Google Fonts.",
+    "google sans flex": "Google — mesma restrição.",
+    "font awesome pro": "Fonticons — a versão Pro é paga. A Free existe e é OFL."
+  },
+  "comercial": {
+    "helvetica neue": {
+      "f": "Monotype",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    },
+    "helvetica now": {
+      "f": "Monotype",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    },
+    "neue haas grotesk": {
+      "f": "Monotype",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    },
+    "neue haas unica": {
+      "f": "Monotype",
+      "sub": [
+        "inter",
+        "switzer"
+      ]
+    },
+    "gill sans nova": {
+      "f": "Monotype",
+      "sub": [
+        "hanken grotesk",
+        "public sans"
+      ]
+    },
+    "avenir next": {
+      "f": "Monotype",
+      "sub": [
+        "outfit",
+        "manrope"
+      ]
+    },
+    "itc garamond": {
+      "f": "Monotype",
+      "sub": [
+        "cormorant",
+        "newsreader"
+      ]
+    },
+    "itc avant garde gothic": {
+      "f": "Monotype",
+      "sub": [
+        "outfit",
+        "sora"
+      ]
+    },
+    "new century schoolbook": {
+      "f": "Monotype",
+      "sub": [
+        "newsreader",
+        "literata"
+      ]
+    },
+    "nimbus sans": {
+      "f": "URW",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    },
+    "trajan": {
+      "f": "Adobe",
+      "sub": [
+        "cormorant",
+        "libre caslon display"
+      ]
+    },
+    "plantin": {
+      "f": "Monotype",
+      "sub": [
+        "newsreader",
+        "literata"
+      ]
+    },
+    "optima": {
+      "f": "Monotype",
+      "sub": [
+        "hanken grotesk"
+      ]
+    },
+    "proxima nova": {
+      "f": "Mark Simonson",
+      "sub": [
+        "outfit",
+        "manrope"
+      ]
+    },
+    "proxima": {
+      "f": "Mark Simonson",
+      "sub": [
+        "outfit",
+        "manrope"
+      ]
+    },
+    "akzidenz-grotesk": {
+      "f": "Berthold",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    },
+    "söhne": {
+      "f": "Klim",
+      "sub": [
+        "inter",
+        "public sans"
+      ]
+    },
+    "soehne": {
+      "f": "Klim",
+      "sub": [
+        "inter",
+        "public sans"
+      ]
+    },
+    "founders grotesk": {
+      "f": "Klim",
+      "sub": [
+        "archivo",
+        "space grotesk"
+      ]
+    },
+    "national 2": {
+      "f": "Klim",
+      "sub": [
+        "archivo",
+        "public sans"
+      ]
+    },
+    "tiempos": {
+      "f": "Klim",
+      "sub": [
+        "newsreader",
+        "literata"
+      ]
+    },
+    "untitled sans": {
+      "f": "Klim",
+      "sub": [
+        "inter",
+        "public sans"
+      ]
+    },
+    "calibre": {
+      "f": "Klim",
+      "sub": [
+        "outfit",
+        "manrope"
+      ]
+    },
+    "gt america": {
+      "f": "Grilli Type",
+      "sub": [
+        "archivo",
+        "inter"
+      ]
+    },
+    "gt walsheim": {
+      "f": "Grilli Type",
+      "sub": [
+        "outfit",
+        "satoshi"
+      ]
+    },
+    "gt alpina": {
+      "f": "Grilli Type",
+      "sub": [
+        "fraunces",
+        "newsreader"
+      ]
+    },
+    "gt flexa": {
+      "f": "Grilli Type",
+      "sub": [
+        "archivo",
+        "bricolage grotesque"
+      ]
+    },
+    "gt standard": {
+      "f": "Grilli Type",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    },
+    "gt pantheon": {
+      "f": "Grilli Type",
+      "sub": [
+        "newsreader",
+        "literata"
+      ]
+    },
+    "gt sectra": {
+      "f": "Grilli Type",
+      "sub": [
+        "fraunces",
+        "newsreader"
+      ]
+    },
+    "pp neue montreal": {
+      "f": "Pangram Pangram",
+      "sub": [
+        "general sans",
+        "switzer"
+      ]
+    },
+    "neue montreal": {
+      "f": "Pangram Pangram",
+      "sub": [
+        "general sans",
+        "switzer"
+      ]
+    },
+    "pp mori": {
+      "f": "Pangram Pangram",
+      "sub": [
+        "satoshi",
+        "general sans"
+      ]
+    },
+    "pp editorial new": {
+      "f": "Pangram Pangram",
+      "sub": [
+        "instrument serif",
+        "fraunces"
+      ]
+    },
+    "editorial new": {
+      "f": "Pangram Pangram",
+      "sub": [
+        "instrument serif",
+        "fraunces"
+      ]
+    },
+    "pp right grotesk": {
+      "f": "Pangram Pangram",
+      "sub": [
+        "archivo",
+        "anton"
+      ]
+    },
+    "right grotesk": {
+      "f": "Pangram Pangram",
+      "sub": [
+        "archivo",
+        "anton"
+      ]
+    },
+    "pp neue machina": {
+      "f": "Pangram Pangram",
+      "sub": [
+        "sora",
+        "unbounded"
+      ]
+    },
+    "neue machina": {
+      "f": "Pangram Pangram",
+      "sub": [
+        "sora",
+        "unbounded"
+      ]
+    },
+    "monument extended": {
+      "f": "Pangram Pangram",
+      "sub": [
+        "unbounded",
+        "anton"
+      ]
+    },
+    "pp telegraf": {
+      "f": "Pangram Pangram",
+      "sub": [
+        "archivo",
+        "space grotesk"
+      ]
+    },
+    "pp object sans": {
+      "f": "Pangram Pangram",
+      "sub": [
+        "general sans",
+        "inter"
+      ]
+    },
+    "pp migra": {
+      "f": "Pangram Pangram",
+      "sub": [
+        "fraunces",
+        "instrument serif"
+      ]
+    },
+    "pp fragment": {
+      "f": "Pangram Pangram",
+      "sub": [
+        "newsreader",
+        "libre caslon display"
+      ]
+    },
+    "pp acma": {
+      "f": "Pangram Pangram",
+      "sub": [
+        "outfit",
+        "manrope"
+      ]
+    },
+    "abc diatype": {
+      "f": "Dinamo",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    },
+    "abc oracle": {
+      "f": "Dinamo",
+      "sub": [
+        "archivo",
+        "space grotesk"
+      ]
+    },
+    "abc favorit": {
+      "f": "Dinamo",
+      "sub": [
+        "inter",
+        "switzer"
+      ]
+    },
+    "favorit": {
+      "f": "Dinamo",
+      "sub": [
+        "inter",
+        "switzer"
+      ]
+    },
+    "abc marfa": {
+      "f": "Dinamo",
+      "sub": [
+        "archivo",
+        "public sans"
+      ]
+    },
+    "abc monument grotesk": {
+      "f": "Dinamo",
+      "sub": [
+        "archivo",
+        "inter"
+      ]
+    },
+    "monument grotesk": {
+      "f": "Dinamo",
+      "sub": [
+        "archivo",
+        "inter"
+      ]
+    },
+    "abc whyte": {
+      "f": "Dinamo",
+      "sub": [
+        "general sans",
+        "satoshi"
+      ]
+    },
+    "whyte": {
+      "f": "Dinamo",
+      "sub": [
+        "general sans",
+        "satoshi"
+      ]
+    },
+    "whyte inktrap": {
+      "f": "Dinamo",
+      "sub": [
+        "bricolage grotesque",
+        "archivo"
+      ]
+    },
+    "abc arizona": {
+      "f": "Dinamo",
+      "sub": [
+        "fraunces",
+        "newsreader"
+      ]
+    },
+    "circular": {
+      "f": "Lineto",
+      "sub": [
+        "outfit",
+        "manrope"
+      ]
+    },
+    "circularxx": {
+      "f": "Lineto",
+      "sub": [
+        "outfit",
+        "manrope"
+      ]
+    },
+    "akkurat": {
+      "f": "Lineto",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    },
+    "suisse int'l": {
+      "f": "Swiss Typefaces",
+      "sub": [
+        "switzer",
+        "inter"
+      ]
+    },
+    "suisse intl": {
+      "f": "Swiss Typefaces",
+      "sub": [
+        "switzer",
+        "inter"
+      ]
+    },
+    "suisseintl": {
+      "f": "Swiss Typefaces",
+      "sub": [
+        "switzer",
+        "inter"
+      ]
+    },
+    "suisse works": {
+      "f": "Swiss Typefaces",
+      "sub": [
+        "newsreader",
+        "literata"
+      ]
+    },
+    "graphik": {
+      "f": "Commercial Type",
+      "sub": [
+        "inter",
+        "public sans"
+      ]
+    },
+    "canela": {
+      "f": "Commercial Type",
+      "sub": [
+        "fraunces",
+        "newsreader"
+      ]
+    },
+    "caneladeck": {
+      "f": "Commercial Type",
+      "sub": [
+        "fraunces",
+        "newsreader"
+      ]
+    },
+    "aeonik": {
+      "f": "CoType",
+      "sub": [
+        "general sans",
+        "manrope"
+      ]
+    },
+    "roobert": {
+      "f": "Displaay",
+      "sub": [
+        "general sans",
+        "hanken grotesk"
+      ]
+    },
+    "signifier": {
+      "f": "Klim",
+      "sub": [
+        "fraunces",
+        "newsreader"
+      ]
+    },
+    "lausanne": {
+      "f": "Weltkern",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    },
+    "twk lausanne": {
+      "f": "Weltkern",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    },
+    "apercu": {
+      "f": "Colophon",
+      "sub": [
+        "general sans",
+        "inter"
+      ]
+    },
+    "maison neue": {
+      "f": "Milieu Grotesque",
+      "sub": [
+        "inter",
+        "switzer"
+      ]
+    },
+    "sharp grotesk": {
+      "f": "Sharp Type",
+      "sub": [
+        "archivo",
+        "anton"
+      ]
+    },
+    "mabry pro": {
+      "f": "Colophon",
+      "sub": [
+        "general sans",
+        "satoshi"
+      ]
+    },
+    "agrandir": {
+      "f": "Pangram Pangram",
+      "sub": [
+        "archivo",
+        "unbounded"
+      ]
+    },
+    "halyard": {
+      "f": "Darden Studio",
+      "sub": [
+        "inter",
+        "public sans"
+      ]
+    },
+    "obviously": {
+      "f": "OHno Type",
+      "sub": [
+        "archivo",
+        "unbounded"
+      ]
+    },
+    "reckless": {
+      "f": "Displaay",
+      "sub": [
+        "fraunces",
+        "instrument serif"
+      ]
+    },
+    "clarkson": {
+      "f": "Ian Party",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    },
+    "moderat": {
+      "f": "TightType",
+      "sub": [
+        "inter",
+        "general sans"
+      ]
+    },
+    "waldenburg": {
+      "f": "Hero Type",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    },
+    "haffer": {
+      "f": "Blaze Type",
+      "sub": [
+        "general sans",
+        "switzer"
+      ]
+    },
+    "nantes": {
+      "f": "Atipo",
+      "sub": [
+        "newsreader",
+        "fraunces"
+      ]
+    },
+    "gerstner programm": {
+      "f": "Forgotten Shapes",
+      "sub": [
+        "inter",
+        "public sans"
+      ]
+    },
+    "es allianz": {
+      "f": "Extraset",
+      "sub": [
+        "inter",
+        "switzer"
+      ]
+    },
+    "p22 mackinac": {
+      "f": "P22",
+      "sub": [
+        "fraunces",
+        "newsreader"
+      ]
+    },
+    "times now": {
+      "f": "Luzi Type",
+      "sub": [
+        "instrument serif",
+        "playfair display"
+      ]
+    },
+    "thunder": {
+      "f": "Pangram Pangram",
+      "sub": [
+        "anton",
+        "archivo"
+      ]
+    },
+    "denim": {
+      "f": "Displaay",
+      "sub": [
+        "general sans",
+        "inter"
+      ]
+    },
+    "brisa pro": {
+      "f": "Latinotype",
+      "sub": [
+        "fraunces",
+        "instrument serif"
+      ]
+    },
+    "sequel sans": {
+      "f": "OGJ Type",
+      "sub": [
+        "archivo",
+        "inter"
+      ]
+    },
+    "shopify sans": {
+      "f": "Shopify",
+      "sub": [
+        "inter",
+        "public sans"
+      ]
+    },
+    "nike futura": {
+      "f": "Nike/Monotype",
+      "sub": [
+        "outfit",
+        "sora"
+      ]
+    },
+    "bmwtypenext": {
+      "f": "BMW/Monotype",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    },
+    "noto ikea": {
+      "f": "IKEA",
+      "sub": [
+        "inter",
+        "public sans"
+      ]
+    },
+    "font awesome": {
+      "f": "Fonticons",
+      "sub": [
+        "lucide",
+        "phosphor"
+      ]
+    },
+    "sang bleu": {
+      "f": "Swiss Typefaces",
+      "sub": [
+        "fraunces",
+        "instrument serif"
+      ]
+    },
+    "atlas grotesk": {
+      "f": "Commercial Type",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    },
+    "atlas typewriter": {
+      "f": "Commercial Type",
+      "sub": [
+        "jetbrains mono",
+        "ibm plex mono"
+      ]
+    },
+    "tobias": {
+      "f": "Klim",
+      "sub": [
+        "newsreader",
+        "fraunces"
+      ]
+    },
+    "pitch": {
+      "f": "Klim",
+      "sub": [
+        "jetbrains mono",
+        "ibm plex mono"
+      ]
+    },
+    "nb akademie": {
+      "f": "Neubau",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    },
+    "basement grotesque": {
+      "f": "Atipo",
+      "sub": [
+        "archivo",
+        "anton"
+      ]
+    },
+    "good sans": {
+      "f": "Latinotype",
+      "sub": [
+        "general sans",
+        "satoshi"
+      ]
+    },
+    "gelica": {
+      "f": "Latinotype",
+      "sub": [
+        "fraunces",
+        "newsreader"
+      ]
+    },
+    "feature deck": {
+      "f": "Feature Types",
+      "sub": [
+        "fraunces",
+        "instrument serif"
+      ]
+    },
+    "season serif": {
+      "f": "Blaze Type",
+      "sub": [
+        "newsreader",
+        "literata"
+      ]
+    },
+    "nimbus sans next": {
+      "f": "URW",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    },
+    "nimbussanext": {
+      "f": "URW",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    },
+    "neuehaasdisplay": {
+      "f": "Monotype",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    },
+    "haas grotesk": {
+      "f": "Monotype",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    },
+    "newcenturyschlbk": {
+      "f": "Monotype",
+      "sub": [
+        "newsreader",
+        "literata"
+      ]
+    },
+    "sequel100": {
+      "f": "OGJ Type",
+      "sub": [
+        "archivo",
+        "unbounded"
+      ]
+    },
+    "syndicat grotesk": {
+      "f": "Blaze Type",
+      "sub": [
+        "archivo",
+        "inter"
+      ]
+    },
+    "farfetch basis": {
+      "f": "Colophon",
+      "sub": [
+        "inter",
+        "switzer"
+      ]
+    },
+    "basis grotesque": {
+      "f": "Colophon",
+      "sub": [
+        "inter",
+        "switzer"
+      ]
+    },
+    "247 grotesk": {
+      "f": "Boutique",
+      "sub": [
+        "archivo",
+        "inter"
+      ]
+    },
+    "laygrotesk": {
+      "f": "Boutique",
+      "sub": [
+        "archivo",
+        "inter"
+      ]
+    },
+    "signate grotesk": {
+      "f": "Boutique",
+      "sub": [
+        "archivo",
+        "inter"
+      ]
+    },
+    "clash display": {
+      "f": "Fontshare",
+      "sub": [
+        "clash grotesk"
+      ]
+    },
+    "charlie": {
+      "f": "Boutique",
+      "sub": [
+        "general sans",
+        "inter"
+      ]
+    },
+    "cardinal fruit": {
+      "f": "Boutique",
+      "sub": [
+        "fraunces",
+        "newsreader"
+      ]
+    },
+    "melange": {
+      "f": "Boutique",
+      "sub": [
+        "newsreader",
+        "literata"
+      ]
+    },
+    "quadrant": {
+      "f": "Boutique",
+      "sub": [
+        "archivo",
+        "inter"
+      ]
+    },
+    "grandslang": {
+      "f": "Sharp Type",
+      "sub": [
+        "cormorant",
+        "playfair display"
+      ]
+    },
+    "eurostile": {
+      "f": "Monotype",
+      "sub": [
+        "unbounded",
+        "sora"
+      ]
+    },
+    "input": {
+      "f": "DJR",
+      "sub": [
+        "jetbrains mono",
+        "ibm plex mono"
+      ]
+    },
+    "kudryashev": {
+      "f": "Brownfox",
+      "sub": [
+        "playfair display",
+        "cormorant"
+      ]
+    },
+    "arsenica": {
+      "f": "Zetafonts",
+      "sub": [
+        "fraunces",
+        "newsreader"
+      ]
+    },
+    "paradigm": {
+      "f": "Boutique",
+      "sub": [
+        "newsreader",
+        "literata"
+      ]
+    },
+    "studiopro": {
+      "f": "Boutique",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    },
+    "meutas": {
+      "f": "Boutique",
+      "sub": [
+        "archivo",
+        "inter"
+      ]
+    },
+    "deacon": {
+      "f": "Boutique",
+      "sub": [
+        "fraunces",
+        "newsreader"
+      ]
+    },
+    "morgan": {
+      "f": "Boutique",
+      "sub": [
+        "archivo",
+        "inter"
+      ]
+    },
+    "plain": {
+      "f": "Optimo",
+      "sub": [
+        "inter",
+        "archivo"
+      ]
+    }
+  },
+  "trial": [
+    "trial",
+    "test ",
+    " test",
+    "demo",
+    "-trial",
+    "exposuretrial"
+  ],
+  "ruido": [
+    "object-fit",
+    "custom_",
+    "swym-font",
+    "practice",
+    "indexlogotype",
+    "ssense-fonts",
+    "rules font",
+    "s85",
+    "te-20",
+    "te-40",
+    "martin",
+    "america",
+    "good-glyphs",
+    "arcade",
+    "basebloom",
+    "unzyale",
+    "defaultfont",
+    "math",
+    "office"
+  ]
+}

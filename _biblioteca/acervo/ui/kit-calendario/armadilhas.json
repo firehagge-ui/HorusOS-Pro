@@ -1,0 +1,12 @@
+[
+ {
+  "texto": "toISOString() erra o dia: converte para UTC e em UTC-3 toda data criada entre meia-noite e 3h volta como o dia ANTERIOR. A pessoa marca dia 10 e cai no dia 9. Use paraISO/deISO, que leem componentes locais.",
+  "origem": "construção kit-calendario",
+  "grau": "critica"
+ },
+ {
+  "texto": "CORRECAO da nota de fuso ja registrada: ela diz que `toISOString()` erra \"entre 00h e 03h\" em UTC-3, e e o contrario. Medido em America/Sao_Paulo: das 00h as 20h59 local o dia bate; a divergencia e das 21h as 23h59 (local 10/08 22:30 -> toISOString 2026-08-11, um dia A MAIS). A janela 00h-03h vale para fusos POSITIVOS, onde volta o dia anterior. A funcao paraISO esta certa; e o texto que manda depurar na hora errada.",
+  "origem": "barbearia-oasis-agendamento",
+  "grau": "media"
+ }
+]

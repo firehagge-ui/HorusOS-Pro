@@ -9,8 +9,9 @@
 conteúdo/carrossel, tráfego — usando IA pra produzir e publicar em escala.
 **Perfil:** Agência (equipe pequena) atendendo múltiplos clientes em paralelo.
 **Atende clientes:** negócios locais / profissionais que precisam de presença
-digital que gera agenda (as contas prioritárias hoje são a **Amparo Flores** e o
-**Washington/mentoria** (reunião 01/09); a Aion está **engavetada desde 01/09/2026**).
+digital que gera agenda (a conta prioritária viva hoje é a **Amparo Flores**, fechada em
+03/09 e em produção da Fase 1; o **Washington/mentoria** adiou em 06/09 e está em
+follow-up frio; a Aion está **engavetada desde 01/09/2026**).
 **Contato operacional:** Marcelo.
 
 ## Princípios, visão e objetivos (declarado pelo Marcelo, 28/08/2026)
@@ -139,7 +140,7 @@ A descrição de cada função da operação está em `equipe/`, com tipo de exe
 > carteira em 27/08/2026** (decisão do Marcelo). Deixou de ser cliente da agência.
 > A pasta `clientes/dr-giovanni-nascimento/` foi **preservada** (briefing, marca e
 > site continuam no repositório como histórico), mas ele não entra mais na contagem
-> de clientes nem na fila de prioridade. O número #1 fica vago; os demais (#2 a #5)
+> de clientes nem na fila de prioridade. O número #1 fica vago; os demais (#2 a #7)
 > mantêm os identificadores para não quebrar as referências cruzadas.
 - **Jaqueline — Permita-se Fitness** (cliente #2) — estúdio multi-modalidade
   (hidroginástica, pilates, zumba, boxe, dança, ballet kids, nutricionista),
@@ -217,20 +218,32 @@ A descrição de cada função da operação está em `equipe/`, com tipo de exe
   Graça**. **Não é setor regulado**, valem regras de comércio. Marca real: **roxo + laranja
   + creme** (da logo). WhatsApp de pedidos **(71) 9118-8740** (corrigido em 03/09/2026, era
   99118-8740, um "9" presumido a mais).
-- **Washington — "Daablio Dellano" · mentoria de massagem tântrica** (cliente #7,
-  **em prospecção**) — Salvador/BA. Pasta criada em 01/09/2026 em
-  `clientes/washington-daablio/`; chegou pelo sócio do Marcelo, que já fez o dossiê de
-  nicho + Conselho + roteiro da reunião (`dossie-reuniao-2026-09-01.md`). **Reunião de
-  venda hoje (01/09/2026).** Instagram @spamassagezen (~9k seg., canal quente); produto
-  novo desejado: **mentoria vendida por site**. Decisão do Conselho (confiança 62%):
-  seguir como **formação profissional em terapia tântrica**, com a figura do mestre de
-  +27 anos como âncora — **produção travada até a reunião** entregar público escolhido,
-  definição do produto e material real (nome, fotos, credenciais, provas).
+- **Washington — "W Delano" · mentoria de massagem tântrica** (cliente #7,
+  ⚠️ **NÃO fechou por ora, adiado em 06/09/2026**) — Salvador/BA. Pasta criada em
+  01/09/2026 em `clientes/washington-daablio/`; chegou pelo sócio do Marcelo, que já fez o
+  dossiê de nicho + Conselho + roteiro da reunião (`dossie-reuniao-2026-09-01.md`).
+  Instagram @spamassagezen (~9k seg.); produto: **mentoria vendida por site**, posicionada
+  como **formação profissional em terapia tântrica** (mestre de ~28 anos como âncora).
+  **Linha do tempo:** reunião 01/09 (destravou posicionamento e autoridade) → proposta
+  **faseada** enviada 02/09 (Fase 1 R$1.200 + Fase 2 R$1.500, substituindo o R$2.500 cheio)
+  → 06/09 **ele viu os valores e adiou** (alegou problema na família; pode ser real ou
+  objeção de preço, não presumir). Status: **follow-up frio**, retomar quando ele sinalizar.
   ⚠️ **Compliance NÃO é conselho profissional** (não é CFO/CFP): a trava é **política de
   plataforma** (Meta/Google reprovam conteúdo sensual), processador de pagamento e risco
   de imagem — reposicionar do sensual para o terapêutico é a decisão nº 1. Integridade:
-  nada de número de alunos, mídia ou resultado sem ele confirmar. Faixa da Horus pelo
-  site: topo da âncora da casa (R$2.500).
+  nada de número de alunos, mídia ou resultado sem ele confirmar. Lição de fechamento em
+  `_memoria/comercial.md`.
+- **Mullsanni Performance** (lead #8, ⚠️ **LEAD em avaliação — não é cliente fechado**) —
+  oficina de performance automotiva (remap de ECU/TCU, escapamento esportivo, preparação
+  de importados), Lauro de Freitas/BA, ticket alto. Pasta criada em 07/09/2026 em
+  `clientes/mullsanni-performance/` (`dossie-prospeccao.md` + `assets/`). Origem: o Marcelo
+  viu a empresa no Bon Odori (06/09) e descobriu o **site fora do ar** (domínio não resolve
+  DNS) e **zero tráfego pago** — as duas maiores alavancas. Empresa nova (~1 ano), **dois
+  sócios** (Jordan + Nelson), decisão provavelmente conjunta. Oferta em fases pensada (Fase 1
+  site de autoridade + GMB; Fase 2 recompra; Fase 3 tráfego), régua de preço interna, ainda
+  **sem proposta enviada**. Abordagem travada: **gancho verdadeiro** ("vi vocês no Bon Odori,
+  o site está fora do ar"), nunca pretexto falso. Setor **não regulado**. Contexto completo
+  no dossiê.
 
 ## Peças e produtos da própria Hórus
 

@@ -1,9 +1,9 @@
 # Mentes
 
-Sete especialistas destilados, portados de `agents/minds/` do
-[mega-brain](https://github.com/YuriRDev/mega-brain). Cada arquivo é a doutrina de
-uma pessoa ou escola: no que ela acredita, com que números ela decide, que
-estruturas ela usa.
+Oito especialistas destilados. Sete portados de `agents/minds/` do
+[mega-brain](https://github.com/YuriRDev/mega-brain); o oitavo (Pedro Sobral) promovido
+dos squads em 04/09/2026. Cada arquivo é a doutrina de uma pessoa ou escola: no que ela
+acredita, com que números ela decide, que estruturas ela usa.
 
 Serve pra duas coisas:
 
@@ -24,6 +24,7 @@ Serve pra duas coisas:
 | [g4-educacao.md](g4-educacao.md) | G4 Educação | Comercial e CX no Brasil | Médio-alto |
 | [full-sales-system.md](full-sales-system.md) | Full Sales System | Calibração BR de estrutura comercial | Médio |
 | [the-scalable-company.md](the-scalable-company.md) | The Scalable Company | Sistematizar e delegar | Médio (quando houver equipe) |
+| [pedro-sobral.md](pedro-sobral.md) | Pedro Sobral | Tráfego pago BR (Meta Ads), campanha, criativo | Alto (único BR; aplicável direto) |
 
 ---
 

@@ -24,6 +24,22 @@ já acertado com ele), e só depois apresentar a **Fase 2** presencialmente, com
 próprio. O que move o ponteiro agora não é mais "convencer", é **entregar sem escorregar
 no escopo**.
 
+### Onde paramos (10/09/2026) — reengajado, aguardando ele marcar o início
+
+O "sim" da reunião de 03/09 seguiu **verbal**; a entrada (R$ 600) ainda **não caiu**, então
+ainda não é cash collected ^[_conselho/logs/2026-09-10-amparo-flores-insistir-ou-cortar.md].
+De 05 a 09/09 o Varo sumiu (4-5 dias sem resposta), inclusive a duas cobranças de Pix no
+grupo. O `/conselho` de 10/09 recomendou sair do grupo e reabrir por mensagem privada, sem
+cobrar dinheiro — feito às 11:03 de 10/09 (mensagem calma, sem pressão, oferecendo repensar
+ou ajustar prazo). **Ele respondeu no mesmo dia (13:35): "Vamos fazer sim, eu te falo quando
+devemos começar."** Confirma a leitura do Advogado do Diabo: o silêncio era decisor duplo
+(Varo + irmã) se alinhando, não recusa.
+
+**Estado atual: reengajado, sem pressionar.** Ele assumiu avisar quando começar — deixar o
+ritmo com ele, sem cobrar entrada nem prazo agora. Se ele não voltar a falar em alguns dias,
+toque leve, sem cobrança de Pix. Quando ele sinalizar início, retomar o pedido da entrada
+(oferecer cartão parcelado se hesitar no valor à vista).
+
 ## Entregas previstas
 
 **Fase 1 (em produção, valor já acertado):**

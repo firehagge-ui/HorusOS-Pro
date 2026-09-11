@@ -1,0 +1,47 @@
+[
+ {
+  "texto": "Sobreposição de horário não é comparação de início: procedimento de 60min às 14:00 conflita com um às 14:30. Comparar só o começo entrega agenda dobrada — compare intervalos.",
+  "origem": "construção kit-agendamento",
+  "grau": "critica"
+ },
+ {
+  "texto": "Resposta assíncrona fora de ordem: clicar dia 10 e logo depois dia 11 pode pintar os horários do 10 sob o rótulo do 11. Numere as requisições e descarte as atrasadas.",
+  "origem": "construção kit-agendamento",
+  "grau": "alta"
+ },
+ {
+  "texto": "O `duracao` padrao dos textos faz `min/60` arredondado a uma casa: 75min sai \"1.3h\" e 150min sai \"2.5h\". Ninguem le \"1.3h\" como uma hora e quinze, e em pt-BR hora quebrada nao usa ponto decimal. Passar `duracao` em `textos` com formato h/min: 75 -> \"1h15\", 120 -> \"2h\".",
+  "origem": "barbearia-oasis-agendamento",
+  "grau": "alta"
+ },
+ {
+  "texto": "O calendario embutido REDECLARA --kit-fg-suave (45%) e --kit-fg-apagado (22%) dentro do proprio bloco .kit-cal. Ajustar so no .kit-ag nao alcanca o calendario: a declaracao local vence a heranca. Sobre fundo escuro (#150e26) as iniciais dos dias da semana caem para 3,29:1 e reprovam AA, e nada avisa. Precisa dos DOIS seletores: '.reserva-kit, .reserva-kit .kit-cal { --kit-fg-suave: color-mix(in srgb, var(--kit-fg) 72%, transparent); --kit-fg-apagado: ... 62% }' — 72% da 6,8:1 e 62% da 5,3:1.",
+  "origem": "restaurante-italiano-berinjela-latao",
+  "grau": "alta"
+ },
+ {
+  "texto": "O componente le 'que dia e hoje' durante a renderizacao (paraISO(new Date()) no useMemo do calendario, e limiteDaJanela no modulo). Num app Next o servidor roda em UTC e o visitante brasileiro em UTC-3: das 21h a meia-noite os dois discordam sobre a data, o HTML do servidor sai com um dia bloqueado e o do cliente com outro, e a hidratacao quebra. Montar o fluxo so depois do primeiro efeito (useState(false) + useEffect(()=>setMontado(true))) e renderizar um esqueleto de altura fixa antes. Nada se perde em SEO: formulario de reserva nao e conteudo indexavel.",
+  "origem": "restaurante-italiano-berinjela-latao",
+  "grau": "alta"
+ },
+ {
+  "texto": "O import do kit-calendario vinha escrito para o layout DO ACERVO ('../../kit-calendario/codigo/Calendario'), não para o layout onde a peça vive depois de copiada ('components/kit-agendamento/'). O README manda copiar para components/kit-<nome>/, onde '../../' passa do alvo e o segmento '/codigo/' não existe: o build quebra com 'Module not found', que parece erro de dependência e não de caminho. Corrigido para '../kit-calendario/'. Ao copiar QUALQUER peça multi-arquivo do acervo, confira os imports relativos antes de rodar o build.",
+  "origem": "exemplo-clinica-vertice",
+  "grau": "alta"
+ },
+ {
+  "texto": "O `diaDisponivel` tem assinatura `(iso) => boolean`, sem receber o servico, entao o calendario nao consegue bloquear dia POR servico. Sonde com o servico mais curto da lista: se nem ele cabe, o dia esta fechado ou lotado de verdade. Servico longo que nao caiba naquele dia ainda cai no aviso \"nenhum horario livre\" ao clicar, que e o comportamento certo.",
+  "origem": "barbearia-oasis-agendamento",
+  "grau": "media"
+ },
+ {
+  "texto": "A ficha avisa que multiplos profissionais precisam ser modelados por fora, mas nao diz onde encaixar. O ponto de entrada e a funcao `carregarHorarios`: mantenha a escolha de profissional num controle seu, acima do componente, e troque a funcao por barbeiro (com useCallback dependendo do id — sem isso a identidade muda a cada render e o efeito do kit refaz a busca em laco). Para \"sem preferencia\", devolva a uniao dos horarios da equipe e designe alguem so na confirmacao.",
+  "origem": "barbearia-oasis-agendamento",
+  "grau": "media"
+ },
+ {
+  "texto": "Seletor de elemento solto no CSS do site (section, article, h2…) alcança a marcação INTERNA da peça: um 'section { padding-block: 8rem }' global injeta 128px dentro do painel do agendamento e abre um buraco no meio dele, que parece defeito da peça e é do site. Peça copiada traz a marcação dela junto e nenhum seletor de elemento sabe disso. Escope o CSS de página ('main > section') ou use classe.",
+  "origem": "exemplo-clinica-vertice",
+  "grau": "media"
+ }
+]

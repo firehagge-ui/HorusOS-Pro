@@ -1,0 +1,366 @@
+/* ===========================================================================
+   kit-agendamento — o fluxo vestido pelo site.
+
+   Mesmo contrato do kit-calendario: só variáveis. O calendário embutido
+   herda estas mesmas variáveis porque os nomes são compartilhados (--kit-*),
+   então acertar a paleta aqui acerta os dois de uma vez.
+   =========================================================================== */
+
+.kit-ag {
+  /* -------- TIPOGRAFIA -------- */
+  --kit-fonte: var(--font-sans, inherit);
+  --kit-fonte-titulo: var(--font-display, var(--kit-fonte));
+  --kit-tam-passo: 0.6875rem;
+  --kit-tam-titulo: 1.125rem;
+  --kit-tam-corpo: 0.875rem;
+  --kit-tracking: 0.08em;
+
+  /* -------- COR -------- */
+  --kit-fg: var(--color-fg, currentColor);
+  --kit-bg: var(--color-bg, transparent);
+  --kit-fg-suave: color-mix(in srgb, var(--kit-fg) 55%, transparent);
+  --kit-fg-apagado: color-mix(in srgb, var(--kit-fg) 30%, transparent);
+  --kit-linha: color-mix(in srgb, var(--kit-fg) 12%, transparent);
+  --kit-hover: color-mix(in srgb, var(--kit-fg) 6%, transparent);
+  --kit-acento: var(--color-accent, currentColor);
+  --kit-acento-fg: var(--color-accent-fg, var(--color-bg, #fff));
+  --kit-erro: var(--color-error, #b42318);
+
+  /* -------- FORMA -------- */
+  --kit-raio: var(--radius, 0.625rem);
+  --kit-pad: 1.25rem;
+  --kit-gap: 0.75rem;
+  --kit-borda: 1px;
+  --kit-alvo: 2.75rem; /* 44px — não reduza */
+
+  /* -------- MOVIMENTO -------- */
+  --kit-dur: 0.2s;
+  --kit-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* -------- FIM DO QUE SE TROCA -------- */
+
+  font-family: var(--kit-fonte);
+  color: var(--kit-fg);
+  background: var(--kit-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  container-type: inline-size;
+}
+
+/* ---------- trilha de passos ---------- */
+
+.kit-ag__trilha {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: var(--kit-tam-passo);
+  letter-spacing: var(--kit-tracking);
+  text-transform: uppercase;
+  color: var(--kit-fg-apagado);
+}
+
+.kit-ag__passo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.kit-ag__passo::after {
+  content: "";
+  inline-size: 1.5rem;
+  block-size: 1px;
+  background: var(--kit-linha);
+}
+
+.kit-ag__passo:last-child::after {
+  display: none;
+}
+
+.kit-ag__passo[data-estado="atual"] {
+  color: var(--kit-fg);
+}
+
+.kit-ag__passo[data-estado="feito"] {
+  color: var(--kit-fg-suave);
+}
+
+/* botão para voltar a um passo já cumprido */
+.kit-ag__passo button {
+  all: unset;
+  cursor: pointer;
+  border-block-end: 1px solid transparent;
+}
+
+.kit-ag__passo button:hover {
+  border-block-end-color: currentColor;
+}
+
+.kit-ag__passo button:focus-visible {
+  outline: 2px solid var(--kit-acento);
+  outline-offset: 3px;
+}
+
+/* ---------- corpo ---------- */
+
+.kit-ag__titulo {
+  font-family: var(--kit-fonte-titulo);
+  font-size: var(--kit-tam-titulo);
+  font-weight: 500;
+  margin: 0 0 var(--kit-gap);
+}
+
+.kit-ag__lista {
+  display: grid;
+  gap: var(--kit-gap);
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+}
+
+.kit-ag__opcao {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: start;
+  padding: var(--kit-pad);
+  min-block-size: var(--kit-alvo);
+  border: var(--kit-borda) solid var(--kit-linha);
+  border-radius: var(--kit-raio);
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color var(--kit-dur) var(--kit-ease),
+    background var(--kit-dur) var(--kit-ease);
+}
+
+.kit-ag__opcao:hover:not([aria-pressed="true"]) {
+  background: var(--kit-hover);
+}
+
+.kit-ag__opcao[aria-pressed="true"] {
+  border-color: var(--kit-acento);
+  box-shadow: inset 0 0 0 1px var(--kit-acento);
+}
+
+.kit-ag__opcao-nome {
+  font-weight: 500;
+}
+
+.kit-ag__opcao-meta {
+  font-size: var(--kit-tam-corpo);
+  color: var(--kit-fg-suave);
+  display: flex;
+  gap: 0.5rem;
+}
+
+.kit-ag__opcao-desc {
+  font-size: var(--kit-tam-corpo);
+  line-height: 1.5;
+  color: var(--kit-fg-suave);
+  margin-block-start: 0.25rem;
+}
+
+/* ---------- data + hora lado a lado ---------- */
+
+.kit-ag__quando {
+  display: grid;
+  gap: 1.5rem;
+  align-items: start;
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+/* container query: reage à largura DA PEÇA, não da janela. O mesmo
+   agendamento cai bem numa sidebar estreita e numa seção larga. */
+@container (max-width: 38rem) {
+  .kit-ag__quando {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.kit-ag__horarios {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+}
+
+.kit-ag__hora {
+  min-block-size: var(--kit-alvo);
+  padding: 0 0.75rem;
+  border: var(--kit-borda) solid var(--kit-linha);
+  border-radius: calc(var(--kit-raio) / 1.5);
+  background: none;
+  font: inherit;
+  font-size: var(--kit-tam-corpo);
+  font-variant-numeric: tabular-nums;
+  color: inherit;
+  cursor: pointer;
+  transition: background var(--kit-dur) var(--kit-ease),
+    border-color var(--kit-dur) var(--kit-ease);
+}
+
+.kit-ag__hora:hover:not([aria-pressed="true"]) {
+  background: var(--kit-hover);
+}
+
+.kit-ag__hora[aria-pressed="true"] {
+  background: var(--kit-acento);
+  border-color: var(--kit-acento);
+  color: var(--kit-acento-fg);
+}
+
+.kit-ag__vazio {
+  font-size: var(--kit-tam-corpo);
+  color: var(--kit-fg-suave);
+  line-height: 1.6;
+  padding: var(--kit-pad) 0;
+  margin: 0;
+}
+
+/* ---------- formulário ---------- */
+
+.kit-ag__campos {
+  display: grid;
+  gap: var(--kit-gap);
+  max-inline-size: 32rem;
+}
+
+.kit-ag__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.kit-ag__rotulo {
+  font-size: var(--kit-tam-corpo);
+  color: var(--kit-fg-suave);
+}
+
+.kit-ag__input {
+  min-block-size: var(--kit-alvo);
+  padding: 0 0.875rem;
+  border: var(--kit-borda) solid var(--kit-linha);
+  border-radius: calc(var(--kit-raio) / 1.5);
+  background: none;
+  font: inherit;
+  font-size: var(--kit-tam-corpo);
+  color: inherit;
+  /* iOS dá zoom em input com fonte < 16px; o line-height segura o toque */
+  line-height: 1.4;
+}
+
+.kit-ag__input:focus-visible {
+  outline: 2px solid var(--kit-acento);
+  outline-offset: -1px;
+}
+
+.kit-ag__input[aria-invalid="true"] {
+  border-color: var(--kit-erro);
+}
+
+textarea.kit-ag__input {
+  min-block-size: 6rem;
+  padding-block: 0.75rem;
+  resize: vertical;
+}
+
+.kit-ag__erro {
+  font-size: 0.8125rem;
+  color: var(--kit-erro);
+}
+
+/* ---------- resumo e rodapé ---------- */
+
+.kit-ag__resumo {
+  display: grid;
+  gap: 0.5rem;
+  padding: var(--kit-pad);
+  border: var(--kit-borda) solid var(--kit-linha);
+  border-radius: var(--kit-raio);
+  font-size: var(--kit-tam-corpo);
+}
+
+.kit-ag__resumo div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.kit-ag__resumo dt {
+  color: var(--kit-fg-suave);
+}
+
+.kit-ag__resumo dd {
+  margin: 0;
+  text-align: end;
+}
+
+.kit-ag__rodape {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--kit-gap);
+  align-items: center;
+}
+
+.kit-ag__btn {
+  min-block-size: var(--kit-alvo);
+  padding: 0 1.5rem;
+  border: var(--kit-borda) solid var(--kit-linha);
+  border-radius: calc(var(--kit-raio) / 1.5);
+  background: none;
+  font: inherit;
+  font-size: var(--kit-tam-corpo);
+  color: inherit;
+  cursor: pointer;
+  transition: background var(--kit-dur) var(--kit-ease),
+    opacity var(--kit-dur) var(--kit-ease);
+}
+
+.kit-ag__btn:hover:not(:disabled) {
+  background: var(--kit-hover);
+}
+
+.kit-ag__btn[data-primaria="true"] {
+  background: var(--kit-acento);
+  border-color: var(--kit-acento);
+  color: var(--kit-acento-fg);
+}
+
+.kit-ag__btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.kit-ag__btn:focus-visible {
+  outline: 2px solid var(--kit-acento);
+  outline-offset: 2px;
+}
+
+/* ---------- confirmação ---------- */
+
+.kit-ag__fim {
+  display: grid;
+  gap: var(--kit-gap);
+  justify-items: start;
+  padding: calc(var(--kit-pad) * 1.5);
+  border: var(--kit-borda) solid var(--kit-linha);
+  border-radius: var(--kit-raio);
+}
+
+.kit-ag__sr {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kit-ag * {
+    transition-duration: 0.01ms !important;
+  }
+}

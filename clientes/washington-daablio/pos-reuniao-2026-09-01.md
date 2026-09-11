@@ -168,3 +168,25 @@ garantida, ficou com o valor maior de recebimento imediato; a Fase 2 é upside.
 **Estado em 02/09/2026:** proposta pronta, ainda não confirmado se foi enviada no grupo
 do WhatsApp. Falta dele: confirmar "Delano" vs "W Delano", o número de anos, e os itens
 do §5 (fotos, logo, encarte da revista, módulos da mentoria, depoimento autorizado).
+
+---
+
+## 7. Desfecho — adiado (06/09/2026)
+
+A proposta faseada **foi enviada** e ele **viu os valores**. Não fechou: alegou **problema
+na família e necessidade de adiar o projeto**. Isso responde o `[CONFIRMAR]` do §4.1 (o "sim
+comercial" não veio) e o §6 (a proposta foi, sim, enviada).
+
+**Como ler, sem inventar:** o adiamento pode ser real (a vida do cliente atravessou) ou uma
+objeção de preço com roupa educada — não dá pra saber daqui, e não se presume. O que **não**
+se faz: baixar o preço pra correr atrás. As mentes vetam desconto por ansiedade
+(`_memoria/comercial.md`), e "achou caro" é sinal de valor percebido baixo, não de preço alto.
+
+**Ação:** follow-up **frio**, sem pressão. Retomar quando ele sinalizar (mandar material, ou
+responder). Se ele reabrir, o conserto é reinstalar o custo da inação na conversa — não cortar
+o valor.
+
+**Lição de processo que subiu pra casa (06/09):** este caso, junto com o quase-tropeço da
+Amparo, originou `_memoria/comercial.md`. A causa provável da perda não foi o preço, foi a
+venda ter sido transferida da reunião (pico de calor) para um documento decidido sozinho
+depois. Da próxima: preço se fala na reunião, e se sai da mesa com um compromisso concreto.

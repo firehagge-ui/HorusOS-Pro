@@ -26,12 +26,16 @@ Hoje, das duas formas:
 
 1. **Q&A do NotebookLM** (foi assim que o primeiro card nasceu, 03/09/2026): o Marcelo
    pergunta lá, cola a resposta aqui, eu destilo.
-2. **Pipeline de export `.txt`** (planejado, ainda não construído): export do WhatsApp →
-   subagente limpa e destila em contexto isolado → devolve só os cards. O bruto **nunca**
-   entra na conversa principal, por custo de token.
+2. **Pipeline de export `.txt`** ✅ **construído em 07/09/2026 — skill `/ingerir-network`:**
+   você salva o export do WhatsApp em `dados/network/`, um script determinístico limpa e
+   anonimiza (zero token), e um subagente por chunk destila em contexto isolado → só os
+   cards voltam. O bruto **nunca** entra na conversa principal. É o caminho de lote (mensal);
+   o Q&A do item 1 continua valendo para pergunta pontual.
 
 ## Cards
 
 | Card | Assunto | Primeira gravação |
 |---|---|---|
 | `precificacao-sistemas-web.md` | Quanto cobrar por site, e-commerce, CRM, bot e manutenção; stack e travas legais | 03/09/2026 |
+| `hospedagem-sistemas.md` | Onde/como a rede hospeda CRM: VPS (Hostinger/Contabo), Docker+Coolify multi-cliente, Vercel+Supabase, Frappe Cloud, SaaS de afiliado | 05/09/2026 |
+| `cobranca-e-protecao-comercial.md` | Cliente que fecha verbal e some antes da entrada: por que trava, como destravar (voz, mini-call com o sócio, cartão) e como estruturar pagamento/contrato pra não tomar cano | 10/09/2026 |

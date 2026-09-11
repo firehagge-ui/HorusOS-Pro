@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mullsanni Performance | Remap e preparação de importados em Lauro de Freitas</title>
+<meta name="description" content="Remap de ECU e TCU, escape e preparação de importados com equipamento de concessionária e dinamômetro próprio. O ganho é medido antes e depois, na roda. Lauro de Freitas, Bahia.">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mullsanni Performance">
+<meta property="og:title" content="Mullsanni Performance | Potência medida, não prometida">
+<meta property="og:description" content="Equipamento de concessionária, acerto de preparador, dinamômetro próprio. O ganho é medido antes e depois. Lauro de Freitas, BA.">
+<meta property="og:image" content="assets/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,600;0,800;0,900;1,800;1,900&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --breu:#0B0B0C;
+  --bg-alt:#141415;
+  --surface:#1B1B1C;
+  --raised:#242425;
+  --amarelo:#FFD200;
+  --amarelo-esc:#5A4700;   /* 6,2:1 sobre amarelo: texto pequeno na faixa invertida */
+  --glow:#FFDD3D;
+  --osso:#F2F2EF;
+  --fumaca:#9A9AA0;        /* 7:1 sobre breu */
+  --apagado:#8A8A90;   /* 4,9:1 sobre surface #1B1B1C — AA garantido no fundo mais claro em que aparece */
+  --linha:#2B2B2C;
+  --linha-suave:rgba(242,242,239,.10);
+  --wrap:1180px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--breu);color:var(--osso);
+  font-family:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+h1,h2,h3{
+  font-family:"Archivo","Arial Narrow",system-ui,sans-serif;
+  font-weight:900;line-height:.96;letter-spacing:-.02em;margin:0;
+  text-transform:uppercase;font-stretch:condensed;
+}
+h1 em,h2 em{font-style:italic;color:var(--amarelo);font-weight:900}
+p{margin:0}
+.wrap{width:min(100%,var(--wrap));margin-inline:auto}
+section{scroll-margin-top:88px}
+.kicker{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--amarelo);margin:0 0 16px;
+}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.lede{font-size:19px;color:var(--fumaca);max-width:56ch;margin-top:20px;line-height:1.55}
+
+/* botões */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;background:var(--amarelo);color:#000;
+  font-family:"Archivo",sans-serif;font-weight:800;font-stretch:condensed;font-size:16px;
+  text-transform:uppercase;letter-spacing:.02em;text-decoration:none;
+  padding:15px 26px;border-radius:11px;border:0;cursor:pointer;
+  transition:background .18s ease,transform .18s ease;
+}
+.btn:hover{background:var(--glow);transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn--linha{
+  background:transparent;color:var(--osso);border:1px solid var(--linha);
+}
+.btn--linha:hover{background:var(--surface);border-color:var(--amarelo)}
+
+/* cabeçalho */
+.topo{position:sticky;top:0;z-index:50;padding:13px 22px;background:rgba(11,11,12,.78);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .25s,background .25s}
+.topo.rolado{border-bottom-color:var(--linha);background:rgba(11,11,12,.95)}
+.topo .wrap{display:flex;align-items:center;gap:16px}
+.marca{display:flex;align-items:center;gap:11px;text-decoration:none;flex:none}
+.marca img{width:38px;height:38px;border-radius:8px}
+.marca b{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:19px;letter-spacing:-.01em;text-transform:uppercase}
+.topo nav{display:flex;gap:24px;margin-left:auto}
+.topo nav a{font-size:15px;font-weight:500;color:var(--fumaca);text-decoration:none;transition:color .18s}
+.topo nav a:hover{color:var(--osso)}
+.topo .btn{margin-left:24px;padding:11px 20px;font-size:15px}
+
+/* ---------- HERO: foto cheia, texto sobre o lado escuro ---------- */
+.hero{position:relative;min-height:82vh;display:flex;align-items:flex-end;overflow:hidden;background:#000}
+.hero-foto{position:absolute;inset:0;z-index:0}
+.hero-foto img{width:100%;height:100%;object-fit:cover;object-position:70% 45%}
+.hero-foto::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(96deg,rgba(11,11,12,.96) 0%,rgba(11,11,12,.88) 30%,rgba(11,11,12,.35) 62%,rgba(11,11,12,.12) 100%),
+    linear-gradient(0deg,rgba(11,11,12,.9) 0%,rgba(11,11,12,0) 40%);
+}
+.hero .wrap{position:relative;z-index:1;padding:70px 22px 56px;width:100%}
+.hero h1{font-size:78px;max-width:15ch}
+.hero .lede{color:#DFDFDC;max-width:52ch}
+.hero-acao{display:flex;flex-wrap:wrap;align-items:center;gap:16px 22px;margin-top:34px}
+.hero-prova{
+  display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;max-width:100%;
+  padding:11px 18px;border-radius:11px;background:rgba(20,20,21,.7);border:1px solid var(--linha);
+}
+.hero-prova b{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:30px;color:var(--amarelo);line-height:1}
+.hero-prova span{font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.03em;color:var(--fumaca);text-transform:uppercase}
+.hero-credito{position:absolute;right:22px;bottom:14px;z-index:1;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(242,242,239,.5)}
+
+/* ---------- COBERTURA: as marcas que atende ---------- */
+.cobertura{padding:64px 22px;background:var(--bg-alt);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
+.cobertura-topo{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 30px}
+.cobertura-topo p{color:var(--fumaca);font-size:16px;max-width:44ch}
+.cobertura h2{font-size:30px}
+.grade-marcas{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;margin-top:34px;background:var(--linha);border:1px solid var(--linha);border-radius:14px;overflow:hidden}
+.grade-marcas span{
+  background:var(--breu);padding:26px 12px;text-align:center;
+  font-family:"Archivo",sans-serif;font-weight:800;font-stretch:condensed;font-size:20px;
+  text-transform:uppercase;letter-spacing:.02em;color:#C9C9CC;transition:color .18s,background .18s;
+}
+.grade-marcas span:hover{color:var(--amarelo);background:var(--surface)}
+
+/* ---------- blocos ---------- */
+.bloco{padding:96px 22px}
+.bloco--grafite{background:var(--bg-alt)}
+.bloco--amarelo{background:var(--amarelo);color:#0B0B0C}
+.bloco--amarelo .kicker{color:var(--amarelo-esc)}
+.bloco--amarelo .lede{color:#4A3E08}
+.cabeca{max-width:60ch}
+.cabeca h2{font-size:42px}
+
+/* ---------- A PROVA: assinatura de curva + casos ---------- */
+.prova-assinatura{position:relative;margin:44px 0 8px;border:1px solid var(--linha);border-radius:18px;background:var(--surface);overflow:hidden;padding:18px}
+.curva-wrap{display:block;width:100%;height:auto}
+.curva-legenda{position:absolute;left:30px;top:30px;display:flex;flex-direction:column;gap:9px}
+.curva-legenda i{font-style:normal;display:flex;align-items:center;gap:9px;font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--fumaca)}
+.curva-legenda i::before{content:"";width:16px;height:3px;border-radius:2px;background:var(--apagado)}
+.curva-legenda i.dep{color:var(--osso)}
+.curva-legenda i.dep::before{background:var(--amarelo)}
+.curva-nota{padding:12px 6px 0;font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--apagado)}
+/* traço da curva desenha uma vez na entrada */
+.linha-curva{fill:none;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+.linha-antes{stroke:#4A4A50}
+.linha-depois{stroke:var(--amarelo)}
+.reveal .linha-curva{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);transition:stroke-dashoffset 1.5s cubic-bezier(.22,.61,.36,1)}
+.reveal.visivel .linha-curva{stroke-dashoffset:0}
+.reveal.visivel .linha-depois{transition-delay:.35s}
+
+.casos{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:26px}
+.caso{background:var(--surface);border:1px solid var(--linha);border-radius:15px;padding:24px 22px 22px;display:flex;flex-direction:column;gap:14px}
+.caso-ganho{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:52px;line-height:.9;color:var(--amarelo)}
+.caso-ganho small{display:block;font-size:14px;color:var(--fumaca);font-weight:600;letter-spacing:.02em;margin-top:6px;font-family:"IBM Plex Mono",monospace;text-transform:uppercase}
+.caso h3{font-size:21px}
+.caso-tag{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--fumaca);margin-top:-6px}
+.caso-linha{margin-top:auto;display:grid;gap:6px;padding-top:14px;border-top:1px solid var(--linha)}
+.caso-linha div{display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:13px}
+.caso-linha .rot{color:var(--apagado);text-transform:uppercase;letter-spacing:.04em}
+.caso-linha .val{color:var(--fumaca)}
+.caso-linha .dep .val{color:var(--amarelo);font-weight:600}
+.prova-nota{margin-top:26px;font-size:15px;color:var(--fumaca);max-width:78ch}
+
+/* faixa de foto sangrada */
+.faixa-foto{position:relative;height:340px;overflow:hidden;background:#000}
+.faixa-foto img{width:100%;height:100%;object-fit:cover;object-position:center 44%}
+.faixa-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,12,.55) 0%,rgba(11,11,12,0) 24%,rgba(11,11,12,.55) 100%)}
+
+/* ---------- ESTRUTURA: parede de equipamento ---------- */
+.equipa{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:44px;background:var(--linha);border:1px solid var(--linha);border-radius:16px;overflow:hidden}
+.equipa-item{background:var(--breu);padding:34px 32px}
+.equipa-item .n{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--amarelo);text-transform:uppercase}
+.equipa-item h3{font-size:22px;margin:0 0 10px}
+.equipa-item p{color:var(--fumaca);font-size:16px;line-height:1.55}
+.equipa-item .marcas-scanner{margin-top:14px;font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.04em;color:var(--apagado);text-transform:uppercase;line-height:1.7}
+
+/* ---------- SERVIÇOS (faixa amarela) ---------- */
+.servicos{display:grid;grid-template-columns:1fr 1fr;gap:0 54px;margin-top:44px}
+.servico{display:grid;grid-template-columns:42px 1fr;gap:16px;padding:26px 0;border-top:1px solid rgba(11,11,12,.22)}
+.servico .n{font-family:"IBM Plex Mono",monospace;font-size:14px;font-weight:600;color:var(--amarelo-esc);padding-top:4px}
+.servico h3{font-size:22px}
+.servico p{margin-top:8px;font-size:16px;color:#4A3E08;line-height:1.5}
+
+/* ---------- QUEM FAZ ---------- */
+.fundador{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center;margin-top:20px}
+.fundador-foto{position:relative;border-radius:18px;overflow:hidden;background:var(--surface);aspect-ratio:4/5;border:1px solid var(--linha)}
+.fundador-foto img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.fundador-falta{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--apagado);line-height:1.7}
+.citacao{font-family:"Archivo",sans-serif;font-weight:800;font-stretch:condensed;font-size:33px;line-height:1.3;letter-spacing:-.01em;text-transform:uppercase}
+.citacao em{font-style:italic;color:var(--amarelo)}
+.assina{margin-top:26px;display:flex;align-items:center;gap:14px}
+.assina .quem{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:19px;text-transform:uppercase}
+.assina .papel{font-size:15px;color:var(--fumaca)}
+.assina-sep{width:1px;height:34px;background:var(--linha)}
+
+/* ---------- CONFIANÇA ---------- */
+.confianca{background:var(--bg-alt);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);padding:54px 22px}
+.confianca .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.selo-c{padding:4px 0}
+.selo-c b{display:block;font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:26px;text-transform:uppercase}
+.selo-c b .estrelas{color:var(--amarelo)}
+.selo-c span{display:block;color:var(--fumaca);font-size:15px;margin-top:6px}
+
+/* ---------- ORÇAMENTO ---------- */
+.form-caixa{display:grid;grid-template-columns:1.12fr .88fr;gap:44px 54px;margin-top:44px;align-items:start}
+.campos{display:grid;gap:17px}
+.dupla{display:grid;grid-template-columns:1fr 132px;gap:17px}
+.campo{display:grid;gap:7px}
+.campo label{font-size:14.5px;font-weight:600;color:var(--osso)}
+.campo input,.campo select,.campo textarea{
+  font-family:"Barlow",sans-serif;font-size:16px;color:var(--osso);
+  background:var(--surface);border:1px solid var(--linha);border-radius:10px;padding:13px 15px;width:100%;
+}
+.campo textarea{min-height:88px;resize:vertical}
+.campo input:focus,.campo select:focus,.campo textarea:focus{outline:2px solid var(--amarelo);outline-offset:1px;border-color:transparent}
+.form-nota{font-size:14.5px;color:var(--fumaca);margin-top:2px;max-width:50ch}
+.form-lado{padding:30px 30px 12px;background:var(--surface);border:1px solid var(--linha);border-radius:16px;position:sticky;top:92px}
+.form-lado h3{font-size:19px;margin-bottom:16px}
+.dado{padding:17px 0;border-top:1px solid var(--linha)}
+.dado:first-of-type{border-top:0}
+.dado b{display:block;font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--fumaca);margin-bottom:6px}
+.dado span,.dado a{font-size:16px;color:var(--osso);text-decoration:none}
+.dado a:hover{color:var(--amarelo)}
+
+/* ---------- rodapé ---------- */
+.rodape{background:var(--bg-alt);padding:66px 22px 30px}
+.rodape-grade{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:42px}
+.rodape h4{font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--fumaca);margin:0 0 15px}
+.rodape-marca{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+.rodape-marca img{width:36px;height:36px;border-radius:8px}
+.rodape-marca b{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:18px;text-transform:uppercase}
+.rodape-zap{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:30px;line-height:1;text-transform:uppercase;text-decoration:none;display:inline-block;margin-top:4px}
+.rodape-zap:hover{color:var(--amarelo)}
+.rodape ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.rodape ul a,.rodape li span{font-size:15px;color:var(--fumaca);text-decoration:none}
+.rodape ul a:hover{color:var(--osso)}
+.rodape-fim{margin-top:48px;padding-top:22px;border-top:1px solid var(--linha);display:flex;flex-wrap:wrap;gap:8px 26px;font-size:13.5px;color:var(--apagado)}
+
+/* entrada sutil (única exceção além da curva) */
+@media (prefers-reduced-motion:no-preference){
+  .sobe{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .sobe.visivel{opacity:1;transform:none}
+}
+
+/* ---------- tablet ---------- */
+@media (max-width:1000px){
+  .hero h1{font-size:60px}
+  .cabeca h2,.confianca .wrap{}
+  .casos{grid-template-columns:1fr 1fr}
+  .grade-marcas{grid-template-columns:repeat(3,1fr)}
+  .fundador{grid-template-columns:1fr;gap:34px}
+  .form-caixa{grid-template-columns:1fr}
+  .form-lado{position:static}
+  .confianca .wrap{grid-template-columns:1fr;gap:22px}
+  .rodape-grade{grid-template-columns:1fr 1fr}
+}
+
+/* ---------- celular ---------- */
+@media (max-width:680px){
+  body{font-size:16px}
+  .hero{min-height:88vh}
+  .hero h1{font-size:39px}
+  .hero .lede{font-size:17px}
+  .cabeca h2{font-size:31px}
+  .cobertura h2{font-size:26px}
+  .topo nav{display:none}
+  .topo .btn{margin-left:auto}
+  .bloco{padding:64px 22px}
+  .casos{grid-template-columns:1fr}
+  .equipa{grid-template-columns:1fr}
+  .servicos{grid-template-columns:1fr;gap:0}
+  .grade-marcas{grid-template-columns:repeat(2,1fr)}
+  .citacao{font-size:27px}
+  .faixa-foto{height:230px}
+  .dupla{grid-template-columns:1fr}
+  .rodape-grade{grid-template-columns:1fr;gap:34px}
+  .rodape-zap{font-size:25px}
+}
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="wrap">
+    <a class="marca" href="#topo">
+      <img src="assets/logo.png" width="38" height="38" loading="eager" alt="Mullsanni Performance">
+      <b>Mullsanni</b>
+    </a>
+    <nav>
+      <a href="#cobertura">Marcas</a>
+      <a href="#prova">Resultados</a>
+      <a href="#estrutura">Estrutura</a>
+      <a href="#servicos">Serviços</a>
+    </nav>
+    <a class="btn" href="#orcamento">Orçamento</a>
+  </div>
+</header>
+
+<main id="topo">
+
+  <!-- 1. HERO -->
+  <section class="hero">
+    <div class="hero-foto">
+      <!-- [FALTA: foto final — carro escuro sobre o dinamômetro, à noite, 2400px+]. Placeholder provisório: recorte do Instagram deles. -->
+      <img src="assets/hero-audi-s5.webp" width="2200" height="611" alt="Importado preto em preparação no galpão da Mullsanni Performance, técnico ao lado">
+    </div>
+    <div class="wrap">
+      <h1>Potência que passa <em>pela máquina.</em></h1>
+      <p class="lede">Remap, escape e preparação de importados em Lauro de Freitas. Com o mesmo diagnóstico das autorizadas e dinamômetro próprio. O ganho é medido antes e depois, na roda. Não é promessa: é a leitura.</p>
+      <div class="hero-acao">
+        <a class="btn" href="#orcamento">Fazer meu orçamento</a>
+        <div class="hero-prova">
+          <b>+56 whp</b>
+          <span>Mini JCW · medido no dinamômetro</span>
+        </div>
+      </div>
+    </div>
+    <p class="hero-credito">Vilas do Atlântico, Lauro de Freitas · BA</p>
+  </section>
+
+  <!-- 2. COBERTURA -->
+  <section class="cobertura" id="cobertura">
+    <div class="wrap">
+      <div class="cobertura-topo">
+        <h2>As marcas que a gente abre</h2>
+        <p>Trabalhamos com o equipamento de diagnóstico das próprias montadoras. Se o seu importado está aqui, a central dele é acessível sem improviso.</p>
+      </div>
+      <div class="grade-marcas">
+        <span>Audi</span><span>BMW</span><span>Porsche</span><span>Mercedes-Benz</span><span>Volkswagen</span>
+        <span>Land Rover</span><span>Jaguar</span><span>Volvo</span><span>Mini</span><span>Peugeot</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. A PROVA -->
+  <section class="bloco" id="prova">
+    <div class="wrap">
+      <div class="cabeca sobe">
+        <p class="kicker">Medido no dinamômetro</p>
+        <h2>O ganho não se promete.<br><em>Se mede.</em></h2>
+        <p class="lede">Cada carro entra na máquina antes, recebe a calibração e volta. Você sai com a leitura das duas medições. Potência em WHP, na roda, em carros reais que passaram pela oficina.</p>
+      </div>
+
+      <!-- assinatura: a curva subindo (motivo visual, desenha uma vez) -->
+      <div class="prova-assinatura reveal">
+        <div class="curva-legenda">
+          <i class="ant">Antes</i>
+          <i class="dep">Depois da calibração</i>
+        </div>
+        <svg class="curva-wrap" viewBox="0 0 1180 300" preserveAspectRatio="none" role="img" aria-label="Curva de potência subindo depois da calibração">
+          <g stroke="var(--linha)" stroke-width="1">
+            <line x1="0" y1="75" x2="1180" y2="75"/>
+            <line x1="0" y1="150" x2="1180" y2="150"/>
+            <line x1="0" y1="225" x2="1180" y2="225"/>
+          </g>
+          <path class="linha-curva linha-antes" d="M0,268 C230,262 360,238 560,205 C760,172 900,150 1180,140"/>
+          <path class="linha-curva linha-depois" d="M0,262 C230,250 350,206 540,150 C740,92 900,58 1180,40"/>
+        </svg>
+        <p class="curva-nota">Leitura ilustrativa da forma antes × depois. Os números de cada carro estão abaixo, do jeito que saíram da máquina.</p>
+      </div>
+
+      <div class="casos">
+        <article class="caso sobe">
+          <div class="caso-ganho">+56 whp<small>+10 kgfm</small></div>
+          <h3>Mini JCW</h3>
+          <p class="caso-tag">Stage 2 · Gasolina comum</p>
+          <div class="caso-linha">
+            <div class="ant"><span class="rot">Antes</span><span class="val">192 whp · 27 kgfm</span></div>
+            <div class="dep"><span class="rot">Depois</span><span class="val">248 whp · 37 kgfm</span></div>
+          </div>
+        </article>
+        <article class="caso sobe">
+          <div class="caso-ganho">+52 whp<small>+14 kgfm</small></div>
+          <h3>VW Tiguan 350 TSI</h3>
+          <p class="caso-tag">Stage 2 · Gasolina comum</p>
+          <div class="caso-linha">
+            <div class="ant"><span class="rot">Antes</span><span class="val">192 whp · 28 kgfm</span></div>
+            <div class="dep"><span class="rot">Depois</span><span class="val">244 whp · 42 kgfm</span></div>
+          </div>
+        </article>
+        <article class="caso sobe">
+          <div class="caso-ganho">+48 whp<small>Podium</small></div>
+          <h3>Porsche 718 GTS 4.0</h3>
+          <p class="caso-tag">Stage 2 · Aspirado</p>
+          <div class="caso-linha">
+            <div class="ant"><span class="rot">Antes</span><span class="val">276 whp · 33 kgfm</span></div>
+            <div class="dep"><span class="rot">Depois</span><span class="val">324 whp · 36 kgfm</span></div>
+          </div>
+        </article>
+        <article class="caso sobe">
+          <div class="caso-ganho">+33 whp<small>+5 kgfm</small></div>
+          <h3>Peugeot 208 GT THP</h3>
+          <p class="caso-tag">Stage 2 · Gasolina comum</p>
+          <div class="caso-linha">
+            <div class="ant"><span class="rot">Antes</span><span class="val">125 whp · 20 kgfm</span></div>
+            <div class="dep"><span class="rot">Depois</span><span class="val">158 whp · 25 kgfm</span></div>
+          </div>
+        </article>
+        <article class="caso sobe">
+          <div class="caso-ganho">+29 whp<small>+7 kgfm</small></div>
+          <h3>Audi A3 1.4 TFSI</h3>
+          <p class="caso-tag">Stage 2 · Downpipe Nova Racing</p>
+          <div class="caso-linha">
+            <div class="ant"><span class="rot">Antes</span><span class="val">123 whp · 21 kgfm</span></div>
+            <div class="dep"><span class="rot">Depois</span><span class="val">152 whp · 28 kgfm</span></div>
+          </div>
+        </article>
+        <article class="caso sobe">
+          <div class="caso-ganho">+21 whp<small>+7 kgfm</small></div>
+          <h3>VW Nivus 200 TSI</h3>
+          <p class="caso-tag">Stage 1 · Sem delay de acelerador</p>
+          <div class="caso-linha">
+            <div class="ant"><span class="rot">Antes</span><span class="val">90 whp · 13 kgfm</span></div>
+            <div class="dep"><span class="rot">Depois</span><span class="val">111 whp · 20 kgfm</span></div>
+          </div>
+        </article>
+      </div>
+      <p class="prova-nota">Números medidos em veículos específicos, no dinamômetro da própria oficina. Não valem como promessa para outro carro: cada motor responde conforme combustível, hardware e estado. O seu é medido antes e depois, e a leitura fica com você.</p>
+    </div>
+  </section>
+
+  <!-- faixa de oficina -->
+  <div class="faixa-foto">
+    <img src="assets/foto-tt.webp" width="1800" height="500" alt="Importado preparado no interior da oficina Mullsanni Performance" loading="lazy">
+  </div>
+
+  <!-- 4. ESTRUTURA -->
+  <section class="bloco bloco--grafite" id="estrutura">
+    <div class="wrap">
+      <div class="cabeca sobe">
+        <p class="kicker">Por que aqui</p>
+        <h2>A oficina tem o que <em>a maioria terceiriza</em></h2>
+        <p class="lede">A diferença de um preparador não está no cavalo que ele promete, está na máquina que ele tem para provar e no software que ele desenvolve.</p>
+      </div>
+      <div class="equipa sobe">
+        <div class="equipa-item">
+          <h3>Scanner original das montadoras</h3>
+          <p>Os mesmos equipamentos de diagnóstico e configuração usados pelas concessionárias. É o que permite mexer em módulo de importado sem gambiarra.</p>
+          <p class="marcas-scanner">Audi · BMW · Jaguar · Mercedes-Benz · Lamborghini · Land Rover · Porsche · Volvo</p>
+        </div>
+        <div class="equipa-item">
+          <h3>Dinamômetro Servitec, aqui dentro</h3>
+          <p>O carro é medido antes e depois na própria oficina. Quem não tem dinamômetro entrega o ganho no papel, ou manda o carro medir em outro lugar.</p>
+        </div>
+        <div class="equipa-item">
+          <h3>Calibração desenvolvida, não arquivo comprado</h3>
+          <p>Representante oficial ACF Performance: o mapa é desenvolvido para o seu carro e ajustado ao combustível e ao hardware que ele tem. Dá para pedir detalhe: abrir válvula de escape, tirar cold start ou mudar o corte de giro.</p>
+        </div>
+        <div class="equipa-item">
+          <h3>Escape fabricado sob medida</h3>
+          <p>Downpipe e catback em aço inox pela Nova Racing, dimensionados para a motorização, no lugar de peça universal adaptada na marra.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. SERVIÇOS -->
+  <section class="bloco bloco--amarelo" id="servicos">
+    <div class="wrap">
+      <div class="cabeca">
+        <h2>Do diagnóstico à preparação</h2>
+        <p class="lede">Tudo no mesmo lugar, com o carro sempre passando pela máquina.</p>
+      </div>
+      <div class="servicos">
+        <div class="servico"><span class="n">01</span><div><h3>Remap de ECU e TCU</h3><p>Calibração Stage 1 e Stage 2 do motor e do câmbio, desenvolvida para o seu veículo e medida no dinamômetro.</p></div></div>
+        <div class="servico"><span class="n">02</span><div><h3>Manutenção de importados</h3><p>Revisão e reparo com scanner original da montadora, incluindo configuração de módulo que oficina comum não acessa.</p></div></div>
+        <div class="servico"><span class="n">03</span><div><h3>Escape e downpipe em inox</h3><p>Catback e downpipe fabricados sob medida em aço inox, dimensionados para a motorização.</p></div></div>
+        <div class="servico"><span class="n">04</span><div><h3>Ajustes de dirigibilidade</h3><p>Remoção do atraso do acelerador, controle da válvula de escape, cold start e outros acertos pedidos pelo dono.</p></div></div>
+        <div class="servico"><span class="n">05</span><div><h3>Aferição em dinamômetro</h3><p>Medição de potência e torque na roda, com a leitura antes e depois entregue a você.</p></div></div>
+        <div class="servico"><span class="n">06</span><div><h3>Diagnóstico de módulo</h3><p>Leitura e configuração de central em veículo importado, incluindo o que a oficina comum não tem equipamento para acessar.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. QUEM FAZ -->
+  <section class="bloco" id="equipe">
+    <div class="wrap">
+      <div class="cabeca sobe">
+        <p class="kicker">Quem põe a mão no seu carro</p>
+      </div>
+      <div class="fundador sobe">
+        <div class="fundador-foto">
+          <!-- [FALTA: foto de Jordan e Nelson na oficina, alta resolução] -->
+          <div class="fundador-falta">[ foto de Jordan e Nelson<br>na oficina, a confirmar ]</div>
+        </div>
+        <div>
+          <p class="citacao">"Cada carro que entra aqui não é só mais um. É um projeto que a gente abraça <em>como se fosse nosso.</em>"</p>
+          <div class="assina">
+            <div>
+              <div class="quem">Jordan</div>
+              <div class="papel">Fundador · faz a aferição no dyno</div>
+            </div>
+            <div class="assina-sep"></div>
+            <div>
+              <div class="quem">Nelson</div>
+              <div class="papel">Sócio</div>
+            </div>
+          </div>
+          <p class="lede" style="margin-top:28px">Equipe com experiência em manutenção de importados e em competição. A calibração é desenvolvida junto da ACF Performance, e cada acerto passa pela máquina antes de o carro sair.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. CONFIANÇA -->
+  <section class="confianca">
+    <div class="wrap">
+      <div class="selo-c">
+        <b><span class="estrelas">5,0 ★</span></b>
+        <span>Avaliação dos clientes no Google, em 11 avaliações</span>
+      </div>
+      <div class="selo-c">
+        <b>ACF Performance</b>
+        <span>Representante oficial de calibração de motor</span>
+      </div>
+      <div class="selo-c">
+        <b>Nova Racing</b>
+        <span>Representante oficial de escape e downpipe</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. ORÇAMENTO -->
+  <section class="bloco bloco--grafite" id="orcamento">
+    <div class="wrap">
+      <div class="cabeca sobe">
+        <p class="kicker">Orçamento</p>
+        <h2>Comece pelo seu carro</h2>
+        <p class="lede">Conta o que você tem e o que quer resolver. A gente responde o que dá para fazer, o que muda na prática e quanto custa. E se não valer a pena, a resposta é essa.</p>
+      </div>
+      <div class="form-caixa">
+        <form class="campos" id="form-orcamento">
+          <div class="campo">
+            <label for="f-nome">Seu nome</label>
+            <input id="f-nome" name="nome" type="text" autocomplete="name" required>
+          </div>
+          <div class="dupla">
+            <div class="campo">
+              <label for="f-carro">Marca e modelo</label>
+              <input id="f-carro" name="carro" type="text" placeholder="Ex.: Audi A3 1.4 TFSI" required>
+            </div>
+            <div class="campo">
+              <label for="f-ano">Ano</label>
+              <input id="f-ano" name="ano" type="text" inputmode="numeric" placeholder="2019">
+            </div>
+          </div>
+          <div class="campo">
+            <label for="f-objetivo">O que você quer resolver</label>
+            <select id="f-objetivo" name="objetivo">
+              <option>Remap Stage 1</option>
+              <option>Remap Stage 2</option>
+              <option>Manutenção do importado</option>
+              <option>Escape ou downpipe</option>
+              <option>Tirar o atraso do acelerador</option>
+              <option>Ainda não sei, quero conversar</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="f-obs">Quer contar mais alguma coisa?</label>
+            <textarea id="f-obs" name="obs" placeholder="Modificações que o carro já tem, combustível que você usa, incômodo que quer resolver."></textarea>
+          </div>
+          <button class="btn" type="submit">Abrir meu orçamento no WhatsApp</button>
+          <p class="form-nota">O botão abre o WhatsApp com a mensagem já preenchida. Nada é enviado antes de você conferir e apertar enviar.</p>
+        </form>
+
+        <aside class="form-lado">
+          <h3>A oficina</h3>
+          <div class="dado">
+            <b>Endereço</b>
+            <a href="https://www.google.com/maps/search/?api=1&query=Mullsanni+Performance+Lauro+de+Freitas" target="_blank" rel="noopener">R. Itaju do Colônia, 792, Galpão 04<br>Vilas do Atlântico, Lauro de Freitas, BA</a>
+          </div>
+          <div class="dado">
+            <b>Horário</b>
+            <span>Segunda a sexta, 9h às 17h<br>Sábado e domingo fechado</span>
+          </div>
+          <!-- [FALTA: confirmar WhatsApp] Google lista (71) 98693-9994; este veio da bio do Instagram. Não presumir (lição Amparo). -->
+          <div class="dado">
+            <b>WhatsApp</b>
+            <a class="zap-link" href="#" target="_blank" rel="noopener">Falar com a oficina</a>
+          </div>
+          <div class="dado">
+            <b>Instagram</b>
+            <a href="https://instagram.com/mullsanniperformance" target="_blank" rel="noopener">@mullsanniperformance</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <div class="rodape-grade">
+      <div>
+        <div class="rodape-marca">
+          <img src="assets/logo.png" width="36" height="36" alt="" aria-hidden="true">
+          <b>Mullsanni Performance</b>
+        </div>
+        <h4>Orçamento</h4>
+        <a class="rodape-zap zap-link" href="#" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+      </div>
+      <div>
+        <h4>A oficina</h4>
+        <ul>
+          <li><span>R. Itaju do Colônia, 792, Galpão 04</span></li>
+          <li><span>Vilas do Atlântico, Lauro de Freitas, BA</span></li>
+          <li><span>Segunda a sexta, 9h às 17h</span></li>
+          <li><a href="https://instagram.com/mullsanniperformance" target="_blank" rel="noopener">@mullsanniperformance</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Navegar</h4>
+        <ul>
+          <li><a href="#cobertura">Marcas atendidas</a></li>
+          <li><a href="#prova">Resultados medidos</a></li>
+          <li><a href="#estrutura">Estrutura da oficina</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#orcamento">Orçamento</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rodape-fim">
+      <span>Mullsanni Performance Serviços Automotivos LTDA</span>
+      <span>CNPJ 57.200.432/0001-63</span>
+      <span>Lauro de Freitas, Bahia</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// WhatsApp de atendimento — [FALTA: confirmar]. Google: (71) 98693-9994; bio Instagram: (71) 3599-7963.
+// Mantido o da bio como melhor palpite atual; trocar quando o cliente confirmar.
+var WHATS = '557135997963';
+
+// preenche todos os links de WhatsApp da página
+(function(){
+  var base = 'https://wa.me/' + WHATS;
+  document.querySelectorAll('.zap-link').forEach(function(a){
+    a.href = base + '?text=' + encodeURIComponent('Olá! Vim pelo site da Mullsanni e quero um orçamento.');
+  });
+})();
+
+// formulário monta a mensagem e abre o WhatsApp. Sem servidor, não finge que enviou.
+document.getElementById('form-orcamento').addEventListener('submit', function(e){
+  e.preventDefault();
+  var d = new FormData(e.target);
+  var linhas = [
+    'Olá! Vim pelo site da Mullsanni.', '',
+    'Nome: ' + (d.get('nome') || ''),
+    'Carro: ' + (d.get('carro') || ''),
+    'Ano: ' + (d.get('ano') || 'não informado'),
+    'Quero: ' + (d.get('objetivo') || '')
+  ];
+  var obs = (d.get('obs') || '').trim();
+  if (obs) linhas.push('Detalhes: ' + obs);
+  window.open('https://wa.me/' + WHATS + '?text=' + encodeURIComponent(linhas.join('\n')), '_blank', 'noopener');
+});
+
+// sombra do cabeçalho ao rolar
+(function(){
+  var topo = document.querySelector('.topo');
+  var marcar = function(){ topo.classList.toggle('rolado', window.scrollY > 10); };
+  marcar(); window.addEventListener('scroll', marcar, {passive:true});
+})();
+
+// motion mínimo: a curva do dyno desenha uma vez; blocos sobem sutil. Guardado por reduced-motion.
+(function(){
+  var reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // mede o comprimento real de cada traço da curva para o desenho ser exato
+  document.querySelectorAll('.linha-curva').forEach(function(p){
+    try { p.style.setProperty('--len', Math.ceil(p.getTotalLength())); } catch(e){}
+  });
+
+  if (reduz || !('IntersectionObserver' in window)){
+    document.querySelectorAll('.sobe,.reveal').forEach(function(el){ el.classList.add('visivel'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entradas){
+    entradas.forEach(function(en){
+      if (en.isIntersecting){ en.target.classList.add('visivel'); io.unobserve(en.target); }
+    });
+  }, { threshold: .18, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.sobe,.reveal').forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+/* ===========================================================================
+   kit-mapa — o mapa vestido com a paleta do site.
+
+   O truque central: um mapa de terceiro vem sempre na cor dele. Em vez de
+   pagar por tiles customizados, aplicamos um `filter` no iframe. Os presets
+   abaixo são pontos de partida — o valor final você calibra olhando.
+
+   Tudo aqui é variável. Nenhuma cor literal fora deste bloco.
+   =========================================================================== */
+
+.kit-mapa {
+  /* -------- ENQUADRAMENTO -------- */
+  --kit-altura: 26rem;
+  --kit-raio: var(--radius, 0.75rem);
+  --kit-borda: 1px;
+
+  /* -------- COR -------- */
+  --kit-fg: var(--color-fg, currentColor);
+  --kit-bg: var(--color-bg, transparent);
+  --kit-linha: color-mix(in srgb, var(--kit-fg) 12%, transparent);
+  --kit-acento: var(--color-accent, currentColor);
+  --kit-acento-fg: var(--color-accent-fg, var(--color-bg, #fff));
+  --kit-veu: color-mix(in srgb, var(--kit-bg) 55%, transparent);
+
+  /* -------- TIPOGRAFIA -------- */
+  --kit-fonte: var(--font-sans, inherit);
+  --kit-tam-rotulo: 0.8125rem;
+
+  /* -------- O FILTRO -------- ---------------------------------------------
+     Trocar o preset é trocar esta linha. Receitas testadas:
+
+     claro/neutro   grayscale(1) contrast(.92) brightness(1.06)
+     escuro         invert(1) hue-rotate(180deg) grayscale(.85) brightness(.9)
+     sépia/quente   sepia(.55) saturate(.75) contrast(.95)
+     frio/azulado   grayscale(1) sepia(.4) hue-rotate(170deg) saturate(2.2)
+     sem filtro     none
+     ------------------------------------------------------------------------ */
+  --kit-filtro: grayscale(1) contrast(0.92) brightness(1.06);
+  --kit-filtro-hover: var(--kit-filtro);
+
+  /* -------- MOVIMENTO -------- */
+  --kit-dur: 0.4s;
+  --kit-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* -------- FIM DO QUE SE TROCA -------- */
+
+  position: relative;
+  font-family: var(--kit-fonte);
+  color: var(--kit-fg);
+  border-radius: var(--kit-raio);
+  border: var(--kit-borda) solid var(--kit-linha);
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--kit-bg);
+}
+
+.kit-mapa__quadro {
+  display: block;
+  inline-size: 100%;
+  block-size: var(--kit-altura);
+  border: 0;
+  filter: var(--kit-filtro);
+  transition: filter var(--kit-dur) var(--kit-ease);
+}
+
+.kit-mapa:hover .kit-mapa__quadro {
+  filter: var(--kit-filtro-hover);
+}
+
+/* ---------------------------------------------------------------------------
+   A trava de scroll.
+   Um iframe de mapa captura a roda do mouse: a pessoa rola a página, o
+   ponteiro passa por cima e o mapa dá zoom em vez de a página continuar. Com
+   Lenis é pior, porque o scroll suave perde o passo e trava de vez.
+   O véu fica por cima até receber um clique. Depois some e o mapa é normal.
+   --------------------------------------------------------------------------- */
+
+.kit-mapa__veu {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: var(--kit-veu);
+  color: inherit;
+  font: inherit;
+  font-size: var(--kit-tam-rotulo);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--kit-dur) var(--kit-ease);
+}
+
+.kit-mapa__veu:hover,
+.kit-mapa__veu:focus-visible {
+  opacity: 1;
+}
+
+.kit-mapa__veu span {
+  padding: 0.5rem 0.875rem;
+  border-radius: calc(var(--kit-raio) / 1.5);
+  background: var(--kit-acento);
+  color: var(--kit-acento-fg);
+}
+
+.kit-mapa[data-liberado="true"] .kit-mapa__veu {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Cartão do endereço. Some inteiro se você não passar `endereco`.
+   --------------------------------------------------------------------------- */
+
+.kit-mapa__cartao {
+  position: absolute;
+  z-index: 2;
+  inset-block-end: 1rem;
+  inset-inline-start: 1rem;
+  max-inline-size: min(22rem, calc(100% - 2rem));
+  padding: 1rem 1.125rem;
+  border-radius: calc(var(--kit-raio) / 1.25);
+  border: var(--kit-borda) solid var(--kit-linha);
+  background: var(--color-bg, #fff);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: auto;
+}
+
+.kit-mapa__titulo {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.kit-mapa__endereco {
+  margin: 0;
+  font-size: var(--kit-tam-rotulo);
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--kit-fg) 65%, transparent);
+  white-space: pre-line;
+}
+
+.kit-mapa__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-block-start: 0.25rem;
+}
+
+.kit-mapa__acao {
+  padding: 0.4375rem 0.875rem;
+  border-radius: calc(var(--kit-raio) / 1.5);
+  border: var(--kit-borda) solid var(--kit-linha);
+  font-size: var(--kit-tam-rotulo);
+  color: inherit;
+  text-decoration: none;
+  transition: background var(--kit-dur) var(--kit-ease);
+}
+
+.kit-mapa__acao:hover {
+  background: color-mix(in srgb, var(--kit-fg) 7%, transparent);
+}
+
+.kit-mapa__acao[data-primaria="true"] {
+  background: var(--kit-acento);
+  border-color: var(--kit-acento);
+  color: var(--kit-acento-fg);
+}
+
+.kit-mapa__acao:focus-visible,
+.kit-mapa__veu:focus-visible {
+  outline: 2px solid var(--kit-acento);
+  outline-offset: 2px;
+}
+
+@media (max-width: 40rem) {
+  .kit-mapa__cartao {
+    position: static;
+    max-inline-size: none;
+    border: 0;
+    border-block-start: var(--kit-borda) solid var(--kit-linha);
+    border-radius: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kit-mapa * {
+    transition-duration: 0.01ms !important;
+  }
+}

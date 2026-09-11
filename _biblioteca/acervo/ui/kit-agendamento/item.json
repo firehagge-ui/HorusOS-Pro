@@ -1,0 +1,47 @@
+{
+ "id": "kit-agendamento",
+ "familia": "ui",
+ "titulo": "Agendamento — fluxo de marcação em 3 passos, tudo configurável",
+ "resumo": "Serviço, data e hora, contato e confirmação. Expediente, duração, antecedência mínima, almoço, feriados e campos do formulário são configuração, não código. Sem backend obrigatório: os horários vêm de uma função que você fornece.",
+ "setor": "generico",
+ "estrutura": "componente-ui",
+ "qualidade": "producao",
+ "quando_usar": "Clínica odontológica ou estética, barbearia, estúdio, consultório — qualquer negócio onde marcar horário É a conversão da página. Resolve a geração de horários respeitando duração do procedimento e sobreposição de agenda, que é onde essas peças normalmente erram.",
+ "nao_usar_quando": "Não é sistema de gestão: não guarda nada, não tem login, não trata pagamento nem cancelamento. Ele entrega a marcação para o seu `onConfirmar` e acabou. Para múltiplos profissionais com agendas separadas, a escolha do profissional precisa ser modelada como serviço ou adicionada por fora.",
+ "tags": [
+  "agendamento",
+  "calendario",
+  "formulario",
+  "booking",
+  "reserva",
+  "clinica",
+  "odonto",
+  "estetica",
+  "conversao",
+  "multi-passo",
+  "acessivel",
+  "tokens",
+  "tematizavel",
+  "headless",
+  "sem-dependencia"
+ ],
+ "stack": [
+  "react",
+  "nextjs",
+  "typescript"
+ ],
+ "deps": [],
+ "precisa_componentes": [
+  "kit-calendario"
+ ],
+ "fontes": [],
+ "marca": null,
+ "caminho": "acervo/ui/kit-agendamento/codigo",
+ "arquivo_origem": "construído no cannonball",
+ "linhas": 900,
+ "tem_video": false,
+ "tem_webgl": false,
+ "tem_scroll": false,
+ "assets_total": 0,
+ "assets_pereciveis": false
+}

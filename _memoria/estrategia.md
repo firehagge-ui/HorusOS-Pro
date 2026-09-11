@@ -5,15 +5,21 @@
 
 ## Fase da agência
 
-Início de operação da Horus, com **seis pastas em `clientes/`**: agora **quatro contas**
-por oportunidade (Permita-se, Aion, Grão da Serra e, desde 27/08/2026, a Amparo Flores),
-uma **não pagante**, a Mayara Barros (cliente #5, aberta em 03/08/2026), que ocupa a
-pasta por usar o mesmo processo, e a pasta preservada do **ex-cliente Dr. Giovanni**
-(removido da carteira em 27/08/2026, ver seção abaixo). Para efeito de fila de prioridade
-e de contagem comercial, **as contas são quatro**. O modelo "A Máquina" nasceu pra ser provado no caso #1 (Giovanni), mas quem
-avançou de verdade foi a Aion (cliente #3), e em 26/07/2026 o Marcelo oficializou a Aion
-como prioridade — o que a saída do Giovanni só consolida. A demo de venda da agência é
-o site da Aion.
+⚠️ **Foto atual (07/09/2026):** **oito pastas em `clientes/`**. Estado comercial:
+**Amparo (#6) fechada** em 03/09 e em produção da Fase 1; **Washington (#7) adiou** em
+06/09 (follow-up frio); **Mullsanni (#8) é lead** em avaliação (aberto 07/09); **Aion (#3)
+engavetada** desde 01/09; **Grão da Serra (#4)** e **Permita-se (#2)** em paralelo por
+oportunidade/relação; **Mayara (#5)** não pagante; **Dr. Giovanni (#1)** ex-cliente, pasta
+preservada. **Prioridade viva: Amparo.**
+
+> **Histórico (foto de 27/08/2026), preservado como contexto:** Início de operação da
+> Horus, com **seis pastas em `clientes/`**: **quatro contas** por oportunidade (Permita-se,
+> Aion, Grão da Serra e, desde 27/08/2026, a Amparo Flores), uma **não pagante**, a Mayara
+> Barros (cliente #5, aberta em 03/08/2026), e a pasta preservada do ex-cliente Dr. Giovanni.
+> O modelo "A Máquina" nasceu pra ser provado no caso #1 (Giovanni), mas quem avançou de
+> verdade foi a Aion (cliente #3), oficializada como prioridade em 26/07/2026, e a demo de
+> venda da agência era o site da Aion. ⚠️ **Revogado em 01/09:** a Aion foi engavetada e a
+> prioridade virou Amparo/Washington (ver abaixo).
 
 ⚠️ **Atualização 01/09/2026 (Marcelo): a Aion foi ENGAVETADA.** As prioridades passam a
 ser a **Amparo Flores** (cliente #6) e o **Washington / mentoria** (cliente #7, reunião
@@ -42,10 +48,11 @@ repetir erro de execução, a segunda impede decidir no impulso e entregar sem c
 
 ## Prioridade principal
 
-⚠️ **Mudança em 01/09/2026 (Marcelo): a Aion foi ENGAVETADA.** As prioridades da agência
-passam a ser a **Amparo Flores** (cliente #6) e o **Washington / mentoria** (cliente #7,
-reunião de venda em 01/09). O histórico da Aion como prioridade principal (26/07 a
-01/09/2026) fica abaixo como contexto — não foi apagado, foi pausado.
+⚠️ **Mudança em 01/09/2026 (Marcelo): a Aion foi ENGAVETADA.** As prioridades passaram a ser
+a **Amparo Flores** (cliente #6) e o **Washington / mentoria** (cliente #7). ⚠️ **Atualização
+06/09/2026:** o Washington **adiou** (não fechou) — a prioridade viva sobrou a **Amparo**,
+fechada em 03/09 e em produção da Fase 1. O histórico da Aion como prioridade principal (26/07
+a 01/09/2026) fica abaixo como contexto — não foi apagado, foi pausado.
 
 ### Aion — engavetada em 01/09/2026 (foi a prioridade principal desde 26/07)
 
@@ -223,13 +230,20 @@ Três coisas que definem o projeto:
 Continua em aberto: escopo do site (páginas, rodadas, prazo), **autorização de uso
 como portfólio**, logo em vetor e fotos reais do beneficiamento.
 
-## Cliente #6 ✅ FECHADO em 03/09/2026 (chegou por relação)
+## Cliente #6 — fechou verbal em 03/09/2026, reengajado em 10/09 (chegou por relação)
 
 **Amparo Flores — floricultura no Largo da Graça, Salvador/BA, desde 1972**, B2C. Pasta
 aberta em 27/08/2026, chegou pelo sócio do Marcelo. O site especulativo cumpriu o papel:
-**a reunião presencial de 03/09 fechou o cliente.** Dono: **Varo**, que **decide junto com
-a irmã** (não é decisor único). A irmã tem loja de flores própria e quer site + CRM dela:
-**segundo lead**, reunião a marcar.
+**a reunião presencial de 03/09 fechou o cliente verbalmente.** Dono: **Varo**, que **decide
+junto com a irmã** (não é decisor único). A irmã tem loja de flores própria e quer site +
+CRM dela: **segundo lead**, reunião a marcar.
+
+⚠️ **Correção de status (10/09/2026):** o "FECHADO" era otimista — a entrada (R$ 600) nunca
+caiu, então não é cash collected ^[alex-hormozi:F8]. Entre 05 e 09/09 o Varo sumiu (decisor
+duplo se alinhando por trás), e voltou a responder em 10/09 após reabordagem sem cobrança
+(`/conselho`, ver `_conselho/logs/2026-09-10-amparo-flores-insistir-ou-cortar.md`), dizendo
+que avisa quando começar. Estado real hoje: **verbal + reengajado, aguardando ele marcar o
+início**, não "fechado em produção". Detalhe em `clientes/amparo-flores/CLAUDE.md`.
 
 **Escopo em duas fases.** Fase 1 (site com o pedido caindo no WhatsApp): **R$ 1.200, sendo
 R$ 600 de entrada e R$ 600 na entrega, já comunicado ao cliente**, em produção, sem
@@ -255,20 +269,29 @@ da Fase 2 (MEI não pode emitir fiscal, nada de bot no número do cliente, estoq
 > como visão de fase paga. Superada em 03/09 — o Marcelo travou **agente de botões**, e o
 > Icarus fica como carta para muito mais adiante, quando houver confiança construída.
 
-## Cliente #7 (em prospecção, reunião de venda em 01/09/2026)
+## Cliente #7 ⚠️ NÃO FECHOU por ora — adiado em 06/09/2026 (reunião de venda em 01/09)
 
-**Washington — "Daablio Dellano" · mentoria de massagem tântrica**, Salvador/BA. Chegou
-pelo sócio do Marcelo, que já entregou o dossiê completo (nicho, teardown de 4 sites de
-formação, deliberação do Conselho com confiança 62%, roteiro NEPQ da reunião) em
-`clientes/washington-daablio/dossie-reuniao-2026-09-01.md`. **Reunião de venda hoje.**
-Foco: vender o **site de mentoria** (topo da âncora da casa, **R$2.500**), posicionado
-como **formação profissional em terapia tântrica** — a figura do mestre de +27 anos é a
-credencial central. **Produção travada** até a reunião fechar três coisas: público
-escolhido, o que a mentoria entrega, e material real (nome, fotos, credenciais, provas).
-⚠️ Sem conselho profissional (não é CFO/CFP); a trava é **política de plataforma**
-(Meta/Google reprovam sensual), pagamento e imagem — reposicionar do sensual para o
-terapêutico é a decisão nº 1, e é o que libera anúncio e credibilidade. Integridade:
-número de alunos, mídia e resultado só entram se ele confirmar.
+**Washington — "W Delano" · mentoria de massagem tântrica**, Salvador/BA. Chegou pelo sócio
+do Marcelo, que entregou o dossiê completo (nicho, teardown de 4 sites de formação,
+deliberação do Conselho com confiança 62%, roteiro NEPQ) em
+`clientes/washington-daablio/dossie-reuniao-2026-09-01.md`.
+
+**Linha do tempo real:**
+- **01/09** reunião de venda feita. Destravou posicionamento e autoridade (público =
+  massoterapeutas, trilho de formação profissional; +3.000 alunos, 18 anos de professor,
+  ~28 anos de estrada). Nome de marca: **W Delano** (não "Washington", não "Daablio").
+- **02/09** proposta enviada em modelo **faseado** (`proposta-delano.pdf`): Fase 1 **R$1.200**
+  (site de autoridade + GMB) e Fase 2 **R$1.500** (venda da mentoria, quando ele gravar os
+  vídeos). ⚠️ Substituiu o **R$2.500 cheio** que era a ideia inicial — não citar mais R$2.500.
+- **06/09** ⚠️ **ele viu os valores e adiou** — alegou problema na família e necessidade de
+  adiar o projeto. Não fechou. Pode ser real, pode ser objeção de preço; não presumir.
+
+**Status:** follow-up frio, não pressionar, retomar quando ele sinalizar. Produção continua
+travada (agora por falta de decisão + material). ⚠️ Sem conselho profissional (não é CFO/CFP);
+a trava é **política de plataforma** (Meta/Google reprovam sensual), pagamento e imagem.
+Integridade: número de alunos, mídia e resultado só entram se ele confirmar. Detalhe em
+`clientes/washington-daablio/pos-reuniao-2026-09-01.md`; lição de fechamento em
+`_memoria/comercial.md`.
 
 ---
 
@@ -295,6 +318,10 @@ decisão de risco ALTO e boa candidata a `/conselho`.
 - Novos clientes por prospecção formal. Depende de ter um case pronto, e desde
   26/07/2026 o candidato a case é a **Aion**, não mais o Dr. Giovanni (a
   Permita-se Fitness entrou à parte, por oportunidade, não conta como prospecção)
+- ⚠️ **Lead #8 ativo — Mullsanni Performance** (aberto 07/09/2026): oficina de performance
+  automotiva em Lauro de Freitas, ticket alto, site fora do ar e sem tráfego pago. Lead de
+  prospecção (Bon Odori), ainda **sem proposta enviada**. Dossiê e oferta em fases em
+  `clientes/mullsanni-performance/dossie-prospeccao.md`. Não é cliente fechado.
 - ✅ **Marca institucional da Hórus fechada em 04 e 05/08/2026.** Deixou de ser
   buraco declarado: `identidade/design-guide.md` tem paleta (com o fundo
   `#0A0B0F` **medido** no arquivo da marca), tipografia (⚠️ **no site**, em **28/08/2026
@@ -350,10 +377,10 @@ Nota: o HTML em si está correto e consciente do compliance. Tem comentário
 `CFO-safe: sem antes/depois` e os depoimentos estão como placeholder marcado, com
 aviso de que precisam de autorização antes de publicar.
 
-**2. Arquivo solto na raiz.** `Lista de Sites para Clinicas` é uma lista de URLs de
-sites de clínica (Pegasus, Klearmind, QPsychology e outros). Não é de nenhum
-cliente específico: é acervo da agência. Lugar natural é `referencias/`, como
-fila de estudo para `/estudar-site`.
+**2. ✅ RESOLVIDO (07/09/2026). Arquivo solto na raiz.** `Lista de Sites para Clinicas`
+era uma lista de URLs de sites de clínica (Pegasus, Klearmind, QPsychology e outros),
+acervo da agência. Foi movido para `referencias/sites-clinicas-referencia.txt`, como fila
+de estudo para `/estudar-site`. **Não reabrir.**
 
 ## Pendências que travam produção
 

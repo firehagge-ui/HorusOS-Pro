@@ -115,12 +115,8 @@
          é indistinguível a olho: 27 MB → 411 KB no MP4 e 214 KB no WebM.
          O `poster` cobre o quadro enquanto o vídeo carrega, para o hero nunca
          abrir num retângulo vazio. Original guardado em site-fontes/. -->
-    <video class="hero-video" autoplay loop muted playsinline preload="auto"
-           poster="assets/video/hero-poster.jpg" aria-hidden="true">
-      <source src="assets/video/hero-1440.webm" type="video/webm">
-      <source src="assets/video/hero-1440.mp4" type="video/mp4">
-    </video>
-    <div class="hero-tint" aria-hidden="true"></div>
+    <!-- Velaris WebGL background, with a CSS fallback. -->
+    <canvas class="hero-velaris" aria-hidden="true"></canvas>
 
     <div class="hero-topo">
       <div class="envelope">
@@ -176,27 +172,7 @@
           <!-- Tecnologia · gráfico animado, card mais alto (coluna 2) -->
           <article class="s1-card s1-card--alto rev">
             <div class="s1-art s1-art--grafico" aria-hidden="true">
-              <svg viewBox="0 0 340 260" role="img" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
-                <defs>
-                  <linearGradient id="gLine" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0" stop-color="#dca514"/>
-                    <stop offset="1" stop-color="#F4C430"/>
-                  </linearGradient>
-                  <linearGradient id="gFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#F4C430" stop-opacity=".28"/>
-                    <stop offset="1" stop-color="#F4C430" stop-opacity="0"/>
-                  </linearGradient>
-                  <radialGradient id="gDot">
-                    <stop offset="0" stop-color="#ffe9a8"/>
-                    <stop offset="1" stop-color="#F4C430"/>
-                  </radialGradient>
-                </defs>
-                <rect class="pan pan2" x="34" y="70" width="150" height="96" rx="12"/>
-                <rect class="pan pan1" x="60" y="52" width="150" height="96" rx="12"/>
-                <path class="area" d="M40 196 C90 190 108 150 150 140 C196 129 214 92 300 60 L300 210 L40 210 Z" fill="url(#gFill)"/>
-                <path class="linha" d="M40 196 C90 190 108 150 150 140 C196 129 214 92 300 60" fill="none" stroke="url(#gLine)" stroke-width="3.5" stroke-linecap="round"/>
-                <circle class="dot" cx="300" cy="60" r="7" fill="url(#gDot)"/>
-              </svg>
+              <img class="s1-grafico-imagem" src="assets/servicos/crescimento-tecnologia.png" alt="" loading="lazy" decoding="async">
             </div>
             <div class="s1-txt">
               <h3>Tecnologia que trabalha por você</h3>
@@ -1052,6 +1028,7 @@
      script clássico (funciona em file://). Precisa carregar antes do script
      abaixo, que o instancia. Doutrina de vendorização: _biblioteca/motion/. -->
 <script src="assets/paper-shaders.js"></script>
+<script src="assets/velaris.js"></script>
 <script>
 (function () {
   var reduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

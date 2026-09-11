@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cannonball 3D Lab"
+  short_description: "Instala e abre o laboratório 3D local"
+  default_prompt: "Use $lab para instalar e abrir o Cannonball 3D Lab em localhost:5555."

@@ -1,0 +1,40 @@
+{
+ "id": "kit-calendario",
+ "familia": "ui",
+ "titulo": "Calendário — seletor de data sem biblioteca e sem idioma fixo",
+ "resumo": "Seletor de mês em React com navegação por teclado, nomes de mês e dia vindos do Intl, e disponibilidade por predicado. Aparência inteiramente por variável CSS: sem configurar nada já herda cor e fonte do texto ao redor.",
+ "setor": "generico",
+ "estrutura": "componente-ui",
+ "qualidade": "producao",
+ "quando_usar": "Quando o site precisa de escolha de data: agendamento, reserva, evento, disponibilidade. Base do kit-agendamento, mas serve sozinho. Preferível a react-day-picker quando o visual tem que casar exatamente com a identidade do cliente — aqui não há folha de estilo do autor para sobrescrever.",
+ "nao_usar_quando": "Intervalo de datas (check-in/check-out) — a seleção é de dia único. Também não faz fuso: se o estabelecimento e o cliente estão em fusos diferentes, a conversão é sua.",
+ "tags": [
+  "calendario",
+  "data",
+  "datepicker",
+  "acessivel",
+  "teclado",
+  "intl",
+  "sem-dependencia",
+  "tokens",
+  "tematizavel",
+  "headless"
+ ],
+ "stack": [
+  "react",
+  "nextjs",
+  "typescript"
+ ],
+ "deps": [],
+ "precisa_componentes": [],
+ "fontes": [],
+ "marca": null,
+ "caminho": "acervo/ui/kit-calendario/codigo",
+ "arquivo_origem": "construído no cannonball",
+ "linhas": 470,
+ "tem_video": false,
+ "tem_webgl": false,
+ "tem_scroll": false,
+ "assets_total": 0,
+ "assets_pereciveis": false
+}

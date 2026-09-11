@@ -323,3 +323,41 @@ serviço: o de baixo prende no topo, o de cima sobe e o cobre. É de graça, **s
 pin de GSAP**. Uma sombra `0 -30px ...` no topo de cada painel vende a chegada; fundos
 alternando (void / cor) dão o ritmo. Nasceu no site institucional da Hórus (identidade
 n8n) e vale para qualquer catálogo de serviço que queira o efeito "card stack".
+
+## Anatomia do segmento: oficina de performance automotiva (09/09/2026)
+
+> A anatomia genérica acima é de site de **serviço** (clínica, oficina de bairro,
+> prestador). Preparadora de performance **não segue essa anatomia** — tem convenção
+> própria, confirmada em oito sites (ACF, Armada BR; Hennessey, Litchfield, Brabus,
+> AWE, Integrated Engineering, Weistec nos EUA/DE). Teardown em
+> `referencias/performance-automotiva-cinco-sites.md`.
+
+**A ordem canônica do segmento:**
+
+1. **Hero** — a máquina (carro/motor) + veredito curto + CTA direto ou **seletor de
+   veículo**. Nunca parágrafo de posicionamento, nunca "bem-vindo".
+2. **Cobertura por veículo** — quais carros/marcas atende, em grade. É a seção que faz o
+   trabalho de "isso é pra você?" (o dono acha o carro dele) e o SEO por modelo. Nos EUA
+   é literalmente o primeiro gesto: "Choose your weapon" (AWE), "Find your car" (IE),
+   grade de marcas (Weistec/Litchfield).
+3. **A prova** — build nomeado com o número (Hennessey: "VENOM 800"), ganho de dyno
+   verificado, antes/depois. O clímax.
+4. **Serviços/produtos por categoria** — tuning, escape, turbo, manutenção.
+5. **Por que aqui / origem / equipe** — história do fundador ("runs in our blood", IE;
+   "Passion in design", Weistec), ou a **parede de instalações/equipamento** (Litchfield).
+6. **Prova social** — muro de review, "#in the wild", imprensa.
+7. **Contato / orçamento** — CTA direto ou formulário. "Inquire now", "Falar no WhatsApp".
+
+🔴 **O que o segmento NÃO tem — e o site de serviço genérico tem:**
+- ❌ **Seção de "como começa" em etapas numeradas (01 → 02 → 03).** Nenhuma preparadora
+  faz. O contato é ação direta (botão/form), não um passo-a-passo explicado. Foi o erro
+  da rodada 1 do Mullsanni: importei a etapa-de-contato da anatomia genérica onde o
+  gênero não usa.
+- ❌ **"Pra quem é" abstrato em prosa.** O seletor de veículo resolve isso mostrando o
+  carro do visitante, não descrevendo o público.
+- ❌ Abertura com "quem somos" / boas-vindas. Abre com a máquina ou com o carro dele.
+
+**Adaptação para oficina local de lead-gen (caso Mullsanni)**, que não é loja de peça
+nem marca nacional: o "seletor de veículo" das lojas vira **prova organizada por modelo**
+(casos de dyno por carro) + **formulário que pergunta marca/modelo**; o resto da ordem
+vale igual. Continua sem etapas de contato.

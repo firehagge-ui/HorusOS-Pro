@@ -32,6 +32,11 @@ node_modules/
 *.log
 *.tmp
 
+# Cache do Python (gerado ao rodar os scripts das skills kit-*)
+__pycache__/
+*.pyc
+*.pyo
+
 # Drop zone do usuário (só o README vai versionado)
 dados/*
 !dados/README.md
@@ -51,6 +56,30 @@ dados/*
 # Sem a pasta, o hook vira no-op silencioso (o guard `[ ! -f ... ]` cobre) e o
 # /verificar continua funcionando, porque ele chama o detector via npx.
 .claude/skills/impeccable/
+
+# Cannonball e Squads (trazidos em 04/09/2026) — mesma lógica do impeccable.
+# São CÓDIGO E DOUTRINA DE TERCEIRO, prateleira de mineração, não decisão da Horus.
+# O motor do cannonball (7,6 MB, com seed duplicado em cada skill) e os 155 agentes
+# dos squads (4,6 MB, quase todos em inglês) ficam de fora do git.
+# O que VAI versionado é a DECISÃO e o que é NOSSO:
+#   - _biblioteca/acervo/          (nossas peças reutilizáveis — o valor)
+#   - _biblioteca/cannonball.md    (nota: o que é, como re-clonar, o que minerar)
+#   - _biblioteca/squads.md        (nota: idem, e regra "prateleira, não comando")
+#   - as personas promovidas a _conselho/mentes/, já traduzidas
+# Re-clonar num clone novo:
+#   git clone https://github.com/harebeats/cannonball.git   _biblioteca/cannonball
+#   git clone https://github.com/ohmyjahh/xquads-squads.git _biblioteca/squads
+_biblioteca/cannonball/
+_biblioteca/squads/
+
+# Pronto (SGrappelli/pronto) — CRM open-source em teste desde 04/09/2026.
+# É software rodável de terceiro (Next/Supabase, ~mesma lógica do impeccable):
+# clonado pra rodar o POC do CRM, não é decisão versionável da Hórus.
+# Fica de fora do git; o .env dele tem chaves de Supabase.
+# O que VAI versionado é a DECISÃO/NOTA: ferramentas/pronto.md
+# Re-clonar num clone novo:
+#   git clone https://github.com/SGrappelli/pronto.git ferramentas/pronto-app
+ferramentas/pronto-app/
 
 # Netlify — pasta gerada pelo site/build-deploy.mjs a cada deploy.
 # É saída, não fonte: montada a partir de site/ por uma lista explícita.

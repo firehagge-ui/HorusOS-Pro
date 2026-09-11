@@ -1,0 +1,42 @@
+{
+ "id": "kit-mapa",
+ "familia": "ui",
+ "titulo": "Mapa — localização sem chave de API, na paleta do site",
+ "resumo": "Embed de OpenStreetMap vestido com a identidade do site por filtro CSS, com cartão de endereço e botões de rota. Provedor é uma função: trocar para Google ou Mapbox é passar outra prop. Traz a trava contra o iframe roubar o scroll da página.",
+ "setor": "generico",
+ "estrutura": "componente-ui",
+ "qualidade": "producao",
+ "quando_usar": "Seção 'onde estamos' de negócio local — clínica, restaurante, loja, estúdio. O padrão OpenStreetMap não pede chave, não cobra e não põe cookie, então entra em qualquer site sem passar pelo banner de consentimento. Os presets de filtro casam o mapa com tema claro, escuro, sépia ou frio.",
+ "nao_usar_quando": "Mapa interativo de verdade — vários marcadores, clusters, camadas, busca de loja mais próxima. Aí é Leaflet ou Mapbox GL, não iframe. O filtro CSS também degrada a legibilidade dos rótulos: em zoom alto sobre tema escuro, confira se o nome da rua ainda se lê.",
+ "tags": [
+  "mapa",
+  "localizacao",
+  "endereco",
+  "contato",
+  "openstreetmap",
+  "iframe",
+  "sem-chave",
+  "filtro-css",
+  "negocio-local",
+  "tokens",
+  "tematizavel",
+  "sem-dependencia"
+ ],
+ "stack": [
+  "react",
+  "nextjs",
+  "typescript"
+ ],
+ "deps": [],
+ "precisa_componentes": [],
+ "fontes": [],
+ "marca": null,
+ "caminho": "acervo/ui/kit-mapa/codigo",
+ "arquivo_origem": "construído no cannonball",
+ "linhas": 340,
+ "tem_video": false,
+ "tem_webgl": false,
+ "tem_scroll": false,
+ "assets_total": 0,
+ "assets_pereciveis": false
+}

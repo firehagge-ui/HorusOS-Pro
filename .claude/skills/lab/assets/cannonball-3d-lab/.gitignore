@@ -1,0 +1,15 @@
+/node_modules
+/.next/
+/.vinext/
+/dist/
+/.wrangler/
+/outputs/
+/.local-models/
+/.local-tools/
+/.lab/
+/work/
+/.env*
+!/.env.example
+*.log
+.DS_Store
+*.tsbuildinfo

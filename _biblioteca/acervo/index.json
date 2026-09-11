@@ -1,0 +1,208 @@
+{
+ "versao": 1,
+ "itens": [
+  {
+   "id": "kit-agendamento",
+   "familia": "ui",
+   "titulo": "Agendamento — fluxo de marcação em 3 passos, tudo configurável",
+   "resumo": "Serviço, data e hora, contato e confirmação. Expediente, duração, antecedência mínima, almoço, feriados e campos do formulário são configuração, não código. Sem backend obrigatório: os horários vêm de uma função que você fornece.",
+   "setor": "generico",
+   "estrutura": "componente-ui",
+   "qualidade": "producao",
+   "quando_usar": "Clínica odontológica ou estética, barbearia, estúdio, consultório — qualquer negócio onde marcar horário É a conversão da página. Resolve a geração de horários respeitando duração do procedimento e sobreposição de agenda, que é onde essas peças normalmente erram.",
+   "nao_usar_quando": "Não é sistema de gestão: não guarda nada, não tem login, não trata pagamento nem cancelamento. Ele entrega a marcação para o seu `onConfirmar` e acabou. Para múltiplos profissionais com agendas separadas, a escolha do profissional precisa ser modelada como serviço ou adicionada por fora.",
+   "tags": [
+    "agendamento",
+    "calendario",
+    "formulario",
+    "booking",
+    "reserva",
+    "clinica",
+    "odonto",
+    "estetica",
+    "conversao",
+    "multi-passo",
+    "acessivel",
+    "tokens",
+    "tematizavel",
+    "headless",
+    "sem-dependencia"
+   ],
+   "stack": [
+    "react",
+    "nextjs",
+    "typescript"
+   ],
+   "deps": [],
+   "precisa_componentes": [
+    "kit-calendario"
+   ],
+   "fontes": [],
+   "marca": null,
+   "caminho": "acervo/ui/kit-agendamento/codigo",
+   "arquivo_origem": "construído no cannonball",
+   "linhas": 900,
+   "tem_video": false,
+   "tem_webgl": false,
+   "tem_scroll": false,
+   "assets_total": 0,
+   "assets_pereciveis": false,
+   "_busca": "agendamento — fluxo de marcação em 3 passos, tudo configurável serviço, data e hora, contato e confirmação. expediente, duração, antecedência mínima, almoço, feriados e campos do formulário são configuração, não código. sem backend obrigatório: os horários vêm de uma função que você fornece. clínica odontológica ou estética, barbearia, estúdio, consultório — qualquer negócio onde marcar horário é a conversão da página. resolve a geração de horários respeitando duração do procedimento e sobreposição de agenda, que é onde essas peças normalmente erram. agendamento calendario formulario booking reserva clinica odonto estetica conversao multi-passo acessivel tokens tematizavel headless sem-dependencia react nextjs typescript generico componente-ui kit-agendamento  sobreposição de horário não é comparação de início: procedimento de 60min às 14:00 conflita com um às 14:30. comparar só o começo entrega agenda dobrada — compare intervalos. resposta assíncrona fora de ordem: clicar dia 10 e logo depois dia 11 pode pintar os horários do 10 sob o rótulo do 11. numere as requisições e descarte as atrasadas. o `duracao` padrao dos textos faz `min/60` arredondado a uma casa: 75min sai \"1.3h\" e 150min sai \"2.5h\". ninguem le \"1.3h\" como uma hora e quinze, e em pt-br hora quebrada nao usa ponto decimal. passar `duracao` em `textos` com formato h/min: 75 -> \"1h15\", 120 -> \"2h\". o calendario embutido redeclara --kit-fg-suave (45%) e --kit-fg-apagado (22%) dentro do proprio bloco .kit-cal. ajustar so no .kit-ag nao alcanca o calendario: a declaracao local vence a heranca. sobre fundo escuro (#150e26) as iniciais dos dias da semana caem para 3,29:1 e reprovam aa, e nada avisa. precisa dos dois seletores: '.reserva-kit, .reserva-kit .kit-cal { --kit-fg-suave: color-mix(in srgb, var(--kit-fg) 72%, transparent); --kit-fg-apagado: ... 62% }' — 72% da 6,8:1 e 62% da 5,3:1. o componente le 'que dia e hoje' durante a renderizacao (paraiso(new date()) no usememo do calendario, e limitedajanela no modulo). num app next o servidor roda em utc e o visitante brasileiro em utc-3: das 21h a meia-noite os dois discordam sobre a data, o html do servidor sai com um dia bloqueado e o do cliente com outro, e a hidratacao quebra. montar o fluxo so depois do primeiro efeito (usestate(false) + useeffect(()=>setmontado(true))) e renderizar um esqueleto de altura fixa antes. nada se perde em seo: formulario de reserva nao e conteudo indexavel. o import do kit-calendario vinha escrito para o layout do acervo ('../../kit-calendario/codigo/calendario'), não para o layout onde a peça vive depois de copiada ('components/kit-agendamento/'). o readme manda copiar para components/kit-<nome>/, onde '../../' passa do alvo e o segmento '/codigo/' não existe: o build quebra com 'module not found', que parece erro de dependência e não de caminho. corrigido para '../kit-calendario/'. ao copiar qualquer peça multi-arquivo do acervo, confira os imports relativos antes de rodar o build. o `diadisponivel` tem assinatura `(iso) => boolean`, sem receber o servico, entao o calendario nao consegue bloquear dia por servico. sonde com o servico mais curto da lista: se nem ele cabe, o dia esta fechado ou lotado de verdade. servico longo que nao caiba naquele dia ainda cai no aviso \"nenhum horario livre\" ao clicar, que e o comportamento certo. a ficha avisa que multiplos profissionais precisam ser modelados por fora, mas nao diz onde encaixar. o ponto de entrada e a funcao `carregarhorarios`: mantenha a escolha de profissional num controle seu, acima do componente, e troque a funcao por barbeiro (com usecallback dependendo do id — sem isso a identidade muda a cada render e o efeito do kit refaz a busca em laco). para \"sem preferencia\", devolva a uniao dos horarios da equipe e designe alguem so na confirmacao. seletor de elemento solto no css do site (section, article, h2…) alcança a marcação interna da peça: um 'section { padding-block: 8rem }' global injeta 128px dentro do painel do agendamento e abre um buraco no meio dele, que parece defeito da peça e é do site. peça copiada traz a marcação dela junto e nenhum seletor de elemento sabe disso. escope o css de página ('main > section') ou use classe.",
+   "armadilhas": [
+    {
+     "texto": "Sobreposição de horário não é comparação de início: procedimento de 60min às 14:00 conflita com um às 14:30. Comparar só o começo entrega agenda dobrada — compare intervalos.",
+     "origem": "construção kit-agendamento",
+     "grau": "critica"
+    },
+    {
+     "texto": "Resposta assíncrona fora de ordem: clicar dia 10 e logo depois dia 11 pode pintar os horários do 10 sob o rótulo do 11. Numere as requisições e descarte as atrasadas.",
+     "origem": "construção kit-agendamento",
+     "grau": "alta"
+    },
+    {
+     "texto": "O `duracao` padrao dos textos faz `min/60` arredondado a uma casa: 75min sai \"1.3h\" e 150min sai \"2.5h\". Ninguem le \"1.3h\" como uma hora e quinze, e em pt-BR hora quebrada nao usa ponto decimal. Passar `duracao` em `textos` com formato h/min: 75 -> \"1h15\", 120 -> \"2h\".",
+     "origem": "barbearia-oasis-agendamento",
+     "grau": "alta"
+    },
+    {
+     "texto": "O calendario embutido REDECLARA --kit-fg-suave (45%) e --kit-fg-apagado (22%) dentro do proprio bloco .kit-cal. Ajustar so no .kit-ag nao alcanca o calendario: a declaracao local vence a heranca. Sobre fundo escuro (#150e26) as iniciais dos dias da semana caem para 3,29:1 e reprovam AA, e nada avisa. Precisa dos DOIS seletores: '.reserva-kit, .reserva-kit .kit-cal { --kit-fg-suave: color-mix(in srgb, var(--kit-fg) 72%, transparent); --kit-fg-apagado: ... 62% }' — 72% da 6,8:1 e 62% da 5,3:1.",
+     "origem": "restaurante-italiano-berinjela-latao",
+     "grau": "alta"
+    },
+    {
+     "texto": "O componente le 'que dia e hoje' durante a renderizacao (paraISO(new Date()) no useMemo do calendario, e limiteDaJanela no modulo). Num app Next o servidor roda em UTC e o visitante brasileiro em UTC-3: das 21h a meia-noite os dois discordam sobre a data, o HTML do servidor sai com um dia bloqueado e o do cliente com outro, e a hidratacao quebra. Montar o fluxo so depois do primeiro efeito (useState(false) + useEffect(()=>setMontado(true))) e renderizar um esqueleto de altura fixa antes. Nada se perde em SEO: formulario de reserva nao e conteudo indexavel.",
+     "origem": "restaurante-italiano-berinjela-latao",
+     "grau": "alta"
+    },
+    {
+     "texto": "O import do kit-calendario vinha escrito para o layout DO ACERVO ('../../kit-calendario/codigo/Calendario'), não para o layout onde a peça vive depois de copiada ('components/kit-agendamento/'). O README manda copiar para components/kit-<nome>/, onde '../../' passa do alvo e o segmento '/codigo/' não existe: o build quebra com 'Module not found', que parece erro de dependência e não de caminho. Corrigido para '../kit-calendario/'. Ao copiar QUALQUER peça multi-arquivo do acervo, confira os imports relativos antes de rodar o build.",
+     "origem": "exemplo-clinica-vertice",
+     "grau": "alta"
+    },
+    {
+     "texto": "O `diaDisponivel` tem assinatura `(iso) => boolean`, sem receber o servico, entao o calendario nao consegue bloquear dia POR servico. Sonde com o servico mais curto da lista: se nem ele cabe, o dia esta fechado ou lotado de verdade. Servico longo que nao caiba naquele dia ainda cai no aviso \"nenhum horario livre\" ao clicar, que e o comportamento certo.",
+     "origem": "barbearia-oasis-agendamento",
+     "grau": "media"
+    },
+    {
+     "texto": "A ficha avisa que multiplos profissionais precisam ser modelados por fora, mas nao diz onde encaixar. O ponto de entrada e a funcao `carregarHorarios`: mantenha a escolha de profissional num controle seu, acima do componente, e troque a funcao por barbeiro (com useCallback dependendo do id — sem isso a identidade muda a cada render e o efeito do kit refaz a busca em laco). Para \"sem preferencia\", devolva a uniao dos horarios da equipe e designe alguem so na confirmacao.",
+     "origem": "barbearia-oasis-agendamento",
+     "grau": "media"
+    },
+    {
+     "texto": "Seletor de elemento solto no CSS do site (section, article, h2…) alcança a marcação INTERNA da peça: um 'section { padding-block: 8rem }' global injeta 128px dentro do painel do agendamento e abre um buraco no meio dele, que parece defeito da peça e é do site. Peça copiada traz a marcação dela junto e nenhum seletor de elemento sabe disso. Escope o CSS de página ('main > section') ou use classe.",
+     "origem": "exemplo-clinica-vertice",
+     "grau": "media"
+    }
+   ]
+  },
+  {
+   "id": "kit-calendario",
+   "familia": "ui",
+   "titulo": "Calendário — seletor de data sem biblioteca e sem idioma fixo",
+   "resumo": "Seletor de mês em React com navegação por teclado, nomes de mês e dia vindos do Intl, e disponibilidade por predicado. Aparência inteiramente por variável CSS: sem configurar nada já herda cor e fonte do texto ao redor.",
+   "setor": "generico",
+   "estrutura": "componente-ui",
+   "qualidade": "producao",
+   "quando_usar": "Quando o site precisa de escolha de data: agendamento, reserva, evento, disponibilidade. Base do kit-agendamento, mas serve sozinho. Preferível a react-day-picker quando o visual tem que casar exatamente com a identidade do cliente — aqui não há folha de estilo do autor para sobrescrever.",
+   "nao_usar_quando": "Intervalo de datas (check-in/check-out) — a seleção é de dia único. Também não faz fuso: se o estabelecimento e o cliente estão em fusos diferentes, a conversão é sua.",
+   "tags": [
+    "calendario",
+    "data",
+    "datepicker",
+    "acessivel",
+    "teclado",
+    "intl",
+    "sem-dependencia",
+    "tokens",
+    "tematizavel",
+    "headless"
+   ],
+   "stack": [
+    "react",
+    "nextjs",
+    "typescript"
+   ],
+   "deps": [],
+   "precisa_componentes": [],
+   "fontes": [],
+   "marca": null,
+   "caminho": "acervo/ui/kit-calendario/codigo",
+   "arquivo_origem": "construído no cannonball",
+   "linhas": 470,
+   "tem_video": false,
+   "tem_webgl": false,
+   "tem_scroll": false,
+   "assets_total": 0,
+   "assets_pereciveis": false,
+   "_busca": "calendário — seletor de data sem biblioteca e sem idioma fixo seletor de mês em react com navegação por teclado, nomes de mês e dia vindos do intl, e disponibilidade por predicado. aparência inteiramente por variável css: sem configurar nada já herda cor e fonte do texto ao redor. quando o site precisa de escolha de data: agendamento, reserva, evento, disponibilidade. base do kit-agendamento, mas serve sozinho. preferível a react-day-picker quando o visual tem que casar exatamente com a identidade do cliente — aqui não há folha de estilo do autor para sobrescrever. calendario data datepicker acessivel teclado intl sem-dependencia tokens tematizavel headless react nextjs typescript generico componente-ui kit-calendario  toisostring() erra o dia: converte para utc e em utc-3 toda data criada entre meia-noite e 3h volta como o dia anterior. a pessoa marca dia 10 e cai no dia 9. use paraiso/deiso, que leem componentes locais. correcao da nota de fuso ja registrada: ela diz que `toisostring()` erra \"entre 00h e 03h\" em utc-3, e e o contrario. medido em america/sao_paulo: das 00h as 20h59 local o dia bate; a divergencia e das 21h as 23h59 (local 10/08 22:30 -> toisostring 2026-08-11, um dia a mais). a janela 00h-03h vale para fusos positivos, onde volta o dia anterior. a funcao paraiso esta certa; e o texto que manda depurar na hora errada.",
+   "armadilhas": [
+    {
+     "texto": "toISOString() erra o dia: converte para UTC e em UTC-3 toda data criada entre meia-noite e 3h volta como o dia ANTERIOR. A pessoa marca dia 10 e cai no dia 9. Use paraISO/deISO, que leem componentes locais.",
+     "origem": "construção kit-calendario",
+     "grau": "critica"
+    },
+    {
+     "texto": "CORRECAO da nota de fuso ja registrada: ela diz que `toISOString()` erra \"entre 00h e 03h\" em UTC-3, e e o contrario. Medido em America/Sao_Paulo: das 00h as 20h59 local o dia bate; a divergencia e das 21h as 23h59 (local 10/08 22:30 -> toISOString 2026-08-11, um dia A MAIS). A janela 00h-03h vale para fusos POSITIVOS, onde volta o dia anterior. A funcao paraISO esta certa; e o texto que manda depurar na hora errada.",
+     "origem": "barbearia-oasis-agendamento",
+     "grau": "media"
+    }
+   ]
+  },
+  {
+   "id": "kit-mapa",
+   "familia": "ui",
+   "titulo": "Mapa — localização sem chave de API, na paleta do site",
+   "resumo": "Embed de OpenStreetMap vestido com a identidade do site por filtro CSS, com cartão de endereço e botões de rota. Provedor é uma função: trocar para Google ou Mapbox é passar outra prop. Traz a trava contra o iframe roubar o scroll da página.",
+   "setor": "generico",
+   "estrutura": "componente-ui",
+   "qualidade": "producao",
+   "quando_usar": "Seção 'onde estamos' de negócio local — clínica, restaurante, loja, estúdio. O padrão OpenStreetMap não pede chave, não cobra e não põe cookie, então entra em qualquer site sem passar pelo banner de consentimento. Os presets de filtro casam o mapa com tema claro, escuro, sépia ou frio.",
+   "nao_usar_quando": "Mapa interativo de verdade — vários marcadores, clusters, camadas, busca de loja mais próxima. Aí é Leaflet ou Mapbox GL, não iframe. O filtro CSS também degrada a legibilidade dos rótulos: em zoom alto sobre tema escuro, confira se o nome da rua ainda se lê.",
+   "tags": [
+    "mapa",
+    "localizacao",
+    "endereco",
+    "contato",
+    "openstreetmap",
+    "iframe",
+    "sem-chave",
+    "filtro-css",
+    "negocio-local",
+    "tokens",
+    "tematizavel",
+    "sem-dependencia"
+   ],
+   "stack": [
+    "react",
+    "nextjs",
+    "typescript"
+   ],
+   "deps": [],
+   "precisa_componentes": [],
+   "fontes": [],
+   "marca": null,
+   "caminho": "acervo/ui/kit-mapa/codigo",
+   "arquivo_origem": "construído no cannonball",
+   "linhas": 340,
+   "tem_video": false,
+   "tem_webgl": false,
+   "tem_scroll": false,
+   "assets_total": 0,
+   "assets_pereciveis": false,
+   "_busca": "mapa — localização sem chave de api, na paleta do site embed de openstreetmap vestido com a identidade do site por filtro css, com cartão de endereço e botões de rota. provedor é uma função: trocar para google ou mapbox é passar outra prop. traz a trava contra o iframe roubar o scroll da página. seção 'onde estamos' de negócio local — clínica, restaurante, loja, estúdio. o padrão openstreetmap não pede chave, não cobra e não põe cookie, então entra em qualquer site sem passar pelo banner de consentimento. os presets de filtro casam o mapa com tema claro, escuro, sépia ou frio. mapa localizacao endereco contato openstreetmap iframe sem-chave filtro-css negocio-local tokens tematizavel sem-dependencia react nextjs typescript generico componente-ui kit-mapa  iframe de mapa rouba o scroll da página: o ponteiro cruza o mapa e a rolagem vira zoom. com lenis a página trava de vez. cubra com um véu que só libera depois do clique. o cartao de endereco usa 'background: var(--color-bg, #fff)'. o kit-calendario, no mesmo projeto, pede que --color-bg seja transparente no :root — e ai o cartao fica transparente por cima do mapa e o endereco some sobre os tiles. o fallback #fff nao salva, porque a variavel existe, so vale transparent. passar --color-bg na prop style da instancia do mapa: style={{ '--color-bg': 'var(--obsidian)' }}.",
+   "armadilhas": [
+    {
+     "texto": "Iframe de mapa rouba o scroll da página: o ponteiro cruza o mapa e a rolagem vira zoom. Com Lenis a página trava de vez. Cubra com um véu que só libera depois do clique.",
+     "origem": "construção kit-mapa",
+     "grau": "alta"
+    },
+    {
+     "texto": "O cartao de endereco usa 'background: var(--color-bg, #fff)'. O kit-calendario, no mesmo projeto, pede que --color-bg seja transparente no :root — e ai o cartao fica transparente por cima do mapa e o endereco some sobre os tiles. O fallback #fff nao salva, porque a variavel EXISTE, so vale transparent. Passar --color-bg na prop style da instancia do Mapa: style={{ '--color-bg': 'var(--obsidian)' }}.",
+     "origem": "restaurante-italiano-berinjela-latao",
+     "grau": "media"
+    }
+   ]
+  }
+ ]
+}

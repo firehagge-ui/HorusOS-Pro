@@ -1,0 +1,213 @@
+/* ===========================================================================
+   kit-calendario — aparência 100% por variável.
+   Não existe cor, fonte, raio ou curva escrita neste arquivo fora do bloco
+   abaixo. Para casar com o site você mexe SÓ aqui (ou define os tokens do
+   site no :root e não mexe em nada).
+
+   A cadeia de fallback é: token do site  →  currentColor / inherit.
+   Sem configurar nenhuma, o calendário já sai na cor e na fonte do texto ao
+   redor — nunca num cinza que não é do projeto.
+   =========================================================================== */
+
+.kit-cal {
+  /* -------- TIPOGRAFIA -------- */
+  --kit-fonte: var(--font-sans, inherit);
+  --kit-fonte-num: var(--kit-fonte); /* troque por uma tabular/mono se quiser */
+  --kit-peso-dia: 400;
+  --kit-peso-sel: 500;
+  --kit-tam-dia: 0.875rem;
+  --kit-tam-titulo: 0.9375rem;
+  --kit-tam-semana: 0.6875rem;
+  --kit-tracking-semana: 0.08em;
+
+  /* -------- COR -------- */
+  --kit-fg: var(--color-fg, currentColor);
+  --kit-bg: var(--color-bg, transparent);
+  --kit-fg-suave: color-mix(in srgb, var(--kit-fg) 45%, transparent);
+  --kit-fg-apagado: color-mix(in srgb, var(--kit-fg) 22%, transparent);
+  --kit-linha: color-mix(in srgb, var(--kit-fg) 12%, transparent);
+  --kit-hover: color-mix(in srgb, var(--kit-fg) 7%, transparent);
+  --kit-acento: var(--color-accent, currentColor);
+  --kit-acento-fg: var(--color-accent-fg, var(--color-bg, #fff));
+  --kit-marca: var(--kit-acento); /* pontinho de "tem horário" */
+
+  /* -------- FORMA -------- */
+  --kit-raio: var(--radius, 0.5rem);
+  --kit-raio-cel: var(--kit-raio);
+  --kit-cel: 2.75rem; /* 44px: alvo de toque mínimo. Não reduza em mobile. */
+  --kit-gap: 0.125rem;
+  --kit-borda: 1px;
+
+  /* -------- MOVIMENTO -------- */
+  --kit-dur: 0.18s;
+  --kit-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* -------- FIM DO QUE SE TROCA -------- */
+
+  font-family: var(--kit-fonte);
+  color: var(--kit-fg);
+  background: var(--kit-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  inline-size: fit-content;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- cabeçalho ---------- */
+
+.kit-cal__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.kit-cal__mes {
+  font-size: var(--kit-tam-titulo);
+  font-weight: var(--kit-peso-sel);
+  text-transform: capitalize; /* Intl devolve "agosto"; o site decide o caixa */
+  margin: 0;
+}
+
+.kit-cal__nav {
+  display: flex;
+  gap: var(--kit-gap);
+}
+
+.kit-cal__seta {
+  inline-size: 2rem;
+  block-size: 2rem;
+  display: grid;
+  place-items: center;
+  border: var(--kit-borda) solid var(--kit-linha);
+  border-radius: var(--kit-raio);
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  transition: background var(--kit-dur) var(--kit-ease),
+    border-color var(--kit-dur) var(--kit-ease);
+}
+
+.kit-cal__seta:hover:not(:disabled) {
+  background: var(--kit-hover);
+}
+
+.kit-cal__seta:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.kit-cal__seta svg {
+  inline-size: 1rem;
+  block-size: 1rem;
+}
+
+/* ---------- grade ---------- */
+
+.kit-cal__grade {
+  display: grid;
+  grid-template-columns: repeat(7, var(--kit-cel));
+  gap: var(--kit-gap);
+}
+
+.kit-cal__semana {
+  display: grid;
+  place-items: center;
+  block-size: 1.75rem;
+  font-size: var(--kit-tam-semana);
+  letter-spacing: var(--kit-tracking-semana);
+  text-transform: uppercase;
+  color: var(--kit-fg-suave);
+}
+
+.kit-cal__dia {
+  position: relative;
+  inline-size: var(--kit-cel);
+  block-size: var(--kit-cel);
+  display: grid;
+  place-items: center;
+  border: var(--kit-borda) solid transparent;
+  border-radius: var(--kit-raio-cel);
+  background: none;
+  font-family: var(--kit-fonte-num);
+  font-size: var(--kit-tam-dia);
+  font-weight: var(--kit-peso-dia);
+  font-variant-numeric: tabular-nums;
+  color: var(--kit-fg);
+  cursor: pointer;
+  transition: background var(--kit-dur) var(--kit-ease),
+    color var(--kit-dur) var(--kit-ease),
+    border-color var(--kit-dur) var(--kit-ease);
+}
+
+.kit-cal__dia:hover:not(:disabled):not([aria-pressed="true"]) {
+  background: var(--kit-hover);
+}
+
+.kit-cal__dia[data-fora="true"] {
+  color: var(--kit-fg-apagado);
+}
+
+.kit-cal__dia:disabled {
+  color: var(--kit-fg-apagado);
+  cursor: default;
+  /* riscado em vez de só apagado: apagado sozinho lê como "fora do mês" */
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.kit-cal__dia[data-hoje="true"] {
+  border-color: var(--kit-linha);
+}
+
+.kit-cal__dia[aria-pressed="true"] {
+  background: var(--kit-acento);
+  color: var(--kit-acento-fg);
+  border-color: var(--kit-acento);
+  font-weight: var(--kit-peso-sel);
+}
+
+/* ponto de disponibilidade */
+.kit-cal__dia::after {
+  content: "";
+  position: absolute;
+  inset-block-end: 0.375rem;
+  inline-size: 3px;
+  block-size: 3px;
+  border-radius: 50%;
+  background: var(--kit-marca);
+  opacity: 0;
+  transition: opacity var(--kit-dur) var(--kit-ease);
+}
+
+.kit-cal__dia[data-marcado="true"]:not(:disabled)::after {
+  opacity: 0.9;
+}
+
+.kit-cal__dia[aria-pressed="true"]::after {
+  background: var(--kit-acento-fg);
+}
+
+/* ---------- acessibilidade ---------- */
+
+.kit-cal__dia:focus-visible,
+.kit-cal__seta:focus-visible {
+  outline: 2px solid var(--kit-acento);
+  outline-offset: 2px;
+}
+
+.kit-cal__sr {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kit-cal * {
+    transition-duration: 0.01ms !important;
+  }
+}

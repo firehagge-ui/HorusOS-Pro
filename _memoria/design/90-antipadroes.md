@@ -990,3 +990,85 @@ card) — texto sumiu sem erro. O mesmo `cqw` funcionou perfeito nas telas dos d
 mais robusto que `cqw`. `cqw` fica para superfície que precisa escalar muito (a tela do
 device). Sintoma que engana: `visibility: visible`, `overflow: visible`, texto presente
 no DOM, e mesmo assim invisível — só a fonte computada denuncia.
+
+## Coluna morta: texto encostado à esquerda em toda seção (09/09/2026)
+
+Sintoma que o Marcelo relatou como **"o site tá off, muita informação de forma feia ou
+desorganizada"** (site do Mullsanni, 1ª rodada). Ao renderizar, o problema não era volume
+de informação: era que **toda seção usava a mesma família de layout** — um bloco de texto
+alinhado à esquerda ocupando ~55% da largura, deixando 45% de vazio morto à direita. Hero,
+"pra quem é", estrutura, serviços e formulário, todos iguais. A seção "estrutura" chegou a
+ter um buraco de ~500px porque a coluna de texto era mais alta que a de foto.
+
+Por que engana: cada seção **isolada** passa no checklist (contraste ok, tipo ok, copy ok).
+O defeito só aparece na página inteira, e só rendendo. **Ler o HTML não pega isso.**
+
+A correção que funcionou:
+- **Grade de largura cheia** onde havia coluna única (2×2 para situações e equipamentos,
+  2 colunas para os quadros de dinamômetro e para a lista de serviços).
+- **Ficha lateral no hero** (as credenciais) ocupando o vazio ao lado do título.
+- **Régua divisória só sob o conteúdo**, nunca atravessando a largura toda com metade vazia.
+
+Regra: **antes de entregar, renderizar a página inteira e olhar a metade direita.** Se ela
+está vazia em três seções seguidas, o layout é um documento, não um site.
+
+## Foto escondida atrás do próprio véu (09/09/2026)
+
+No mesmo site, o hero tinha foto real de carro com `opacity:.4` mais gradiente de
+`.55 → .86 → sólido` por cima. Resultado: **borrão preto, carro nenhum visível.** A foto
+estava lá, pesava, e não comunicava nada — o oposto do gênero (em performance, o carro é
+a prova).
+
+Correção: tirar a foto de trás do texto e promovê-la a **faixa sangrada própria**, em
+opacidade cheia, com vinheta leve só nas bordas. O texto ganha o bloco escuro dele em
+cima, a foto ganha a faixa dela embaixo, e as duas coisas ficam legíveis.
+
+Regra: **véu sobre foto existe para dar contraste a texto que está POR CIMA dela.** Se não
+há texto em cima, não há motivo para véu. E se o véu precisa passar de ~.5 para o texto
+funcionar, o certo é separar os dois, não escurecer mais.
+
+## Especificidade de `.hero h1` engole o tamanho do media query (09/09/2026)
+
+`.hero h1{font-size:58px}` no bloco base **vence** `h1{font-size:38px}` dentro de
+`@media (max-width:760px)` — media query não adiciona especificidade. O título continuou
+58px no celular e **estourou a largura da página** (scrollWidth 543 num viewport de 390).
+
+Sintoma que engana: o site parece certo no desktop e "só" rola de lado no celular; nenhum
+erro em lugar nenhum. Regra: **se você criou uma regra mais específica para um elemento,
+repita essa especificidade em TODOS os breakpoints.** E medir: comparar
+`documentElement.scrollWidth` com `clientWidth` a 390px pega isso em um comando.
+
+## O `detect.mjs` empacotado pode ser um no-op silencioso (09/09/2026)
+
+`node .claude/skills/impeccable/scripts/detect.mjs <alvo>` retornou **exit 0 sem
+imprimir nada** — inclusive contra um arquivo de teste propositalmente péssimo (texto de
+9px, `#eeeeee` sobre branco, `h1` pulando para `h4`). Ou seja: **exit 0 dele não prova
+nada.** O fallback do CLAUDE.md, `npx --yes impeccable@4.0.4 detect <alvo>`, funcionou e
+achou 5 antipadrões no mesmo alvo.
+
+Regra: **validar o verificador antes de confiar nele.** Rodar contra um arquivo sabidamente
+ruim; se não acusar, o verificador está quebrado e o item é **"não verificado"**, nunca
+"ok". Verificação que sempre passa não é verificação.
+
+## Template reciclado que vaza a marca de origem (09/09/2026)
+
+No estudo dos concorrentes de performance automotiva (Lead #8 Mullsanni), três dos cinco
+sites entregaram o vestígio do template em cima do qual foram montados: o **H-Turbo** (uma
+oficina) tinha `og:site_name` = **"LD Dedetizadora - Especialista em Dedetização em
+Salvador"** e autor "Contratos Sites Julia"; a **Armada** tinha `twitter:data1` = "skaa";
+a **Alta Performance** ilustrava tudo com **foto de banco do Unsplash** (carro genérico,
+oficina genérica) em vez da própria oficina.
+
+Por que denuncia: o site foi feito reaproveitando o tema/projeto de outro cliente — às vezes
+de outro nicho — e ninguém limpou os metadados nem trocou as imagens. O Google lê o
+`og:site_name` errado, e a incoerência ("oficina" que se anuncia como "dedetizadora") revela
+que a casa não olhou o próprio site depois de publicar. Numa oficina, onde a prova é o carro
+real no elevador, **foto de banco no lugar da foto real destrói a credibilidade** — é o mesmo
+princípio já registrado (IA/banco nunca no objeto que o cliente vende), estendido a stock
+photo.
+
+Regra: **depois de montar, ler os metadados (`og:site_name`, `title`, autor) e conferir se
+toda foto é do próprio cliente.** Vestígio de template no `<head>` é tão delator quanto
+Poppins no título. E quando o cliente não tem foto boa, a saída é placeholder marcado
+(`[FALTA: foto real da oficina]`), nunca banco de imagem passando por real.
+→ *Origem: teardown `referencias/performance-automotiva-cinco-sites.md`, 09/09/2026.*

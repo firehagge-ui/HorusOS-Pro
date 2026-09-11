@@ -25,6 +25,11 @@ descrito em `estrategia.md`.
 Pra qualquer tarefa visual (carrossel, post, landing page), consultar
 `identidade/design-guide.md` como referência de estilo.
 
+Antes de reunião de venda, fechamento ou proposta, consultar
+`_memoria/comercial.md` — a doutrina de como a Horus fecha (o compromisso se
+tira dentro da reunião, nunca no grupo de WhatsApp depois). Criado em 06/09/2026
+a partir de um padrão real de perda.
+
 Não é necessário listar o que foi lido nem confirmar a leitura. Apenas
 usar o contexto naturalmente.
 
@@ -361,6 +366,36 @@ preenche o que a marca deixou em aberto).
 
 ---
 
+## Cannonball — acervo de peças e as skills `kit-*` (instalado 04/09/2026)
+
+Dez skills `kit-*` do [cannonball](https://github.com/harebeats/cannonball) rodam o
+**acervo de peças de site reutilizáveis** da casa. O acervo (NOSSO) mora em
+`_biblioteca/acervo/`; o motor de terceiro fica gitignorado em `_biblioteca/cannonball/`
+(padrão do impeccable). O acervo é vinculado pelo ponteiro `~/.cannonball/aonde`
+(per-machine). **Re-vincular num clone novo:**
+`python .claude/skills/kit-buscar/scripts/vincular.py --para "<repo>/_biblioteca"`.
+
+**O ciclo:** antes de gerar hero/seção/componente do zero, rodar `kit-buscar` — se já
+existe peça pronta no acervo, ela vem antes. Ao criar algo bom num projeto, `kit-ingerir`
+guarda. Bug que custou tempo vira linha em `armadilhas.json` da peça.
+
+**⚠️ Precedência (pra não confundir com a doutrina da casa):**
+
+- `kit-buscar`, `kit-ingerir`, `kit-montar`, `kit-curar`, `kit-adaptar`, `kit-prompt`,
+  `kit-otimizar-3d`, `lab` — **capacidade nova**, sem conflito. Usar à vontade.
+- `kit-cor` e `kit-tipo` — **`_memoria/design/` vence.** A nossa doutrina de cor
+  (`20-cor.md`) e tipo (`10-tipografia.md`) é mais calibrada (passe duplo, antipadrões,
+  compliance). O que o `kit-tipo` traz de **exclusivo e que a gente não tinha é a checagem
+  de licença de fonte** — usar essa parte sempre (montamos site a partir de referência, e
+  site de marca paga por tipo).
+- `kit-montar` **não substitui** a `/criar-site`. A `/criar-site` orquestra o pré-voo, o
+  estudo de concorrentes e o passe duplo obrigatórios; o `kit-montar` é o passo de
+  composição a partir do acervo dentro desse fluxo, não no lugar dele.
+- Compliance do cliente e `integridade.md` vencem qualquer sugestão das `kit-*`, igual a
+  todo o resto.
+
+---
+
 ## Firecrawl (pesquisa web)
 
 MCP configurado em `.mcp.json` (raiz do projeto, fora do git — chave de
@@ -377,29 +412,26 @@ pontuais e rápidas, a busca nativa ainda resolve sem gastar crédito.
 
 ## Geração de mídia (imagem e vídeo)
 
-✅ **Atualização de 26/08/2026 (Marcelo): o Higgsfield voltou e está ATIVO.** As
-skills `higgsfield-*` estão disponíveis e o CLU `higgsfield` está logado na conta
-do Marcelo (`firehagge@gmail.com`, **plano starter**). Foi o que gerou todas as
-imagens 3D do site institucional (torus de vidro, cristais, orbe, etc.) nesta
-data. Como usar: `higgsfield generate create <modelo> --prompt "..." --wait`
-(ver a skill `higgsfield-generate` para o catálogo de modelos).
+🔴 **Atualização de 07/09/2026 (Marcelo): o Higgsfield foi ABANDONADO.** Ele
+desistiu ("não vale a pena") e as 8 skills `higgsfield-*` foram removidas de
+`.claude/skills/`. Não reinstalar, não rodar o CLI, não recomendar.
 
-- **Imagem:** funciona no plano starter. Modelo padrão **GPT Image 2**
-  (`gpt_image_2`). Gera on-brand direto do prompt; o Horus OS baixa o resultado e
-  monta em volta.
-- **Vídeo:** os modelos de vídeo (Seedance etc.) **exigem plano Pro/Ultimate** —
-  no starter retornam `"Pro" or "Ultimate" plan required`. Enquanto o plano for
-  starter, animação 3D se resolve com **WebGL/canvas/SVG na mão** (foi o caminho
-  da jornada da esfera do site), e o Higgsfield entra só para **imagem**.
+**Geração de imagem agora = só ChatGPT, manual, feita pelo Marcelo.** O Horus OS
+**não gera imagem por conta própria**. Quando uma peça precisa de imagem, o Marcelo
+gera no ChatGPT e traz o arquivo; o Horus OS monta em volta. Não há API de imagem
+conectada (a `OPENAI_API_KEY` nunca existiu; o fal.ai segue só como ideia pendente da
+chave, não adotado). Para animação/3D, o caminho é **WebGL/canvas/SVG na mão** (foi
+assim a esfera do site institucional).
 
-> Histórico (mantido como contexto, já superado): entre 20/08 e 25/08/2026 o
-> registro dizia que "não existe API de imagem", que o Higgsfield tinha sido
-> cancelado em 05/08 e que a imagem só saía manual pelo ChatGPT e o vídeo pelo
-> Gemini. Isso **venceu** com a volta do Higgsfield em 26/08. Qualquer texto que
-> mencione `OPENAI_API_KEY` continua vencido (essa chave nunca existiu).
-
-Em cliente regulado, a imagem também passa pelo compliance (cliente de saúde: sem
+⚠️ **IA nunca no objeto que o cliente vende.** Para cliente cujo ativo é a prova real
+(oficina de performance = carro/dyno; profissional de saúde = pessoa), imagem de IA do
+produto **destrói credibilidade**. IA só em elemento abstrato (fundo, textura), jamais
+no carro/rosto. Em cliente regulado, a imagem passa pelo compliance (saúde: sem
 paciente, sem antes/depois, sem promessa; só ambiente, tecnologia e equipe).
+
+> Histórico (superado): de 26/08 a 06/09/2026 o Higgsfield esteve ativo (plano
+> starter, GPT Image 2) e gerou as imagens 3D do site institucional. Antes (05/08) já
+> tinha sido dado como cancelado uma vez. Em 07/09 encerrou de vez.
 
 ---
 
@@ -553,7 +585,16 @@ não publica sem revisão do profissional responsável.
   `mcp-prospeccao/` (servidor MCP local, stdio via `.mcp.json`, desde 29/08/2026:
   `check_site`, `lookup_cnpj`, `check_meta_ads`. Audita o que o agente Gemini Spark
   traz na prospecção — confirma site de verdade e se a empresa já roda anúncio —
-  ver `ferramentas/mcp-prospeccao/README.md`)
+  ver `ferramentas/mcp-prospeccao/README.md`). **Pronto** (`pronto-app/`, POC de CRM
+  open-source em teste desde 04/09/2026: Next.js + Supabase, gitignorado; a nota/decisão
+  versionada é `ferramentas/pronto.md`). ⚠️ Subir sistema hospedado pra cliente vira
+  serviço gerenciado com mensalidade — decisão de `/conselho`, ver `project_software-hospedavel`.
+  **`ponte-spark/`** (desde 08/09/2026): a aliança Gemini Spark → Google Sheets → Horus.
+  O Spark faz o volume, escreve numa planilha, o Marcelo **publica na web como CSV**
+  (não "qualquer pessoa com o link", que não é lido de forma confiável), e o Horus lê
+  a URL via Firecrawl pra auditar/produzir. URLs registradas em
+  `ferramentas/ponte-spark/fontes.md`; fluxo e ideias no `README.md` da pasta. Drive
+  conectado é upgrade futuro (lê arquivo privado, mas exige autorizar no claude.ai)
 - `site/` — **site institucional da própria Hórus**, não de cliente. Por isso mora
   na raiz e não em `clientes/`. Tem `CLAUDE.md` e `PLANO.md` próprios: ler os dois
   antes de mexer em qualquer coisa visual lá. O estudo das dez referências que
@@ -777,6 +818,13 @@ Fase 2, que depende de evento incerto). **Produção da Fase 1 destrava** quando
 material: fotos boas, logo/cores, encarte da revista Joyce Pascovitch, módulos da mentoria,
 depoimento autorizado.
 
+⚠️ **Desfecho (06/09/2026): NÃO fechou por ora.** Ele viu os valores da proposta faseada,
+não deu o "sim" e alegou **problema na família + necessidade de adiar o projeto**. Pode ser
+real, pode ser objeção de preço disfarçada (`[não dá pra saber, não presumir]`). Status:
+**follow-up frio** — não pressionar, retomar quando ele sinalizar. Lição de processo (fechar
+na reunião, não deixar a decisão pro depois via documento no grupo) destilada em
+`_memoria/comercial.md`, com este caso como origem.
+
 **⚠️ Compliance — NÃO é conselho profissional** (não há CFO/CFP para "terapeuta tântrico").
 A trava é outra e trava igual:
 - **Plataforma:** Meta/Google **reprovam conteúdo sensual** — copy tipo "prazer tântrico"
@@ -787,3 +835,29 @@ A trava é outra e trava igual:
 - **Sem promessa** (nem sexual, nem de renda). **Depoimento de aluno só com autorização
   por escrito.** GMB cadastrado como *massoterapeuta/terapeuta*, nunca "massagem tântrica".
 - **Marca visual:** terapêutica, serena, adulta — o oposto do clichê "spa sensual".
+
+### Lead #8 — Mullsanni Performance (oficina de performance automotiva, Lauro de Freitas/BA)
+
+Pasta: `clientes/mullsanni-performance/`, criada em 07/09/2026. ⚠️ **LEAD em avaliação,
+não é cliente fechado** — não entra em fila de produção nem contagem de contas. Origem: o
+Marcelo viu a empresa no **Bon Odori (06/09)**, foi atrás e descobriu o site fora do ar.
+Segmento: remap de ECU/TCU, escapamento esportivo, preparação de importados; ticket alto
+(R$ 1.500 a 8.000). Empresa nova (~1 ano), **dois sócios** (Jordan + Nelson), decisão
+provavelmente conjunta. Dossiê completo em `dossie-prospeccao.md`.
+
+**O que a Hórus confirmou por conta (07/09):** `mullsanniperformance.com.br` **não resolve
+DNS** (site funcionalmente morto); **zero anúncio** na Biblioteca da Meta (crescimento
+orgânico); Instagram é o "site" real; Google 5,0★ com só 11 avaliações. As duas maiores
+alavancas são o site e o tráfego pago, não CRM.
+
+**Oferta em fases (régua interna, sem proposta enviada):** Fase 1 = site de autoridade
+mobile-first (casos reais de dyno, credencial ACF + Nova Racing, SEO local "remap Lauro de
+Freitas", formulário que qualifica e cai no WhatsApp) + GMB, ancorar **R$ 2.000**; Fase 2 =
+recompra sobre base pronta; Fase 3 = tráfego pago recorrente.
+
+**Travas (as mesmas da casa):** 🔴 nada de "calculadora de cavalos por Stage" (promessa de
+resultado); 🔴 nada de bot no número deles (lógica invertida, igual à Amparo); 🔴 não
+construir CRM do zero (Fase 2, base pronta); 🔴 abordagem com **gancho verdadeiro** ("vi
+vocês no Bon Odori, o site está fora do ar"), **nunca** o pretexto "falei com um funcionário
+seu" (2 sócios, falsificável, queima credibilidade). Não é setor regulado. Pendências pra
+virar cliente: logo em alta, cores reais da marca, fotos boas, casos de dyno autorizados.

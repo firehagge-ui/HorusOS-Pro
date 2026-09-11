@@ -1,0 +1,12 @@
+[
+ {
+  "texto": "Iframe de mapa rouba o scroll da página: o ponteiro cruza o mapa e a rolagem vira zoom. Com Lenis a página trava de vez. Cubra com um véu que só libera depois do clique.",
+  "origem": "construção kit-mapa",
+  "grau": "alta"
+ },
+ {
+  "texto": "O cartao de endereco usa 'background: var(--color-bg, #fff)'. O kit-calendario, no mesmo projeto, pede que --color-bg seja transparente no :root — e ai o cartao fica transparente por cima do mapa e o endereco some sobre os tiles. O fallback #fff nao salva, porque a variavel EXISTE, so vale transparent. Passar --color-bg na prop style da instancia do Mapa: style={{ '--color-bg': 'var(--obsidian)' }}.",
+  "origem": "restaurante-italiano-berinjela-latao",
+  "grau": "media"
+ }
+]

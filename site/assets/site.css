@@ -559,7 +559,8 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
 .hero {
   position: relative;
   overflow: hidden;
-  background: var(--tinta);
+  /* Fallback para navegadores sem WebGL. */
+  background: radial-gradient(ellipse at 78% 36%, #173b70 0%, #081a37 40%, #000104 78%);
 }
 .hero-topo {
   position: relative; z-index: 1;
@@ -584,17 +585,14 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
     linear-gradient(90deg, rgba(5,9,20,.60), rgba(5,9,20,.14) 38%, transparent 56%),
     /* AZUL à esquerda, AMARELO à direita. Azul da logo descendo pela borda esquerda. */
     radial-gradient(760px 1300px at -4% 34%, rgba(37,99,235,.22), transparent 58%),
-    /* Amarelo da marca na diagonal da direita. */
-    radial-gradient(600px 1300px at 106% 30%, rgba(244,196,48,.22), transparent 54%),
-    /* Banho amarelo sobre a listra clara do centro-direita. */
-    radial-gradient(1000px 820px at 74% 66%, rgba(244,196,48,.16), transparent 60%);
+    radial-gradient(900px 1000px at 106% 30%, rgba(32,83,165,.18), transparent 56%);
 }
 .hero .envelope { max-width: var(--largura); position: relative; z-index: 1; }
 .hero .envelope > * { position: relative; z-index: 1; }
 
 /* Renderizado a 60% da resolução da tela e esticado pelo CSS. A cena é toda
    suave, então a perda não aparece, e o custo por quadro cai à metade. */
-.hero-fundo {
+.hero-velaris {
   position: absolute; inset: 0; z-index: 0;
   width: 100%; height: 100%;
   display: block;
@@ -694,6 +692,8 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
 }
 /* Dois botões da home, alinhados à esquerda com o texto do hero. */
 .hero-acao { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; justify-content: flex-start; }
+/* CTAs da home: cantos mais suaves, sem mudar os botões do restante do site. */
+.hero-acao .btn-azul, .hero-acao .btn-linha { border-radius: 14px; }
 
 /* Primário AZUL ("Fale conosco", 31/08): gradiente azul da logo com contorno
    azul-claro e o mesmo brilho que segue o mouse do botão do header (`.cta-brilho`
@@ -710,7 +710,7 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
   transition: transform .25s var(--curva), box-shadow .25s var(--curva), filter .25s var(--curva);
 }
 .btn-azul:hover { transform: translateY(-2px); filter: brightness(1.06); box-shadow: 0 12px 30px rgba(37,99,235,.30); }
-.btn-azul .seta { font-size: var(--t-13); }
+.btn-azul .seta { font-size: var(--t-17); }
 
 /* Secundário ("Nossos serviços"): SEM fundo, só contorno. No hover o texto SOBE e
    some, e uma cópia entra por baixo (rolo). Duas cópias empilhadas numa janela de
@@ -924,20 +924,32 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
 .cubo-l2 { transform: translateZ(2px);  opacity: .82; }
 .cubo-l3 { transform: translateZ(-30px); opacity: .55; }
 
-/* Gráfico de crescimento em SVG (amarelo da marca), ANIMADO: os painéis flutuam
-   e a ponta pulsa. */
-.s1-art--grafico svg { position: relative; z-index: 1; width: 100%; max-width: 330px; height: auto; }
-.s1-art--grafico .pan { fill: rgba(96,165,250,.05); stroke: rgba(96,165,250,.16); stroke-width: 1; transform-box: fill-box; }
-.s1-art--grafico .pan1 { animation: pan-float 6s ease-in-out infinite; }
-.s1-art--grafico .pan2 { animation: pan-float 6s ease-in-out infinite; animation-delay: .9s; }
-@keyframes pan-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
-.s1-art--grafico .linha { filter: drop-shadow(0 0 6px rgba(244,196,48,.7)); }
-.s1-art--grafico .dot   {
-  filter: drop-shadow(0 0 9px rgba(244,196,48,.9));
-  transform-box: fill-box; transform-origin: center;
-  animation: dot-pulse 2.2s ease-in-out infinite;
+/* Ilustração de crescimento em PNG com transparência, integrada ao card. */
+.s1-grafico-imagem {
+  position: relative; z-index: 1;
+  display: block; width: 100%; max-width: 390px; height: auto;
+  filter: drop-shadow(0 16px 24px rgba(2,5,12,.28));
 }
-@keyframes dot-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.35); } }
+
+/* Proporção compacta da seção 1 no desktop: a grade mantém o mesmo desenho,
+   mas passa de 1200px para 820px, como na referência aprovada. */
+@media (min-width: 861px) {
+  .valores { padding-bottom: 152px; }
+  .valores .envelope { max-width: 820px; }
+  .s1-head { max-width: 620px; }
+  .s1-kicker { font-size: var(--t-13); margin-bottom: 14px; }
+  .s1-titulo { font-size: var(--t-40); }
+  .s1-bento { margin-top: 42px; gap: 14px; }
+  .s1-card { gap: 16px; padding: 20px 22px; }
+  .s1-txt h3 { font-size: var(--t-22); margin-bottom: 10px; }
+  .s1-txt p { font-size: var(--t-13); line-height: 1.65; }
+  .s1-linha { width: 42px; height: 2px; margin-bottom: 12px; }
+  .s1-art { min-height: 142px; }
+  .s1-card--alto .s1-art { min-height: 210px; margin-bottom: 18px; }
+  .cubo { width: 120px; height: 120px; }
+  .orb { width: 126px; height: 126px; }
+  .s1-grafico-imagem { max-width: 310px; }
+}
 
 /* Órbita (card "Uma casa, do plano ao ar"): dois anéis com pontos girando em
    torno de um núcleo — a ideia de disciplinas combinadas num sistema só. */
@@ -987,7 +999,11 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
 .stack {
   position: relative;
   padding: 104px 0 148px;   /* volta ao tamanho de antes, com mais respiro embaixo */
-  background: var(--tinta);
+  /* A seção chega no azul-preto do hero e só então abre para o violeta do stack.
+     Isso elimina a faixa dura entre os dois universos visuais. */
+  background:
+    radial-gradient(70% 260px at 50% 0, rgba(33,75,130,.16), transparent 74%),
+    linear-gradient(to bottom, #000104 0, #020817 160px, #080a1a 360px, var(--tinta) 560px);
   overflow: hidden;
 }
 /* Fundo pontilhado da seção (Marcelo, 31/08: "tinha um background pontilhado").
