@@ -92,7 +92,7 @@
       right.appendChild(healthCard);
       const hh = healthCard.querySelector('#health');
       [['Servidor privado', h1.server, 'no ar'], ['Modelo de IA', h1.model, 'respondendo'], ['Backup automático', h1.backup, 'último há 2 h']].forEach(([t, st, d]) => {
-        hh.appendChild(h(`<div class="list-row"><span class="list-ic" style="background:var(--ok-soft);color:var(--ok)">${icon('check')}</span><div class="grow"><div style="font-weight:500;font-size:14px">${t}</div><div class="faint" style="font-size:12px">${d}</div></div><span class="badge ok"><span class="dot" style="background:var(--ok);animation:pulse-dot 2s infinite"></span>ok</span></div>`));
+        hh.appendChild(h(`<div class="list-row"><span class="list-ic" style="background:var(--ok-soft);color:var(--ok)">${icon('check')}</span><div class="grow"><div style="font-weight:500;font-size:14px">${t}</div><div class="faint" style="font-size:12px">${d}</div></div><span class="badge ok"><span class="dot" style="background:var(--ok)"></span>ok</span></div>`));
       });
 
       // danger zone

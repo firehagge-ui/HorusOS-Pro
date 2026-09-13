@@ -35,7 +35,7 @@
   width: 34px; height: 34px; border-radius: 10px; flex: 0 0 auto;
   display: grid; place-items: center;
   background: linear-gradient(150deg, var(--brand), color-mix(in srgb, var(--brand) 55%, #000));
-  color: #fff; box-shadow: 0 4px 14px -4px var(--brand-glow);
+  color: #fff; box-shadow: 0 2px 8px -4px rgba(0,0,0,.5);
 }
 .side-brand .logo-badge svg { width: 20px; height: 20px; }
 .side-brand .bname { font-family: var(--font-display); font-weight: 600; font-size: 14.5px; letter-spacing: -0.01em; line-height: 1.1; color: var(--ink); }

@@ -67,7 +67,7 @@
         scroll.appendChild(bubble(store.get().chat[store.get().chat.length - 1]));
         scrollDown();
         // typing
-        const typing = h(`<div class="msg ai"><div class="avatar">${icon('horusEye')}</div><div><div class="bubble"><span class="typing"><i></i><i></i><i></i></span></div></div></div>`);
+        const typing = h(`<div class="msg ai"><div class="avatar">${icon('horusEye')}</div><div><div class="bubble"><span class="typing"><span class="spinner"></span> escrevendo…</span></div></div></div>`);
         scroll.appendChild(typing); scrollDown();
         setTimeout(() => { typing.remove(); respond(text); }, 750 + Math.random() * 500);
       }

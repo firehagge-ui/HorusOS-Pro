@@ -24,7 +24,7 @@
   /* --- Ink --- */
   --ink:          #E7E9EE;   /* texto principal */
   --ink-2:        #A7ADBA;   /* secundário */
-  --ink-3:        #6D7280;   /* faint / hint */
+  --ink-3:        #838B99;   /* faint / hint — WCAG AA (≥4.5:1 on --bg) */
   --ink-on-brand: #ffffff;
 
   /* --- Status --- */
@@ -116,7 +116,6 @@ svg:not([class]) { width: 1.15em; height: 1.15em; flex: 0 0 auto; vertical-align
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes pop { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
 @keyframes spin { to { transform: rotate(360deg); } }
-@keyframes pulse-dot { 0%,100%{ opacity:1 } 50%{ opacity:.35 } }
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
 }

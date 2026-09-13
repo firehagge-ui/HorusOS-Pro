@@ -110,7 +110,7 @@
     const color = opts.color || 'var(--brand)';
     return `<div class="bars" style="display:flex;align-items:flex-end;gap:${opts.gap || 8}px;height:${opts.h || 120}px">
       ${data.map((v, i) => `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:7px;height:100%;justify-content:flex-end">
-        <div title="${v}" style="width:100%;max-width:34px;border-radius:6px 6px 3px 3px;background:${i === data.length - 1 ? color : 'color-mix(in srgb,' + color + ' 45%, var(--surface-3))'};height:${Math.max(4, (v / max) * 100)}%;transition:height .5s"></div>
+        <div title="${v}" style="width:100%;max-width:34px;border-radius:6px 6px 3px 3px;background:${i === data.length - 1 ? color : 'color-mix(in srgb,' + color + ' 45%, var(--surface-3))'};height:${Math.max(4, (v / max) * 100)}%"></div>
         <span style="font-size:10.5px;color:var(--ink-3)">${esc(labels[i] || '')}</span>
       </div>`).join('')}
     </div>`;

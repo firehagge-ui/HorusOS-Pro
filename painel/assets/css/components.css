@@ -16,7 +16,7 @@
 .btn:hover { background: var(--surface-3); border-color: var(--line-2); }
 .btn:active { transform: translateY(1px); }
 .btn:disabled { opacity: .5; pointer-events: none; }
-.btn.primary { background: var(--brand); border-color: transparent; color: var(--ink-on-brand); box-shadow: 0 6px 18px -8px var(--brand-glow); }
+.btn.primary { background: var(--brand); border-color: transparent; color: var(--ink-on-brand); box-shadow: 0 4px 14px -8px rgba(0,0,0,.55); }
 .btn.primary:hover { background: color-mix(in srgb, var(--brand) 88%, #fff); }
 .btn.ok { background: var(--ok); color: #06281c; border-color: transparent; }
 .btn.ok:hover { background: color-mix(in srgb, var(--ok) 88%, #fff); }
@@ -188,7 +188,7 @@
 
 /* ---------------- Progress / meter ---------------- */
 .meter { height: 8px; border-radius: 999px; background: var(--surface-3); overflow: hidden; }
-.meter > i { display: block; height: 100%; border-radius: 999px; background: var(--brand); transition: width .5s ease; }
+.meter > i { display: block; height: 100%; border-radius: 999px; background: var(--brand); }
 .meter.ok > i { background: var(--ok); } .meter.warn > i { background: var(--warn); } .meter.danger > i { background: var(--danger); }
 
 /* ---------------- Decision card (mesa do dia) ---------------- */

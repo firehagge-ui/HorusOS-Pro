@@ -78,9 +78,7 @@
 .chip-suggest:hover { border-color: var(--brand); color: var(--ink); }
 .chat-input { display: flex; gap: 8px; align-items: flex-end; background: var(--surface); border: 1px solid var(--line-2); border-radius: 16px; padding: 8px 8px 8px 14px; }
 .chat-input textarea { flex: 1; background: none; border: none; resize: none; color: var(--ink); font-size: 14.5px; max-height: 140px; padding: 6px 0; line-height: 1.5; }
-.typing { display: inline-flex; gap: 4px; align-items: center; }
-.typing i { width: 6px; height: 6px; border-radius: 999px; background: var(--ink-3); animation: pulse-dot 1s infinite; }
-.typing i:nth-child(2){ animation-delay: .15s } .typing i:nth-child(3){ animation-delay: .3s }
+.typing { display: inline-flex; gap: 9px; align-items: center; color: var(--ink-2); font-size: 13.5px; }
 
 /* ---------------- Criar ---------------- */
 .section-label { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin: 26px 0 12px; }
@@ -135,7 +133,7 @@
 .guia-step { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--line); }
 .guia-step:last-child { border-bottom: none; }
 .guia-n { width: 30px; height: 30px; border-radius: 999px; background: var(--brand-soft); color: var(--brand-2); display: grid; place-items: center; font-weight: 700; font-family: var(--font-display); flex: 0 0 auto; font-size: 14px; }
-.tip { display: flex; gap: 10px; background: var(--brand-soft); border: 1px solid transparent; border-left: 3px solid var(--brand); border-radius: 10px; padding: 13px 15px; color: var(--ink); font-size: 13.5px; line-height: 1.55; }
+.tip { display: flex; gap: 11px; background: var(--brand-soft); border: 1px solid color-mix(in srgb, var(--brand) 26%, transparent); border-radius: 12px; padding: 13px 15px; color: var(--ink); font-size: 13.5px; line-height: 1.55; }
 .tip svg { width: 17px; height: 17px; color: var(--gold); flex: 0 0 auto; margin-top: 2px; }
 
 /* ---------------- misc detail ---------------- */
