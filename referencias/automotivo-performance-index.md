@@ -31,6 +31,19 @@ escala de herói, parede de equipamento como prova, fundador em 1ª pessoa. A Be
 aparece nos dois teardowns, com foco diferente — aqui como loja/e-commerce, lá como
 padrão de execução visual dark/founder-led a copiar para oficina de serviço.
 
+**Quarto teardown, o do eixo autoridade + captura (não é oficina, é e-commerce de marca):**
+[`high-torque-store-aditivos.md`](high-torque-store-aditivos.md) (11/09/2026) estuda a
+**High Torque Store** — loja de aditivos movida a creator técnico (ADG, maior canal de
+mecânica do Brasil). O e-commerce em si não transfere pra oficina, mas três coisas sim: a
+**seção de autoridade de creator** (o rosto técnico como prova máxima, que é o ativo dos
+sócios da Mullsanni), o **comparador "qual usar?"** em cards de cor (vira "qual serviço é
+o seu?") e a **lógica de recompra** (cashback 5% + assinatura, a versão B2C do funil de
+recompra/CRM da Fase 2). Trouxe também a **roleta "Gire e Ganhe"** (pedido do Marcelo,
+"muito igual a essa") — ficha e SVG reconstruído em
+[`_biblioteca/inspiracoes/interacao/roleta-captura-lead.md`](../_biblioteca/inspiracoes/interacao/roleta-captura-lead.md).
+⚠️ A roleta é widget de terceiro (LeadUP); a ficha traz o caminho custom pronto e a
+ressalva de posicionamento (desconto girando roleta briga com ticket alto de serviço).
+
 ---
 
 ## 1. Galerias de inspiração (a fonte contínua)

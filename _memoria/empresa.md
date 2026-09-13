@@ -78,14 +78,18 @@ A "Máquina" acima (Site → Bot+CRM → Conteúdo → Tráfego) é a forma **em
 entregar isso para negócio local, na ordem de prioridade; este catálogo é a **oferta
 completa**. Fonte viva: a seção de serviços de `site/index.html`.
 
-**Ferramentas:** Firecrawl (pesquisa/scrape web) via MCP, e o **Higgsfield** (CLI
-logado na conta do Marcelo, plano starter) para geração de imagem.
-✅ **Atualização de 26/08/2026: o Higgsfield voltou e está ATIVO** — superou o registro
-antigo de que teria saído em 05/08 e de que a imagem sairia manualmente pelo ChatGPT e
-o vídeo pelo Gemini. Imagem funciona no starter via **GPT Image 2** (`gpt_image_2`); os
-modelos de **vídeo exigem plano Pro/Ultimate**, então enquanto o plano for starter a
-animação se resolve com WebGL/canvas/SVG na mão. Catálogo e uso no `CLAUDE.md` da raiz
-e na skill `higgsfield-generate`.
+**Ferramentas:** Firecrawl (pesquisa/scrape web) via MCP.
+
+🔴 **Atualização de 07/09/2026 (Marcelo): o Higgsfield foi ABANDONADO de vez** ("não vale
+a pena"). As 8 skills `higgsfield-*` foram removidas de `.claude/skills/`; não reinstalar,
+não rodar o CLI, não recomendar. **Geração de imagem agora = só ChatGPT, manual, feita pelo
+Marcelo** (ele gera e traz o arquivo; o Horus OS não gera imagem por conta própria).
+Animação/3D segue por **WebGL/canvas/SVG na mão**. Regra viva na seção "Geração de mídia"
+do `CLAUDE.md` da raiz.
+
+> Histórico (superado): de 26/08 a 06/09/2026 o Higgsfield esteve **ativo** (CLI logado,
+> plano starter, imagem via **GPT Image 2**; vídeo exigia Pro/Ultimate). Antes disso (05/08)
+> já tinha sido dado como cancelado uma vez. Encerrou de vez em 07/09.
 ⚠️ A **API da OpenAI nunca existiu na operação** (correção do Marcelo, 20/08/2026):
 ignorar qualquer menção a `OPENAI_API_KEY`.
 Para imagem, o resultado é convertido para **WebP no tamanho de exibição** antes de

@@ -278,3 +278,193 @@ Horizontal, 2400px+ no lado maior, sem filtro e sem texto por cima:
   (`flex-wrap`) para 360-390. **Conferir num celular real antes de publicar.**
 - 🔴 Pendências que travam a versão final (do cliente): fotos em alta (hero no dyno, Jordan e
   Nelson, fachada), confirmar o WhatsApp de atendimento, autorização de reuso dos números/reviews.
+
+---
+
+# RODADA 4 — nova versão com foto real + linguagem da referência (12/09/2026)
+
+> Gatilho: o Marcelo (1) soltou em `assets/` **as fotos e vídeos reais do Instagram** deles,
+> (2) mandou uma **imagem de referência** de landing feita no ChatGPT
+> (`assets/Landing Page Automotiva Mullsanni Performance.png`) e pediu **"uma nova versão com
+> uma cara melhor, muito criativa"**, aproveitando o material. A rodada 3 era honesta mas
+> sóbria (só número, carro em tirinha, uma foto provisória de 1080px). Agora há **fotos reais
+> de verdade** e um alvo visual.
+
+## O que a referência do ChatGPT trouxe (e adotei)
+
+Layout mais rico e comercial que o da rodada 3: **hero split** (texto + carro), **faixa de
+marcas**, **cards de serviço com foto**, **galeria de projetos**, **CTA amarelo full**, mais
+densidade visual. O amarelo/preto/branco da referência **bate com a marca real** deles, então
+casou sem briga.
+
+## O que a referência trazia e foi CORRIGIDO (integridade vence a referência)
+
+1. 🔴 **Números inventados.** A referência traz "+500 projetos · +8 ANOS de experiência ·
+   +98% de clientes satisfeitos". A empresa **tem 1 ano** (aberta 09/09/2024) e não temos
+   esses números. Trocado pela **prova real**: ganho de dyno medido (+56 whp Mini JCW),
+   **5,0★ no Google (11 avaliações)**, **8 marcas** com equipamento de concessionária,
+   **representante oficial ACF + Nova Racing**. Nada de ano/projeto/porcentagem inventados.
+2. 🔴 **Copy em inglês** ("CARS DRIVE PEOPLE FORWARD"). Fora. Entrou o slogan **real** deles:
+   "Sua paixão, nossa assinatura".
+3. 🔴 **Depoimentos inventados** (Rafael M./Lucas P./Bruno T. com carro e 5 estrelas). Não
+   temos o texto das reviews. Mantida a regra da rodada 3: **sem depoimento inventado** — a
+   seção de confiança usa o 5,0★ real + credenciais. Placeholder marcado onde entraria review real.
+4. ⚠️ **"As marcas que confiam na gente"** (com logos de montadoras) = falso endosso. Virou
+   **"As marcas que a gente abre"** (equipamento de diagnóstico das montadoras, que é o fato
+   real de `conteudo-real.md §4`), não endosso delas à Mullsanni.
+5. 🔴 **Texturas de IA** (metal escovado + fibra de carbono, que o Marcelo re-colocou em
+   `assets/`): **não entraram.** São o clichê visual do próprio segmento (trava do CLAUDE.md
+   do cliente, item 4, e da rodada 3). A referência que ele curtiu também não usa carbono —
+   usa foto real de carro no escuro. Segui a foto real.
+
+## Imagens (todas reais, do Instagram deles — zero IA no carro)
+
+Processadas de 1080px do Instagram para WebP no tamanho de exibição (Pillow, quality 80),
+em `site/assets/`:
+- **Hero:** `hero-r8.webp` (Audi R8 V10 vermelho no dinamômetro, placa "mullsanni" à vista) +
+  loop de vídeo leve opcional (`hero-loop.mp4`, clipe curto do dyno/escape, mudo, com a foto
+  de poster e fallback). `hero-fogo.webp` (backfire) vira faixa sangrada de emoção.
+- **Prova (casos de dyno, agora com FOTO do carro real):** `car-mini`, `car-tiguan`,
+  `car-porsche`, `car-208`, `svc-dyno` (A3), `car-r8`. Cada caso: foto + ganho medido.
+- **Serviços com foto:** `svc-scanner` (remap/diagnóstico), `svc-motor`, `svc-escape`
+  (downpipe inox), `svc-dyno`, `svc-fogo`, `svc-oficina`.
+- **Galeria de projetos:** R8, Porsche 718, Mini JCW, Civic, Tiguan, 208, Civic azul.
+- **Quem faz:** `socios.webp` (Jordan + Nelson de rosto, foto real). **Não é mais placeholder.**
+- **Estrutura:** `oficina-wide` / `estrutura` (BMW M2 + galpão).
+
+## Assinatura (mantida e elevada) e motion
+
+- **Assinatura:** a prova com **foto real + número medido** (a rodada 3 tinha só número). A
+  curva do dyno continua como cabeça da seção (SVG que desenha uma vez).
+- **Motion (o Marcelo pediu criatividade), dentro da régua do `60-motion.md`:** scroll suave
+  (Lenis, já vendorizado, respeita reduced-motion), reveals em cascata sutis, **contador dos
+  ganhos reais** subindo (permitido: número real + é o argumento + setor não regulado),
+  hover de resposta nos cards/projetos, loop de vídeo no hero. 1 assinatura de motion (a
+  curva/o hero), o resto quieto. Tudo com `prefers-reduced-motion`.
+
+## Travas (mantidas)
+
+- 🔴 Todo número do dyno é real (`conteudo-real.md`). Sem promessa de ganho.
+- 🔴 Zero IA no carro/rosto. Foto real (agora de verdade, não placeholder). Sem carbono/metal de IA.
+- 🔴 WhatsApp divergente = `[FALTA: confirmar]` no código (var `WHATS`), não chuta.
+- 🔴 Sem tracinho como separador (regra do Marcelo). Sem inglês. Sem superlativo.
+- Form sem servidor: monta a mensagem e abre o WhatsApp.
+
+## Verificação (rodada 4, 12/09/2026)
+
+- ✅ **Detector impeccable via npx (`impeccable@4.0.4`): exit 0, 0 anti-patterns.** Passou por
+  correções: 26 achados iniciais (o recuo lateral estava no `.wrap` e as seções coloridas
+  ficavam com padding lateral 0, disparando `cramped-padding` — movido o recuo para cada
+  seção; `.bloco{padding:66px 0}` do mobile era o caso "recuo zerado só num breakpoint")
+  → 8 → 5 (contraste 1,3:1 do botão dentro do menu mobile, onde `.movel a` sobrescrevia a
+  cor do `.btn` deixando osso sobre amarelo; "Performance" da logo a 9,5px < piso de 11px;
+  `cramped-padding` da faixa de vídeo) → **exit 0 final**. Sobram só 5 advisory de
+  `numbered-section-labels` (a numeração 01→06, sequência real de autoridade, não conta como
+  falha).
+- ✅ **Render conferido** (Chrome headless, desktop 1440 + mobile 390 via iframe): hero (R8
+  real + texto), cobertura, prova (curva + 6 casos com foto), faixa de vídeo, serviços (6
+  cards com foto), estrutura (BMW M2), projetos (galeria de 7 carros), CTA amarelo, quem faz
+  (sócios reais), confiança, orçamento (form + card da oficina). Mobile responde certo, sem
+  estouro horizontal, texto legível.
+- ✅ **Contadores de ganho confirmados** com `--force-prefers-reduced-motion`: +56/+52/+48/
+  +33/+29/+21 whp, com antes/depois batendo os números reais de `conteudo-real.md`. Fallback
+  no HTML já traz o número real (se o JS falhar, mostra +56, não +0). ⚠️ No headless a
+  animação `requestAnimationFrame` trava e mostra valor intermediário — é artefato do render,
+  não do site.
+- ✅ **Peso:** ~1,85 MB de assets (vídeo da faixa 540 KB, 13 fotos WebP). Dobra inicial
+  (hero + fontes) ~200 KB; o resto é `loading="lazy"`.
+- ✅ **Sem tracinho**, sem inglês, sem promessa. Números do dyno reais. Fotos reais (zero IA).
+- 🔴 **Pendências que travam a versão final** (do cliente): confirmar o WhatsApp de
+  atendimento; foto de hero em alta e sem marca d'água de terceiro (a atual do Instagram tem
+  "TurboGVibe" no vidro); autorização de reuso dos números de dyno e das fotos dos carros dos
+  clientes; 3 reviews reais do Google para a seção de confiança (hoje é só a nota 5,0★).
+
+---
+
+# RODADA 5 — hero com vídeo de fundo cinematográfico (APLICADA, 12/09/2026)
+
+> Decisão do Marcelo: trocar o hero estático (foto do R8) por **vídeo de fundo
+> cinematográfico**, montado com os vídeos REAIS do Instagram deles (em `../assets/`),
+> pra passar a essência da Mullsanni (movimento, oficina, dyno, pista) já na 1ª tela.
+> Alinha com o molde do concorrente **Bravus Performance** (`referencias/bravus-performance.md`,
+> estudado no mesmo dia): telemetria/movimento no hero, prova encenada. ✅ **Aplicada ao
+> `index.html`** em 12/09 (o `<video>` do `hero-loop.mp4` no lugar da `<img>` do R8), com
+> poster e fallback de reduced-motion. Verificação abaixo.
+
+## Por que faz sentido aqui
+
+O hero hoje é foto do R8 (real, boa, mas parada). Num negócio cujo produto é **potência e
+movimento**, vídeo de fundo entrega a essência sem uma palavra a mais — e o CSS já prevê:
+`.hero-media video` existe (linha ~93 do `index.html`), com véu `.hero-media::after` por
+cima pra legibilidade. É trocar a `<img>` do `.hero-media` por `<video>`, baixo esforço.
+
+## Inventário dos 6 vídeos (medido em 12/09, specs reais)
+
+Fonte em `../assets/*.mp4`. Frame de referência de cada um em `../assets/frames-referencia/`.
+
+| Apelido | Formato | Dur. | Peso | O que mostra | Serventia |
+|---|---|---|---|---|---|
+| vid1 `AQM-Qqf` | 720×1280 vert | 15,7s | 3,0M | Esportivo em **pista/arrancada noturna**, cones, holofotes | clima escuro cinematográfico |
+| vid2 `AQMLJPi` | 720×1280 vert | 53,5s | 11M | Interior de **Subaru STI** | ⚠️ **legenda queimada "PRA UM STI"** — não usar em fundo |
+| vid3 `AQMPeUJ` | 720×900 | 23,4s | 1,6M | **Escapamento de inox** por baixo (Nova Racing) | prova de serviço, cru |
+| vid4 `AQOJ_X1` | **1276×720 HORIZ** | 13,2s | 2,3M | Close do **farol do GR vermelho molhado**, reflexo | ✅ **único horizontal → fundo desktop** |
+| vid5 `AQOhWyI` | 720×1280 vert | 42,2s | 7,1M | **Jordan (sócio) trabalhando no GR vermelho**, capô aberto | ✅ founder-led → fundo mobile |
+| vid6 `AQPGBoP` | 360×640 vert | 62s | 2,9M | Carro no **dinamômetro**, técnico com laptop, logo MP | prova-assinatura, mas res baixa |
+
+## Direção de montagem (curadoria do Marcelo)
+
+- **Desktop:** `vid4` é a escolha quase forçada (único landscape, limpo, cor forte). **Já
+  otimizado e pronto em `assets/hero-loop.mp4`** (1280×720, mudo, H.264 faststart, 1,9 MB) +
+  `assets/hero-poster.webp` (frame de partida, 15 KB).
+- **Mobile:** `vid5` é o melhor (proporção vertical certa, founder + carro + oficina, boa
+  res). Ainda não recortado/otimizado — fazer se for adotar dois fontes por breakpoint.
+- **Se virar colagem cinematográfica** (o "juntar de forma que fique cinematográfico"): a
+  sequência que conta a história é detalhe do carro (vid4) → trabalho na oficina (vid5) →
+  escape de inox (vid3) → dyno (vid6, se a res aguentar em faixa pequena) → pista noturna
+  (vid1). **Cortes secos, 2–3s cada, mudo, com leve dessaturação** pra não brigar com o
+  amarelo. **vid2 fica de fora** (legenda queimada). ffmpeg está disponível na máquina.
+
+## Travas técnicas do vídeo de fundo (pra não virar erro)
+
+1. **Legibilidade primeiro:** véu obrigatório sobre o vídeo (o `.hero-media::after` já
+   existe). Rodar o detector (`low-contrast`) contra o frame mais claro do loop — se
+   reprovar, escurece o véu, não clareia o texto.
+2. **Performance/LCP:** `poster` estático carrega antes; `<video autoplay muted loop
+   playsinline preload="metadata">`. Manter o arquivo leve (o de desktop já está em 1,9 MB).
+3. **Mobile:** autoplay de vídeo custa dados/bateria e landscape fica ruim em retrato.
+   Fallback: no mobile, ou o `vid5` vertical, ou cair pro `hero-poster`/foto do R8. Decidir
+   ao montar.
+4. **`prefers-reduced-motion`:** pausar o vídeo e mostrar o poster (já é regra da casa).
+5. **Áudio sempre mudo** (autoplay exige, e som em autoplay é antipadrão).
+6. 🔴 **Zero IA** — n/a aqui, os vídeos são reais do carro/oficina deles. Mantido.
+7. 🔴 **Direitos:** os vídeos são do Instagram deles → o reuso público entra na MESMA
+   pendência de autorização das fotos/números de dyno (ver abaixo). Alguns têm marca d'água
+   de terceiro no canto — conferir antes de publicar.
+
+## Wiring aplicado (12/09/2026)
+
+Dentro de `.hero-media`, a `<img>` do R8 virou
+`<video id="hero-video" autoplay muted loop playsinline preload="metadata"
+poster="assets/hero-poster.webp"><source src="assets/hero-loop.mp4" type="video/mp4"></video>`.
+O resto do hero (H1, slogan, prova, véu) não mudou. O bloco de motion (JS) ganhou o
+tratamento de reduced-motion: se o usuário pede menos movimento, tira o `autoplay` e dá
+`pause()`, deixando só o poster. A foto anterior segue em `assets/hero-r8.webp` (fallback
+de reversão).
+
+## Verificação (rodada 5, 12/09/2026)
+
+- ✅ **Detector via npx (`impeccable@4.0.4`): exit 0, 0 anti-patterns.** Só os 5 advisory de
+  `numbered-section-labels` de sempre (a sequência 01→06 é autoridade real, decisão mantida).
+- ✅ **Render conferido** (Edge headless, desktop 1440 + mobile 480): o poster/frame do vídeo
+  (GR vermelho na oficina) entra no fundo, e o H1 branco+amarelo, a lede, a barra de prova
+  (+56 whp · 5,0★ · 8 marcas) e os dois CTAs ficam legíveis sobre o véu, sem estouro
+  horizontal. O véu forte da esquerda (já existente) segura o contraste mesmo no frame com o
+  portão iluminado à direita, onde não há texto.
+- ✅ **Peso do hero:** `hero-loop.mp4` 1,9 MB (`preload="metadata"`, então não bloqueia o 1º
+  paint), poster `hero-poster.webp` 15 KB é o LCP provável.
+- 🔴 **Pendências herdadas:** o vídeo é recorte do Instagram deles (1276×720) — a versão
+  final pede material em alta e a **autorização de reuso dos vídeos** (com conferência de
+  marca d'água de terceiro), já na lista de pendências do `CLAUDE.md`.
+- ⚠️ **Em aberto pra decidir vendo no navegador:** fundo mobile continua o mesmo `hero-loop`
+  horizontal (cover corta as laterais e funciona); se quiser o `vid5` vertical (Jordan no GR)
+  só no mobile, é preparar o segundo arquivo e trocar por `<source media>` ou JS.

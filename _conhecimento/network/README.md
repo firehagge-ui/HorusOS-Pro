@@ -39,3 +39,8 @@ Hoje, das duas formas:
 | `precificacao-sistemas-web.md` | Quanto cobrar por site, e-commerce, CRM, bot e manutenção; stack e travas legais | 03/09/2026 |
 | `hospedagem-sistemas.md` | Onde/como a rede hospeda CRM: VPS (Hostinger/Contabo), Docker+Coolify multi-cliente, Vercel+Supabase, Frappe Cloud, SaaS de afiliado | 05/09/2026 |
 | `cobranca-e-protecao-comercial.md` | Cliente que fecha verbal e some antes da entrada: por que trava, como destravar (voz, mini-call com o sócio, cartão) e como estruturar pagamento/contrato pra não tomar cano | 10/09/2026 |
+| `abordagem-e-prospeccao.md` | O gancho que converte (Google + perda de cliente), os 3 modelos de mensagem, regras de ouro, aquecimento de chip e ferramentas de lista de lead | 12/09/2026 |
+| `taxas-de-conversao.md` | Benchmarks de funil: volume frio × personalizado, quantas abordagens/dia, o canal que muda a conversão (ligação/presencial) | 12/09/2026 |
+| `apresentacao-de-preco-e-objecao.md` | Ancoragem em 3 planos, desmembrar em fases, parcelamento, 3 perguntas de micro-compromisso, objeção "tá caro" e contraproposta sem baixar preço | 12/09/2026 |
+| `recorrencia-e-pos-venda.md` | As 4 pontes pra virar mensalidade (tráfego, GMN, WhatsApp+CRM, suporte) e a régua de recompra (reativação, aniversário, avaliação, ciclo) | 12/09/2026 |
+| `operacao-agencia-e-sociedade.md` | Divisão originação × produção, IA como chão de fábrica, como não virar gargalo, o que deu certo e o que quebrou em sociedades, erros ao escalar | 12/09/2026 |

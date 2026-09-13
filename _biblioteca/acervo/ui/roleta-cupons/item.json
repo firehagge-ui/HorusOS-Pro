@@ -1,0 +1,40 @@
+{
+ "id": "roleta-cupons",
+ "familia": "ui",
+ "titulo": "Roleta de cupons — spin-to-win com captura de lead e cupom",
+ "resumo": "Roda SVG de N fatias que gira e para no prêmio sorteado por peso, com gate de lead (nome+contato+consentimento LGPD), revelação de cupom com copiar, cooldown por localStorage e prefers-reduced-motion. Tokenizada, sem dependência. Documenta a variante 'vídeo-pausa' da High Torque. Reconstrução do mecanismo, não código proprietário.",
+ "setor": "generico",
+ "estrutura": "componente-ui",
+ "qualidade": "producao",
+ "quando_usar": "E-commerce ou landing de varejo (auto-peças, flores, moda, alimento) que quer trocar desconto por e-mail/WhatsApp e criar urgência de compra hoje. Bom como pop-up de captura, página de campanha (Black Week) ou brinde amarrado a valor de compra ('comprou, girou, ganhou'). Os prêmios e pesos são configuração no topo do script.",
+ "nao_usar_quando": "Cliente de setor regulado (saúde CFP/CFO): gamificação de cupom/urgência é vedada. Não use o sorteio client-side em produção sem mover a decisão pro backend (o visitante lê os pesos no DevTools e força o melhor prêmio). Sorteio de prêmio FÍSICO pode configurar promoção comercial regulada (regulamento/limite por CPF) — confira antes.",
+ "tags": [
+  "roleta",
+  "spin-to-win",
+  "cupom",
+  "gamificacao",
+  "conversao",
+  "captura-lead",
+  "ecommerce",
+  "promocao",
+  "tokens",
+  "tematizavel",
+  "sem-dependencia",
+  "acessivel",
+  "html-css-js"
+ ],
+ "stack": [
+  "html-css-js"
+ ],
+ "deps": [],
+ "fontes": [],
+ "marca": null,
+ "caminho": "acervo/ui/roleta-cupons/source.tsx",
+ "arquivo_origem": "roleta-cupons.html",
+ "linhas": 327,
+ "tem_video": false,
+ "tem_webgl": false,
+ "tem_scroll": false,
+ "assets_total": 1,
+ "assets_pereciveis": false
+}

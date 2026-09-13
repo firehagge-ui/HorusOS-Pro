@@ -1,6 +1,24 @@
 {
   "version": 1,
   "skills": {
+    "asking-with-evidence": {
+      "source": "oxbshw/watch-skill",
+      "sourceType": "github",
+      "skillPath": "skills/asking-with-evidence/SKILL.md",
+      "computedHash": "0fe37806b034938815857684c99fce36869cbc32188842dbc086091cf89a4d93"
+    },
+    "configuring-vision": {
+      "source": "oxbshw/watch-skill",
+      "sourceType": "github",
+      "skillPath": "skills/configuring-vision/SKILL.md",
+      "computedHash": "896c9f7d0c2b3c2a1def035526a5bedd81138d2dd385a84f79c20efcd0bf4a85"
+    },
+    "extracting-structure": {
+      "source": "oxbshw/watch-skill",
+      "sourceType": "github",
+      "skillPath": "skills/extracting-structure/SKILL.md",
+      "computedHash": "3983729e51f85a48e66e4c3b22d2c01dd3d8341ee9b45051d0d0f0f25d879758"
+    },
     "higgsfield-brandkit": {
       "source": "higgsfield-ai/skills",
       "sourceType": "github",
@@ -48,6 +66,48 @@
       "sourceType": "github",
       "skillPath": "higgsfield-youtube-thumbnail/SKILL.md",
       "computedHash": "f549199d92da66913a1f7987ba812a51b40515b001def50c22252531215d43a9"
+    },
+    "learning-from-mistakes": {
+      "source": "oxbshw/watch-skill",
+      "sourceType": "github",
+      "skillPath": "skills/learning-from-mistakes/SKILL.md",
+      "computedHash": "d6b7254f872ca9b704dbadb10355829a935cee5fc8a546e34854ba2a21c2dff0"
+    },
+    "recovering-from-errors": {
+      "source": "oxbshw/watch-skill",
+      "sourceType": "github",
+      "skillPath": "skills/recovering-from-errors/SKILL.md",
+      "computedHash": "3b39496b4e54d62897eb8f90709da0630fbab5c99f4e385b07f585daf6549c5e"
+    },
+    "sharing-results": {
+      "source": "oxbshw/watch-skill",
+      "sourceType": "github",
+      "skillPath": "skills/sharing-results/SKILL.md",
+      "computedHash": "4550423a0d10c15245456af255b8a2ad75a9f645bf46adc6dedebf84e6471885"
+    },
+    "the-loop": {
+      "source": "oxbshw/watch-skill",
+      "sourceType": "github",
+      "skillPath": "skills/the-loop/SKILL.md",
+      "computedHash": "56032d9fcfa40690cf2fae19a320d18abb53e7a0eeb78afe8c1c006c8adb1d7f"
+    },
+    "video-memory": {
+      "source": "oxbshw/watch-skill",
+      "sourceType": "github",
+      "skillPath": "skills/video-memory/SKILL.md",
+      "computedHash": "05153190bedcb4c305547ee591147f205cd724c586cb51c7d86242130910ed90"
+    },
+    "watch": {
+      "source": "oxbshw/watch-skill",
+      "sourceType": "github",
+      "skillPath": "skills/watch/SKILL.md",
+      "computedHash": "f48c33110541e25575d53fea08fe60c07145b7499d7e04d23f278aecfa013ac5"
+    },
+    "watching-videos": {
+      "source": "oxbshw/watch-skill",
+      "sourceType": "github",
+      "skillPath": "skills/watching-videos/SKILL.md",
+      "computedHash": "3b6934b761bfb9e9e0f0d29796117c6ece7d2314bbd76d4ac1350e7ed0c137c8"
     }
   }
 }

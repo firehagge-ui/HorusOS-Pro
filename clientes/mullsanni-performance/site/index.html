@@ -13,7 +13,7 @@
 <meta property="og:image" content="assets/og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,600;0,800;0,900;1,800;1,900&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --breu:#0B0B0C;
@@ -21,183 +21,280 @@
   --surface:#1B1B1C;
   --raised:#242425;
   --amarelo:#FFD200;
-  --amarelo-esc:#5A4700;   /* 6,2:1 sobre amarelo: texto pequeno na faixa invertida */
+  --amarelo-esc:#5A4700;   /* texto pequeno sobre a faixa amarela */
   --glow:#FFDD3D;
   --osso:#F2F2EF;
   --fumaca:#9A9AA0;        /* 7:1 sobre breu */
-  --apagado:#8A8A90;   /* 4,9:1 sobre surface #1B1B1C — AA garantido no fundo mais claro em que aparece */
+  --apagado:#8A8A90;       /* 4,9:1 sobre surface */
   --linha:#2B2B2C;
   --linha-suave:rgba(242,242,239,.10);
-  --wrap:1180px;
+  --wrap:1200px;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html{-webkit-text-size-adjust:100%}
 body{
   margin:0;background:var(--breu);color:var(--osso);
   font-family:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
-  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 img{max-width:100%;height:auto;display:block}
 a{color:inherit}
 h1,h2,h3{
   font-family:"Archivo","Arial Narrow",system-ui,sans-serif;
-  font-weight:900;line-height:.96;letter-spacing:-.02em;margin:0;
+  font-weight:900;line-height:.95;letter-spacing:-.02em;margin:0;
   text-transform:uppercase;font-stretch:condensed;
 }
-h1 em,h2 em{font-style:italic;color:var(--amarelo);font-weight:900}
+h1 em,h2 em,h3 em{font-style:italic;color:var(--amarelo);font-weight:900}
 p{margin:0}
 .wrap{width:min(100%,var(--wrap));margin-inline:auto}
-section{scroll-margin-top:88px}
+main[id],section[id]{scroll-margin-top:86px}
 .kicker{
   font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;font-weight:600;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--amarelo);margin:0 0 16px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--amarelo);margin:0 0 18px;
+  display:flex;align-items:center;gap:11px;
 }
+.kicker::before{content:"";width:26px;height:2px;background:var(--amarelo);display:inline-block}
 .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
-.lede{font-size:19px;color:var(--fumaca);max-width:56ch;margin-top:20px;line-height:1.55}
+.lede{font-size:19px;color:var(--fumaca);max-width:60ch;margin-top:20px;line-height:1.55}
 
 /* botões */
 .btn{
-  display:inline-flex;align-items:center;gap:10px;background:var(--amarelo);color:#000;
+  display:inline-flex;align-items:center;gap:10px;background:var(--amarelo);color:#0B0B0C;
   font-family:"Archivo",sans-serif;font-weight:800;font-stretch:condensed;font-size:16px;
   text-transform:uppercase;letter-spacing:.02em;text-decoration:none;
-  padding:15px 26px;border-radius:11px;border:0;cursor:pointer;
+  padding:15px 26px;border-radius:12px;border:0;cursor:pointer;
   transition:background .18s ease,transform .18s ease;
 }
+.btn svg{width:17px;height:17px}
 .btn:hover{background:var(--glow);transform:translateY(-2px)}
 .btn:active{transform:translateY(0)}
-.btn--linha{
-  background:transparent;color:var(--osso);border:1px solid var(--linha);
-}
+.btn--linha{background:transparent;color:var(--osso);border:1px solid var(--linha)}
 .btn--linha:hover{background:var(--surface);border-color:var(--amarelo)}
+.btn--preto{background:#0B0B0C;color:var(--osso)}
+.btn--preto:hover{background:#000;color:var(--amarelo)}
 
 /* cabeçalho */
-.topo{position:sticky;top:0;z-index:50;padding:13px 22px;background:rgba(11,11,12,.78);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .25s,background .25s}
-.topo.rolado{border-bottom-color:var(--linha);background:rgba(11,11,12,.95)}
+.topo{position:fixed;inset:0 0 auto;width:100%;z-index:60;padding:12px 24px;background:transparent;backdrop-filter:none;border-bottom:1px solid transparent;transition:border-color .25s,background .25s,backdrop-filter .25s}
+.topo.rolado{border-bottom-color:var(--linha);background:rgba(11,11,12,.95);backdrop-filter:blur(14px)}
 .topo .wrap{display:flex;align-items:center;gap:16px}
 .marca{display:flex;align-items:center;gap:11px;text-decoration:none;flex:none}
-.marca img{width:38px;height:38px;border-radius:8px}
-.marca b{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:19px;letter-spacing:-.01em;text-transform:uppercase}
-.topo nav{display:flex;gap:24px;margin-left:auto}
+.marca img{width:40px;height:40px;border-radius:9px}
+.marca b{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:20px;letter-spacing:-.01em;text-transform:uppercase;line-height:1}
+.marca b small{display:block;font-size:11px;letter-spacing:.18em;color:var(--fumaca);font-weight:600;margin-top:1px}
+.topo nav{display:flex;gap:26px;margin-left:auto}
 .topo nav a{font-size:15px;font-weight:500;color:var(--fumaca);text-decoration:none;transition:color .18s}
 .topo nav a:hover{color:var(--osso)}
-.topo .btn{margin-left:24px;padding:11px 20px;font-size:15px}
+.topo .btn{margin-left:26px;padding:11px 20px;font-size:15px}
+.menu-btn{display:none;margin-left:auto;background:none;border:0;color:var(--osso);cursor:pointer;padding:6px}
+.whatsapp-flutuante{
+  position:fixed;right:22px;bottom:22px;z-index:55;width:56px;height:56px;
+  display:flex;align-items:center;justify-content:center;background:#25D366;color:#fff;
+  border-radius:50%;box-shadow:0 10px 26px rgba(0,0,0,.35);text-decoration:none;
+  transition:background .18s ease,transform .18s ease,box-shadow .18s ease;
+}
+.whatsapp-flutuante:hover{background:#20BD5A;transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.45)}
+.whatsapp-flutuante svg{width:27px;height:27px}
 
-/* ---------- HERO: foto cheia, texto sobre o lado escuro ---------- */
-.hero{position:relative;min-height:82vh;display:flex;align-items:flex-end;overflow:hidden;background:#000}
-.hero-foto{position:absolute;inset:0;z-index:0}
-.hero-foto img{width:100%;height:100%;object-fit:cover;object-position:70% 45%}
-.hero-foto::after{
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden;background:#000}
+.hero-media{position:absolute;inset:0;z-index:0}
+.hero-media img,.hero-media video{width:100%;height:100%;object-fit:cover;object-position:64% 42%}
+.hero-media::after{
   content:"";position:absolute;inset:0;
   background:
-    linear-gradient(96deg,rgba(11,11,12,.96) 0%,rgba(11,11,12,.88) 30%,rgba(11,11,12,.35) 62%,rgba(11,11,12,.12) 100%),
-    linear-gradient(0deg,rgba(11,11,12,.9) 0%,rgba(11,11,12,0) 40%);
+    linear-gradient(94deg,rgba(11,11,12,.97) 0%,rgba(11,11,12,.9) 26%,rgba(11,11,12,.5) 58%,rgba(11,11,12,.15) 100%),
+    linear-gradient(0deg,rgba(11,11,12,.85) 0%,rgba(11,11,12,0) 34%);
 }
-.hero .wrap{position:relative;z-index:1;padding:70px 22px 56px;width:100%}
-.hero h1{font-size:78px;max-width:15ch}
-.hero .lede{color:#DFDFDC;max-width:52ch}
-.hero-acao{display:flex;flex-wrap:wrap;align-items:center;gap:16px 22px;margin-top:34px}
-.hero-prova{
-  display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;max-width:100%;
-  padding:11px 18px;border-radius:11px;background:rgba(20,20,21,.7);border:1px solid var(--linha);
-}
-.hero-prova b{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:30px;color:var(--amarelo);line-height:1}
-.hero-prova span{font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.03em;color:var(--fumaca);text-transform:uppercase}
-.hero-credito{position:absolute;right:22px;bottom:14px;z-index:1;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(242,242,239,.5)}
+.hero .wrap{position:relative;z-index:1;padding:64px 24px 54px;width:100%}
+.hero-slogan{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--amarelo);margin:0 0 22px}
+.hero h1{font-size:82px;max-width:14ch}
+.hero .lede{color:#DFDFDC;max-width:50ch;font-size:19.5px}
+.hero-acao{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:36px}
+.hero-prova{display:flex;flex-wrap:wrap;gap:14px;margin-top:42px}
+.hero-prova .p{display:flex;flex-direction:column;gap:3px;padding:0 20px 0 16px;border-left:2px solid var(--amarelo)}
+.hero-prova b{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:30px;color:var(--osso);line-height:1;letter-spacing:-.01em}
+.hero-prova b i{font-style:normal;color:var(--amarelo)}
+.hero-prova span{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.04em;color:var(--fumaca);text-transform:uppercase}
+.hero-credito{position:absolute;right:24px;bottom:16px;z-index:1;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,242,239,.5)}
 
-/* ---------- COBERTURA: as marcas que atende ---------- */
-.cobertura{padding:64px 22px;background:var(--bg-alt);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
-.cobertura-topo{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 30px}
-.cobertura-topo p{color:var(--fumaca);font-size:16px;max-width:44ch}
-.cobertura h2{font-size:30px}
-.grade-marcas{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;margin-top:34px;background:var(--linha);border:1px solid var(--linha);border-radius:14px;overflow:hidden}
-.grade-marcas span{
-  background:var(--breu);padding:26px 12px;text-align:center;
-  font-family:"Archivo",sans-serif;font-weight:800;font-stretch:condensed;font-size:20px;
-  text-transform:uppercase;letter-spacing:.02em;color:#C9C9CC;transition:color .18s,background .18s;
+/* ---------- COBERTURA ---------- */
+.cobertura{
+  position:relative;
+  overflow:hidden;
+  padding:36px 0 38px;
+  background:#050505;
+  border-top:1px solid #252526;
+  border-bottom:1px solid #252526;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 5%,#000 95%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0%,#000 5%,#000 95%,transparent 100%);
 }
-.grade-marcas span:hover{color:var(--amarelo);background:var(--surface)}
+.marcas-marquee{width:100%;overflow:hidden;display:flex;user-select:none}
+.grade-marcas{
+  display:flex;
+  align-items:center;
+  gap:56px;
+  padding-right:56px;
+  flex-shrink:0;
+  animation:scrollMarcas 25s linear infinite;
+  will-change:transform;
+}
+.grade-marcas span{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  height:58px;
+  color:#C9C9CC;
+  transition:color .18s,transform .18s;
+  filter:grayscale(1);
+  opacity:.92;
+}
+.grade-marcas span:hover{
+  color:#fff;
+  transform:translateY(-2px);
+  filter:none;
+  opacity:1;
+}
+.grade-marcas img{
+  width:auto;
+  height:54px;
+  max-width:140px;
+  object-fit:contain;
+  filter:brightness(0) invert(84%);
+  opacity:.92;
+  transition:filter .18s,opacity .18s;
+}
+.grade-marcas span:hover img{
+  filter:brightness(0) invert(1);
+  opacity:1;
+}
+@keyframes scrollMarcas{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-100%)}
+}
+@media (prefers-reduced-motion:reduce){
+  .grade-marcas{animation:none}
+  .marcas-marquee{overflow-x:auto}
+}
 
 /* ---------- blocos ---------- */
-.bloco{padding:96px 22px}
+.bloco{padding:100px 24px}
 .bloco--grafite{background:var(--bg-alt)}
 .bloco--amarelo{background:var(--amarelo);color:#0B0B0C}
 .bloco--amarelo .kicker{color:var(--amarelo-esc)}
+.bloco--amarelo .kicker::before{background:var(--amarelo-esc)}
 .bloco--amarelo .lede{color:#4A3E08}
-.cabeca{max-width:60ch}
-.cabeca h2{font-size:42px}
+.cabeca{max-width:64ch}
+.cabeca h2{font-size:46px}
+.num-secao{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;letter-spacing:.1em;color:var(--amarelo);display:block;margin-bottom:14px}
 
-/* ---------- A PROVA: assinatura de curva + casos ---------- */
-.prova-assinatura{position:relative;margin:44px 0 8px;border:1px solid var(--linha);border-radius:18px;background:var(--surface);overflow:hidden;padding:18px}
+/* ---------- A PROVA ---------- */
+.prova-assinatura{position:relative;margin:46px 0 34px;border:1px solid var(--linha);border-radius:18px;background:var(--surface);overflow:hidden;padding:18px}
 .curva-wrap{display:block;width:100%;height:auto}
-.curva-legenda{position:absolute;left:30px;top:30px;display:flex;flex-direction:column;gap:9px}
+.curva-legenda{position:absolute;left:30px;top:26px;display:flex;flex-direction:column;gap:9px}
 .curva-legenda i{font-style:normal;display:flex;align-items:center;gap:9px;font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--fumaca)}
 .curva-legenda i::before{content:"";width:16px;height:3px;border-radius:2px;background:var(--apagado)}
 .curva-legenda i.dep{color:var(--osso)}
 .curva-legenda i.dep::before{background:var(--amarelo)}
 .curva-nota{padding:12px 6px 0;font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--apagado)}
-/* traço da curva desenha uma vez na entrada */
 .linha-curva{fill:none;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
 .linha-antes{stroke:#4A4A50}
 .linha-depois{stroke:var(--amarelo)}
-.reveal .linha-curva{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);transition:stroke-dashoffset 1.5s cubic-bezier(.22,.61,.36,1)}
+.reveal .linha-curva{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);transition:stroke-dashoffset 1.6s cubic-bezier(.22,.61,.36,1)}
 .reveal.visivel .linha-curva{stroke-dashoffset:0}
-.reveal.visivel .linha-depois{transition-delay:.35s}
+.reveal.visivel .linha-depois{transition-delay:.4s}
 
-.casos{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:26px}
-.caso{background:var(--surface);border:1px solid var(--linha);border-radius:15px;padding:24px 22px 22px;display:flex;flex-direction:column;gap:14px}
-.caso-ganho{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:52px;line-height:.9;color:var(--amarelo)}
-.caso-ganho small{display:block;font-size:14px;color:var(--fumaca);font-weight:600;letter-spacing:.02em;margin-top:6px;font-family:"IBM Plex Mono",monospace;text-transform:uppercase}
-.caso h3{font-size:21px}
-.caso-tag{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--fumaca);margin-top:-6px}
-.caso-linha{margin-top:auto;display:grid;gap:6px;padding-top:14px;border-top:1px solid var(--linha)}
-.caso-linha div{display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:13px}
-.caso-linha .rot{color:var(--apagado);text-transform:uppercase;letter-spacing:.04em}
-.caso-linha .val{color:var(--fumaca)}
-.caso-linha .dep .val{color:var(--amarelo);font-weight:600}
-.prova-nota{margin-top:26px;font-size:15px;color:var(--fumaca);max-width:78ch}
+.casos{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
+.caso{position:relative;border-radius:16px;overflow:hidden;background:var(--surface);border:1px solid var(--linha);display:flex;flex-direction:column;min-height:290px}
+.caso-foto{position:absolute;inset:0;z-index:0}
+.caso-foto img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.caso-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,9,10,.94) 4%,rgba(9,9,10,.6) 42%,rgba(9,9,10,.2) 100%)}
+.caso:hover .caso-foto img{transform:scale(1.05)}
+.caso-corpo{position:relative;z-index:1;margin-top:auto;padding:22px}
+.caso--tipo{background:var(--bg-alt)}
+.caso-ganho{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:56px;line-height:.86;color:var(--amarelo);letter-spacing:-.02em}
+.caso-ganho small{display:block;font-size:14px;color:var(--osso);font-weight:600;letter-spacing:.02em;margin-top:8px;font-family:"IBM Plex Mono",monospace;text-transform:uppercase}
+.caso h3{font-size:22px;margin-top:14px}
+.caso-tag{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--fumaca);margin-top:5px}
+.caso-medida{margin-top:13px;padding-top:12px;border-top:1px solid rgba(242,242,239,.14);display:grid;gap:5px;font-family:"IBM Plex Mono",monospace;font-size:12.5px}
+.caso-medida div{display:flex;justify-content:space-between;gap:12px}
+.caso-medida .rot{color:var(--apagado);text-transform:uppercase;letter-spacing:.03em}
+.caso-medida .dep .val{color:var(--amarelo);font-weight:600}
+.prova-nota{margin-top:26px;font-size:15px;color:var(--fumaca);max-width:80ch}
 
-/* faixa de foto sangrada */
-.faixa-foto{position:relative;height:340px;overflow:hidden;background:#000}
-.faixa-foto img{width:100%;height:100%;object-fit:cover;object-position:center 44%}
-.faixa-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,12,.55) 0%,rgba(11,11,12,0) 24%,rgba(11,11,12,.55) 100%)}
+/* faixa de vídeo/foto sangrada */
+.faixa{position:relative;height:420px;overflow:hidden;background:#000}
+.faixa img,.faixa video{width:100%;height:100%;object-fit:cover;object-position:center 46%}
+.faixa::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,11,12,.8) 0%,rgba(11,11,12,.15) 55%,rgba(11,11,12,.55) 100%)}
+.faixa .wrap{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;padding:46px 24px}
+.faixa h2{font-size:44px;max-width:16ch}
+.faixa p{margin-top:14px;color:#DFDFDC;max-width:44ch;font-size:18px}
 
-/* ---------- ESTRUTURA: parede de equipamento ---------- */
-.equipa{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:44px;background:var(--linha);border:1px solid var(--linha);border-radius:16px;overflow:hidden}
-.equipa-item{background:var(--breu);padding:34px 32px}
-.equipa-item .n{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--amarelo);text-transform:uppercase}
-.equipa-item h3{font-size:22px;margin:0 0 10px}
-.equipa-item p{color:var(--fumaca);font-size:16px;line-height:1.55}
-.equipa-item .marcas-scanner{margin-top:14px;font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.04em;color:var(--apagado);text-transform:uppercase;line-height:1.7}
+/* ---------- SERVIÇOS (cards com foto) ---------- */
+.svc-grade{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}
+.svc{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--linha);min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;background:var(--surface)}
+.svc-foto{position:absolute;inset:0;z-index:0}
+.svc-foto img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.svc-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,9,10,.95) 8%,rgba(9,9,10,.55) 46%,rgba(9,9,10,.25) 100%)}
+.svc:hover .svc-foto img{transform:scale(1.05)}
+.svc-corpo{position:relative;z-index:1;padding:24px}
+.svc-num{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--amarelo)}
+.svc h3{font-size:23px;margin:10px 0 8px}
+.svc p{color:#CFCFD2;font-size:15px;line-height:1.5}
 
-/* ---------- SERVIÇOS (faixa amarela) ---------- */
-.servicos{display:grid;grid-template-columns:1fr 1fr;gap:0 54px;margin-top:44px}
-.servico{display:grid;grid-template-columns:42px 1fr;gap:16px;padding:26px 0;border-top:1px solid rgba(11,11,12,.22)}
-.servico .n{font-family:"IBM Plex Mono",monospace;font-size:14px;font-weight:600;color:var(--amarelo-esc);padding-top:4px}
-.servico h3{font-size:22px}
-.servico p{margin-top:8px;font-size:16px;color:#4A3E08;line-height:1.5}
+/* ---------- ESTRUTURA ---------- */
+.estrutura-grade{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;margin-top:20px}
+.equipa{display:grid;gap:2px}
+.equipa-item{padding:22px 0;border-top:1px solid var(--linha)}
+.equipa-item:first-child{border-top:0;padding-top:0}
+.equipa-item h3{font-size:21px;margin:0 0 8px}
+.equipa-item p{color:var(--fumaca);font-size:15.5px;line-height:1.55}
+.equipa-item .marcas-scanner{margin-top:10px;font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.03em;color:var(--apagado);text-transform:uppercase;line-height:1.7}
+.estrutura-foto{border-radius:18px;overflow:hidden;border:1px solid var(--linha);position:relative;aspect-ratio:4/5}
+.estrutura-foto img{width:100%;height:100%;object-fit:cover}
+.estrutura-foto figcaption{position:absolute;left:0;right:0;bottom:0;padding:20px;background:linear-gradient(0deg,rgba(9,9,10,.9),transparent);font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--osso)}
+
+/* ---------- PROJETOS (galeria) ---------- */
+.galeria{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:14px;margin-top:46px}
+.proj{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--linha);background:var(--surface)}
+.proj img{width:100%;height:100%;object-fit:cover;transition:transform .55s ease}
+.proj::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,9,10,.86) 2%,rgba(9,9,10,.1) 46%);opacity:.85;transition:opacity .3s}
+.proj:hover img{transform:scale(1.06)}
+.proj:hover::after{opacity:1}
+.proj figcaption{position:absolute;left:0;bottom:0;padding:18px;z-index:1}
+.proj figcaption b{display:block;font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:19px;text-transform:uppercase;letter-spacing:-.01em}
+.proj figcaption span{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--amarelo)}
+.proj--w2{grid-column:span 2}
+.proj--h2{grid-row:span 2}
+
+/* ---------- CTA amarelo ---------- */
+.cta{background:var(--amarelo);color:#0B0B0C;padding:70px 24px}
+.cta .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:26px 40px}
+.cta h2{font-size:44px;max-width:16ch;color:#0B0B0C}
+.cta p{margin-top:12px;color:#4A3E08;font-size:17px;max-width:40ch}
 
 /* ---------- QUEM FAZ ---------- */
-.fundador{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center;margin-top:20px}
-.fundador-foto{position:relative;border-radius:18px;overflow:hidden;background:var(--surface);aspect-ratio:4/5;border:1px solid var(--linha)}
-.fundador-foto img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
-.fundador-falta{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--apagado);line-height:1.7}
-.citacao{font-family:"Archivo",sans-serif;font-weight:800;font-stretch:condensed;font-size:33px;line-height:1.3;letter-spacing:-.01em;text-transform:uppercase}
+.fundador{display:grid;grid-template-columns:.92fr 1.08fr;gap:56px;align-items:center;margin-top:24px}
+.fundador-foto{position:relative;border-radius:18px;overflow:hidden;background:var(--surface);aspect-ratio:4/3;border:1px solid var(--linha)}
+.fundador-foto img{width:100%;height:100%;object-fit:cover;object-position:center 32%}
+.fundador-foto figcaption{position:absolute;left:0;right:0;bottom:0;padding:18px;background:linear-gradient(0deg,rgba(9,9,10,.9),transparent);font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--osso)}
+.citacao{font-family:"Archivo",sans-serif;font-weight:800;font-stretch:condensed;font-size:35px;line-height:1.34;letter-spacing:-.01em;text-transform:uppercase}
 .citacao em{font-style:italic;color:var(--amarelo)}
-.assina{margin-top:26px;display:flex;align-items:center;gap:14px}
+.assina{margin-top:28px;display:flex;align-items:center;gap:16px}
 .assina .quem{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:19px;text-transform:uppercase}
 .assina .papel{font-size:15px;color:var(--fumaca)}
-.assina-sep{width:1px;height:34px;background:var(--linha)}
+.assina-sep{width:1px;height:36px;background:var(--linha)}
 
 /* ---------- CONFIANÇA ---------- */
-.confianca{background:var(--bg-alt);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);padding:54px 22px}
-.confianca .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.confianca{background:var(--bg-alt);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);padding:56px 24px}
+.confianca .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
 .selo-c{padding:4px 0}
-.selo-c b{display:block;font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:26px;text-transform:uppercase}
+.selo-c b{display:block;font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:28px;text-transform:uppercase}
 .selo-c b .estrelas{color:var(--amarelo)}
 .selo-c span{display:block;color:var(--fumaca);font-size:15px;margin-top:6px}
 
 /* ---------- ORÇAMENTO ---------- */
-.form-caixa{display:grid;grid-template-columns:1.12fr .88fr;gap:44px 54px;margin-top:44px;align-items:start}
+.form-caixa{display:grid;grid-template-columns:1.12fr .88fr;gap:46px 54px;margin-top:46px;align-items:start}
 .campos{display:grid;gap:17px}
 .dupla{display:grid;grid-template-columns:1fr 132px;gap:17px}
 .campo{display:grid;gap:7px}
@@ -206,44 +303,53 @@ section{scroll-margin-top:88px}
   font-family:"Barlow",sans-serif;font-size:16px;color:var(--osso);
   background:var(--surface);border:1px solid var(--linha);border-radius:10px;padding:13px 15px;width:100%;
 }
-.campo textarea{min-height:88px;resize:vertical}
+.campo textarea{min-height:92px;resize:vertical}
 .campo input:focus,.campo select:focus,.campo textarea:focus{outline:2px solid var(--amarelo);outline-offset:1px;border-color:transparent}
-.form-nota{font-size:14.5px;color:var(--fumaca);margin-top:2px;max-width:50ch}
-.form-lado{padding:30px 30px 12px;background:var(--surface);border:1px solid var(--linha);border-radius:16px;position:sticky;top:92px}
-.form-lado h3{font-size:19px;margin-bottom:16px}
-.dado{padding:17px 0;border-top:1px solid var(--linha)}
-.dado:first-of-type{border-top:0}
+.form-nota{font-size:14.5px;color:var(--fumaca);margin-top:2px;max-width:52ch}
+.form-lado{padding:30px;background:var(--surface);border:1px solid var(--linha);border-radius:16px;position:sticky;top:96px}
+.form-lado h3{font-size:20px;margin-bottom:16px}
+.dado{padding:0 2px;margin-top:22px}
+.dado:first-of-type{margin-top:0}
+.form-lado h3{position:relative;padding-bottom:16px}
+.form-lado h3::after{content:"";position:absolute;left:0;bottom:0;width:34px;height:2px;background:var(--amarelo)}
 .dado b{display:block;font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--fumaca);margin-bottom:6px}
 .dado span,.dado a{font-size:16px;color:var(--osso);text-decoration:none}
 .dado a:hover{color:var(--amarelo)}
 
 /* ---------- rodapé ---------- */
-.rodape{background:var(--bg-alt);padding:66px 22px 30px}
+.rodape{background:var(--bg-alt);padding:66px 24px 30px}
 .rodape-grade{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:42px}
 .rodape h4{font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--fumaca);margin:0 0 15px}
 .rodape-marca{display:flex;align-items:center;gap:11px;margin-bottom:14px}
-.rodape-marca img{width:36px;height:36px;border-radius:8px}
-.rodape-marca b{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:18px;text-transform:uppercase}
-.rodape-zap{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:30px;line-height:1;text-transform:uppercase;text-decoration:none;display:inline-block;margin-top:4px}
+.rodape-marca img{width:38px;height:38px;border-radius:8px}
+.rodape-marca b{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:19px;text-transform:uppercase}
+.rodape-zap{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:condensed;font-size:31px;line-height:1;text-transform:uppercase;text-decoration:none;display:inline-block;margin-top:4px}
 .rodape-zap:hover{color:var(--amarelo)}
 .rodape ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .rodape ul a,.rodape li span{font-size:15px;color:var(--fumaca);text-decoration:none}
 .rodape ul a:hover{color:var(--osso)}
+.rodape-social{display:flex;gap:12px;margin-top:16px}
+.rodape-social a{width:40px;height:40px;border:1px solid var(--linha);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--fumaca);transition:.18s}
+.rodape-social a:hover{color:var(--amarelo);border-color:var(--amarelo)}
 .rodape-fim{margin-top:48px;padding-top:22px;border-top:1px solid var(--linha);display:flex;flex-wrap:wrap;gap:8px 26px;font-size:13.5px;color:var(--apagado)}
 
-/* entrada sutil (única exceção além da curva) */
+/* entrada progressiva sutil */
 @media (prefers-reduced-motion:no-preference){
-  .sobe{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .sobe{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
   .sobe.visivel{opacity:1;transform:none}
+  .sobe.d1{transition-delay:.07s}.sobe.d2{transition-delay:.14s}.sobe.d3{transition-delay:.21s}
 }
 
 /* ---------- tablet ---------- */
 @media (max-width:1000px){
   .hero h1{font-size:60px}
-  .cabeca h2,.confianca .wrap{}
-  .casos{grid-template-columns:1fr 1fr}
-  .grade-marcas{grid-template-columns:repeat(3,1fr)}
-  .fundador{grid-template-columns:1fr;gap:34px}
+  .cabeca h2{font-size:38px}
+  .casos,.svc-grade{grid-template-columns:1fr 1fr}
+  .estrutura-grade,.fundador{grid-template-columns:1fr;gap:34px}
+  .estrutura-foto{aspect-ratio:16/10}
+  .galeria{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px}
+  .proj--w2{grid-column:span 1}
+  .proj--h2{grid-row:span 1}
   .form-caixa{grid-template-columns:1fr}
   .form-lado{position:static}
   .confianca .wrap{grid-template-columns:1fr;gap:22px}
@@ -252,25 +358,36 @@ section{scroll-margin-top:88px}
 
 /* ---------- celular ---------- */
 @media (max-width:680px){
-  body{font-size:16px}
-  .hero{min-height:88vh}
-  .hero h1{font-size:39px}
-  .hero .lede{font-size:17px}
-  .cabeca h2{font-size:31px}
-  .cobertura h2{font-size:26px}
-  .topo nav{display:none}
-  .topo .btn{margin-left:auto}
-  .bloco{padding:64px 22px}
-  .casos{grid-template-columns:1fr}
-  .equipa{grid-template-columns:1fr}
-  .servicos{grid-template-columns:1fr;gap:0}
-  .grade-marcas{grid-template-columns:repeat(2,1fr)}
+  .hero{min-height:auto;padding-top:72px}
+  .hero-media img,.hero-media video{object-position:70% 42%}
+  .hero h1{font-size:41px}
+  .hero .lede{font-size:17.5px}
+  .hero-prova{gap:18px 22px}
+  .cabeca h2{font-size:32px}
+  .cobertura{padding:28px 0 30px}
+  .grade-marcas{gap:32px;padding-right:32px}
+  .grade-marcas span{height:44px}
+  .grade-marcas img{height:38px;max-width:86px}
+  .faixa h2{font-size:30px}
+  .cta h2{font-size:32px}
   .citacao{font-size:27px}
-  .faixa-foto{height:230px}
+  .topo nav{display:none}
+  .menu-btn{display:block}
+  .topo .btn{display:none}
+  .bloco{padding:66px 22px}
+  .casos,.svc-grade,.galeria{grid-template-columns:1fr}
+  .galeria{grid-auto-rows:230px}
+  .faixa{height:340px}
   .dupla{grid-template-columns:1fr}
   .rodape-grade{grid-template-columns:1fr;gap:34px}
-  .rodape-zap{font-size:25px}
 }
+/* menu celular aberto */
+.movel{position:fixed;inset:0;z-index:70;background:rgba(11,11,12,.97);backdrop-filter:blur(6px);display:none;flex-direction:column;padding:26px 24px;gap:6px}
+.movel.aberto{display:flex}
+.movel-topo{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.movel a{font-family:"Archivo",sans-serif;font-weight:800;font-stretch:condensed;font-size:30px;text-transform:uppercase;text-decoration:none;padding:12px 0;border-bottom:1px solid var(--linha);color:var(--osso)}
+.movel .btn{margin-top:22px;justify-content:center}
+.movel a.btn{color:#0B0B0C;border-bottom:0}
 </style>
 </head>
 <body>
@@ -278,51 +395,121 @@ section{scroll-margin-top:88px}
 <header class="topo">
   <div class="wrap">
     <a class="marca" href="#topo">
-      <img src="assets/logo.png" width="38" height="38" loading="eager" alt="Mullsanni Performance">
-      <b>Mullsanni</b>
+      <img src="assets/logo.png" width="40" height="40" loading="eager" alt="Mullsanni Performance">
+      <b>Mullsanni<small>Performance</small></b>
     </a>
     <nav>
-      <a href="#cobertura">Marcas</a>
+      <a href="#cobertura">Cobertura</a>
       <a href="#prova">Resultados</a>
-      <a href="#estrutura">Estrutura</a>
       <a href="#servicos">Serviços</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#estrutura">A oficina</a>
     </nav>
-    <a class="btn" href="#orcamento">Orçamento</a>
+    <a class="btn" href="#orcamento">Contate-nos</a>
+    <button class="menu-btn" id="abrir-menu" aria-label="Abrir menu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
   </div>
 </header>
+
+<div class="movel" id="menu-movel">
+  <div class="movel-topo">
+    <a class="marca" href="#topo"><img src="assets/logo.png" width="40" height="40" alt=""><b>Mullsanni</b></a>
+    <button class="menu-btn" id="fechar-menu" aria-label="Fechar menu" style="display:block">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+    </button>
+  </div>
+  <a href="#cobertura">Cobertura</a>
+  <a href="#prova">Resultados</a>
+  <a href="#servicos">Serviços</a>
+  <a href="#projetos">Projetos</a>
+  <a href="#estrutura">A oficina</a>
+  <a class="btn" href="#orcamento">Fazer meu orçamento</a>
+</div>
+
+<a class="whatsapp-flutuante zap-link" href="#" target="_blank" rel="noopener" aria-label="Falar com a Mullsanni pelo WhatsApp" title="Falar pelo WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.1-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.1-.3.2-.5a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 5 5 0 0 0 1 2.6 11 11 0 0 0 4.3 3.8c1.6.7 1.9.5 2.3.5a2.5 2.5 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3z"/></svg>
+</a>
 
 <main id="topo">
 
   <!-- 1. HERO -->
   <section class="hero">
-    <div class="hero-foto">
-      <!-- [FALTA: foto final — carro escuro sobre o dinamômetro, à noite, 2400px+]. Placeholder provisório: recorte do Instagram deles. -->
-      <img src="assets/hero-audi-s5.webp" width="2200" height="611" alt="Importado preto em preparação no galpão da Mullsanni Performance, técnico ao lado">
+    <div class="hero-media">
+      <!-- [FALTA: material final em alta do cliente]. Provisório: vídeo real do Instagram deles (GR vermelho na oficina), com o poster como 1º paint e fallback de reduced-motion. Foto anterior do R8 continua em assets/hero-r8.webp. -->
+      <video id="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero-poster.webp" aria-label="Bastidor da oficina Mullsanni Performance: GR vermelho em preparação">
+        <source src="assets/hero-loop.mp4" type="video/mp4">
+      </video>
     </div>
     <div class="wrap">
+      <p class="hero-slogan">Sua paixão, nossa assinatura</p>
       <h1>Potência que passa <em>pela máquina.</em></h1>
-      <p class="lede">Remap, escape e preparação de importados em Lauro de Freitas. Com o mesmo diagnóstico das autorizadas e dinamômetro próprio. O ganho é medido antes e depois, na roda. Não é promessa: é a leitura.</p>
+      <p class="lede">Remap, escape e preparação de importados em Lauro de Freitas. O mesmo diagnóstico das autorizadas, dinamômetro próprio, e o ganho medido antes e depois, na roda.</p>
       <div class="hero-acao">
-        <a class="btn" href="#orcamento">Fazer meu orçamento</a>
-        <div class="hero-prova">
-          <b>+56 whp</b>
-          <span>Mini JCW · medido no dinamômetro</span>
-        </div>
+        <a class="btn" href="#orcamento">Fazer meu orçamento
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn--linha" href="#prova">Ver resultados</a>
+      </div>
+      <div class="hero-prova">
+        <div class="p"><b>+56 <i>whp</i></b><span>Mini JCW · no dinamômetro</span></div>
+        <div class="p"><b>5,0 <i>★</i></b><span>Google · 11 avaliações</span></div>
+        <div class="p"><b>8 <i>marcas</i></b><span>Equipamento de concessionária</span></div>
       </div>
     </div>
-    <p class="hero-credito">Vilas do Atlântico, Lauro de Freitas · BA</p>
+    <p class="hero-credito">Vilas do Atlântico · Lauro de Freitas · BA</p>
   </section>
 
   <!-- 2. COBERTURA -->
   <section class="cobertura" id="cobertura">
-    <div class="wrap">
-      <div class="cobertura-topo">
-        <h2>As marcas que a gente abre</h2>
-        <p>Trabalhamos com o equipamento de diagnóstico das próprias montadoras. Se o seu importado está aqui, a central dele é acessível sem improviso.</p>
-      </div>
+    <div class="marcas-marquee" aria-label="Marcas atendidas pela Mullsanni Performance">
       <div class="grade-marcas">
-        <span>Audi</span><span>BMW</span><span>Porsche</span><span>Mercedes-Benz</span><span>Volkswagen</span>
-        <span>Land Rover</span><span>Jaguar</span><span>Volvo</span><span>Mini</span><span>Peugeot</span>
+        <span><img src="assets/marcas/bmw.svg" width="112" height="62" alt="BMW"></span>
+        <span><img src="assets/marcas/audi.svg" width="112" height="62" alt="Audi"></span>
+        <span><img src="assets/marcas/porsche.svg" width="112" height="62" alt="Porsche"></span>
+        <span><img src="assets/marcas/mercedesbenz.svg" width="112" height="62" alt="Mercedes-Benz"></span>
+        <span><img src="assets/marcas/volkswagen.svg" width="112" height="62" alt="Volkswagen"></span>
+        <span><img src="assets/marcas/landrover-clean.svg" width="112" height="62" alt="Land Rover"></span>
+        <span><img src="assets/marcas/jaguar-animal.png" width="112" height="62" alt="Jaguar"></span>
+        <span><img src="assets/marcas/volvo.svg" width="112" height="62" alt="Volvo"></span>
+        <span><img src="assets/marcas/mini.svg" width="112" height="62" alt="MINI"></span>
+        <span><img src="assets/marcas/peugeot.svg" width="112" height="62" alt="Peugeot"></span>
+      </div>
+      <div class="grade-marcas" aria-hidden="true">
+        <span><img src="assets/marcas/bmw.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/audi.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/porsche.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/mercedesbenz.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/volkswagen.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/landrover-clean.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/jaguar-animal.png" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/volvo.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/mini.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/peugeot.svg" width="112" height="62" alt=""></span>
+      </div>
+      <div class="grade-marcas" aria-hidden="true">
+        <span><img src="assets/marcas/bmw.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/audi.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/porsche.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/mercedesbenz.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/volkswagen.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/landrover-clean.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/jaguar-animal.png" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/volvo.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/mini.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/peugeot.svg" width="112" height="62" alt=""></span>
+      </div>
+      <div class="grade-marcas" aria-hidden="true">
+        <span><img src="assets/marcas/bmw.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/audi.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/porsche.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/mercedesbenz.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/volkswagen.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/landrover-clean.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/jaguar-animal.png" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/volvo.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/mini.svg" width="112" height="62" alt=""></span>
+        <span><img src="assets/marcas/peugeot.svg" width="112" height="62" alt=""></span>
       </div>
     </div>
   </section>
@@ -331,13 +518,12 @@ section{scroll-margin-top:88px}
   <section class="bloco" id="prova">
     <div class="wrap">
       <div class="cabeca sobe">
-        <p class="kicker">Medido no dinamômetro</p>
+        <span class="num-secao">01 · A prova</span>
         <h2>O ganho não se promete.<br><em>Se mede.</em></h2>
-        <p class="lede">Cada carro entra na máquina antes, recebe a calibração e volta. Você sai com a leitura das duas medições. Potência em WHP, na roda, em carros reais que passaram pela oficina.</p>
+        <p class="lede">Cada carro entra na máquina antes, recebe a calibração e volta. Você sai com a leitura das duas medições. Potência na roda, em carros reais que passaram pela oficina.</p>
       </div>
 
-      <!-- assinatura: a curva subindo (motivo visual, desenha uma vez) -->
-      <div class="prova-assinatura reveal">
+      <div class="prova-assinatura reveal sobe">
         <div class="curva-legenda">
           <i class="ant">Antes</i>
           <i class="dep">Depois da calibração</i>
@@ -351,62 +537,79 @@ section{scroll-margin-top:88px}
           <path class="linha-curva linha-antes" d="M0,268 C230,262 360,238 560,205 C760,172 900,150 1180,140"/>
           <path class="linha-curva linha-depois" d="M0,262 C230,250 350,206 540,150 C740,92 900,58 1180,40"/>
         </svg>
-        <p class="curva-nota">Leitura ilustrativa da forma antes × depois. Os números de cada carro estão abaixo, do jeito que saíram da máquina.</p>
+        <p class="curva-nota">Forma ilustrativa do antes × depois. Os números de cada carro estão abaixo, do jeito que saíram da máquina.</p>
       </div>
 
       <div class="casos">
         <article class="caso sobe">
-          <div class="caso-ganho">+56 whp<small>+10 kgfm</small></div>
-          <h3>Mini JCW</h3>
-          <p class="caso-tag">Stage 2 · Gasolina comum</p>
-          <div class="caso-linha">
-            <div class="ant"><span class="rot">Antes</span><span class="val">192 whp · 27 kgfm</span></div>
-            <div class="dep"><span class="rot">Depois</span><span class="val">248 whp · 37 kgfm</span></div>
+          <div class="caso-foto"><img src="assets/car-mini.webp" width="760" height="960" alt="Mini JCW preparado na Mullsanni" loading="lazy"></div>
+          <div class="caso-corpo">
+            <div class="caso-ganho"><span class="conta" data-alvo="56">+56</span> whp<small>+10 kgfm de torque</small></div>
+            <h3>Mini JCW</h3>
+            <p class="caso-tag">Stage 2 · Gasolina comum</p>
+            <div class="caso-medida">
+              <div class="ant"><span class="rot">Antes</span><span class="val">192 whp · 27 kgfm</span></div>
+              <div class="dep"><span class="rot">Depois</span><span class="val">248 whp · 37 kgfm</span></div>
+            </div>
+          </div>
+        </article>
+        <article class="caso sobe d1">
+          <div class="caso-foto"><img src="assets/car-tiguan.webp" width="760" height="960" alt="VW Tiguan preparado na Mullsanni" loading="lazy"></div>
+          <div class="caso-corpo">
+            <div class="caso-ganho"><span class="conta" data-alvo="52">+52</span> whp<small>+14 kgfm de torque</small></div>
+            <h3>VW Tiguan 350 TSI</h3>
+            <p class="caso-tag">Stage 2 · Gasolina comum</p>
+            <div class="caso-medida">
+              <div class="ant"><span class="rot">Antes</span><span class="val">192 whp · 28 kgfm</span></div>
+              <div class="dep"><span class="rot">Depois</span><span class="val">244 whp · 42 kgfm</span></div>
+            </div>
+          </div>
+        </article>
+        <article class="caso sobe d2">
+          <div class="caso-foto"><img src="assets/car-porsche.webp" width="760" height="960" alt="Porsche 718 GTS na Mullsanni" loading="lazy"></div>
+          <div class="caso-corpo">
+            <div class="caso-ganho"><span class="conta" data-alvo="48">+48</span> whp<small>Gasolina podium</small></div>
+            <h3>Porsche 718 GTS 4.0</h3>
+            <p class="caso-tag">Stage 2 · Aspirado</p>
+            <div class="caso-medida">
+              <div class="ant"><span class="rot">Antes</span><span class="val">276 whp · 33 kgfm</span></div>
+              <div class="dep"><span class="rot">Depois</span><span class="val">324 whp · 36 kgfm</span></div>
+            </div>
           </div>
         </article>
         <article class="caso sobe">
-          <div class="caso-ganho">+52 whp<small>+14 kgfm</small></div>
-          <h3>VW Tiguan 350 TSI</h3>
-          <p class="caso-tag">Stage 2 · Gasolina comum</p>
-          <div class="caso-linha">
-            <div class="ant"><span class="rot">Antes</span><span class="val">192 whp · 28 kgfm</span></div>
-            <div class="dep"><span class="rot">Depois</span><span class="val">244 whp · 42 kgfm</span></div>
+          <div class="caso-foto"><img src="assets/car-208.webp" width="760" height="960" alt="Peugeot 208 GT preparado na Mullsanni" loading="lazy"></div>
+          <div class="caso-corpo">
+            <div class="caso-ganho"><span class="conta" data-alvo="33">+33</span> whp<small>+5 kgfm de torque</small></div>
+            <h3>Peugeot 208 GT THP</h3>
+            <p class="caso-tag">Stage 2 · Gasolina comum</p>
+            <div class="caso-medida">
+              <div class="ant"><span class="rot">Antes</span><span class="val">125 whp · 20 kgfm</span></div>
+              <div class="dep"><span class="rot">Depois</span><span class="val">158 whp · 25 kgfm</span></div>
+            </div>
           </div>
         </article>
-        <article class="caso sobe">
-          <div class="caso-ganho">+48 whp<small>Podium</small></div>
-          <h3>Porsche 718 GTS 4.0</h3>
-          <p class="caso-tag">Stage 2 · Aspirado</p>
-          <div class="caso-linha">
-            <div class="ant"><span class="rot">Antes</span><span class="val">276 whp · 33 kgfm</span></div>
-            <div class="dep"><span class="rot">Depois</span><span class="val">324 whp · 36 kgfm</span></div>
+        <article class="caso sobe d1">
+          <div class="caso-foto"><img src="assets/svc-dyno.webp" width="860" height="645" alt="Audi A3 no dinamômetro da Mullsanni" loading="lazy"></div>
+          <div class="caso-corpo">
+            <div class="caso-ganho"><span class="conta" data-alvo="29">+29</span> whp<small>+7 kgfm · downpipe Nova Racing</small></div>
+            <h3>Audi A3 1.4 TFSI</h3>
+            <p class="caso-tag">Stage 2 · Gasolina comum</p>
+            <div class="caso-medida">
+              <div class="ant"><span class="rot">Antes</span><span class="val">123 whp · 21 kgfm</span></div>
+              <div class="dep"><span class="rot">Depois</span><span class="val">152 whp · 28 kgfm</span></div>
+            </div>
           </div>
         </article>
-        <article class="caso sobe">
-          <div class="caso-ganho">+33 whp<small>+5 kgfm</small></div>
-          <h3>Peugeot 208 GT THP</h3>
-          <p class="caso-tag">Stage 2 · Gasolina comum</p>
-          <div class="caso-linha">
-            <div class="ant"><span class="rot">Antes</span><span class="val">125 whp · 20 kgfm</span></div>
-            <div class="dep"><span class="rot">Depois</span><span class="val">158 whp · 25 kgfm</span></div>
-          </div>
-        </article>
-        <article class="caso sobe">
-          <div class="caso-ganho">+29 whp<small>+7 kgfm</small></div>
-          <h3>Audi A3 1.4 TFSI</h3>
-          <p class="caso-tag">Stage 2 · Downpipe Nova Racing</p>
-          <div class="caso-linha">
-            <div class="ant"><span class="rot">Antes</span><span class="val">123 whp · 21 kgfm</span></div>
-            <div class="dep"><span class="rot">Depois</span><span class="val">152 whp · 28 kgfm</span></div>
-          </div>
-        </article>
-        <article class="caso sobe">
-          <div class="caso-ganho">+21 whp<small>+7 kgfm</small></div>
-          <h3>VW Nivus 200 TSI</h3>
-          <p class="caso-tag">Stage 1 · Sem delay de acelerador</p>
-          <div class="caso-linha">
-            <div class="ant"><span class="rot">Antes</span><span class="val">90 whp · 13 kgfm</span></div>
-            <div class="dep"><span class="rot">Depois</span><span class="val">111 whp · 20 kgfm</span></div>
+        <article class="caso caso--tipo sobe d2">
+          <div class="caso-corpo">
+            <div class="caso-ganho"><span class="conta" data-alvo="21">+21</span> whp<small>+7 kgfm · sem delay de acelerador</small></div>
+            <h3>VW Nivus 200 TSI</h3>
+            <p class="caso-tag">Stage 1 · Gasolina comum</p>
+            <div class="caso-medida">
+              <div class="ant"><span class="rot">Antes</span><span class="val">90 whp · 13 kgfm</span></div>
+              <div class="dep"><span class="rot">Depois</span><span class="val">111 whp · 20 kgfm</span></div>
+            </div>
           </div>
         </article>
       </div>
@@ -414,70 +617,137 @@ section{scroll-margin-top:88px}
     </div>
   </section>
 
-  <!-- faixa de oficina -->
-  <div class="faixa-foto">
-    <img src="assets/foto-tt.webp" width="1800" height="500" alt="Importado preparado no interior da oficina Mullsanni Performance" loading="lazy">
+  <!-- faixa de movimento (vídeo real da oficina) -->
+  <div class="faixa">
+    <!-- vídeo real da oficina; poster e fallback é foto real. Sem áudio, decorativo. -->
+    <video autoplay muted loop playsinline poster="assets/poster-faixa.webp" id="faixa-video" aria-hidden="true">
+      <source src="assets/faixa-loop.mp4" type="video/mp4">
+      <img src="assets/poster-faixa.webp" width="1280" height="720" alt="Esportivo em preparação na oficina Mullsanni Performance">
+    </video>
+    <div class="wrap">
+      <h2>Cada carro é <em>um projeto.</em></h2>
+      <p>Da preparação mais básica ao acerto mais ousado, com olho no detalhe e o resultado medido antes de sair.</p>
+    </div>
   </div>
 
-  <!-- 4. ESTRUTURA -->
-  <section class="bloco bloco--grafite" id="estrutura">
+  <!-- 4. SERVIÇOS -->
+  <section class="bloco bloco--grafite" id="servicos">
     <div class="wrap">
       <div class="cabeca sobe">
-        <p class="kicker">Por que aqui</p>
-        <h2>A oficina tem o que <em>a maioria terceiriza</em></h2>
-        <p class="lede">A diferença de um preparador não está no cavalo que ele promete, está na máquina que ele tem para provar e no software que ele desenvolve.</p>
+        <span class="num-secao">02 · O que fazemos</span>
+        <h2>Do diagnóstico à <em>preparação</em></h2>
+        <p class="lede">Tudo no mesmo lugar, com o carro sempre passando pela máquina antes de sair.</p>
       </div>
-      <div class="equipa sobe">
-        <div class="equipa-item">
-          <h3>Scanner original das montadoras</h3>
-          <p>Os mesmos equipamentos de diagnóstico e configuração usados pelas concessionárias. É o que permite mexer em módulo de importado sem gambiarra.</p>
-          <p class="marcas-scanner">Audi · BMW · Jaguar · Mercedes-Benz · Lamborghini · Land Rover · Porsche · Volvo</p>
-        </div>
-        <div class="equipa-item">
-          <h3>Dinamômetro Servitec, aqui dentro</h3>
-          <p>O carro é medido antes e depois na própria oficina. Quem não tem dinamômetro entrega o ganho no papel, ou manda o carro medir em outro lugar.</p>
-        </div>
-        <div class="equipa-item">
-          <h3>Calibração desenvolvida, não arquivo comprado</h3>
-          <p>Representante oficial ACF Performance: o mapa é desenvolvido para o seu carro e ajustado ao combustível e ao hardware que ele tem. Dá para pedir detalhe: abrir válvula de escape, tirar cold start ou mudar o corte de giro.</p>
-        </div>
-        <div class="equipa-item">
-          <h3>Escape fabricado sob medida</h3>
-          <p>Downpipe e catback em aço inox pela Nova Racing, dimensionados para a motorização, no lugar de peça universal adaptada na marra.</p>
-        </div>
+      <div class="svc-grade">
+        <article class="svc sobe">
+          <div class="svc-foto"><img src="assets/svc-scanner.webp" width="860" height="645" alt="Diagnóstico e reprogramação de central" loading="lazy"></div>
+          <div class="svc-corpo"><span class="svc-num">01</span><h3>Remap de ECU e TCU</h3><p>Calibração Stage 1 e Stage 2 do motor e do câmbio, desenvolvida para o seu carro e medida no dinamômetro.</p></div>
+        </article>
+        <article class="svc sobe d1">
+          <div class="svc-foto"><img src="assets/svc-motor.webp" width="860" height="645" alt="Manutenção de importado na oficina" loading="lazy"></div>
+          <div class="svc-corpo"><span class="svc-num">02</span><h3>Manutenção de importados</h3><p>Revisão e reparo com scanner original da montadora, incluindo configuração de módulo que oficina comum não acessa.</p></div>
+        </article>
+        <article class="svc sobe d2">
+          <div class="svc-foto"><img src="assets/svc-escape.webp" width="860" height="645" alt="Downpipe e catback em inox sob medida" loading="lazy"></div>
+          <div class="svc-corpo"><span class="svc-num">03</span><h3>Escape e downpipe em inox</h3><p>Catback e downpipe fabricados sob medida em aço inox, dimensionados para a motorização, no lugar de peça universal.</p></div>
+        </article>
+        <article class="svc sobe">
+          <div class="svc-foto"><img src="assets/svc-fogo.webp" width="860" height="645" alt="Ajuste de dirigibilidade e válvula de escape" loading="lazy"></div>
+          <div class="svc-corpo"><span class="svc-num">04</span><h3>Ajustes de dirigibilidade</h3><p>Remoção do atraso do acelerador, controle da válvula de escape, cold start e outros acertos pedidos pelo dono.</p></div>
+        </article>
+        <article class="svc sobe d1">
+          <div class="svc-foto"><img src="assets/car-208.webp" width="760" height="960" alt="Carro no dinamômetro para aferição" loading="lazy"></div>
+          <div class="svc-corpo"><span class="svc-num">05</span><h3>Aferição em dinamômetro</h3><p>Medição de potência e torque na roda, com a leitura antes e depois entregue a você. Servitec próprio.</p></div>
+        </article>
+        <article class="svc sobe d2">
+          <div class="svc-foto"><img src="assets/svc-oficina.webp" width="860" height="645" alt="Diagnóstico de módulo em importado" loading="lazy"></div>
+          <div class="svc-corpo"><span class="svc-num">06</span><h3>Diagnóstico de módulo</h3><p>Leitura e configuração de central em veículo importado, o que a oficina comum não tem equipamento para acessar.</p></div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- 5. SERVIÇOS -->
-  <section class="bloco bloco--amarelo" id="servicos">
+  <!-- 5. ESTRUTURA -->
+  <section class="bloco" id="estrutura">
     <div class="wrap">
-      <div class="cabeca">
-        <h2>Do diagnóstico à preparação</h2>
-        <p class="lede">Tudo no mesmo lugar, com o carro sempre passando pela máquina.</p>
+      <div class="cabeca sobe">
+        <span class="num-secao">03 · Por que aqui</span>
+        <h2>A oficina tem o que <em>a maioria terceiriza</em></h2>
+        <p class="lede">A diferença de um preparador não está no cavalo que ele promete, e sim na máquina que ele tem para provar e no software que ele desenvolve.</p>
       </div>
-      <div class="servicos">
-        <div class="servico"><span class="n">01</span><div><h3>Remap de ECU e TCU</h3><p>Calibração Stage 1 e Stage 2 do motor e do câmbio, desenvolvida para o seu veículo e medida no dinamômetro.</p></div></div>
-        <div class="servico"><span class="n">02</span><div><h3>Manutenção de importados</h3><p>Revisão e reparo com scanner original da montadora, incluindo configuração de módulo que oficina comum não acessa.</p></div></div>
-        <div class="servico"><span class="n">03</span><div><h3>Escape e downpipe em inox</h3><p>Catback e downpipe fabricados sob medida em aço inox, dimensionados para a motorização.</p></div></div>
-        <div class="servico"><span class="n">04</span><div><h3>Ajustes de dirigibilidade</h3><p>Remoção do atraso do acelerador, controle da válvula de escape, cold start e outros acertos pedidos pelo dono.</p></div></div>
-        <div class="servico"><span class="n">05</span><div><h3>Aferição em dinamômetro</h3><p>Medição de potência e torque na roda, com a leitura antes e depois entregue a você.</p></div></div>
-        <div class="servico"><span class="n">06</span><div><h3>Diagnóstico de módulo</h3><p>Leitura e configuração de central em veículo importado, incluindo o que a oficina comum não tem equipamento para acessar.</p></div></div>
+      <div class="estrutura-grade">
+        <div class="equipa sobe">
+          <div class="equipa-item">
+            <h3>Scanner original das montadoras</h3>
+            <p>Os mesmos equipamentos de diagnóstico e configuração usados pelas concessionárias. É o que permite mexer em módulo de importado sem gambiarra.</p>
+            <p class="marcas-scanner">Audi · BMW · Jaguar · Mercedes-Benz · Lamborghini · Land Rover · Porsche · Volvo</p>
+          </div>
+          <div class="equipa-item">
+            <h3>Dinamômetro Servitec, aqui dentro</h3>
+            <p>O carro é medido antes e depois na própria oficina. Quem não tem dinamômetro entrega o ganho no papel ou manda o carro medir em outro lugar.</p>
+          </div>
+          <div class="equipa-item">
+            <h3>Calibração desenvolvida, não arquivo comprado</h3>
+            <p>Representante oficial ACF Performance: o mapa é desenvolvido para o seu carro e ajustado ao combustível e ao hardware que ele tem.</p>
+          </div>
+          <div class="equipa-item">
+            <h3>Escape fabricado sob medida</h3>
+            <p>Downpipe e catback em aço inox pela Nova Racing, dimensionados para a motorização, no lugar de peça universal adaptada na marra.</p>
+          </div>
+        </div>
+        <figure class="estrutura-foto sobe d1">
+          <img src="assets/estrutura.webp" width="860" height="645" alt="Importado preparado dentro da oficina Mullsanni Performance" loading="lazy">
+          <figcaption>Disciplina técnica · resultados medidos</figcaption>
+        </figure>
       </div>
     </div>
   </section>
 
-  <!-- 6. QUEM FAZ -->
+  <!-- 6. PROJETOS -->
+  <section class="bloco bloco--grafite" id="projetos">
+    <div class="wrap">
+      <div class="cabeca sobe">
+        <span class="num-secao">04 · Projetos</span>
+        <h2>Resultados que <em>falam mais alto</em></h2>
+        <p class="lede">Cada carro que entra é tratado como um projeto. Uma parte do que já passou pela oficina.</p>
+      </div>
+      <div class="galeria sobe">
+        <figure class="proj proj--w2 proj--h2"><img src="assets/car-r8.webp" width="760" height="960" alt="Audi R8 V10 preparado na Mullsanni" loading="lazy"><figcaption><span>Stage 1 · sob medida</span><b>Audi R8 V10 Plus</b></figcaption></figure>
+        <figure class="proj"><img src="assets/car-porsche.webp" width="760" height="960" alt="Porsche 718 GTS" loading="lazy"><figcaption><span>Stage 2 · +48 whp</span><b>Porsche 718 GTS</b></figcaption></figure>
+        <figure class="proj"><img src="assets/car-mini.webp" width="760" height="960" alt="Mini JCW" loading="lazy"><figcaption><span>Stage 2 · +56 whp</span><b>Mini JCW</b></figcaption></figure>
+        <figure class="proj proj--w2"><img src="assets/car-civic.webp" width="760" height="960" alt="Honda Civic Type R" loading="lazy"><figcaption><span>Preparação</span><b>Honda Civic Type R</b></figcaption></figure>
+        <figure class="proj"><img src="assets/car-tiguan.webp" width="760" height="960" alt="VW Tiguan 350 TSI" loading="lazy"><figcaption><span>Stage 2 · +52 whp</span><b>VW Tiguan 350</b></figcaption></figure>
+        <figure class="proj"><img src="assets/car-civic-azul.webp" width="760" height="960" alt="Honda Civic no dinamômetro" loading="lazy"><figcaption><span>Aferição no dyno</span><b>Honda Civic</b></figcaption></figure>
+        <figure class="proj proj--w2"><img src="assets/car-208.webp" width="760" height="960" alt="Peugeot 208 GT THP" loading="lazy"><figcaption><span>Stage 2 · +33 whp</span><b>Peugeot 208 GT</b></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. CTA amarelo -->
+  <section class="cta">
+    <div class="wrap">
+      <div>
+        <h2>Pronto para levar seu carro <em style="color:#0B0B0C;-webkit-text-stroke:0">mais longe?</em></h2>
+        <p>Agende um horário e fale com a gente. Atendimento técnico e sem enrolação.</p>
+      </div>
+      <a class="btn btn--preto zap-link" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.1-.3.2-.5a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 5 5 0 0 0 1 2.6 11 11 0 0 0 4.3 3.8c1.6.7 1.9.5 2.3.5a2.5 2.5 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3z"/></svg>
+        Chamar no WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- 8. QUEM FAZ -->
   <section class="bloco" id="equipe">
     <div class="wrap">
       <div class="cabeca sobe">
-        <p class="kicker">Quem põe a mão no seu carro</p>
+        <span class="num-secao">05 · Quem faz</span>
       </div>
       <div class="fundador sobe">
-        <div class="fundador-foto">
-          <!-- [FALTA: foto de Jordan e Nelson na oficina, alta resolução] -->
-          <div class="fundador-falta">[ foto de Jordan e Nelson<br>na oficina, a confirmar ]</div>
-        </div>
+        <figure class="fundador-foto">
+          <img src="assets/socios.webp" width="1000" height="760" alt="Jordan e Nelson, sócios da Mullsanni Performance, na oficina">
+          <figcaption>Jordan e Nelson · na oficina</figcaption>
+        </figure>
         <div>
           <p class="citacao">"Cada carro que entra aqui não é só mais um. É um projeto que a gente abraça <em>como se fosse nosso.</em>"</p>
           <div class="assina">
@@ -497,7 +767,7 @@ section{scroll-margin-top:88px}
     </div>
   </section>
 
-  <!-- 7. CONFIANÇA -->
+  <!-- 9. CONFIANÇA -->
   <section class="confianca">
     <div class="wrap">
       <div class="selo-c">
@@ -515,12 +785,12 @@ section{scroll-margin-top:88px}
     </div>
   </section>
 
-  <!-- 8. ORÇAMENTO -->
+  <!-- 10. ORÇAMENTO -->
   <section class="bloco bloco--grafite" id="orcamento">
     <div class="wrap">
       <div class="cabeca sobe">
-        <p class="kicker">Orçamento</p>
-        <h2>Comece pelo seu carro</h2>
+        <span class="num-secao">06 · Orçamento</span>
+        <h2>Comece pelo <em>seu carro</em></h2>
         <p class="lede">Conta o que você tem e o que quer resolver. A gente responde o que dá para fazer, o que muda na prática e quanto custa. E se não valer a pena, a resposta é essa.</p>
       </div>
       <div class="form-caixa">
@@ -589,11 +859,16 @@ section{scroll-margin-top:88px}
     <div class="rodape-grade">
       <div>
         <div class="rodape-marca">
-          <img src="assets/logo.png" width="36" height="36" alt="" aria-hidden="true">
+          <img src="assets/logo.png" width="38" height="38" alt="" aria-hidden="true">
           <b>Mullsanni Performance</b>
         </div>
         <h4>Orçamento</h4>
         <a class="rodape-zap zap-link" href="#" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        <div class="rodape-social">
+          <a href="https://instagram.com/mullsanniperformance" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
       </div>
       <div>
         <h4>A oficina</h4>
@@ -609,8 +884,8 @@ section{scroll-margin-top:88px}
         <ul>
           <li><a href="#cobertura">Marcas atendidas</a></li>
           <li><a href="#prova">Resultados medidos</a></li>
-          <li><a href="#estrutura">Estrutura da oficina</a></li>
           <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#projetos">Projetos</a></li>
           <li><a href="#orcamento">Orçamento</a></li>
         </ul>
       </div>
@@ -625,10 +900,7 @@ section{scroll-margin-top:88px}
 
 <script>
 // WhatsApp de atendimento — [FALTA: confirmar]. Google: (71) 98693-9994; bio Instagram: (71) 3599-7963.
-// Mantido o da bio como melhor palpite atual; trocar quando o cliente confirmar.
 var WHATS = '557135997963';
-
-// preenche todos os links de WhatsApp da página
 (function(){
   var base = 'https://wa.me/' + WHATS;
   document.querySelectorAll('.zap-link').forEach(function(a){
@@ -652,6 +924,16 @@ document.getElementById('form-orcamento').addEventListener('submit', function(e)
   window.open('https://wa.me/' + WHATS + '?text=' + encodeURIComponent(linhas.join('\n')), '_blank', 'noopener');
 });
 
+// menu celular
+(function(){
+  var abrir = document.getElementById('abrir-menu');
+  var fechar = document.getElementById('fechar-menu');
+  var menu = document.getElementById('menu-movel');
+  if(abrir) abrir.addEventListener('click', function(){ menu.classList.add('aberto'); });
+  if(fechar) fechar.addEventListener('click', function(){ menu.classList.remove('aberto'); });
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ menu.classList.remove('aberto'); }); });
+})();
+
 // sombra do cabeçalho ao rolar
 (function(){
   var topo = document.querySelector('.topo');
@@ -659,25 +941,57 @@ document.getElementById('form-orcamento').addEventListener('submit', function(e)
   marcar(); window.addEventListener('scroll', marcar, {passive:true});
 })();
 
-// motion mínimo: a curva do dyno desenha uma vez; blocos sobem sutil. Guardado por reduced-motion.
+// motion: curva desenha uma vez, blocos sobem, contador dos ganhos reais. Guardado por reduced-motion.
 (function(){
   var reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // mede o comprimento real de cada traço da curva para o desenho ser exato
+  // hero: sem movimento, mostra só o poster (o vídeo fica no 1º frame, sem tocar)
+  var hv = document.getElementById('hero-video');
+  if (hv && reduz){ try { hv.removeAttribute('autoplay'); hv.pause(); } catch(e){} }
+
   document.querySelectorAll('.linha-curva').forEach(function(p){
     try { p.style.setProperty('--len', Math.ceil(p.getTotalLength())); } catch(e){}
   });
 
+  function contar(el){
+    var alvo = parseInt(el.getAttribute('data-alvo'), 10) || 0;
+    if (reduz){ el.textContent = '+' + alvo; return; }
+    var ini = null, dur = 1100;
+    function passo(t){
+      if(!ini) ini = t;
+      var p = Math.min((t - ini) / dur, 1);
+      var val = Math.round((0.2 + 0.8*p) * p * alvo); // ease-out simples
+      el.textContent = '+' + Math.min(val, alvo);
+      if (p < 1) requestAnimationFrame(passo); else el.textContent = '+' + alvo;
+    }
+    requestAnimationFrame(passo);
+  }
+
   if (reduz || !('IntersectionObserver' in window)){
     document.querySelectorAll('.sobe,.reveal').forEach(function(el){ el.classList.add('visivel'); });
+    document.querySelectorAll('.conta').forEach(contar);
     return;
   }
   var io = new IntersectionObserver(function(entradas){
     entradas.forEach(function(en){
-      if (en.isIntersecting){ en.target.classList.add('visivel'); io.unobserve(en.target); }
+      if (en.isIntersecting){
+        en.target.classList.add('visivel');
+        en.target.querySelectorAll && en.target.querySelectorAll('.conta').forEach(function(c){
+          if(!c.dataset.feito){ c.dataset.feito = '1'; contar(c); }
+        });
+        io.unobserve(en.target);
+      }
     });
-  }, { threshold: .18, rootMargin: '0px 0px -8% 0px' });
+  }, { threshold: .16, rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.sobe,.reveal').forEach(function(el){ io.observe(el); });
+
+  // fallback: revela o que já está na tela após 1.6s (trava de duas camadas)
+  setTimeout(function(){
+    document.querySelectorAll('.sobe,.reveal').forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight) el.classList.add('visivel');
+    });
+  }, 1600);
 })();
 </script>
 

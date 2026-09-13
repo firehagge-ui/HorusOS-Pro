@@ -1,0 +1,166 @@
+<!doctype html>
+<!--
+  Roleta de cupons — VARIANTE VÍDEO-PAUSA (a assinatura da High Torque Store)
+  ==========================================================================
+  Mecanismo: uma roda gira em loop contínuo; o visitante "pausa" e o overlay
+  revela quanto ganhou. É a versão que funciona em reel/story ("dê play, pause
+  a roleta, descubra o %"). Aqui a roda é CSS animada — no site real é um <video>
+  pré-renderizado em loop. Troca documentada no fim.
+
+  Duas honestidades possíveis (escolha a sua em MODO):
+   'decidido'  → o prêmio é sorteado por peso ANTES; pausar só dispara a
+                 aterrissagem no segmento já escolhido. É como as lojas fazem
+                 (o % é decisão de campanha, não sorte). O pause é encenação.
+   'reflexo'   → vale o segmento que estiver sob a agulha no instante do pause.
+                 Honesto e divertido, mas o visitante controla o resultado
+                 (cronometra o clique). Use só se puder pagar todos os prêmios.
+
+  Trava: gamificação de cupom NÃO passa em cliente regulado (saúde). Serve varejo.
+-->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Roleta vídeo-pausa</title>
+<style>
+  :root {
+    --acento: #e4002b; --bg: #0e0e12; --superf: #16161d; --tinta: #f5f5f7;
+    --tinta-fraca: #a6a6b0; --borda: #2a2a36; --fatia-a: #1f1f2b; --fatia-b: #e4002b;
+  }
+  body { margin: 0; background: var(--bg); color: var(--tinta);
+    font-family: system-ui, sans-serif; display: grid; place-items: center;
+    min-height: 100vh; padding: 24px; }
+  .vp { max-width: 380px; width: 100%; text-align: center; }
+  .vp h1 { font-size: 2rem; line-height: 1.1; margin: 0 0 6px; }
+  .vp p.sub { color: var(--tinta-fraca); margin: 0 0 18px; font-size: .95rem; }
+  .vp__palco { position: relative; width: 300px; max-width: 100%; margin: 0 auto; cursor: pointer; }
+  .vp__agulha { position: absolute; top: -4px; left: 50%; transform: translateX(-50%); z-index: 3;
+    width: 0; height: 0; border-left: 14px solid transparent; border-right: 14px solid transparent;
+    border-top: 24px solid var(--acento); filter: drop-shadow(0 2px 2px rgba(0,0,0,.6)); }
+  /* a "tela do vídeo": aqui é o SVG girando; troque por <video> (ver rodapé) */
+  .vp__disco { width: 100%; height: auto; display: block; border-radius: 50%;
+    border: 6px solid var(--borda); box-shadow: 0 8px 40px rgba(0,0,0,.45);
+    animation: girar 2.4s linear infinite; }
+  .vp__palco.parado .vp__disco { animation-play-state: paused; }
+  /* no modo 'decidido', ao parar trocamos pra uma transição que aterrissa suave */
+  .vp__palco.aterrissar .vp__disco { animation: none;
+    transition: transform 1.6s cubic-bezier(.13,.7,.2,1); }
+  @keyframes girar { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .vp__disco { animation-duration: 6s; } }
+
+  .vp__hint { margin-top: 14px; font-weight: 700; letter-spacing: .04em; color: var(--acento); }
+  .vp__result { margin-top: 16px; background: var(--superf); border: 1px solid var(--borda);
+    border-radius: 14px; padding: 18px; }
+  .vp__result[hidden] { display: none; }
+  .vp__ganhou { font-size: 1.5rem; margin: 0 0 8px; color: var(--acento); }
+  .vp__cupom { font-family: ui-monospace, Menlo, monospace; font-size: 1.2rem; font-weight: 700;
+    letter-spacing: .1em; padding: 10px 16px; background: var(--bg);
+    border: 1px dashed var(--acento); border-radius: 8px; display: inline-block; }
+  .vp__cta { display: inline-block; margin-top: 14px; padding: 13px 22px; background: var(--acento);
+    color: #fff; border: 0; border-radius: 10px; font-weight: 700; text-decoration: none; cursor: pointer; }
+</style>
+
+<div class="vp">
+  <h1>Pause e ganhe</h1>
+  <p class="sub">Toque na roleta pra parar. Onde parar, é seu desconto.</p>
+
+  <div class="vp__palco" id="palco" role="button" tabindex="0" aria-label="Toque para pausar a roleta">
+    <div class="vp__agulha" aria-hidden="true"></div>
+    <svg class="vp__disco" id="disco" viewBox="0 0 200 200" aria-hidden="true"></svg>
+  </div>
+  <p class="vp__hint" id="hint">👆 toque para pausar</p>
+
+  <div class="vp__result" id="result" hidden aria-live="polite">
+    <h2 class="vp__ganhou" id="ganhou"></h2>
+    <div class="vp__cupom" id="cupom"></div>
+    <div><a class="vp__cta" href="#loja">Usar agora</a></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var MODO = "decidido"; // "decidido" | "reflexo"
+  var PREMIOS = [
+    { rotulo: "5% OFF",  cupom: "GIROU5",  peso: 30 },
+    { rotulo: "10% OFF", cupom: "GIROU10", peso: 24 },
+    { rotulo: "Frete grátis", cupom: "FRETEGIRO", peso: 18 },
+    { rotulo: "15% OFF", cupom: "GIROU15", peso: 12 },
+    { rotulo: "Brinde",  cupom: "BRINDEGIRO", peso: 9 },
+    { rotulo: "20% OFF", cupom: "GIROU20", peso: 4 },
+  ];
+  var N = PREMIOS.length, ang = 360 / N, ns = "http://www.w3.org/2000/svg";
+  var palco = document.getElementById('palco'), disco = document.getElementById('disco');
+  var hint = document.getElementById('hint'), result = document.getElementById('result');
+  var parado = false;
+
+  function cssvar(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+  function polar(cx,cy,r,g){ var a=(g-90)*Math.PI/180; return [cx+r*Math.cos(a), cy+r*Math.sin(a)]; }
+  PREMIOS.forEach(function(p,i){
+    var A=polar(100,100,100,i*ang), B=polar(100,100,100,(i+1)*ang);
+    var path=document.createElementNS(ns,"path");
+    path.setAttribute("d","M100,100 L"+A[0]+","+A[1]+" A100,100 0 0 1 "+B[0]+","+B[1]+" Z");
+    path.setAttribute("fill", i%2?cssvar('--fatia-b'):cssvar('--fatia-a'));
+    disco.appendChild(path);
+    var m=i*ang+ang/2, t=polar(100,100,62,m);
+    var tx=document.createElementNS(ns,"text");
+    tx.setAttribute("x",t[0]); tx.setAttribute("y",t[1]); tx.setAttribute("fill","#fff");
+    tx.setAttribute("font-size","9"); tx.setAttribute("font-weight","700"); tx.setAttribute("text-anchor","middle");
+    tx.setAttribute("transform","rotate("+m+" "+t[0]+" "+t[1]+")"); tx.textContent=p.rotulo;
+    disco.appendChild(tx);
+  });
+
+  // sorteio por peso (em produção: backend). Decidido na carga.
+  function sortear(){ var tot=PREMIOS.reduce(function(s,p){return s+p.peso;},0), x=Math.random()*tot;
+    for(var i=0;i<N;i++){ x-=PREMIOS[i].peso; if(x<=0) return i; } return N-1; }
+  var decidido = sortear();
+
+  function segmentoSobAgulha(){
+    // lê a rotação atual do disco e calcula qual fatia está no topo
+    var st = getComputedStyle(disco).transform;
+    var deg = 0;
+    if (st && st !== "none"){ var m=st.match(/matrix\(([^)]+)\)/);
+      if(m){ var v=m[1].split(","); deg = Math.round(Math.atan2(parseFloat(v[1]),parseFloat(v[0]))*180/Math.PI); } }
+    deg = ((deg % 360) + 360) % 360;
+    // topo = 0°; fatia i ocupa [i*ang,(i+1)*ang) girada por -deg
+    var idx = Math.floor((((360 - deg) % 360)) / ang) % N;
+    return idx;
+  }
+
+  function revelar(idx){
+    var p = PREMIOS[idx];
+    document.getElementById('ganhou').textContent = "🎉 " + p.rotulo;
+    document.getElementById('cupom').textContent = p.cupom;
+    result.hidden = false; hint.textContent = "cupom liberado ✓";
+  }
+
+  function parar(){
+    if (parado) return; parado = true;
+    if (MODO === "reflexo"){
+      palco.classList.add('parado');           // congela onde está
+      revelar(segmentoSobAgulha());
+    } else {
+      // decidido: aterrissa o segmento sorteado sob a agulha
+      var alvo = 360*2 + (360 - (decidido*ang + ang/2));
+      palco.classList.add('aterrissar');
+      requestAnimationFrame(function(){ disco.style.transform = "rotate("+alvo+"deg)"; });
+      disco.addEventListener('transitionend', function(){ revelar(decidido); }, { once:true });
+    }
+  }
+  palco.addEventListener('click', parar);
+  palco.addEventListener('keydown', function(e){ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); parar(); } });
+})();
+</script>
+
+<!--
+  TROCAR O SVG POR VÍDEO REAL (como a High Torque faz):
+  1) Substitua <svg class="vp__disco"> por:
+       <video class="vp__disco" src="roda.mp4" autoplay muted loop playsinline></video>
+     (autoplay muted é o que deixa o vídeo tocar sozinho no mobile)
+  2) No modo 'reflexo': ao pausar chame video.pause() e leia video.currentTime pra
+     mapear o frame → segmento (você precisa saber em que segundo cada fatia passa
+     pela agulha no seu vídeo).
+  3) No modo 'decidido': o vídeo é só ilustração; ao pausar, esconda o vídeo e
+     mostre uma imagem final com o segmento sorteado destacado. Mais simples e
+     não depende de sincronizar frame.
+  Recomendação: 'decidido' + imagem final. Sincronizar frame de vídeo com prêmio
+  é frágil (o vídeo trava, o mobile arredonda currentTime) — foi onde essas
+  roletas de vídeo mais quebram.
+-->

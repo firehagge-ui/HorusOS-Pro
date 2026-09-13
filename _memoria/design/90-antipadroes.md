@@ -215,6 +215,16 @@ arquivo.
 → *Origem: site da Hórus, 05/08/2026. Vale para toda a família de regra que mede
 espaço, não só `cramped-padding`.*
 
+**Recuo lateral que mora só no `.wrap`, não na seção colorida.** A tentação é centralizar
+o conteúdo com um `.wrap` de largura fixa que carrega o `padding-inline`, e deixar a seção
+com `padding: <vertical> 0`. Numa seção de fundo próprio (a faixa amarela, o bloco grafite,
+o rodapé) isso faz o **fundo colorido ir de borda a borda com recuo lateral 0**, e o detector
+marca `cramped-padding` porque mede a seção, não o wrap de dentro. O recuo lateral mora na
+**seção que tem o fundo**; o `.wrap` só centraliza. Mesma família do "recuo zerado só num
+breakpoint" acima, e o sintoma some quando o padding volta pra seção.
+→ *Origem: Mullsanni Performance, rodada 4, 12/09/2026. 26 achados de `cramped-padding` de
+uma vez, todos porque o padding lateral tinha subido pro `.wrap`.*
+
 **Fio em cima e embaixo de cada linha de lista.** Escolhe um, e usa com parcimônia.
 Tabela de dez linhas com fio em cada uma é o layout mais preguiçoso que existe.
 
@@ -322,6 +332,30 @@ muda de rosto; o texto passa a ser legível.
 → *Origem: Grão da Serra, 05/08/2026. O creme do mockup (`#E4D0B4`) foi clareado
 para `#F8E4CF` porque com ele NENHUM degrau de dourado fechava. Mesma família do
 caso da Aion em `99-checklist.md` §2.5.*
+
+**Número e frase tirados de um mockup de IA entram sem passar pela régua da verdade.**
+Irmã da regra de cima, agora para conteúdo, não cor. Quando o Marcelo manda uma referência
+de landing feita no ChatGPT, ela vem com os placeholders bonitos que o modelo sempre gera:
+"+8 anos de experiência", "+500 projetos", "+98% de clientes satisfeitos", depoimento com
+nome e estrela. **Nada disso é do cliente** — é enchimento de layout. Antes de copiar a
+referência, cada número, credencial e depoimento passa pelo `integridade.md`: o que o
+cliente não confirmou vira prova real (o que ele tem) ou `[FALTA: ...]`, nunca o número do
+mockup. O que se reaproveita da referência é a **estrutura e a hierarquia**, não os dados.
+→ *Origem: Mullsanni Performance, rodada 4, 12/09/2026. A referência dizia "+8 anos" numa
+empresa aberta há 1 ano; virou o ganho de dyno real, o 5,0★ do Google e a credencial ACF.*
+
+**Acento por reflexo de segmento (o "preto + vermelho" da performance).** O modelo,
+pedido um site de oficina/tuning, vai sozinho para fundo preto e acento vermelho, porque
+é o que o segmento faz em média. O reflexo tem dois furos: (1) **premium não é dark
+obrigatório** — o Brabus, o mais caro do gênero, é **branco editorial**, com a foto do
+carro carregando toda a cor; e (2) **o acento tem que diferenciar, não seguir o rebanho**
+— o Manhart troca o vermelho pelo **âmbar** e é o que faz lembrar da marca num nicho todo
+igual. Escolher a cor pela promessa da marca e pela diferenciação, com a régua de
+contraste, nunca pelo automático do setor. Não confundir com o vermelho de uma marca
+real: se a logo do cliente é vermelha, entra chapado e medido, como qualquer cor de marca.
+→ *Origem: estudo Brabus + ABT + Manhart para o Mullsanni, 12/09/2026
+(`referencias/tuning-alemao-premium-tres-sites.md`). Reforça o antipadrão "vermelho-chumbo
+genérico" já registrado no acervo de performance.*
 
 **Texto com gradiente.** Ênfase se faz com peso ou tamanho. Gradiente em letra
 some no celular, quebra no modo escuro e não copia direito.
@@ -730,6 +764,26 @@ quase sempre em `padding` e `margin` entre seções, e o sintoma é uma seção 
 na outra sem motivo visível. Ao escrever o CSS, decidir de antemão quem manda no
 espaçamento externo: o container ou o filho, não os dois.
 → *Incorporado da `frontend-design` da Anthropic, 28/07/2026.*
+
+**Regra de link de um container vencendo a cor do `.btn` por especificidade.** Estilizar
+todos os links de um menu ou rodapé com `.movel a{color:...}` (elemento + classe = 0,1,1)
+sobrescreve `.btn{color:...}` (só classe = 0,1,0) para qualquer `<a class="btn">` que more
+lá dentro. O botão herda a cor dos links do menu e não a dele: no menu mobile, texto claro
+sobre o fundo amarelo do botão, `low-contrast` de 1,3:1 num CTA. Ao dar cor aos links de um
+container, blindar o botão de dentro com uma regra de igual ou maior peso (`.movel a.btn`).
+→ *Origem: Mullsanni Performance, rodada 4, 12/09/2026. Achado de contraste que o detector
+pegou sem apontar o seletor; era o "Fazer meu orçamento" do menu mobile.*
+
+**Contador animado cujo fallback no HTML é `+0`.** O número que sobe de zero é escrito como
+`<span data-alvo="56">+0</span>` e o JS anima até 56. Se o JS falhar, travar ou o
+`IntersectionObserver` não disparar, o visitante lê **"+0 whp"**, que num site de dinamômetro
+afirma o contrário do que a página vende. O fallback no HTML é o **número real** (`+56`), e o
+JS, ao entrar na tela, zera e anima até ele; o elemento já está com `opacity:0` da entrada,
+então não há flash. Sem JS, o número certo continua visível. E cuidado ao conferir no headless:
+o `requestAnimationFrame` trava sob `--virtual-time-budget` e o print mostra um valor
+intermediário (um "+6" no lugar do "+56") que **não é bug do site** — confirmar o número final
+renderizando com `--force-prefers-reduced-motion`, que escreve o alvo direto.
+→ *Origem: Mullsanni Performance, rodada 4, 12/09/2026.*
 
 **Adotar a stack do componente em vez de portar o efeito.** Componente de galeria
 chega quase sempre em React com Tailwind, TypeScript e uma dependência de shader, e

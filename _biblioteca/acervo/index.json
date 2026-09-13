@@ -2,6 +2,49 @@
  "versao": 1,
  "itens": [
   {
+   "id": "teardown-hightorque-ecommerce",
+   "familia": "html",
+   "titulo": "Teardown — High Torque Store (mecânicas de e-commerce de auto-peças)",
+   "resumo": "Arquitetura de páginas + 9 mecânicas de conversão/retenção de uma loja WBuy de performance automotiva: roleta de cupons em vídeo, cashback, video-commerce, combos progressivos por quantidade, promo comprou-girou-ganhou, PRIMEIRA10, selo mais-vendido, autoridade do fundador via YouTube, canal atacado/oficinas B2B. Fonte: sitemap + meta-descrições + reel público (site fechado por Cloudflare); deduções marcadas [inferido].",
+   "setor": "generico",
+   "estrutura": "efeito-wrapper",
+   "qualidade": "producao",
+   "quando_usar": "Antes de montar e-commerce ou landing de varejo — sobretudo auto-peças/performance (lead Mullsanni) e loja de recompra (Amparo Flores). Catálogo de ideias de conversão/retenção testadas no mercado BR, com o que transporta pra cada cliente da casa e as travas de compliance por trás.",
+   "nao_usar_quando": "Não é código rodável — é teardown/ideias. Para a roleta rodável, use a peça 'roleta-cupons'. Não aplicar as táticas de gamificação/urgência em cliente regulado (saúde). Preços e regras citados são do dia da captura e envelhecem.",
+   "tags": [
+    "teardown",
+    "ecommerce",
+    "auto-pecas",
+    "performance",
+    "conversao",
+    "cashback",
+    "video-commerce",
+    "combos",
+    "aov",
+    "b2b",
+    "atacado",
+    "prova-social",
+    "wbuy",
+    "ideias",
+    "referencia"
+   ],
+   "stack": [
+    "html-css-js"
+   ],
+   "deps": [],
+   "fontes": [],
+   "marca": null,
+   "caminho": "acervo/html/teardown-hightorque-ecommerce/source.html",
+   "arquivo_origem": "teardown-hightorque.md",
+   "linhas": 130,
+   "tem_video": false,
+   "tem_webgl": false,
+   "tem_scroll": false,
+   "assets_total": 1,
+   "assets_pereciveis": false,
+   "_busca": "teardown — high torque store (mecânicas de e-commerce de auto-peças) arquitetura de páginas + 9 mecânicas de conversão/retenção de uma loja wbuy de performance automotiva: roleta de cupons em vídeo, cashback, video-commerce, combos progressivos por quantidade, promo comprou-girou-ganhou, primeira10, selo mais-vendido, autoridade do fundador via youtube, canal atacado/oficinas b2b. fonte: sitemap + meta-descrições + reel público (site fechado por cloudflare); deduções marcadas [inferido]. antes de montar e-commerce ou landing de varejo — sobretudo auto-peças/performance (lead mullsanni) e loja de recompra (amparo flores). catálogo de ideias de conversão/retenção testadas no mercado br, com o que transporta pra cada cliente da casa e as travas de compliance por trás. teardown ecommerce auto-pecas performance conversao cashback video-commerce combos aov b2b atacado prova-social wbuy ideias referencia html-css-js generico efeito-wrapper teardown-hightorque-ecommerce "
+  },
+  {
    "id": "kit-agendamento",
    "familia": "ui",
    "titulo": "Agendamento — fluxo de marcação em 3 passos, tudo configurável",
@@ -203,6 +246,47 @@
      "grau": "media"
     }
    ]
+  },
+  {
+   "id": "roleta-cupons",
+   "familia": "ui",
+   "titulo": "Roleta de cupons — spin-to-win com captura de lead e cupom",
+   "resumo": "Roda SVG de N fatias que gira e para no prêmio sorteado por peso, com gate de lead (nome+contato+consentimento LGPD), revelação de cupom com copiar, cooldown por localStorage e prefers-reduced-motion. Tokenizada, sem dependência. Documenta a variante 'vídeo-pausa' da High Torque. Reconstrução do mecanismo, não código proprietário.",
+   "setor": "generico",
+   "estrutura": "componente-ui",
+   "qualidade": "producao",
+   "quando_usar": "E-commerce ou landing de varejo (auto-peças, flores, moda, alimento) que quer trocar desconto por e-mail/WhatsApp e criar urgência de compra hoje. Bom como pop-up de captura, página de campanha (Black Week) ou brinde amarrado a valor de compra ('comprou, girou, ganhou'). Os prêmios e pesos são configuração no topo do script.",
+   "nao_usar_quando": "Cliente de setor regulado (saúde CFP/CFO): gamificação de cupom/urgência é vedada. Não use o sorteio client-side em produção sem mover a decisão pro backend (o visitante lê os pesos no DevTools e força o melhor prêmio). Sorteio de prêmio FÍSICO pode configurar promoção comercial regulada (regulamento/limite por CPF) — confira antes.",
+   "tags": [
+    "roleta",
+    "spin-to-win",
+    "cupom",
+    "gamificacao",
+    "conversao",
+    "captura-lead",
+    "ecommerce",
+    "promocao",
+    "tokens",
+    "tematizavel",
+    "sem-dependencia",
+    "acessivel",
+    "html-css-js"
+   ],
+   "stack": [
+    "html-css-js"
+   ],
+   "deps": [],
+   "fontes": [],
+   "marca": null,
+   "caminho": "acervo/ui/roleta-cupons/source.tsx",
+   "arquivo_origem": "roleta-cupons.html",
+   "linhas": 327,
+   "tem_video": false,
+   "tem_webgl": false,
+   "tem_scroll": false,
+   "assets_total": 1,
+   "assets_pereciveis": false,
+   "_busca": "roleta de cupons — spin-to-win com captura de lead e cupom roda svg de n fatias que gira e para no prêmio sorteado por peso, com gate de lead (nome+contato+consentimento lgpd), revelação de cupom com copiar, cooldown por localstorage e prefers-reduced-motion. tokenizada, sem dependência. documenta a variante 'vídeo-pausa' da high torque. reconstrução do mecanismo, não código proprietário. e-commerce ou landing de varejo (auto-peças, flores, moda, alimento) que quer trocar desconto por e-mail/whatsapp e criar urgência de compra hoje. bom como pop-up de captura, página de campanha (black week) ou brinde amarrado a valor de compra ('comprou, girou, ganhou'). os prêmios e pesos são configuração no topo do script. roleta spin-to-win cupom gamificacao conversao captura-lead ecommerce promocao tokens tematizavel sem-dependencia acessivel html-css-js html-css-js generico componente-ui roleta-cupons "
   }
  ]
 }

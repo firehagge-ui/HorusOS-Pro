@@ -1,0 +1,42 @@
+{
+ "id": "teardown-hightorque-ecommerce",
+ "familia": "html",
+ "titulo": "Teardown — High Torque Store (mecânicas de e-commerce de auto-peças)",
+ "resumo": "Arquitetura de páginas + 9 mecânicas de conversão/retenção de uma loja WBuy de performance automotiva: roleta de cupons em vídeo, cashback, video-commerce, combos progressivos por quantidade, promo comprou-girou-ganhou, PRIMEIRA10, selo mais-vendido, autoridade do fundador via YouTube, canal atacado/oficinas B2B. Fonte: sitemap + meta-descrições + reel público (site fechado por Cloudflare); deduções marcadas [inferido].",
+ "setor": "generico",
+ "estrutura": "efeito-wrapper",
+ "qualidade": "producao",
+ "quando_usar": "Antes de montar e-commerce ou landing de varejo — sobretudo auto-peças/performance (lead Mullsanni) e loja de recompra (Amparo Flores). Catálogo de ideias de conversão/retenção testadas no mercado BR, com o que transporta pra cada cliente da casa e as travas de compliance por trás.",
+ "nao_usar_quando": "Não é código rodável — é teardown/ideias. Para a roleta rodável, use a peça 'roleta-cupons'. Não aplicar as táticas de gamificação/urgência em cliente regulado (saúde). Preços e regras citados são do dia da captura e envelhecem.",
+ "tags": [
+  "teardown",
+  "ecommerce",
+  "auto-pecas",
+  "performance",
+  "conversao",
+  "cashback",
+  "video-commerce",
+  "combos",
+  "aov",
+  "b2b",
+  "atacado",
+  "prova-social",
+  "wbuy",
+  "ideias",
+  "referencia"
+ ],
+ "stack": [
+  "html-css-js"
+ ],
+ "deps": [],
+ "fontes": [],
+ "marca": null,
+ "caminho": "acervo/html/teardown-hightorque-ecommerce/source.html",
+ "arquivo_origem": "teardown-hightorque.md",
+ "linhas": 130,
+ "tem_video": false,
+ "tem_webgl": false,
+ "tem_scroll": false,
+ "assets_total": 1,
+ "assets_pereciveis": false
+}

@@ -859,5 +859,9 @@ recompra sobre base pronta; Fase 3 = tráfego pago recorrente.
 resultado); 🔴 nada de bot no número deles (lógica invertida, igual à Amparo); 🔴 não
 construir CRM do zero (Fase 2, base pronta); 🔴 abordagem com **gancho verdadeiro** ("vi
 vocês no Bon Odori, o site está fora do ar"), **nunca** o pretexto "falei com um funcionário
-seu" (2 sócios, falsificável, queima credibilidade). Não é setor regulado. Pendências pra
-virar cliente: logo em alta, cores reais da marca, fotos boas, casos de dyno autorizados.
+seu" (2 sócios, falsificável, queima credibilidade). Não é setor regulado. **Prévia na rodada 4
+(12/09/2026)** com as fotos e vídeos reais do Instagram (o Marcelo soltou o material em `assets/`)
+na linguagem de uma referência de landing que ele fez no ChatGPT — ver o `CLAUDE.md` e o
+`site/PLANO.md` do cliente. Pendências pra fechar: confirmar o WhatsApp de atendimento, foto de
+hero em alta sem marca d'água de terceiro, autorização de reuso dos números de dyno e das fotos
+dos carros, e 3 reviews reais do Google.

@@ -1,0 +1,163 @@
+<!doctype html>
+<!--
+  DEMO rodável da roleta clássica. Abra direto no navegador.
+  O componente real é `source.tsx` (fragmento HTML+CSS+JS vanilla, apesar da
+  extensão). Aqui ele está embutido pra você ver girar. O botão "Resetar teste"
+  limpa o cooldown do localStorage pra girar de novo.
+-->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Demo — Roleta de cupons</title>
+<style>
+  body { margin: 0; min-height: 100vh; background: #0a0a0f;
+    font-family: system-ui, sans-serif; display: grid; place-items: center; padding: 24px; gap: 16px; }
+  .reset { background: transparent; color: #a6a6b0; border: 1px solid #2a2a36;
+    border-radius: 8px; padding: 8px 14px; cursor: pointer; font-size: .85rem; }
+</style>
+
+<div
+  class="roleta"
+  data-cooldown-horas="24"
+  data-storage-key="roleta-cupom-demo"
+  role="region"
+  aria-label="Roleta de cupons"
+>
+  <form class="roleta__gate" novalidate>
+    <h2 class="roleta__titulo">Gire e ganhe seu desconto</h2>
+    <p class="roleta__sub">Um giro por visitante. O cupom vale só hoje.</p>
+    <label class="roleta__campo"><span>Nome</span>
+      <input name="nome" type="text" autocomplete="name" required /></label>
+    <label class="roleta__campo"><span>E-mail ou WhatsApp</span>
+      <input name="contato" type="text" inputmode="email" autocomplete="email" required /></label>
+    <label class="roleta__consent">
+      <input name="consent" type="checkbox" required />
+      <span>Aceito receber ofertas e concordo com a política de privacidade.</span></label>
+    <button class="roleta__btn" type="submit">Quero girar</button>
+    <p class="roleta__erro" role="alert" hidden></p>
+  </form>
+
+  <div class="roleta__palco" hidden>
+    <div class="roleta__agulha" aria-hidden="true"></div>
+    <div class="roleta__disco-wrap">
+      <svg class="roleta__disco" viewBox="0 0 200 200" role="img" aria-label="Roda de prêmios"></svg>
+    </div>
+    <button class="roleta__btn roleta__girar" type="button">GIRAR</button>
+  </div>
+
+  <div class="roleta__resultado" hidden aria-live="polite">
+    <h2 class="roleta__ganhou"></h2>
+    <p class="roleta__instrucao">Use o cupom no carrinho:</p>
+    <div class="roleta__cupom-linha">
+      <code class="roleta__cupom"></code>
+      <button class="roleta__copiar" type="button">Copiar</button>
+    </div>
+    <a class="roleta__btn roleta__cta" href="#loja">Aproveitar agora</a>
+    <p class="roleta__validade"></p>
+  </div>
+</div>
+
+<button class="reset" onclick="localStorage.removeItem('roleta-cupom-demo');location.reload()">Resetar teste (limpa cooldown)</button>
+
+<style>
+  .roleta { --rlt-bg:#0e0e12; --rlt-superficie:#16161d; --rlt-tinta:#f5f5f7; --rlt-tinta-fraca:#a6a6b0;
+    --rlt-acento:#e4002b; --rlt-acento-tinta:#fff; --rlt-fatia-a:#1f1f2b; --rlt-fatia-b:#e4002b;
+    --rlt-fatia-tinta:#fff; --rlt-borda:#2a2a36; --rlt-raio:16px;
+    --rlt-fonte:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    max-width:420px; margin:0 auto; padding:28px 22px; background:var(--rlt-superficie);
+    border:1px solid var(--rlt-borda); border-radius:var(--rlt-raio); color:var(--rlt-tinta);
+    font-family:var(--rlt-fonte); text-align:center; }
+  .roleta__titulo{font-size:1.5rem;line-height:1.15;margin:0 0 6px}
+  .roleta__sub{color:var(--rlt-tinta-fraca);font-size:.95rem;margin:0 0 20px}
+  .roleta__campo{display:block;text-align:left;margin-bottom:12px}
+  .roleta__campo span{display:block;font-size:.8rem;color:var(--rlt-tinta-fraca);margin-bottom:5px}
+  .roleta__campo input{width:100%;box-sizing:border-box;padding:12px 14px;background:var(--rlt-bg);
+    border:1px solid var(--rlt-borda);border-radius:10px;color:var(--rlt-tinta);font-size:1rem}
+  .roleta__campo input:focus-visible{outline:2px solid var(--rlt-acento);outline-offset:1px}
+  .roleta__consent{display:flex;gap:8px;text-align:left;font-size:.8rem;color:var(--rlt-tinta-fraca);
+    margin:4px 0 18px;align-items:flex-start}
+  .roleta__consent input{margin-top:2px}
+  .roleta__btn{display:inline-block;width:100%;box-sizing:border-box;padding:14px 20px;border:0;
+    border-radius:10px;background:var(--rlt-acento);color:var(--rlt-acento-tinta);font-size:1.05rem;
+    font-weight:700;letter-spacing:.02em;cursor:pointer;text-decoration:none;text-align:center;transition:filter .15s ease}
+  .roleta__btn:hover{filter:brightness(1.1)}
+  .roleta__btn:focus-visible{outline:2px solid var(--rlt-acento-tinta);outline-offset:2px}
+  .roleta__erro{color:#ff6b6b;font-size:.85rem;margin:10px 0 0}
+  .roleta__palco{position:relative;padding-top:18px}
+  .roleta__disco-wrap{position:relative;width:280px;max-width:100%;margin:0 auto 18px}
+  .roleta__disco{width:100%;height:auto;display:block;border-radius:50%;border:6px solid var(--rlt-borda);
+    box-shadow:0 8px 40px rgba(0,0,0,.4);transition:transform 4.5s cubic-bezier(.12,.62,.12,1)}
+  .roleta__agulha{position:absolute;top:6px;left:50%;transform:translateX(-50%);width:0;height:0;z-index:2;
+    border-left:13px solid transparent;border-right:13px solid transparent;border-top:22px solid var(--rlt-acento);
+    filter:drop-shadow(0 2px 2px rgba(0,0,0,.5))}
+  .roleta__girar{max-width:180px}
+  .roleta__ganhou{font-size:1.6rem;margin:0 0 4px;color:var(--rlt-acento)}
+  .roleta__instrucao{color:var(--rlt-tinta-fraca);font-size:.9rem;margin:0 0 8px}
+  .roleta__cupom-linha{display:flex;gap:8px;justify-content:center;margin-bottom:16px}
+  .roleta__cupom{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:1.15rem;font-weight:700;
+    letter-spacing:.1em;padding:10px 16px;background:var(--rlt-bg);border:1px dashed var(--rlt-acento);
+    border-radius:8px;color:var(--rlt-tinta)}
+  .roleta__copiar{padding:0 14px;border:1px solid var(--rlt-borda);border-radius:8px;background:transparent;
+    color:var(--rlt-tinta);cursor:pointer;font-size:.85rem}
+  .roleta__validade{color:var(--rlt-tinta-fraca);font-size:.78rem;margin:14px 0 0}
+  @media (prefers-reduced-motion:reduce){.roleta__disco{transition:transform .3s ease}}
+</style>
+
+<script>
+(function () {
+  var el = document.querySelector('.roleta'); if (!el) return; var roleta = el;
+  var PREMIOS = [
+    { rotulo: "5% OFF",  cupom: "GIROU5",  peso: 30 },
+    { rotulo: "10% OFF", cupom: "GIROU10", peso: 24 },
+    { rotulo: "Frete\ngrátis", cupom: "FRETEGIRO", peso: 18 },
+    { rotulo: "15% OFF", cupom: "GIROU15", peso: 12 },
+    { rotulo: "Brinde",  cupom: "BRINDEGIRO", peso: 9 },
+    { rotulo: "20% OFF", cupom: "GIROU20", peso: 4 },
+    { rotulo: "Quase!\nnão foi", cupom: "GIROU5", peso: 3 },
+  ];
+  var VALIDADE_TEXTO = "Cupom válido nas próximas 24h, uma vez por CPF.";
+  var COOLDOWN_H = parseFloat(roleta.dataset.cooldownHoras || "24");
+  var STORAGE = roleta.dataset.storageKey || "roleta-cupom-v1";
+  var gate = roleta.querySelector('.roleta__gate'), palco = roleta.querySelector('.roleta__palco');
+  var resultado = roleta.querySelector('.roleta__resultado'), disco = roleta.querySelector('.roleta__disco');
+  var btnGirar = roleta.querySelector('.roleta__girar'), erro = roleta.querySelector('.roleta__erro');
+  var N = PREMIOS.length, anguloFatia = 360/N, girado = false, rotacaoAtual = 0;
+  function getVar(n){ return getComputedStyle(roleta).getPropertyValue(n).trim() || "#888"; }
+  function polar(cx,cy,r,g){ var a=(g-90)*Math.PI/180; return [cx+r*Math.cos(a),cy+r*Math.sin(a)]; }
+  function desenha(){ var ns="http://www.w3.org/2000/svg";
+    PREMIOS.forEach(function(p,i){ var ini=i*anguloFatia, a=polar(100,100,100,ini), b=polar(100,100,100,(i+1)*anguloFatia);
+      var path=document.createElementNS(ns,"path");
+      path.setAttribute("d","M100,100 L"+a[0]+","+a[1]+" A100,100 0 0 1 "+b[0]+","+b[1]+" Z");
+      path.setAttribute("fill", i%2?getVar('--rlt-fatia-b'):getVar('--rlt-fatia-a')); disco.appendChild(path);
+      var meio=ini+anguloFatia/2, t=polar(100,100,62,meio), linhas=p.rotulo.split("\n");
+      var txt=document.createElementNS(ns,"text"); txt.setAttribute("x",t[0]); txt.setAttribute("y",t[1]);
+      txt.setAttribute("fill",getVar('--rlt-fatia-tinta')); txt.setAttribute("font-size","9");
+      txt.setAttribute("font-weight","700"); txt.setAttribute("text-anchor","middle");
+      txt.setAttribute("transform","rotate("+meio+" "+t[0]+" "+t[1]+")");
+      linhas.forEach(function(ln,k){ var ts=document.createElementNS(ns,"tspan"); ts.setAttribute("x",t[0]);
+        ts.setAttribute("dy", k===0?(linhas.length>1?"-3":"0"):"10"); ts.textContent=ln; txt.appendChild(ts); });
+      disco.appendChild(txt); }); }
+  function sortear(){ var tot=PREMIOS.reduce(function(s,p){return s+p.peso;},0), x=Math.random()*tot;
+    for(var i=0;i<N;i++){ x-=PREMIOS[i].peso; if(x<=0) return i; } return N-1; }
+  function jaGirou(){ try{ var r=localStorage.getItem(STORAGE); if(!r) return null; var d=JSON.parse(r);
+    return (Date.now()-d.ts < COOLDOWN_H*3600e3) ? d : null; }catch(e){ return null; } }
+  function mostrarResultado(p){ resultado.querySelector('.roleta__ganhou').textContent="🎉 "+p.rotulo.replace("\n"," ");
+    resultado.querySelector('.roleta__cupom').textContent=p.cupom;
+    resultado.querySelector('.roleta__validade').textContent=VALIDADE_TEXTO;
+    palco.hidden=true; resultado.hidden=false; }
+  var previo=jaGirou(); if(previo){ gate.hidden=true; mostrarResultado(PREMIOS[previo.idx]); }
+  desenha();
+  gate.addEventListener('submit', function(e){ e.preventDefault(); var f=e.target;
+    if(!f.nome.value.trim()||!f.contato.value.trim()||!f.consent.checked){
+      erro.textContent="Preencha nome, contato e aceite os termos."; erro.hidden=false; return; }
+    erro.hidden=true; gate.hidden=true; palco.hidden=false; });
+  btnGirar.addEventListener('click', function(){ if(girado) return; girado=true; btnGirar.disabled=true;
+    var idx=sortear(), voltas=5, alvo=360*voltas+(360-(idx*anguloFatia+anguloFatia/2)); rotacaoAtual+=alvo;
+    disco.style.transform="rotate("+rotacaoAtual+"deg)";
+    var espera=matchMedia('(prefers-reduced-motion: reduce)').matches?350:4700;
+    setTimeout(function(){ try{ localStorage.setItem(STORAGE,JSON.stringify({idx:idx,ts:Date.now()})); }catch(e){}
+      mostrarResultado(PREMIOS[idx]); }, espera); });
+  var bc=roleta.querySelector('.roleta__copiar'); if(bc) bc.addEventListener('click', function(){
+    var c=roleta.querySelector('.roleta__cupom').textContent; navigator.clipboard&&navigator.clipboard.writeText(c);
+    bc.textContent="Copiado ✓"; setTimeout(function(){ bc.textContent="Copiar"; },1800); });
+})();
+</script>

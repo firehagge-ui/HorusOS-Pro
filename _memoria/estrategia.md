@@ -5,8 +5,8 @@
 
 ## Fase da agência
 
-⚠️ **Foto atual (07/09/2026):** **oito pastas em `clientes/`**. Estado comercial:
-**Amparo (#6) fechada** em 03/09 e em produção da Fase 1; **Washington (#7) adiou** em
+⚠️ **Foto atual (10/09/2026):** **oito pastas em `clientes/`**. Estado comercial:
+**Amparo (#6) verbal + reengajada** em 10/09 (a entrada de R$600 não caiu; aguardando ela marcar o início); **Washington (#7) adiou** em
 06/09 (follow-up frio); **Mullsanni (#8) é lead** em avaliação (aberto 07/09); **Aion (#3)
 engavetada** desde 01/09; **Grão da Serra (#4)** e **Permita-se (#2)** em paralelo por
 oportunidade/relação; **Mayara (#5)** não pagante; **Dr. Giovanni (#1)** ex-cliente, pasta

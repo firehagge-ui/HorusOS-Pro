@@ -27,14 +27,28 @@ de objeção abaixo.
 
 - **Comercial:** LEAD. Nenhum contato feito com o cliente ainda. Aguardando o Marcelo
   bater na porta com a prévia do site na mão.
-- **Produção:** prévia do site em **três rodadas** (07/09, 09/09 rodada 2, 09/09 rodada 3),
-  pronta para apresentar. Ver `site/PLANO.md` para o passe duplo completo e o registro de
-  cada rodada. ⚠️ **A rodada 3 reconstruiu o site inteiro**, a pedido do Marcelo ("muito
-  off, seções genéricas, sem emoção nem narrativa"): visão "laboratório de precisão",
-  curva do dinamômetro como assinatura nova (no lugar do painel de barras), parede de
-  equipamento, fundador em 1ª pessoa, texturas de IA removidas, e a seção de etapas
-  numeradas cortada (o gênero de preparadora não usa — confirmado em 8 sites do nicho,
-  ver `referencias/performance-automotiva-cinco-sites.md`).
+- **Produção:** prévia do site em **quatro rodadas** (07/09, 09/09 rodada 2, 09/09 rodada 3,
+  12/09 rodada 4), pronta para apresentar. Ver `site/PLANO.md` para o passe duplo completo e o
+  registro de cada rodada. A rodada 3 reconstruiu o site (visão "laboratório de precisão",
+  curva do dyno como assinatura, sem etapas numeradas). ⚠️ **A rodada 4 (12/09) refez o site com
+  as FOTOS E VÍDEOS REAIS do Instagram** (o Marcelo soltou o material em `assets/`) e na
+  linguagem de uma **referência de landing que ele fez no ChatGPT** (`assets/Landing Page
+  Automotiva Mullsanni Performance.png`): mais rico e comercial (hero split com o R8 vermelho
+  real, faixa de marcas, casos de dyno **com foto do carro**, 6 cards de serviço com foto,
+  galeria de projetos, CTA amarelo, faixa de vídeo real do GR, sócios de rosto na seção "quem
+  faz"). 🔴 **Três coisas da referência foram corrigidas por integridade:** os números
+  inventados ("+8 anos", "+500 projetos", "+98%" — a empresa tem 1 ano) viraram prova real
+  (ganho de dyno, 5,0★ Google, 8 marcas, ACF+Nova Racing); a copy em inglês virou o slogan real
+  "Sua paixão, nossa assinatura"; e os depoimentos inventados saíram (sem review inventado). As
+  texturas de IA (carbono/metal) que ele re-colocou **não entraram** (clichê do segmento).
+  Detector limpo (exit 0). Fotos ainda são 1080px do Instagram: a versão final pede foto em alta.
+  - **Rodada 5 (aplicada, 12/09):** hero com **vídeo de fundo cinematográfico** (vídeo real
+    do Instagram deles, `site/assets/hero-loop.mp4` 1,9 MB + `hero-poster.webp`), na linha do
+    concorrente Bravus Performance (`referencias/bravus-performance.md`, estudado 12/09). A
+    `<img>` do R8 virou `<video>` com poster e fallback de reduced-motion. ✅ Detector exit 0,
+    render desktop+mobile com H1/prova/CTAs legíveis sobre o véu. Inventário dos 6 vídeos e
+    verificação completa em `site/PLANO.md` (Rodada 5). Em aberto: fundo mobile dedicado
+    (vid5 vertical) é melhoria futura, não bloqueia.
 - **Pendências para virar cliente:** ver seção Pendências no final.
 
 ## Contato
@@ -193,7 +207,8 @@ detect ...` detecta de verdade. **Usar sempre o npx**. Registrado em
 
 - [ ] 🔴 **Confirmar o WhatsApp de atendimento** (divergência acima).
 - [ ] Confirmar quem decide (Jordan + Nelson juntos, provavelmente).
-- [ ] Autorização de reuso público dos números de dyno específicos e das fotos.
+- [ ] Autorização de reuso público dos números de dyno específicos, das fotos e **dos vídeos**
+  (o hero da rodada 5 usa vídeo real do Instagram deles; conferir marca d'água de terceiro).
 - [ ] Fotos boas em alta. As do site hoje são recorte de print de Instagram, 1080px.
   Pauta detalhada em `site/PLANO.md`, incluindo carro em cima do dinamômetro (a prova
   que concorrente sem máquina não imita).
