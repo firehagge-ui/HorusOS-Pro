@@ -1,0 +1,122 @@
+/* =========================================================================
+   HORUS · Painel — base.css
+   Design tokens + reset + typography.
+   Dark, premium SaaS. Accent (--brand) adapts live to the clinic brand.
+   ========================================================================= */
+
+:root {
+  /* --- Brand accent (tenant-adaptable; overwritten live by the Marca screen) --- */
+  --brand:        #2563EB;   /* Horus azul primário / CTA */
+  --brand-2:      #60A5FA;   /* azul claro — links, texto sobre escuro */
+  --brand-soft:   rgba(37, 99, 235, .14);
+  --brand-glow:   rgba(37, 99, 235, .35);
+  --gold:         #F4C430;   /* a pupila — acento raríssimo */
+
+  /* --- Surfaces (dark, elevation by color not shadow) --- */
+  --bg:           #0A0B0F;   /* fundo principal (medido do manual Hórus) */
+  --bg-2:         #0d0e13;
+  --surface:      #14151b;   /* card, sidebar */
+  --surface-2:    #191b22;   /* card elevado, input */
+  --surface-3:    #20222b;   /* hover / control */
+  --line:         rgba(255,255,255,.07);
+  --line-2:       rgba(255,255,255,.12);
+
+  /* --- Ink --- */
+  --ink:          #E7E9EE;   /* texto principal */
+  --ink-2:        #A7ADBA;   /* secundário */
+  --ink-3:        #6D7280;   /* faint / hint */
+  --ink-on-brand: #ffffff;
+
+  /* --- Status --- */
+  --ok:      #34D399;  --ok-soft:      rgba(52,211,153,.14);
+  --warn:    #F59E0B;  --warn-soft:    rgba(245,158,11,.14);
+  --info:    #60A5FA;  --info-soft:    rgba(96,165,250,.14);
+  --danger:  #F0785C;  --danger-soft:  rgba(240,120,92,.14);
+  --violet:  #A98BF0;  --violet-soft:  rgba(169,139,240,.14);
+
+  /* --- Geometry --- */
+  --r-xs: 8px;  --r-sm: 10px;  --r-md: 14px;  --r-lg: 18px;  --r-xl: 24px;  --r-pill: 999px;
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 20px; --sp-6: 24px; --sp-8: 32px; --sp-10: 40px; --sp-12: 48px;
+  --shadow-1: 0 1px 2px rgba(0,0,0,.4);
+  --shadow-2: 0 10px 30px -12px rgba(0,0,0,.7);
+  --shadow-pop: 0 24px 60px -20px rgba(0,0,0,.75);
+
+  --font-display: "Sora", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body:    "Hanken Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif:   "Newsreader", Georgia, "Times New Roman", serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --sidebar-w: 250px;
+  --topbar-h: 62px;
+  --content-max: 1160px;
+}
+
+* { box-sizing: border-box; }
+* { -webkit-tap-highlight-color: transparent; }
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow: hidden; /* app owns scrolling */
+}
+
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; margin: 0; letter-spacing: -0.02em; line-height: 1.12; }
+h1 { font-size: 30px; }
+h2 { font-size: 21px; }
+h3 { font-size: 17px; }
+p  { margin: 0; }
+a  { color: var(--brand-2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.serif-it { font-family: var(--font-serif); font-style: italic; font-weight: 500; color: var(--brand-2); letter-spacing: -0.01em; }
+
+button, input, textarea, select { font-family: inherit; font-size: inherit; color: inherit; }
+button { cursor: pointer; border: none; background: none; }
+input, textarea, select { outline: none; }
+
+::selection { background: var(--brand-glow); color: #fff; }
+
+/* Scrollbars */
+* { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.14) transparent; }
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb { background: rgba(255,255,255,.12); border-radius: 999px; border: 3px solid transparent; background-clip: content-box; }
+*::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,.22); background-clip: content-box; }
+*::-webkit-scrollbar-track { background: transparent; }
+
+[hidden] { display: none !important; }
+
+/* Inline icons without an explicit size class default to text size.
+   Charts carry a class ("spark") or inline width/height, so they're exempt. */
+svg:not([class]) { width: 1.15em; height: 1.15em; flex: 0 0 auto; vertical-align: -0.18em; }
+
+/* Utility */
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--ink-2); }
+.faint { color: var(--ink-3); }
+.tnum { font-variant-numeric: tabular-nums; }
+.nowrap { white-space: nowrap; }
+.center { text-align: center; }
+.row { display: flex; align-items: center; }
+.col { display: flex; flex-direction: column; }
+.gap-1 { gap: 4px; } .gap-2 { gap: 8px; } .gap-3 { gap: 12px; } .gap-4 { gap: 16px; } .gap-5 { gap: 20px; } .gap-6 { gap: 24px; }
+.wrap { flex-wrap: wrap; }
+.grow { flex: 1 1 auto; min-width: 0; }
+.between { justify-content: space-between; }
+.mt-1{margin-top:4px}.mt-2{margin-top:8px}.mt-3{margin-top:12px}.mt-4{margin-top:16px}.mt-5{margin-top:20px}.mt-6{margin-top:24px}.mt-8{margin-top:32px}
+.hide { display: none; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pop { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pulse-dot { 0%,100%{ opacity:1 } 50%{ opacity:.35 } }
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
