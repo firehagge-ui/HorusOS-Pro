@@ -46,7 +46,6 @@ window.H = window.H || {}; H.views = {};
           '<button class="btn lg" data-go="operacoes">'+ic('send')+'Nova operação</button>'+
         '</div>'+
       '</div>'+
-      mascotSVG()+
     '</div>'+
     '<div class="dash-grid stagger">'+
       stepCard('01', 'search', 'Leads prontos', '<div class="big">'+d.leadsProntos.n+'</div><div style="color:var(--osso-2);font-size:13.5px;margin-top:2px">'+esc(d.leadsProntos.nicho)+' • '+esc(d.leadsProntos.cidade)+'</div>', [['check','Prontos para importar']], '')+
@@ -66,26 +65,8 @@ window.H = window.H || {}; H.views = {};
       (list&&list.length?'<ul>'+list.map(function(x){return '<li>'+ic(x[0])+esc(x[1])+'</li>';}).join('')+'</ul>':'')+
       (foot?'<div class="foot">'+foot+'</div>':'')+'</div>';
   }
-  function mascotSVG(){
-    // "homem laranja de terno" — falcão pixel de terno, versão SVG
-    return '<svg class="mascot" viewBox="0 0 220 240" fill="none" aria-hidden="true">'+
-      '<g>'+
-      '<rect x="82" y="34" width="56" height="52" rx="6" fill="#ff7a2e"/>'+
-      '<rect x="94" y="52" width="10" height="10" fill="#0b0910"/><rect x="116" y="52" width="10" height="10" fill="#0b0910"/>'+
-      '<rect x="100" y="72" width="20" height="6" fill="#0b0910"/>'+
-      '<rect x="86" y="86" width="48" height="70" rx="8" fill="#171320"/>'+
-      '<rect x="104" y="86" width="12" height="60" fill="#25201c"/>'+
-      '<path d="M104 90 L110 108 L116 90Z" fill="#ff7a2e"/>'+
-      '<rect x="70" y="92" width="18" height="52" rx="8" fill="#171320"/>'+
-      '<rect x="132" y="92" width="18" height="52" rx="8" fill="#171320"/>'+
-      '<rect x="66" y="138" width="16" height="14" rx="5" fill="#ff7a2e"/>'+
-      '<rect x="138" y="138" width="16" height="14" rx="5" fill="#ff7a2e"/>'+
-      '<rect x="88" y="156" width="18" height="60" rx="7" fill="#141019"/>'+
-      '<rect x="114" y="156" width="18" height="60" rx="7" fill="#141019"/>'+
-      '<rect x="84" y="210" width="26" height="12" rx="4" fill="#0b0910"/>'+
-      '<rect x="110" y="210" width="26" height="12" rx="4" fill="#0b0910"/>'+
-      '</g></svg>';
-  }
+  // Mascote "homem laranja de terno" REMOVIDO a pedido do usuário (13/09/2026).
+  // Não readicionar. O hero fica só com o canvas de conexões como assinatura.
 
   /* =====================================================================
      ENCONTRAR CLIENTES (Apify)
@@ -333,7 +314,7 @@ window.H = window.H || {}; H.views = {};
           info('globe','Situação do site',l.situacaoSite||'—')+info('phone','Contatos feitos',String(l.contatos||0))+
         '</div>'+
         (l.obs?'<div class="field"><label class="fl">Observação</label><div class="cop-msg" style="background:var(--void-2);border:1px solid var(--fio);border-radius:10px;padding:11px 12px;font-size:13px;color:var(--osso)">'+esc(l.obs)+'</div></div>':'')+
-        '<div class="cop-box"><div class="cop-h"><svg class="persona" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#201526"/><rect x="12" y="9" width="16" height="15" rx="3" fill="#ff7a2e"/><rect x="15" y="14" width="3" height="3" fill="#0b0910"/><rect x="22" y="14" width="3" height="3" fill="#0b0910"/><path d="M13 33 l7-4 7 4 v3 h-14Z" fill="#171320"/></svg><b>Copiloto</b><span class="tag ember">'+esc(l.cat.split(' ').pop())+'</span></div>'+
+        '<div class="cop-box"><div class="cop-h"><svg class="persona" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#201526"/><path d="M8 20 C14 12, 26 12, 32 20 C26 28, 14 28, 8 20Z" stroke="#ff7a2e" stroke-width="2" fill="none"/><circle cx="20" cy="20" r="4" fill="#ff7a2e"/></svg><b>Copiloto</b><span class="tag ember">'+esc(l.cat.split(' ').pop())+'</span></div>'+
           '<div class="conv">'+conv+'</div>'+copBox+'</div>'+
         '<div class="hist2"><h4>'+ic('clock')+'Histórico</h4><ol>'+hist+'</ol></div>'+
       '</div>');
