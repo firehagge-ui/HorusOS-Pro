@@ -44,6 +44,9 @@
 .focus-stat .n { font-family: var(--font-display); font-size: 30px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; }
 .focus-stat .l { font-size: 11.5px; color: var(--ink-2); margin-top: 7px; line-height: 1.3; }
 .goal-input { margin-top: 18px; display: flex; gap: 8px; }
+.goal-input .input { flex: 1 1 auto; min-width: 0; }
+.focus-stat { min-width: 84px; }
+@media (max-width: 560px) { .goal-input { flex-direction: column; } .goal-input .btn { width: 100%; } }
 
 .mesa-title { display: flex; align-items: center; gap: 9px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin: 4px 0 12px; }
 
