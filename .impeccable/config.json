@@ -35,6 +35,42 @@
         ],
         "createdAt": "2026-08-05T15:26:27.349Z",
         "reason": "Faixa de palavras do site da propria Horus (INOVACAO IMPACTO INSPIRACAO), tipografia de cartaz a 64px em texto vazado, com marquee. Sao tres palavras isoladas e decorativas (aria-hidden), nao passagem de leitura: o motivo da regra e que a caixa alta apaga o desenho da palavra em texto corrido, e aqui nao ha texto corrido. Pedido do Marcelo em 05/08/2026 a partir de tres referencias. Vale SO para site/, que e o site da agencia, e nao libera caixa alta em site de cliente."
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "ferramentas/horus-crm/**"
+        ],
+        "createdAt": "2026-09-13T06:00:00.000Z",
+        "reason": "App INTERNO do Antonio (nao e peca de cliente). A faixa colorida na esquerda do card de lead codifica o SCORE/prioridade do lead (alta/media/baixa) e o indicador de conversa selecionada no inbox - dois padroes que estao literalmente nos prints de referencia que o Marcelo mandou (Nexuss.dev pipeline e Encode inbox). Print numerado = especificacao (regra do CLAUDE.md). E informacao, nao enfeite: a cor da barra = a temperatura do lead."
+      },
+      {
+        "rule": "ai-color-palette",
+        "value": "*",
+        "files": [
+          "ferramentas/horus-crm/**"
+        ],
+        "createdAt": "2026-09-13T06:00:00.000Z",
+        "reason": "A primaria e EMBER (laranja->vermelho), a assinatura do produto e do mascote 'homem laranja de terno' das referencias do Marcelo. O violeta aparece so como acento funcional (uma etapa do funil, o cliente Amparo cuja marca real e roxa, KPI 'em aberto'), nunca como gradiente roxo->cyan de fundo. Paleta ember-forward escolhida de proposito a partir dos prints (Encode/Nexuss), nao reflexo do modelo."
+      },
+      {
+        "rule": "pulsing-dot",
+        "value": "*",
+        "files": [
+          "ferramentas/horus-crm/**"
+        ],
+        "createdAt": "2026-09-13T06:00:00.000Z",
+        "reason": "O unico pulso e o indicador de DIGITACAO do chat (.typing), que so existe enquanto uma requisicao real esta pendente - liveness honesta, atrelada a estado que muda de verdade, que e exatamente o uso que a propria regra permite. Nao ha status dot decorativo pulsando em dado estatico."
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "ferramentas/horus-crm/**"
+        ],
+        "createdAt": "2026-09-13T06:00:00.000Z",
+        "reason": "Glow ember discreto so no CTA primario e na marca - presente nos CTAs laranja dos proprios prints de referencia (botoes 'Continuar' e 'Encontrar clientes' do Encode). Elevacao das superficies e por DEGRAU DE COR (void->surface->panel), nao por sombra; o unico glow colorido e a assinatura do botao de acao, intencional."
       }
     ]
   }

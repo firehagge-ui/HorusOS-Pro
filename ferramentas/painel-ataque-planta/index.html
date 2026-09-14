@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Painel Ataque &amp; Planta — Hórus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <!-- ===== Topbar ===== -->
+  <header class="topbar">
+    <div class="brand">
+      <!-- Olho de Hórus -->
+      <svg class="eye" viewBox="0 0 64 40" fill="none" aria-hidden="true">
+        <path d="M4 20 C16 6, 40 6, 52 20 C40 34, 16 34, 4 20 Z" stroke="#4b93e6" stroke-width="2.4"/>
+        <circle cx="28" cy="20" r="7.5" fill="#F4C430"/>
+        <path d="M52 20 C56 20, 60 23, 61 30" stroke="#F4C430" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <path d="M20 27 C22 34, 20 38, 15 39" stroke="#8b5cf6" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div class="titles">
+        <h1>Painel Ataque &amp; Planta</h1>
+        <p>Hórus · Comercial</p>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="chip-owner">
+      <!-- "homem laranja de terno": o Hórus falcão de terno, persona do copiloto -->
+      <svg class="av" viewBox="0 0 40 40" aria-hidden="true">
+        <rect width="40" height="40" rx="20" fill="#201526"/>
+        <path d="M20 9 c-5 0-8 3-8 7 0 2 1 3 2 4 l-3 2 c4 1 6 1 9 1 s5 0 9-1 l-3-2 c1-1 2-2 2-4 0-4-3-7-8-7Z" fill="#fb8c3e"/>
+        <circle cx="20" cy="15" r="1.6" fill="#0e0918"/>
+        <path d="M12 30 l8-4 8 4 v4 h-16 Z" fill="#1b1728" stroke="#3e3a46"/>
+        <path d="M20 26 l-2 5 2 2 2-2 Z" fill="#F4C430"/>
+      </svg>
+      <span>Originação ·</span> <b>Antônio</b>
+    </div>
+  </header>
+
+  <!-- ===== KPIs / metas da semana ===== -->
+  <section class="kpis" id="kpis" aria-label="Metas da semana"></section>
+
+  <!-- ===== Board (pipeline) ===== -->
+  <main class="board-wrap">
+    <div class="board" id="board" aria-label="Funil de originação"></div>
+  </main>
+
+  <!-- ===== Rodapé de travas da casa ===== -->
+  <footer class="travas" aria-label="Travas da casa">
+    <span class="t-item"><span class="lock">✦</span> <b>Não disparar em massa</b> — personalização &gt; volume</span>
+    <span class="t-item"><span class="lock">✦</span> <b>Não queimar o chip</b> — ritmo conservador, chip novo é frágil</span>
+    <span class="t-item"><span class="lock">✦</span> <b>Fale do LEAD</b>, não da agência — dor de faturamento, não "design"</span>
+    <span class="t-item"><span class="lock">✦</span> <b>Prévia antes do link</b> — link só depois de ele responder</span>
+    <span class="t-item"><span class="lock">✦</span> <b>Fechar na reunião</b> — o SIM sai na R2, não no grupo depois</span>
+  </footer>
+
+  <!-- ===== Drawer do lead ===== -->
+  <div class="scrim" id="scrim" hidden></div>
+  <aside class="drawer" id="drawer" aria-label="Ficha do lead" aria-hidden="true"></aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="dados.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
