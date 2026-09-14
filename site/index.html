@@ -119,23 +119,30 @@
     <canvas class="hero-velaris" aria-hidden="true"></canvas>
 
     <div class="hero-topo">
-      <div class="envelope">
-        <h1 class="rev">Presença digital para negócios <span class="h1-am">ambiciosos.</span></h1>
+      <div class="envelope hero-grade">
+        <div class="hero-txt">
+          <h1 class="rev">Presença digital para negócios <span class="h1-am">ambiciosos.</span></h1>
 
-        <p class="hero-lead rev">Produzimos soluções com o que há de mais novo em tecnologia e inteligência artificial, unindo design, estratégia e desenvolvimento numa execução só.</p>
+          <p class="hero-lead rev">Produzimos soluções com o que há de mais novo em tecnologia e inteligência artificial, unindo design, estratégia e desenvolvimento numa execução só.</p>
 
-        <div class="hero-acao rev">
-          <a class="btn-azul js-glow" href="#contato">
-            <span class="cta-brilho" aria-hidden="true"></span>
-            <span class="cta-lbl">Fale conosco <span class="seta" aria-hidden="true">&#8599;</span></span>
-          </a>
-          <a class="btn-linha btn-roll" href="#servicos">
-            <span class="roll">
-              <span class="roll-t">Nossos serviços</span>
-              <span class="roll-t" aria-hidden="true">Nossos serviços</span>
-            </span>
-          </a>
+          <div class="hero-acao rev">
+            <a class="btn-azul js-glow" href="#contato">
+              <span class="cta-brilho" aria-hidden="true"></span>
+              <span class="cta-lbl">Fale conosco <span class="seta" aria-hidden="true">&#8599;</span></span>
+            </a>
+            <a class="btn-linha btn-roll" href="#servicos">
+              <span class="roll">
+                <span class="roll-t">Nossos serviços</span>
+                <span class="roll-t" aria-hidden="true">Nossos serviços</span>
+              </span>
+            </a>
+          </div>
         </div>
+
+        <!-- Logo da Hórus em Gaussian Splat 3D. Carrega depois que a página
+             termina de carregar (assets/hero-splat.js); some sozinho sem
+             WebGL2 ou em conexão de dados limitada. -->
+        <div id="hero-splat" class="hero-splat" aria-hidden="true"></div>
       </div>
     </div>
 
@@ -672,7 +679,7 @@
                     </defs>
                     <g class="lc-min"><path class="lc-st" d="M-115 -10 Q-15 170 91 350"/><path class="lc-st" d="M-66 -10 Q39 170 139 350"/><path class="lc-st" d="M20 -10 Q129 170 225 350"/><path class="lc-st" d="M74 -10 Q164 170 246 350"/><path class="lc-st" d="M169 -10 Q242 170 344 350"/><path class="lc-st" d="M203 -10 Q299 170 386 350"/><path class="lc-st" d="M-10 71 Q150 -5 310 -67"/><path class="lc-st" d="M-10 116 Q150 49 310 -26"/><path class="lc-st" d="M-10 210 Q150 136 310 59"/><path class="lc-st" d="M-10 250 Q150 185 310 97"/></g>
                     <g class="lc-maj"><path class="lc-st" d="M-13 -10 Q58 170 139 350"/><path class="lc-st" d="M112 -10 Q220 170 316 350"/><path class="lc-st" d="M260 -10 Q365 170 466 350"/><path class="lc-st" d="M-10 165 Q150 82 310 -0"/><path class="lc-st" d="M-10 307 Q150 221 310 139"/></g>
-                    <path class="lc-routeline" pathLength="100" d="M40 300 C74 266 106 244 128 214 C144 194 150 194 150 186" stroke="url(#lc-route-g)" fill="none"/>
+                    <path class="lc-routeline" pathLength="100" d="M40 300 L190 245 L150 186" stroke="url(#lc-route-g)" fill="none"/>
                     <circle class="lc-routestart" cx="40" cy="300" r="6"/>
                   </svg>
                   <span class="lc-target"></span>
@@ -2059,6 +2066,8 @@ void main(){
   window.addEventListener('load', function () { ScrollTrigger.refresh(); });
 })();
 </script>
+
+<script src="assets/hero-splat.js" defer></script>
 
 </body>
 </html>

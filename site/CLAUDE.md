@@ -5,6 +5,79 @@ não em `clientes/`.
 
 ---
 
+## Estado em 14/09/2026 (versão 25) — logo 3D em Gaussian Splat no hero
+
+O Marcelo trouxe um arquivo `splat logo Horus` (PLY binário, 17 MB, captura em
+Gaussian Splat da logo, via extensão `ferramentas/3d-grabber/`) e pediu pra
+colocar na Home. Fonte guardada em `site-fontes/3d/logo-horus.ply`.
+
+**O que entrou:** a logo (o olho de Hórus) renderizada em 3D de verdade, ao
+lado do texto do hero (`.hero-grade`, duas colunas — empilha em mobile,
+`assets/hero-splat.js` + CSS em `site.css`). Órbita lenta automática, sem
+controle de mouse (decorativo, não interativo).
+
+**Peso — decisão consciente do Marcelo:** o dado 3D comprimido (`.ksplat`,
+gerado com `@mkkellogg/gaussian-splats-3d`, nível 1) ficou em **6 MB** (era 17
+MB em `.ply`), mais o motor de renderização vendorizado (three.js +
+gaussian-splats-3d, empacotado com esbuild) em **~1 MB**
+(`assets/vendor/gaussian-splats-3d/gaussian-splats-3d.bundle.min.js`). Isso
+soma ~4x o peso do site de hoje (~2 MB). Opção escolhida entre 4 apresentadas:
+manter a qualidade cheia, mas **carregar só depois que a página termina de
+carregar** (`window.addEventListener('load', ...)` + 300ms de folga) — não
+atrasa a primeira impressão; quem tem conexão lenta sente ao chegar na seção,
+não na abertura. Roda dentro de um IntersectionObserver (só anima se visível)
+e respeita `prefers-reduced-motion` (um quadro parado, sem loop).
+
+**Guards de ambiente:** sem WebGL2, ou com `navigator.connection.saveData`
+ligado (ou 2G), o container simplesmente não baixa nada e some (`hidden`) — o
+texto do hero ocupa a largura toda sozinho, sem buraco no layout.
+
+**`sharedMemoryForWorkers: false` e `gpuAcceleratedSort: false`, de
+propósito.** A lib usa `SharedArrayBuffer` por padrão pra falar com o worker
+de ordenação dos splats, o que exige os headers `Cross-Origin-Opener-Policy` +
+`Cross-Origin-Embedder-Policy` no domínio **inteiro** (não só nessa página) —
+decidiu-se não mexer em cabeçalho HTTP do site inteiro por uma peça
+decorativa. Sem isso, o carregamento lança
+`DataCloneError: SharedArrayBuffer transfer requires self.crossOriginIsolated`
+e trava silenciosamente. Guardado aqui porque não está em lugar nenhum do
+README da lib de forma óbvia.
+
+**Armadilha de depuração (guardar pra não repetir):** o teste automatizado
+inicial (Puppeteer, `canvas.drawImage(canvasWebGL,...)` + `getImageData` num
+canvas 2D à parte) reportava **zero pixels desenhados**, com tudo mais correto
+(`splatRenderReady: true`, sem erro de console, sem WebGL context lost). Isso
+levou a uma rodada inteira de hipóteses erradas (câmera mal orientada, bundle
+minificado quebrado, swiftshader headless). O render **estava** correto o
+tempo todo: `WebGLRenderer` sem `preserveDrawingBuffer` some o backbuffer
+antes do `drawImage` conseguir ler, e a prova só veio ao ler o framebuffer
+direto (`gl.readPixels`) ou tirar um `page.screenshot()` de verdade — os dois
+bateram com o render certo. **Nunca verificar canvas WebGL via
+`drawImage`+`getImageData` num teste automatizado**; usar `gl.readPixels` ou
+screenshot do próprio Chrome.
+
+**Câmera:** o objeto capturado é achatado no eixo X (a "frente" da logo fica
+no plano YZ, medido por amostragem do `.ply` — extensão X ~0,10 contra Y ~0,84
+e Z ~1,0). A câmera orbita alinhada ao eixo X, de frente pra essa face; olhar
+ao longo de Z (o instinto óbvio) mostra a logo quase de perfil.
+
+⚠️ **Não verificado em produção (Netlify)**, só localmente via `http-server` +
+Chrome (headless e não-headless) em desktop 1440 e mobile 390. O
+`python -m http.server` embutido do Python não aguentou a carga concorrente do
+arquivo de 6 MB (`ERR_CONNECTION_RESET` em requests simultâneos) — usar
+`http-server`/`serve` de verdade pra qualquer teste local com esse asset.
+Detector do impeccable `0` (a pasta `assets/vendor/**` entrou no
+`ignoreFiles` do `.impeccable/config.json`: são dependências de terceiro
+vendorizadas, igual `node_modules`, e o bundle minificado do
+gaussian-splats-3d tem um `font-family: arial` interno num painel de debug
+que nunca é mostrado no site).
+
+**Resultado do publish:** `node site/build-deploy.mjs` → **67 arquivos, 9,2 MB**
+no ar (era 1,9 MB/62 arquivos na v24). O salto é quase todo o `.ksplat` (6 MB)
+e o motor vendorizado (~1 MB) — decisão sabida e aceita acima, não regressão
+por descuido.
+
+---
+
 ## Estado em 01/09/2026 (versão 24) — PREPARAÇÃO DE DEPLOY (Netlify)
 
 Rodada de infraestrutura, não de design: o site foi preparado para subir em
