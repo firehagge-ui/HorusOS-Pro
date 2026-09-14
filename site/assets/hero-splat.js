@@ -109,8 +109,8 @@
     // coordenadas esféricas de verdade ao redor do centro — mesma proporção
     // de efeito nos dois eixos — amortecidos até o alvo. Não gira sozinha,
     // só vira para acompanhar o mouse. Alvo (0,0) = olhando de frente, parada.
-    var MAX_YAW = 0.5;
-    var MAX_PITCH = 0.65;
+    var MAX_YAW = 0.26;
+    var MAX_PITCH = 0.34;
     var yawAlvo = 0, pitchAlvo = 0, yawAtual = 0, pitchAtual = 0;
 
     function posicionarCamera(yaw, pitch) {
