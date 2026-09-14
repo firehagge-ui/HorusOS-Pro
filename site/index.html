@@ -141,12 +141,8 @@
 
         <!-- Logo da Hórus em Gaussian Splat 3D. Carrega depois que a página
              termina de carregar (assets/hero-splat.js); some sozinho sem
-             WebGL2 ou em conexão de dados limitada. O brilho por cima simula
-             luz reagindo ao giro (a nuvem de pontos não responde a luz 3D de
-             verdade — a cor de cada ponto já vem "gravada" da captura). -->
-        <div id="hero-splat" class="hero-splat" aria-hidden="true">
-          <span class="hero-splat-luz" aria-hidden="true"></span>
-        </div>
+             WebGL2 ou em conexão de dados limitada. -->
+        <div id="hero-splat" class="hero-splat" aria-hidden="true"></div>
       </div>
     </div>
 
@@ -2072,6 +2068,7 @@ void main(){
 </script>
 
 <script src="assets/hero-splat.js" defer></script>
+<script src="assets/particles.js" defer></script>
 
 </body>
 </html>

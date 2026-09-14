@@ -18,6 +18,56 @@ frente, e vira levemente para acompanhar o mouse** (sem girar sozinha —
 pedido do Marcelo na 2ª rodada, abaixo. Não reage ao mouse em mobile/touch
 nem em `prefers-reduced-motion`).
 
+**3ª rodada (mesmo dia, mais ajustes do Marcelo):**
+- **Brilho removido** (`.hero-splat-luz` da 2ª rodada saiu inteiro — CSS, HTML
+  e JS). Não pegou bem, sem mais explicação registrada.
+- **Logo maior:** `min(38vw,420px)` → `min(54vw,580px)` no desktop,
+  `min(70vw,320px)` → `min(88vw,440px)` no mobile.
+- **Flutuação suave:** `@keyframes hero-splat-flutuar` (translateY, ~3% de
+  amplitude, 6.5s, `ease-in-out infinite`), ligada só quando
+  `.hero-splat--pronto` e desligada em `prefers-reduced-motion`. É CSS puro
+  no container — não custa nada re-renderizar a cena 3D, só desloca o canvas.
+- 🔴 **Giro vertical corrigido e aumentado:** "quando coloco o mouse embaixo
+  ele não está olhando" — dois problemas, não um. (1) O deslocamento vertical
+  original (`MAX_TILT: 0.12`, um simples `camera.position.y += tilt`) era
+  fraco demais pra perceber — trocado por uma órbita esférica de verdade nos
+  dois eixos (`Math.sin(pitch)`/`Math.cos(pitch)` multiplicando o raio, igual
+  ao yaw), com `MAX_PITCH: 0.65`, proporcional ao efeito horizontal. (2) Pelo
+  mesmo motivo do yaw invertido da 2ª rodada (a câmera orbita AO REDOR do
+  objeto — orbitar num sentido faz o objeto parecer virar no sentido oposto),
+  o pitch também precisou do sinal invertido (`pitchAlvo = -ny * MAX_PITCH`).
+- **Volta pro neutro quando o mouse sai da janela:** sem isso, o alvo do
+  giro ficava congelado no último ângulo se o cursor saísse do viewport (foco
+  em outro app, ou fora da tela) — `document.addEventListener('mouseleave',
+  ...)` + `window.addEventListener('blur', ...)` zeram `yawAlvo`/`pitchAlvo`,
+  e o amortecimento já existente cuida de trazer de volta suavemente.
+- **Partículas flutuando pela Home inteira** (pedido do Marcelo, à parte da
+  logo): `assets/particles.js`, porte vanilla (canvas 2D puro) de um
+  componente React (`particles.tsx`) que ele colou como referência — regra
+  da casa, nada de React/Next/shadcn instalado neste site. `position:fixed`
+  cobrindo a viewport, atrás do conteúdo, com atração magnética sutil ao
+  mouse (herdada do componente original) e sem reagir a touch. Cores
+  brancas/douradas da marca (não RGB genérico).
+  - 🔴 **Armadilha de empilhamento:** as partículas simplesmente não
+    apareciam com `z-index: 0` — `.hero` tem `position: relative` (sem
+    z-index próprio), o que o torna "positioned" com z-index efetivo 0 igual
+    ao das partículas; dentro do MESMO grupo de pintura CSS, quem vem depois
+    no documento pinta por cima, e `.hero` (com seu `background` cobrindo a
+    tela inteira) vem depois de `.particulas` no DOM. Subir pra `z-index: 1`
+    resolveu — fica atrás do texto (`z-index:1` local dentro do hero, mas em
+    stacking context próprio) e na frente do fundo de qualquer seção.
+  - ⚠️ **Tensão com a doutrina da casa, registrada por honestidade:**
+    `_memoria/design/60-motion.md` lista **"partícula genérica flutuando"
+    como antipadrão explícito** ("é o 'cara de IA' da era WebGL... tem que
+    dizer algo do cliente ou não estar ali") e um **teto de 1 assinatura em
+    movimento por página**. Este hero já tinha o fundo `.hero-velaris`
+    (WebGL) e a logo 3D interativa — as partículas são uma terceira camada.
+    Mitigado até onde deu (cores da marca, não RGB genérico; bem sutil, não
+    disputa leitura), mas é uma exceção pedida diretamente pelo Marcelo pro
+    site da própria casa, não uma decisão automática seguindo a doutrina. Se
+    algum dia perguntarem "por que o site da Hórus quebra a própria regra",
+    a resposta é essa.
+
 **2ª rodada (mesmo dia, correções do Marcelo):** duas queixas depois de ver o
 resultado — "está girando, eu queria que ficasse parada e seguisse o mouse" e
 "quero que fique no index.html sem precisar fazer localhost". As duas

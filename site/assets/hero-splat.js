@@ -6,11 +6,10 @@
  * o site inteiro hoje. Ver site/CLAUDE.md.
  *
  * Fica parada, olhando de frente, e vira levemente para acompanhar o mouse
- * (sem girar sozinha), com um reflexo de luz por cima que se desloca junto
- * (.hero-splat-luz em site.css — a nuvem de pontos não responde a luz 3D de
- * verdade). Pausa fora de tela (IntersectionObserver), com a aba em segundo
- * plano (document.hidden), e não reage ao mouse em prefers-reduced-motion
- * nem em touch (regra da casa em _memoria/design/60-motion.md).
+ * (sem girar sozinha). Pausa fora de tela (IntersectionObserver), com a aba
+ * em segundo plano (document.hidden), e não reage ao mouse em
+ * prefers-reduced-motion nem em touch (regra da casa em
+ * _memoria/design/60-motion.md).
  *
  * Carregado via <script> clássico (não módulo ES) e os dados 3D embutidos em
  * base64 (site/assets/3d/logo-horus.ksplat.b64.js), decodificados para um
@@ -105,23 +104,21 @@
 
     var visivel = false;
     var raf = null;
-    var luz = container.querySelector('.hero-splat-luz');
 
-    // Yaw (giro esquerda/direita) e leve deslocamento vertical da câmera,
-    // os dois amortecidos até o alvo — não gira sozinha, só vira para
-    // acompanhar o mouse. Alvo (0,0) = olhando de frente, parada.
+    // Yaw (giro esquerda/direita) e pitch (cima/baixo), os dois em
+    // coordenadas esféricas de verdade ao redor do centro — mesma proporção
+    // de efeito nos dois eixos — amortecidos até o alvo. Não gira sozinha,
+    // só vira para acompanhar o mouse. Alvo (0,0) = olhando de frente, parada.
     var MAX_YAW = 0.5;
-    var MAX_TILT = 0.12;
-    var yawAlvo = 0, tiltAlvo = 0, yawAtual = 0, tiltAtual = 0;
-    // Brilho: segue o mouse na direção NATURAL (sem o espelhamento da
-    // câmera), como um reflexo de luz vindo de onde está o cursor.
-    var luzXAlvo = 0, luzYAlvo = 0, luzXAtual = 0, luzYAtual = 0;
+    var MAX_PITCH = 0.65;
+    var yawAlvo = 0, pitchAlvo = 0, yawAtual = 0, pitchAtual = 0;
 
-    function posicionarCamera(yaw, tilt) {
+    function posicionarCamera(yaw, pitch) {
+      var r = Math.cos(pitch) * raioOrbita;
       camera.position.set(
-        centro.x + Math.cos(yaw) * raioOrbita,
-        centro.y + tilt,
-        centro.z + Math.sin(yaw) * raioOrbita
+        centro.x + Math.cos(yaw) * r,
+        centro.y + Math.sin(pitch) * raioOrbita,
+        centro.z + Math.sin(yaw) * r
       );
       camera.lookAt(centro);
     }
@@ -139,33 +136,33 @@
       // (efeito de paralaxe) — sem o menos aqui, a logo vira para o lado
       // contrário ao do mouse.
       yawAlvo = -nx * MAX_YAW;
-      tiltAlvo = ny * MAX_TILT;
-      luzXAlvo = nx;
-      luzYAlvo = ny;
+      // Mesmo espelhamento do yaw (a câmera orbita ao redor do objeto): sem
+      // o menos, o objeto vira pra cima quando o mouse está embaixo.
+      pitchAlvo = -ny * MAX_PITCH;
+      acordarLoop();
+    }
+    function aoMouseSair() {
+      // O ponteiro saiu da janela (foco em outro app, ou fora do viewport) —
+      // volta pra pose neutra em vez de ficar preso no último ângulo.
+      yawAlvo = 0;
+      pitchAlvo = 0;
       acordarLoop();
     }
     if (!mobile && !reduzMovimento) {
       window.addEventListener('mousemove', aoMoverMouse, { passive: true });
+      document.addEventListener('mouseleave', aoMouseSair);
+      window.addEventListener('blur', aoMouseSair);
     }
 
     function loop() {
       var deltaYaw = yawAlvo - yawAtual;
-      var deltaTilt = tiltAlvo - tiltAtual;
-      var deltaLuzX = luzXAlvo - luzXAtual;
-      var deltaLuzY = luzYAlvo - luzYAtual;
+      var deltaPitch = pitchAlvo - pitchAtual;
       yawAtual += deltaYaw * 0.06;
-      tiltAtual += deltaTilt * 0.06;
-      luzXAtual += deltaLuzX * 0.08;
-      luzYAtual += deltaLuzY * 0.08;
-      posicionarCamera(yawAtual, tiltAtual);
-      if (luz) {
-        luz.style.setProperty('--lx', (50 + luzXAtual * 38) + '%');
-        luz.style.setProperty('--ly', (42 + luzYAtual * 30) + '%');
-      }
+      pitchAtual += deltaPitch * 0.06;
+      posicionarCamera(yawAtual, pitchAtual);
       viewer.update();
       viewer.render();
-      var assentado = Math.abs(deltaYaw) < 0.0004 && Math.abs(deltaTilt) < 0.0004 &&
-        Math.abs(deltaLuzX) < 0.0004 && Math.abs(deltaLuzY) < 0.0004;
+      var assentado = Math.abs(deltaYaw) < 0.0004 && Math.abs(deltaPitch) < 0.0004;
       if (visivel && !document.hidden && !assentado) {
         raf = requestAnimationFrame(loop);
       } else {
