@@ -597,6 +597,7 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
 .hero-grade { display: flex; align-items: center; justify-content: space-between; gap: 48px; }
 .hero-txt { flex: 1 1 auto; min-width: 0; }
 .hero-splat {
+  position: relative;
   flex: 0 0 auto;
   width: min(38vw, 420px);
   aspect-ratio: 1 / 1;
@@ -605,6 +606,29 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
 }
 .hero-splat--pronto { opacity: 1; }
 .hero-splat canvas { display: block; width: 100%; height: 100%; }
+
+/* Reflexo de luz por cima da peça 3D: a nuvem de pontos não reage a luz de
+   verdade (cor gravada na captura), então isso simula. A posição segue o
+   MESMO yaw/tilt amortecido que já move a câmera (assets/hero-splat.js),
+   então "a luz reage quando ela se move" em vez de seguir o mouse cru.
+   `plus-lighter` clareia sem embranquecer a cor de baixo (aditivo de verdade,
+   ao contrário de `screen`, que já achata cor saturada). */
+.hero-splat-luz {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: plus-lighter;
+  opacity: 0;
+  transition: opacity .6s ease;
+  background: radial-gradient(
+    circle at var(--lx, 50%) var(--ly, 42%),
+    rgba(255, 255, 255, .55) 0%,
+    rgba(122, 178, 255, .28) 22%,
+    transparent 46%
+  );
+}
+.hero-splat--pronto .hero-splat-luz { opacity: 1; }
 
 @media (max-width: 900px) {
   .hero-grade { flex-direction: column; }

@@ -2,12 +2,21 @@
  * Logo da Hórus em Gaussian Splat 3D, ao lado do texto do hero.
  *
  * Carrega só depois que a página inteira já respondeu (window 'load'), para
- * não atrasar a primeira impressão: o bundle (~1MB) + o dado 3D (~6MB) somam
- * mais que o site inteiro hoje (~2MB). Ver site/CLAUDE.md.
+ * não atrasar a primeira impressão: os dados (~9MB no total) somam mais que
+ * o site inteiro hoje. Ver site/CLAUDE.md.
  *
- * Pausa em prefers-reduced-motion (renderiza 1 quadro parado e para o loop),
- * fora de tela (IntersectionObserver) e com a aba em segundo plano
- * (document.hidden) — regra da casa em _memoria/design/60-motion.md.
+ * Fica parada, olhando de frente, e vira levemente para acompanhar o mouse
+ * (sem girar sozinha), com um reflexo de luz por cima que se desloca junto
+ * (.hero-splat-luz em site.css — a nuvem de pontos não responde a luz 3D de
+ * verdade). Pausa fora de tela (IntersectionObserver), com a aba em segundo
+ * plano (document.hidden), e não reage ao mouse em prefers-reduced-motion
+ * nem em touch (regra da casa em _memoria/design/60-motion.md).
+ *
+ * Carregado via <script> clássico (não módulo ES) e os dados 3D embutidos em
+ * base64 (site/assets/3d/logo-horus.ksplat.b64.js), decodificados para um
+ * Blob local: os dois evitam os bloqueios de segurança do navegador para
+ * módulo ES e para fetch de arquivo binário quando a página é aberta direto
+ * (file://, sem servidor) — ver a nota em site/CLAUDE.md.
  */
 (function () {
   var container = document.getElementById('hero-splat');
@@ -23,17 +32,36 @@
     /2g/.test(navigator.connection.effectiveType || ''));
   if (economizaDados) { container.hidden = true; return; }
 
+  function carregarScript(src) {
+    return new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = src;
+      s.onload = resolve;
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+
+  function base64ParaBlobUrl(b64) {
+    var bin = atob(b64);
+    var bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    var blob = new Blob([bytes], { type: 'application/octet-stream' });
+    return URL.createObjectURL(blob);
+  }
+
   function iniciar() {
     Promise.all([
-      import('./vendor/gaussian-splats-3d/gaussian-splats-3d.bundle.min.js')
-    ]).then(function (mods) {
-      montar(mods[0].GaussianSplats3D, mods[0].THREE);
+      carregarScript('./assets/vendor/gaussian-splats-3d/gaussian-splats-3d.bundle.min.js'),
+      carregarScript('./assets/3d/logo-horus.ksplat.b64.js')
+    ]).then(function () {
+      montar(window.GaussianSplats3DGlobal.GaussianSplats3D, window.GaussianSplats3DGlobal.THREE, window.__logoHorusKsplatBase64);
     }).catch(function () {
       container.hidden = true;
     });
   }
 
-  function montar(GaussianSplats3D, THREE) {
+  function montar(GaussianSplats3D, THREE, b64) {
     var largura = container.clientWidth;
     var altura = container.clientHeight;
     if (!largura || !altura) { container.hidden = true; return; }
@@ -48,12 +76,12 @@
     container.appendChild(renderer.domElement);
 
     // Objeto capturado achatado no eixo X (profundidade rasa); a câmera fica
-    // de frente para essa face, orbitando em torno de Y. Centro medido por
+    // de frente para essa face, ao longo do eixo X. Centro medido por
     // amostragem da nuvem de pontos original (site-fontes/3d/logo-horus.ply).
     var centro = new THREE.Vector3(0, -0.085, 0);
     var raioOrbita = 1.7;
     var camera = new THREE.PerspectiveCamera(50, largura / altura, 0.05, 20);
-    camera.up.set(0, 1, 0);
+    camera.up.set(0, -1, 0);
 
     var viewer = new GaussianSplats3D.Viewer({
       selfDrivenMode: false,
@@ -76,41 +104,86 @@
     });
 
     var visivel = false;
-    var congelado = reduzMovimento;
     var raf = null;
-    var angulo = 0;
+    var luz = container.querySelector('.hero-splat-luz');
 
-    // Objeto raso no eixo X (a "frente" da logo fica no plano YZ); a órbita
-    // gira em torno de Y começando com a câmera alinhada ao eixo X, de frente
-    // para essa face, em vez do padrão sin/cos que olharia de perfil.
-    function posicionarCamera(a) {
+    // Yaw (giro esquerda/direita) e leve deslocamento vertical da câmera,
+    // os dois amortecidos até o alvo — não gira sozinha, só vira para
+    // acompanhar o mouse. Alvo (0,0) = olhando de frente, parada.
+    var MAX_YAW = 0.5;
+    var MAX_TILT = 0.12;
+    var yawAlvo = 0, tiltAlvo = 0, yawAtual = 0, tiltAtual = 0;
+    // Brilho: segue o mouse na direção NATURAL (sem o espelhamento da
+    // câmera), como um reflexo de luz vindo de onde está o cursor.
+    var luzXAlvo = 0, luzYAlvo = 0, luzXAtual = 0, luzYAtual = 0;
+
+    function posicionarCamera(yaw, tilt) {
       camera.position.set(
-        centro.x + Math.cos(a) * raioOrbita,
-        centro.y,
-        centro.z + Math.sin(a) * raioOrbita
+        centro.x + Math.cos(yaw) * raioOrbita,
+        centro.y + tilt,
+        centro.z + Math.sin(yaw) * raioOrbita
       );
       camera.lookAt(centro);
     }
-    posicionarCamera(angulo);
+    posicionarCamera(0, 0);
+
+    function acordarLoop() {
+      if (!raf && visivel && !document.hidden) raf = requestAnimationFrame(loop);
+    }
+
+    function aoMoverMouse(e) {
+      var nx = (e.clientX / window.innerWidth) * 2 - 1;
+      var ny = (e.clientY / window.innerHeight) * 2 - 1;
+      // Sinal invertido de propósito: a câmera orbita ao redor do objeto, e
+      // orbitar num sentido faz o objeto PARECER virar no sentido oposto
+      // (efeito de paralaxe) — sem o menos aqui, a logo vira para o lado
+      // contrário ao do mouse.
+      yawAlvo = -nx * MAX_YAW;
+      tiltAlvo = ny * MAX_TILT;
+      luzXAlvo = nx;
+      luzYAlvo = ny;
+      acordarLoop();
+    }
+    if (!mobile && !reduzMovimento) {
+      window.addEventListener('mousemove', aoMoverMouse, { passive: true });
+    }
 
     function loop() {
-      raf = requestAnimationFrame(loop);
-      if (!visivel || document.hidden) return;
-      if (!congelado) {
-        angulo += 0.0018;
-        posicionarCamera(angulo);
+      var deltaYaw = yawAlvo - yawAtual;
+      var deltaTilt = tiltAlvo - tiltAtual;
+      var deltaLuzX = luzXAlvo - luzXAtual;
+      var deltaLuzY = luzYAlvo - luzYAtual;
+      yawAtual += deltaYaw * 0.06;
+      tiltAtual += deltaTilt * 0.06;
+      luzXAtual += deltaLuzX * 0.08;
+      luzYAtual += deltaLuzY * 0.08;
+      posicionarCamera(yawAtual, tiltAtual);
+      if (luz) {
+        luz.style.setProperty('--lx', (50 + luzXAtual * 38) + '%');
+        luz.style.setProperty('--ly', (42 + luzYAtual * 30) + '%');
       }
       viewer.update();
       viewer.render();
-      if (congelado) { cancelAnimationFrame(raf); raf = null; }
+      var assentado = Math.abs(deltaYaw) < 0.0004 && Math.abs(deltaTilt) < 0.0004 &&
+        Math.abs(deltaLuzX) < 0.0004 && Math.abs(deltaLuzY) < 0.0004;
+      if (visivel && !document.hidden && !assentado) {
+        raf = requestAnimationFrame(loop);
+      } else {
+        raf = null;
+      }
     }
 
-    viewer.addSplatScene('./assets/3d/logo-horus.ksplat', {
+    var splatUrl = base64ParaBlobUrl(b64);
+    viewer.addSplatScene(splatUrl, {
+      // Um Blob URL não tem extensão de arquivo, e a lib detecta o formato
+      // pelo caminho — sem isso, falha com "File format not supported".
+      format: GaussianSplats3D.SceneFormat.KSplat,
       showLoadingUI: false,
       position: [0, 0, 0],
       rotation: [0, 0, 0, 1],
       scale: [1, 1, 1]
     }).then(function () {
+      URL.revokeObjectURL(splatUrl);
       container.classList.add('hero-splat--pronto');
       raf = requestAnimationFrame(loop);
     }).catch(function () {
@@ -119,7 +192,7 @@
 
     var io = new IntersectionObserver(function (entradas) {
       visivel = entradas[0].isIntersecting;
-      if (visivel && !raf && !congelado) raf = requestAnimationFrame(loop);
+      acordarLoop();
     }, { threshold: 0.05 });
     io.observe(container);
 

@@ -13,8 +13,84 @@ colocar na Home. Fonte guardada em `site-fontes/3d/logo-horus.ply`.
 
 **O que entrou:** a logo (o olho de Hórus) renderizada em 3D de verdade, ao
 lado do texto do hero (`.hero-grade`, duas colunas — empilha em mobile,
-`assets/hero-splat.js` + CSS em `site.css`). Órbita lenta automática, sem
-controle de mouse (decorativo, não interativo).
+`assets/hero-splat.js` + CSS em `site.css`). **Fica parada, olhando de
+frente, e vira levemente para acompanhar o mouse** (sem girar sozinha —
+pedido do Marcelo na 2ª rodada, abaixo. Não reage ao mouse em mobile/touch
+nem em `prefers-reduced-motion`).
+
+**2ª rodada (mesmo dia, correções do Marcelo):** duas queixas depois de ver o
+resultado — "está girando, eu queria que ficasse parada e seguisse o mouse" e
+"quero que fique no index.html sem precisar fazer localhost". As duas
+mudaram a arquitetura do carregamento:
+
+- **Parado + segue o mouse:** o `angulo` que crescia sozinho por frame virou
+  um **yaw e um leve deslocamento vertical, amortecidos até um alvo** lido da
+  posição do mouse na janela inteira (`window.addEventListener('mousemove',
+  ...)`, não só sobre o canvas). Sem mouse (ou em touch/reduced-motion), fica
+  na pose neutra (de frente, parada). O loop de render agora **para sozinho
+  quando "assenta"** (delta abaixo de um limiar) e só acorda de novo no
+  próximo `mousemove` — render sob demanda, não roda pra sempre.
+- **Funciona abrindo `index.html` direto (sem servidor):** isso quebrava em
+  DOIS lugares por padrão do navegador, os dois invisíveis em teste via
+  `http-server` porque só aparecem em `file://`:
+  1. O motor (antes carregado com `import()`, módulo ES) foi **reempacotado
+     em IIFE** (`esbuild --format=iife --global-name=GaussianSplats3DGlobal`)
+     e passou a carregar via `<script src="...">` clássico, injetado
+     dinamicamente. Módulo ES via `file://` é bloqueado por CORS
+     (`Access to script ... blocked by CORS policy`); `<script>` comum não é.
+  2. O arquivo `.ksplat` (6 MB) não dá pra buscar por `fetch`/XHR via
+     `file://` (mesma restrição de CORS, dessa vez no dado, não no código) —
+     não tem como contornar isso mantendo um binário separado. Solução: o
+     `.ksplat` virou **base64 embutido num `.js`**
+     (`assets/3d/logo-horus.ksplat.b64.js`, gerado uma vez a partir do
+     `.ksplat`, ~8 MB de texto), carregado como `<script>` clássico igual ao
+     motor, decodificado em memória para um `Blob` e servido à lib via
+     `URL.createObjectURL(blob)` — um Blob URL não tem a restrição de
+     `file://`. **Efeito colateral que precisou de um parâmetro extra:** um
+     Blob URL não tem extensão de arquivo, e a lib decide o formato pelo
+     caminho — sem `format: GaussianSplats3D.SceneFormat.KSplat` explícito
+     nas opções do `addSplatScene`, falha com `File format not supported`.
+  Resultado: **um caminho só** (não dois, um pra produção e um pra local) —
+  o mesmo Blob URL funciona igual em `file://` e no Netlify. Custo: ~2 MB a
+  mais no total (base64 é ~33% maior que o binário), parcialmente absorvido
+  pela compressão HTTP em produção (texto comprime melhor que binário já
+  denso).
+- 🔴 **Armadilha que custou uma rodada de confusão:** ao reescrever o loop de
+  câmera, o `camera.up` foi digitado como `(0, 1, 0)` em vez do `(0, -1, 0)`
+  usado no teste que tinha sido validado visualmente antes — o sinal errado
+  gira a imagem 180° em torno do eixo de visão (não é um flip vertical
+  simples, já que também espelha). A logo saiu de cabeça para baixo, e eu
+  não percebi porque não comparei com o ícone real da marca
+  (`assets/simbolo.webp`) antes de aprovar — só o Marcelo, olhando o site de
+  verdade, notou. **Lição:** ao aprovar uma peça com identidade visual
+  reconhecível (logo, símbolo), comparar lado a lado com a referência real
+  antes de dar como pronto, não só checar "parece uma forma razoável".
+- 🔴 **Segunda inversão, mesma família de bug:** com o `up` já certo, o giro
+  ainda ficava ao contrário do mouse (virava para o lado OPOSTO de onde o
+  cursor estava). Causa: a câmera orbita AO REDOR do objeto, e orbitar num
+  sentido faz o objeto *parecer* virar no sentido oposto (paralaxe) — o sinal
+  do yaw precisou inverter (`yawAlvo = -nx * MAX_YAW`, com o comentário no
+  código explicando o porquê, pra não reabrir essa dúvida depois).
+- **Luz que reage ao movimento** (pedido do Marcelo): a nuvem de pontos não
+  responde a luz 3D de verdade (cor gravada na captura, sem material/shading
+  dinâmico), então é simulado — um `<span class="hero-splat-luz">` por cima
+  do canvas, `radial-gradient` com `mix-blend-mode: plus-lighter` (clareia de
+  verdade, ao contrário de `screen`, que achata cor saturada), posição via
+  CSS vars `--lx`/`--ly` atualizadas a cada frame do loop. Segue a posição
+  NATURAL do mouse (sem o espelhamento do yaw da câmera — variável separada
+  `luzXAlvo`/`luzYAlvo`, mesmo amortecimento), como um reflexo vindo de onde
+  está o cursor.
+- 🔴 **Armadilha de teste que custou a rodada mais longa desta sessão: cache
+  do Chrome sobre `file://`.** Depois de corrigir a direção do giro, os
+  valores de `--lx` medidos via `page.evaluate` pareciam aleatórios/invertidos
+  de novo — parecia um bug novo. Era o navegador servindo uma **versão em
+  cache** de `hero-splat.js` (de antes da correção), mesmo com o arquivo já
+  trocado em disco: `file://` **é cacheado** pelo Chrome como qualquer outro
+  recurso, e um `puppeteer.launch()` novo não limpa cache em disco por conta
+  própria. Corrigido com `page.setCacheEnabled(false)` logo após
+  `browser.newPage()`. **Lição:** ao testar um arquivo `file://` que muda
+  entre rodadas seguidas no mesmo navegador, desligar o cache é o primeiro
+  passo, não o último recurso de depuração.
 
 **Peso — decisão consciente do Marcelo:** o dado 3D comprimido (`.ksplat`,
 gerado com `@mkkellogg/gaussian-splats-3d`, nível 1) ficou em **6 MB** (era 17
@@ -60,21 +136,27 @@ no plano YZ, medido por amostragem do `.ply` — extensão X ~0,10 contra Y ~0,8
 e Z ~1,0). A câmera orbita alinhada ao eixo X, de frente pra essa face; olhar
 ao longo de Z (o instinto óbvio) mostra a logo quase de perfil.
 
-⚠️ **Não verificado em produção (Netlify)**, só localmente via `http-server` +
-Chrome (headless e não-headless) em desktop 1440 e mobile 390. O
+⚠️ **Não verificado em produção (Netlify)**, só localmente: via `http-server` +
+Chrome (headless e não-headless) em desktop 1440 e mobile 390, e via
+`file:///.../site/index.html` **aberto direto, sem nenhum servidor** (o
+pedido do Marcelo na 2ª rodada) — os dois confirmados funcionando, com o
+`up` da câmera corrigido, conferido contra `assets/simbolo.webp`. O
 `python -m http.server` embutido do Python não aguentou a carga concorrente do
 arquivo de 6 MB (`ERR_CONNECTION_RESET` em requests simultâneos) — usar
-`http-server`/`serve` de verdade pra qualquer teste local com esse asset.
+`http-server`/`serve` de verdade pra qualquer teste local que precise de
+servidor com esse asset.
 Detector do impeccable `0` (a pasta `assets/vendor/**` entrou no
 `ignoreFiles` do `.impeccable/config.json`: são dependências de terceiro
 vendorizadas, igual `node_modules`, e o bundle minificado do
 gaussian-splats-3d tem um `font-family: arial` interno num painel de debug
 que nunca é mostrado no site).
 
-**Resultado do publish:** `node site/build-deploy.mjs` → **67 arquivos, 9,2 MB**
-no ar (era 1,9 MB/62 arquivos na v24). O salto é quase todo o `.ksplat` (6 MB)
-e o motor vendorizado (~1 MB) — decisão sabida e aceita acima, não regressão
-por descuido.
+**Resultado do publish:** `node site/build-deploy.mjs` → **67 arquivos, ~11,6 MB**
+no ar (era 1,9 MB/62 arquivos na v24; a 1ª rodada desta versão tinha fechado em
+9,2 MB com o `.ksplat` binário — a 2ª rodada trocou pelo base64 embutido, ~8 MB
+de texto, pra funcionar em `file://`, subindo o total). O `.ksplat` binário
+saiu de `assets/3d/` (redundante com o `.b64.js`, que já carrega os mesmos
+dados); só o `.ply` original fica em `site-fontes/3d/` como fonte, fora do ar.
 
 ---
 
