@@ -405,6 +405,7 @@ table.tabela { width: 100%; border-collapse: collapse; font-size: 14px; }
   .app { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
   .side { position: fixed; top: 0; left: 0; bottom: 0; width: 280px; z-index: 75; transform: translateX(-104%); transition: transform 0.28s var(--ease); }
   .side.aberta { transform: none; box-shadow: var(--sombra); }
+  body.menu-aberto .main::before { content: ""; position: fixed; inset: 0; z-index: 74; background: rgba(3, 3, 5, 0.55); backdrop-filter: blur(2px); }
   .topo { padding: 12px 16px 0; position: sticky; top: 0; z-index: 40; background: linear-gradient(180deg, var(--bg) 70%, transparent); }
   .topo .menu-mob { display: inline-flex; }
   .busca-global { min-width: 0; }

@@ -14,7 +14,8 @@ function gravarPref(p) { try { localStorage.setItem(PREF, JSON.stringify(p)); } 
 
 export default async function esteira(v) {
   const pref = lerPref();
-  let modo = pref.modo || 'kanban';
+  // No celular o kanban rola na horizontal e atrapalha: começa em lista (dá pra trocar).
+  let modo = pref.modo || (innerWidth < 900 ? 'lista' : 'kanban');
   let filtro = pref.filtro || 'todos';
   let mostrarFechados = pref.fechados ?? true;
   let busca = '';
@@ -108,7 +109,7 @@ export default async function esteira(v) {
     };
     lst.sort(cmp);
     const th = (campo, rotulo) => `<th class="ord" data-ord="${campo}">${rotulo}${ordenar.campo === campo ? (ordenar.dir > 0 ? ' ↑' : ' ↓') : ''}</th>`;
-    area.innerHTML = `<div class="card pad-0"><div class="tabela-wrap"><table class="tabela">
+    area.innerHTML = `<div class="card pad-0"><div class="tabela-wrap"><table class="tabela tabela-esteira">
       <thead><tr>${th('nome', 'Empresa')}${th('estagio', 'Estágio')}${th('score', 'Score')}<th>Contato</th><th>Site</th>${th('valor_estimado', 'Valor')}<th>Próxima ação</th>${th('atualizado_em', 'Mexido')}</tr></thead>
       <tbody>${lst.map((e) => { const s = achaEstagio(e.estagio); return `<tr class="linha-clicavel" data-id="${e.id}">
         <td><div class="nm">${esc(e.nome)}</div><div class="sb">${esc([e.categoria, e.bairro || e.cidade].filter(Boolean).join(' · '))}</div></td>

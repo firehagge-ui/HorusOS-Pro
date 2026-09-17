@@ -41,6 +41,7 @@ const NOMES_FERRAMENTA = {
   mcp__firecrawl__firecrawl_extract: ['planilha', 'Firecrawl: extração'],
 };
 export function rotuloFerramenta(nome, input = {}) {
+  if (nome === "ToolSearch") return { nome, icone: "busca", rotulo: "Preparando ferramentas", detalhe: "", oculto: true };
   if (NOMES_FERRAMENTA[nome]) {
     const [icone, rotulo] = NOMES_FERRAMENTA[nome];
     const det = input.query || input.url || input.file_path || input.pattern || '';

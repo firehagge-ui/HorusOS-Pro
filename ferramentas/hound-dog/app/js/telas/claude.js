@@ -114,7 +114,7 @@ export default async function claude(v, { args, params }) {
       return;
     }
     const pensando = ['pensando', 'streaming'].includes(m.status) && !m.conteudo;
-    const ferr = (m.ferramentas || []).slice(-6);
+    const ferr = (m.ferramentas || []).filter((f) => !f.oculto).slice(-6);
     d.innerHTML = `<span class="cm-avatar ${['pensando', 'streaming'].includes(m.status) ? 'claude-pensando' : ''}">${sparkClaude(22)}</span>
       <div class="cm-corpo">${ferr.length ? `<div class="cm-ferr">${ferr.map((f) => `<span class="selo ${f.ok === false ? 'vermelho' : 'claude'} mini" title="${esc(f.detalhe || '')}">${icone(f.icone || 'raio')}${esc(f.rotulo || f.nome)}</span>`).join('')}</div>` : ''}
         ${pensando ? `<div class="cm-pensando">${farejadorOnline() ? '<span class="digitando"><i></i><i></i><i></i></span> Pensando…' : `${icone('ampulheta')} Na fila: o Farejador está offline. Respondo assim que ele ligar.`}</div>` : '<div class="md cm-md"></div>'}

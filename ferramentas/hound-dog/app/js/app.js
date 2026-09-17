@@ -134,7 +134,7 @@ function montarCasca() {
   desenharFarejador();
 
   $('[data-sair]').onclick = async () => { desligarTempoReal(); await sb.auth.signOut(); };
-  $('[data-menu]').onclick = () => $('#side').classList.toggle('aberta');
+  $('[data-menu]').onclick = () => alternarMenu();
   $('[data-paleta]').onclick = abrirPaleta;
   $('[data-notif]').onclick = (e) => abrirNotificacoes(e.currentTarget);
   $('[data-novo]').onclick = (e) => menu(e.currentTarget, [
@@ -146,10 +146,22 @@ function montarCasca() {
     '-',
     { icone: 'comentario', rotulo: 'Perguntar ao Claude', fn: () => { location.hash = '#/claude'; } },
   ]);
+  // Menu do celular: o toque fora fecha e NÃO aciona o que está atrás (a camada come o clique).
   document.addEventListener('click', (e) => {
     const side = $('#side');
-    if (side?.classList.contains('aberta') && !side.contains(e.target) && !e.target.closest('[data-menu]')) side.classList.remove('aberta');
-  });
+    if (side?.classList.contains('aberta') && !side.contains(e.target) && !e.target.closest('[data-menu]')) {
+      e.preventDefault(); e.stopPropagation(); alternarMenu(false);
+    }
+  }, true);
+}
+
+/** Abre e fecha o menu do celular (com camada que impede clique no conteúdo atrás). */
+function alternarMenu(abrir) {
+  const side = $('#side');
+  if (!side) return;
+  const novo = abrir === undefined ? !side.classList.contains('aberta') : abrir;
+  side.classList.toggle('aberta', novo);
+  document.body.classList.toggle('menu-aberto', novo);
 }
 
 function desenharNav() {
@@ -218,7 +230,7 @@ async function navegar() {
   vista.className = 'vista';
   vista.innerHTML = `<div class="carregando-tela">${icone('radar')}<span>Carregando ${esc(def.titulo.toLowerCase())}…</span></div>`;
   vista.scrollTop = 0;
-  $('#side')?.classList.remove('aberta');
+  alternarMenu(false);
   try {
     const mod = await def.mod();
     if (parseHash().rota !== rota) return; // o usuário já navegou
