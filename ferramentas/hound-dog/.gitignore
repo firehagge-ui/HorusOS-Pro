@@ -1,0 +1,10 @@
+# Segredos e estado local — NUNCA versionar
+.segredos/
+.env
+.env.*
+!.env.example
+node_modules/
+farejador/.wa-auth/
+farejador/logs/
+farejador/.estado/
+.vercel/

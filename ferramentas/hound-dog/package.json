@@ -1,0 +1,25 @@
+{
+  "name": "hound-dog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hound Dog — o CRM e painel de controle da Hórus (prospecção, mercado, clientes, WhatsApp e Claude)",
+  "type": "module",
+  "scripts": {
+    "migrar": "node scripts/migrar.mjs",
+    "semear": "node scripts/semear-real.mjs",
+    "farejador": "node farejador/index.mjs",
+    "mcp": "node mcp/server.mjs",
+    "hd": "node cli/hd.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "baileys": "^7.0.0-rc14",
+    "pg": "^8.23.0",
+    "pino": "^10.3.1",
+    "qrcode": "^1.5.4",
+    "zod": "^4.6.5"
+  }
+}

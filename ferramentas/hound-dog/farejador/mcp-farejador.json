@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "hound-dog": {
+      "type": "stdio",
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "E:\\Users\\hagge\\Downloads\\HorusOS\\ferramentas\\hound-dog\\mcp\\server.mjs"
+      ],
+      "env": {
+        "HD_AUTOR": "claude"
+      }
+    }
+  }
+}

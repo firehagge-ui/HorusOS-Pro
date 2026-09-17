@@ -449,7 +449,8 @@ mão em SVG avulso.
 ### 11.1 Dados operacionais que faltam (não inventar nenhum)
 
 `[FALTA: domínio oficial]` · `[FALTA: WhatsApp da agência]` · `[FALTA: e-mail]` ·
-`[FALTA: @ do Instagram]` (o mockup antigo trazia `@horuspublicidade`, a confirmar) ·
+**@agenciahorus02** ✅ confirmado pelo Marcelo em 17/09/2026 (o mockup antigo trazia
+`@horuspublicidade`, que é outra conta — o site ainda aponta para a errada) ·
 `[FALTA: cidade/endereço]` · `[FALTA: CNPJ]`.
 
 ### 11.2 Divergências a reconciliar em outros arquivos

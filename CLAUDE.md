@@ -51,6 +51,26 @@ padrão de repetição for claro.
 
 ---
 
+## Edição concorrente: não presumir regressão
+
+Se um arquivo que está sendo editado nesta conversa aparece com conteúdo diferente do
+que a própria conversa produziu — um trecho que ninguém aqui escreveu, uma seção que
+sumiu — **isso não é presunção de bug ou de sessão travada**. Pode ser o próprio
+usuário editando ao vivo em outra janela (terminal, editor, outra sessão do Claude),
+ou um `/loop` autônomo que ele deixou rodando no mesmo arquivo.
+
+Antes de reverter: **perguntar ou confirmar com o usuário**, nunca sobrescrever
+presumindo que é regressão de outra sessão. Origem datada: 15/09/2026, site da
+Mullsanni Performance — o hero que o Marcelo tinha acabado de construir ao vivo foi
+revertido duas vezes por engano, cada vez lido como interferência externa. Detalhe em
+`clientes/mullsanni-performance/site/PLANO.md` (Passe 6).
+
+Consequência prática: **não rodar `/loop` autônomo num arquivo que outra sessão está
+editando ativamente** — gera guerra de edição, e quem perde é sempre o trabalho mais
+recente de alguém. Se dois fluxos de trabalho vão tocar o mesmo arquivo, avisar antes.
+
+---
+
 ## Aprender com correções
 
 Quando o usuário corrigir algo, melhorar uma resposta ou dar uma
@@ -498,6 +518,45 @@ regulado, por mais canônica que seja: **compliance vence a mente.**
 
 ---
 
+## Hound Dog — o CRM oficial da Hórus (o Claude sempre atualiza)
+
+**Painel:** https://hound-dog-omega.vercel.app · **Código:** `ferramentas/hound-dog/`
+(leia o `CLAUDE.md` de lá antes de mexer) · Criado em 17/09/2026, substituindo os
+protótipos `horus-crm` e `painel-ataque-planta` (removidos; ficam no histórico do Git).
+
+O Hound Dog é a **fonte de verdade da operação comercial**: quem é cada lead e cliente, em
+que estágio está, próxima ação, negócios e dinheiro, agenda, linha do tempo, conversas do
+WhatsApp, listas de prospecção e pesquisas de mercado. A pasta `clientes/<nome>/` continua
+sendo o dossiê longo (briefing, marca, compliance, entregas); o Hound Dog é o **estado atual**.
+Os dois têm que bater.
+
+🔴 **Regra de comportamento — atualizar sem ser mandado.** Sempre que nesta conversa aparecer
+**cliente ou lead novo**, ou mudar algo de um existente (estágio, reunião marcada, valor,
+contato confirmado, objeção, decisão de seguir ou largar), **atualize o Hound Dog no mesmo
+turno** com as ferramentas `mcp__hound-dog__*` (o servidor MCP já está no `.mcp.json`):
+
+- `hd_resumo` — situação da esteira, quem precisa de atenção, agenda e dinheiro
+- `hd_buscar_empresas` · `hd_empresa` — achar e abrir a ficha
+- `hd_salvar_empresa` — criar ou atualizar (deduplica por WhatsApp, Instagram ou nome+cidade)
+- `hd_mover_estagio` · `hd_registrar_atividade` · `hd_agendar`
+- `hd_salvar_negocio` · `hd_registrar_financeiro` — fases vendidas e dinheiro
+- `hd_lista_adicionar_itens` — leads achados numa pesquisa
+- `hd_salvar_pesquisa` · `hd_playbook` · `hd_conversas` · `hd_instagram_snapshot`
+
+Depois de gravar, conte em **uma linha** o que foi atualizado. Não peça confirmação para
+registrar o que o Marcelo acabou de dizer; pergunte só quando faltar dado essencial.
+
+**As travas da casa valem dentro do CRM:** nada inventado (`integridade.md`), nunca presumir
+dígito de telefone, compliance de cliente regulado trava a mensagem, sem disparo em massa e
+sem bot respondendo sozinho no WhatsApp — o Claude lê e sugere, quem envia é o humano.
+
+**O Farejador** (`ferramentas/hound-dog/farejador/`) é o programa que roda no PC do Marcelo e
+dá vida ao painel: chama o Claude pela assinatura (sem API), segura o WhatsApp, coleta o
+Instagram e manda lembrete. Se o painel disser "Farejador offline", é ele que precisa ligar
+(`npm run farejador` na pasta, ou o atalho "Hound Dog Farejador").
+
+---
+
 ## Integridade e verificação
 
 **`_memoria/integridade.md` é leitura obrigatória antes de escrever qualquer coisa
@@ -580,7 +639,10 @@ não publica sem revisão do profissional responsável.
 - `saidas/` — arquivo solto de trabalho (imagens geradas, logo de cliente). Não é
   entrega: entrega mora na pasta do cliente
 - `ferramentas/` — **ferramentas externas ou infraestrutura própria** que não são
-  skill do Claude (desde 28/08/2026). Hoje: `3d-grabber/` (extensão de Chrome MV3
+  skill do Claude (desde 28/08/2026). A principal é o **`hound-dog/`** (desde 17/09/2026):
+  o CRM e painel de controle da Hórus, no ar em https://hound-dog-omega.vercel.app, com o
+  Farejador que roda no PC e liga o Claude, o WhatsApp e o Instagram ao painel — ver a seção
+  "Hound Dog" acima e o `CLAUDE.md` da pasta. Também tem: `3d-grabber/` (extensão de Chrome MV3
   que captura assets 3D de sites; carregar via `chrome://extensions` em modo dev) e
   `mcp-prospeccao/` (servidor MCP local, stdio via `.mcp.json`, desde 29/08/2026:
   `check_site`, `lookup_cnpj`, `check_meta_ads`. Audita o que o agente Gemini Spark
