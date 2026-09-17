@@ -50,7 +50,7 @@ code { font-family: var(--mono); font-size: 12.5px; padding: 1px 6px; border-rad
 .funil-linha:hover .funil-nome { color: var(--txt); }
 .funil-nome { display: flex; align-items: center; gap: 8px; color: var(--txt-2); font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .funil-barra { height: 10px; border-radius: 99px; background: rgba(255, 255, 255, 0.05); overflow: hidden; }
-.funil-barra i { display: block; height: 100%; border-radius: inherit; min-width: 3px; opacity: 0.85; transition: width 0.5s var(--ease); }
+.funil-barra i { display: block; height: 100%; border-radius: inherit; min-width: 3px; opacity: 0.85; }
 .funil-linha b { text-align: right; font-size: 13.5px; }
 .clicavel-lt { cursor: pointer; }
 .clicavel-lt:hover .lt-t { color: var(--accent-2); }
@@ -146,7 +146,7 @@ details summary.rotulo { cursor: pointer; }
 .dia-add { margin-top: auto; border: 1px dashed var(--line-2); background: none; color: var(--txt-4); border-radius: 9px; padding: 5px; display: grid; place-items: center; opacity: 0; transition: opacity 0.15s; }
 .dia:hover .dia-add { opacity: 1; }
 .dia-add svg { width: 14px; height: 14px; }
-.evento { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; width: 100%; padding: 6px 8px; border-radius: 9px; border: 0; border-left: 3px solid var(--cor); background: color-mix(in srgb, var(--cor) 14%, transparent); color: var(--txt); font-size: 12.5px; text-align: left; min-width: 0; }
+.evento { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; width: 100%; padding: 6px 9px; border-radius: 9px; border: 1px solid color-mix(in srgb, var(--cor) 32%, transparent); background: color-mix(in srgb, var(--cor) 12%, transparent); color: var(--txt); font-size: 12.5px; text-align: left; min-width: 0; }
 .evento b { font-family: var(--mono); font-size: 11.5px; color: var(--cor); }
 .evento span, .evento small { max-width: 100%; }
 .evento small { color: var(--txt-3); font-size: 11.5px; }
@@ -180,8 +180,8 @@ details summary.rotulo { cursor: pointer; }
 .cli-card h3 { font-size: 16.5px; }
 .cli-negocio { padding: 12px; border-radius: 12px; background: var(--bg-2); border: 1px solid var(--line); font-size: 13.5px; }
 .passos-entrega { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
-.passos-entrega span { font-size: 10.5px; text-align: center; padding: 5px 2px 0; color: var(--txt-4); border-top: 3px solid rgba(255, 255, 255, 0.08); }
-.passos-entrega span.on { color: var(--green-2); border-top-color: var(--green); }
+.passos-entrega span { font-size: 10.5px; text-align: center; padding: 6px 2px 0; color: var(--txt-4); border-top: 2px solid rgba(255, 255, 255, 0.08); }
+.passos-entrega span.on { color: var(--green-2); border-top-color: rgba(37, 211, 102, 0.75); }
 .cli-dinheiro { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .cli-dinheiro span { display: flex; flex-direction: column; padding: 9px 11px; border-radius: 11px; background: var(--card-2); border: 1px solid var(--line); }
 .cli-dinheiro small { font-size: 11.5px; color: var(--txt-3); }
