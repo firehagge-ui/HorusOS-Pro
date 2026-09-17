@@ -355,7 +355,7 @@ async function detalheLista(v, id) {
       ${lista.status === 'processando' ? `<div class="aviso claude mb-16">${sparkClaude(18)}<div><b>O Claude ainda está farejando esta lista.</b> Os leads aparecem aqui conforme ele encontra.</div></div>` : ''}
       <div class="card destaque lista-resumo"><div class="icone-caixa">${icone('usuariomais')}</div>
         <div class="grow"><div class="resumo-num"><b>${num(cont.nao_importados)}</b> leads prontos pra entrar no funil</div><div class="dim">${num(cont.todos)} na lista · ${num(cont.alta)} alta prioridade · ${num(cont.sem_site)} sem site · ${num(cont.importados)} já no CRM</div></div>
-        <div class="right"><button class="btn prim" data-importar-top>${icone('setad')}Mandar os ${Math.min(10, ativos.filter((i) => !i.empresa_id && i.prioridade === 'alta').length) || 0} melhores pro funil</button></div></div>
+        <div class="right">${(() => { const n = Math.min(10, ativos.filter((i) => !i.empresa_id && i.prioridade === 'alta').length); return n ? `<button class="btn prim" data-importar-top>${icone('setad')}Mandar os ${n} melhores pro funil</button>` : `<span class="dim" style="font-size:13px">${cont.nao_importados ? 'Nenhum de alta prioridade ainda: escolha na tabela abaixo.' : 'Tudo o que valia já está no funil.'}</span>`; })()}</div></div>
       <div class="chips mt-16">${[['nao_importados', 'Ainda fora do CRM'], ['alta', 'Alta oportunidade'], ['media', 'Média ou +'], ['sem_site', 'Sem site'], ['whats', 'Com WhatsApp'], ['importados', 'No CRM'], ['todos', 'Todos'], ['descartados', 'Descartados']]
         .map(([k, r]) => `<button class="chip ${filtro === k ? 'on' : ''}" data-filtro="${k}">${k === 'alta' ? icone('estrela') : ''}${r} <span class="n">${cont[k]}</span></button>`).join('')}</div>
       <div class="row wrap mt-16"><div class="busca grow" style="max-width:420px">${icone('busca')}<input class="inp" data-busca placeholder="Buscar por nome, bairro, @…" value="${esc(busca)}"></div>
@@ -416,7 +416,8 @@ async function detalheLista(v, id) {
       if (b.dataset.bulk === 'descartar') { await atualizarItens(ids, { descartado: true }); sel.clear(); desenhar(); }
       if (b.dataset.bulk === 'enriquecer') { await enriquecer(ids.slice(0, 15)); sel.clear(); desenhar(); }
     }));
-    $('[data-importar-top]', v).onclick = async (e) => {
+    const btnTop = $('[data-importar-top]', v);
+    if (btnTop) btnTop.onclick = async (e) => {
       const top = itens.filter((i) => !i.descartado && !i.empresa_id && i.prioridade === 'alta').sort((a, b) => b.score - a.score).slice(0, 10);
       if (!top.length) { toast('Nenhum lead de alta prioridade fora do CRM', 'info'); return; }
       botaoCarregando(e.currentTarget, true, 'Importando…');
