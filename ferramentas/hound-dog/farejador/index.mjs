@@ -61,9 +61,35 @@ async function pegarJob() {
   const claudeLivres = MAX_CLAUDE - [...rodando.values()].filter((r) => r.usaClaude).length;
   const tipos = Object.keys(TAREFAS).filter((t) => (USA_CLAUDE.has(t) ? claudeLivres > 0 : true));
   if (!tipos.length) return null;
-  const r = await q1(`update jobs set status = 'processando', iniciado_em = now(), progresso = 'Começando'
-    where id = (select id from jobs where status = 'fila' and tipo = any($1) order by prioridade, criado_em for update skip locked limit 1) returning *`, [tipos]);
+  const r = await q1(`update jobs set status = 'processando', iniciado_em = now(), progresso = 'Começando', tentativas = tentativas + 1
+    where id = (select id from jobs where status = 'fila' and tipo = any($1) and (retomar_em is null or retomar_em <= now())
+                order by prioridade, criado_em for update skip locked limit 1) returning *`, [tipos]);
   return r;
+}
+
+/**
+ * Quando o limite da assinatura do Claude estoura, a tarefa não é um erro: ela espera.
+ * Lê a hora que a própria mensagem do Claude informa ("resets 8pm") e remarca.
+ */
+function esperarPeloLimite(mensagem) {
+  const m = String(mensagem || '');
+  if (!/session limit|usage limit|limite de uso|rate limit|resets? \d/i.test(m)) return null;
+  const hora = m.match(/resets?\s+(\d{1,2})(?::(\d{2}))?\s*(am|pm)?/i);
+  const agora = new Date();
+  let volta;
+  if (hora) {
+    let h = Number(hora[1]);
+    if (/pm/i.test(hora[3] || '') && h < 12) h += 12;
+    if (/am/i.test(hora[3] || '') && h === 12) h = 0;
+    const naBahia = new Date(agora.toLocaleString('en-US', { timeZone: 'America/Bahia' }));
+    const alvo = new Date(naBahia);
+    alvo.setHours(h, Number(hora[2] || 0), 30, 0);
+    if (alvo <= naBahia) alvo.setDate(alvo.getDate() + 1);
+    volta = new Date(agora.getTime() + (alvo - naBahia));
+  } else {
+    volta = new Date(agora.getTime() + 60 * 60000);
+  }
+  return volta;
 }
 
 async function executar(job) {
@@ -86,8 +112,14 @@ async function executar(job) {
     log('fila', `✔ ${job.tipo} (${job.id.slice(0, 8)})`);
   } catch (e) {
     const cancel = await cancelado();
+    const espera = esperarPeloLimite(e.message);
     if (cancel) { log('fila', `✖ ${job.tipo} cancelado`); }
-    else {
+    else if (espera && job.tentativas < 8) {
+      const horaBr = espera.toLocaleTimeString('pt-BR', { timeZone: 'America/Bahia', hour: '2-digit', minute: '2-digit' });
+      await q("update jobs set status = 'fila', retomar_em = $2, progresso = $3, erro = null, iniciado_em = null where id = $1",
+        [job.id, espera.toISOString(), `Limite da assinatura do Claude atingido. Retomo sozinho às ${horaBr}.`]).catch(() => {});
+      log('fila', `⏸ ${job.tipo} esperando o limite do Claude liberar (${horaBr})`);
+    } else {
       await q("update jobs set status = 'erro', concluido_em = now(), erro = $2 where id = $1", [job.id, String(e.message || e).slice(0, 900)]).catch(() => {});
       logErro('fila', e);
     }

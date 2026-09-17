@@ -13,6 +13,10 @@ import { log } from './log.mjs';
 import { detectarObjecoesTexto } from './objecoes.mjs';
 
 const FERR_PESQUISA = ['WebSearch', 'WebFetch', 'Read', 'Grep', 'Glob', 'mcp__firecrawl', 'mcp__hound-dog'];
+
+/** Limite da assinatura do Claude não é erro: a tarefa espera e volta sozinha. */
+export const ehLimiteDoClaude = (e) => /session limit|usage limit|limite de uso|rate limit|resets? \d/i.test(String(e?.message || e || ''));
+const AVISO_LIMITE = 'O limite da assinatura do Claude foi atingido. A tarefa volta sozinha assim que liberar.';
 const FERR_CHAT = ['Read', 'Grep', 'Glob', 'WebSearch', 'WebFetch', 'mcp__hound-dog', 'mcp__firecrawl'];
 
 async function config(chave, padrao = {}) { return (await q1('select valor from config where chave = $1', [chave]))?.valor ?? padrao; }
@@ -94,7 +98,7 @@ export async function analisarConversa(job, progresso, cancelado) {
     }
     return { objecoes: (a.objecoes || []).map((o) => o.rotulo), temperatura: a.temperatura };
   } catch (e) {
-    await q("update whatsapp_conversas set analise_status = 'erro' where id = $1", [convId]).catch(() => {});
+    await q("update whatsapp_conversas set analise_status = $2 where id = $1", [convId, ehLimiteDoClaude(e) ? 'fila' : 'erro']).catch(() => {});
     throw e;
   }
 }
@@ -122,7 +126,9 @@ export async function pesquisarClientes(job, progresso, cancelado) {
     if (!total) throw new Error('O Claude não encontrou nenhum negócio (ou não conseguiu salvar). Tente um nicho ou cidade mais específicos.');
     return { lista_id: lista.id, total, resumo: r.json?.resumo, melhores: r.json?.melhores };
   } catch (e) {
-    await q("update listas set status = 'erro' where id = $1", [lista.id]).catch(() => {});
+    const total = (await q1('select count(*)::int n from lista_itens where lista_id = $1', [lista.id]).catch(() => ({ n: 0 }))).n;
+    await q("update listas set status = $2, total = $3, observacao = $4 where id = $1",
+      [lista.id, ehLimiteDoClaude(e) ? 'processando' : 'erro', total, ehLimiteDoClaude(e) ? AVISO_LIMITE : null]).catch(() => {});
     throw e;
   }
 }
@@ -162,7 +168,8 @@ export async function enriquecerEmpresa(job, progresso, cancelado) {
     await registrarAtividade(empresaId, 'pesquisa', 'Dossiê gerado pelo Claude', d.resumo || null, 'claude');
     return { resumo: d.resumo, atualizou: Object.keys(d.atualizacoes || {}) };
   } catch (e) {
-    if (pesquisa) await q("update pesquisas set status = 'erro', resumo = $2 where id = $1", [pesquisa.id, e.message.slice(0, 300)]).catch(() => {});
+    if (pesquisa) await q("update pesquisas set status = $2, resumo = $3 where id = $1",
+      [pesquisa.id, ehLimiteDoClaude(e) ? 'fila' : 'erro', ehLimiteDoClaude(e) ? AVISO_LIMITE : e.message.slice(0, 300)]).catch(() => {});
     throw e;
   }
 }
@@ -188,7 +195,8 @@ export async function pesquisaMercado(job, progresso, cancelado) {
       [pesquisa_id, d.resumo || null, d.conteudo_md || r.texto, JSON.stringify(dados), Number.isFinite(d.nota_oportunidade) ? Math.round(d.nota_oportunidade) : null]);
     return { pesquisa_id, nota: d.nota_oportunidade, resumo: d.resumo };
   } catch (e) {
-    await q("update pesquisas set status = 'erro', resumo = $2 where id = $1", [pesquisa_id, e.message.slice(0, 300)]).catch(() => {});
+    await q("update pesquisas set status = $2, resumo = $3 where id = $1",
+      [pesquisa_id, ehLimiteDoClaude(e) ? 'fila' : 'erro', ehLimiteDoClaude(e) ? AVISO_LIMITE : e.message.slice(0, 300)]).catch(() => {});
     throw e;
   }
 }
