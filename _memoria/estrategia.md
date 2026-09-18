@@ -5,7 +5,13 @@
 
 ## Fase da agência
 
-⚠️ **Foto atual (10/09/2026):** **oito pastas em `clientes/`**. Estado comercial:
+⚠️ **Foto atual (18/09/2026):** oito pastas em `clientes/` (a carteira não mudou). O que mudou
+é a **prospecção ativa**: onda nova alimentada por planilhas do Gemini Spark, auditada no
+Firecrawl, com o pipeline vivo no **Hound Dog** (em 18/09: ~11 leads no funil, 2 abordados, 8
+qualificados prontos pra disparar). Prioridade de produção viva continua a **Amparo**. Detalhe
+da onda em "O que pode esperar", abaixo.
+
+⚠️ **Foto anterior (10/09/2026):** **oito pastas em `clientes/`**. Estado comercial:
 **Amparo (#6) verbal + reengajada** em 10/09 (a entrada de R$600 não caiu; aguardando ela marcar o início); **Washington (#7) adiou** em
 06/09 (follow-up frio); **Mullsanni (#8) é lead** em avaliação (aberto 07/09); **Aion (#3)
 engavetada** desde 01/09; **Grão da Serra (#4)** e **Permita-se (#2)** em paralelo por
@@ -196,7 +202,7 @@ o site foi oferecido **de graça, por portfólio**, depois de a faixa de R$ 2.00
 - ✅ **Google Meu Negócio no ar e verificado** (31/07). A verificação passou na hora,
   sem vídeo, porque usamos o endereço do MEI. Lição que vale para todo cliente com
   CNPJ: usar o endereço do registro poupa dias de verificação
-- ✅ **Site institucional NO AR** desde 11/08/2026: **https://graodaserra.netlify.app/**
+- ✅ **Site institucional NO AR** desde 11/08/2026: **https://cafegraodaserra.netlify.app/**
   (Netlify). 27 rodadas de polimento; o Nelson aprovou. A primeira versão, escura, foi
   rejeitada pelo Marcelo ("pedi natureza, não vi verde, tá genérico") e ficou em
   `Backup 1/`. Status sempre atual em "ONDE PARAMOS" no topo de
@@ -318,10 +324,20 @@ decisão de risco ALTO e boa candidata a `/conselho`.
 - Novos clientes por prospecção formal. Depende de ter um case pronto, e desde
   26/07/2026 o candidato a case é a **Aion**, não mais o Dr. Giovanni (a
   Permita-se Fitness entrou à parte, por oportunidade, não conta como prospecção)
-- ⚠️ **Lead #8 ativo — Mullsanni Performance** (aberto 07/09/2026): oficina de performance
-  automotiva em Lauro de Freitas, ticket alto, site fora do ar e sem tráfego pago. Lead de
-  prospecção (Bon Odori), ainda **sem proposta enviada**. Dossiê e oferta em fases em
-  `clientes/mullsanni-performance/dossie-prospeccao.md`. Não é cliente fechado.
+- ⚠️ **Mullsanni Performance (#8) — follow-up frio desde 15/09/2026**: barrado no gatekeeper
+  (Cauã) na 1ª abordagem; a prévia do site ficou no coldre, reabre só se um dos sócios procurar.
+  Ver `clientes/mullsanni-performance/CLAUDE.md` e o log `_conselho/logs/2026-09-15-mullsanni-gatekeeper.md`.
+- 🎯 **Onda de prospecção nova (desde 18/09/2026) — oficinas de importado + serviços locais de
+  reputação alta** (Salvador, Lauro de Freitas, Feira): alimentada por planilhas do Gemini Spark
+  (a de 30 oficinas + duas listas maiores de serviço, ~90 nomes no total), toda peneirada por
+  Firecrawl. Em abordagem: 3 oficinas (**Autobahn** BMW/MINI, **Euro Tech** Ferrari/Porsche,
+  **Land Car** Land Rover) e 6 de serviço (**Danyfisio**, **Casa Verona**, **Jeanne Garcia**,
+  **Prático Marcenaria**, **MAR Engenharia** B2B, **Café Cardamomo**). ⚠️ Lição travada e
+  reforçada em 2 lotes no mesmo dia: a ficha do Spark erra, e o "sem site" foi **falso** em
+  Sobrow, Liger Detail, Studio Marcelo Caetano e Mundo Caramelo (todos já com site próprio,
+  desqualificados) — **auditar no Firecrawl antes de abordar**
+  (`feedback_auditar-spark-antes-de-abordar`). **Estado vivo de cada lead no Hound Dog**
+  (`ferramentas/hound-dog/`), não aqui.
 - ✅ **Marca institucional da Hórus fechada em 04 e 05/08/2026.** Deixou de ser
   buraco declarado: `identidade/design-guide.md` tem paleta (com o fundo
   `#0A0B0F` **medido** no arquivo da marca), tipografia (⚠️ **no site**, em **28/08/2026

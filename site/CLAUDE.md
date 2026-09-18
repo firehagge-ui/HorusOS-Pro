@@ -5,6 +5,137 @@ não em `clientes/`.
 
 ---
 
+## Estado em 17/09/2026 (versão 27) — 4 trabalhos reais da Hórus no Portfólio
+
+O Marcelo enviou as capturas de tela reais de quatro projetos para a seção de Portfólio:
+1. **Novare Psicologia** (Saúde & Psicologia Clínica - Salvador)
+2. **Café Grão da Serra** (Agronegócio & Vendas B2B - Serra de Brejões)
+3. **IRS Performance** (Automotivo & Alta Performance - Salvador)
+4. **VerdiServ** (Facilities & Gestão Predial - Salvador / Feira de Santana)
+
+**O que mudou:**
+- Imagens convertidas para WebP de alta nitidez e leveza (~46KB - 85KB) salvas em `site/assets/portfolio/`.
+- `.pf-tela` ajustado para `aspect-ratio: 16 / 9` com `object-position: top center`, revelando perfeitamente a navegação, logotipo, chamada hero e botões de cada projeto sem cortes laterais.
+- Adicionadas tags/eyebrows de segmento com ponto luminoso dourado (`.pf-tag`), títulos com o nome dos clientes e descrições técnicas calibradas no tom da casa.
+- Micro-interações de elevação (`translateY(-4px)`), luz de borda âmbar e leve zoom da tela no hover.
+- O scroll horizontal GSAP no desktop e a pista arrastável nativa no mobile adaptados dinamicamente para os 4 cards.
+- Validação visual realizada via Playwright nos viewports desktop (1440x900) e mobile (390x844).
+
+---
+
+## Estado em 16/09/2026 (versão 26) — arco de luz (glow-horizon) na chamada final
+
+O Marcelo mandou o componente React `glow-horizon.tsx` (Framer Motion + shadcn) e
+pediu o arco de luz na base da seção da chamada (`#contato`), **apontado pra cima**,
+na cor azul da marca (não o roxo do componente). Portado pra vanilla (regra da casa,
+sem React). CSS em `site.css` seção **4f** (`.ch-arco*`), HTML dentro de `.chamada`.
+
+**A técnica que faz funcionar (custou 4 tentativas erradas — anotar pra não repetir):**
+- São **discos CONCÊNTRICOS** (mesmo centro `Cy`, bem abaixo da janela `.ch-arco`,
+  que tem `overflow:hidden` e mostra só a calota de cima → curva suave). Posiciono
+  cada um por `bottom = Cy − raio`.
+- 🔴 **O branco é o disco MAIOR** (rim, na borda de FORA); o brilho azul fica **por
+  DENTRO** dele; e o `.ch-arco-core` (escuro) vem por cima com **blur pesado (~55px)**
+  pra escurecer o miolo SEM borda dura. É o `color="#000"` do componente. Ordem no
+  DOM = trás→frente: `rim, glowl, glowd, core`.
+- 🔴 **Tudo muito borrado** (blur 21–55, seguindo o componente). Disco sólido pouco
+  borrado deixa **borda dura visível** ("a linha azul" que o Marcelo reclamou). Blur
+  pesado no core + brilho é o que dissolve a borda.
+- 🔴 **Erros que o Marcelo vetou, em ordem:** (1) sem o core preto → bola branca
+  sólida; (2) disco grande demais → "planeta", estranho; (3) máscara de borda dura +
+  brilho pouco borrado → "linha azul"; (4) branco dominando → some o azul. O certo é
+  **azul largo e macio com o branco só como fio fino na borda de cima**.
+- Entrada pela classe **`.rev`** (revelador genérico do site, IntersectionObserver do
+  bloco 4 do script) — **não** o GSAP do bloco 6, que não disparava confiável em
+  mobile. Sobe do fundo com blur (`.ch-arco-stage`) e o rim acende com atraso. O
+  brilho respira sozinho (`ch-arco-resp`), sempre ligado. Pausa em `reduced-motion`.
+
+**2ª rodada (mesmo dia) — a esfera ENGLOBA o texto (pedido do Marcelo, com print
+de referência + linha vermelha marcando onde o rim deve cair):** a esfera foi
+**muito ampliada** pra o rim arquear por CIMA do título, com o texto DENTRO da
+tigela de luz. `.ch-arco` virou `inset:0` (cobre a seção inteira). Rim raio 58vw,
+centro Cy=-14vw → apex 44vw (logo acima do título); raio menor = curva mais fechada
+= laterais caem pros cantos, como a linha de referência. O **core (dark) foi
+alargado** pra manter o CENTRO escuro atrás do título (texto branco legível).
+- 🔴 **Mobile precisa de geometria própria (media query ≤860px):** a seção é
+  estreita e ALTA, então em `vw` o arco caía lá embaixo e não englobava. No mobile
+  a esfera é ~3x maior (raio 160vw, apex 140vw) pra o rim subir por cima do título
+  também no celular. **Erro a não repetir: geometria em vw só resolve o desktop;
+  tela alta exige o breakpoint.**
+
+**3ª rodada (mesmo dia): baixar a esfera + fundo #000206.**
+- **Esfera baixada** (o topo encostava na seção de cima): apex desktop 44vw → 37vw
+  (Cy -14 → -21). Mobile não mexeu (já não encostava).
+- **Fundo do espaço da chamada/rodapé = `#000206`** (era `var(--tinta)` #0e0918):
+  `.encerra { background: #000206 }`. As estrelas são as partículas (canvas
+  transparente por cima) — mudar a cor não as remove. O `.ch-arco-core` também
+  virou #000206 pra o centro escuro da esfera casar com o espaço.
+- **Emenda com a seção de cima:** a `.passos` (Como começa) tem aurora azulada no
+  rodapé. 🔴 A 1ª tentativa (gradiente `--tinta → transparent` descendo do topo da
+  `.encerra`) tingia o espaço da chamada de **violeta/vinho** — o Marcelo reclamou.
+  Corrigido: o `.encerra::before` agora pinta **PRA CIMA** (`top: -220px`, gradiente
+  `#000206 → transparent`), dissolvendo o rodapé da seção anterior no #000206. Assim
+  o espaço da chamada fica #000206 PURO e a junção some.
+- 🔴 **`.encerra-glow` REMOVIDO** (`display:none`): o brilho âmbar (alto-esquerda) +
+  violeta somava com o fundo e criava o tom vinho. O espaço agora é #000206 puro;
+  quem dá cor é a esfera azul. O `.encerra-fundo` (canvas legado) segue sem uso.
+
+**4ª rodada (17/09): seção mais alta + arco ANCORADO AO CENTRO.**
+- **`.chamada` min-height 92vh → 112vh** (Marcelo pediu mais alta). A altura extra
+  vira espaço de estrelas no topo.
+- 🔴 **Aumentar a altura quebrava o englobar:** com o conteúdo `justify-content:
+  center` e a esfera ancorada na BASE (`bottom: -Xvw`), a seção mais alta empurrava
+  o título pra cima, pra fora da esfera. E ancorar o conteúdo na base
+  (`flex-end` + `padding-bottom` em vh) quebrava o MOBILE (vh ≠ vw). **A correção
+  robusta: ancorar a esfera ao CENTRO da seção** — `bottom: calc(50% + OFFSET −
+  larguraVW)`. Como o texto é centralizado (50%) e a esfera também parte do 50%, os
+  dois andam juntos: mudar a altura só adiciona espaço no topo, o englobar se mantém
+  em qualquer altura e nos dois breakpoints. OFFSET = 150px (desktop) / 90px (mobile,
+  título menor) = o apex do rim fica esse tanto acima do centro. Concêntricos partem
+  de `50% + OFFSET − raioRimVW`.
+
+**5ª rodada (18/09): título INTEIRO dentro + efeito de entrada no texto.**
+- 🔴 **OFFSET desktop 120 → 185px.** Nas idas e voltas eu tinha baixado pra 120px e a
+  1ª linha "Pronto para criar" ficou pra FORA da esfera (o Marcelo mandou o print). O
+  apex precisa ficar bem acima do título INTEIRO: 185px acima do centro dá ~60px de
+  folga sobre o topo do título. (Mobile segue 90px, título menor já cabe.)
+- **Efeito de entrada no título (o `AnimatedTitleFM` do componente):** o título e o
+  botão agora entram via a MESMA classe `.rev` do arco (removido o controle do GSAP
+  no bloco 6 do script — o gsap.set inline sobrescrevia o CSS e o trigger era outro,
+  dessincronizado). No CSS, `.chamada .ch-titulo.rev` / `.ch-acao.rev` começam
+  `opacity:0` + `translateY(48px) scale(1.05)` + `blur(18px)` e resolvem com o ease do
+  componente (`cubic-bezier(.16,1,.3,1)`, 1.5s). Como usam o mesmo `.visivel` do arco,
+  o texto materializa (blur→nítido, sobe) **junto com a esfera subindo** — é o "efeito
+  no título quando o círculo sobe" que o Marcelo pediu. Pausa em `reduced-motion`.
+
+**6ª rodada (18/09): gatilho da animação MAIS TARDE.** A chamada saiu do observador
+global de `.rev` (que dispara a -6%, assim que o topo espia) e ganhou observador
+PRÓPRIO no bloco 4 do script: como a seção é alta (112vh) e o conteúdo é centralizado,
+o gatilho é amarrado ao `.envelope` (o conteúdo) com `rootMargin: 0 0 -35% 0` → a linha
+de disparo fica a ~65% da viewport. Assim a esfera+texto só sobem quando o usuário
+chega PERTO do conteúdo, não quando a seção começa a espiar. Verificado (Playwright):
+com o topo da seção a 96% da viewport o título NÃO revela; com o conteúdo a ~60% da
+viewport, revela. Valor tunável (mais negativo = ainda mais tarde).
+
+**7ª rodada (18/09): título+botão DESCIDOS dentro da esfera.** `.chamada .envelope`
+ganhou `transform: translateY(90px)` — desloca só o conteúdo (título+botão), sem mexer
+no `.ch-arco` (que continua ancorado ao 50% da seção, independente). O texto ficou mais
+afundado na tigela de luz, ainda com folga acima. Verificado nos dois breakpoints.
+
+⚠️ **Edição concorrente detectada nesta rodada (17/09):** o `site.css` foi modificado
+por OUTRA sessão/processo enquanto eu editava (o Edit avisou "file modified on disk";
+apareceram linhas duplicadas que não escrevi: `.ps-etapa.aceso .ps-n` e `.ps-cta` 2×
+cada, além de `min-height` duplicado). Um `dark-glow` (#0f4682, `rgba(15,76,148,.08)`
+na `.ps-etapa`) surgiu no detector, **na seção "Como começa", não no arco.** Não
+mexi — pela regra de edição concorrente, isso é do Marcelo/outra sessão pra resolver.
+
+⚠️ **Verificado com Playwright** (instalado sob demanda: `npm install playwright` numa
+pasta fora do repo + `npx playwright install chromium`) — desktop 1440 e mobile 390,
+sem rolagem horizontal, sem erro de console. Detector do impeccable com os 2 achados
+pré-existentes (linha 732, `gradient-text`, sem relação com o arco).
+
+---
+
 ## Estado em 14/09/2026 (versão 25) — logo 3D em Gaussian Splat no hero
 
 O Marcelo trouxe um arquivo `splat logo Horus` (PLY binário, 17 MB, captura em
@@ -1262,14 +1393,10 @@ Nada disso impede construir. Tudo isso impede subir.
 
 ### Decisão pendente
 
-- [ ] **Autorização de portfólio.** Nenhum cliente autorizou uso do nome. A seção
-      de portfólio descreve segmento e entrega, sem nome, sem logo e sem print, e
-      **as quatro molduras estão sem imagem** por causa disso. ⚠️ Print do site de
-      um cliente identifica o cliente mesmo sem escrever o nome: tirar screenshot
-      dos quatro sites do repositório não resolve, piora.
-      Grão da Serra tem a autorização em aberto e registrada na estratégia; Aion
-      é especulativo sob Deployment Protection; Dr. Giovanni está fora da linha
-      de frente. **Case com nome só entra com "sim" por escrito de cada um**
+- [x] **Autorização de portfólio.** ✅ Resolvido em 17/09/2026 (v27). O Marcelo
+      trouxe as telas reais de 4 projetos: Novare Psicologia, Café Grão da
+      Serra, IRS Performance e VerdiServ Serviços Prediais. Seção no ar com
+      nomes, capturas e descrições calibradas.
 - [ ] **A assinatura verbal do manual.** "Estratégia que transforma" usa verbo de
       folheto, que a casa proíbe em copy. Hoje o rodapé usa só "Visão que
       conecta". Ou a assinatura fica restrita a peça institucional, ou ela é

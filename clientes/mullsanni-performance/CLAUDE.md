@@ -1,7 +1,8 @@
 # Mullsanni Performance — Oficina de performance (Lauro de Freitas/BA)
 
-> ⚠️ **LEAD em avaliação, não é cliente fechado** (aberto 07/09/2026). Não entra em fila
-> de produção nem contagem de contas.
+> ⚠️ **FOLLOW-UP FRIO — barrado no gatekeeper em 15/09/2026.** Não entra em fila de
+> produção nem contagem de contas. Aberto como lead em 07/09/2026, nunca chegou aos
+> decisores. Detalhe na seção Status.
 
 ## Sobre
 
@@ -18,7 +19,7 @@ Instagram @mullsanniperformance ativo; Google 5,0★ com 11 avaliações; **site
 
 ## Origem
 
-Marcelo viu no Bon Odori em 06/09/2026. Foi pesquisar e descobriu o site morto. Prospecção
+Marcelo viu no Bonodori em 06/09/2026. Foi pesquisar e descobriu o site morto. Prospecção
 ativa da Hórus, não indicação. O sócio do Marcelo tentou prospectar um dono de bonsais no
 mesmo evento e ouviu "faço tudo pelo Instagram" — a lição dessa quicada virou o playbook
 de objeção abaixo.
@@ -49,7 +50,54 @@ de objeção abaixo.
     render desktop+mobile com H1/prova/CTAs legíveis sobre o véu. Inventário dos 6 vídeos e
     verificação completa em `site/PLANO.md` (Rodada 5). Em aberto: fundo mobile dedicado
     (vid5 vertical) é melhoria futura, não bloqueia.
+  - **Rodada 6 (aplicada, 14/09):** pacote grande do Marcelo. Estrutura enxugada para
+    **Hero · Cobertura · Sobre a oficina · Dinamômetro · Projetos · Clientes(GMN) · CTA ·
+    Orçamento(seletor de veículo) · Rodapé**. Removidos: a faixa de vídeo do meio, a seção
+    "Por que aqui" isolada (migrou para Sobre), o slogan "Sua paixão, nossa assinatura", a foto
+    dos sócios. Novos: **painel de dinamômetro estilo laudo** com o Porsche 718 GTS (+48 whp,
+    giro 7800→8300, layout da imagem-referência do Marcelo); **Sobre a oficina** com tom
+    artesanal (frases reais deles, sem superlativo Mansory) + foto emoldurada com bloco amarelo
+    offset + pontilhados + chevrons; **Clientes (GMN)** com 5,0★ real + 3 slots `[FALTA: review]`;
+    **seletor de veículo** no orçamento (o "igual ao ACF", honesto, sem cravar cavalo); rodapé
+    Bravus-like com sociais. ✅ Detector exit 0 (25 anti-patterns corrigidos). Referências do
+    projeto salvas em `REFERENCIAS.md` (Brabus/ABT/Manhart/ACF/Bravus + a referência do ChatGPT).
+    O Marcelo pediu um **loop de refino contínuo** (revisar vs referências, lapidar, mobile,
+    ideias novas). Ver `site/PLANO.md` (Rodada 6) para o passe duplo e a verificação.
+  - **Passe 6 (15/09):** representante oficial ACF Performance + Nova Racing com as logos reais
+    (baixadas dos sites deles, em `site/assets/parceiros/`); **configurador estilo ACF**
+    (marca → modelo → painel Original/Stage), com base fechada nos 6 carros reais que o Marcelo
+    mandou (substitui o formulário livre); dinamômetro no formato **"de → até"** (print 4,
+    referência BMW); Audi R8 V10 5.2 FSI real (442→470 whp) no lugar de um caso que eu tinha
+    inventado; Sobre a oficina refeita com **"OFICINA" vertical** (print 5) + foto à esquerda;
+    avaliações em **carrossel** com nome fixo no rodapé de cada card. A Home (hero) que o
+    Marcelo construiu ao vivo foi preservada — ver `site/PLANO.md` (Passe 6) para o detalhe da
+    colisão de edição do dia e a regra nova sobre não presumir regressão.
 - **Pendências para virar cliente:** ver seção Pendências no final.
+
+## Status (15/09/2026) — FOLLOW-UP FRIO, barrado no gatekeeper
+
+O Marcelo abordou pela primeira vez em 15/09/2026, com a prévia pronta. Quem respondeu
+foi **Cauã**, não Jordan nem Nelson (os sócios decisores) — provável funcionário/social
+media. Resposta: "Que bacana! Agradecemos pelo contato, porém possuímos nossa equipe de
+marketing que já está cuidando. O site encontra-se off-line apenas temporariamente!"
+
+**Leitura:** gatekeeper, não decisor. A alegação de "equipe cuidando" contradiz o que a
+Hórus já tinha confirmado por conta (site fora do ar por DNS, zero anúncio na Biblioteca
+da Meta) — indício de projeto travado, não de operação ativa. Mas isso não muda a ação:
+discutir com o Cauã só queima o lead antes de chegar em quem decide.
+
+**Decisão do Conselho** (`_conselho/logs/2026-09-15-mullsanni-gatekeeper.md`, confiança
+78%): responder uma vez, curioso e caloroso, sem contestar o Cauã e sem despejar a
+prévia nele. **A prévia (rodadas 1-6 do site) fica no coldre** — só sai se um dos sócios
+reengajar por conta própria. Zero produção nova. Energia de volta pra Amparo Fase 1+2.
+
+**Critério de reversão:** ABORTA se o Cauã responder de novo ou não responder nada.
+REABRE (prévia sai do coldre) só se Jordan ou Nelson procurarem diretamente.
+
+**Lição de processo:** a abordagem devia ter testado antes se quem responderia era
+decisor ou porteiro (o próprio playbook de objeção abaixo já dizia "ficar curioso" —
+faltou aplicar na primeira mensagem, não só depois do barramento). Card de doutrina
+correspondente: `_conhecimento/network/objecao-ja-tem-alguem-fazendo.md`.
 
 ## Contato
 

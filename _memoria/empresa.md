@@ -180,7 +180,7 @@ A descrição de cada função da operação está em `equipe/`, com tipo de exe
   Distrito Serrana, Brejões/BA. MEI ativo desde 20/03/2026 (negócio novo).
   Contexto completo em `clientes/grao-da-serra/` (briefing + marca).
   **Google Meu Negócio no ar e verificado** desde 31/07/2026. **Site institucional
-  NO AR** desde 11/08/2026 (https://graodaserra.netlify.app/, 27 rodadas de
+  NO AR** desde 11/08/2026 (https://cafegraodaserra.netlify.app/, 27 rodadas de
   polimento, aprovado pelo Nelson) — status sempre atual em "ONDE PARAMOS" no topo
   de `clientes/grao-da-serra/CLAUDE.md`. O site não trava mais; o que segue aberto é
   a **autorização de uso como portfólio** (o pagamento da Horus no projeto) e as

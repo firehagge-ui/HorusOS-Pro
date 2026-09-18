@@ -38,7 +38,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site.css?v=4">
+<style>
+  .ps-icon { width: 64px; height: 64px; border: 1px solid rgba(38,95,148,.64); border-radius: 14px; background: rgba(2,8,15,.94); box-shadow: inset 0 0 15px rgba(15,70,130,.16), 0 0 8px rgba(21,111,226,.18); color: #65adff; }
+  .ps-icon svg { width: 34px; height: 34px; stroke-width: 1.7; filter: drop-shadow(0 0 3px rgba(71,163,255,.34)); }
+</style>
 </head>
 <body>
 
@@ -143,6 +147,42 @@
              termina de carregar (assets/hero-splat.js); some sozinho sem
              WebGL2 ou em conexão de dados limitada. -->
         <div id="hero-splat" class="hero-splat" aria-hidden="true"></div>
+
+        <!-- Arco de luz junto ao olho, no canto superior direito. FIXO (não
+             flutua com o símbolo): fica ancorado na coluna, não dentro do splat.
+             O brilho segue a PRÓPRIA linha (uma cópia borrada do mesmo traço),
+             sem bola solta. Tudo azul: apaga nas duas pontas (opacidade e cor) e
+             acende no meio, como na referência. -->
+        <svg class="hero-arco" viewBox="0 0 460 400" fill="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="arcoLinha" x1="40" y1="70" x2="420" y2="320" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#4b93e6" stop-opacity="0"></stop>
+              <stop offset="0.5" stop-color="#4b93e6" stop-opacity="1"></stop>
+              <stop offset="1" stop-color="#4b93e6" stop-opacity="0"></stop>
+            </linearGradient>
+            <!-- glow apertado: só existe perto do pico da cor (offset 0.5), não
+                 no arco inteiro. Fora dessa faixa estreita, opacidade zero. -->
+            <linearGradient id="arcoGlow" x1="40" y1="70" x2="420" y2="320" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#4b93e6" stop-opacity="0"></stop>
+              <stop offset="0.42" stop-color="#4b93e6" stop-opacity="0"></stop>
+              <stop offset="0.5" stop-color="#4b93e6" stop-opacity="0.7"></stop>
+              <stop offset="0.58" stop-color="#4b93e6" stop-opacity="0"></stop>
+              <stop offset="1" stop-color="#4b93e6" stop-opacity="0"></stop>
+            </linearGradient>
+            <filter id="arcoBlurLargo" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="7"></feGaussianBlur>
+            </filter>
+            <filter id="arcoBlurFino" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="4"></feGaussianBlur>
+            </filter>
+          </defs>
+          <!-- halo largo: azul, só na faixa onde a cor é mais forte -->
+          <path d="M40 70 A 360 360 0 0 1 420 320" stroke="url(#arcoGlow)" stroke-width="12" stroke-linecap="round" filter="url(#arcoBlurLargo)"></path>
+          <!-- brilho médio: mesma faixa, mais nítido -->
+          <path d="M40 70 A 360 360 0 0 1 420 320" stroke="url(#arcoGlow)" stroke-width="6" stroke-linecap="round" filter="url(#arcoBlurFino)"></path>
+          <!-- núcleo nítido, azul -->
+          <path d="M40 70 A 360 360 0 0 1 420 320" stroke="url(#arcoLinha)" stroke-width="2.2" stroke-linecap="round"></path>
+        </svg>
       </div>
     </div>
 
@@ -170,9 +210,10 @@
               </div>
             </div>
             <div class="s1-txt">
-              <h3>Estratégia antes da execução</h3>
+              <h3>Tecnologia<br>que multiplica</h3>
               <span class="s1-linha" aria-hidden="true"></span>
-              <p>Antes da primeira linha de código, a gente estuda o negócio, o público, os concorrentes e as metas. Cada tela, cada texto e cada botão nasce de uma decisão com propósito, para o que a gente constrói resolver o problema certo e não só parecer bonito.</p>
+              <p>Utilizamos IA, automações e as melhores ferramentas do mercado para escalar processos, otimizar resultados e economizar o seu tempo.</p>
+              <p>Utilizamos IA, automações e as melhores ferramentas do mercado para escalar processos, otimizar resultados e economizar o seu tempo. Menos trabalho manual e mais capacidade de entrega para o seu negócio crescer.</p>
             </div>
           </article>
 
@@ -182,28 +223,24 @@
               <img class="s1-grafico-imagem" src="assets/servicos/crescimento-tecnologia.png" alt="" loading="lazy" decoding="async">
             </div>
             <div class="s1-txt">
-              <h3>Tecnologia que trabalha por você</h3>
+              <h3>Estratégia<br>com propósito</h3>
               <span class="s1-linha" aria-hidden="true"></span>
-              <p>Criamos sites, sistemas, automações e experiências digitais com o que há de mais moderno em tecnologia e inteligência artificial. Tudo pensado para reduzir atrito, tirar a tarefa repetitiva do caminho e abrir espaço para a sua empresa crescer sem travar.</p>
+              <p>Entendemos o seu mercado, seu público e seus objetivos para criar soluções que realmente fazem sentido para o seu negócio.</p>
+              <p>Entendemos o seu mercado, seu público e seus objetivos para criar soluções que realmente fazem sentido para o seu negócio. Cada decisão parte de um objetivo claro, nunca de achismo.</p>
             </div>
           </article>
 
-          <!-- Casa (órbita animada) · recebeu o texto do "A Hórus combina..." -->
+          <!-- Casa · imagem da seção 1 e texto institucional -->
           <article class="s1-card rev">
             <div class="s1-art s1-art--orbita" aria-hidden="true">
-              <div class="orb">
-                <span class="orb-ring orb-r1"></span>
-                <span class="orb-ring orb-r2"></span>
-                <span class="orb-core"></span>
-                <span class="orb-spin orb-spin1"><i class="orb-dot orb-d1"></i></span>
-                <span class="orb-spin orb-spin2"><i class="orb-dot orb-d2"></i></span>
-                <span class="orb-spin orb-spin3"><i class="orb-dot orb-d3"></i></span>
-              </div>
+              <img class="s1-grafico-imagem s1-grafico-imagem--casa"
+                   src="assets/Grafico seção 1.png" alt="" loading="lazy" decoding="async">
             </div>
             <div class="s1-txt">
-              <h3>Uma casa, do plano ao ar</h3>
+              <h3>Resultados<br>que importam</h3>
               <span class="s1-linha" aria-hidden="true"></span>
-              <p>A Hórus combina estratégia, design, tecnologia e inteligência artificial para transformar desafios de negócio em experiências digitais que funcionam e que podem ser acompanhadas, otimizadas e escaladas. Do primeiro plano ao site no ar, é tudo sob o mesmo teto.</p>
+              <p>Mais tráfego, mais clientes, mais vendas. Nosso foco é gerar impacto real no seu negócio, com métricas claras e crescimento sustentável.</p>
+              <p>Mais tráfego, mais clientes, mais vendas. Nosso foco é gerar impacto real no seu negócio, com métricas claras e crescimento sustentável. Você acompanha a evolução por números, não por promessas.</p>
             </div>
           </article>
         </div>
@@ -223,8 +260,9 @@
   <section class="stack" aria-labelledby="stack-tit">
     <img class="stack-logo" src="assets/simbolo-grande.png" alt="" aria-hidden="true">
     <div class="stack-head">
-      <p class="stack-eyebrow" id="stack-tit">Nosso stack</p>
-      <p class="stack-sub">As ferramentas com que a gente projeta, desenvolve e coloca no ar.</p>
+      <p class="stack-eyebrow" id="stack-tit">FERRAMENTAS</p>
+      <h2 class="stack-titulo">As ferramentas certas<br>para <span class="destaque-azul">grandes resultados.</span></h2>
+      <p class="stack-desc">Utilizamos as melhores ferramentas do mercado para<br>planejar, criar, automatizar e escalar o seu negócio.</p>
     </div>
 
     <div class="stack-mask">
@@ -245,22 +283,7 @@
           <span class="tile"><img class="tile-i" src="assets/stack/gsap.svg" alt="GSAP" loading="lazy"></span>
           <span class="tile"><img class="tile-i" src="assets/stack/astro.svg" alt="Astro" loading="lazy"></span>
           <span class="tile"><img class="tile-i" src="assets/stack/node.svg" alt="Node.js" loading="lazy"></span>
-          <!-- conjunto 2 (cópia só para o laço) -->
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/figma.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i tile-i--inv" src="assets/stack/framer.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/photoshop.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/webflow.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/html.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/css.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/javascript.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/typescript.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/react.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/nextjs.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/tailwind.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/vite.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/gsap.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/astro.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/node.svg" alt="" loading="lazy"></span>
+          <!-- o laço (cópias extras) é montado em JS, na quantidade que a largura da tela pedir -->
         </div>
         <div class="stack-row stack-row--b">
           <!-- conjunto 1 (lido por leitor de tela) -->
@@ -281,30 +304,10 @@
           <span class="tile"><img class="tile-i" src="assets/stack/slack.svg" alt="Slack" loading="lazy"></span>
           <span class="tile"><img class="tile-i" src="assets/stack/discord.svg" alt="Discord" loading="lazy"></span>
           <span class="tile"><img class="tile-i" src="assets/stack/gmail.svg" alt="Gmail" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/mailchimp.svg" alt="Mailchimp" loading="lazy"></span>
+          <span class="tile"><img class="tile-i tile-i--inv" src="assets/stack/mailchimp.svg" alt="Mailchimp" loading="lazy"></span>
           <span class="tile"><img class="tile-i" src="assets/stack/gcal.svg" alt="Google Calendar" loading="lazy"></span>
           <span class="tile"><img class="tile-i tile-i--inv" src="assets/stack/openai.svg" alt="OpenAI" loading="lazy"></span>
-          <!-- conjunto 2 (cópia só para o laço) -->
-          <span class="tile" aria-hidden="true"><img class="tile-i tile-i--inv" src="assets/stack/vercel.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/netlify.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/cloudflare.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i tile-i--inv" src="assets/stack/github.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/docker.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/shopify.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/wordpress.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i tile-i--inv" src="assets/stack/notion.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/supabase.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/firebase.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/ganalytics.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/gads.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/meta.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/whatsapp.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/slack.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/discord.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/gmail.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/mailchimp.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i" src="assets/stack/gcal.svg" alt="" loading="lazy"></span>
-          <span class="tile" aria-hidden="true"><img class="tile-i tile-i--inv" src="assets/stack/openai.svg" alt="" loading="lazy"></span>
+          <!-- o laço (cópias extras) é montado em JS, na quantidade que a largura da tela pedir -->
         </div>
     </div>
   </section>
@@ -322,8 +325,8 @@
          só dos cards abaixo. A linha divisória que ficava acima do título saiu. -->
     <div class="svcs-intro envelope">
       <p class="svcs-eyebrow">Nossos serviços</p>
-      <h2 class="svcs-titulo">O que a Hórus instala.</h2>
-      <p class="svcs-sub">Instalamos um bloco por vez, na ordem que o seu negócio precisa. Sem product-dump, sem pacote inchado.</p>
+      <h2 class="svcs-titulo">O que a Hórus <span class="svcs-em">instala.</span></h2>
+      <p class="svcs-sub">Instalamos um bloco por vez, na ordem que o seu negócio precisa.<br>Sem product&#8209;dump, sem pacote inchado.</p>
     </div>
 
     <div class="svcs-stack">
@@ -775,45 +778,62 @@
   </section>
   ================================================================================ -->
 
-  <!-- ================= PORTFÓLIO ================= -->
-  <!-- Refeito em 26/08/2026 no formato do trionn.com (Selected Work): título
-       PRESO à esquerda e os trabalhos numa FILEIRA à direita que corre na
-       horizontal só quando a seção está alinhada (presa no alto). Três cards, na
-       proporção do print (3:2, paisagem). Saiu a tag "Portfólio".
-       Ao passar o terceiro card, a seção é puxada como CORTINA para a esquerda,
-       revelando a seção seguinte (os 4 passos) — o mesmo gesto do fim da seção
-       do trionn. A cortina e a corrida horizontal são montadas pelo GSAP.
-       ⚠️ PENDÊNCIA: nenhum cliente autorizou nome nem tela. Os visuais são
-       arte ABSTRATA da marca (não são print de cliente), e o texto diz só o
-       segmento e a entrega — sem nome, sem logo, sem captura de tela. -->
+  <!-- ================= PORTFÓLIO (4 PROJETOS REAIS) ================= -->
+  <!-- Portfólio com 4 trabalhos reais da Hórus em destaque:
+       1. Novare Psicologia (Saúde & Psicologia Clínica - Salvador)
+       2. Café Grão da Serra (Agronegócio & Vendas B2B - Serra de Brejões)
+       3. IRS Performance (Automotivo & Alta Performance - Salvador)
+       4. VerdiServ (Facilities & Gestão Predial - Salvador / Feira de Santana)
+       No desktop, a seção fixa (pin) e corre na horizontal via GSAP. No mobile,
+       vira pista arrastável nativa (scroll-snap). -->
   <section class="portfolio" id="portfolio">
    <div class="pf-pin">
     <div class="pf-grid envelope">
       <div class="pf-lado">
         <h2 class="pf-h2">Trabalhos em <span class="ouro">destaque</span></h2>
+        <p class="pf-sub">Projetos reais desenhados do posicionamento ao código para gerar autoridade e conversão.</p>
       </div>
 
       <div class="pf-pista">
         <div class="pf-tira">
           <article class="pf-item">
-            <div class="pf-tela"><img src="assets/portfolio/pf-1.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="pf-tela">
+              <img src="assets/portfolio/pf-novare.webp" alt="Site institucional Novare Psicologia" loading="lazy" decoding="async">
+            </div>
             <div class="pf-legenda">
-              <h3>Site institucional, dez páginas</h3>
-              <p>Psicologia clínica, Salvador. Uma página por serviço, registro profissional visível e nenhum depoimento, que o conselho da categoria veda.</p>
+              <span class="pf-tag">Saúde &amp; Psicologia Clínica</span>
+              <h3>Novare Psicologia</h3>
+              <p>Site institucional acolhedor para clínica de psicologia em Salvador. Uma página por serviço, agendamento direto e conformidade com as diretrizes do conselho.</p>
             </div>
           </article>
           <article class="pf-item">
-            <div class="pf-tela"><img src="assets/portfolio/pf-2.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="pf-tela">
+              <img src="assets/portfolio/pf-grao-da-serra.webp" alt="Site e posicionamento comercial Café Grão da Serra" loading="lazy" decoding="async">
+            </div>
             <div class="pf-legenda">
-              <h3>Google Meu Negócio e site</h3>
-              <p>Torrefação artesanal, interior da Bahia. Perfil verificado no ar e um site que fala com revendedor, com a origem reescrita a partir do que o cliente faz.</p>
+              <span class="pf-tag">Agronegócio &amp; Vendas B2B</span>
+              <h3>Café Grão da Serra</h3>
+              <p>Site institucional e comercial para torrefação artesanal da Bahia. Posicionamento de origem e presença pensada para o consumidor final e clientes corporativos.</p>
             </div>
           </article>
           <article class="pf-item">
-            <div class="pf-tela"><img src="assets/portfolio/pf-3.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="pf-tela">
+              <img src="assets/portfolio/pf-irs-performance.webp" alt="Site e projetos IRS Performance" loading="lazy" decoding="async">
+            </div>
             <div class="pf-legenda">
-              <h3>Site institucional</h3>
-              <p>Odontologia, Salvador. Dentro da resolução do conselho: sem antes e depois, sem promessa, com registro e responsável técnico visíveis em toda página.</p>
+              <span class="pf-tag">Automotivo &amp; Alta Performance</span>
+              <h3>IRS Performance</h3>
+              <p>Presença digital para oficina especializada e preparação de alta performance em Salvador. Destaque para infraestrutura técnica, dinamômetro e projetos de pista.</p>
+            </div>
+          </article>
+          <article class="pf-item">
+            <div class="pf-tela">
+              <img src="assets/portfolio/pf-verdiserv.webp" alt="Site institucional e captação VerdiServ Serviços Prediais" loading="lazy" decoding="async">
+            </div>
+            <div class="pf-legenda">
+              <span class="pf-tag">Facilities &amp; Gestão Predial</span>
+              <h3>VerdiServ — Serviços Prediais</h3>
+              <p>Site de apresentação e captação para empresa de terceirização predial em Salvador e Feira de Santana. Serviços para condomínios e conversão ágil via WhatsApp.</p>
             </div>
           </article>
         </div>
@@ -833,6 +853,7 @@
     <!-- Degradê em movimento, bem visível (Marcelo, 01/09): aurora azul/violeta/amarelo
          que desliza e respira ao fundo da seção. Atrás do conteúdo (z-index 0). -->
     <div class="ps-aurora" aria-hidden="true"></div>
+    
     <div class="ps-topo envelope">
       <p class="ps-eyebrow">Como começa</p>
       <h2 class="ps-titulo">É muito fácil, <span class="ps-em">em quatro passos</span>.</h2>
@@ -845,22 +866,26 @@
       <span class="ps-fio" aria-hidden="true"></span>
       <div class="ps-etapa">
         <span class="ps-n">01</span>
+        <span class="ps-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M7 8.5h18a2.5 2.5 0 0 1 2.5 2.5v9a2.5 2.5 0 0 1-2.5 2.5h-9l-5 3.5v-3.5H7A2.5 2.5 0 0 1 4.5 20v-9A2.5 2.5 0 0 1 7 8.5Z"/><path d="M10.5 15.5h.01M16 15.5h.01M21.5 15.5h.01"/></svg></span>
         <h3>Consulta inicial <span class="ps-em">gratuita</span></h3>
         <p>A gente conversa sobre os seus objetivos, por e-mail, telefone ou WhatsApp. Sem compromisso.</p>
       </div>
       <div class="ps-etapa">
         <span class="ps-n">02</span>
-        <h3><span class="ps-em">Esboço</span> antes do sim</h3>
+        <span class="ps-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M9 4.5h10l5 5v18H9z"/><path d="M19 4.5v5h5M13 15h7M13 19h7M13 23h5"/></svg></span>
+        <h3>Esboço <span class="ps-em">antes do sim</span></h3>
         <p>Você vê uma proposta do seu projeto antes de decidir. Primeiro convence, depois contrata.</p>
       </div>
       <div class="ps-etapa">
         <span class="ps-n">03</span>
+        <span class="ps-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="m13.2 5.5 1.35 2.15a8.7 8.7 0 0 1 2.9 0l1.35-2.15 2.7 1.55-.8 2.4a8.4 8.4 0 0 1 2.05 2.05l2.4-.8 1.55 2.7-2.15 1.35a8.7 8.7 0 0 1 0 2.9l2.15 1.35-1.55 2.7-2.4-.8a8.4 8.4 0 0 1-2.05 2.05l.8 2.4-2.7 1.55-1.35-2.15a8.7 8.7 0 0 1-2.9 0l-1.35 2.15-2.7-1.55.8-2.4a8.4 8.4 0 0 1-2.05-2.05l-2.4.8-1.55-2.7 2.15-1.35a8.7 8.7 0 0 1 0-2.9L5.3 13.4l1.55-2.7 2.4.8a8.4 8.4 0 0 1 2.05-2.05l-.8-2.4 2.7-1.55Z"/><circle cx="16" cy="16" r="3.5"/></svg></span>
         <h3>A gente <span class="ps-em">desenvolve</span></h3>
         <p>Com o projeto aprovado, começa a construção, e você acompanha o andamento de perto.</p>
       </div>
       <div class="ps-etapa">
         <span class="ps-n">04</span>
-        <h3><span class="ps-em">Lançamento</span> e posse</h3>
+        <span class="ps-icon" aria-hidden="true"><svg viewBox="4 4 24 24" fill="none"><path d="M18.2 6.2c4.4.7 7.1 3.4 7.8 7.8-1.5 4.3-4.5 7.2-8.8 8.8l-4.6-4.6c1.6-4.3 4.5-7.3 8.8-8.8Z"/><path d="m12.6 18.4-4.2.4-2 2 4.2 1.1 1.1 4.2 2-2 .4-4.2M19 13h.01M22.5 22.5l4 4"/></svg></span>
+        <h3>Lançamento <span class="ps-em">e posse</span></h3>
         <p>Vai ao ar quando você aprovar, e fica seu: o endereço, as contas e os acessos são seus.</p>
       </div>
     </div>
@@ -891,6 +916,24 @@
     <div class="encerra-glow" aria-hidden="true"></div>
 
     <section class="chamada" id="contato">
+      <!-- Arco de luz (glow-horizon.tsx do Marcelo, portado pra vanilla — ver a
+           técnica no comentário do CSS, seção 4f). Horizonte de uma esfera de
+           interior ESCURO com o rim aceso e halo azul por cima, apontado pra
+           cima. Réplica fiel do glow-horizon.tsx: discos CONCÊNTRICOS muito
+           borrados — o BRANCO é o maior (o rim, borda de fora), o brilho azul
+           fica POR DENTRO dele, e o disco escuro (`ch-arco-core`, blur pesado
+           = o `color="#000"` do componente) escurece o miolo SUAVE, sem borda
+           dura. Ordem no DOM = trás→frente: rim, brilho, core.
+           Entrada pela classe `.rev` (revelador genérico do site, bloco 4 do
+           script): sobe do fundo com blur e o rim acende com atraso. -->
+      <div class="ch-arco rev" aria-hidden="true">
+        <div class="ch-arco-stage">
+          <span class="ch-arco-l ch-arco-rim"></span>
+          <span class="ch-arco-l ch-arco-glowl"></span>
+          <span class="ch-arco-l ch-arco-glowd"></span>
+          <span class="ch-arco-l ch-arco-core"></span>
+        </div>
+      </div>
       <div class="envelope">
         <h2 class="ch-titulo rev">Pronto para criar<br>algo incrível?</h2>
       <div class="ch-acao rev">
@@ -945,7 +988,7 @@
            a pedido do Marcelo. -->
       <ul class="rd-redes">
         <li>
-          <a class="rd-rede" href="https://www.instagram.com/horuspublicidade/"
+          <a class="rd-rede" href="https://www.instagram.com/agenciahorus02/"
              aria-label="Instagram da Hórus"
              rel="me noopener" target="_blank">
             <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor"
@@ -988,8 +1031,8 @@
       <radialGradient id="as-brilho" gradientUnits="userSpaceOnUse"
                       cx="600" cy="110" r="300" fx="600" fy="110">
         <stop offset="0"    stop-color="#E5E7EB" stop-opacity=".92"/>
-        <stop offset="0.42" stop-color="#E7B34A" stop-opacity=".40"/>
-        <stop offset="1"    stop-color="#E7B34A" stop-opacity="0"/>
+        <stop offset="0.42" stop-color="#4B93E6" stop-opacity=".40"/>
+        <stop offset="1"    stop-color="#4B93E6" stop-opacity="0"/>
       </radialGradient>
     </defs>
     <!-- Peso 700 e não 800: 800 não está no arquivo que a página baixa, e pedir
@@ -1043,6 +1086,38 @@
   /* Habilita os estados iniciais do motion dos mocks (sob `.js` no CSS): sem esta
      classe, tudo aparece estático — o fallback de quem tem o JS desligado. */
   document.documentElement.classList.add('js');
+
+  /* ---- Nosso Stack: laço infinito sem buraco no fim da fileira -----------
+     Com um número FIXO de cópias, o laço só fecha sem vão em telas mais
+     estreitas que a largura de 1 grupo de tiles — em qualquer monitor mais
+     largo que isso, sobrava um buraco visível na ponta da fileira quando a
+     animação chegava no fim do ciclo (bug real, visto num desktop 1920px).
+     Aqui a quantidade de cópias é calculada pela largura da TELA, então
+     sempre há tile de sobra nas duas pontas, não importa o monitor. */
+  document.querySelectorAll('.stack-row').forEach(function (fileira) {
+    var originais = Array.prototype.filter.call(fileira.children, function (el) {
+      return el.nodeType === 1 && !el.hasAttribute('aria-hidden');
+    });
+    if (!originais.length) return;
+    var primeiro = originais[0];
+    var ultimo = originais[originais.length - 1];
+    var gap = parseFloat(getComputedStyle(fileira).columnGap) || 0;
+    var unidade = (ultimo.offsetLeft + ultimo.offsetWidth) - primeiro.offsetLeft + gap;
+    if (!unidade) return;
+    /* margem de 3x a largura da janela: cobre a tela cheia em qualquer ponto
+       do ciclo da animação, mesmo em monitor ultrawide, com folga de sobra. */
+    var copias = Math.max(2, Math.ceil((window.innerWidth * 3) / unidade) + 1);
+    for (var i = 1; i < copias; i++) {
+      originais.forEach(function (el) {
+        var clone = el.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        var img = clone.querySelector('img');
+        if (img) img.alt = '';
+        fileira.appendChild(clone);
+      });
+    }
+    fileira.style.setProperty('--stack-shift', (100 / copias).toFixed(4) + '%');
+  });
 
   /* ---- Scroll suave (Lenis) + ponte com o ScrollTrigger -----------------
      A inércia do estrela.studio. Liga o respeito ao `prefers-reduced-motion`
@@ -1809,7 +1884,32 @@ void main(){
       olho.unobserve(e.target);
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
-  document.querySelectorAll('.rev:not(.visivel)').forEach(function (el) { olho.observe(el); });
+  document.querySelectorAll('.rev:not(.visivel)').forEach(function (el) {
+    if (el.closest('.chamada')) return;   /* a chamada (CTA) tem gatilho próprio, mais tarde */
+    olho.observe(el);
+  });
+
+  /* A chamada (CTA) revela MAIS TARDE que as outras seções: ela é alta (112vh) e o
+     conteúdo é centralizado, então o observador global (-6%) disparava assim que o
+     TOPO da seção espiava — cedo demais, antes de o usuário chegar perto do conteúdo
+     (Marcelo, 18/09). Aqui o gatilho é amarrado ao CONTEÚDO (`.envelope`): a linha de
+     disparo fica a ~65% da altura da viewport (rootMargin -35% embaixo), então a
+     esfera e o texto só sobem quando o conteúdo já está subindo pra perto do centro.
+     Revela esfera + título + botão de uma vez (a cascata fica no transition-delay). */
+  (function () {
+    var chamada = document.querySelector('.chamada');
+    if (!chamada) return;
+    var alvos = chamada.querySelectorAll('.rev');
+    var gatilho = chamada.querySelector('.envelope') || chamada;
+    var obsCta = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        alvos.forEach(function (el) { el.classList.add('visivel'); });
+        obsCta.disconnect();
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -35% 0px' });
+    obsCta.observe(gatilho);
+  })();
 
   /* O trilho da Máquina acende na ordem. A animação comunica a ordem,
      que é o argumento comercial da seção. */
@@ -1964,17 +2064,17 @@ void main(){
      correspondente "liga" (ganha a cor dele) e, no fim, a linha chega no botão,
      que passa a brilhar (pedido do Marcelo). */
   (function () {
-    var path = document.querySelector('.ps-path');
-    var passos = gsap.utils.toArray('.ps-passo');
+    var path = document.querySelector('.ps-fio');
+    var passos = gsap.utils.toArray('.ps-etapa');
     var cta = document.querySelector('.ps-cta');
-    if (!path || !window.DrawSVGPlugin) return;
-    try { gsap.set(path, { drawSVG: '0%' }); } catch (e) { return; }
+    if (!path || !window.ScrollTrigger) return;
+    gsap.set(path, { scaleX: 0, transformOrigin: 'left center' });
     /* limiar de progresso em que cada card acende (a linha "chega" nele) */
     var limiares = [0.14, 0.40, 0.64, 0.85];
     gsap.to(path, {
-      drawSVG: '100%', ease: 'none',
+      scaleX: 1, ease: 'none',
       scrollTrigger: {
-        trigger: '.ps-fluxo', start: 'top 78%', end: 'bottom 82%', scrub: 1, invalidateOnRefresh: true,
+        trigger: '.passos', start: 'top 85%', end: '55% 68%', scrub: 1, invalidateOnRefresh: true,
         onUpdate: function (self) {
           passos.forEach(function (el, k) { el.classList.toggle('aceso', self.progress >= limiares[k]); });
           if (cta) cta.classList.toggle('aceso', self.progress >= 0.98);
@@ -1983,22 +2083,13 @@ void main(){
     });
   })();
 
-  /* ---- 6. Chamada final: o título e o botão SURGEM (sem as barras pretas) ----
-     As faixas pretas saíram (pedido do Marcelo). No lugar: quando a chamada entra,
-     o título sobe e aparece, o botão logo atrás, e o shader do fundo (encerra-fundo)
-     já está lá desenhando o degradê quente. */
-  (function () {
-    var titulo = document.querySelector('.ch-titulo');
-    var acao = document.querySelector('.ch-acao');
-    var encerra = document.querySelector('.encerra');
-    if (!titulo || !encerra) return;
-    gsap.set([titulo, acao], { opacity: 0, y: 40 });
-    gsap.timeline({
-      scrollTrigger: { trigger: encerra, start: 'top 72%', once: true }
-    })
-    .to(titulo, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' })
-    .to(acao, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 0.25);
-  })();
+  /* ---- 6. Chamada final: título e botão entram via CSS `.rev`, NÃO por GSAP ----
+     Antes o GSAP animava o título com trigger próprio (start 'top 72%'), diferente
+     do trigger do arco (que usa `.rev`/IntersectionObserver). Ficavam dessincronizados.
+     Agora título e botão usam a MESMA classe `.rev` do arco, então sobem/aparecem no
+     MESMO instante em que a esfera sobe — e a `.chamada .ch-titulo.rev` no CSS dá o
+     efeito de blur/subida do AnimatedTitleFM (o "efeito no título quando o círculo
+     sobe"). Sem gsap.set aqui pra não sobrescrever o CSS com estilo inline. */
 
   /* ---- 7. Motion de entrada dos cards de serviço ---------------------
      Cada painel de serviço "ganha vida" quando entra na tela: o CRM conta, o
@@ -2072,3 +2163,5 @@ void main(){
 
 </body>
 </html>
+
+

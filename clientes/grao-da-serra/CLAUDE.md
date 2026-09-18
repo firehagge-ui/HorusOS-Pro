@@ -17,7 +17,10 @@ completa feita:
 - **Deploy files conferidos:** `netlify.toml` (publish ".", sem build, cache imutável de
   assets, HTML revalidado, headers de segurança), `robots.txt` (Allow + sitemap com URL
   real), `sitemap.xml` (URL real). `<head>` com canonical + og:url + og:image **absolutos**
-  (`https://graodaserra.netlify.app/...`), JSON-LD LocalBusiness (tel +5575991467309,
+  (`https://graodaserra.netlify.app/...` ⚠️ **esse domínio hoje dá 404 (medido 18/09/2026); a
+  URL pública real é `https://cafegraodaserra.netlify.app/`. Conferir se o canonical/og:url do
+  HTML publicado não ficou apontando pro domínio morto — pauta de /verificar**), JSON-LD
+  LocalBusiness (tel +5575991467309,
   @graodaserra__).
 - **Render da home inteira conferido:** todas as seções carregam, "Nosso café" com a foto
   nova e o merge, sem quebras.
@@ -299,7 +302,7 @@ foi inventado** — o Nelson confirmou que vende ao consumidor final. Sem tracin
 casa", "Como comprar" com a xícara nova). Mobile **over=0** a 390px (iframe HTTP),
 faixa e seções empilhando certo.
 
-## 🌐 SITE NO AR (11/08/2026): **https://graodaserra.netlify.app/**
+## 🌐 SITE NO AR (11/08/2026): **https://cafegraodaserra.netlify.app/**
 
 Publicado no Netlify pelo Marcelo em 11/08. Conferido por HTTP: home 200, assets 200,
 rota inexistente serve o `404.html` (200 no conteúdo, 404 no status). Site renomeado de

@@ -468,3 +468,229 @@ de reversão).
 - ⚠️ **Em aberto pra decidir vendo no navegador:** fundo mobile continua o mesmo `hero-loop`
   horizontal (cover corta as laterais e funciona); se quiser o `vid5` vertical (Jordan no GR)
   só no mobile, é preparar o segundo arquivo e trocar por `<source media>` ou JS.
+
+---
+
+# RODADA 6 — enxugar, "Sobre a oficina", dyno estilo laudo + camada visual (14/09/2026)
+
+> Gatilho: pacote grande de pedidos do Marcelo em cima da rodada 5, com prints do concorrente
+> **Bravus** (alvo de execução), a referência do ChatGPT (`assets/Landing Page...png`) e dois
+> prints de sites ruins (AutoRhara, AutoAspro) dos quais ele quer só o **visual** (pontilhados,
+> moldura na foto, bloco de cor atrás, setas amarelas), nunca o conteúdo (números inventados).
+> Também: "quero algo igual ao ACF" (`acfperformance.com/performance` = **seletor de veículo**
+> em cascata) e aproximar o tom de alguns textos do registro artesanal da **Mansory**.
+
+## Estrutura nova (enxuta, pedido do Marcelo + convenção do segmento em `00-anatomia.md`)
+
+Antes: Hero · Cobertura · Prova · **Faixa de vídeo** · Serviços(6 cards) · **Estrutura "Por que
+aqui"** · Projetos · CTA · **Quem faz(foto sócios)** · Confiança · Orçamento.
+
+Depois: **Hero · Cobertura · Sobre a oficina · Dinamômetro · Projetos · Clientes(GMN) · CTA ·
+Orçamento(seletor de veículo) · Rodapé.**
+
+- 🔴 **Removidos** (pedido direto): a **faixa de vídeo** do meio; a seção **"Por que aqui"** como
+  bloco isolado (o conteúdo dela — equipamento de concessionária, dyno próprio, calibração ACF,
+  escape Nova Racing — **migrou** para "Sobre a oficina", não se perdeu: é o maior diferencial);
+  o **slogan "Sua paixão, nossa assinatura"** do hero; a **foto dos dois sócios**.
+- **Serviços:** os 6 cards-foto viraram **lista de capacidades nomeadas** dentro de "Sobre a
+  oficina" (cardápio de entregas do `00-anatomia.md`), pra enxugar sem perder informação.
+- **Quem faz** (texto, sem foto) e **Confiança** (5,0★ + credenciais) fundiram-se: o texto foi
+  pra "Sobre a oficina"; a nota e as credenciais, pra "Clientes".
+
+## Passe duplo (ataque)
+
+**Eu faria essas seções pra qualquer preparadora?** A camada visual nova (pontilhados, setas,
+moldura, offset amarelo) é **decoração de segmento** — entra como tempero, nunca como substância.
+O que carrega o site continua sendo o que só a Mullsanni tem: **o número real do dyno** (o painel
+do Porsche encena o laudo Servitec, que quem não tem máquina não imita), **o equipamento de
+concessionária** (lastro físico), **o amarelo** (marca real deles) e as **frases reais deles**
+(tom artesanal sem superlativo inventado).
+
+## O tom "Mansory", sem o superlativo da Mansory (integridade vence)
+
+A Mansory vende "obras-primas / maestria / redefinir". A trava do cliente (item 5) e o
+`conteudo-real.md §7` mandam **número real > adjetivo**. Então captei o *espírito* (cuidado
+artesanal, projeto abraçado, do diagnóstico à entrega) com as **frases reais deles**: "cada carro
+que entra não é só mais um, é um projeto que a gente abraça como se fosse nosso" e "da preparação
+mais básica ao acerto mais ousado, com olho no detalhe". O fecho "sua paixão, nossa assinatura"
+saiu; não entrou outro clichê no lugar ("sua visão, nossa maestria" seria trocar um chavão por
+outro) — o fecho passou a ser a prova: **o carro sai medido na roda**.
+
+## Dinamômetro estilo laudo (a imagem-referência dourada do Marcelo)
+
+Novo **painel-herói** no topo da seção, no layout do print que ele mandou (gráfico à esquerda +
+4 números à direita), com o **Porsche 718 GTS 4.0** real de `conteudo-real.md`: 276 → 324 whp
+(**+48 whp**), giro **7800 → 8300 rpm**. Barra que preenche + contador (número real, argumento,
+setor não regulado — permitido em `60-motion.md`). Eyebrow "A prova" **removido** (pedido). A
+grade de 6 casos reais continua abaixo, como prova.
+
+## Seletor de veículo (o "igual ao ACF") — honesto
+
+O ACF /performance é um **filtro Fabricante → Modelo → Ano → Versão**. Trouxe a mecânica pro
+**formulário de orçamento** (Marca ▾ · Modelo · Ano · Motor · Objetivo → monta o `wa.me`), dando
+o "sabor configurador". 🔴 **NÃO** virou a "calculadora de cavalos por Stage" do print do Bravus
+(configurador que crava cv) — isso é a promessa de resultado que a **trava 1** proíbe. Seletor
+que qualifica, não que promete.
+
+## Camada visual nova (CSS, estática — a assinatura de motion continua sendo a curva do dyno)
+
+Pontilhado (dot-grid via `radial-gradient`), **moldura + bloco amarelo offset** atrás da foto da
+oficina, **setas/chevrons** amarelas como acento de velocidade, hovers elevados. Tudo estático
+(sem novo loop de movimento em cima de nada, régua do `60-motion.md`); a única assinatura em
+movimento segue sendo a curva do dyno que desenha uma vez + o contador dos ganhos. `reduced-motion`
+mantido.
+
+## Clientes (GMN)
+
+Seção nova com a nota **5,0★ real (11 avaliações)** + credenciais ACF/Nova Racing. 🔴 **Sem review
+inventado** (trava mantida): os 3 slots de depoimento entram como `[FALTA: review real do Google]`
+— pendência de trazer 3 reviews reais + autorização de reuso (já na lista do `CLAUDE.md`).
+
+## Travas (mantidas)
+
+- 🔴 Todo número do dyno real. Sem promessa. Zero IA no carro. Sem tracinho, sem inglês, sem
+  superlativo. WhatsApp `[FALTA: confirmar]` na var `WHATS`. Form sem servidor (lógica invertida).
+
+## Verificação (rodada 6, 14/09/2026)
+
+- ✅ **Detector via npx (`impeccable@4.0.4`): exit 0.** Passou por correções: 25 anti-patterns →
+  0. O que foi corrigido: barras do dyno animavam `width` → `transform:scaleX` (layout-transition);
+  o **marquee de marcas virou grade estática** (bate com a referência do Marcelo e mata o
+  `marquee` + o `cramped-padding` da cobertura, inclusive o mobile que tinha padding lateral 0);
+  os pontilhados (`deco-dots`/`cta-dots`) saíram de `radial-gradient` para **SVG data-uri**
+  (matava o `radial-spotlight-glow`); textos < 11px subiram para ≥ 11px (rótulos do gráfico,
+  stats, tags de marca, selo). Sobram só os 6 advisory de sempre (numbered-section-labels +
+  thin-border/wide-shadow), não contam como falha.
+- ✅ **Render conferido** (Edge headless, desktop 1440 + mobile 430, com reduced-motion pra
+  completar os contadores): hero (vídeo + H1 + 3 tags novas + chevrons), cobertura (grade
+  estática de 10 marcas), Sobre (texto artesanal + 4 capacidades + foto emoldurada com bloco
+  amarelo offset), Dinamômetro (painel do Porsche **+48 whp**, giro 8300, + grade de 6 casos
+  reais **+56/+52/+48/+33/+29/+21 whp**), Projetos (galeria com tag de marca), Clientes
+  (5,0★ real + credenciais + 3 slots `[FALTA]`), CTA, Orçamento (seletor de veículo), rodapé
+  Bravus-like com sociais. Mobile empilha limpo, sem estouro horizontal.
+- ⚠️ **Artefato de render:** no headless os contadores congelam num valor intermediário (mostram
+  +13 em vez de +48). É o mesmo artefato da rodada 4 (`requestAnimationFrame` travado), não é bug:
+  o fallback do HTML já traz o número real e no navegador de verdade conta até o certo.
+- 🔴 **Pendências herdadas** (do cliente, travam a versão final): confirmar o WhatsApp; foto/vídeo
+  em alta sem marca d'água de terceiro; autorização de reuso dos números e fotos; **3 reviews reais
+  do Google** para os slots `[FALTA]` da seção Clientes.
+
+## Candidatos de refino (loop de melhoria contínua, aberto em 14/09/2026)
+
+- Fundo mobile dedicado (vid5 vertical do Jordan) em vez do hero-loop horizontal cortado.
+- Micro-interações: hover dos cards de caso, foco visível nos selects do seletor.
+- Conferir contra Brabus/ABT/Manhart/Bravus a cada passe e trazer 1 ideia nova por vez.
+
+### Passe 3 (14/09) — rework grande dirigido pelo Marcelo, ao vivo
+
+O Marcelo interrompeu o loop com 4 pedidos diretos; virou um rework, não um passe autônomo:
+- **Hero:** as 3 tags viraram frases longas ("Equipamento de concessionária"…) e ele achou "gigantes".
+  Trocadas por **3 stats curtas e reais**: `5,0★ · no Google`, `8 marcas · de importado`,
+  `Dyno próprio · medido na roda`. (Não usei "anos de mercado": a empresa tem ~1 ano, fraqueja.)
+- **Sobre mais clean:** saíram os 2 parágrafos longos e as descrições grandes dos 4 itens. Virou
+  H2 "Infraestrutura que a maioria terceiriza." + lede curta (com o toque artesanal "cada carro é
+  um projeto, medido antes de sair") + **4 bullets curtos** (título + tag de 3-4 palavras) + foto.
+- **Projetos igual ao print (Bravus):** eyebrow "FEITO AQUI. FOTOGRAFADO AQUI." + título "PASSARAM
+  PELA NOSSA OFICINA." + **6 cards iguais** (3 col), tag de marca em **pílula escura translúcida**
+  (como o print, não amarela) + modelo embaixo. Saiu o bento.
+- **Avaliações igual ao print:** eyebrow "CLIENTES" + "QUEM CONFIA, ACELERA." + **3 cards de review**
+  (estrelas + **G colorido do Google** + citação + nome + "Avaliação no Google") + **pílula central**
+  "★ 5,0 · 11 avaliações no Google · Ver todas".
+  🔴 **Textos das 3 reviews = `[FALTA]`** (trava: não inventar). Tentei puxar do GMN via Firecrawl
+  (Maps + Busca): **Google bloqueia scraping** (Maps cai em página genérica, Busca recusa) e o
+  navegador interno está desconectado nesta sessão. **Pendência: o Marcelo cola as 3 reviews reais
+  (texto + nome) ou manda o link "Compartilhar" do Maps** que eu tento no ponto exato.
+- Kicker `.num-secao` virou **caixa alta** (igual aos eyebrows do print; resolveu o `wide-tracking`
+  que o kicker longo de Projetos disparava). ✅ Detector exit 0. Render desktop + mobile conferidos.
+
+### Passe 4 (15/09) — carrossel de projetos, configurador ACF, formulário fora
+
+O Marcelo mandou o link de compartilhamento do Google (`share.google/Nqj9sgU1i9iJRcr75`) pedindo
+pra eu tentar ler as avaliações de lá, mais 3 pedidos de código:
+
+- 🔴 **Avaliações reais: ainda bloqueado.** O link resolve pra `google.com/share.google?q=...`
+  (confirma a ficha certa, `kgmid=/g/11wpy5x645`), mas **toda via automatizada falha**: Firecrawl
+  recusa o link direto, o Maps renderiza página genérica sem JS, a Busca do Google recusa scraping,
+  e um `curl` na Busca com o `kgmid` não traz o painel de avaliações (é montado via JS no
+  navegador). O navegador interno desta sessão está desconectado. **Não dá pra extrair por aqui.**
+  Caminho mais rápido: o Marcelo copia e cola aqui o texto + nome de 3 avaliações (ou tira print),
+  que eu encaixo na hora nos cards `.review` já prontos (layout do print, ver Passe 2/3).
+- **Projetos virou carrossel arrastável.** `.galeria` saiu de grid pra `display:flex` com
+  `overflow-x:auto` + `scroll-snap`, cards a `~31%` da largura (3 visíveis, resto arrasta),
+  `cursor:grab`/`grabbing`, scrollbar fina estilizada. JS novo faz o arrasto com mouse (o touch já
+  rola nativo no celular) e evita que o arrasto vire clique acidental no card. Mobile: cards a 80%
+  da largura (mostra a "espiada" do próximo, convite a arrastar). Cortadas as classes mortas
+  `.proj--w2`/`.proj--h2` do bento antigo.
+- **Seção de formulário removida.** Saiu a `<form>` inteira (nome, textarea, campos obrigatórios) —
+  virou **configurador estilo ACF Performance** (`acfperformance.com/performance`): 4 campos em
+  grade (Fabricante · Modelo · Ano · Versão/Motor, igual à ordem do filtro deles) + objetivo +
+  botão "Ver meu orçamento" que monta a mensagem e abre o WhatsApp (mesma lógica invertida, sem
+  servidor). Uma barra fina embaixo com endereço/horário/WhatsApp substitui a antiga barra lateral
+  "A oficina" (que ficava redundante com o rodapé, que já tem tudo isso). CSS morto do form antigo
+  (`.form-caixa`, `.seletor`, `.form-lado`, `.form-nota`, `.dado`) removido.
+- Corrigido de tabela: o `<h3>` sumiu quando a barra lateral saiu, quebrando a hierarquia de
+  heading (h2 → h4 do rodapé, sem h3 no meio). O título "Monte seu orçamento" do configurador virou
+  `<h3>` de verdade — resolve e ainda ajuda a leitura de tela.
+- ✅ Detector exit 0 (1 anti-pattern corrigido: `skipped-heading`). Render desktop 1440 + mobile 430
+  conferidos: carrossel mostra 3 cards + arraste, configurador limpo em 1 coluna no mobile.
+
+### Passe 5 (15/09) — as 3 avaliações reais entraram
+
+O Marcelo colou 9 avaliações reais do Google (todas 5★), abrindo o link direto no navegador dele
+(o caminho que funcionou onde toda tentativa automatizada — Firecrawl no Maps/Busca/link,
+`curl` — falhou por bloqueio do Google). Escolhidas as 3 mais completas e variadas entre si para
+os cards: **Luan Muniz** (atendimento + organização + serviço perfeito), **Arthur Daniel** (preço
+justo + qualidade + localização), **Gabriel Libanio** (curto e forte: "entregam mais do que
+prometem"). Texto colado verbatim (só um corte pequeno no da Luan Muniz, removendo redundância
+"A oficina/espaço" → "A oficina", sem mudar sentido). Removido o comentário `[FALTA]` e a classe
+CSS `.falta` (órfã agora). ✅ Detector exit 0. As outras 6 avaliações (Arthur pode virar review #4
+depois, Wagner "Profissionalismo e competência" é bom filler curto) ficam disponíveis se algum dia
+a seção crescer para mais de 3 cards.
+
+### Passe 6 (15/09) — representante ACF/Nova Racing, configurador ACF, dinamômetro "de → até", Sobre com OFICINA vertical, avaliações em carrossel
+
+Pacote grande a pedido direto do Marcelo (não autônomo do loop):
+
+- **Representante oficial**: baixadas as logos reais da ACF Performance (`acfperformance.com`,
+  monograma preto) e da Nova Racing (`novaracing.com.br`, azul/preto), salvas em
+  `site/assets/parceiros/`. Selo "Representante oficial" com os dois chips na seção Sobre.
+- **Configurador estilo ACF Performance** (`acfperformance.com/performance`): marca → modelo →
+  painel ORIGINAL/STAGE com números reais. Base **só com os 6 carros que o Marcelo mandou**
+  (Mini JCW, VW Tiguan 350TSI, Audi A3, Peugeot 208GT, Porsche 718 GTS, Audi R8 V10). Fora da
+  base, estado honesto "esse a gente mede no seu dinamômetro" — sem inventar número. Substitui
+  o formulário livre (Passe 4), que saiu.
+- **Dinamômetro no formato "de → até"** (print 4, referência BMW 430d): painel do Porsche e
+  todos os cards de caso agora mostram `276 → 324 whp` com seta, em vez de "Antes/Depois"
+  empilhado. Trocado o **VW Nivus** (número que eu tinha inventado nos passes anteriores) pelo
+  **Audi R8 V10 5.2 FSI real** (442 → 470 whp) que o Marcelo mandou.
+- **Sobre a oficina refeita**: "OFICINA" em tipo gigante na vertical (print 5), foto emoldurada
+  à esquerda, blocos de autoridade (Servitec, 8 marcas, 5,0★, comum/podium) + o selo de
+  representante.
+- **Avaliações em carrossel**: as 9 reais do Google (não só as 3 do Passe 5), arrastável, com o
+  **nome fixo no rodapé de cada card** — não desloca com o tamanho do texto.
+- Novo título de Projetos: "Passaram pela **máquina.**"
+
+⚠️ **Durante este passe houve colisão de edição**: a Home (hero) que o Marcelo tinha construído
+ao vivo — "Mais que uma oficina. Uma paixão por performance.", título em gradiente, selo
+"Especializada em importados · Salvador · BA" — foi revertida por engano 2x, cada vez
+interpretada como regressão de sessão concorrente. Restaurada ao estado exato do Marcelo depois
+que ele avisou. **Causa e regra nova**: ver `CLAUDE.md` da raiz, seção sobre não presumir
+regressão em edição concorrente. O título em gradiente da Home ficou registrado como exceção
+intencional em `.impeccable/config.json` (`gradient-text`, motivo: escolha do cliente).
+
+✅ Detector exit 0 (2 `cramped-padding` corrigidos nos blocos de autoridade; o `gradient-text`
+da Home foi dispensado por decisão do Marcelo, não corrigido).
+
+### Log do loop
+
+- **Passe 1 (14/09):** comparado com o Bravus. Os rótulos numerados de seção (01·/02·…)
+  viraram **kicker de palavra** com sentido ("Dentro da oficina", "Dinamômetro Servitec",
+  "Prova no Google") e sumiram de Projetos e Orçamento (H2 forte carrega sozinho). Mata o
+  advisory `numbered-section-labels` e respeita o teto de eyebrow (1 a cada 3 seções): de 5
+  caiu para 3. Detector exit 0, mobile conferido a 430px.
+- **Passe 2 (14/09):** seção **Clientes** pronta para o cliente. Os 3 cards de review com
+  `[FALTA: colar aqui...]` em texto visível saíram (numa prévia que o Marcelo leva ao cliente,
+  bracket cru lê como inacabado). No lugar, faixa de prova confiante: **5,0★ · 11 avaliações**
+  real + credenciais ACF/Nova Racing + linha honesta ("verificáveis direto no Google") + botão
+  pro Google. 🔴 Sem review inventado (trava): os cards `.review` voltam quando o Marcelo trouxer
+  os 3 reais (CSS e comentário-marcador continuam no arquivo). Detector exit 0.

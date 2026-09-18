@@ -44,3 +44,4 @@ Hoje, das duas formas:
 | `apresentacao-de-preco-e-objecao.md` | Ancoragem em 3 planos, desmembrar em fases, parcelamento, 3 perguntas de micro-compromisso, objeção "tá caro" e contraproposta sem baixar preço | 12/09/2026 |
 | `recorrencia-e-pos-venda.md` | As 4 pontes pra virar mensalidade (tráfego, GMN, WhatsApp+CRM, suporte) e a régua de recompra (reativação, aniversário, avaliação, ciclo) | 12/09/2026 |
 | `operacao-agencia-e-sociedade.md` | Divisão originação × produção, IA como chão de fábrica, como não virar gargalo, o que deu certo e o que quebrou em sociedades, erros ao escalar | 12/09/2026 |
+| `objecao-ja-tem-alguem-fazendo.md` | Objeção "já tem alguém fazendo o site": testar se é migué, mandar prévia (com trava de gatekeeper), pivotar pra camada adjacente, reaproveitar estrutura sem torrar reputação | 15/09/2026 |

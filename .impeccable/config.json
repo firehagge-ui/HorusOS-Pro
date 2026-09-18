@@ -72,6 +72,15 @@
         ],
         "createdAt": "2026-09-13T06:00:00.000Z",
         "reason": "Glow ember discreto so no CTA primario e na marca - presente nos CTAs laranja dos proprios prints de referencia (botoes 'Continuar' e 'Encontrar clientes' do Encode). Elevacao das superficies e por DEGRAU DE COR (void->surface->panel), nao por sombra; o unico glow colorido e a assinatura do botao de acao, intencional."
+      },
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "clientes/mullsanni-performance/site/index.html"
+        ],
+        "createdAt": "2026-09-15T20:37:13.303Z",
+        "reason": "Titulo da Home em gradiente: escolha do cliente (Marcelo), mantido de proposito"
       }
     ]
   }
