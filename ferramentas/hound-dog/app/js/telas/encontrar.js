@@ -291,10 +291,37 @@ async function abaListas(c, limpezas) {
       <tbody>${listas.map((l) => { const p = por[l.id] || { alta: 0, crm: 0 }; const [cor, rot] = ORIG[l.origem] || ORIG.planilha;
         return `<tr class="linha-clicavel" data-lista="${l.id}"><td><div class="nm">${esc(l.nome)}</div><div class="sb">${esc([l.nicho, l.cidade].filter(Boolean).join(' · ') || '—')}</div></td>
         <td><span class="selo ${cor}">${l.origem === 'claude' ? sparkClaude(12) : ''}${rot}</span>${l.status === 'processando' ? ' <span class="selo claude claude-pensando">farejando</span>' : ''}</td>
-        <td class="num">${num(l.total)}</td><td><span class="score sm alta">${p.alta}</span></td><td class="num">${p.crm}</td><td class="dim">${relativo(l.criado_em)}</td><td>${icone('chevd')}</td></tr>`; }).join('')}</tbody></table></div></div>`
+        <td class="num">${num(l.total)}</td><td><span class="score sm alta">${p.alta}</span></td><td class="num">${p.crm}</td><td class="dim">${relativo(l.criado_em)}</td>
+        <td class="nowrap"><button class="btn icone sm fantasma" data-menu-lista="${l.id}" data-parar aria-label="Ações da lista ${esc(l.nome)}">${icone('pontos')}</button>${icone('chevd')}</td></tr>`; }).join('')}</tbody></table></div></div>`
       : vazio('lista', 'Nenhuma lista ainda', 'Suba a planilha do Spark ou peça uma farejada ao Claude.', '<a class="btn sm prim" href="#/encontrar?aba=spark">Subir planilha</a>');
-    $$('[data-lista]', c).forEach((tr) => (tr.onclick = () => { location.hash = `#/encontrar/lista/${tr.dataset.lista}`; }));
+    $$('[data-lista]', c).forEach((tr) => (tr.onclick = (ev) => { if (ev.target.closest('[data-parar]')) return; location.hash = `#/encontrar/lista/${tr.dataset.lista}`; }));
+    $$('[data-menu-lista]', c).forEach((b) => (b.onclick = (ev) => {
+      ev.stopPropagation();
+      const l = (listas || []).find((x) => x.id === b.dataset.menuLista);
+      const p = por[l.id] || { alta: 0, crm: 0 };
+      import('../ui.js').then(({ menu, perguntar }) => menu(b, [
+        { icone: 'olho', rotulo: 'Abrir lista', fn: () => { location.hash = `#/encontrar/lista/${l.id}`; } },
+        { icone: 'editar', rotulo: 'Renomear', fn: async () => {
+          const nome = await perguntar('Nome da lista', { valor: l.nome });
+          if (!nome || !nome.trim()) return;
+          const { error } = await sb.from('listas').update({ nome: nome.trim() }).eq('id', l.id);
+          if (error) toast(erroAmigavel(error), 'erro'); else { toast('Lista renomeada'); carregar(); }
+        } },
+        '-',
+        { icone: 'lixo', rotulo: 'Apagar lista', perigo: true, fn: () => apagarLista(l, p) },
+      ]));
+    }));
   }
+  async function apagarLista(l, p) {
+    const fica = p.crm ? ` ${p.crm} já ${p.crm === 1 ? 'virou empresa e continua' : 'viraram empresas e continuam'} no CRM.` : '';
+    const ok = await confirmar(`Apagar "${l.nome}"?`, `${num(l.total)} lead${l.total === 1 ? '' : 's'} da lista ${l.total === 1 ? 'some' : 'somem'} daqui.${fica} Não dá para desfazer.`, { rotulo: 'Apagar lista', perigo: true });
+    if (!ok) return;
+    const { error } = await sb.from('listas').delete().eq('id', l.id);
+    if (error) { toast(erroAmigavel(error), 'erro'); return; }
+    toast('Lista apagada');
+    carregar();
+  }
+
   await carregar();
   limpezas.push(ouvir('listas', debounce(carregar, 800)));
 }

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Hórus Agência — site institucional (versão 3, 05/08/2026)
+   Horus Agência — site institucional (versão 3, 05/08/2026)
 
    Refeito a partir de dez referências que o Marcelo mandou. O que elas têm em
    comum e o que virou regra aqui está em `site/PLANO.md`.
@@ -29,7 +29,7 @@
      + ELECTRIC (azul→violeta, em link/foco/conexão) + texto cinza-quente. A
      elevação é por DEGRAU DE COR (void → surface → panel), não por sombra externa.
      Nomes de token legados mantidos (dezenas de usos) carregando a cor nova.
-     Marca: a Hórus usa o que há de mais moderno em tecnologia e projeta
+     Marca: a Horus usa o que há de mais moderno em tecnologia e projeta
      experiências estratégicas e mensuráveis, alinhadas às tendências atuais. */
 :root {
   --tinta:    #0e0918;  /* void base: fundo de página e hero (violeta-preto)   */
@@ -311,7 +311,7 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
     0 7px 10px rgba(0,0,0,.30),
     0 2px 4px rgba(0,0,0,.24);
 }
-/* No hover a face vira um DEGRADÊ das cores da Hórus (azul → dourado). O texto
+/* No hover a face vira um DEGRADÊ das cores da Horus (azul → dourado). O texto
    segue legível pela sombra que ele já carrega. */
 .metal-cta:hover .metal-face {
   background: linear-gradient(115deg, #C9992E 0%, #6E5320 42%, #B8860B 100%);
@@ -382,7 +382,7 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
 /* ---------- 4e. Botão "glow" AZUL (chamada final) ----------
    Porte vanilla do componente glow-button (shadcn/React/Tailwind) que o Marcelo
    mandou — a stack do site é HTML/CSS nativo, então porta-se o EFEITO, não o
-   framework. Chapa azul da Hórus, halo pulsante, ícone de sparkles, mais horizontal. */
+   framework. Chapa azul da Horus, halo pulsante, ícone de sparkles, mais horizontal. */
 .glow-btn {
   position: relative; isolation: isolate;
   display: inline-flex; align-items: center; justify-content: center; gap: 9px;
@@ -485,7 +485,7 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
 .topo.rolado .topo-linha { background: rgba(14,9,24,0.72); }
 
 .marca { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; justify-self: start; }
-/* Símbolo do olho de Hórus à esquerda do nome (Marcelo, 31/08). */
+/* Símbolo do olho de Horus à esquerda do nome (Marcelo, 31/08). */
 .marca-logo { display: block; width: 30px; height: 30px; object-fit: contain; }
 /* Cabeçalho em SANS (print 2 do Marcelo): o serifado fica só nos títulos. */
 .marca .nome {
@@ -493,7 +493,7 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
   letter-spacing: 0.04em; color: var(--osso); line-height: 1;
   transition: color .25s var(--curva);
 }
-/* Hover do "HÓRUS" (header e rodapé): AZUL da marca, nunca amarelo (Marcelo, 01/09). */
+/* Hover do "HORUS" (header e rodapé): AZUL da marca, nunca amarelo (Marcelo, 01/09). */
 .marca:hover .nome { color: var(--azul-luz); }
 .rodape .marca:hover .nome { color: var(--azul-luz); }
 
@@ -626,26 +626,38 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
   opacity: 1;
   animation: hero-splat-flutuar 6.5s ease-in-out infinite;
 }
-.hero-splat canvas { display: block; width: 100%; height: 100%; }
-
-/* Arco de luz junto ao olho, canto superior direito. FIXO (não flutua com o
-   símbolo): ancorado na coluna do hero, não dentro do splat. O brilho segue a
-   própria linha; as pontas somem no gradiente (opacidade e cor), o meio acende.
-   Seletor com `.hero .hero-grade` para vencer o `.hero .envelope > *`, que
-   senão forçaria position:relative. */
-.hero .hero-grade .hero-arco {
+.hero-splat canvas {
   position: absolute;
-  top: -5%;
-  right: -4%;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
   z-index: 2;
-  width: min(42vw, 480px);
-  height: auto;
+  pointer-events: auto;
+}
+
+/* Arco de luz platinado e shader junto ao olho 3D.
+   Concentricamente ancorado ao Olho de Horus, flutua em perfeita sincronia com o splat 3D.
+   Acabamento platinado hiper-realista com halo volumétrico, núcleo especular puro (#ffffff),
+   anéis orbitais astronômicos finos e micro-estrelas cósmicas. */
+.hero-splat .hero-arco {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   overflow: visible;
   pointer-events: none;
-  filter: drop-shadow(0 0 6px rgba(75, 147, 230, .4));
+  z-index: 1;
+  animation: arco-shader-respiro 6.5s ease-in-out infinite;
 }
-@media (max-width: 900px) {
-  .hero .hero-grade .hero-arco { width: min(70vw, 400px); top: -2%; right: -2%; }
+
+@keyframes arco-shader-respiro {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.45)) drop-shadow(0 0 28px rgba(37, 99, 235, 0.35));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(224, 242, 254, 0.70)) drop-shadow(0 0 42px rgba(59, 130, 246, 0.55));
+  }
 }
 
 @keyframes hero-splat-flutuar {
@@ -654,6 +666,7 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-splat--pronto { animation: none; }
+  .hero-splat .hero-arco { animation: none; }
 }
 
 @media (max-width: 900px) {
@@ -675,7 +688,7 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
    borda dura em lugar nenhum (era o pedido: nenhuma linha marcando o fim do
    fundo). Onde o vídeo já sumiu, aparece o `--tinta` do `.hero`. O filtro tira o
    matiz original (o Higgsfield entrega em tons roxos) e escurece um pouco; o
-   `.hero-tint` por cima devolve a cor da Hórus. */
+   `.hero-tint` por cima devolve a cor da Horus. */
 .hero-video {
   position: absolute; top: 0; left: 0; z-index: 0;
   width: 100%; height: 116dvh;
@@ -690,7 +703,7 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
   -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
           mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
 }
-/* A cor da Hórus pintada sobre o vídeo em preto e branco: `mix-blend-mode: color`
+/* A cor da Horus pintada sobre o vídeo em preto e branco: `mix-blend-mode: color`
    mantém a LUMINÂNCIA do vídeo e troca só o MATIZ. Diagonal 135° (canto
    alto-esquerda → baixo-direita): um canto quente sutil (âmbar apagado) →
    azul-marinho quase preto → AZUL DA LOGO (#2563EB, identidade/design-guide.md).
@@ -891,7 +904,7 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
 }
 
 
-/* ---------- 7b. Seção 2 · A Hórus / Visão (orbital) ---------- */
+/* ---------- 7b. Seção 2 · A Horus / Visão (orbital) ---------- */
 /* Print 3 do Marcelo: coluna de texto à esquerda, sistema orbital à direita com
    a esfera dourada no centro e os quatro pilares em volta. O `h` é honesto (sem
    a barra de métrica inventada do print). Toda a coreografia de scroll (o ponto
@@ -910,220 +923,175 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
    à esquerda e um parágrafo de apoio pequeno à direita, no alto. Seção alta. As
    palavras surgem em cascata com a rolagem (SplitText, no index.html). */
 .valores {
-  position: relative; z-index: 1;
-  /* Sem fundo próprio (31/08/2026): fundida ao hero acima, herda o vídeo/tint/
-     fade dele — inclusive var(--tinta) sólida por baixo de tudo, então o texto
-     continua legível onde o vídeo já dissolveu. */
-  padding: 96px 24px 190px;
-}
-/* Seção 1 reescrita (31/08/2026, inspiração print 1 · bento). Kicker + headline de
-   duas cores + descrição, e três cards: dois com arte à esquerda (cubo azul e
-   gráfico) e um de texto. */
-.s1-head { max-width: 900px; margin: 0 auto; text-align: center; }
-.s1-kicker {
-  font-family: var(--corpo); font-size: var(--t-17); color: var(--osso-2);
-  margin-bottom: 18px;
-}
-.s1-titulo {
-  font-size: var(--t-54); line-height: 1.02; letter-spacing: -0.03em;
-  color: var(--branco); font-weight: 700;   /* padrão do H1 da home */
-}
-.s1-am { color: #2975e9; }
-.s1-desc {
-  margin: 26px auto 0; max-width: 66ch; color: var(--osso);
-  font-size: var(--t-22); font-weight: 300; line-height: 1.5;
+  position: relative;
+  z-index: 1;
+  padding: clamp(100px, 12vw, 175px) 24px clamp(120px, 14vw, 200px);
+  overflow: hidden;
 }
 
-/* Bento: o card B (tecnologia) ocupa a coluna 1 nas duas linhas, então é o
-  card mais alto; estratégia e casa ficam empilhados à direita. */
-.s1-bento {
-  margin-top: 54px;
-  display: grid; grid-template-columns: 1.06fr 0.94fr; gap: 18px;
+/* Fundo ondulado / wireframe mesh (conforme prints 1 & 2) */
+.s1-waves-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.valores .envelope {
+  position: relative;
+  z-index: 2;
+  max-width: 1140px;
+}
+
+/* Bloco principal: alinhado à esquerda com linha vertical guia */
+.s1-bloco {
+  position: relative;
+  display: flex;
   align-items: stretch;
+  gap: clamp(24px, 3.4vw, 42px);
+  text-align: left;
 }
-.s1-card {
-  position: relative; overflow: hidden;
-  display: grid; grid-template-columns: minmax(0,0.8fr) minmax(0,1fr);
-  align-items: center; gap: 20px;
 
-  /* Efeito de vidro idêntico à imagem (cores de fundo e brilhos) */
-  --bg-color: #01040c;
-  --glow-1: rgba(75, 147, 230, 0.12); 
-  --glow-2: rgba(40, 100, 240, 0.28); 
-  --glow-pos1: 10% 0%;
-  --glow-pos2: 90% 90%;
-  
-  --border-angle: 145deg;
-  --border-light: rgba(120, 180, 255, 0.85);
-  --border-dark: rgba(20, 50, 100, 0.1);
-
-  background:
-    radial-gradient(circle at var(--glow-pos1), var(--glow-1), transparent 60%),
-    radial-gradient(circle at var(--glow-pos2), var(--glow-2), transparent 70%),
-    var(--bg-color);
-  
-  border: 1px solid transparent; border-radius: 20px;
-  padding: 32px 36px;
-  box-shadow: inset 0 0 30px rgba(70,140,255,0.05), 0 10px 40px rgba(0,0,0,0.5);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+/* Linha vertical à esquerda (print 2) com animação de traçado ao entrar */
+.s1-linha-guia {
+  position: relative;
+  flex: 0 0 1.5px;
+  width: 1.5px;
+  background: linear-gradient(
+    180deg,
+    rgba(59, 130, 246, 0.75) 0%,
+    rgba(59, 130, 246, 0.35) 50%,
+    rgba(255, 255, 255, 0.08) 85%,
+    transparent 100%
+  );
+  border-radius: 1px;
+  transform-origin: top;
+  transform: scaleY(0);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
-.s1-card::before {
+
+.s1-linha-guia::after {
   content: "";
-  position: absolute; inset: 0; z-index: 0; pointer-events: none;
-  padding: 1.5px; border-radius: inherit;
-  /* Gradiente na borda criando cantos brilhantes idênticos ao layout */
-  background: linear-gradient(var(--border-angle), var(--border-light) 0%, var(--border-dark) 40%, var(--border-dark) 60%, var(--border-light) 100%);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #60a5fa;
+  box-shadow: 0 0 8px 2px rgba(96, 165, 250, 0.8);
+  opacity: 0;
+  transition: opacity 0.8s ease 0.4s;
 }
-.s1-card > * { position: relative; z-index: 1; }
 
-/* Diferenças de cores de fundo e bordas ao decorrer (cada card tem luz própria) */
-.s1-card:nth-child(2) {
-  --glow-1: rgba(40, 120, 255, 0.15);
-  --glow-2: rgba(30, 90, 230, 0.22);
-  --glow-pos1: 90% 10%;
-  --glow-pos2: 100% 90%;
-  --border-angle: 215deg; 
-  --border-light: rgba(140, 190, 255, 0.9);
+.s1-conteudo {
+  flex: 1 1 auto;
+  max-width: 860px;
 }
-.s1-card:nth-child(3) {
-  --glow-1: rgba(50, 110, 240, 0.18);
-  --glow-2: rgba(60, 140, 255, 0.28);
-  --glow-pos1: 0% 10%;
-  --glow-pos2: 100% 100%;
-  --border-angle: 135deg;
-  --border-light: rgba(110, 170, 255, 0.95);
+
+/* Título em 3 linhas com motion ao entrar */
+.s1-titulo {
+  font-family: var(--display);
+  font-size: clamp(40px, 5.2vw, 70px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: #ffffff;
+  margin: 0 0 clamp(24px, 3vw, 34px);
 }
-.s1-card--alto {
-  grid-column: 1; grid-row: 1 / span 2;
-  grid-template-columns: 1fr; grid-template-rows: auto auto;
-  align-content: start;   /* texto no topo do card (Marcelo: "sobe o título") */
-}
-.s1-card--alto .s1-txt { grid-row: 1; }
-.s1-card--texto { grid-template-columns: 1fr; }
-.s1-txt h3 {
-  font-size: var(--t-28); font-weight: 400; color: var(--branco);
-  letter-spacing: -0.01em; margin-bottom: 12px;
-}
-.s1-txt p { color: var(--osso-2); font-size: var(--t-17); line-height: 1.62; max-width: 42ch; }
-/* Linha azul sob o título "Estratégia antes da execução". */
+
 .s1-linha {
-  display: block; width: 52px; height: 3px; border-radius: 2px;
-  margin: 0 0 16px; background: linear-gradient(90deg, #2563EB, #60A5FA);
+  display: block;
+  overflow: hidden;
 }
 
-/* Caixa da arte: recebe um brilho próprio por baixo do visual. */
-.s1-art {
-  position: relative; display: grid; place-items: center;
-  min-height: 176px; border-radius: var(--raio);
-}
-.s1-card--alto .s1-art { grid-row: 2; min-height: 200px; margin-top: 18px; margin-bottom: 0; }
-.s1-art::before {
-  content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: 0;
-}
-.s1-art--cubo::before   { background: radial-gradient(closest-side, rgba(37,99,235,.28), transparent 72%); }
-.s1-art--grafico::before{ background: radial-gradient(closest-side, rgba(244,196,48,.20), transparent 72%); }
-.s1-art--orbita::before { background: radial-gradient(closest-side, rgba(107,33,239,.24), transparent 72%); }
-
-/* Cubo azul isométrico de placas de vidro empilhadas — com um BOB lento (a peça
-   sobe e desce de leve, "flutuando"). */
-.cubo {
-  position: relative; z-index: 1;
-  width: 148px; height: 148px;
-  transform-style: preserve-3d;
-  transform: rotateX(58deg) rotateZ(45deg);
-  animation: cubo-bob 5.5s ease-in-out infinite;
-}
-@keyframes cubo-bob {
-  0%, 100% { transform: rotateX(58deg) rotateZ(45deg) translateZ(-8px); }
-  50%      { transform: rotateX(58deg) rotateZ(45deg) translateZ(16px); }
-}
-.cubo-l {
-  position: absolute; inset: 0; border-radius: 10px;
-  border: 1px solid rgba(96,165,250,.65);
-  background: linear-gradient(135deg, rgba(37,99,235,.18), rgba(11,26,63,.10));
-  box-shadow: 0 0 26px rgba(37,99,235,.5), inset 0 0 22px rgba(96,165,250,.28);
-}
-.cubo-l1 { transform: translateZ(34px); }
-.cubo-l2 { transform: translateZ(2px);  opacity: .82; }
-.cubo-l3 { transform: translateZ(-30px); opacity: .55; }
-
-/* Ilustração de crescimento em PNG com transparência, integrada ao card. */
-.s1-grafico-imagem {
-  position: relative; z-index: 1;
-  display: block; width: 100%; max-width: 390px; height: auto;
-  filter: drop-shadow(0 16px 24px rgba(2,5,12,.28));
+.s1-palavra {
+  display: inline-block;
+  transform: translateY(112%);
+  opacity: 0;
+  filter: blur(8px);
+  transition: transform 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, filter;
 }
 
-/* Proporção compacta da seção 1 no desktop: a grade mantém o mesmo desenho,
-   mas passa de 1200px para 820px, como na referência aprovada. */
-@media (min-width: 861px) {
-  .valores { padding-bottom: 152px; }
-  .valores .envelope { max-width: 1120px; }   /* faixa larga do feature card n8n (~1200) */
-  .s1-head { max-width: 620px; }
-  .s1-kicker { font-size: var(--t-13); margin-bottom: 14px; }
-  .s1-titulo { font-size: var(--t-40); }
-  .s1-bento { margin-top: 48px; gap: 22px; }
-  .s1-card { gap: 28px; padding: 48px 44px; }   /* tamanho de card do feature card n8n */
-  .s1-txt h3 { font-size: var(--t-26); margin-bottom: 10px; }
-  .s1-txt p { font-size: var(--t-13); line-height: 1.65; }
-  .s1-linha { width: 42px; height: 2px; margin-bottom: 12px; }
-  .s1-card:first-child { grid-column: 2; grid-row: 1; }
-  .s1-card:nth-child(3) { grid-column: 2; grid-row: 2; }
-  .s1-card:nth-child(3) { grid-template-columns: minmax(0,1fr) minmax(0,.8fr); }
-  .s1-card:nth-child(3) .s1-txt { grid-column: 1; grid-row: 1; }
-  .s1-card:nth-child(3) .s1-art { grid-column: 2; grid-row: 1; }
-  .s1-art { min-height: 142px; }
-  .s1-card--alto .s1-art { min-height: 156px; margin-bottom: 14px; }
-  .cubo { width: 120px; height: 120px; }
-  .orb { width: 126px; height: 126px; }
-  .s1-grafico-imagem { max-width: 310px; }
+/* 3ª linha azul brilhante ("também deveria mudar.") */
+.s1-azul {
+  color: #0077ff;
+  text-shadow: 0 0 40px rgba(0, 119, 255, 0.35);
 }
 
-/* Órbita (card "Uma casa, do plano ao ar"): dois anéis com pontos girando em
-   torno de um núcleo — a ideia de disciplinas combinadas num sistema só. */
-.orb { position: relative; z-index: 1; width: 154px; height: 154px; }
-.orb-ring { position: absolute; border-radius: 50%; pointer-events: none; }
-.orb-r1 { inset: 0;    border: 1px solid rgba(96,165,250,.34); }
-.orb-r2 { inset: 30px; border: 1px solid rgba(244,196,48,.30); }
-.orb-core {
-  position: absolute; left: 50%; top: 50%; width: 30px; height: 30px;
-  transform: translate(-50%,-50%); border-radius: 50%;
-  background: radial-gradient(circle at 40% 35%, #8fbaff, #2563EB 70%);
-  box-shadow: 0 0 22px rgba(37,99,235,.75);
+/* Descrição calibrada no tom e na quebra de 4 linhas do print */
+.s1-descricao {
+  font-family: var(--corpo);
+  font-size: clamp(16.5px, 1.25vw, 18.5px);
+  font-weight: 350;
+  line-height: 1.62;
+  color: rgba(226, 232, 240, 0.78);
+  max-width: 585px;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(22px);
+  filter: blur(5px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.42s,
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.42s,
+              filter 1s cubic-bezier(0.16, 1, 0.3, 1) 0.42s;
+  will-change: transform, opacity, filter;
 }
-.orb-spin { position: absolute; inset: 0; }
-.orb-spin1 { animation: orb-rot 9s linear infinite; }
-.orb-spin2 { inset: 30px; animation: orb-rot 6.5s linear infinite reverse; }
-.orb-spin3 { animation: orb-rot 13s linear infinite; }
-@keyframes orb-rot { to { transform: rotate(360deg); } }
-.orb-dot { position: absolute; left: 50%; top: -6px; width: 13px; height: 13px; border-radius: 50%; transform: translateX(-50%); }
-.orb-d1 { background: #60A5FA; box-shadow: 0 0 12px rgba(96,165,250,.9); }
-.orb-d2 { background: #F4C430; box-shadow: 0 0 12px rgba(244,196,48,.9); width: 11px; height: 11px; }
-.orb-d3 { background: #ffffff; box-shadow: 0 0 10px rgba(255,255,255,.8); width: 8px; height: 8px; top: -4px; }
 
-/* Movimento reduzido: as artes da Seção 1 ficam paradas no estado de repouso. */
-@media (prefers-reduced-motion: reduce) {
-  .cubo, .orb-spin, .s1-art--grafico .pan1, .s1-art--grafico .pan2, .s1-art--grafico .dot { animation: none; }
-  .cubo { transform: rotateX(58deg) rotateZ(45deg); }
+/* ===== Estado Ativo (Motion ao entrar na Seção 1) ===== */
+.s1-secao.ativo .s1-linha-guia {
+  transform: scaleY(1);
+}
+.s1-secao.ativo .s1-linha-guia::after {
+  opacity: 1;
+}
+
+.s1-secao.ativo .s1-linha:nth-child(1) .s1-palavra {
+  transform: translateY(0);
+  opacity: 1;
+  filter: blur(0);
+  transition-delay: 0.1s;
+}
+
+.s1-secao.ativo .s1-linha:nth-child(2) .s1-palavra {
+  transform: translateY(0);
+  opacity: 1;
+  filter: blur(0);
+  transition-delay: 0.22s;
+}
+
+.s1-secao.ativo .s1-linha:nth-child(3) .s1-palavra {
+  transform: translateY(0);
+  opacity: 1;
+  filter: blur(0);
+  transition-delay: 0.34s;
+}
+
+.s1-secao.ativo .s1-descricao {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
 }
 
 @media (max-width: 860px) {
-  .valores { padding: 64px 24px 110px; }
-  .s1-titulo { font-size: var(--t-40); }
-  .s1-desc { font-size: var(--t-17); }
-  .s1-bento { grid-template-columns: 1fr; margin-top: 48px; }
-  /* No celular tudo empilha: cada card vira uma coluna (arte em cima, texto
-     embaixo) e o card alto perde o span. */
-  .s1-card, .s1-card--alto { grid-column: auto; grid-row: auto; grid-template-columns: 1fr; }
-  .s1-card:nth-child(3) .s1-txt,
-  .s1-card:nth-child(3) .s1-art { grid-column: auto; grid-row: auto; }
-  .s1-art { min-height: 200px; margin-bottom: 22px; }
-  .s1-card--alto .s1-art { min-height: 240px; }
+  .valores { padding: 70px 20px 105px; }
+  .s1-bloco { gap: 18px; }
+  .s1-titulo { font-size: clamp(32px, 8.5vw, 44px); line-height: 1.12; margin-bottom: 20px; }
+  .s1-descricao { font-size: 16px; line-height: 1.55; max-width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .s1-linha-guia { transform: none; transition: none; }
+  .s1-linha-guia::after { opacity: 1; transition: none; }
+  .s1-palavra { transform: none; opacity: 1; filter: none; transition: none; }
+  .s1-descricao { transform: none; opacity: 1; filter: none; transition: none; }
 }
 
 /* ---------- 7a2. Nosso Stack (2 fileiras opostas, ícones coloridos, 31/08) ----------
@@ -1131,125 +1099,516 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
    contrário. Cada logo é o ícone COLORIDO oficial dentro de uma CAIXA DE VIDRO,
    com um brilho de cor ao fundo (print n8n). Vidro por LUZ (gradiente + borda +
    realce interno), sem backdrop-filter — regra da casa e mais leve com ~70 tiles. */
-.stack {
+.stk-secao {
   position: relative;
   z-index: 2;
-  padding: 104px 0 148px;
-  background: #020617;
+  padding: clamp(90px, 10vw, 150px) 24px clamp(110px, 12vw, 170px);
+  background: #000206;
   overflow: hidden;
 }
-/* Símbolo do olho de Hórus GRANDE ao fundo do stack (Marcelo, 31/08). ⚠️ O
-   `design-guide.md` marca "símbolo ampliado como marca-d'água" como antipadrão da
-   casa; entra aqui a pedido direto do Marcelo, faint e mascarado nas bordas.
-   Centralizado (top:50%) e dimensionado para caber na altura da seção — assim não
-   fica cortado no topo pelo overflow. */
-.stack-logo {
-  position: absolute; left: 50%; top: 42%; z-index: 0;
-  width: min(780px, 80%); height: auto;
+
+/* Brilho atmosférico azul sutil e amplo por trás da matriz 3D, sem caixa */
+.stk-secao::before {
+  content: "";
+  position: absolute;
+  left: 24%;
+  top: 48%;
+  width: min(1000px, 92vw);
+  height: min(720px, 80vh);
   transform: translate(-50%, -50%);
-  opacity: .07; pointer-events: none;
-  -webkit-mask-image: radial-gradient(ellipse 65% 65% at 50% 50%, #000 20%, transparent 75%);
-          mask-image: radial-gradient(ellipse 65% 65% at 50% 50%, #000 20%, transparent 75%);
-}
-/* Brilho de cor atrás das fileiras, agora numa FAIXA DIAGONAL que sobe para a
-   direita, seguindo a linha do print 2 (Marcelo, 31/08). Elipse alongada girada. */
-.stack::before {
-  content: ""; position: absolute; left: 50%; top: 40%; z-index: 0;
-  width: min(1200px, 96%); height: 500px;
-  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at center, rgba(14, 46, 98, 0.28) 0%, rgba(5, 18, 42, 0.12) 55%, transparent 75%);
   pointer-events: none;
-  background:
-    radial-gradient(ellipse at 70% 20%, rgba(245, 158, 11, 0.08), transparent 60%),
-    radial-gradient(ellipse at 75% 80%, rgba(37, 99, 235, 0.15), transparent 65%);
-  filter: blur(60px);
+  filter: blur(70px);
+  z-index: 0;
 }
 
-.stack-head { position: relative; z-index: 1; text-align: center; padding-inline: 24px; }
-/* Mesmo rótulo padronizado do "Nosso compromisso" (ver .qp-eyebrow). */
-.stack-eyebrow {
-  font-family: var(--mono); font-size: .625rem; font-weight: 500;
-  letter-spacing: .32em; text-transform: uppercase; color: #8ea8c9;
-  margin-bottom: 24px;
+.stk-secao .envelope {
+  position: relative;
+  z-index: 2;
+  max-width: 1240px;
 }
-.stack-eyebrow::before { content: "■  "; color: #2096ff; text-shadow: 0 0 9px rgba(32,150,255,.9); }
-.stack-eyebrow::after {
-  content: ""; display: block;
-  width: 40px; height: 1px;
-  background: rgba(255, 255, 255, 0.4);
-  margin: 14px auto 0;
+
+/* Header superior: 02 —— NOSSO STACK */
+.stk-topo-linha {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: clamp(40px, 5.5vw, 68px);
+  opacity: 0;
+  transform: translateY(-16px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.stack-titulo {
-  font-size: clamp(32px, 5vw, 48px);
-  line-height: 1.15;
+.stk-numero {
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 700;
+  color: #0077ff;
+  letter-spacing: 0.05em;
+}
+.stk-traco {
+  width: 38px;
+  height: 1.5px;
+  background: rgba(59, 130, 246, 0.45);
+}
+.stk-tag {
+  font-size: 11.5px;
   font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(226, 232, 240, 0.65);
+}
+
+/* Grid principal em 2 colunas */
+.stk-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: clamp(20px, 3vw, 48px);
+  position: relative;
+  z-index: 2;
+}
+
+/* Coluna Esquerda: Palco 3D de Teclas de Vidro Flutuantes */
+.stk-palco-3d {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: -40px;
+}
+
+/* Cenario 3D 100% borderless com perspectiva profunda e dissolução suave para o fundo escuro */
+.stk-cenario-3d {
+  position: relative;
+  width: calc(100% + 220px);
+  height: 700px;
+  perspective: 920px;
+  perspective-origin: 12% 48%;
+  overflow: visible;
+  background: transparent;
+  border: none;
+  mask-image: linear-gradient(to right, black 0%, black 50%, rgba(0,0,0,0.65) 68%, rgba(0,0,0,0.15) 84%, transparent 96%);
+  -webkit-mask-image: linear-gradient(to right, black 0%, black 50%, rgba(0,0,0,0.65) 68%, rgba(0,0,0,0.15) 84%, transparent 96%);
+}
+
+/* Plano 3D que recua em perspectiva para bem longe no fundo */
+.stk-plano-3d {
+  position: absolute;
+  top: -45px;
+  left: -35px;
+  width: calc(100% + 820px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transform: rotateX(-8deg) rotateY(-36deg) rotateZ(8deg);
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+  opacity: 0;
+  pointer-events: auto;
+}
+
+/* Fileiras e Trilhos do Marquee */
+.stk-fileira {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  transform-style: preserve-3d;
+}
+
+.stk-trilho {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+/* Fileiras 1 e 3: da Direita para a Esquerda */
+.stk-fileira--r2l .stk-trilho {
+  animation: stk-scroll-r2l 40s linear infinite;
+}
+/* Fileiras 2 e 4: da Esquerda para a Direita */
+.stk-fileira--l2r .stk-trilho {
+  animation: stk-scroll-l2r 44s linear infinite;
+}
+
+/* Variação sutil de tempo para ritmo orgânico */
+.stk-fileira:nth-child(1) .stk-trilho { animation-duration: 38s; }
+.stk-fileira:nth-child(2) .stk-trilho { animation-duration: 44s; }
+.stk-fileira:nth-child(3) .stk-trilho { animation-duration: 40s; }
+.stk-fileira:nth-child(4) .stk-trilho { animation-duration: 46s; }
+
+/* Pausa suave ao hover no trilho */
+.stk-trilho:hover {
+  animation-play-state: paused;
+}
+
+@keyframes stk-scroll-r2l {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes stk-scroll-l2r {
+  from { transform: translate3d(-50%, 0, 0); }
+  to   { transform: translate3d(0, 0, 0); }
+}
+
+/* Teclas de Vidro (Glass Squircle Tiles) fiéis ao design de referência */
+.stk-card {
+  position: relative;
+  flex: 0 0 134px;
+  width: 134px;
+  height: 134px;
+  border-radius: 26px;
+  background: linear-gradient(145deg, rgba(18, 30, 54, 0.72) 0%, rgba(7, 13, 25, 0.88) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.5),
+    inset 0 0 16px 0 rgba(0, 119, 255, 0.06),
+    0 16px 32px -6px rgba(0, 0, 0, 0.85),
+    0 0 20px -2px rgba(0, 102, 255, 0.12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 10px;
+  cursor: default;
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+  user-select: none;
+}
+
+/* Calota de brilho curvo superior (reflexo de vidro acrílico) */
+.stk-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(120% 70% at 50% 0%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.02) 42%, transparent 68%);
+  pointer-events: none;
+}
+
+/* Hover individual no card */
+.stk-card:hover {
+  transform: translateY(-4px) scale(1.08) translateZ(28px);
+  border-color: rgba(0, 119, 255, 0.65);
+  box-shadow:
+    inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.55),
+    inset 0 0 24px 0 rgba(0, 119, 255, 0.32),
+    0 22px 42px -4px rgba(0, 0, 0, 0.95),
+    0 0 28px 4px rgba(0, 119, 255, 0.4);
+  z-index: 25;
+}
+
+.stk-card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(12px);
+}
+
+.stk-icon {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.45));
+  transition: transform 0.3s ease;
+}
+
+.stk-card:hover .stk-icon {
+  transform: scale(1.12);
+}
+
+.stk-icon--inv {
+  filter: brightness(0) invert(1) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.45));
+}
+
+.stk-nome {
+  font-family: var(--ff-base, 'Inter', -apple-system, sans-serif);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.88);
+  margin-top: 2px;
+  white-space: nowrap;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
+}
+
+/* Camadas residuais desligadas */
+.stk-dof-blur-dir,
+.stk-dof-fade-dir,
+.stk-luz-fundo {
+  display: none !important;
+}
+
+/* Anotação decorativa inferior direita (do print): FERRAMENTAS REAIS PARA RESULTADOS REAIS. */
+.stk-anotacao {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 16px;
+  padding-right: 18px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
+}
+
+.stk-anotacao-linha {
+  display: flex;
+  align-items: center;
+  width: 44px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(0, 119, 255, 0.65));
+  position: relative;
+}
+
+.stk-anotacao-ponto {
+  position: absolute;
+  right: -3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #0077ff;
+  box-shadow: 0 0 10px #0077ff, 0 0 20px #0077ff;
+}
+
+.stk-anotacao-texto {
+  font-family: var(--ff-base, 'Inter', -apple-system, sans-serif);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  line-height: 1.45;
+  text-transform: uppercase;
+  color: rgba(226, 232, 240, 0.55);
+  margin: 0;
+}
+
+/* Coluna Direita: Informações e Benefícios */
+.stk-info {
+  text-align: left;
+}
+
+.stk-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(226, 232, 240, 0.65);
+  margin-bottom: 22px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+}
+.stk-eyebrow-dash {
+  width: 20px;
+  height: 1.5px;
+  background: rgba(59, 130, 246, 0.7);
+  border-radius: 1px;
+}
+
+.stk-titulo {
+  font-family: var(--display);
+  font-size: clamp(32px, 3.8vw, 52px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
   color: #ffffff;
-  letter-spacing: -0.02em;
   margin-bottom: 24px;
 }
-.destaque-azul {
-  color: #3b82f6; /* Bright blue */
+.stk-linha-t {
+  display: block;
+  overflow: hidden;
 }
-.stack-desc {
-  font-size: 17px;
-  color: #94a3b8; /* Slate 400 */
-  line-height: 1.6;
-  max-width: 580px;
-  margin: 0 auto;
+.stk-palavra-t {
+  display: inline-block;
+  transform: translateY(115%);
+  opacity: 0;
+  filter: blur(8px);
+  transition: transform 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, filter;
 }
-/* Recorte com bordas que somem (os tiles entram e saem dissolvendo). O
-   `padding-block` dá folga para o tile SUBIR no hover (translateY + sombra) sem
-   ser cortado — a máscara é horizontal, então não interfere no eixo vertical. */
-.stack-mask {
-  position: relative; z-index: 1; margin-top: 34px;
-  padding-block: 20px;
-  display: flex; flex-direction: column; gap: 18px;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+.stk-destaque-azul {
+  color: #0077ff;
+  text-shadow: 0 0 35px rgba(0, 119, 255, 0.35);
 }
-.stack-row { display: flex; gap: 18px; width: max-content; will-change: transform; }
-.stack-row--a { animation: stack-la 64s linear infinite; }   /* direita -> esquerda */
-.stack-row--b { animation: stack-lb 58s linear infinite; }   /* esquerda -> direita */
-/* --stack-shift é calculado em JS (site.js) a partir da largura real da tela: com N cópias no
-   laço, o deslocamento certo é 1/N do total, não fixo em 50%. Sem JS, cai no 50% de sempre
-   (funciona em telas estreitas; é só em tela larga que 2 cópias fixas deixavam buraco). */
-@keyframes stack-la { from { transform: translateX(0); }      to { transform: translateX(calc(-1 * var(--stack-shift, 50%))); } }
-@keyframes stack-lb { from { transform: translateX(calc(-1 * var(--stack-shift, 50%))); }   to { transform: translateX(0); } }
 
-/* Caixa de vidro (por luz). */
-.tile {
-  flex: none;
-  width: 76px; height: 76px;
-  display: grid; place-items: center;
-  border-radius: 16px;
-  background: linear-gradient(180deg, rgba(30, 58, 138, 0.25), rgba(2, 8, 22, 0.6));
-  border: 1px solid rgba(59, 130, 246, 0.35);
-  box-shadow: 
-    inset 0 1px 1px rgba(255, 255, 255, 0.15),
-    inset 0 0 20px rgba(59, 130, 246, 0.2),
-    0 4px 16px rgba(0,0,0,0.4);
-  transition: transform .3s var(--curva), border-color .3s var(--curva), box-shadow .3s var(--curva);
+.stk-descricao {
+  font-family: var(--corpo);
+  font-size: clamp(15px, 1.15vw, 17px);
+  font-weight: 350;
+  line-height: 1.65;
+  color: rgba(226, 232, 240, 0.74);
+  margin-bottom: 34px;
+  max-width: 530px;
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(4px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.38s,
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.38s,
+              filter 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.38s;
+  will-change: transform, opacity, filter;
 }
-.tile:hover {
-  transform: translateY(-4px) scale(1.02);
-  border-color: rgba(59, 130, 246, 0.7);
-  box-shadow: 
-    inset 0 1px 1px rgba(255, 255, 255, 0.2),
-    inset 0 0 24px rgba(59, 130, 246, 0.4),
-    0 8px 24px rgba(0,0,0,0.6),
-    0 0 20px rgba(59, 130, 246, 0.3);
+
+/* Lista de 4 benefícios */
+.stk-beneficios {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0;
+  margin: 0;
 }
-.tile-i { width: 38px; height: 38px; object-fit: contain; display: block; }
-/* Logos pretos (github/notion/vercel/openai/framer) clareados no tile escuro. */
-.tile-i--inv { filter: invert(1) brightness(1.7); }
+.stk-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stk-check {
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.stk-check svg {
+  width: 100%;
+  height: 100%;
+}
+.stk-item-texto {
+  font-size: clamp(14.5px, 1.05vw, 16px);
+  font-weight: 400;
+  color: rgba(241, 245, 249, 0.9);
+  letter-spacing: -0.01em;
+}
+
+/* ===== Motion ao Entrar (Classe .ativo) ===== */
+.stk-secao.ativo .stk-topo-linha {
+  opacity: 1;
+  transform: translateY(0);
+}
+.stk-secao.ativo .stk-eyebrow {
+  opacity: 1;
+  transform: translateY(0);
+}
+.stk-secao.ativo .stk-linha-t:nth-child(1) .stk-palavra-t {
+  transform: translateY(0); opacity: 1; filter: blur(0); transition-delay: 0.15s;
+}
+.stk-secao.ativo .stk-linha-t:nth-child(2) .stk-palavra-t {
+  transform: translateY(0); opacity: 1; filter: blur(0); transition-delay: 0.25s;
+}
+.stk-secao.ativo .stk-linha-t:nth-child(3) .stk-palavra-t {
+  transform: translateY(0); opacity: 1; filter: blur(0); transition-delay: 0.35s;
+}
+.stk-secao.ativo .stk-linha-t:nth-child(4) .stk-palavra-t {
+  transform: translateY(0); opacity: 1; filter: blur(0); transition-delay: 0.45s;
+}
+.stk-secao.ativo .stk-descricao {
+  opacity: 1; transform: translateY(0); filter: blur(0);
+}
+
+.stk-secao.ativo .stk-item:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.5s; }
+.stk-secao.ativo .stk-item:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
+.stk-secao.ativo .stk-item:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.7s; }
+.stk-secao.ativo .stk-item:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.8s; }
+
+.stk-secao.ativo .stk-anotacao {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ativação do Plano 3D e Anotação na entrada */
+.stk-secao.ativo .stk-plano-3d {
+  opacity: 1;
+}
+
+.stk-secao.ativo .stk-anotacao {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 960px) {
+  .stk-secao {
+    padding: calc(var(--cabecalho, 72px) + 36px) 20px 90px;
+  }
+  .stk-topo-linha {
+    margin-bottom: 24px;
+  }
+  .stk-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .stk-palco-3d {
+    order: 2;
+  }
+  .stk-info {
+    order: 1;
+  }
+  .stk-cenario-3d {
+    height: 380px;
+    perspective: 900px;
+    border-radius: 18px;
+  }
+  .stk-plano-3d {
+    top: -24px;
+    left: -32px;
+    width: calc(100% + 140px);
+    transform: rotateX(10deg) rotateY(-14deg) rotateZ(2deg);
+    gap: 12px;
+  }
+  .stk-card {
+    flex: 0 0 88px;
+    width: 88px;
+    height: 88px;
+    border-radius: 16px;
+    padding: 8px 6px;
+  }
+  .stk-icon {
+    width: 26px;
+    height: 26px;
+  }
+  .stk-nome {
+    font-size: 9.5px;
+    margin-top: 1px;
+  }
+  .stk-anotacao {
+    justify-content: flex-start;
+    padding-right: 0;
+    margin-top: 10px;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .stack-row { animation: none; flex-wrap: wrap; justify-content: center; width: auto; padding-inline: 24px; }
-  .stack-row [aria-hidden="true"] { display: none; }
-}
-@media (max-width: 860px) {
-  .stack { padding: 64px 0 72px; }
-  .tile { width: 58px; height: 58px; border-radius: 14px; }
-  .tile-i { width: 30px; height: 30px; }
+  .stk-topo-linha, .stk-eyebrow, .stk-palavra-t, .stk-descricao, .stk-item, .stk-anotacao {
+    opacity: 1; transform: none; filter: none; transition: none;
+  }
+  .stk-plano-3d {
+    opacity: 1; transform: none !important; transition: none;
+  }
+  .stk-trilho {
+    animation: none !important;
+  }
 }
 
 .viagem {
@@ -1496,7 +1855,7 @@ html.viagem-on .viagem { display: grid; }
 .svcs-eyebrow::before { content: "■  "; color: #2096ff; text-shadow: 0 0 9px rgba(32,150,255,.9); }
 .svcs-titulo { font-size: var(--t-54); max-width: 20ch; margin: 0 auto; font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; }
 .svcs-em { color: #0486f8; }   /* ênfase em "instala." (Marcelo, 16/09/2026) */
-.svcs-sub { margin: 18px auto 0; max-width: 58ch; color: var(--osso); font-size: var(--t-22); font-weight: 300; line-height: 1.5; }
+.svcs-sub { margin: 18px auto 0; max-width: 58ch; color: #94a3b8; font-size: var(--t-22); font-weight: 400; line-height: 1.5; }
 
 .svcs-stack { position: relative; z-index: 1; }
 /* Cada painel gruda a 100px do topo (respeitando a navbar fixa, ~80px) e o
@@ -1525,23 +1884,98 @@ html.viagem-on .viagem { display: grid; }
   display: grid; grid-template-columns: minmax(0,0.9fr) minmax(0,1.1fr);
   gap: 48px; align-items: center;
 }
-.svc-num, .svc-cat {
-  font-size: var(--t-13); font-weight: 500; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--osso-2);
+/* Topo do card: número + traço + categoria, padronizados com o design system */
+.svc-topo-linha {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
 }
-.svc-num { font-family: var(--mono); letter-spacing: 0.1em; margin-bottom: 14px; }
-.svc-num::before { content: "/ "; color: var(--ember-1); }
-.svc-cat { font-family: var(--corpo); margin-bottom: 14px; }
-.svc-h { font-size: var(--t-40); max-width: 15ch; margin-bottom: 18px; }
-.svc-desc { color: var(--osso); font-size: var(--t-17); line-height: 1.55; max-width: 46ch; }
+.svc-num {
+  font-family: var(--display);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #0077ff;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+.svc-traco {
+  width: 28px;
+  height: 1.5px;
+  background: rgba(59, 130, 246, 0.45);
+  flex-shrink: 0;
+}
+.svc-cat {
+  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1;
+}
+
+/* Fallback caso svc-num e svc-cat não estejam sob .svc-topo-linha */
+.svc-txt > .svc-num {
+  display: inline-block;
+  margin-bottom: 8px;
+}
+.svc-txt > .svc-cat {
+  margin-bottom: 16px;
+}
+
+/* Título principal do card: padronizado com o sistema visual de títulos da Hórus */
+.svc-h {
+  font-family: var(--display);
+  font-size: var(--t-40);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  max-width: 16ch;
+  margin: 0 0 20px 0;
+}
+
+/* Descrição do serviço: corpo balanceado em slate-400 */
+.svc-desc {
+  font-family: var(--corpo);
+  color: #94a3b8;
+  font-size: var(--t-17);
+  font-weight: 400;
+  line-height: 1.65;
+  max-width: 48ch;
+  margin: 0;
+}
+
+/* Lista de capacidades: itens refinados com ponto luminescente azul */
 .svc-caps {
-  list-style: none; margin: 30px 0 0; padding: 0;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 12px 28px;
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 28px;
 }
-.svc-caps li { position: relative; padding-left: 22px; font-size: var(--t-17); color: var(--osso); }
+.svc-caps li {
+  position: relative;
+  padding-left: 20px;
+  font-family: var(--corpo);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
 .svc-caps li::before {
-  content: ""; position: absolute; left: 0; top: .58em;
-  width: 8px; height: 8px; border-radius: 2px; background: var(--electric);
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.58em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #0077ff;
+  box-shadow: 0 0 8px #0077ff;
 }
 
 /* ---- Mocks dos serviços (painel com brilho) + MOTION DE ENTRADA ----
@@ -2032,8 +2466,11 @@ html.viagem-on .viagem { display: grid; }
   /* No celular a pilha não gruda (tela estreita): cada serviço é um bloco no fluxo. */
   .svc { position: static; min-height: 0; padding: 72px 24px; box-shadow: none; }
   .svc-in { grid-template-columns: 1fr; gap: 32px; }
-  .svc-h { font-size: var(--t-28); }
-  .svc-caps { gap: 10px 20px; }
+  .svc-topo-linha { margin-bottom: 14px; gap: 10px; }
+  .svc-h { font-size: var(--t-28); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 16px; }
+  .svc-desc { font-size: 1rem; line-height: 1.6; }
+  .svc-caps { gap: 10px 20px; margin-top: 24px; }
+  .svc-caps li { font-size: 0.875rem; }
   /* Cabeçalho da seção no celular: título menor e menos respiro. */
   .svcs-intro { padding: 64px 24px 40px; }
   .svcs-titulo { font-size: var(--t-40); }
@@ -2048,10 +2485,10 @@ html.viagem-on .viagem { display: grid; }
    o conteúdo dos cards é o da casa. O SVG (.ql-sistema) e as posições dos cards
    vivem na MESMA régua — palco quadrado, viewBox 1000x1000 — então as linhas
    encostam nos cards de verdade em vez de chutar. */
-/* ============ POR QUE A HÓRUS · MATRIZ (27/08/2026) ============
+/* ============ POR QUE A HORUS · MATRIZ (27/08/2026) ============
    Matriz comparativa por CATEGORIA (formato amphora), decisão do Conselho. É
    estrutura tabular de verdade (<table>), que é o único caso em que o antipadrões
-   permite fio entre linhas. A coluna da Hórus é levantada em âmbar (tinta
+   permite fio entre linhas. A coluna da Horus é levantada em âmbar (tinta
    translúcida + fios laterais); as alternativas ficam neutras, cada uma com a
    força real dela escrita — nada de matriz de ✓✓✓ contra ✗✗✗. */
 .compara {
@@ -2095,147 +2532,397 @@ html.viagem-on .viagem { display: grid; }
   border-radius: 0 0 var(--raio-reto) var(--raio-reto);
 }
 
+/* ==========================================================================
+   SEÇÃO NOSSOS COMPROMISSOS (5 Pilares de Qualidade & Parceria)
+   Fiel à referência visual: fundo dark obsidian, badge pill com indicador azul,
+   tipografia nobre, 5 cards com squircle colorido, numeração 01-05,
+   botão de seta circular, barra de acento luminosa e motion na entrada.
+   ========================================================================== */
 .qualidade {
   position: relative;
   z-index: 2;
   padding: 130px 24px 150px;
-  border-top: 1px solid rgba(255,255,255,.05);
-  background:
-    radial-gradient(ellipse 1300px 750px at 15% 15%, rgba(32, 150, 255, 0.45), transparent 65%),
-    radial-gradient(ellipse 1200px 750px at 85% 85%, rgba(55, 135, 252, 0.38), transparent 65%),
-    radial-gradient(ellipse 950px 550px at 50% 50%, rgba(20, 100, 220, 0.28), transparent 70%),
-    #020918;
+  background-color: #000206;
+  background-image:
+    radial-gradient(circle 900px at 50% 12%, rgba(0, 102, 255, 0.15), transparent 70%),
+    radial-gradient(circle 650px at 10% 88%, rgba(0, 70, 180, 0.08), transparent 70%),
+    radial-gradient(circle 650px at 90% 88%, rgba(0, 90, 220, 0.08), transparent 70%);
   overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
 }
-/* Fileira de cinco cards: vidro azul, fio luminoso e proporção vertical fiel ao Miro. */
-.qp-topo { text-align: center; margin: 0 auto 64px; max-width: 900px; }
-.qp-eyebrow {
-  font-family: var(--mono); font-size: .625rem; font-weight: 500;
-  letter-spacing: .32em; text-transform: uppercase; color: #8ea8c9; margin-bottom: 16px;
-}
-.qp-eyebrow::before { content: "■  "; color: #2096ff; text-shadow: 0 0 9px rgba(32,150,255,.9); }
-.qp-titulo { font-size: clamp(2.35rem, 4vw, 3.15rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.04; }
-.qp-em { color: #2e86ff; }
-.qp-sub { margin: 18px auto 0; max-width: 46ch; color: #a7b3c7; font-size: 1.125rem; font-weight: 300; line-height: 1.45; }
 
+/* Header / Topo */
+.qp-topo {
+  text-align: center;
+  margin: 0 auto 58px;
+  max-width: 900px;
+}
+
+/* Badge / Eyebrow Pill */
+.qp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 18px 7px 14px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  margin-bottom: 24px;
+}
+.qp-badge-ponto {
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: #0077ff;
+  box-shadow: 0 0 9px rgba(0, 119, 255, 0.9);
+  display: inline-block;
+}
+.qp-badge-txt {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+/* Título Principal */
+.qp-titulo {
+  font-family: var(--display);
+  font-size: clamp(2.35rem, 4.4vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  color: #ffffff;
+  margin: 0 auto 20px;
+  text-align: center;
+}
+.qp-em {
+  color: #0077ff;
+}
+
+/* Subtítulo / Apoio */
+.qp-sub {
+  margin: 0 auto;
+  max-width: 680px;
+  color: #8e9cb2;
+  font-size: clamp(0.95rem, 1.25vw, 1.0625rem);
+  font-weight: 400;
+  line-height: 1.6;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* Grade de Cards */
 .qp-fila {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 18px;
-  max-width: 1220px;
-  margin-inline: auto;
+  gap: 16px;
+  max-width: 1260px;
+  margin: 0 auto;
+  width: 100%;
 }
+
+/* Card Individual */
 .qp-card {
   position: relative;
   overflow: hidden;
   isolation: isolate;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  min-height: 390px;
-  padding: 28px 22px 32px;
-  border-radius: 18px;
-  background: linear-gradient(165deg, rgba(16,44,80,.78), rgba(6,20,42,.88) 60%, rgba(2,10,24,.95) 100%);
-  border: 1px solid rgba(56,138,240,.42);
-  box-shadow: inset 0 1px 0 rgba(140,215,255,.22), 0 0 22px rgba(24,137,255,.15), 0 20px 40px rgba(0,0,0,.45);
-  animation: qp-card-float 7.5s ease-in-out infinite;
-  transition: transform .35s var(--curva), box-shadow .35s var(--curva), border-color .35s ease;
+  justify-content: space-between;
+  min-height: 420px;
+  padding: 28px 22px 30px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(13, 20, 36, 0.65) 0%, rgba(6, 11, 22, 0.85) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 16px 36px rgba(0, 0, 0, 0.5), 0 20px 40px -15px var(--cor-glow);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease;
 }
+
+/* Luz difusa na base de cada card conforme a cor temática */
 .qp-card::before {
-  content: ""; position: absolute; z-index: -1; top: -80px; left: 12%; width: 76%; height: 120px;
-  border-radius: 50%; background: rgba(28,143,255,.42); filter: blur(24px);
-  opacity: .52; transform: translateX(-35%); animation: qp-light-sweep 7.5s ease-in-out infinite;
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle 180px at 50% 112%, var(--cor-glow), transparent 75%);
+  opacity: 0.55;
+  transition: opacity 0.45s ease;
+  z-index: 0;
 }
-.qp-card::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
-  mix-blend-mode: overlay; border-radius: inherit;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+.qp-card > * {
+  position: relative;
+  z-index: 1;
 }
-.qp-card > * { position: relative; z-index: 1; }
+
+/* Hover nos Cards */
 .qp-card:hover {
-  animation-play-state: paused;
   transform: translateY(-8px);
-  border-color: rgba(102,190,255,.95);
-  box-shadow: inset 0 1px 0 rgba(140,216,255,.3), 0 0 26px rgba(24,137,255,.35), 0 30px 60px rgba(0,0,0,.55);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.22),
+              0 24px 50px rgba(0, 0, 0, 0.65),
+              0 25px 45px -8px var(--cor-glow);
+}
+.qp-card:hover::before {
+  opacity: 0.9;
 }
 
-/* Cores dos ícones e delays fiéis à referência do Miro */
-.qp-card:nth-child(1) { --qp-icon: #f5c253; animation-delay: -.4s; }
-.qp-card:nth-child(2) { --qp-icon: #45b5ff; animation-delay: -1.7s; }
-.qp-card:nth-child(3) { --qp-icon: #2b8cff; animation-delay: -3s; }
-.qp-card:nth-child(4) { --qp-icon: #6f82fb; animation-delay: -4.3s; }
-.qp-card:nth-child(5) { --qp-icon: #b37ef9; animation-delay: -5.6s; }
-
-/* Topo do card: número 01..05 + traço */
-.qp-meta {
+/* Topo do Card: Ícone em Squircle + Número */
+.qp-card-head {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 22px;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 26px;
   width: 100%;
 }
-.qp-num {
-  font-family: var(--mono);
-  font-size: .65rem;
-  color: #7e9bc2;
-  letter-spacing: .12em;
-}
-.qp-traco {
-  display: inline-block;
-  width: 22px;
-  height: 1px;
-  background: linear-gradient(90deg, #278eff, transparent);
-  opacity: .75;
-}
 
-/* Ícone */
-.qp-ico {
+.qp-ico-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
   display: inline-flex;
-  color: var(--qp-icon);
-  margin-bottom: 24px;
-  opacity: 1;
+  align-items: center;
+  justify-content: center;
+  background: var(--cor-icon-bg);
+  border: 1px solid var(--cor-icon-bd);
+  box-shadow: 0 0 16px var(--cor-glow);
+  color: var(--cor-icon);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
 }
-.qp-ico svg {
-  width: 36px;
-  height: 36px;
-  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--qp-icon) 45%, transparent));
+.qp-ico-box svg {
+  width: 24px;
+  height: 24px;
+}
+.qp-card:hover .qp-ico-box {
+  transform: scale(1.06);
+  box-shadow: 0 0 24px var(--cor-glow);
 }
 
-/* Título */
-.qp-card h3 {
-  font-size: 1.15rem;
+.qp-card-num {
+  font-family: var(--display), sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #52637a;
+  letter-spacing: 0.05em;
+  padding-top: 3px;
+}
+
+/* Corpo do Card: Título + Descrição */
+.qp-card-corpo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.qp-card-corpo h3 {
+  font-family: var(--display);
+  font-size: 1.25rem;
   font-weight: 700;
   color: #ffffff;
+  line-height: 1.25;
   margin: 0 0 14px;
   letter-spacing: -0.02em;
-  line-height: 1.25;
 }
-
-/* Parágrafo */
-.qp-card p {
+.qp-card-corpo p {
   color: #94a3b8;
-  font-size: .84rem;
+  font-size: 0.875rem;
   line-height: 1.55;
   margin: 0;
+  font-weight: 400;
 }
 
-@keyframes qp-card-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-@keyframes qp-light-sweep { 0%, 100% { transform: translateX(-35%); opacity: .38; } 50% { transform: translateX(35%); opacity: .76; } }
-@media (prefers-reduced-motion: reduce) { .qp-card, .qp-card::before { animation: none; } }
-@media (max-width: 1100px) {
-  .qp-fila { grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .qp-card { min-height: 360px; }
+/* Rodapé do Card: Botão de Seta Circular + Barra de Cor */
+.qp-card-rodape {
+  margin-top: auto;
+  padding-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.qp-btn-seta {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+}
+.qp-btn-seta svg {
+  width: 15px;
+  height: 15px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.qp-card:hover .qp-btn-seta {
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+}
+.qp-card:hover .qp-btn-seta svg {
+  transform: translateX(3px);
+}
+
+.qp-barra-cor {
+  width: 30px;
+  height: 2.5px;
+  border-radius: 9999px;
+  background: var(--cor-accent);
+  box-shadow: 0 0 8px var(--cor-glow);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+.qp-card:hover .qp-barra-cor {
+  width: 44px;
+  box-shadow: 0 0 12px var(--cor-accent);
+}
+
+/* ==========================================================================
+   MOTION DE ENTRADA AO ROLAR ATÉ A SEÇÃO (Scroll Motion Choreography)
+   ========================================================================== */
+.qualidade .qp-badge {
+  opacity: 0;
+  transform: translateY(-16px) scale(0.96);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.qualidade .qp-titulo {
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(8px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s,
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s,
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+.qualidade .qp-sub {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s,
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+
+.qualidade .qp-card {
+  opacity: 0;
+  transform: translateY(48px);
+  filter: blur(6px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.45s ease,
+              border-color 0.4s ease;
+}
+.qualidade .qp-ico-box {
+  transform: scale(0.85);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.4s ease;
+}
+.qualidade .qp-barra-cor {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s ease;
+}
+
+/* Estado ATIVO (quando entra na tela) */
+.qualidade.ativo .qp-badge {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.qualidade.ativo .qp-titulo {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+.qualidade.ativo .qp-sub {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.qualidade.ativo .qp-card {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+.qualidade.ativo .qp-card:nth-child(1) { transition-delay: 0.28s; }
+.qualidade.ativo .qp-card:nth-child(2) { transition-delay: 0.38s; }
+.qualidade.ativo .qp-card:nth-child(3) { transition-delay: 0.48s; }
+.qualidade.ativo .qp-card:nth-child(4) { transition-delay: 0.58s; }
+.qualidade.ativo .qp-card:nth-child(5) { transition-delay: 0.68s; }
+
+.qualidade.ativo .qp-card:nth-child(1) .qp-ico-box { transition-delay: 0.44s; transform: scale(1); }
+.qualidade.ativo .qp-card:nth-child(2) .qp-ico-box { transition-delay: 0.54s; transform: scale(1); }
+.qualidade.ativo .qp-card:nth-child(3) .qp-ico-box { transition-delay: 0.64s; transform: scale(1); }
+.qualidade.ativo .qp-card:nth-child(4) .qp-ico-box { transition-delay: 0.74s; transform: scale(1); }
+.qualidade.ativo .qp-card:nth-child(5) .qp-ico-box { transition-delay: 0.84s; transform: scale(1); }
+
+.qualidade.ativo .qp-card:nth-child(1) .qp-barra-cor { transition-delay: 0.52s; transform: scaleX(1); }
+.qualidade.ativo .qp-card:nth-child(2) .qp-barra-cor { transition-delay: 0.62s; transform: scaleX(1); }
+.qualidade.ativo .qp-card:nth-child(3) .qp-barra-cor { transition-delay: 0.72s; transform: scaleX(1); }
+.qualidade.ativo .qp-card:nth-child(4) .qp-barra-cor { transition-delay: 0.82s; transform: scaleX(1); }
+.qualidade.ativo .qp-card:nth-child(5) .qp-barra-cor { transition-delay: 0.92s; transform: scaleX(1); }
+
+/* Movimento Reduzido (Acessibilidade) */
+@media (prefers-reduced-motion: reduce) {
+  .qualidade .qp-badge,
+  .qualidade .qp-titulo,
+  .qualidade .qp-sub,
+  .qualidade .qp-card,
+  .qualidade .qp-ico-box,
+  .qualidade .qp-barra-cor {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}
+
+/* Responsividade */
+@media (max-width: 1180px) {
+  .qp-fila {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .qp-card { min-height: 380px; }
 }
 @media (max-width: 768px) {
-  .qualidade { padding: 100px 20px 110px; }
-  .qp-fila { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-  .qp-card { min-height: 340px; }
+  .qualidade { padding: 90px 20px 100px; }
+  .qp-topo { margin-bottom: 44px; }
+  .qp-fila {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .qp-card {
+    min-height: 360px;
+    padding: 24px 18px 26px;
+  }
+  .qp-card-corpo h3 { font-size: 1.15rem; }
+  .qp-card-corpo p { font-size: 0.84rem; }
 }
-@media (max-width: 520px) {
+@media (max-width: 540px) {
   .qualidade { padding: 80px 16px 90px; }
-  .qp-fila { grid-template-columns: 1fr; }
-  .qp-card { min-height: auto; }
+  .qp-fila {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .qp-card {
+    min-height: auto;
+    padding: 26px 20px;
+  }
+  .qp-card-corpo { margin-bottom: 24px; }
+  .qp-card-rodape { padding-top: 12px; }
 }
+
 .ql-topo { text-align: center; margin: 0 auto; max-width: 680px; }
 .ql-eyebrow {
   font-family: var(--display); font-size: var(--t-13); font-weight: 600;
@@ -2426,42 +3113,138 @@ html.viagem-on .viagem { display: grid; }
    sem banda. Se um dia voltar, volta como reveal já testado. */
 .pf-pin {
   min-height: 100dvh;
-  display: flex; align-items: center;
+  display: flex;
+  align-items: center;
   padding: var(--cabecalho) 0 40px;
-  background: linear-gradient(135deg, #020617 20%, #011226 100%);
+  background:
+    radial-gradient(circle at 12% 25%, rgba(14, 43, 92, 0.45) 0%, transparent 55%),
+    radial-gradient(circle at 90% 80%, rgba(30, 58, 138, 0.3) 0%, transparent 55%),
+    #020617;
 }
 .pf-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.5fr);
-  gap: 48px;
+  grid-template-columns: minmax(320px, 0.72fr) minmax(0, 1.65fr);
+  gap: 52px;
   align-items: center;
   width: 100%;
-  padding-inline: 24px;
+  padding-inline: 48px;
+  max-width: 1440px;
+  margin-inline: auto;
 }
-.pf-lado { align-self: center; }
-.pf-h2 { font-size: var(--t-64); font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; max-width: 12ch; }
-.pf-sub { margin-top: 22px; color: var(--osso-2); max-width: 34ch; }
+.pf-lado {
+  align-self: center;
+}
+.pf-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-bottom: 24px;
+}
+.pf-quadrado {
+  width: 7px;
+  height: 7px;
+  background: #0077ff;
+  border-radius: 1.5px;
+  box-shadow: 0 0 10px rgba(0, 119, 255, 0.7);
+  display: inline-block;
+}
+.pf-h2 {
+  font-size: clamp(2.5rem, 4.2vw, 3.8rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  color: #ffffff;
+  max-width: 12ch;
+}
+.pf-destaque-azul,
+.pf-azul {
+  color: #0077ff;
+}
+.pf-sub {
+  margin-top: 22px;
+  color: #94a3b8;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  max-width: 32ch;
+}
+.pf-btn-todos {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 36px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pf-btn-circulo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.02);
+}
+.pf-btn-circulo svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  transition: transform 0.3s ease;
+}
+.pf-btn-todos:hover {
+  color: #38bdf8;
+}
+.pf-btn-todos:hover .pf-btn-circulo {
+  border-color: #0077ff;
+  box-shadow: 0 0 16px rgba(0, 119, 255, 0.5);
+  color: #38bdf8;
+  background: rgba(0, 119, 255, 0.1);
+  transform: translateX(4px);
+}
 
-/* A pista: a janela por onde a fileira corre. Piso sem JS = arrastar com o dedo. */
-.pf-pista { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+/* A pista: a janela por onde a fileira corre */
+.pf-pista {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
 .pf-pista::-webkit-scrollbar { display: none; }
-.pf-tira { display: flex; gap: 36px; width: max-content; }
-.pf-item { width: min(52vw, 640px); flex: none; scroll-snap-align: start; }
+.pf-tira {
+  display: flex;
+  gap: 32px;
+  width: max-content;
+}
+.pf-item {
+  width: clamp(380px, 31vw, 480px);
+  flex: none;
+  scroll-snap-align: start;
+}
 .pf-tela {
-  aspect-ratio: 16 / 9;
-  border: 1px solid var(--vidro-fio);
-  border-radius: var(--raio);
+  aspect-ratio: 16 / 10;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
   overflow: hidden;
   position: relative;
-  background:
-    radial-gradient(circle at 50% 40%, rgba(244,196,48,.10), transparent 65%),
-    var(--carta);
-  box-shadow: var(--vidro-luz), 0 24px 50px rgba(0,0,0,.45);
-  transition: border-color .35s ease, box-shadow .35s ease, transform .35s ease;
+  background: #0b1329;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .pf-item:hover .pf-tela {
-  border-color: rgba(244,196,48,.35);
-  box-shadow: 0 0 28px rgba(244,196,48,.12), 0 32px 64px rgba(0,0,0,.6);
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.25), 0 24px 50px rgba(0, 0, 0, 0.65);
   transform: translateY(-4px);
 }
 .pf-tela img {
@@ -2470,40 +3253,76 @@ html.viagem-on .viagem { display: grid; }
   object-fit: cover;
   object-position: top center;
   display: block;
-  transition: transform .6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .pf-item:hover .pf-tela img {
   transform: scale(1.03);
 }
-.pf-legenda { margin-top: 20px; }
+.pf-legenda {
+  margin-top: 20px;
+}
 .pf-tag {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: var(--t-12, 12px);
+  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ouro, #f4c430);
-  margin-bottom: 8px;
+  color: #94a3b8;
+  margin-bottom: 10px;
 }
-.pf-tag::before {
-  content: '';
-  display: inline-block;
+.pf-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: currentColor;
-  box-shadow: 0 0 8px currentColor;
+  background: #0077ff;
+  box-shadow: 0 0 8px #0077ff;
+  display: inline-block;
+  flex-shrink: 0;
 }
-.pf-item h3 { font-size: var(--t-28); font-weight: 700; letter-spacing: -0.02em; color: var(--osso, #fff); }
-.pf-item p { color: var(--osso-2); margin-top: 10px; line-height: 1.55; max-width: 52ch; font-size: var(--t-16, 16px); }
+.pf-tit-linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.pf-item h3 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  margin: 0;
+}
+.pf-seta {
+  color: #0077ff;
+  font-size: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+.pf-item:hover .pf-seta {
+  transform: translateX(4px);
+  color: #38bdf8;
+}
+.pf-item p {
+  color: #94a3b8;
+  margin-top: 8px;
+  line-height: 1.5;
+  font-size: 0.925rem;
+  max-width: 48ch;
+}
 
 /* Quando o GSAP assume (desktop, com movimento), a pista para de rolar sozinha:
    quem move a fileira é o scrub do scroll. A classe entra pelo script. */
-.portfolio.pf-gsap .pf-pista { overflow: visible; scroll-snap-type: none; }
-/* O painel fica por CIMA dos passos (z-index alto): cobre-os até deslizar para a
-   esquerda e revelá-los. O fundo dele já vem do `.pf-pin` base. */
+.portfolio.pf-gsap .pf-pista {
+  overflow: hidden;
+  scroll-snap-type: none;
+  mask-image: linear-gradient(to right, transparent 0%, black 28px, black calc(100% - 28px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 28px, black calc(100% - 28px), transparent 100%);
+}
 .portfolio.pf-gsap .pf-pin { z-index: 5; }
 
 /* ---------- 7f. A assinatura no pé ----------
@@ -2553,95 +3372,360 @@ html.viagem-on .viagem { display: grid; }
    continua o nosso, porque isso o Marcelo já decidiu; copiou-se o continente.
    E como no akis não há fio nenhum separando esta seção do rodapé: quem separa
    é a caixa acabar e o ar começar. */
-/* ---------- 15b. Como começa · 4 passos em zigue-zague (amphora) ---------- */
-/* Título grande, e os passos alternando esquerda/direita ligados por uma linha
-   curva que se DESENHA conforme a pessoa rola (DrawSVG). */
-/* Fundo no clima do print 5: brilho frio no alto, brilho quente embaixo, para a
-   seção "amanhecer" do azul para o dourado conforme se desce. */
+/* ---------- 15b. Como começa · 4 passos (design de referência light/white) ---------- */
+/* ---------- 15b. Como começa · 4 passos (Design fiel ao Print 1 / Dark Cosmic Blue) ---------- */
 .passos {
-  min-height: 850px; padding: 160px 24px 170px; position: relative; overflow: hidden;
+  min-height: auto;
+  padding: 130px 24px 80px;
+  position: relative;
+  overflow: hidden;
   z-index: 2;
-  background-color: #0e0918; background-image: url('fundo-passos.png'); background-position: center; background-size: cover; background-repeat: no-repeat;
+  background-color: #030712;
+  background-image:
+    radial-gradient(circle at 50% 20%, rgba(14, 43, 92, 0.45) 0%, rgba(3, 7, 18, 0) 65%),
+    radial-gradient(circle at 85% 15%, rgba(30, 58, 138, 0.3) 0%, rgba(3, 7, 18, 0) 50%),
+    radial-gradient(circle at 15% 85%, rgba(14, 43, 92, 0.25) 0%, rgba(3, 7, 18, 0) 55%);
+  color: #f1f5f9;
 }
-/* Granulado no fundo da seção (pedido do Marcelo). */
-.passos > * { position: relative; z-index: 1; }
-/* Aurora em movimento, bem visível (Marcelo, 01/09): manchas azul/violeta/amarelo
-   que deslizam e respiram ao fundo da penúltima seção. Atrás do conteúdo. */
-.passos .ps-aurora {
-  display: none;
+.passos > * {
+  position: relative;
+  z-index: 1;
 }
-@keyframes ps-aurora {
-  0%   { transform: translate3d(-5%, -3%, 0) scale(1); }
-  50%  { transform: translate3d(5%, 4%, 0) scale(1.1); }
-  100% { transform: translate3d(-2%, 2%, 0) scale(1.04); }
+.ps-bg-glow {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 400px;
+  background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.18) 0%, rgba(14, 43, 92, 0.08) 45%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
-@media (prefers-reduced-motion: reduce) { .passos .ps-aurora { animation: none; } }
-/* Fade no topo: a seção entra pela tinta e só então acende o glow azul, para não
-   haver borda dura vinda do portfólio. */
-
-
-
-
-/* Etapas · print 5. Topo centralizado, granulado no fundo (.passos::after) e brilho
-   ember (fundo da seção). Os passos viram uma LINHA DO TEMPO horizontal: quatro
-   números ligados por um fio electric. Saiu o zigue-zague e a linha arco-íris. */
-.ps-topo { text-align: center; margin-bottom: 80px; }
-.ps-topo { text-align: center; margin-bottom: 28px; }
-/* Mesmo rótulo padronizado do "Nosso compromisso" (ver .qp-eyebrow). */
+.ps-topo {
+  text-align: center;
+  margin-bottom: 64px;
+}
 .ps-eyebrow {
-  font-family: var(--mono); font-size: .625rem; font-weight: 500;
-  letter-spacing: .32em; text-transform: uppercase; color: #8ea8c9; margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-bottom: 20px;
 }
-.ps-eyebrow::before { content: "■  "; color: #2096ff; text-shadow: 0 0 9px rgba(32,150,255,.9); }
-.ps-titulo { font-size: var(--t-54); font-weight: 700; line-height: 1.02; letter-spacing: -0.03em; max-width: 22ch; margin-inline: auto; }
-.ps-em { color: #2975e9; }
-.ps-sub { margin-top: 20px; color: var(--osso-2); font-size: var(--t-22); }
-.ps-sub { margin-top: 12px; color: var(--osso-2); font-size: var(--t-17); }
+.ps-quadrado {
+  width: 7px;
+  height: 7px;
+  background: #0077ff;
+  border-radius: 1.5px;
+  box-shadow: 0 0 10px rgba(0, 119, 255, 0.7);
+  display: inline-block;
+}
+.ps-titulo {
+  font-size: clamp(2.3rem, 4.2vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  color: #ffffff;
+  max-width: 24ch;
+  margin-inline: auto;
+}
+.ps-destaque-azul {
+  color: #0077ff;
+}
+.ps-sub {
+  margin-top: 20px;
+  color: #94a3b8;
+  font-size: clamp(1rem, 1.2vw, 1.12rem);
+  line-height: 1.6;
+  max-width: 58ch;
+  margin-inline: auto;
+  font-weight: 400;
+}
 
-.ps-tl { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; }
-.ps-tl { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 38px; padding-top: 0; }
+/* Container do fluxo em 4 colunas */
+.ps-tl {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 32px;
+  padding-top: 10px;
+  max-width: 1240px;
+  margin-inline: auto;
+}
+
+/* Linha guia de fundo conectando os centros dos círculos */
+.ps-trilho-linha {
+  position: absolute;
+  top: 77px;
+  left: 31px;
+  width: calc(100% - ((100% - 96px) / 4));
+  height: 2px;
+  background: rgba(37, 99, 235, 0.35);
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.25);
+  border-radius: 9999px;
+  z-index: 1;
+}
+
+/* Linha azul animada que se move pelo scroll */
 .ps-fio {
-  position: absolute; top: 25px; left: 8%; right: 8%; height: 1px; z-index: 0;
-  position: absolute; top: 25px; left: 12.5%; right: 12.5%; height: 1px; z-index: 0;
-  background: linear-gradient(90deg, transparent, var(--elec-1) 18%, var(--elec-2) 82%, transparent);
-  opacity: .7;
-  transform: scaleX(0); transform-origin: left center;
-  background: linear-gradient(90deg, #167cf1 0%, #55b7ff 50%, #167cf1 100%);
-  box-shadow: 0 0 8px rgba(50,146,255,.82), 0 0 18px rgba(50,146,255,.38);
-  opacity: .9;
+  position: absolute;
+  top: 77px;
+  left: 31px;
+  width: calc(100% - ((100% - 96px) / 4));
+  height: 2.5px;
+  z-index: 2;
+  background: linear-gradient(90deg, #0052e0, #0077ff 50%, #38bdf8);
+  box-shadow: 0 0 10px rgba(0, 119, 255, 0.8), 0 0 18px rgba(56, 189, 248, 0.5);
+  border-radius: 9999px;
+  transform-origin: left center;
 }
-.ps-etapa { position: relative; z-index: 1; }
-.ps-etapa { position: relative; z-index: 1; text-align: center; }
-.ps-n {
-  display: inline-grid; place-items: center; width: 50px; height: 50px; border-radius: 50%;
-  font-family: var(--mono); font-size: var(--t-17); color: var(--branco);
-  background: var(--carta); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14);
+
+/* Pontos luminosos nos intervalos da linha */
+.ps-ponto-fio {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8, 0 0 4px #ffffff;
+  z-index: 3;
+  transition: box-shadow 0.35s ease, transform 0.35s ease;
+}
+.ps-ponto-1 { left: 16.667%; }
+.ps-ponto-2 { left: 50.000%; }
+.ps-ponto-3 { left: 83.333%; }
+
+/* Etapa individual (clean/borderless conforme Print 1) */
+.ps-etapa {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  transition: transform 0.35s ease;
+}
+
+/* Bloco superior com número e círculo */
+.ps-n-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   margin-bottom: 24px;
-  background: #020617; border: 1px solid rgba(112,187,255,.88);
-  box-shadow: 0 0 0 5px rgba(15,76,148,.08), 0 0 16px rgba(49,141,255,.78), inset 0 0 13px rgba(18,126,239,.22);
-  margin-bottom: 13px; transition: box-shadow .5s var(--curva), background .5s var(--curva);
 }
-.ps-etapa h3 { font-size: var(--t-22); font-weight: 400; letter-spacing: -0.01em; margin-bottom: 12px; }
-.ps-etapa p { color: var(--osso-2); font-size: var(--t-17); line-height: 1.6; max-width: 30ch; }
-.ps-icon { display: grid; place-items: center; width: 56px; height: 56px; margin: 0 auto 13px; border: 1px solid rgba(32,124,224,.62); border-radius: 11px; background: rgba(6,25,50,.68); box-shadow: inset 0 0 17px rgba(19,104,211,.18), 0 0 13px rgba(21,111,226,.2); color: #65adff; }
-.ps-icon svg { width: 30px; height: 30px; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.ps-etapa h3 { font-size: var(--t-17); font-weight: 600; letter-spacing: -0.01em; margin-bottom: 12px; }
-.ps-etapa p { color: var(--osso-2); font-size: 15px; line-height: 1.45; max-width: 26ch; margin-inline: auto; }
-.ps-etapa.aceso .ps-n { background: rgba(18,69,130,.92); box-shadow: 0 0 0 5px rgba(24,105,205,.1), 0 0 24px rgba(49,141,255,1), inset 0 0 18px rgba(78,170,255,.42); }
-.ps-etapa.aceso .ps-n { background: #020617; box-shadow: 0 0 0 5px rgba(24,105,205,.1), 0 0 24px rgba(49,141,255,1); }
-
-.ps-cta { display: flex; justify-content: center; margin-top: 80px; }
-.ps-cta { display: flex; justify-content: center; margin-top: 34px; }
-
-
-
-
-@media (max-width: 860px) {
-  .passos { min-height: 0; padding-top: 88px; }
-  .ps-tl { grid-template-columns: 1fr 1fr; gap: 36px 28px; }
-  .ps-fio { display: none; }
+.ps-n {
+  font-size: 68px;
+  font-weight: 800;
+  font-family: var(--sans, 'DM Sans', sans-serif);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: rgba(30, 58, 138, 0.4);
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.35) 0%, rgba(30, 58, 138, 0.08) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  user-select: none;
+  margin-bottom: -18px;
+  margin-left: 2px;
+  z-index: 1;
+  transition: all 0.4s ease;
 }
-@media (max-width: 560px) { .ps-tl { grid-template-columns: 1fr; } }
+.ps-circulo {
+  position: relative;
+  z-index: 2;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #0c1e3d 0%, #030816 100%);
+  border: 1px solid rgba(59, 130, 246, 0.45);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.35), inset 0 0 12px rgba(56, 189, 248, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease,
+              box-shadow 0.35s ease;
+}
+.ps-circulo svg {
+  width: 28px;
+  height: 28px;
+  stroke: #ffffff;
+  transition: stroke 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover e aceso no scroll */
+.ps-etapa:hover .ps-circulo,
+.ps-etapa.aceso .ps-circulo {
+  border-color: #38bdf8;
+  box-shadow: 0 0 28px rgba(56, 189, 248, 0.6), inset 0 0 16px rgba(56, 189, 248, 0.3);
+  transform: scale(1.05);
+}
+.ps-etapa:hover .ps-circulo svg,
+.ps-etapa.aceso .ps-circulo svg {
+  stroke: #38bdf8;
+}
+.ps-etapa:hover .ps-n,
+.ps-etapa.aceso .ps-n {
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.6) 0%, rgba(30, 58, 138, 0.2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Informações do passo */
+.ps-info h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+.ps-info p {
+  color: #94a3b8;
+  font-size: 0.925rem;
+  line-height: 1.55;
+  margin: 0;
+  font-weight: 400;
+  max-width: 26ch;
+}
+
+/* Botão CTA conforme Print 1 (Dark Glass Pill com Glow Azul) */
+.ps-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+.ps-btn-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(6, 16, 38, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(59, 130, 246, 0.55);
+  box-shadow: 0 0 24px rgba(37, 99, 235, 0.35), inset 0 0 14px rgba(37, 99, 235, 0.18);
+  color: #ffffff !important;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 14px 34px;
+  border-radius: 9999px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ps-btn-dark:hover {
+  background: rgba(14, 34, 74, 0.92);
+  border-color: #38bdf8;
+  box-shadow: 0 0 35px rgba(56, 189, 248, 0.5), inset 0 0 18px rgba(56, 189, 248, 0.25);
+  transform: translateY(-2px);
+  color: #ffffff !important;
+}
+.ps-btn-dark .ps-seta {
+  font-size: 1.15rem;
+  color: #38bdf8;
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+.ps-btn-dark:hover .ps-seta {
+  transform: translateX(4px);
+}
+
+/* Linha Editorial no Rodapé da Seção (conforme Print 1) */
+.ps-rodape-linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin-top: 90px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  max-width: 1240px;
+  margin-inline: auto;
+}
+.ps-pilares {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: #64748b;
+  line-height: 1.4;
+}
+.ps-divisor-fio {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+}
+.ps-marca-ano {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  color: #64748b;
+}
+.ps-traco-fio {
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: #64748b;
+}
+
+@media (max-width: 1060px) {
+  .passos {
+    padding: 100px 20px 70px;
+  }
+  .ps-tl {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 44px 28px;
+  }
+  .ps-trilho-linha,
+  .ps-fio {
+    display: none;
+  }
+  .ps-info p {
+    max-width: 34ch;
+  }
+}
+@media (max-width: 640px) {
+  .passos {
+    padding: 80px 16px 60px;
+  }
+  .ps-tl {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .ps-titulo {
+    font-size: 2rem;
+  }
+  .ps-btn-dark {
+    width: 100%;
+    justify-content: center;
+  }
+  .ps-rodape-linha {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-top: 60px;
+  }
+  .ps-divisor-fio {
+    display: none;
+  }
+}
 
 /* Encerramento: a chamada e o rodapé dividem UM fundo animado (o gradiente móvel
    antigo da home). O canvas cobre o bloco inteiro; chamada, rodapé e assinatura
@@ -2954,7 +4038,7 @@ html.viagem-on .viagem { display: grid; }
 
 @media (max-width: 860px) {
   .hamburguer { display: grid; }
-  /* No celular a faixa vira flex: HÓRUS à esquerda, gatilho + botão à direita, e
+  /* No celular a faixa vira flex: HORUS à esquerda, gatilho + botão à direita, e
      a nav vira um painel que desce. O grid de 3 zonas do desktop dá lugar a isto. */
   .topo { position: sticky; padding: 12px 20px; }
   .topo-linha { display: flex; align-items: center; justify-content: space-between; position: relative; }
@@ -3020,13 +4104,11 @@ html.viagem-on .viagem { display: grid; }
     position: static; width: auto; transform: none;
     max-height: none; opacity: 1; margin: 12px 0 0;
   }
-  /* Os passos empilham em coluna e a linha curva sai. */
-  .passos { padding: 88px 24px 100px; }
-  .ps-titulo { font-size: var(--t-64); }
-  .ps-topo { margin-bottom: 56px; }
-  .ps-passo { width: 100%; margin-bottom: 20px; }
-  .ps-linha { display: none; }
-  .pf-item { width: 340px; }
+  /* Os passos e portfólio no mobile */
+  .passos { padding: 88px 24px 70px; }
+  .ps-titulo { font-size: clamp(2rem, 5vw, 2.5rem); }
+  .ps-topo { margin-bottom: 48px; }
+  .pf-item { width: min(85vw, 360px); }
   .assinatura { padding: 64px 24px 32px; }
 }
 

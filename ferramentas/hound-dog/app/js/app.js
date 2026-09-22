@@ -196,7 +196,7 @@ async function atualizarContadores() {
     const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
     const amanha = new Date(hoje); amanha.setDate(amanha.getDate() + 1);
     const [conv, ag, at] = await Promise.all([
-      sb.from('whatsapp_conversas').select('nao_lidas').gt('nao_lidas', 0).eq('arquivada', false),
+      sb.from('whatsapp_conversas').select('nao_lidas').gt('nao_lidas', 0).eq('arquivada', false).eq('silenciada', false),
       sb.from('agenda').select('id', { count: 'exact', head: true }).gte('inicio', hoje.toISOString()).lt('inicio', amanha.toISOString()).eq('status', 'agendado'),
       sb.from('vw_atencao').select('id', { count: 'exact', head: true }),
     ]);
@@ -338,10 +338,13 @@ function ligarNotificacoes() {
     if (j.status === 'concluido') toast(`${nome} pronta`, 'ok', link ? { acao: { rotulo: 'Abrir', fn: () => { location.hash = link; } } } : {});
     else toast(`${nome} falhou: ${(j.erro || '').slice(0, 90)}`, 'erro');
   });
-  ouvir('whatsapp_mensagens', (p) => {
+  ouvir('whatsapp_mensagens', async (p) => {
     if (p.eventType !== 'INSERT' || p.new?.direcao !== 'in') return;
-    notificar({ icone: 'whatsapp', titulo: 'Nova mensagem no WhatsApp', texto: (p.new.texto || '').slice(0, 70), link: `#/conversas/${p.new.conversa_id}` });
     contadoresDepois();
+    // Conversa marcada como pessoal não interrompe o trabalho.
+    const { data: c } = await sb.from('whatsapp_conversas').select('silenciada').eq('id', p.new.conversa_id).maybeSingle();
+    if (c?.silenciada) return;
+    notificar({ icone: 'whatsapp', titulo: 'Nova mensagem no WhatsApp', texto: (p.new.texto || '').slice(0, 70), link: `#/conversas/${p.new.conversa_id}` });
   });
   ouvir('whatsapp_conversas', () => contadoresDepois());
   ouvir('agenda', () => contadoresDepois());

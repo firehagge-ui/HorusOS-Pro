@@ -18,17 +18,13 @@ estratégia registrava isso como buraco declarado.
 
 ## Nome e assinatura
 
-- **Marca:** Hórus (com acento, caixa alta no logotipo: `HÓRUS`)
+- **Marca:** Horus (sem acento; caixa alta no logotipo: `HORUS` — padronizado sem acento em 22/09/2026 a pedido do Marcelo)
 - **Descritiva oficial:** `AGÊNCIA` — decisão do Marcelo em 04/08/2026
-- **Assinatura completa:** símbolo (olho de Hórus) + fio vertical + `HÓRUS` +
+- **Assinatura completa:** símbolo (olho de Horus) + fio vertical + `HORUS` +
   `AGÊNCIA` em tracking largo por baixo
-- ⚠️ O manual de marca traz `PUBLICIDADE` como descritiva, e o mockup de Instagram
-  traz `@horuspublicidade`. **A descritiva que vale hoje é `AGÊNCIA`.** O manual
-  está desatualizado nesse ponto e o @ do Instagram precisa ser confirmado antes
-  de entrar em qualquer peça
-- ⚠️ `_memoria/empresa.md` grafa "Horus" sem acento. Grafia correta da marca é
-  **Hórus**; o nome do repositório e das pastas segue sem acento por conveniência
-  técnica, e isso não é erro
+- ✅ **Instagram oficial confirmado em 22/09/2026:** `@horusagencia.br` (`https://www.instagram.com/horusagencia.br/`).
+  (O manual anterior que trazia `PUBLICIDADE` e `@horuspublicidade` foi superado).
+- **Grafia no site e sistemas:** sem acento (`HORUS` / `Horus`), unificado com o nome do repositório.
 
 ---
 

@@ -1,0 +1,2506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Dossiê de prospecção · revisão com mensagens · 22 de setembro de 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tinta:#16131f; --tinta-2:#453f52; --tinta-3:#6f6880; --linha:#e3dfe9; --linha-2:#cfc9d8;
+  --papel:#ffffff; --papel-2:#faf8fc; --papel-3:#f3f0f7;
+  --marca:#F4C430; --marca-escuro:#dca514;
+  --azul:#2563EB; --azul-claro:#60A5FA;
+  --violeta:#6b21ef; --violeta-claro:#f1ebfe;
+  --perigo:#c81e1e; --perigo-fundo:#fdeeee; --perigo-linha:#f5c2c2;
+  --ok:#0f7a5f; --ok-fundo:#eafaf4;
+  --display:"DM Sans",-apple-system,"Segoe UI",system-ui,sans-serif;
+  --mono:"DM Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+}
+*{box-sizing:border-box}
+@page{ size:A4; margin:15mm 14mm 16mm; }
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{
+  margin:0; font-family:var(--display); color:var(--tinta); background:var(--papel);
+  font-size:9.9pt; line-height:1.52; font-feature-settings:"ss01","cv05";
+}
+h1,h2,h3,h4{margin:0; line-height:1.15; letter-spacing:-.018em; font-weight:700}
+p{margin:0 0 .62em}
+strong{font-weight:700}
+a{color:var(--azul); text-decoration:none}
+
+/* ---------- capa ---------- */
+.capa{
+  height:266mm; display:flex; flex-direction:column; justify-content:space-between;
+  page-break-after:always; position:relative;
+}
+.capa-topo{display:flex; align-items:flex-start; gap:14px}
+.olho{width:44px;height:44px;flex:none}
+.marca-nome{font-size:15pt;font-weight:700;letter-spacing:-.03em;line-height:1}
+.marca-sub{font-size:8.2pt;color:var(--tinta-3);letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
+.capa-meio h1{font-size:40pt;letter-spacing:-.04em;line-height:.98}
+.capa-meio .data{
+  display:inline-block;margin-bottom:20px;font-size:8.6pt;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--tinta);background:var(--marca);padding:5px 11px;border-radius:3px;
+}
+.capa-meio .linha-fina{font-size:13pt;color:var(--tinta-2);max-width:135mm;margin-top:18px;line-height:1.45;font-weight:400}
+.regua{display:flex;gap:0;margin-top:30px;border:1px solid var(--linha);border-radius:5px;overflow:hidden}
+.regua div{flex:1;padding:13px 14px;border-right:1px solid var(--linha)}
+.regua div:last-child{border-right:0}
+.regua b{display:block;font-size:22pt;letter-spacing:-.04em;line-height:1}
+.regua span{display:block;font-size:7.6pt;color:var(--tinta-3);text-transform:uppercase;letter-spacing:.07em;margin-top:5px}
+.capa-pe{font-size:8.4pt;color:var(--tinta-3);border-top:2px solid var(--tinta);padding-top:10px}
+
+/* ---------- estrutura ---------- */
+.secao{page-break-before:always}
+.titulo-secao{
+  display:flex;align-items:baseline;gap:11px;border-bottom:2px solid var(--tinta);
+  padding-bottom:7px;margin-bottom:16px;
+}
+.titulo-secao h2{font-size:17pt;letter-spacing:-.03em}
+.titulo-secao .eyebrow{
+  font-size:7.6pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-3);
+  margin-left:auto;
+}
+
+/* ---------- alerta ---------- */
+.alerta{
+  border:1px solid var(--perigo-linha);background:var(--perigo-fundo);border-left:4px solid var(--perigo);
+  border-radius:4px;padding:11px 14px;margin-bottom:12px;page-break-inside:avoid;
+}
+.alerta h4{font-size:10.4pt;color:var(--perigo);margin-bottom:4px}
+.alerta p{margin-bottom:.4em}
+.alerta p:last-child{margin-bottom:0}
+.aviso{
+  border:1px solid var(--linha-2);background:var(--papel-3);border-left:4px solid var(--marca);
+  border-radius:4px;padding:11px 14px;margin-bottom:12px;page-break-inside:avoid;
+}
+.aviso h4{font-size:10.4pt;margin-bottom:4px}
+.aviso p:last-child{margin-bottom:0}
+
+/* ---------- tabela ---------- */
+table{width:100%;border-collapse:collapse;font-size:8.9pt;margin:6px 0 14px}
+th{
+  text-align:left;font-size:7.4pt;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta-3);
+  border-bottom:1.5px solid var(--tinta);padding:6px 8px 5px;font-weight:700;
+}
+td{border-bottom:1px solid var(--linha);padding:7px 8px;vertical-align:top}
+tr{page-break-inside:avoid}
+td.pos{font-family:var(--mono);font-weight:500;color:var(--tinta-3);width:22px;text-align:right}
+td.nome{font-weight:700;white-space:nowrap}
+.pill{
+  display:inline-block;font-size:7.4pt;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:2px 7px;border-radius:99px;white-space:nowrap;
+}
+.pill.max{background:var(--tinta);color:#fff}
+.pill.alta{background:var(--marca);color:var(--tinta)}
+.pill.media{background:var(--violeta-claro);color:var(--violeta)}
+.pill.baixa{background:var(--papel-3);color:var(--tinta-3);border:1px solid var(--linha-2)}
+
+/* ---------- ficha de empresa ---------- */
+.ficha{page-break-before:always}
+.ficha-cab{border-bottom:2px solid var(--tinta);padding-bottom:9px;margin-bottom:14px}
+.ficha-cab .linha1{display:flex;align-items:baseline;gap:11px}
+.ficha-cab .num{
+  font-family:var(--mono);font-size:26pt;font-weight:500;letter-spacing:-.05em;
+  color:var(--marca-escuro);line-height:.85;
+}
+.ficha-cab h2{font-size:20pt;letter-spacing:-.035em}
+.ficha-cab .meta{
+  font-size:8.4pt;color:var(--tinta-3);margin-top:7px;display:flex;flex-wrap:wrap;gap:4px 14px;
+}
+.ficha-cab .meta b{color:var(--tinta-2);font-weight:500}
+
+.bloco{margin-bottom:11px;page-break-inside:avoid}
+.bloco > h3{
+  font-size:7.8pt;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--tinta-3);
+  margin-bottom:5px;
+}
+.bloco.destaque > h3{color:var(--violeta)}
+ul{margin:0 0 .5em;padding-left:15px}
+li{margin-bottom:3.5px}
+li::marker{color:var(--linha-2)}
+ul.limpa{list-style:none;padding-left:0}
+ul.limpa li{padding-left:15px;position:relative}
+ul.limpa li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:1.5px;background:var(--marca-escuro)}
+
+.duas{display:flex;gap:14px}
+.duas > div{flex:1;min-width:0}
+.cartao-neg{
+  border:1px solid var(--linha);border-radius:4px;padding:10px 12px;background:var(--papel-2);
+}
+.cartao-neg h3{color:var(--perigo)}
+
+/* ---------- custo da inação ---------- */
+.custo{
+  border:1px solid var(--linha-2);border-radius:5px;background:var(--papel-2);
+  padding:11px 13px 12px;margin-bottom:11px;page-break-inside:avoid;
+}
+.custo > h3{
+  font-size:7.8pt;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--violeta);margin-bottom:6px;
+}
+.custo ul{margin-bottom:0}
+.custo ul.limpa li::before{background:var(--violeta)}
+.conta{
+  font-family:var(--mono);font-size:8.3pt;line-height:1.5;color:var(--tinta-2);
+  background:var(--papel-3);border-left:3px solid var(--violeta);border-radius:0 3px 3px 0;
+  padding:8px 10px;margin:9px 0 0;
+}
+.conta b{color:var(--tinta);font-weight:500}
+.conta .res{color:var(--violeta);font-weight:500}
+.perguntar{
+  font-size:8.8pt;color:var(--tinta-2);margin:9px 0 0;padding-top:8px;
+  border-top:1px solid var(--linha);
+}
+.perguntar b{
+  display:block;font-size:7.4pt;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--tinta-3);margin-bottom:3px;
+}
+.perguntar em{font-style:normal;color:var(--tinta);font-weight:500}
+
+/* ---------- respostas ---------- */
+.respostas{margin-bottom:11px;page-break-inside:avoid}
+.respostas > h3{
+  font-size:7.8pt;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--tinta-3);margin-bottom:6px;
+}
+.resp{
+  border:1px solid var(--linha);border-radius:4px;background:var(--papel-2);
+  padding:8px 10px;margin-bottom:6px;page-break-inside:avoid;
+}
+.resp:last-child{margin-bottom:0}
+.resp .dele{font-size:8.6pt;color:var(--tinta-3);margin-bottom:4px}
+.resp .dele b{color:var(--tinta);font-weight:700}
+.resp p{margin:0;font-size:9.3pt;line-height:1.5}
+.resp .nao{font-size:8.2pt;color:var(--perigo);margin-top:5px}
+
+/* ---------- mensagem ---------- */
+.mensagem{
+  border:1px solid var(--linha-2);border-radius:5px;background:var(--papel-2);
+  padding:13px 15px;margin-top:5px;page-break-inside:avoid;position:relative;
+}
+.mensagem::before{
+  content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;
+  background:var(--marca);border-radius:0 3px 3px 0;
+}
+.mensagem p{margin:0 0 .7em;font-size:9.6pt;line-height:1.55}
+.mensagem p:last-child{margin-bottom:0}
+.mensagem .como{
+  font-size:7.6pt;color:var(--tinta-3);text-transform:uppercase;letter-spacing:.1em;
+  font-weight:700;margin-bottom:7px;
+}
+.contato{
+  font-family:var(--mono);font-size:8.6pt;background:var(--papel-3);border:1px solid var(--linha);
+  border-radius:3px;padding:4px 8px;display:inline-block;margin-top:8px;
+}
+.mensagem + .mensagem{margin-top:8px}
+.nota-passo{
+  font-size:8.2pt;color:var(--tinta-3);font-style:italic;margin:7px 0 0;padding-top:6px;
+  border-top:1px solid var(--linha);
+}
+.oferta{
+  font-size:8.6pt;background:var(--violeta-claro);color:var(--violeta);border-radius:3px;
+  padding:5px 9px;margin:0 0 8px;font-weight:500;
+}
+.prio{
+  border-top:1.5px solid var(--tinta);margin-top:12px;padding-top:9px;page-break-inside:avoid;
+}
+.prio h3{font-size:7.8pt;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--tinta-3);margin-bottom:5px}
+.falta{
+  font-family:var(--mono);font-size:8.4pt;background:#fff6d9;border:1px dashed var(--marca-escuro);
+  border-radius:3px;padding:1px 5px;
+}
+.fonte{font-size:8pt;color:var(--tinta-3);font-style:italic}
+code{font-family:var(--mono);font-size:.92em;background:var(--papel-3);padding:1px 4px;border-radius:3px}
+.rodape-doc{
+  border-top:2px solid var(--tinta);margin-top:18px;padding-top:10px;font-size:8.4pt;color:var(--tinta-3);
+}
+
+/* ---------- v2: selos de verificação ---------- */
+.selo{display:inline-block;font-size:7.2pt;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:3px;white-space:nowrap;vertical-align:middle}
+.selo.ok{background:var(--ok-fundo);color:var(--ok);border:1px solid #bfe6d8}
+.selo.caiu{background:var(--perigo-fundo);color:var(--perigo);border:1px solid var(--perigo-linha)}
+.selo.ajuste{background:#fff6d9;color:var(--marca-escuro);border:1px solid var(--marca)}
+.selo.nv{background:var(--papel-3);color:var(--tinta-3);border:1px solid var(--linha-2)}
+.fato{border-left:3px solid var(--ok);background:var(--ok-fundo);border-radius:0 3px 3px 0;padding:8px 11px;margin:0 0 9px;font-size:8.9pt}
+.fato b{color:var(--ok)}
+.pcaiu{border-left:3px solid var(--perigo);background:var(--perigo-fundo);border-radius:0 3px 3px 0;padding:8px 11px;margin:0 0 9px;font-size:8.9pt}
+.pcaiu b{color:var(--perigo)}
+.novo{border-left:3px solid var(--violeta);background:var(--violeta-claro);border-radius:0 3px 3px 0;padding:8px 11px;margin:0 0 9px;font-size:8.9pt}
+.novo b{color:var(--violeta)}
+.verbatim{font-family:var(--mono);font-size:8.2pt;line-height:1.5;background:var(--papel-3);border:1px solid var(--linha);border-radius:3px;padding:8px 10px;margin:6px 0 9px}
+.tese{border:1.5px solid var(--tinta);border-radius:5px;padding:11px 13px;margin:11px 0;background:var(--papel)}
+.tese > h3{font-size:7.8pt;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--tinta);margin-bottom:5px}
+.tese p{font-size:9.6pt;margin-bottom:.4em}
+.tese p:last-child{margin-bottom:0}
+.slot{border:2px dashed var(--linha-2);border-radius:5px;padding:13px 15px;margin:10px 0;background:var(--papel-2);color:var(--tinta-3);font-size:8.9pt}
+.slot b.t{display:block;color:var(--tinta);font-size:10pt;margin-bottom:5px;letter-spacing:-.02em}
+.fonte-tag{font-family:var(--mono);font-size:7.6pt;color:var(--tinta-3);display:block;margin-top:4px}
+.idx{font-size:9.4pt}
+.idx li{margin-bottom:5px}
+/* ---------- v2: mensagens de prospecção ---------- */
+.msg{border:1.5px solid var(--linha-2);border-radius:5px;padding:0;margin:10px 0;background:var(--papel);overflow:hidden}
+.msg .msg-cab{background:var(--papel-3);padding:10px 14px;border-bottom:1px solid var(--linha);display:flex;align-items:baseline;gap:8px}
+.msg .msg-cab b{font-size:10.4pt;letter-spacing:-.02em;color:var(--tinta)}
+.msg .msg-cab .pill{margin-left:auto}
+.msg-passo{padding:10px 14px;border-bottom:1px solid var(--linha)}
+.msg-passo:last-of-type{border-bottom:0}
+.passo-label{display:block;font-size:7.4pt;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-3);margin-bottom:6px}
+.msg-texto{font-size:9.4pt;line-height:1.55;background:var(--papel-2);border:1px solid var(--linha);border-radius:6px;padding:10px 13px;margin:0 0 6px;white-space:pre-line}
+.msg-nota{font-size:8pt;color:var(--tinta-3);font-style:italic;margin:4px 0 0}
+.msg-canal{font-size:8.2pt;color:var(--tinta-3);padding:8px 14px;border-top:1px solid var(--linha);background:var(--papel-3)}
+.msg-canal b{color:var(--tinta)}
+.msg-pendencia{border-left:3px solid var(--perigo);background:var(--perigo-fundo);padding:8px 11px;margin:8px 14px;border-radius:0 3px 3px 0;font-size:8.4pt}
+
+</style>
+</head>
+<body>
+
+<!-- ======================= CAPA ======================= -->
+<section class="capa">
+  <div class="capa-topo">
+    <svg class="olho" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <path d="M4 32c8-13 17-19.5 28-19.5S52 19 60 32c-8 13-17 19.5-28 19.5S12 45 4 32Z" stroke="#16131f" stroke-width="3.2" stroke-linejoin="round"/>
+      <circle cx="32" cy="32" r="9.5" fill="#F4C430"/>
+      <circle cx="32" cy="32" r="3.6" fill="#16131f"/>
+      <path d="M32 51.5 26 61M32 51.5 41 60" stroke="#16131f" stroke-width="3.2" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <div class="marca-nome">Hórus</div>
+      <div class="marca-sub">Prospecção · dossiê verificado</div>
+    </div>
+  </div>
+
+  <div class="capa-meio">
+    <span class="data">Terceira revisão · 22 de setembro de 2026 · com mensagens</span>
+    <h1>Dossiê de<br>prospecção</h1>
+    <p class="linha-fina">
+      Revisão completa da prospecção de 20/09. Cada afirmação das nove fichas foi reaberta na
+      fonte: ficha do Google com as respostas do dono, Instagram com bio e destaques, sites
+      página por página, portais de terceiros e concorrentes. Quatro teses caíram, cinco
+      passaram inteiras, e apareceram achados novos mais fortes que os antigos.
+    </p>
+
+    <div class="regua">
+      <div><b>9</b><span>leads reauditados</span></div>
+      <div><b>4</b><span>teses derrubadas</span></div>
+      <div><b>11</b><span>achados novos</span></div>
+      <div><b>9</b><span>mensagens prontas</span></div>
+    </div>
+  </div>
+
+  <div class="capa-pe">
+    <strong>Este documento contém as nove mensagens de prospecção, redigidas e revisadas em
+    22/09/2026.</strong> Cada uma vive dentro da ficha do seu cliente, na Parte 5, escrita em cima
+    de fato verificado e seguindo o framework da Parte 3.
+    Verificação executada em 21/09/2026 por Playwright (Google Maps), navegador com sessão
+    (Instagram), Firecrawl (sites e portais) e leitura direta. As mensagens da primeira versão
+    seguem preservadas em <code>prospeccao-do-dia.html</code>, na mesma pasta, com o status de
+    cada uma registrado na Parte 5.
+  </div>
+</section>
+
+<!-- ======================= ÍNDICE ======================= -->
+<section class="secao">
+  <div class="titulo-secao">
+    <h2>Como este documento está organizado</h2>
+    <span class="eyebrow">Índice</span>
+  </div>
+  <ol class="idx">
+    <li><strong>Diagnóstico da estratégia atual.</strong> O que a primeira versão acertou, o que falhou, e o padrão que atravessa os erros.</li>
+    <li><strong>Comparação entre as mensagens da v1 e as do Gemini Spark.</strong> Treze critérios, mais o teste de veracidade aplicado às três mensagens do Gemini.</li>
+    <li><strong>Novo framework de prospecção da Hórus.</strong> As decisões travadas pelo Marcelo em 21/09 e a anatomia da mensagem.</li>
+    <li><strong>Critérios de validação antes de prospectar.</strong> As regras que impedem a repetição dos quatro erros.</li>
+    <li><strong>Auditoria individual dos nove prospects, com a mensagem de cada um.</strong> Por lead: o que caiu, o que confirma com fonte, achados novos, tese, o que não usar, <strong>a mensagem pronta</strong> e o repertório de objeções.</li>
+    <li><strong>Painel de envio e o que a revisão corrigiu.</strong> Controle operacional das nove mensagens, o que foi consertado em 22/09 e o que se importou do Gemini.</li>
+    <li><strong>Pendências e informações ainda não confirmadas.</strong></li>
+  </ol>
+
+  <div class="aviso">
+    <h4>Instrução para quem for redigir</h4>
+    <p>Cada mensagem vive <strong>dentro da ficha do seu cliente</strong>, na Parte 5, depois do
+    contexto e do que não usar. A Parte 6 é só o painel de envio e o registro do que a revisão
+    corrigiu. <strong>Nada que não esteja marcado como FATO pode entrar como afirmação numa
+    mensagem.</strong> O que está como hipótese entra com "se", e o que está como não verificado
+    não entra de forma nenhuma.</p>
+  </div>
+</section>
+
+<!-- ======================= PARTE 1 ======================= -->
+<section class="secao">
+  <div class="titulo-secao">
+    <h2>1 · Diagnóstico da estratégia atual</h2>
+    <span class="eyebrow">O que funcionou e o que quebrou</span>
+  </div>
+
+  <div class="bloco">
+    <h3>O ponto de partida</h3>
+    <p>A primeira versão deste trabalho partiu de uma tese só: abrir toda conversa por um defeito
+    verificável na presença digital do lead, quase sempre na ficha do Google, guardar o
+    diagnóstico e puxar o dono para uma pergunta. A execução foi disciplinada e a pesquisa foi
+    real. Mas duas coisas quebraram: <strong>a forma achatou as nove mensagens</strong> e
+    <strong>quatro afirmações não resistiram à conferência</strong>.</p>
+  </div>
+
+  <div class="bloco">
+    <h3>O que a v1 acertou, e não se joga fora</h3>
+    <ul class="limpa">
+      <li><strong>Profundidade de pesquisa.</strong> Achados como o depoimento fabricado da Danyfisio, o site português no nome da MAR e a categoria errada do Café Cardamomo não aparecem em varredura rasa. Cinco das nove fichas passaram inteiras na reconferência.</li>
+      <li><strong>Rastreabilidade.</strong> Cada frase tinha origem declarada, o que permitiu esta auditoria existir. Documento sem fonte não se audita.</li>
+      <li><strong>A escada de conversa e as respostas a objeção.</strong> A sequência sintoma, fato do cliente, tempo, consequência, permissão pequena, e o repertório de respostas a "obrigado, vou ajustar" continuam válidos e devem ser reaproveitados.</li>
+      <li><strong>A disciplina do número do cliente.</strong> Nunca afirmar quanto ele perde; montar a fórmula e deixar a variável como pergunta. Isso permanece como regra da casa.</li>
+      <li><strong>A régua do que não oferecer.</strong> Não vender conteúdo a quem já faz conteúdo, não vender tráfego antes de existir estrutura. Permanece.</li>
+    </ul>
+  </div>
+
+  <div class="bloco">
+    <h3>O que quebrou</h3>
+    <ul class="limpa">
+      <li><strong>Genericidade estrutural.</strong> Os fatos eram diferentes em cada ficha, mas a forma era idêntica nas nove: achei um defeito, você está perdendo, me responde. Personalização de dado sem personalização de tese continua soando igual.</li>
+      <li><strong>Indireção por desenho.</strong> A regra "mostre o sintoma, guarde o diagnóstico" foi criada para evitar o agradecimento seguido de silêncio. O efeito colateral é que o dono termina a leitura sem saber o que a Hórus faz nem o que se quer dele. Vira charada, e charada de número desconhecido gera desconfiança, não curiosidade.</li>
+      <li><strong>Crítica alta, pedido baixo.</strong> A mensagem aponta muito e pede pouco. Esse desequilíbrio empurra o lead para a defensiva.</li>
+      <li><strong>Quatro afirmações falsas.</strong> Detalhadas abaixo. Todas do mesmo tipo.</li>
+    </ul>
+  </div>
+
+  <div class="bloco destaque">
+    <h3>Os quatro erros, e o padrão que os une</h3>
+    <table>
+      <tr><th style="width:24%">Onde</th><th style="width:38%">O que a v1 afirmou</th><th>O que a fonte diz</th></tr>
+      <tr>
+        <td class="nome">Danyfisio</td>
+        <td>"O site fala de fisioterapia" e "conta um negócio só", sem a estética.</td>
+        <td>O site tem quatro páginas e descreve <strong>quatro serviços</strong> em detalhe: fisioterapia, pilates, estética corporal e facial, e RPG, com benefícios listados um a um.</td>
+      </tr>
+      <tr>
+        <td class="nome">Casa Verona</td>
+        <td>Duas avaliações negativas de gente que "queria banda e descobriu a regra depois de visitar", logo visita perdida.</td>
+        <td>São três críticas. <strong>Duas são de vizinhos</strong> reclamando de sossego, uma delas com data e ameaça de acionar a polícia. A terceira é de alguém ligado à banda. E a dona já respondeu em público que as regras de som são alinhadas com contratantes e fornecedores antes do evento.</td>
+      </tr>
+      <tr>
+        <td class="nome">Prático</td>
+        <td>"Não mostram um projeto sequer" e "no Instagram dá pra ver pouca coisa".</td>
+        <td>141 posts, 3.200 seguidores e <strong>destaques organizados por ambiente</strong>: Cozinhas, Banheiros, Closet, Depoimentos, mais obras corporativas nomeadas.</td>
+      </tr>
+      <tr>
+        <td class="nome">Prático</td>
+        <td>Concorrentes catalogados como "Cabinet maker", móveis planejados, enquanto a Prático está como marceneiro.</td>
+        <td>Expert e Providência estão como <strong>"Marceneiro"</strong>, a mesma categoria da Prático. Não existe gancho de categoria aqui. O que confere é a nota 5,0 dos três.</td>
+      </tr>
+    </table>
+
+    <div class="alerta">
+      <h4>O padrão: afirmação de ausência sem varredura completa</h4>
+      <p>Três dos quatro erros são a mesma coisa: <strong>dissemos que algo não existia sem ter
+      aberto o canal onde aquilo estava</strong>. O quarto, a Casa Verona, é a variação irmã:
+      lemos a avaliação e não lemos a resposta do dono logo abaixo dela.</p>
+      <p>Nenhum deles é erro de redação. São erros de método, e é por isso que a Parte 4 existe.</p>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <h3>A base empírica é zero, e isso muda o peso de toda esta discussão</h3>
+    <p>Três mensagens saíram até aqui e nenhuma resposta voltou. Só que <strong>nenhuma delas
+    testou coisa alguma</strong>: a da Euro Tech foi para um número de dez dígitos, a da Autobahn
+    foi só "Olá! Boa tarde", e a da Prático foi algo que não é texto e que ninguém confirmou o
+    que era. Não há amostra de estilo nenhum.</p>
+    <p>Consequência prática: nem a abordagem da v1 nem a do Gemini foram testadas. Tratar
+    qualquer uma das duas como "a que converte" é opinião. O que dá para fazer com rigor é
+    eliminar o que comprovadamente derruba conversa (afirmação falsa, dor inventada, pedido
+    ausente) e medir depois.</p>
+  </div>
+</section>
+
+<!-- ======================= PARTE 2 ======================= -->
+<section class="secao">
+  <div class="titulo-secao">
+    <h2>2 · v1 contra Gemini Spark</h2>
+    <span class="eyebrow">Comparação técnica</span>
+  </div>
+
+  <p>O Marcelo trouxe três mensagens produzidas pelo Gemini Spark (MAR Engenharia, Casa Verona
+  e Café Cardamomo) e a percepção de que soam mais diretas, humanas e comerciais que as da v1.
+  A comparação abaixo separa o que é verdade nessa percepção do que é efeito de superfície.</p>
+
+  <table>
+    <tr><th style="width:17%">Critério</th><th style="width:41%">Gemini Spark</th><th>v1 da Hórus</th></tr>
+    <tr><td class="nome">Estrutura</td><td>Tudo numa tacada: elogio, dor, solução, CTA.</td><td>Dois passos. "Oi" isolado, espera, depois fato e pergunta.</td></tr>
+    <tr><td class="nome">Personalização</td><td>Ampla e rasa. Nome, rua, bairro, serviço: nada que exija mais de dois minutos de olhada.</td><td>Estreita e profunda. Coisas que só aparecem depois de vinte minutos de pesquisa.</td></tr>
+    <tr><td class="nome">Dor</td><td>Do <strong>segmento</strong>, não da empresa. "Casa de evento recebe muita mensagem", "café precisa de cardápio digital".</td><td>Da empresa. Mas com tese errada em dois casos e incompleta em um.</td></tr>
+    <tr><td class="nome">Solução</td><td>Concreta e nomeada. É o melhor ponto dela.</td><td>Escondida de propósito. É o pior ponto da v1.</td></tr>
+    <tr><td class="nome">Verificabilidade</td><td>Mista. Endereço e serviços conferem; o resto não (ver teste abaixo).</td><td>Alta, com quatro furos.</td></tr>
+    <tr><td class="nome">Persuasão</td><td>Autoridade e alívio operacional.</td><td>Dor, reciprocidade e curiosidade.</td></tr>
+    <tr><td class="nome">CTA</td><td>Passivo. "Se fizer sentido, me dá um retorno." Sem horário, sem próximo passo.</td><td>Pergunta aberta primeiro, duas opções de horário depois. Melhor.</td></tr>
+    <tr><td class="nome">Tamanho</td><td>120 a 160 palavras de uma vez.</td><td>Parece menor, mas os degraus 2, 3 e 4 somados dão <strong>mais</strong> texto. A economia é ilusória.</td></tr>
+    <tr><td class="nome">Tom</td><td>Cordial com bajulação: "nível técnico impecável", "espetacular", "charme único".</td><td>Seco, de auditor, por vezes sabe-tudo.</td></tr>
+    <tr><td class="nome">Assertividade</td><td>Alta ao afirmar, baixa ao pedir.</td><td>Baixa ao pedir, alta ao criticar. Combinação ruim.</td></tr>
+    <tr><td class="nome">Cara de agência</td><td>Alta. "A gente monta portais técnicos para empresas de engenharia" é catálogo.</td><td>Baixa.</td></tr>
+    <tr><td class="nome">Risco de afirmação falsa</td><td><strong>Alto. As três mensagens têm pelo menos uma.</strong></td><td>Deveria ser zero. Foram quatro.</td></tr>
+    <tr><td class="nome">Potencial de resposta</td><td>Médio. Fácil de ler e fácil de responder "quanto custa?", que é a resposta de quem compara, não de quem compra.</td><td>Desconhecido, com risco específico: abrir com "oi" pelado de número desconhecido tem cara de golpe em 2026.</td></tr>
+  </table>
+
+  <div class="bloco destaque">
+    <h3>O teste de veracidade aplicado às mensagens do Gemini</h3>
+    <div class="pcaiu">
+      <b>Café Cardamomo, "opções vegetarianas e sem glúten muito elogiadas".</b> Não se sustenta.
+      A ficha do Google não lista esses atributos; lista compra na loja, retirada, entrega e
+      LGBTQ+ friendly. O que existe na fonte é o contrário: uma cliente <strong>perguntando</strong>
+      no Instagram deles "Olá! Tem opções sem glúten?". Uma pergunta sem resposta virou elogio
+      consolidado.
+      <span class="fonte-tag">Fonte: ficha do Google, aba Sobre · post do Instagram indexado · verificado 21/09/2026</span>
+    </div>
+    <div class="pcaiu">
+      <b>MAR, "recuperação de fachadas".</b> Fachada está no próprio nome da ficha deles ("MAR
+      Engenharia Condominial | Fachadas Prediais e Laudos"), então o assunto está certo. Mas eles
+      fazem <strong>laudo e inspeção</strong>, e recuperação é obra. A ficha inclusive está
+      catalogada errado como construtora e um cliente já escreveu "Parabéns à Construtora Mar".
+      Elogiar a obra deles é confirmar a confusão que os prejudica.
+      <span class="fonte-tag">Fonte: ficha e avaliações do Google · bio do @mar.laudos · verificado 21/09/2026</span>
+    </div>
+    <div class="pcaiu">
+      <b>MAR, "síndicos exigem um portal corporativo sólido para apresentar aos moradores e dar
+      segurança jurídica".</b> Inventado. Plausível, bem escrito e sem fonte.
+    </div>
+    <div class="pcaiu">
+      <b>Casa Verona, "vocês recebem dezenas de mensagens no WhatsApp todos os dias".</b> Fato
+      afirmado sem fonte, exatamente o tipo de frase que a casa proíbe.
+    </div>
+    <div class="novo">
+      <b>E o que o Gemini não achou.</b> Nas três mensagens, nenhum dos achados que exigem
+      pesquisa apareceu. No caso da MAR, ele não viu que <code>mar-engenharia.com</code> é de uma
+      empresa portuguesa homônima, que é o problema mais caro que aquele lead tem.
+    </div>
+  </div>
+
+  <div class="bloco">
+    <h3>Veredito</h3>
+    <p><strong>As mensagens do Gemini não são mais específicas. São mais legíveis e mais
+    comerciais.</strong> A sensação de especificidade vem da densidade de substantivos próprios,
+    não da profundidade de pesquisa. O teste que prova isso: tirando os nomes próprios, a
+    mensagem da Casa Verona serve para qualquer casa de evento do país. Tirando os nomes próprios,
+    a mensagem da Danyfisio da v1 não serve para mais ninguém, porque o depoimento da "Maria
+    Silva" existe só lá.</p>
+    <p>A percepção do Marcelo procede, mas a causa é outra: <strong>o problema da v1 não é falta
+    de especificidade, é falta de clareza sobre o que se faz e o que se quer.</strong> Por isso a
+    correção não é copiar o Gemini; é manter o lastro da v1 e importar a ordem do Gemini.</p>
+  </div>
+</section>
+
+<!-- ======================= PARTE 3 ======================= -->
+<section class="secao">
+  <div class="titulo-secao">
+    <h2>3 · O framework de prospecção da Hórus</h2>
+    <span class="eyebrow">Decidido em 21/09/2026</span>
+  </div>
+
+  <div class="aviso">
+    <h4>Decisões travadas pelo Marcelo nesta revisão</h4>
+    <p><strong>1. Formato mantido em dois passos.</strong> Abertura curta, espera pela resposta,
+    e só então o corpo. Como já estava.</p>
+    <p><strong>2. A prévia do site não vai na abordagem.</strong> Ela é ativo de reunião, e caso
+    a caso. Dois motivos: a produção precisa de cerca de uma semana de antecedência, e mandar
+    prévia na abertura entrega diagnóstico e solução de graça antes de existir conversa, que é
+    justamente o que produz o "obrigado, vou ajustar".</p>
+    <p><strong>3. Citar concorrente pelo nome é decisão caso a caso</strong>, não regra. Vale
+    quando o número é objetivamente favorável e conferível; não vale quando puder soar como
+    diminuir o lead, nem com dono de perfil defensivo.</p>
+  </div>
+
+  <div class="bloco">
+    <h3>A anatomia da mensagem</h3>
+    <p>O corpo (segundo passo, depois que ele responde) carrega cinco partes, nesta ordem:</p>
+    <ol>
+      <li><strong>Como cheguei.</strong> Uma linha, verdadeira, em primeira pessoa. Nunca pretexto falsificável.</li>
+      <li><strong>O que eu vi que ele não vê.</strong> Fato exclusivo, verificável por ele em segundos, <strong>sobre o negócio dele</strong> e de preferência sobre o caminho que o cliente dele percorre, não sobre um campo da ficha.</li>
+      <li><strong>Por que aquilo custa.</strong> Ligado ao ticket dele, sem número que a gente não tenha. A variável que falta vira pergunta.</li>
+      <li><strong>O que eu faria.</strong> Uma frase concreta, com as partes nomeadas. O dono precisa terminar a leitura sabendo o que a Hórus faz.</li>
+      <li><strong>Um passo pequeno.</strong> Pergunta que só ele sabe responder, ou convite com duas opções de horário, conforme o degrau da conversa.</li>
+    </ol>
+  </div>
+
+  <div class="bloco">
+    <h3>As três mudanças em relação à v1</h3>
+    <ul class="limpa">
+      <li><strong>"Guardar o diagnóstico" deixa de ser regra absoluta.</strong> Guarda-se o <em>como</em>, nunca o <em>o quê</em>. Diagnóstico completo de graça é ruim; esconder o que se faz é pior.</li>
+      <li><strong>O eixo sai da ficha do Google e vai para o caminho do cliente dele.</strong> O Google continua entrando, mas como prova, e raramente como abertura. O que abre é a fricção que o cliente do lead vive.</li>
+      <li><strong>A tese passa a ser única por lead.</strong> Se duas fichas puderem usar a mesma frase-tese trocando só o nome, a tese está rasa e volta para a mesa.</li>
+    </ul>
+  </div>
+
+  <div class="bloco">
+    <h3>O que continua valendo da v1, sem alteração</h3>
+    <ul class="limpa">
+      <li><strong>A escada.</strong> Degrau 1 sintoma, degrau 2 fato dele, degrau 3 tempo, degrau 4 consequência, degrau 5 permissão pequena. Uma pergunta por mensagem.</li>
+      <li><strong>O número é do cliente, nunca nosso.</strong> Montar a fórmula, mostrar os termos, deixar a variável como pergunta. Nunca dizer quanto ele perde.</li>
+      <li><strong>Urgência só quando tem data real e conferível.</strong> Nada de prazo inventado, vaga limitada ou desconto por assinar hoje. A régua: se a urgência some quando o cliente pergunta "por quê?", ela era apelação.</li>
+      <li><strong>Preço nunca antes da reunião.</strong> Compromisso e valor se tiram olhando para a pessoa, não por escrito.</li>
+      <li><strong>A régua do que não oferecer</strong> em cada ficha, preservada na Parte 5.</li>
+      <li><strong>Escrever como pessoa, não como agência.</strong> Cortar linha de copy polida: tom de landing denuncia vendedor na hora.</li>
+      <li><strong>O repertório de respostas a objeção</strong> de cada ficha, preservado na Parte 5 e ajustado onde a tese mudou.</li>
+    </ul>
+    <p class="fonte">Cross-ref: <code>_conhecimento/network/abordagem-e-prospeccao.md</code>,
+    <code>segunda-mensagem-e-agendamento.md</code>, <code>taxas-de-conversao.md</code>,
+    <code>_memoria/comercial.md</code> e o log
+    <code>_conselho/logs/2026-09-21-abertura-prospeccao-site-ou-google.md</code>.</p>
+  </div>
+
+  <div class="bloco destaque">
+    <h3>O teste final antes de mandar</h3>
+    <p><strong>Qual é a resposta mais fácil que esta mensagem permite?</strong> Se a resposta mais
+    fácil for "obrigado" ou o silêncio, a mensagem falhou, por melhor que esteja escrita. Existe
+    diferença entre a mensagem que parece boa quando a gente lê e a mensagem que gera resposta: a
+    leitura premia clareza e competência, a resposta premia relevância imediata e baixo custo de
+    responder.</p>
+  </div>
+</section>
+
+<!-- ======================= PARTE 4 ======================= -->
+<section class="secao">
+  <div class="titulo-secao">
+    <h2>4 · Critérios de validação antes de prospectar</h2>
+    <span class="eyebrow">O que impede a repetição dos quatro erros</span>
+  </div>
+
+  <div class="alerta">
+    <h4>Regra 1 · Afirmação de ausência exige varredura completa</h4>
+    <p>Nunca escrever que o lead "não tem", "não mostra" ou "não fala sobre" alguma coisa sem
+    ter aberto <strong>todos</strong> os canais: site com todas as páginas internas, Instagram
+    com bio expandida e destaques abertos, Facebook, Threads, portais de terceiros do setor,
+    Linktree e similares, e o Google com a aba Sobre. Se a varredura não foi completa, a frase
+    vira pergunta, nunca afirmação.</p>
+    <p class="fonte">Origem: os erros da Danyfisio (o site fala dos quatro serviços) e da Prático
+    (o Instagram tem portfólio por ambiente), 21/09/2026.</p>
+  </div>
+
+  <div class="alerta">
+    <h4>Regra 2 · Avaliação negativa só entra depois de ler a resposta do dono</h4>
+    <p>Antes de usar qualquer crítica como argumento: ler a resposta do dono logo abaixo dela, e
+    identificar <strong>quem escreveu</strong>. Cliente, vizinho, fornecedor e concorrente
+    produzem críticas parecidas e significados opostos. Usar reclamação de vizinho como se fosse
+    cliente frustrado derruba a conversa no primeiro minuto.</p>
+    <p class="fonte">Origem: Casa Verona, onde duas das três críticas recentes são de vizinhos e a
+    dona já respondeu publicamente ao mérito, 21/09/2026.</p>
+  </div>
+
+  <div class="bloco">
+    <h3>As três classes de informação</h3>
+    <table>
+      <tr><th style="width:16%">Classe</th><th style="width:34%">Como se reconhece</th><th>Como entra na mensagem</th></tr>
+      <tr>
+        <td><span class="selo ok">Fato</span></td>
+        <td>Tem fonte nomeada e data de verificação. Pode ser conferido pelo dono em segundos.</td>
+        <td>Entra como afirmação direta. É o que sustenta a mensagem.</td>
+      </tr>
+      <tr>
+        <td><span class="selo ajuste">Hipótese</span></td>
+        <td>Raciocínio comercial plausível sobre o negócio, sem fonte que comprove.</td>
+        <td>Entra <strong>obrigatoriamente com "se"</strong>. "Se hoje a maior parte dos orçamentos chega por DM..." Nunca "vocês recebem dezenas de mensagens".</td>
+      </tr>
+      <tr>
+        <td><span class="selo nv">Não verificado</span></td>
+        <td>Não deu para checar, ou a fonte é o print de outra ferramenta sem confirmação independente.</td>
+        <td><strong>Não entra.</strong> Fica na Parte 7 até alguém confirmar.</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="bloco">
+    <h3>Checklist de varredura por lead</h3>
+    <ul class="limpa">
+      <li>Ficha do Google: nota, volume, <strong>categoria</strong>, campo site, telefone, endereço, horário, posts do dono, aba Sobre.</li>
+      <li>Avaliações: as três mais recentes e as três mais negativas, <strong>com as respostas do dono</strong> e a identificação de quem escreveu.</li>
+      <li>Instagram: bio expandida, link externo real, <strong>todos os destaques</strong>, número de posts, data do último post, botões de contato.</li>
+      <li>Site, se existir: todas as páginas do menu, não só a home. Depoimentos, galeria, rodapé, formulários e registro profissional quando for setor regulado.</li>
+      <li>Portais de terceiros do setor: em casamento, Casamentos.com.br e BoraCasar; em alimentação, iFood, Goomer e Yooga; e o que mais o segmento usar.</li>
+      <li>Concorrentes: nota, volume, <strong>categoria</strong> e se têm site. Conferir o nome exato antes de escrever.</li>
+      <li>Telefones: comparar Google, bio, site e portais. Divergência é achado, e nunca se presume dígito.</li>
+    </ul>
+  </div>
+
+  <div class="aviso">
+    <h4>Nota de método sobre as ferramentas</h4>
+    <p>O Google Maps não entrega o texto completo das respostas do dono por leitura simples: o
+    botão "Mais" precisa de clique real, e clique programático não funciona. Nesta revisão o que
+    funcionou foi <strong>Playwright em janela visível, entrando pelo endereço com o CID do
+    lugar</strong>. O Firecrawl não lê Instagram nem Google Maps; para esses dois o caminho é
+    navegador com sessão iniciada. Registrado aqui para não repetir a perda de tempo na próxima
+    rodada.</p>
+  </div>
+</section>
+
+<!-- ======================= PARTE 5 · ABERTURA ======================= -->
+<section class="secao">
+  <div class="titulo-secao">
+    <h2>5 · Auditoria individual dos nove prospects</h2>
+    <span class="eyebrow">Reverificado em 21/09/2026</span>
+  </div>
+
+  <div class="bloco">
+    <h3>Placar da reverificação</h3>
+    <table>
+      <tr><th style="width:5%">#</th><th style="width:22%">Lead</th><th style="width:16%">Veredito</th><th>Resumo</th></tr>
+      <tr><td class="pos">01</td><td class="nome">Danyfisio</td><td><span class="selo caiu">Tese caiu</span></td><td>O site fala dos quatro serviços. Mas o achado novo é maior que o antigo: cinco depoimentos fabricados e nenhum CREFITO no site.</td></tr>
+      <tr><td class="pos">02</td><td class="nome">Casa Verona</td><td><span class="selo caiu">Tese caiu</span></td><td>As críticas de som são de vizinhos e a dona já respondeu em público. Três ângulos novos, todos mais fortes.</td></tr>
+      <tr><td class="pos">03</td><td class="nome">Land Car</td><td><span class="selo ok">Confirmado</span></td><td>A avaliação com o treinamento de fábrica existe e a bio não menciona. Três ajustes finos na comparação com a concorrente.</td></tr>
+      <tr><td class="pos">04</td><td class="nome">Autobahn</td><td><span class="selo ok">Confirmado</span></td><td>Inclusive o elogio: 7 das 8 avaliações têm resposta do dono. Uma correção de concorrente.</td></tr>
+      <tr><td class="pos">05</td><td class="nome">Café Cardamomo</td><td><span class="selo ok">Confirmado</span></td><td>Categoria errada confirmada. Duas ressalvas e um achado novo sobre encomenda.</td></tr>
+      <tr><td class="pos">06</td><td class="nome">Prático</td><td><span class="selo caiu">Tese caiu</span></td><td>O Instagram tem 141 posts e portfólio por ambiente. E os concorrentes estão na mesma categoria que eles.</td></tr>
+      <tr><td class="pos">07</td><td class="nome">MAR Engenharia</td><td><span class="selo ok">Confirmado e reforçado</span></td><td>Site português confirmado. E a confusão de identidade é maior: 3 das 12 avaliações chamam a empresa de construtora.</td></tr>
+      <tr><td class="pos">08</td><td class="nome">Euro Tech</td><td><span class="selo ok">Confirmado</span></td><td>Tudo confere, incluindo a negativa sem resposta e os três números em circulação.</td></tr>
+      <tr><td class="pos">09</td><td class="nome">Jeanne Garcia</td><td><span class="selo ajuste">Ajustes</span></td><td>Janela de 25/09 confirmada por escrito. Dois números corrigidos e um elogio que precisa ser suavizado.</td></tr>
+    </table>
+  </div>
+
+  <div class="bloco">
+    <h3>Ordem de ataque revisada</h3>
+    <p>A ordem muda pouco, mas muda: a Casa Verona sobe porque o material novo é forte e a
+    Prático desce porque a tese precisava ser refeita do zero.</p>
+    <table>
+      <tr><th style="width:5%"></th><th style="width:20%">Empresa</th><th style="width:14%">Prioridade</th><th style="width:38%">A alavanca, revisada</th><th>Canal</th></tr>
+      <tr><td class="pos">1</td><td class="nome">Danyfisio</td><td><span class="pill max">máxima</span></td><td>Cinco depoimentos fabricados e galeria de banco de imagem, num site sem CREFITO</td><td>(71) 99678-8422</td></tr>
+      <tr><td class="pos">2</td><td class="nome">Casa Verona</td><td><span class="pill alta">alta</span></td><td>O reel manda clicar no link da bio e o link é o Facebook; ficha sem preço nem capacidade no portal onde a noiva compara</td><td>(71) 99125-3252</td></tr>
+      <tr><td class="pos">3</td><td class="nome">Land Car</td><td><span class="pill alta">alta</span></td><td>Treinamento de fábrica Land Rover só existe na boca de um cliente, de 2023</td><td>(71) 99231-4301 · Josué</td></tr>
+      <tr><td class="pos">4</td><td class="nome">Autobahn</td><td><span class="pill alta">alta</span></td><td>Melhor nota da região, respondida uma a uma pelo dono, sem lugar nenhum para trabalhar</td><td>(71) 98697-0992 · Lucas</td></tr>
+      <tr><td class="pos">5</td><td class="nome">Café Cardamomo</td><td><span class="pill alta">média alta</span></td><td>Catalogado como loja de confeitaria enquanto os três vizinhos estão como cafeteria</td><td>(71) 98420-0770</td></tr>
+      <tr><td class="pos">6</td><td class="nome">MAR Engenharia</td><td><span class="pill media">média</span></td><td>O nome deles no Google entrega uma empresa portuguesa, e a ficha os chama de construtora</td><td>(71) 99387-0159</td></tr>
+      <tr><td class="pos">7</td><td class="nome">Prático</td><td><span class="pill media">média</span></td><td>Portfólio bom preso num canal que não aparece em busca, incluindo obra corporativa</td><td>(71) 99326-6958 · Marcelle</td></tr>
+      <tr><td class="pos">8</td><td class="nome">Euro Tech</td><td><span class="pill baixa">média baixa</span></td><td>Avaliação negativa sem resposta há um mês, elogios de 2020, três números em circulação</td><td>(71) 98205-0610</td></tr>
+      <tr><td class="pos">9</td><td class="nome">Jeanne Garcia</td><td><span class="pill baixa">baixa</span></td><td>Encomenda de bolo sem formulário e margem em três intermediários. Janela até 25/09</td><td>DM</td></tr>
+    </table>
+  </div>
+
+  <div class="bloco">
+    <h3>Correções de rota, preservadas da v1 e reconferidas</h3>
+    <div class="alerta">
+      <h4>1. A mensagem da Euro Tech foi para um número que eles não publicam</h4>
+      <p>Em 19/09 às 13:10 saiu "Bom! Tudo bem? Falo com o responsável pela Euro Tech?" para
+      <strong>71 8205-0610</strong>, dez dígitos. Celular brasileiro tem nove. O Google publica
+      <strong>(71) 98205-0610</strong> (reconferido em 21/09) e a bio do Instagram publica
+      <strong>(71) 98443-2921</strong> (reconferido em 21/09).</p>
+      <p><strong>Ressalva honesta:</strong> o WhatsApp costuma normalizar o nono dígito, então a
+      mensagem pode ter chegado. Não dá para afirmar nem que chegou nem que não chegou. Antes de
+      ler o silêncio como recusa, repetir pelo (71) 98205-0610 ou pela DM @eurotechba.</p>
+    </div>
+    <div class="alerta">
+      <h4>2. O site mar-engenharia.com não é da MAR Engenharia de Salvador</h4>
+      <p>Reconferido em 21/09 e confirmado. O site declara idioma <code>pt-PT</code>, escreve
+      "Planeamento", "Contratação e Planeamento", "eletrónica", "conceção" e "empreitadas", e se
+      apresenta como construção civil e obras públicas com "+20 anos". Não menciona laudo,
+      fachada, condomínio nem Salvador. Existe ainda uma terceira "MAR Engenharia &amp; Soluções"
+      com DDD 27, do Espírito Santo. Citar esse site como se fosse deles mataria a conversa.</p>
+    </div>
+    <div class="aviso">
+      <h4>3. Duas mensagens já saíram e não estavam na lista</h4>
+      <p><strong>Autobahn, (71) 98697-0992:</strong> saiu só "Olá! Boa tarde" em 18/09 às 17:45,
+      sem resposta. O número usado é o do Google, confirmado.</p>
+      <p><strong>Prático Marcenaria, (71) 99326-6958:</strong> saiu alguma coisa em 20/09 às
+      13:32 que não é texto (imagem, áudio ou documento).
+      <span class="falta">[FALTA: confirmar o que foi enviado]</span> Isso precisa ser resolvido
+      antes de qualquer abordagem, para não parecer que duas pessoas diferentes estão falando.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FICHA 01 ======================= -->
+<section class="ficha">
+  <div class="ficha-cab">
+    <div class="linha1">
+      <span class="num">01</span>
+      <h2>Danyfisio</h2>
+      <span class="pill max">prioridade máxima</span>
+      <span class="selo caiu">Tese anterior caiu</span>
+    </div>
+    <div class="meta">
+      <span>Daniela Lima, <b>CREFITO 265137-F</b></span>
+      <span>Pituba Parque Center, Av. ACM 1034, sala 406C, Itaigara</span>
+      <span>Google <b>5,0 · 125 avaliações</b></span>
+      <span>Instagram <b>3.364</b> · @danyfisio.oficial</span>
+      <span>CNPJ 50.121.222/0001-30</span>
+      <span>Site <b>danyfisio.com.br</b> (Hostinger Website Builder)</span>
+    </div>
+  </div>
+
+  <div class="pcaiu">
+    <b>O que caiu.</b> A v1 afirmava que o site "conta um negócio só" e que "hoje o site fala de
+    fisioterapia, e nas suas avaliações o que mais aparece é drenagem linfática e limpeza de
+    pele. Quem chega pelo Google procurando uma coisa não acha a outra". <strong>Falso.</strong>
+    O site tem quatro páginas (Início, Sobre, Serviços, Contato) e descreve quatro serviços com
+    detalhe: Fisioterapia Personalizada, Pilates Personalizado, <strong>Estética Corporal e
+    Facial Personalizados</strong> e RPG Personalizado, cada um com benefícios listados. A
+    estética inclusive tem o texto mais longo da página.
+    <span class="fonte-tag">Fonte: danyfisio.com.br, danyfisio.com.br/servicos, /sobre, /contato · lidas integralmente em 21/09/2026</span>
+  </div>
+  <div class="pcaiu">
+    <b>O que também precisa sair.</b> A v1 dizia que "as palavras mais repetidas nas 125
+    avaliações são drenagem linfática (5) e limpeza de pele profunda (4)" e concluía que "o que
+    puxa avaliação no Google é estética". Cinco menções em 125 avaliações é 4%. A conclusão não
+    se sustenta no próprio dado. As avaliações recentes conferidas falam de fisioterapia e
+    atendimento. <strong>Rebaixado para hipótese fraca; não usar como afirmação.</strong>
+  </div>
+
+  <div class="bloco">
+    <h3>Fatos confirmados em 21/09</h3>
+    <div class="fato">
+      <b>Cinco depoimentos fabricados, não um.</b> "Maria Silva" aparece duas vezes (home e
+      /sobre), mais "Mariana Silva" e "Carlos Lima" em /servicos, e "João Souza" em /sobre. Todos
+      com cinco estrelas e <strong>foto do Unsplash</strong>. Algumas dessas fotos não são nem de
+      pessoas: uma é pôr do sol atrás de árvores, outra é pôr do sol atrás de uma torre.
+      <span class="fonte-tag">Fonte: URLs images.unsplash.com no código das quatro páginas · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>A galeria da página de serviços é inteira de banco de imagem.</b> Seis fotos, todas do
+      Unsplash, sob o título "Explore nossos serviços de fisioterapia, pilates e estética
+      personalizados". Entre elas há <strong>um prédio com um avião no céu</strong> e uma mulher
+      se alongando na praia. Na home, por contraste, a galeria usa fotos reais do espaço dela
+      (recepção, sala de pilates, RPG).
+      <span class="fonte-tag">Fonte: danyfisio.com.br/servicos · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>O CREFITO não aparece em nenhuma das quatro páginas.</b> Busca pelo termo no código-fonte
+      das quatro páginas: zero ocorrências. O rodapé traz apenas CNPJ e e-mail.
+      <span class="fonte-tag">Fonte: busca por "CREFITO" no HTML de /, /sobre, /servicos, /contato · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>O site não está cadastrado na ficha do Google.</b> O campo site da ficha aponta para
+      <code>instagram.com</code>. Ela paga por um site que o Google não entrega.
+      <span class="fonte-tag">Fonte: ficha do Google Maps · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Links quebrados no cabeçalho, em todas as páginas.</b> O botão do Instagram aponta para
+      <code>instagram.com/https://www.instagram.com/danyfisio.oficial/</code>, com a URL colada
+      duas vezes. O do Facebook tem o mesmo erro. No rodapé, os dois funcionam.
+      <span class="fonte-tag">Fonte: links extraídos do HTML · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>5,0 com 125 avaliações, nenhuma respondida.</b> Melhor nota e maior volume da região.
+      Vizinhos: Profisio 4,9 (65), reconferido. A avaliação mais recente tem duas semanas, ou
+      seja, movimento atual.
+      <span class="fonte-tag">Fonte: ficha do Google Maps e aba de avaliações · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Outros sinais de template não revisado.</b> Rodapé "© 2024"; formulário do rodapé pede
+      só e-mail; números "150+" e "15" soltos na página /sobre com rótulos vagos ("Equipe
+      Competente", "Agendamento Prévio"); textos de serviço em linguagem de enciclopédia.
+      <span class="fonte-tag">Fonte: páginas do site · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Promessas de resultado publicadas sob o registro dela.</b> Na página de serviços:
+      "redução de gordura localizada e celulite", "melhoria da flacidez", "recuperação mais
+      rápida e sustentável". No depoimento: "os resultados foram incríveis".
+      <span class="fonte-tag">Fonte: danyfisio.com.br/servicos · 21/09/2026</span>
+    </div>
+  </div>
+
+  <div class="tese">
+    <h3>Tese recomendada para a mensagem</h3>
+    <p>Não é que falte informação no site dela. É que <strong>o site dela ainda é o modelo do
+    Hostinger, com gente que não existe elogiando a clínica e fotos de banco de imagem passando
+    por estrutura própria</strong>, publicado em nome de uma profissional 5,0 com 125 avaliações
+    reais. Ela tem prova social de sobra e está usando prova social falsa.</p>
+    <p>O contraste é o argumento inteiro: 125 pessoas reais escreveram sobre ela no Google, e o
+    site prefere a "Maria Silva".</p>
+  </div>
+
+  <div class="bloco">
+    <h3>Matéria-prima citável (verbatim conferido)</h3>
+    <div class="verbatim">Depoimento na home, assinado "Maria Silva", foto do Unsplash:<br>
+    "A Danyfisio transformou minha experiência com fisioterapia! A equipe é super atenciosa e os resultados foram incríveis."</div>
+    <div class="verbatim">Galeria de /servicos, legenda: "Explore nossos serviços de fisioterapia, pilates e estética personalizados." As seis imagens são do Unsplash, entre elas "a very tall building with a plane flying in the sky".</div>
+  </div>
+
+  <div class="custo">
+    <h3>O que custa não resolver</h3>
+    <ul class="limpa">
+      <li><strong>Exposição de conselho, que não se divide por mês.</strong> Depoimento assinado por paciente que não existe e promessa de resultado, publicados em nome de uma profissional registrada, num site que não exibe o registro em página nenhuma. Custa zero até o dia em que custa de uma vez, e basta uma denúncia.</li>
+      <li><strong>Ela paga por um site que o Google não mostra.</strong> A ficha aponta para o Instagram. A mensalidade corre integral todo mês no canal onde ninguém a encontra.</li>
+      <li><strong>125 avaliações cinco estrelas paradas.</strong> É o maior ativo de reputação das nove fichas, nenhuma respondida.</li>
+      <li><strong>Vazamento na porta de entrada.</strong> Quem clica no Instagram pelo topo do site recebe erro, e não volta para tentar pelo rodapé.</li>
+    </ul>
+    <p class="conta"><b>A conta, aberta:</b> <span class="falta">[FALTA: mensalidade do site]</span> × 12 = <span class="res">um ano pago por um site que a busca não entrega.</span></p>
+    <p class="perguntar"><b>Perguntas que fazem ela mesma ver</b>
+    <em>"Quanto você paga por mês nesse site, e quantas pessoas chegaram por ele esse ano?"</em> ·
+    <em>"Esse depoimento da Maria Silva passou por você antes de entrar no ar?"</em></p>
+  </div>
+
+  <div class="bloco">
+    <h3>O que se vende aqui</h3>
+    <p>Site refeito com régua de conselho: sem depoimento, sem promessa de resultado, registro
+    profissional visível, responsável técnica nomeada, foto real no lugar de banco de imagem, e
+    os quatro serviços contados com hierarquia comercial em vez de texto de enciclopédia. Depois
+    a ficha do Google completa, com o site cadastrado, e rotina de resposta às avaliações. Nessa
+    ordem. É a Fase 1 clássica.</p>
+  </div>
+
+  <div class="duas">
+    <div class="cartao-neg">
+      <h3>Não oferecer</h3>
+      <p>Tráfego pago, porque ela já lota por indicação e busca. Conteúdo de Instagram, porque
+      são 495 posts e ela sabe fazer. E nada que envolva depoimento de paciente, mesmo que ela
+      peça.</p>
+    </div>
+    <div class="cartao-neg">
+      <h3>Não usar na mensagem</h3>
+      <p>Que o site "não fala dos serviços" ou "conta um negócio só": é falso. Que a estética
+      domina as avaliações: são 4% delas. E cuidado com o tom, porque o assunto é o registro
+      profissional dela e a mensagem precisa soar como aviso, não como ameaça.</p>
+    </div>
+  </div>
+
+  <div class="msg">
+  <div class="msg-cab"><b>A mensagem</b> <span class="selo ok">Revisada 22/09</span></div>
+  <div class="msg-passo">
+    <span class="passo-label">Passo 1 · Abertura</span>
+    <div class="msg-texto">Oi Dani, tudo bem?</div>
+    <p class="msg-nota">Manda e espera. Não emenda nada.</p>
+  </div>
+  <div class="msg-passo">
+    <span class="passo-label">Passo 2 · Corpo (quando ela responder)</span>
+    <div class="msg-texto">Tava procurando fisio na Pituba e caí no seu perfil do Google. 125 avaliações cinco estrelas, não achei ninguém na região com isso.
+
+Aí fui ver o site e reparei numa coisa: os depoimentos que estão lá, da "Maria Silva" e do "Carlos Lima", vieram do modelo do Hostinger. As fotos são de banco de imagem, uma delas é um pôr do sol com árvores, nem é de pessoa.
+
+O que me chamou atenção foi o contraste. 125 pacientes reais escreveram sobre você, e o site prefere usar gente que não existe. E isso está publicado em nome do seu registro.
+
+Faço site pra clínica seguindo a régua do conselho: sem depoimento, sem promessa de resultado, com o registro visível e foto real do espaço. Quem cuida desse site hoje?</div>
+    <p class="msg-nota"><b>Anatomia:</b> como cheguei · o que vi (depoimento fabricado) · por que custa (exposição do registro) · o que eu faria (site com régua de conselho) · passo pequeno (quem cuida). Tom de aviso, nunca de ameaça. Não citar CREFITO como obrigação legal enquanto o Compliance da casa não confirmar a régua.</p>
+  </div>
+  <div class="msg-canal"><b>Canal:</b> WhatsApp (71) 99678-8422 · texto · horário comercial</div>
+</div>
+
+  <div class="respostas">
+    <h3>Se ela responder assim (repertório da v1, mantido)</h3>
+    <div class="resp">
+      <p class="dele"><b>"Fui eu mesma" ou "foi fulano que fez"</b></p>
+      <p>"Imaginei que tivesse vindo junto com o modelo, isso acontece direto. O problema é a frase, 'os resultados foram incríveis', que num site de clínica é a parte que ninguém pode deixar passar. Hoje, quando você precisa mudar alguma coisa lá dentro, você fala com quem?"</p>
+      <p class="nao">Não emende proposta aqui. A segunda pergunta é que mostra se existe fornecedor ativo ou se ela está sozinha nisso.</p>
+    </div>
+    <div class="resp">
+      <p class="dele"><b>"Obrigada por avisar, vou ajustar"</b></p>
+      <p>"Tranquilo. Tem outra que talvez pese mais: seu site nem está cadastrado na sua ficha do Google, ela aponta só pro Instagram. De cada dez pacientes novos, quantos te acham pelo Google?"</p>
+      <p class="nao">Não diga "posso arrumar pra você". Entregue o segundo fato e pergunte.</p>
+    </div>
+    <div class="resp">
+      <p class="dele"><b>"Você trabalha com isso? Quanto cobra?"</b></p>
+      <p>"Trabalho sim, faço site e Google pra clínica. Preço depende do que você precisa e eu não gosto de chutar por aqui. Te mostro em dez minutos o que dá pra fazer e você vê se faz sentido. Amanhã de manhã ou quinta?"</p>
+    </div>
+  </div>
+
+  <div class="prio">
+    <h3>Pendências desta ficha</h3>
+    <ul class="limpa">
+      <li><span class="falta">[FALTA: mensalidade do site Hostinger]</span></li>
+      <li>Confirmar com o Compliance da casa qual é exatamente a régua do COFFITO/CREFITO sobre depoimento, promessa de resultado e exibição de registro em material de divulgação, antes de afirmar qualquer coisa como proibição.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= FICHA 02 ======================= -->
+<section class="ficha">
+  <div class="ficha-cab">
+    <div class="linha1">
+      <span class="num">02</span>
+      <h2>Casa Verona</h2>
+      <span class="pill alta">prioridade alta</span>
+      <span class="selo caiu">Tese anterior caiu</span>
+    </div>
+    <div class="meta">
+      <span>Espaço de mini weddings, corporativo e celebrações</span>
+      <span>Alameda Verona, 56, Pituba, 41830-465</span>
+      <span>Google <b>4,5 · 107 avaliações</b> · categoria Local para casamentos</span>
+      <span>Instagram <b>14,4 mil · verificado</b> · @casaveronasalvador · 641 posts</span>
+      <span>Dona: <b>Patrícia</b>, citada como "Pati"</span>
+      <span>Sem site próprio</span>
+    </div>
+  </div>
+
+  <div class="pcaiu">
+    <b>O que caiu, e não volta.</b> A v1 dizia que as duas avaliações negativas recentes eram de
+    "gente que queria banda e som alto e descobriu a regra depois de visitar a casa", e concluía
+    que cada uma custou uma tarde de visita perdida. <strong>A leitura estava errada em três
+    camadas:</strong> são três críticas, não duas; duas delas são de <strong>vizinhos</strong>,
+    não de clientes; e a dona <strong>já respondeu publicamente</strong> que as regras de som são
+    alinhadas com contratantes e fornecedores <em>antes</em> de cada evento. Chegar com esse
+    argumento seria contar a ela uma história que ela já desmentiu por escrito, duas vezes.
+    <span class="fonte-tag">Fonte: aba de avaliações da ficha do Google, com as respostas do dono expandidas via Playwright · 21/09/2026</span>
+  </div>
+
+  <div class="bloco">
+    <h3>O que as avaliações realmente dizem</h3>
+    <div class="verbatim"><b>Alex Van Wahrheit</b> · 1 estrela · 3 meses · <b>vizinho</b><br>
+    "A Casa Verona mais parece um Paredão. [...] É inclusive mais importante respeitar o limite do volume para preservar o sossego e respeitar a vizinhança se querem manter um bom convívio. [...] Domingo, dia 24/05/2026, de manhã, houve um evento e o som estava nas alturas, juntamente ao 'animador' do evento que estava aos gritos no microfone e acordou toda a vizinhança. [...] Será que teremos que apelar à polícia militar?"</div>
+    <div class="verbatim"><b>Louis M. Jr.</b> · 1 estrela · 3 meses · <b>vizinho</b><br>
+    "Dizem respeitar horários, mas não respeitam o limite de volume. Respeitar o limite de decibéis, é salutar para a [vizinhança]..."<br>
+    <i>Resposta da dona, 3 meses:</i> "Lamentamos sinceramente que essa tenha sido a sua percepção. A Casa Verona leva muito a sério o bem-estar dos nossos clientes, convidados e também de toda a vizinhança..."</div>
+    <div class="verbatim"><b>Márcio Olliver</b> · 1 estrela · 4 meses · <b>ligado à banda, não noivo</b><br>
+    "Ambiente pequeno, mal organizado, não indicado para realização de eventos com bandas. [...] A Senhora da qual gerencia o espaço no momento do evento, é super grosseira..."<br>
+    <i>Resposta da dona, completa:</i> "Seguimos criteriosamente a Lei Municipal nº 5.354/98, conhecida como Lei do Silêncio de Salvador... <b>Todas as regras relacionadas à utilização de bandas, música ao vivo e som mecânico são previamente alinhadas com os contratantes e fornecedores antes da realização de qualquer evento. Em nenhum momento ocultamos ou flexibilizamos informações relacionadas aos limites sonoros permitidos.</b> [...] Ressaltamos que músicos e bandas que não respeitam nosso espaço, nossos colaboradores e a LEI nao sao bem vindos."</div>
+    <div class="verbatim"><b>Rosa Carvalho Abreu</b> · 7 meses · <b>visitante, tom informativo</b><br>
+    "Espaço bonito e bem cuidado, ideal pra um evento durante o dia. Por se tratar de um bairro residencial vizinho a prédios não se pode fazer nenhum tipo de barulho após as 22:00 horas..."<br>
+    <i>Resposta da dona:</i> "Ola Rosa, na verdade existe uma Lei Municipal nº 5.354/98... Entre 7h e 22h, o limite de decibéis é de 70 dB. Entre 22h e 7h, o limite de decibéis é de 60 dB..."</div>
+    <div class="verbatim"><b>Cássia Almeida</b> · 4 meses · <b>convidada de evento</b><br>
+    "lugar bonito, simples, e pequeno, ótimo para eventos mais intimistas. infelizmente no evento que fui choveu e o toldo estava bastante furado, acabou molhando as mesas dos convidados, foi um caos!"<br>
+    <i>Com resposta da dona, que cita providência tomada na véspera.</i></div>
+    <p><strong>Leitura correta:</strong> a casa tem um conflito de vizinhança em curso, responde
+    tudo em público, com fundamento legal, e mantém postura firme. Isso não é uma dor que a Hórus
+    resolve, e mexer nela é entrar num assunto sensível pelo lado errado.</p>
+  </div>
+
+  <div class="bloco">
+    <h3>Achados novos, todos verificados</h3>
+    <div class="novo">
+      <b>1. Os pacotes existem e são divulgados em reel.</b> Legenda completa do reel de julho:
+      "Seu mini wedding dos sonhos existe, e está na Casa Verona. Um cenário encantador,
+      inspirado em uma vila italiana, perfeito para um casamento íntimo, elegante e inesquecível.
+      <strong>Pacotes completos com decoração, buffet e toda a organização</strong> que seu grande
+      dia merece ter. <strong>Datas limitadas para 2026/2027.</strong>
+      <strong>Clique no link da bio e agende sua visita.</strong>" Outros posts trazem "pacotes
+      mini wedding <strong>a partir de 40 convidados</strong>".
+      <span class="fonte-tag">Fonte: instagram.com/reel/DV1s7NGgR_6 (legenda lida integralmente) + snippets indexados dos reels DKdjVxpNq8i, DOI22ERjfk4 e DWz6ukBERBW · 21/09/2026</span>
+    </div>
+    <div class="novo">
+      <b>2. O link da bio é o Facebook.</b> O único link externo do perfil aponta para
+      <code>facebook.com/107704272299106</code>. Não há link de agendamento, não há WhatsApp
+      clicável, e os botões disponíveis são apenas Seguir e Enviar mensagem. <strong>O reel manda
+      clicar no link da bio para agendar a visita, e o link leva ao Facebook deles.</strong>
+      <span class="fonte-tag">Fonte: header do perfil @casaveronasalvador, links extraídos · 21/09/2026</span>
+    </div>
+    <div class="novo">
+      <b>3. No portal onde a noiva compara, a ficha deles não tem preço nem capacidade.</b> No
+      Casamentos.com.br eles têm perfil ativo, com 1 avaliação (4,6), texto escrito pelo portal e
+      fotos de 2022. Na mesma página, os espaços sugeridos ao lado exibem faixa de preço e
+      capacidade: Quinta da Madragoa "Aluguel desde R$ 2.500 · 1 a 300", Cerimonial Mar de
+      Ipitanga "desde R$ 3.300 · 1 a 350", Solar Rainha Esther "desde R$ 3.500 · até 100", Vilas
+      Beach House "desde R$ 3.500 · 20 a 150". <strong>A ficha da Casa Verona não exibe
+      nenhum dos dois campos.</strong>
+      <span class="fonte-tag">Fonte: casamentos.com.br/casa-para-casamento/casa-verona--e370689 · 21/09/2026</span>
+    </div>
+    <div class="novo">
+      <b>4. As pessoas procuram o preço deles no Google.</b> Entre as buscas relacionadas exibidas
+      pelo próprio Google para a marca: <strong>"casa verona salvador valor"</strong>, "aluguel de
+      casa para eventos em salvador", "casa de eventos na pituba".
+      <span class="fonte-tag">Fonte: bloco "Outras pessoas pesquisaram" na busca do Google · 21/09/2026</span>
+    </div>
+    <div class="novo">
+      <b>5. O material de casa já existe, mas vive em canal efêmero.</b> Oito destaques
+      organizados: Mini weddings, Pati responde, A casa, Case em casa, Visitas, Bastidores,
+      Experiências, Feedbacks. Post fixado no topo do perfil: <strong>"Tour pela Casa
+      Verona"</strong>. Estão também no BoraCasar, no Facebook e no Threads (1,2 mil seguidores).
+      <span class="fonte-tag">Fonte: perfil do Instagram e resultados de busca · 21/09/2026</span>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <h3>Fatos confirmados e corrigidos</h3>
+    <div class="fato">
+      <b>Bio atual, na íntegra:</b> "Inspirada nas vilas Italianas · Uma casa para celebrar
+      histórias · Mini weddings • Corporativo • Celebrações · Agende sua visita · Alameda Verona
+      56 Pituba, Salvador, Bahia, Brazil". <strong>Não há telefone na bio hoje</strong> (a v1
+      registrava dois números escritos ali; o que restou deles aparece em cache de busca).
+      <span class="fonte-tag">Fonte: bio expandida do perfil · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Google: 4,5 com 107 avaliações, categoria correta, sem site cadastrado.</b> Telefone da
+      ficha: (71) 99125-3252. O segundo número, (71) 99333-5252, aparece em cache de busca e no
+      perfil do Casamentos.
+      <span class="fonte-tag">Fonte: ficha do Google Maps · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Os concorrentes, com número exato e site.</b> Casa Salvatore 4,7 com <strong>1.546</strong>
+      avaliações e casasalvatore.com.br · Casa Cloc Cerimonial 4,8 com <strong>295</strong> e
+      casacloc.com.br · Espaço Casa de Stella 4,6 com <strong>245</strong> e casadestella.com.br ·
+      Cerimonial DeCasa 4,8 com <strong>240</strong>. A Casa Verona é <strong>a menor em volume do
+      grupo e a única sem página própria</strong>.
+      <span class="fonte-tag">Fonte: fichas do Google Maps, uma a uma · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Estrutura descrita pelo portal e por clientes:</b> ampla área externa para montagem de
+      tendas, cozinha equipada, pista de dança, suíte da noiva, camarim, quarto para mães com
+      bebê, banheiro climatizado, muito verde. Eventos de pequeno e médio porte.
+      <span class="fonte-tag">Fonte: Casamentos.com.br + avaliações de Edyelma S., Amanda Miranda e Rafaela Melo no Google · 21/09/2026</span>
+    </div>
+  </div>
+
+  <div class="alerta">
+    <h4>Correção importante para quem for escrever</h4>
+    <p>O rascunho de abordagem discutido em 21/09 dizia que a Casa Verona perde para "Casa
+    Salvate, Casa Cloc, Stella House, <strong>com menos avaliações que vocês</strong>".
+    <strong>Os três têm mais avaliações</strong> (1.546, 295 e 245 contra 107), e dois dos nomes
+    estão errados: é Casa Salvat<strong>ore</strong>, e "Stella House" é "Espaço Casa de Stella".
+    Se essa frase sair, a dona confere em dez segundos e a conversa acaba.</p>
+    <p>O argumento verdadeiro é o inverso e é mais forte: <strong>são os menores em volume de
+    avaliação do grupo e os únicos sem página própria.</strong></p>
+  </div>
+
+  <div class="tese">
+    <h3>Tese recomendada (três candidatos, escolha do Marcelo)</h3>
+    <p><strong>A · O caminho que não fecha.</strong> O conteúdo deles manda clicar no link da bio
+    para agendar visita, e o link da bio é o Facebook. Quem quis agendar no meio da noite não
+    agendou. É o mais concreto, o mais fácil de conferir e o menos ofensivo.</p>
+    <p><strong>B · A vitrine onde a noiva compara.</strong> No Casamentos.com.br a ficha deles
+    aparece sem preço e sem capacidade, enquanto os espaços do lado aparecem com os dois. E o
+    Google mostra que "casa verona salvador valor" é uma das buscas mais feitas pelo nome deles.</p>
+    <p><strong>C · O pacote que existe e some.</strong> Pacote completo com decoração, buffet e
+    organização, a partir de 40 convidados, com datas limitadas para 2026/2027, vive em reel e
+    story. Quem chega depois não acha, e ninguém pesquisa pacote de casamento no Instagram.</p>
+    <p class="fonte">As três podem ser combinadas, mas a mensagem carrega uma tese só.</p>
+  </div>
+
+  <div class="custo">
+    <h3>O que custa não resolver</h3>
+    <ul class="limpa">
+      <li><strong>A comparação acontece longe deles.</strong> A noiva compara quatro espaços que têm página, preço e capacidade. Aqui o caminho é o Instagram e depois um número copiado à mão.</li>
+      <li><strong>Ticket de casamento não se perde no varejo.</strong> Cada contrato que não chega é um evento inteiro, não uma venda pequena.</li>
+      <li><strong>Prova social desperdiçada.</strong> 107 avaliações e 14,4 mil seguidores não aparecem em nenhuma busca por espaço de casamento em Salvador, porque não há site.</li>
+      <li><strong>Datas limitadas anunciadas sem lugar para reservar.</strong> O próprio conteúdo deles cria urgência (2026/2027) e o caminho de conversão termina no Facebook.</li>
+    </ul>
+    <p class="conta"><b>Reputação:</b> 4,5 × 107 ≈ 481 pontos. Para exibir 4,6 faltam <span class="res">≈ 27</span> avaliações cinco estrelas; para 4,7, <span class="res">≈ 72</span>. <i>(Nota exibida é arredondada, então é aproximação, e isso se diz em voz alta.)</i><br>
+    <b>Retorno:</b> <span class="falta">[FALTA: ticket médio de um evento]</span> ÷ valor da Fase 1 = quantos casamentos recuperados pagam o trabalho.</p>
+    <p class="perguntar"><b>Perguntas que fazem ele mesmo ver</b>
+    <em>"De cada dez pessoas que chamam vocês, quantas já chegam sabendo quanto custa e quanta gente cabe?"</em> ·
+    <em>"Quando alguém vê o reel de madrugada e quer agendar, ela chega em vocês por onde?"</em></p>
+  </div>
+
+  <div class="bloco">
+    <h3>O que se vende aqui</h3>
+    <p>Página da casa que qualifica antes da visita: tour, capacidade, o que cabe e o que não
+    cabe, os pacotes, disponibilidade e WhatsApp com mensagem pronta. É site de Fase 1 com função
+    de qualificar, não de enfeitar.</p>
+  </div>
+
+  <div class="duas">
+    <div class="cartao-neg">
+      <h3>Não oferecer</h3>
+      <p>Conteúdo de Instagram, porque o deles é melhor que o da maioria dos nossos clientes. E
+      tráfego antes da página existir, porque não há para onde mandar o clique.</p>
+    </div>
+    <div class="cartao-neg">
+      <h3>Não usar na mensagem</h3>
+      <p><strong>Nada sobre as avaliações de som.</strong> É conflito de vizinhança, a dona já
+      respondeu em público com base legal, e tocar nisso entra pelo lado errado. Também não usar
+      "vocês perdem para concorrentes com menos avaliações": é falso. E nada de se passar por
+      noivo interessado.</p>
+    </div>
+  </div>
+
+  <div class="msg">
+  <div class="msg-cab"><b>A mensagem</b> <span class="selo ok">Revisada 22/09</span> <span class="selo ajuste">Tese A</span></div>
+  <div class="msg-passo">
+    <span class="passo-label">Passo 1 · Abertura</span>
+    <div class="msg-texto">Oi, boa tarde! Falo com a Patrícia?</div>
+    <p class="msg-nota">Manda e espera.</p>
+  </div>
+  <div class="msg-passo">
+    <span class="passo-label">Passo 2 · Corpo (quando responder)</span>
+    <div class="msg-texto">Tava olhando espaço de casamento em Salvador e cheguei em vocês pelo Google. A casa tem personalidade, dá pra ver nos reels.
+
+Reparei numa coisa: o reel de vocês termina com "clique no link da bio e agende sua visita", e o link da bio leva pro Facebook. Quem viu de madrugada e quis agendar, não agendou.
+
+Em casamento isso pesa diferente. Cada contato que não chega não é uma venda pequena, é um evento inteiro.
+
+Faço página pra espaço de evento: pacote, capacidade, tour e WhatsApp num lugar só, que não some no feed. De cada dez pessoas que chamam vocês, quantas já chegam sabendo quanto custa e quanta gente cabe?</div>
+    <p class="msg-nota"><b>Anatomia:</b> como cheguei · o que vi (o CTA que não fecha) · por que custa (ticket de evento inteiro) · o que eu faria (página que qualifica) · passo pequeno. <b>Proibido:</b> qualquer menção às avaliações de som. Nunca se passar por noivo.</p>
+  </div>
+  <div class="msg-canal"><b>Canal:</b> WhatsApp (71) 99125-3252 · texto · horário comercial<br>
+  <b>Tese:</b> A (o caminho que não fecha). Se o Marcelo preferir B (vitrine sem preço) ou C (pacote efêmero), trocar o parágrafo 2 pelo fato correspondente e manter o resto.</div>
+</div>
+
+  <div class="respostas">
+    <h3>Se ele responder assim (repertório da v1, ajustado à tese nova)</h3>
+    <div class="resp">
+      <p class="dele"><b>"Você quer fazer um evento aqui?"</b></p>
+      <p>"Não é pra evento não. Cheguei no perfil olhando espaço de casamento em Salvador e acabei reparando nisso. Trabalho com site e achei que valia comentar. Sobre a casa eu falo com você mesmo?"</p>
+      <p class="nao">Nunca deixar ele achar que é noivo interessado. Pretexto falso derruba a conversa quando cai.</p>
+    </div>
+    <div class="resp">
+      <p class="dele"><b>"A gente responde tudo por DM mesmo"</b></p>
+      <p>Pergunta de fato, não contestação: "E de cada dez que chamam, quantas já chegam sabendo o valor e quanta gente cabe?" O número sai da boca dele e mostra sozinho o tamanho da fricção.</p>
+      <p class="nao">Não dizer que o atendimento falha. A dona responde avaliação com firmeza e defende a equipe; criticar atendimento aqui gera defesa imediata.</p>
+    </div>
+    <div class="resp">
+      <p class="dele"><b>"Obrigado por avisar, vou ajustar o link"</b></p>
+      <p>Trocar de fato, não insistir: "Tranquilo. Tem outra coisa que talvez pese mais: no Casamentos.com.br a ficha de vocês aparece sem valor e sem capacidade, e as casas que aparecem do lado mostram os dois. Isso é escolha de vocês ou nunca chegaram a preencher?"</p>
+    </div>
+  </div>
+
+  <div class="prio">
+    <h3>Pendências desta ficha</h3>
+    <ul class="limpa">
+      <li><span class="falta">[FALTA: ticket médio de um evento]</span></li>
+      <li><span class="falta">[FALTA: confirmar se (71) 99333-5252 segue ativo]</span> — hoje ele não está na bio, só em cache de busca e no perfil do Casamentos.</li>
+      <li>O que está incluso em cada pacote além de decoração, buffet e organização, e qual a capacidade máxima da casa. Nada disso está publicado em lugar nenhum verificável.</li>
+      <li>Se o perfil do Casamentos.com.br é plano pago (gera comissão ou lead pago) ou gratuito. Muda o argumento de margem.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= FICHA 03 ======================= -->
+<section class="ficha">
+  <div class="ficha-cab">
+    <div class="linha1">
+      <span class="num">03</span>
+      <h2>Land Car Oficina Técnica</h2>
+      <span class="pill alta">prioridade alta</span>
+      <span class="selo ok">Confirmado</span>
+    </div>
+    <div class="meta">
+      <span>Oficina especializada, Land Rover e Mercedes</span>
+      <span>Rua Vila América, Av. Vasco da Gama, 32, 40243-340</span>
+      <span>Google <b>4,3 · 23 avaliações</b> · categoria Mecânica para carros</span>
+      <span>Instagram <b>681</b> · @landcaroficina · 24 posts</span>
+      <span>Responsável: <b>Josué</b> · (71) 99231-4301</span>
+      <span>Sem site</span>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <h3>Verificação: a tese central está de pé</h3>
+    <div class="fato">
+      <b>A avaliação com o treinamento de fábrica existe, e é essa.</b> Pedro Almeida, 5 estrelas,
+      3 anos: "Josué foi extremamente prestativo com o serviço do meu carro, ele e sua equipe
+      demonstraram muito conhecimento e técnica na manutenção da minha evoque. <strong>Com
+      treinamento da própria fábrica da Land Rover em São Paulo</strong>, eles são sem dúvida a
+      melhor oficina para Land Rovers em Salvador."
+      <span class="fonte-tag">Fonte: aba de avaliações da ficha do Google · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>E a bio não menciona isso.</b> Bio completa: "Oficina automotiva · Oficina mecânica
+      especializada em veículos premium. · Agende pelo whatsapp · Rua Vila América número 32,
+      Salvador, Bahia, Brazil 40243340 · wa.me/71992314301". Nenhuma palavra sobre treinamento,
+      fábrica ou certificação.
+      <span class="fonte-tag">Fonte: perfil @landcaroficina · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Ficha incompleta e sem rotina de avaliação.</b> 4,3 com 23 avaliações, sem site
+      cadastrado, nenhuma avaliação respondida, e a mais recente é de 8 meses atrás (Zuryel
+      Abner, "Até agora n tive dor de cabeça").
+      <span class="fonte-tag">Fonte: ficha do Google Maps · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Atendem Mercedes e têm 10 anos de casa.</b> O feed traz Discovery, Evoque, Mercedes GLB
+      e um post comemorativo de 10 anos. Destaques: Serviços, Destaques e "Famosos Land Car".
+      <span class="fonte-tag">Fonte: feed e destaques do Instagram · 21/09/2026</span>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <h3>Três ajustes que a v1 não tinha</h3>
+    <div class="novo">
+      <b>1. A LAND BAHIA não é vizinha.</b> Fica na R. Ten. Valmir Alcântara, <strong>Cabula</strong>,
+      enquanto a Land Car fica na Vasco da Gama. Mesmo nicho, lados diferentes da cidade. A
+      comparação continua válida na busca, mas não como "o vizinho".
+      <span class="fonte-tag">Fonte: ficha do Google da LAND BAHIA · 21/09/2026</span>
+    </div>
+    <div class="novo">
+      <b>2. A LAND BAHIA se posiciona em Defender.</b> Duas avaliações a chamam de "melhor
+      especializada em Land Rover <strong>Defender</strong>". A Land Car pega Land Rover e
+      Mercedes. Nichos parcialmente diferentes, então "empate" merece cuidado.
+    </div>
+    <div class="novo">
+      <b>3. A concorrente tem uma fraqueza pública recente.</b> Crítica de 2 meses na LAND BAHIA:
+      "Não respondem Whatsapp e não atendem o telefone, isso já mostra o comprometimento com o
+      cliente." Números confirmados: LAND BAHIA 4,3 com <strong>25</strong> avaliações.
+      <span class="fonte-tag">Fonte: avaliações da ficha da LAND BAHIA · 21/09/2026</span>
+    </div>
+  </div>
+
+  <div class="tese">
+    <h3>Tese recomendada para a mensagem</h3>
+    <p>O melhor argumento de venda deles <strong>foi escrito por um cliente, em 2023, e nunca saiu
+    dali</strong>. Treinamento de fábrica é o que separa oficina especializada de mecânico bom, e
+    quem procura oficina de Land Rover em Salvador hoje vê duas fichas com a mesma nota e nenhuma
+    razão para escolher uma.</p>
+  </div>
+
+  <div class="custo">
+    <h3>O que custa não resolver</h3>
+    <ul class="limpa">
+      <li><strong>Empate que eles deveriam estar ganhando.</strong> Land Car 4,3 (23) e LAND BAHIA 4,3 (25) aparecem lado a lado, e o que desempata está fora de tudo que eles controlam.</li>
+      <li><strong>Oito meses de serviço feito sem virar prova.</strong> Cada carro entregue nesse período era uma avaliação possível, e nenhuma foi pedida.</li>
+      <li><strong>Ticket de manutenção de importado é alto e recorrente.</strong> O cliente que vai para o concorrente não se perde uma vez: perde-se a revisão dele, e a próxima, e a seguinte.</li>
+      <li><strong>O ativo de "famosos" só trabalha para 681 seguidores.</strong> Prova social forte, guardada no canal onde ninguém está decidindo com o carro parado.</li>
+    </ul>
+    <p class="conta"><b>Reputação:</b> 4,3 × 23 ≈ 99 pontos. Para exibir 4,5 e romper o empate faltam <span class="res">≈ 10</span> avaliações cinco estrelas, o que a rotina de pedir resolve em semanas. <i>(Aproximação, nota arredondada.)</i><br>
+    <b>Perda em curso:</b> <span class="falta">[FALTA: orçamentos por mês que não fecham]</span> × <span class="falta">[FALTA: ticket médio de revisão]</span> × 12.</p>
+    <p class="perguntar"><b>Perguntas que fazem ele mesmo ver</b>
+    <em>"Quando o cliente novo chega, ele já sabe do treinamento da fábrica ou você tem que contar?"</em> ·
+    <em>"Quantos orçamentos por mês você passa que a pessoa some depois?"</em></p>
+  </div>
+
+  <div class="bloco">
+    <h3>O que se vende aqui</h3>
+    <p>Site de uma página que prove a especialização: treinamento de fábrica, marcas atendidas, os
+    "famosos", serviço antes e depois (foto de carro real, nunca gerada por IA) e WhatsApp direto.
+    Mais a ficha do Google completa e rotina de pedir avaliação.</p>
+  </div>
+
+  <div class="duas">
+    <div class="cartao-neg">
+      <h3>Não oferecer</h3>
+      <p>Tráfego pago agora, porque sem página o clique cai no WhatsApp cru e queima verba.
+      Conteúdo também não: o gargalo é o que já existe não estar visível.</p>
+    </div>
+    <div class="cartao-neg">
+      <h3>Não usar na mensagem</h3>
+      <p>Chamar a LAND BAHIA de vizinha. E evitar usar a crítica de atendimento da concorrente:
+      ganha pouco e soa como fofoca de mercado logo no primeiro contato.</p>
+    </div>
+  </div>
+
+  <div class="msg">
+  <div class="msg-cab"><b>A mensagem</b> <span class="selo ok">Revisada 22/09</span></div>
+  <div class="msg-pendencia">⚠️ <b>Antes de enviar:</b> varrer os 24 posts e os três destaques do Instagram (Regra 1). A mensagem afirma que o treinamento não está na bio nem na ficha, o que foi conferido. Se aparecer em post ou destaque, o texto continua válido; se a varredura mostrar que aparece em lugar visível, rever a tese.</div>
+  <div class="msg-passo">
+    <span class="passo-label">Passo 1 · Abertura</span>
+    <div class="msg-texto">Oi Josué, bom dia! Tudo bem?</div>
+    <p class="msg-nota">Manda de manhã e espera.</p>
+  </div>
+  <div class="msg-passo">
+    <span class="passo-label">Passo 2 · Corpo (quando ele responder)</span>
+    <div class="msg-texto">Tava procurando oficina de Land Rover em Salvador e achei vocês no Google. Li uma avaliação do Pedro Almeida, de 2023, que fala em treinamento de fábrica da Land Rover em São Paulo.
+
+Se isso for verdade, é o que separa vocês de todo mundo na cidade. E está guardado numa avaliação de três anos atrás: não está na bio do Instagram nem na ficha do Google.
+
+Hoje quem procura oficina de Land Rover aqui vê vocês e a LAND BAHIA lado a lado, 4,3 e 4,3, sem nada que desempate. No empate, quem decide decide por quem responde primeiro, não por quem é melhor.
+
+Faço site e ficha do Google pra oficina especializada, com a certificação e os carros atendidos logo na entrada. Quando chega cliente novo, você tem que contar do treinamento ou ele já chega sabendo?</div>
+    <p class="msg-nota"><b>Anatomia:</b> como cheguei · o que vi (o argumento preso numa avaliação) · por que custa (empate que decide por velocidade) · o que eu faria · passo pequeno. O "se isso for verdade" é obrigatório: é hipótese até ele confirmar. Não citar a crítica de atendimento da LAND BAHIA.</p>
+  </div>
+  <div class="msg-canal"><b>Canal:</b> WhatsApp (71) 99231-4301 · Josué · texto · de manhã</div>
+</div>
+
+  <div class="respostas">
+    <h3>Se ele responder assim (repertório da v1, mantido)</h3>
+    <div class="resp">
+      <p class="dele"><b>"Tenho que contar sempre"</b></p>
+      <p>"Pois é. E quantos orçamentos por mês você passa que a pessoa some depois? Pergunto porque hoje quem procura Land Rover em Salvador vê vocês e a LAND BAHIA lado a lado, e decide no que responder primeiro."</p>
+      <p class="nao">Não ofereça site aqui. Ele ainda não disse quanto isso custa pra ele.</p>
+    </div>
+    <div class="resp">
+      <p class="dele"><b>"A maioria vem por indicação"</b></p>
+      <p>"Melhor canal que existe. E quem ainda não conhece vocês, tipo quem acabou de comprar uma Discovery usada e tá atrás de oficina, chega por onde?"</p>
+      <p class="nao">Não diga que indicação é pouco. Pergunte só o que ela não cobre.</p>
+    </div>
+    <div class="resp">
+      <p class="dele"><b>"Obrigado, vou ver isso"</b></p>
+      <p>"Tranquilo. Te deixo mais um detalhe: a avaliação mais recente de vocês tem oito meses, e nenhuma foi respondida. Como é que vocês fazem hoje com o cliente que sai satisfeito, chega a pedir avaliação?"</p>
+      <p class="nao">Não repita o assunto do site. Troque de fato e faça outra pergunta.</p>
+    </div>
+  </div>
+
+  <div class="prio">
+    <h3>Pendências desta ficha</h3>
+    <ul class="limpa">
+      <li><span class="falta">[FALTA: confirmar se o treinamento de fábrica aparece em algum post ou destaque do Instagram]</span> — a bio não menciona, mas os 24 posts e os três destaques não foram abertos um a um. Antes de afirmar "não aparece em lugar nenhum", varrer (Regra 1).</li>
+      <li><span class="falta">[FALTA: ticket médio de revisão]</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= FICHA 04 ======================= -->
+<section class="ficha">
+  <div class="ficha-cab">
+    <div class="linha1">
+      <span class="num">04</span>
+      <h2>Autobahn Auto Spezialist</h2>
+      <span class="pill alta">prioridade alta</span>
+      <span class="selo ok">Confirmado</span>
+    </div>
+    <div class="meta">
+      <span>Especializada em BMW e MINI</span>
+      <span>R. Antônio Fagundes Pereira, 555, Portão do Sol, Lauro de Freitas</span>
+      <span>Google <b>4,9 · 32 avaliações</b> · categoria Mecânico</span>
+      <span>Instagram <b>5.097</b> · @autobahn.ba · 104 posts</span>
+      <span>Dono: <b>Lucas</b> · (71) 98697-0992</span>
+      <span>Sem site</span>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <h3>Verificação: tudo confere, inclusive o elogio</h3>
+    <div class="fato">
+      <b>O dono responde as avaliações mesmo, e as antigas também.</b> Sete das oito avaliações
+      lidas têm resposta com texto próprio, incluindo duas de cinco anos atrás. Exemplos:
+      "Obrigado João! Seu feedback faz nossa equipe se sentir muito orgulhosa! Um grande abraço!"
+      e "Obrigado William! Nossa equipe agradece o feedback e se sente muito feliz em exceder as
+      suas expectativas!". <strong>O elogio da mensagem tem lastro e pode ser usado.</strong>
+      <span class="fonte-tag">Fonte: aba de avaliações, respostas extraídas uma a uma · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>A avaliação que cita o dono pelo nome existe.</b> Marcelo Teixeira, 5 estrelas, 11 meses:
+      "Levo sempre meu BMW para manutenções e revisões lá. Atendentes e mecânicos de excelente
+      qualidade e conhecimento, <strong>Lucas, o dono, é um cara ímpar</strong>."
+      <span class="fonte-tag">Fonte: ficha do Google · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>4,9 com 32 avaliações, categoria genérica "Mecânico", sem site.</b> O Google exibe
+      "Adicionar website" e "Adicionar informações ausentes". O campo site aponta para
+      <code>whatsapp.com</code>.
+      <span class="fonte-tag">Fonte: ficha do Google Maps · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Divergência de bairro confirmada.</b> Google: Portão do Sol, CEP 42700-000. Bio do
+      Instagram: "Rua Antonio Fagundes Pereira, 555, <strong>Buraquinho</strong>, Lauro de
+      Freitas, 42710620".
+      <span class="fonte-tag">Fonte: ficha do Google e bio do @autobahn.ba · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Instagram: 104 posts, 5.097 seguidores, 4.935 seguindo.</b> Proporção de quase um para
+      um, o que indica seguidor de troca e não audiência construída. Bio: "Especialistas em BMW
+      &amp; MINI · +10 anos em manutenção premium · Lauro de Freitas -BA · Agende pelo WhatsApp",
+      com link <code>wa.me/message/…</code> de convite, que não revela o número.
+      <span class="fonte-tag">Fonte: perfil @autobahn.ba · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Último post: 21/07/2026</b>, oito semanas antes desta revisão, e é sobre arrefecimento
+      ("Luz de temperatura acesa, vazamento de líquido, motor esquentando além do normal"), como a
+      v1 registrava. Destaques nomeados com conteúdo técnico: Projeto M154, Aula M850i G15, Dicas,
+      Serviços 05 a 10.
+      <span class="fonte-tag">Fonte: post instagram.com/autobahn.ba/p/DbERxtEoBCo, datetime 2026-07-21 · 21/09/2026</span>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <h3>Correção na lista de concorrentes</h3>
+    <div class="novo">
+      <b>Oficina Platinum não é concorrente direto.</b> A ficha dela é "OFICINA PLATINUM |
+      FUNILARIA E PINTURA AUTOMOTIVA", categoria <strong>Pintura automotiva</strong>. Funilaria e
+      pintura não disputa manutenção de BMW. Os concorrentes reais, reconferidos: <strong>F1
+      Oficina 4,6 com 256</strong> avaliações (Portão do Sol) e <strong>Dr. Auto Bahia 4,9 com
+      74</strong>, categoria Mecânica para carros.
+      <span class="fonte-tag">Fonte: fichas do Google Maps · 21/09/2026</span>
+    </div>
+  </div>
+
+  <div class="tese">
+    <h3>Tese recomendada para a mensagem</h3>
+    <p>Ele cuida da reputação com carinho e não tem onde ela trabalhar. <strong>4,9 com resposta
+    do dono em quase toda avaliação, inclusive as de cinco anos, contra uma concorrente com 4,6
+    que aparece primeiro por ter 256.</strong> Não é qualidade que está atrás, é volume e
+    classificação. Esse é um dos poucos casos em que citar o concorrente pelo nome favorece,
+    porque o número está a favor dele na nota.</p>
+  </div>
+
+  <div class="custo">
+    <h3>O que custa não resolver</h3>
+    <ul class="limpa">
+      <li><strong>A melhor nota da região perde para uma pior, todo dia.</strong> A F1 tem 4,6 e aparece na frente com 256 avaliações. A diferença não é qualidade, é volume e classificação.</li>
+      <li><strong>Categoria genérica tira ele da busca por marca.</strong> Quem digita "oficina BMW Lauro de Freitas" recebe quem se cadastrou pela marca. "Mecânico" é onde ele está hoje.</li>
+      <li><strong>Trabalho de conteúdo já pago em tempo.</strong> 104 posts bem feitos e 4.935 contas seguidas para sustentar alcance no canal de menor intenção de compra. Parado em 21/07, que é como esforço sem retorno costuma terminar.</li>
+      <li><strong>O cuidado com a reputação não chega a lugar nenhum.</strong> Ele responde avaliação de cinco anos atrás, uma por uma, e isso não aparece onde alguém está escolhendo oficina.</li>
+    </ul>
+    <p class="conta"><b>Volume:</b> 256 (F1) − 32 (Autobahn) = <span class="res">224</span> avaliações de diferença.<br>
+    <b>Perda em curso:</b> <span class="falta">[FALTA: carros por mês]</span> × <span class="falta">[FALTA: ticket médio de revisão BMW]</span>, aplicado à fatia que hoje vai para quem aparece primeiro.</p>
+    <p class="perguntar"><b>Perguntas que fazem ele mesmo ver</b>
+    <em>"De cada dez clientes novos, quantos vêm de indicação e quantos te acharam no Google?"</em> ·
+    <em>"O que aquele esforço todo de post trouxe de carro na oficina?"</em></p>
+  </div>
+
+  <div class="bloco">
+    <h3>O que se vende aqui</h3>
+    <p>Site de uma página com a reputação em cima: 4,9, avaliações reais e marcas atendidas na
+    entrada. Categoria do Google corrigida para especializada em BMW e MINI, endereço acertado
+    entre ficha e bio, e rotina de pedir avaliação para fechar a distância de volume. Tráfego
+    local por marca só depois.</p>
+  </div>
+
+  <div class="duas">
+    <div class="cartao-neg">
+      <h3>Não oferecer</h3>
+      <p>Conteúdo e design de post. É o que ele mais faz, e oferecer isso diz na cara dele que
+      você não olhou o perfil.</p>
+    </div>
+    <div class="cartao-neg">
+      <h3>Não usar na mensagem</h3>
+      <p>Oficina Platinum como concorrente (é funilaria e pintura). E não dizer que o Instagram
+      dele não serve para nada: ele investiu tempo real ali e a frase queima a conversa.</p>
+    </div>
+  </div>
+
+  <div class="msg">
+  <div class="msg-cab"><b>A mensagem</b> <span class="selo ok">Revisada 22/09</span> <span class="selo ajuste">Retomada</span></div>
+  <div class="msg-passo">
+    <span class="passo-label">Mensagem única · retomada do "Olá! Boa tarde" de 18/09</span>
+    <div class="msg-texto">Lucas, mandei um oi aqui outro dia e não cheguei a dizer a que vinha. Vou direto.
+
+Procurei oficina de BMW em Lauro de Freitas e vi a ficha de vocês: 4,9, com resposta sua em quase toda avaliação, inclusive nas de cinco anos atrás. Quase ninguém faz isso.
+
+Só que a F1 aparece na frente com 4,6 e 256 avaliações. Não é qualidade que está perdendo, é volume e classificação: a ficha está como "Mecânico", sem site, e o campo de site aponta pro WhatsApp. Quem digita "oficina BMW Lauro de Freitas" recebe quem se cadastrou pela marca.
+
+Faço site e ficha do Google pra oficina: categoria certa, a reputação de vocês na entrada e rotina de pedir avaliação. De cada dez clientes novos, quantos te acham pelo Google?</div>
+    <p class="msg-nota"><b>Sem passo 1 separado:</b> já houve saudação sem resposta, e repetir "oi" de número desconhecido tem cara de golpe. <b>Sem desculpa:</b> a retomada leva informação útil, não pede perdão por existir. Citar a F1 pelo nome favorece aqui porque o número está a favor dele na nota. Se não responder em 3 dias, DM do Instagram.</p>
+  </div>
+  <div class="msg-canal"><b>Canal:</b> WhatsApp (71) 98697-0992 · Lucas · texto<br>
+  <b>Pendência:</b> confirmar se o wa.me de convite da bio leva ao mesmo número</div>
+</div>
+
+  <div class="respostas">
+    <h3>Se ele responder assim (repertório da v1, mantido)</h3>
+    <div class="resp">
+      <p class="dele"><b>"Nunca parei pra olhar isso"</b></p>
+      <p>"Dá pra ver em um minuto: pesquisa 'oficina bmw lauro de freitas' no teu celular e vê quem aparece antes de vocês. Se quiser, te mostro em dez minutos o que dá pra mudar aí. Amanhã de manhã ou quinta?"</p>
+      <p class="nao">Essa é a resposta que mais vira reunião. Não desperdice explicando o conserto por escrito.</p>
+    </div>
+    <div class="resp">
+      <p class="dele"><b>"É quase tudo indicação"</b></p>
+      <p>"Faz sentido, com 4,9 o cliente indica mesmo. E quem acabou de chegar em Lauro com um BMW e não conhece ninguém, procura como? É esse que hoje tá caindo na F1."</p>
+      <p class="nao">Não desmereça a indicação. Mostre só o pedaço que ela não alcança.</p>
+    </div>
+    <div class="resp">
+      <p class="dele"><b>"Eu já invisto em Instagram"</b></p>
+      <p>"Vi sim, teu conteúdo é bom de verdade, aquele do arrefecimento eu li inteiro. Dos carros que entraram esse mês, quantos vieram de lá?"</p>
+      <p class="nao">Nunca ofereça conteúdo a ele.</p>
+    </div>
+  </div>
+
+  <div class="prio">
+    <h3>Pendências desta ficha</h3>
+    <ul class="limpa">
+      <li><span class="falta">[FALTA: confirmar se o wa.me de convite da bio leva ao mesmo (71) 98697-0992]</span> — o link não revela o número.</li>
+      <li>A abertura precisa considerar que já saiu um "Olá! Boa tarde" em 18/09 às 17:45, sem resposta. A retomada não pede desculpa: leva informação útil.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= FICHA 05 ======================= -->
+<section class="ficha">
+  <div class="ficha-cab">
+    <div class="linha1">
+      <span class="num">05</span>
+      <h2>Café Cardamomo</h2>
+      <span class="pill alta">média alta</span>
+      <span class="selo ok">Confirmado</span>
+    </div>
+    <div class="meta">
+      <span>Cafeteria, brunch e confeitaria</span>
+      <span>R. da Graça, 22, Casa do Fundo, 40150-055</span>
+      <span>Google <b>4,7 · 154 avaliações</b> · categoria <b>Confectionery store</b></span>
+      <span>Instagram @cafecardamomo_ · (71) 98420-0770</span>
+      <span>Página no Goomer · site cadastrado no Google é o Instagram</span>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <h3>Verificação: o gancho central está de pé</h3>
+    <div class="fato">
+      <b>Categoria errada confirmada, e os três vizinhos estão na certa.</b> Café Cardamomo:
+      "Confectionery store" (loja de confeitaria). Solange Café 4,5 com <strong>953</strong>,
+      Padoca do Carmo 4,3 com <strong>413</strong> e Cadivó 4,3 com <strong>89</strong>, todos
+      "Coffee shop". <strong>O Cardamomo tem a melhor nota dos quatro e a única categoria
+      errada.</strong> (Os números subiram levemente desde a v1: Solange era 952 e Padoca 411.)
+      <span class="fonte-tag">Fonte: ficha do Google e bloco "People also search for" · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>A avaliação do "lugar escondido" existe.</b> Letícia Ellen, Local Guide, 1 mês: "O lugar
+      é escondido, mas espaçoso, quando você entra percebe que é um jardim/quintal."
+      <span class="fonte-tag">Fonte: aba de avaliações · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>O dono responde avaliação e já declarou o gargalo em público.</b> Resposta ao Lui Farias,
+      4 meses: "Lui, somos gratos pela sua avaliação. <strong>Estamos nos empenhando em aumentar
+      nossa equipe de atendimento</strong> para que o aconteceu ctg não se repita."
+      <span class="fonte-tag">Fonte: resposta do dono na ficha do Google · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>A página do Goomer está no ar e ativa.</b> <code>cafe-cardamomo.goomer.app</code>, tema
+      azul (#134679), login com Google ou e-mail, opção de retirada.
+      <span class="fonte-tag">Fonte: cafe-cardamomo.goomer.app · 21/09/2026</span>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <h3>Duas ressalvas e um achado novo</h3>
+    <div class="novo">
+      <b>Ressalva 1: o Goomer não é totalmente sem identidade.</b> A página exibe a logo do Café
+      Cardamomo no topo. Dizer "sem nada da identidade da marca" é exagero. O que é verdade e
+      basta: <strong>o template é do Goomer, não deles</strong>.
+    </div>
+    <div class="novo">
+      <b>Ressalva 2: "Aberta 24 horas" no WhatsApp Business não foi verificado.</b> Não há como
+      conferir sem abrir o WhatsApp. O horário do Google é: segunda fechado, terça a sexta 15h às
+      20h, sábado e domingo 8h às 12h e 15h às 20h. <span class="selo nv">Não verificado</span>
+      Enquanto não for confirmado, <strong>não entra na mensagem</strong>.
+    </div>
+    <div class="novo">
+      <b>Achado novo: eles trabalham sob encomenda e dizem isso.</b> Texto no próprio Goomer:
+      "Oi, felizes por ter você aqui :) <strong>Trabalhamos sob encomenda, então preze pela
+      antecedência, pedidos para o mesmo dia estão sujeitos a lotação de produção.</strong>"
+      Encomenda é um pedaço do negócio que a v1 não explorou e que tem ticket maior que o café no
+      balcão.
+      <span class="fonte-tag">Fonte: cafe-cardamomo.goomer.app · 21/09/2026</span>
+    </div>
+  </div>
+
+  <div class="tese">
+    <h3>Tese recomendada para a mensagem</h3>
+    <p>Continua sendo a exceção do lote: <strong>abre pelo Google, porque a categoria é o gargalo
+    real</strong>, custa zero para conferir e zero para consertar. Quem busca cafeteria na Graça
+    recebe Solange, Padoca e Cadivó, e não recebe quem tem a melhor nota das quatro. A assimetria
+    entre "o conserto é de graça" e "o prejuízo corre desde sempre" é o que faz o argumento
+    sozinho. A página própria no lugar do template do Goomer vem depois, como oferta.</p>
+  </div>
+
+  <div class="custo">
+    <h3>O que custa não resolver</h3>
+    <ul class="limpa">
+      <li><strong>O conserto custa zero e não foi feito.</strong> Mudar a categoria no Google não tem preço, não tem prazo e não depende de ninguém de fora. Tudo que a busca deixou de entregar desde então foi desperdício puro.</li>
+      <li><strong>Melhor nota do grupo, fora da lista.</strong> O 4,7 fica de fora porque está catalogado como loja de confeitaria.</li>
+      <li><strong>Ponto escondido mais categoria errada se multiplicam.</strong> Um cliente já escreveu que o lugar é escondido. Quem não acha no Google também não acha na rua.</li>
+      <li><strong>Paga o Goomer e o Google aponta para o Instagram.</strong> Mensalidade correndo numa página que a busca não entrega.</li>
+    </ul>
+    <p class="conta"><b>Desperdício direto:</b> <span class="falta">[FALTA: mensalidade do Goomer]</span> × 12, pagos por uma página fora da busca.<br>
+    <b>Custo do conserto da categoria:</b> <span class="res">R$ 0</span>. É essa assimetria que faz o argumento.</p>
+    <p class="perguntar"><b>Perguntas que fazem ele mesmo ver</b>
+    <em>"Quanta gente entra dizendo que achou no Google, e quanta diz que passou na frente por acaso?"</em> ·
+    <em>"Quanto você paga no Goomer por mês?"</em></p>
+  </div>
+
+  <div class="bloco">
+    <h3>O que se vende aqui</h3>
+    <p>Primeiro a correção do Google, categoria e horário, que é de graça e prova competência.
+    Depois a página própria com a identidade da marca no lugar do template do Goomer, com cardápio,
+    pedido pelo WhatsApp e, pela descoberta nova, um caminho estruturado para encomenda com
+    antecedência.</p>
+  </div>
+
+  <div class="duas">
+    <div class="cartao-neg">
+      <h3>Não oferecer</h3>
+      <p>Tráfego pago. Um café de bairro com 154 avaliações e ponto escondido resolve muito mais
+      no orgânico. Conteúdo também não, que não é o gargalo dele.</p>
+    </div>
+    <div class="cartao-neg">
+      <h3>Não usar na mensagem</h3>
+      <p>"Aberta 24 horas" no WhatsApp, enquanto não for confirmado. E não dizer que o Goomer não
+      tem nada da marca deles: a logo está lá.</p>
+    </div>
+  </div>
+
+  <div class="msg">
+  <div class="msg-cab"><b>A mensagem</b> <span class="selo ok">Revisada 22/09</span></div>
+  <div class="msg-passo">
+    <span class="passo-label">Passo 1 · Abertura</span>
+    <div class="msg-texto">Oi, boa tarde! Tudo bem?</div>
+    <p class="msg-nota">Depois das 15h, nunca na segunda (fecham). Espera responder.</p>
+  </div>
+  <div class="msg-passo">
+    <span class="passo-label">Passo 2 · Corpo (quando responder)</span>
+    <div class="msg-texto">Tava procurando cafeteria na Graça e encontrei vocês pelo Google. 4,7 com 154 avaliações, melhor nota do pedaço.
+
+Só que vocês não aparecem quando alguém busca "cafeteria" ali. A ficha está catalogada como "loja de confeitaria". A Solange, a Padoca e o Cadivó estão como cafeteria, e são esses que aparecem, todos com nota menor que a de vocês.
+
+O detalhe é que corrigir isso não custa nada. O que custou foi o tempo: cada pessoa que procurou café na Graça desde que a ficha está assim recebeu os outros três.
+
+Faço site e Google pra negócio daqui, mas essa mudança de categoria não é serviço meu, é coisa de cinco minutos e vocês fazem sozinhos. Vocês lembram desde quando está cadastrado assim?</div>
+    <p class="msg-nota"><b>Anatomia:</b> como cheguei · o que vi (categoria errada) · por que custa (o tempo acumulado) · o que eu faria (dito, mas entregando o conserto de graça) · passo pequeno. Única do lote que abre pelo Google. A pergunta "desde quando" impede que a resposta mais fácil seja só "obrigado": faz o tempo somar na cabeça dele. Presencial é possível, mesmo bairro da Amparo Flores.</p>
+  </div>
+  <div class="msg-canal"><b>Canal:</b> WhatsApp (71) 98420-0770 · texto · depois das 15h, nunca segunda</div>
+</div>
+
+  <div class="respostas">
+    <h3>Se ele responder assim (repertório da v1, mantido)</h3>
+    <div class="resp">
+      <p class="dele"><b>"Quase ninguém, é mais gente do bairro"</b></p>
+      <p>"Era o que eu imaginava. E vocês lembram desde quando tá cadastrado assim? Porque categoria não muda sozinha, e nesse tempo todo quem procurou café na Graça recebeu os outros."</p>
+      <p class="nao">Não diga ainda que o conserto é de graça. Deixe o tempo acumular na cabeça dele.</p>
+    </div>
+    <div class="resp">
+      <p class="dele"><b>"Obrigado por avisar, vamos corrigir"</b></p>
+      <p>Trocar de fato. Um caminho seguro agora é a encomenda: "Tranquilo. Vi no Goomer que vocês trabalham sob encomenda e pedem antecedência. Quando alguém quer encomendar, isso hoje resolve tudo na conversa do WhatsApp?"</p>
+      <p class="nao">Não insista na categoria. Segundo fato, segunda pergunta.</p>
+    </div>
+    <div class="resp">
+      <p class="dele"><b>"Você é de alguma empresa? Tá vendendo o quê?"</b></p>
+      <p>"Trabalho com isso sim, site e Google pra negócio daqui. Mas essa mudança de categoria você faz sozinho em cinco minutos, não é serviço meu não. Achei que valia avisar porque vocês têm a melhor nota e ficam de fora da busca."</p>
+      <p class="nao">Não esconda que trabalha com isso. Negar e ser descoberto depois custa a conversa inteira.</p>
+    </div>
+  </div>
+
+  <div class="prio">
+    <h3>Pendências desta ficha</h3>
+    <ul class="limpa">
+      <li><span class="falta">[FALTA: confirmar "Aberta 24 horas" no WhatsApp Business]</span></li>
+      <li><span class="falta">[FALTA: mensalidade do Goomer]</span></li>
+      <li>Nota operacional preservada da v1: fica na Graça, mesmo bairro da Amparo Flores, então dá para ir presencial, e presencial fecha mais. Mandar depois das 15h e nunca na segunda.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= FICHA 06 ======================= -->
+<section class="ficha">
+  <div class="ficha-cab">
+    <div class="linha1">
+      <span class="num">06</span>
+      <h2>Prático Marcenaria</h2>
+      <span class="pill media">prioridade média</span>
+      <span class="selo caiu">Tese anterior caiu</span>
+    </div>
+    <div class="meta">
+      <span>Marcenaria de projetos residenciais e comerciais</span>
+      <span>R. da Amendoeira do Jardim Imperial, 119, Pituaçu, 41740-501</span>
+      <span>Google <b>4,8 · 36 avaliações</b> · categoria Marceneiro</span>
+      <span>Instagram <b>3.200</b> · @praticomarcenaria · <b>141 posts</b></span>
+      <span>Marcelle Amorim e Ítalo · (71) 99326-6958</span>
+      <span>Sem site · ficha aponta para o Instagram</span>
+    </div>
+  </div>
+
+  <div class="pcaiu">
+    <b>O que caiu (1).</b> A v1 dizia que eles "não mostram um projeto sequer a quem está
+    decidindo o orçamento" e que "no Google o link de vocês vai pro Instagram, e lá dá pra ver
+    pouca coisa". <strong>Falso.</strong> O perfil tem <strong>141 posts, 3.200 seguidores</strong>
+    e os destaques estão organizados exatamente como o site que íamos propor: <em>Cozinhas,
+    cozinha, Banheiros, Closet palhinha, Depoimentos, Empresas</em>. Há ainda destaques de obra
+    corporativa nomeados: <em>Hosp. Martagão, Martagão Gestei, BRANEF, Solaris Imbassaí, curso
+    Promob</em>. Se a mensagem sair como estava, a Marcelle abre o próprio perfil e vê que a
+    afirmação é falsa.
+    <span class="fonte-tag">Fonte: perfil @praticomarcenaria, bio expandida e destaques · 21/09/2026</span>
+  </div>
+  <div class="pcaiu">
+    <b>O que caiu (2).</b> A v1 dizia que os concorrentes estão catalogados como "Cabinet maker",
+    móveis planejados, enquanto a Prático está como marceneiro. <strong>Não estão.</strong> Expert
+    Marcenaria e Marcenaria Providência aparecem como <strong>"Marceneiro"</strong>, a mesma
+    categoria da Prático. Não existe gancho de categoria aqui. O que confere é a nota: Expert 5,0
+    com 34, Moderna 5,0 com 39, Providência 5,0 com 16, contra 4,8 com 36 da Prático.
+    <span class="fonte-tag">Fonte: fichas do Google Maps, uma a uma · 21/09/2026</span>
+  </div>
+
+  <div class="bloco">
+    <h3>Fatos confirmados</h3>
+    <div class="fato">
+      <b>O post do Imbassaí Privilege existe e é deles.</b> Post do dono na ficha do Google,
+      <strong>24 de maio de 2026</strong>: "Cozinha e área gourmet para o condominio residencial
+      Imbassaí Privilege. Sofisticação e funcionalidade em uma <strong>marcenaria de alto
+      padrão</strong>." A expressão "alto padrão" é deles, não nossa.
+      <span class="fonte-tag">Fonte: bloco "From the owner" na ficha do Google · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>4,8 com 36 avaliações, único do grupo abaixo de 5,0.</b> Avaliação mais recente: Bárbara
+      Paim, 2 meses. O dono responde avaliações.
+      <span class="fonte-tag">Fonte: ficha do Google Maps · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Bio do Instagram, completa:</b> "Marcenaria especializada em projetos residenciais e
+      comerciais. · <strong>Desde 2012</strong> transformando casas em lares · Solicite seu
+      orçamento · wa.me/5571993266958". Nome de exibição do perfil: <strong>"Prático
+      Marceneiro"</strong>. A bio não usa "alto padrão".
+      <span class="fonte-tag">Fonte: perfil @praticomarcenaria · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Endereço: o "501" provavelmente não é divergência.</b> O Google traz nº 119 e o CEP é
+      41740-<strong>501</strong>. O número que aparecia no WhatsApp Business é quase certamente o
+      fim do CEP, não outro endereço.
+      <span class="fonte-tag">Fonte: ficha do Google Maps · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Preservado da v1, sem reverificação independente:</b> o WhatsApp Business abre como
+      "Marcelle Amorim", não como a marca; o print mostra que usam
+      <code>marceneiro.cortecloud.com.br</code> com biblioteca Hellomob, 26 módulos, serviço
+      #23411909; uma cliente é tratada como "Dra. Bárbara". <span class="selo nv">Origem: print, não reconferido</span>
+    </div>
+  </div>
+
+  <div class="tese">
+    <h3>Tese recomendada (substitui a anterior)</h3>
+    <p>O portfólio existe, é bom e está organizado por ambiente. O problema é <strong>onde ele
+    mora</strong>: destaque de Instagram não aparece no Google, não é indexado, some do feed e não
+    se manda por link para quem pediu orçamento. Quem digita "cozinha planejada Salvador" não
+    encontra nada deles.</p>
+    <p>E há um segundo fio que a v1 não viu: eles têm <strong>obra corporativa</strong> (Hospital
+    Martagão Gesteira, BRANEF, Solaris Imbassaí) guardada em destaque de Instagram. Obra
+    corporativa é ticket maior e ciclo diferente, e não existe em lugar nenhum que um decisor de
+    empresa vá procurar.</p>
+  </div>
+
+  <div class="custo">
+    <h3>O que custa não resolver</h3>
+    <ul class="limpa">
+      <li><strong>Portfólio bom preso num canal que a busca não lê.</strong> O material já existe e já foi produzido. O que falta é ele estar onde a pessoa decide, que é a busca.</li>
+      <li><strong>Cada orçamento perdido aqui é de dezenas de milhares.</strong> Marcenaria de alto padrão não perde venda pequena: perde projeto inteiro, e perde para quem mostrou imagem primeiro.</li>
+      <li><strong>A resposta chega com nome de pessoa.</strong> Quem pede orçamento de cozinha recebe "Marcelle Amorim" no WhatsApp, não a marca, e esse detalhe trabalha contra o argumento de alto padrão bem na hora do preço.</li>
+      <li><strong>Linha corporativa invisível.</strong> Hospital e empresas no currículo, sem nenhuma página que um decisor B2B possa abrir ou encaminhar.</li>
+      <li><strong>Único do grupo abaixo de 5,0 e sem rotina de avaliação.</strong> Expert, Moderna e Providência estão todas em 5,0.</li>
+    </ul>
+    <p class="conta"><b>Reputação:</b> 4,8 × 36 ≈ 173 pontos. Para exibir 4,9 faltam <span class="res">≈ 36</span> avaliações cinco estrelas, ou seja, dobrar o volume. <i>(Aproximação, nota arredondada.)</i><br>
+    <b>Retorno:</b> <span class="falta">[FALTA: ticket médio de uma cozinha]</span> ÷ valor da Fase 1. Pelo porte confirmado no post do Imbassaí Privilege, um projeto recuperado paga o trabalho várias vezes.</p>
+    <p class="perguntar"><b>Perguntas que fazem ela mesma ver</b>
+    <em>"Quando alguém pede pra ver projeto pronto antes de fechar, o que vocês mandam hoje?"</em> ·
+    <em>"De cada dez que pedem orçamento, quantos fecham com vocês?"</em></p>
+  </div>
+
+  <div class="bloco">
+    <h3>O que se vende aqui</h3>
+    <p>Site portfólio que reaproveita o que já existe (os ambientes que eles já organizam em
+    destaque, mais os renders do CorteCloud), indexável, com pedido de orçamento estruturado
+    (ambiente, medida, prazo, referência) em vez de tudo na conversa. Mais WhatsApp Business com
+    nome da marca e uma página ou seção para a linha corporativa.</p>
+  </div>
+
+  <div class="duas">
+    <div class="cartao-neg">
+      <h3>Não oferecer</h3>
+      <p>Tráfego pago antes do portfólio próprio existir, e conteúdo de Instagram. O que falta é
+      vitrine indexável, não postagem: eles já postam.</p>
+    </div>
+    <div class="cartao-neg">
+      <h3>Não usar na mensagem</h3>
+      <p><strong>Que eles não mostram projeto</strong> (mostram, e por ambiente). <strong>Que os
+      concorrentes estão em categoria diferente</strong> (estão na mesma). E cuidado com "alto
+      padrão": a expressão é deles no Google, mas não está na bio.</p>
+    </div>
+  </div>
+
+  <div class="msg">
+  <div class="msg-cab"><b>A mensagem</b> <span class="selo ok">Revisada 22/09</span></div>
+  <div class="msg-pendencia">🔴 <b>Bloqueio:</b> descobrir o que foi enviado em 20/09 às 13:32 pelo (71) 99326-6958 antes de qualquer abordagem. Sem isso, a mensagem pode parecer que duas pessoas diferentes estão falando.</div>
+  <div class="msg-passo">
+    <span class="passo-label">Passo 1 · Abertura</span>
+    <div class="msg-texto">Oi Marcelle, tudo bem?</div>
+    <p class="msg-nota">Manda e espera.</p>
+  </div>
+  <div class="msg-passo">
+    <span class="passo-label">Passo 2 · Corpo (quando ela responder)</span>
+    <div class="msg-texto">Tava procurando marcenaria em Salvador e caí no perfil de vocês. Os destaques organizados por ambiente e o projeto do Imbassaí Privilege me chamaram atenção, é currículo de verdade.
+
+Reparei que quando alguém pesquisa "cozinha planejada Salvador" no Google, vocês não aparecem. Esse material todo mora nos destaques do Instagram, e destaque não é indexado nem se manda por link pra quem pediu orçamento.
+
+Em cozinha planejada a pessoa compara dois ou três antes de decidir, e costuma decidir por quem mostrou imagem primeiro. Aí não é venda pequena que vai embora.
+
+Faço site portfólio reaproveitando o que vocês já produziram, indexável, com pedido de orçamento estruturado em vez de tudo na conversa. Quando alguém pede pra ver projeto pronto antes de fechar, o que vocês mandam hoje?</div>
+    <p class="msg-nota"><b>Anatomia:</b> como cheguei · o que vi (portfólio no lugar errado) · por que custa (ticket alto, decide por imagem) · o que eu faria · passo pequeno. Não dizer que o portfólio é fraco: é bom. Não dizer que os concorrentes estão em categoria diferente: estão na mesma. A linha corporativa (Martagão, BRANEF) entra depois, se houver abertura.</p>
+  </div>
+  <div class="msg-canal"><b>Canal:</b> WhatsApp (71) 99326-6958 · Marcelle · texto · horário comercial</div>
+</div>
+
+  <div class="respostas">
+    <h3>Se ela responder assim (repertório da v1, ajustado à tese nova)</h3>
+    <div class="resp">
+      <p class="dele"><b>"Mando foto pelo WhatsApp" ou "mando o Instagram"</b></p>
+      <p>"Entendi. E de cada dez que pedem orçamento, quantos fecham com vocês? Pergunto porque cozinha planejada a pessoa compara com dois ou três antes de decidir."</p>
+      <p class="nao">Ainda não fale em site nem em portfólio. É a munição do próximo degrau. E não sugira que o material deles é pouco: é bom, o problema é onde está.</p>
+    </div>
+    <div class="resp">
+      <p class="dele"><b>"Você quer fazer um orçamento?"</b></p>
+      <p>"Não é pra mim não, desculpa se ficou confuso. Cheguei no perfil olhando marcenaria boa em Salvador e acabei reparando nisso. Trabalho com site e Google pra negócio daqui. Hoje vocês fecham mais por indicação ou por gente que acha vocês na internet?"</p>
+      <p class="nao">Não deixe a dúvida no ar pra aproveitar o interesse. Cai depois e queima.</p>
+    </div>
+    <div class="resp">
+      <p class="dele"><b>"A gente prefere mostrar pessoalmente"</b></p>
+      <p>"Faz sentido, de perto vende mesmo. E pra pessoa decidir ir até vocês, ela vê o quê antes? É aí que ela escolhe entre vocês e o concorrente."</p>
+      <p class="nao">Não discuta o método deles. Pergunte o que vem antes dele.</p>
+    </div>
+  </div>
+
+  <div class="prio">
+    <h3>Pendências desta ficha</h3>
+    <ul class="limpa">
+      <li><span class="falta">[FALTA: confirmar o que foi enviado em 20/09 às 13:32]</span> — resolver antes de qualquer abordagem.</li>
+      <li><span class="falta">[FALTA: ticket médio de uma cozinha]</span></li>
+      <li>Reconferir de forma independente o nome do WhatsApp Business e o uso do CorteCloud: hoje a fonte é um print.</li>
+      <li>Vale abrir os destaques corporativos (Hosp. Martagão, BRANEF) antes de usar a linha B2B como argumento, para saber se é obra entregue ou parceria.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= FICHA 07 ======================= -->
+<section class="ficha">
+  <div class="ficha-cab">
+    <div class="linha1">
+      <span class="num">07</span>
+      <h2>MAR Engenharia Condominial</h2>
+      <span class="pill media">prioridade média</span>
+      <span class="selo ok">Confirmado e reforçado</span>
+    </div>
+    <div class="meta">
+      <span>Laudos, inspeção predial e fachadas · B2B, condomínios</span>
+      <span>Salvador Trade Center, Torre Sul, Av. Tancredo Neves 1632, sl 505, Caminho das Árvores</span>
+      <span>Google <b>5,0 · 12 avaliações</b> · categoria <b>Construtora</b></span>
+      <span>Instagram <b>3.884</b> · @mar.laudos · 103 posts</span>
+      <span>(71) 99387-0159 · ficha aponta para o Instagram</span>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <h3>Verificação: tudo confere, e o caso ficou mais forte</h3>
+    <div class="fato">
+      <b>O site no nome deles é de uma empresa portuguesa.</b> <code>mar-engenharia.com</code>
+      declara idioma <code>pt-PT</code>, escreve "Planeamento", "Contratação e Planeamento",
+      "eletrónica", "conceção", "empreitadas" e "à conclusão". Apresenta-se como construção civil e
+      obras públicas, com "+20 anos de experiência". <strong>Não menciona laudo, fachada,
+      condomínio nem Salvador.</strong> Site em WordPress com Elementor, arquivos de julho de 2025.
+      <span class="fonte-tag">Fonte: mar-engenharia.com, lido integralmente · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>12 avaliações, todas de 3 anos atrás, nenhuma respondida.</b> Nota 5,0. Nenhuma avaliação
+      nova desde então.
+      <span class="fonte-tag">Fonte: aba de avaliações, todas extraídas · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>A confusão de identidade é maior do que a v1 registrou: 3 das 12 avaliações descrevem
+      uma construtora.</b> Felipe Lago: "Parabéns à <strong>Construtora Mar</strong> pelo
+      atendimento de qualidade". Bárbara Monteiro: "Contratei a empresa para <strong>construção da
+      minha casa</strong> e o serviço foi de ótima qualidade". jessica freire: "Melhor empresa de
+      <strong>construção e reforma</strong>". Alisson Velame: "parabéns Con[strutora]".
+      <span class="fonte-tag">Fonte: avaliações da ficha do Google · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>O nome da ficha já diz o que eles fazem, e a categoria diz outra coisa.</b> Nome
+      cadastrado: "<strong>MAR Engenharia Condominial | Fachadas Prediais e Laudos</strong>".
+      Categoria: <strong>Construtora</strong>. Campo site: <code>instagram.com</code>.
+      <span class="fonte-tag">Fonte: ficha do Google Maps · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Instagram forte e coerente.</b> 103 posts, 3.884 seguidores, bio: "Há 14 anos entregando
+      resultados concretos · Laudos de fachada e inspeções prediais · Faça parte do Vclube!".
+      Destaques: CondoExpert, VClube, CondoWeek, Feedback, Síndicos(as), e oito destaques nomeados
+      por condomínio (Cond. SR, VM, ML, TT, RH, RB, SL, RT).
+      <span class="fonte-tag">Fonte: perfil @mar.laudos · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Concorrente na categoria certa.</b> Grupo Magno Engenharia: 5,0 com <strong>26</strong>
+      avaliações, categoria <strong>Consultoria em engenharia</strong>. Mesma nota, o dobro do
+      volume, e catalogado onde o síndico procura.
+      <span class="fonte-tag">Fonte: ficha do Google Maps · 21/09/2026</span>
+    </div>
+  </div>
+
+  <div class="tese">
+    <h3>Tese recomendada para a mensagem</h3>
+    <p><strong>O nome deles no Google entrega outra empresa, e a ficha os apresenta como
+    construtora.</strong> Quem procura "MAR Engenharia" chega num site português de obras públicas.
+    Quem procura "laudo de inspeção predial Salvador" não chega neles, porque estão catalogados
+    como construtora. E o efeito já chegou na ponta: três clientes deles escreveram avaliação
+    agradecendo a "construtora".</p>
+    <p>Segundo fio, que dá a urgência: o canal deles é relacionamento com síndico (VClube,
+    CondoExpert, CondoWeek), e <strong>síndico troca a cada um ou dois anos</strong>. O síndico
+    novo começa pesquisando, e é exatamente aí que eles não existem.</p>
+  </div>
+
+  <div class="custo">
+    <h3>O que custa não resolver</h3>
+    <ul class="limpa">
+      <li><strong>O nome deles entrega outra empresa.</strong> Esse lead já estava procurando por eles, pelo nome, e some antes do primeiro contato. É o tipo de perda que não aparece em relatório nenhum, porque ninguém liga para dizer que desistiu.</li>
+      <li><strong>Invisíveis na busca que importa.</strong> Síndico e administradora procuram "laudo de inspeção predial Salvador", "inspeção de fachada", "AVCB". A ficha está como construtora.</li>
+      <li><strong>A confusão já chegou no cliente.</strong> Três das doze avaliações agradecem a uma construtora. Quem lê a ficha entende o negócio errado.</li>
+      <li><strong>A base se renova sozinha e o canal não acompanha.</strong> O VClube e os eventos falam com quem já conhece; a busca fala com quem está chegando.</li>
+      <li><strong>Ficha parada há três anos enquanto o concorrente dobrou.</strong> 12 avaliações contra 26 do Grupo Magno, com a mesma nota.</li>
+      <li><strong>Perder um condomínio é perder o ciclo dele.</strong> Laudo tem periodicidade obrigatória, então o contrato perdido não é uma venda, é uma sequência.</li>
+    </ul>
+    <p class="perguntar"><b>Perguntas que fazem ele mesmo ver</b>
+    <em>"Quando um síndico novo assume e nunca ouviu falar de vocês, ele chega até vocês por onde?"</em> ·
+    <em>"Vocês já pesquisaram o nome de vocês no Google recentemente?"</em></p>
+  </div>
+
+  <div class="bloco">
+    <h3>O que se vende aqui</h3>
+    <p>Site que reivindique o nome e as buscas técnicas, com página por serviço (laudo de inspeção
+    predial, laudo de fachada, AVCB, treinamento de brigada), mais a ficha do Google reclassificada
+    para consultoria em engenharia e rotina de avaliação retomada.</p>
+  </div>
+
+  <div class="duas">
+    <div class="cartao-neg">
+      <h3>Não oferecer</h3>
+      <p>Gestão de rede social. O Instagram deles é o mais bem construído do lote inteiro, com
+      clube próprio e dois eventos de marca.</p>
+    </div>
+    <div class="cartao-neg">
+      <h3>Não usar na mensagem</h3>
+      <p><strong>Elogiar "recuperação de fachadas"</strong> ou qualquer obra: eles fazem laudo e
+      inspeção, e chamar de obra confirma a confusão que os prejudica. E não afirmar que síndico
+      "exige portal corporativo": isso é invenção herdada da mensagem do Gemini.</p>
+    </div>
+  </div>
+
+  <div class="msg">
+  <div class="msg-cab"><b>A mensagem</b> <span class="selo ok">Revisada 22/09</span></div>
+  <div class="msg-passo">
+    <span class="passo-label">Passo 1 · Abertura (B2B: pescar o decisor na porta)</span>
+    <div class="msg-texto">Boa tarde, tudo bem? Falo com o responsável pela MAR Engenharia?</div>
+    <p class="msg-nota">A pergunta identifica o decisor antes de gastar o argumento. Lição do Mullsanni.</p>
+  </div>
+  <div class="msg-passo">
+    <span class="passo-label">Passo 2 · Corpo (quando responder)</span>
+    <div class="msg-texto">Tava pesquisando empresa de inspeção predial em Salvador e achei vocês pelo Google. Vi o VClube e os eventos pra síndico, é trabalho sério.
+
+Aí pesquisei "MAR Engenharia" e o primeiro resultado é mar-engenharia.com, que é de uma empresa portuguesa de obras públicas. Não tem nada a ver com vocês.
+
+E a ficha de vocês está catalogada como "Construtora". Três clientes escreveram avaliação agradecendo "a construtora". Vocês fazem laudo e inspeção, não obra, e quem lê a ficha entende o contrário.
+
+O que pesa aqui é o síndico que já estava procurando vocês pelo nome e desistiu no meio do caminho. Esse não liga pra avisar que desistiu.
+
+Faço site e ficha do Google pra empresa técnica: página por serviço (laudo de inspeção, fachada, AVCB) e a categoria certa. Vocês já tinham pesquisado o nome de vocês no Google?</div>
+    <p class="msg-nota"><b>Anatomia:</b> como cheguei · o que vi (o nome entrega outra empresa) · por que custa (o lead que já procurava e sumiu) · o que eu faria · passo pequeno. <b>Nunca elogiar obra ou recuperação de fachada:</b> confirma a confusão que os prejudica. Não afirmar que síndico exige portal corporativo: é invenção herdada do Gemini.</p>
+  </div>
+  <div class="msg-canal"><b>Canal:</b> WhatsApp (71) 99387-0159 · texto · horário comercial<br>
+  <b>Pendência:</b> definir quem é o interlocutor (sócio, comercial ou quem responde o WhatsApp)</div>
+</div>
+
+  <div class="prio">
+    <h3>Pendências desta ficha</h3>
+    <ul class="limpa">
+      <li>Decidir quem é o interlocutor: sócio, comercial ou quem responde o WhatsApp. B2B com decisor externo (síndico) muda o tom.</li>
+      <li>Confirmar se eles fazem apenas diagnóstico ou também executam recuperação. Muda o que se pode escrever no site depois.</li>
+      <li><span class="falta">[FALTA: ticket médio de um laudo]</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= FICHA 08 ======================= -->
+<section class="ficha">
+  <div class="ficha-cab">
+    <div class="linha1">
+      <span class="num">08</span>
+      <h2>Euro Tech Centro Automotivo Premium</h2>
+      <span class="pill baixa">média baixa</span>
+      <span class="selo ok">Confirmado</span>
+    </div>
+    <div class="meta">
+      <span>Oficina de importados e superesportivos</span>
+      <span>Rua Itaeté, 82, Pitangueiras, Lauro de Freitas</span>
+      <span>Google <b>4,5 · 30 avaliações</b> · categoria Oficina mecânica</span>
+      <span>Instagram <b>660</b> · @eurotechba · 13 posts</span>
+      <span>CNPJ 49.315.059/0001-68 · campo site aponta para api.whatsapp.com</span>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <h3>Verificação: confere inteiro</h3>
+    <div class="fato">
+      <b>A avaliação negativa está lá, no topo, sem resposta.</b> Gilson Soto, 1 estrela, 1 mês:
+      "Trabalho mal feito. Além de ser muito caro se for fazer revisão do carro. Não indico."
+      <strong>Nenhuma das avaliações da ficha tem resposta do dono.</strong>
+      <span class="fonte-tag">Fonte: aba de avaliações · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>E os elogios são de 2020.</b> Arthur Faria, 6 anos: "Melhor especializada em Land Rover
+      da região. Atendimento top, conhecimento técnico e preço justo." Mauricio Oliva, 6 anos:
+      "Excelente atendimento e profissionalismo, <strong>fazem o que a concessionária não
+      faz</strong>."
+      <span class="fonte-tag">Fonte: aba de avaliações · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Três números em circulação, confirmados.</b> Google: <strong>(71) 98205-0610</strong>.
+      Bio do Instagram: <strong>(71) 98443-2921</strong>. E o número de dez dígitos para onde
+      nossa mensagem de 19/09 saiu: 71 8205-0610.
+      <span class="fonte-tag">Fonte: ficha do Google e bio do @eurotechba · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Instagram parado e raso.</b> 13 posts, 660 seguidores, 104 seguindo. Bio: "Especializada
+      em marcas premium" mais o telefone. Destaques: 320i, Evoque, Personalização, Cars, Serviços.
+      <span class="fonte-tag">Fonte: perfil @eurotechba · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Vizinhança à frente em volume.</b> Podium Auto Center 4,5 com <strong>112</strong>, CheCAR
+      4,7 com <strong>81</strong>, Autotec 4,6 com <strong>35</strong>. Todos categoria Oficina
+      mecânica.
+      <span class="fonte-tag">Fonte: fichas do Google Maps · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Preservado da v1:</b> CNPJ aberto em 24/01/2023 como Euro Tech Auto LTDA, micro empresa,
+      enquanto o texto deles diz "a mais de 10 anos". As avaliações de 6 anos indicam que o negócio
+      é anterior ao CNPJ atual, então o "+10 anos" é plausível, só não confirmável pelo registro.
+      <span class="selo nv">Não verificado</span>
+    </div>
+  </div>
+
+  <div class="tese">
+    <h3>Tese recomendada para a mensagem</h3>
+    <p>A última coisa que alguém escreveu sobre eles em público é uma acusação de trabalho mal
+    feito, e ela está sem resposta há um mês, no topo de uma ficha onde os elogios são de 2020.
+    <strong>Dono de carro caro pesquisa antes de entregar a chave, e é isso que ele lê
+    primeiro.</strong> Aqui o site não é a primeira coisa: é recuperação de ficha, e depois
+    site.</p>
+  </div>
+
+  <div class="custo">
+    <h3>O que custa não resolver</h3>
+    <ul class="limpa">
+      <li><strong>"Trabalho mal feito. Não indico" no topo há um mês, sem resposta.</strong> Cada semana parada é um lote de decisões tomadas contra eles, e nenhuma aparece como perda em lugar nenhum.</li>
+      <li><strong>A ficha conta uma história de 2020.</strong> O que está fresco é a crítica.</li>
+      <li><strong>Três números em circulação.</strong> Cliente que tenta o número errado não insiste: liga para o vizinho.</li>
+      <li><strong>Silêncio caro no canal.</strong> Instagram parado desde 2024, enquanto Podium (112), CheCAR (81) e Autotec (35) acumulam volume.</li>
+    </ul>
+    <p class="conta"><b>Reputação:</b> 4,5 × 30 ≈ 135 pontos. Para exibir 4,6 faltam <span class="res">≈ 8</span> avaliações cinco estrelas; para 4,7, <span class="res">≈ 20</span>. Com 30 avaliações só, cada nota pesa muito, e isso corta para os dois lados: afunda rápido e recupera rápido.<br>
+    <b>Custo de responder a crítica:</b> <span class="res">dez minutos</span>.</p>
+    <p class="perguntar"><b>Perguntas que fazem ele mesmo ver</b>
+    <em>"Você viu o que escreveram de vocês no Google mês passado?"</em> ·
+    <em>"Quando alguém liga perguntando preço e não volta, vocês sabem pra onde foi?"</em></p>
+  </div>
+
+  <div class="bloco">
+    <h3>O que se vende aqui</h3>
+    <p>Ficha do Google trabalhada primeiro: responder a avaliação negativa com elegância, pedir
+    avaliação de quem está satisfeito, acertar o número. Depois site de uma página que sustente a
+    palavra premium. Nessa ordem, porque hoje o site levaria tráfego para uma reputação
+    descuidada.</p>
+  </div>
+
+  <div class="duas">
+    <div class="cartao-neg">
+      <h3>Não oferecer</h3>
+      <p>Tráfego pago, de jeito nenhum, enquanto a última avaliação for aquela. Anúncio levando
+      cliente para uma ficha com "trabalho mal feito" no topo queima dinheiro do cliente e a nossa
+      credibilidade junto.</p>
+    </div>
+    <div class="cartao-neg">
+      <h3>Não usar na mensagem</h3>
+      <p>Não afirmar que mandamos mensagem antes, porque não dá para saber se chegou. Não entrar
+      no mérito de quem tinha razão na avaliação. E não usar "+10 anos" como fato.</p>
+    </div>
+  </div>
+
+  <div class="msg">
+  <div class="msg-cab"><b>A mensagem</b> <span class="selo ok">Revisada 22/09</span></div>
+  <div class="msg-passo">
+    <span class="passo-label">Passo 1 · Abertura (serve também pra descobrir qual número atende)</span>
+    <div class="msg-texto">Boa tarde, tudo bem? Falo com o responsável pela Euro Tech?</div>
+    <p class="msg-nota">Pelo (71) 98205-0610, o do Google. Não mencionar a mensagem de 19/09: não dá pra saber se chegou.</p>
+  </div>
+  <div class="msg-passo">
+    <span class="passo-label">Passo 2 · Corpo (quando responder)</span>
+    <div class="msg-texto">Tava procurando oficina de importado em Lauro de Freitas e vi a ficha de vocês no Google. Tem elogio bom lá, aquele do Maurício que diz "fazem o que a concessionária não faz" é forte.
+
+Só que ele é de 2020. O que aparece primeiro hoje é uma avaliação de agosto, sem resposta.
+
+Quem vai deixar um carro caro pesquisa antes de entregar a chave, e é isso que ele lê primeiro. Com 30 avaliações cada uma pesa muito, e isso corta pros dois lados: afunda rápido, mas recupera rápido também.
+
+Trabalho com ficha do Google e site pra oficina. No caso de vocês eu começaria pela ficha, porque site levando gente pra uma reputação assim é dinheiro jogado fora. Vocês acompanham as avaliações ou ninguém cuida dessa parte?</div>
+    <p class="msg-nota"><b>Anatomia:</b> como cheguei · o que vi (a negativa no topo, os elogios velhos) · por que custa (quem pesquisa antes de entregar a chave) · o que eu faria, <b>com a ordem honesta</b> (ficha antes de site, e o porquê) · passo pequeno com alternativa. Não entrar no mérito de quem tinha razão. Não usar "+10 anos" como fato.</p>
+  </div>
+  <div class="msg-canal"><b>Canal:</b> WhatsApp (71) 98205-0610 · texto · horário comercial<br>
+  <b>Fallback:</b> DM @eurotechba se ficar mudo 2 dias</div>
+</div>
+
+  <div class="respostas">
+    <h3>Se responderem assim (repertório da v1, mantido)</h3>
+    <div class="resp">
+      <p class="dele"><b>"Ninguém cuida" ou "eu mesmo, mas não dá tempo"</b></p>
+      <p>"Imaginei. E quantos orçamentos vocês passam por mês que a pessoa some depois? Pergunto porque quem vai deixar um carro caro pesquisa antes, e hoje o que ele lê primeiro é aquela de agosto."</p>
+      <p class="nao">Não ofereça o serviço de responder. Deixe o número dele aparecer primeiro.</p>
+    </div>
+    <div class="resp">
+      <p class="dele"><b>"Eu acompanho sim, por quê?"</b></p>
+      <p>"Ah, então você viu a de agosto. Perguntei porque ela tá sem resposta e é a primeira coisa que aparece pra quem procura o nome de vocês. Foi decisão de não responder ou só não deu tempo?"</p>
+      <p class="nao">Não prove que ele não acompanha. Ganha a discussão, perde a conversa.</p>
+    </div>
+    <div class="resp">
+      <p class="dele"><b>"Esse cliente foi injusto" ou "foi caso isolado"</b></p>
+      <p>"Acontece, e muita vez o cara tá errado mesmo. Só que quem lê não sabe disso, lê só o lado dele. Vocês chegaram a responder contando a versão de vocês?"</p>
+      <p class="nao">Não concorde nem discorde do mérito. Vire para o que está público.</p>
+    </div>
+  </div>
+
+  <div class="prio">
+    <h3>Pendências desta ficha</h3>
+    <ul class="limpa">
+      <li><span class="falta">[FALTA: confirmar qual dos dois números atende]</span> — a abertura deve servir para isso.</li>
+      <li><span class="falta">[FALTA: confirmar desde quando operam]</span></li>
+      <li>Abrir pelo (71) 98205-0610, o do Google. Se ficar mudo dois dias, tentar a DM @eurotechba.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= FICHA 09 ======================= -->
+<section class="ficha">
+  <div class="ficha-cab">
+    <div class="linha1">
+      <span class="num">09</span>
+      <h2>Jeanne Garcia Confeitaria</h2>
+      <span class="pill baixa">prioridade baixa</span>
+      <span class="selo ajuste">Ajustes</span>
+    </div>
+    <div class="meta">
+      <span>Confeitaria, cafeteria e brunch · encomendas</span>
+      <span>R. Ramalho Ortigão, 30, Pituba</span>
+      <span>Google <b>4,8 · 137 avaliações</b> · categoria Confeitaria</span>
+      <span>Instagram <b>60,7 mil · verificado</b> · @jeannegarciaconfeitaria</span>
+      <span>(71) 98726-4829 · campo site aponta para linktr.ee</span>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <h3>Verificação: a janela é real e está escrita por ela</h3>
+    <div class="fato">
+      <b>O prazo de 25/09 existe, no post dela de 18/09.</b> "Fomos indicados ao Prêmio Melhores da
+      Gastronomia | Salvador 2026 [...] conta para o Google como foi a sua experiência.
+      <strong>As avaliações podem ser feitas até 25 de setembro</strong> e cada comentário importa
+      muito para nós." Há ainda um post de 3 dias dizendo que está entre os finalistas.
+      <span class="fonte-tag">Fonte: instagram.com/p/Ddcdm2khtos, datetime 2026-09-18 · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Linktree no plano gratuito, confirmado.</b> A página exibe "Junte-se a
+      jeannegarciaconfeitaria hoje no Linktree" no topo. Cinco links: Localização no Google Maps,
+      <strong>Encomendas de Bolos Decorados</strong>, <strong>Reservas e Pronta entrega</strong>,
+      Delivery iFood e Cardápio Confeitaria &amp; Café. Conta criada em janeiro de 2025.
+      <span class="fonte-tag">Fonte: linktr.ee/jeannegarciaconfeitaria · 21/09/2026</span>
+    </div>
+    <div class="fato">
+      <b>Três intermediários e nenhum canal próprio.</b> Linktree gratuito na porta de entrada,
+      cardápio no Yooga, delivery no iFood, e o campo site do Google aponta para o linktr.ee.
+      <span class="fonte-tag">Fonte: Linktree e ficha do Google · 21/09/2026</span>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <h3>Duas correções</h3>
+    <div class="novo">
+      <b>1. São 137 avaliações, não 136.</b> E o concorrente citado subiu: Le Lapin Confeitaria
+      está com 4,8 e <strong>219</strong> avaliações (a v1 registrava 212), categoria Patisserie.
+      <span class="fonte-tag">Fonte: fichas do Google Maps · 21/09/2026</span>
+    </div>
+    <div class="novo">
+      <b>2. Não são todas as avaliações respondidas.</b> A v1 dizia "todas as avaliações
+      respondidas com texto próprio". A maioria tem resposta, mas <strong>a mais recente, de duas
+      semanas (Franciele Vilas), está sem</strong>. Como o elogio da mensagem era exatamente "você
+      respondendo uma por uma", isso precisa virar "quase todas", ou a frase se torna um elogio
+      que ela pode desmentir olhando a própria ficha.
+      <span class="fonte-tag">Fonte: aba de avaliações · 21/09/2026</span>
+    </div>
+  </div>
+
+  <div class="tese">
+    <h3>Tese recomendada para a mensagem</h3>
+    <p>Continua valendo a da v1, que sobreviveu à conferência: <strong>nada sobre presença</strong>,
+    porque ela já faz melhor que a maioria. O assunto é o pedido de bolo decorado, que é o produto
+    mais caro e entra pelo canal que mais toma tempo, e a base de cliente que hoje mora em três
+    terrenos alugados.</p>
+    <p>Se a abordagem acontecer nesta semana, a menção ao prêmio é gancho legítimo (a urgência é
+    dela, não nossa, e não se usa como pressão). Passada a data, o gancho é o pedido de bolo.</p>
+  </div>
+
+  <div class="custo">
+    <h3>O que custa não resolver</h3>
+    <ul class="limpa">
+      <li><strong>A comissão sai da margem todo mês, e não para.</strong> Cada pedido pelo iFood deixa uma parte lá. Não é gasto de uma vez: é um pedaço de cada venda, indefinidamente.</li>
+      <li><strong>Ela faz propaganda do Linktree para 60,7 mil pessoas.</strong> O plano gratuito exibe "junte-se a jeannegarciaconfeitaria no Linktree" na porta de entrada dela.</li>
+      <li><strong>60,7 mil seguidores e nenhuma base própria.</strong> Nenhum e-mail, nenhum histórico de encomenda que seja dela. Tudo o que ela construiu mora em três terrenos alugados.</li>
+      <li><strong>O produto mais caro entra pelo canal mais caro de operar.</strong> Bolo decorado sai no WhatsApp, com data, tema, andares, sabor e entrega digitados na conversa e repassados à cozinha.</li>
+      <li><strong>Sem histórico, não existe recompra.</strong> O aniversário que ela fez esse ano não volta sozinho no ano que vem, porque ninguém guardou a data.</li>
+    </ul>
+    <p class="conta"><b>Margem:</b> <span class="falta">[FALTA: plano e taxa do iFood]</span> × <span class="falta">[FALTA: faturamento mensal pelo iFood]</span> × 12, mais <span class="falta">[FALTA: mensalidade do Yooga]</span> × 12.<br>
+    <b>Tempo:</b> <span class="falta">[FALTA: minutos por briefing de bolo]</span> × <span class="falta">[FALTA: encomendas por mês]</span> = horas por mês em digitação, hoje pagas em atendimento.<br>
+    <b>Janela real:</b> <span class="res">25/09/2026</span>, dita por ela em post público.</p>
+    <p class="perguntar"><b>Perguntas que fazem ela mesma ver</b>
+    <em>"Quanto do teu faturamento passa pelo iFood hoje?"</em> ·
+    <em>"Quando chega encomenda de bolo, quantas vezes essa informação é digitada até chegar na cozinha?"</em></p>
+  </div>
+
+  <div class="bloco">
+    <h3>O que se vende aqui</h3>
+    <p>Sistema de encomenda: formulário estruturado de bolo (data, tema, andares, sabor, entrega,
+    referência visual) caindo organizado num CRM, com base de cliente própria e recompra por data.
+    <strong>É Fase 2 da casa, não Fase 1.</strong></p>
+  </div>
+
+  <div class="duas">
+    <div class="cartao-neg">
+      <h3>Não oferecer</h3>
+      <p>Site institucional, conteúdo de Instagram, gestão de rede e tráfego. Ela faz tudo isso
+      melhor que a média, e oferecer qualquer um desses mostra que não se olhou.</p>
+    </div>
+    <div class="cartao-neg">
+      <h3>Não usar na mensagem</h3>
+      <p>"Você responde uma por uma": tem uma de duas semanas sem resposta. E não usar o prêmio
+      como pressão: a urgência é dela. Se não houver tempo de fazer bem feito nesta semana, melhor
+      deixar para depois, porque abordagem genérica com ela queima o contato.</p>
+    </div>
+  </div>
+
+  <div class="msg">
+  <div class="msg-cab"><b>A mensagem</b> <span class="selo ok">Revisada 22/09</span> <span class="selo ajuste">Duas versões</span></div>
+  <div class="msg-passo">
+    <span class="passo-label">Passo 1 · Abertura (DM do Instagram, vale pras duas versões)</span>
+    <div class="msg-texto">Oi Jeanne, tudo bem?</div>
+    <p class="msg-nota">Manda e espera.</p>
+  </div>
+  <div class="msg-passo">
+    <span class="passo-label">Passo 2 · Versão A, se for antes de 25/09 (gancho do prêmio)</span>
+    <div class="msg-texto">Vi o post do prêmio Melhores da Gastronomia, torci aqui. 137 avaliações e 60 mil seguidores não é pouca coisa.
+
+Reparei que quem quer encomendar bolo pelo link da bio cai no Linktree gratuito e depois no WhatsApp. Aí cada bolo decorado vira um briefing digitado na conversa: data, tema, andares, sabor, referência, e a mesma informação repassada de novo pra cozinha.
+
+Esse tempo some do dia sem aparecer em lugar nenhum. E a cliente do ano passado não volta sozinha, porque ninguém guardou a data dela.
+
+Faço sistema de encomenda: formulário estruturado que cai organizado, com base de cliente própria e recompra por data. Site e conteúdo não, isso vocês fazem melhor que a maioria das agências. Quanto tempo leva uma encomenda de bolo até estar fechada?</div>
+  </div>
+  <div class="msg-passo">
+    <span class="passo-label">Passo 2 · Versão B, se for depois de 25/09 (gancho do Linktree)</span>
+    <div class="msg-texto">Tava olhando confeitaria em Salvador e acabei no perfil de vocês. 137 avaliações, 60 mil seguidores e o prêmio de gastronomia. Está bem construído.
+
+Reparei que quem quer encomendar bolo pelo link da bio cai no Linktree gratuito, que faz propaganda do próprio Linktree pra quem visita, e depois no WhatsApp. Aí cada bolo decorado vira um briefing digitado na conversa: data, tema, andares, sabor, referência.
+
+Esse tempo some do dia sem aparecer em lugar nenhum. E a cliente do ano passado não volta sozinha, porque ninguém guardou a data dela.
+
+Faço sistema de encomenda: formulário estruturado que cai organizado, com base de cliente própria e recompra por data. Site e conteúdo não, isso vocês fazem melhor que a maioria das agências. Quanto tempo leva uma encomenda de bolo até estar fechada?</div>
+    <p class="msg-nota"><b>Anatomia:</b> como cheguei · o que vi (o caminho da encomenda) · por que custa (tempo invisível + recompra que não acontece) · o que eu faria, <b>dizendo também o que não faria</b> · passo pequeno. O prêmio é urgência dela, nunca pressão nossa. Não oferecer site, conteúdo, rede ou tráfego: é Fase 2 aqui.</p>
+  </div>
+  <div class="msg-canal"><b>Canal:</b> DM do Instagram @jeannegarciaconfeitaria<br>
+  <b>Nota:</b> o telefone do Google (71) 98726-4829 difere dos dois WhatsApps do Linktree e nenhum foi confirmado como o de encomenda. DM é o caminho seguro.</div>
+</div>
+
+  <div class="respostas">
+    <h3>Se ela responder assim (repertório da v1, mantido)</h3>
+    <div class="resp">
+      <p class="dele"><b>Dá um número ("umas quinze", "depende da semana")</b></p>
+      <p>"E quanto tempo leva cada uma até o pedido estar fechado, com tudo acertado? Pergunto porque esse tempo some do dia sem aparecer em lugar nenhum."</p>
+      <p class="nao">Não fale em formulário nem em sistema ainda. Deixe ela somar as horas.</p>
+    </div>
+    <div class="resp">
+      <p class="dele"><b>"A gente dá conta numa boa"</b></p>
+      <p>"Imagino que sim, vocês respondem rápido mesmo. E na semana do Dia das Mães, quando chega tudo junto, continua dando conta do mesmo jeito?"</p>
+      <p class="nao">Não insista que existe problema. Pergunte pelo pico, que é onde ele aparece.</p>
+    </div>
+    <div class="resp">
+      <p class="dele"><b>"Você trabalha com o quê?"</b></p>
+      <p>"Faço sistema de pedido e site pra quem vende por encomenda. Post e rede social não, isso vocês fazem melhor que a maioria das agências. É só a parte do pedido chegar organizado e a cliente voltar no ano seguinte."</p>
+    </div>
+  </div>
+
+  <div class="prio">
+    <h3>Pendências desta ficha</h3>
+    <ul class="limpa">
+      <li><span class="falta">[FALTA: taxa e plano do iFood]</span> · <span class="falta">[FALTA: mensalidade do Yooga]</span></li>
+      <li>Decidir se vale abordar antes de 25/09 ou depois. O gancho muda conforme a resposta.</li>
+      <li>Canal: DM do Instagram. O telefone do Google (71) 98726-4829 é diferente dos dois WhatsApps do Linktree, e nenhum foi confirmado como o de encomenda.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= PARTE 6 ======================= -->
+<section class="secao">
+  <div class="titulo-secao">
+    <h2>6 · Painel de envio e revisão da redação</h2>
+    <span class="eyebrow">As mensagens estão na Parte 5, em cada ficha</span>
+  </div>
+
+  <div class="aviso">
+    <h4>Onde estão as mensagens</h4>
+    <p>Dentro da ficha de cada cliente, na Parte 5, entre "o que não usar" e o repertório de
+    objeções. A decisão é de leitura: quem vai enviar precisa ter lido o contexto e as travas
+    daquele lead <strong>antes</strong> de ver o texto, não numa seção separada onde a mensagem
+    pode ser copiada sem o resto.</p>
+  </div>
+
+  <div class="bloco destaque">
+    <h3>Painel de envio</h3>
+    <p>As nove mensagens moram agora <strong>dentro da ficha de cada cliente</strong>, na Parte 5,
+    logo depois do que não usar e antes do repertório de objeções. Esta tabela é só o controle
+    operacional: quem vai primeiro, por onde, e o que trava.</p>
+    <table>
+      <tr><th style="width:5%">#</th><th style="width:17%">Lead</th><th style="width:20%">Canal</th><th style="width:16%">Janela</th><th>Trava antes de enviar</th></tr>
+      <tr><td class="pos">01</td><td class="nome">Danyfisio</td><td>(71) 99678-8422</td><td>comercial</td><td><span class="selo ok">Livre</span> Confirmar régua do conselho antes de citar CREFITO</td></tr>
+      <tr><td class="pos">02</td><td class="nome">Casa Verona</td><td>(71) 99125-3252</td><td>comercial</td><td><span class="selo ajuste">Escolha</span> Marcelo confirmar a tese A, ou trocar o parágrafo 2</td></tr>
+      <tr><td class="pos">03</td><td class="nome">Land Car</td><td>(71) 99231-4301 · Josué</td><td>manhã</td><td><span class="selo ajuste">Varredura</span> 24 posts e 3 destaques (Regra 1)</td></tr>
+      <tr><td class="pos">04</td><td class="nome">Autobahn</td><td>(71) 98697-0992 · Lucas</td><td>comercial</td><td><span class="selo ok">Livre</span> É retomada, mensagem única</td></tr>
+      <tr><td class="pos">05</td><td class="nome">Café Cardamomo</td><td>(71) 98420-0770</td><td>após 15h, nunca segunda</td><td><span class="selo ok">Livre</span> Presencial é possível</td></tr>
+      <tr><td class="pos">06</td><td class="nome">Prático</td><td>(71) 99326-6958 · Marcelle</td><td>comercial</td><td><span class="selo caiu">Bloqueada</span> O que saiu em 20/09 às 13:32</td></tr>
+      <tr><td class="pos">07</td><td class="nome">MAR Engenharia</td><td>(71) 99387-0159</td><td>comercial</td><td><span class="selo ajuste">Interlocutor</span> Definir quem decide</td></tr>
+      <tr><td class="pos">08</td><td class="nome">Euro Tech</td><td>(71) 98205-0610</td><td>comercial</td><td><span class="selo ok">Livre</span> Fallback na DM após 2 dias</td></tr>
+      <tr><td class="pos">09</td><td class="nome">Jeanne Garcia</td><td>DM @jeannegarciaconfeitaria</td><td>—</td><td><span class="selo ajuste">Data</span> Versão A até 25/09, B depois</td></tr>
+    </table>
+  </div>
+
+  <div class="bloco">
+    <h3>O que a revisão de 22/09 corrigiu nas mensagens</h3>
+    <p>A primeira redação passou pelo crivo da Parte 3 e <strong>cinco das nove reprovaram no
+    mesmo item</strong>: terminavam sem o dono saber o que a Hórus faz. Era exatamente o defeito
+    da v1 que o framework mandou corrigir, e exatamente o ponto em que o Gemini ganhava. Corrigido
+    nas nove.</p>
+    <table>
+      <tr><th style="width:30%">O que estava errado</th><th style="width:12%">Onde</th><th>O conserto</th></tr>
+      <tr><td><strong>Não dizia o que a Hórus faz</strong> (parte 4 da anatomia ausente)</td><td>01, 03, 05, 07, 08</td><td>Toda mensagem agora nomeia o serviço em uma frase concreta, antes da pergunta final.</td></tr>
+      <tr><td><strong>Faltava o custo</strong> (parte 3 da anatomia ausente)</td><td>Sete das nove</td><td>Cada uma ganhou uma linha ligando o achado ao ticket daquele negócio, sem número que a casa não tenha.</td></tr>
+      <tr><td><strong>Pedia desculpa por entrar em contato</strong></td><td>04</td><td>Cortado. Contraria o card de abordagem e a nota da própria ficha ("a retomada não pede desculpa").</td></tr>
+      <tr><td><strong>Duas perguntas na mesma mensagem</strong></td><td>03</td><td>A primeira virou condicional ("se isso for verdade"), que é o tratamento correto de hipótese. Sobrou uma pergunta.</td></tr>
+      <tr><td><strong>Resposta mais fácil era "obrigado"</strong></td><td>05, 07</td><td>A pergunta final passou a ser específica e só o dono sabe responder ("desde quando está assim?").</td></tr>
+      <tr><td><strong>Tratamento misturado</strong> (tu e você na mesma mensagem)</td><td>01</td><td>Padronizado em "você".</td></tr>
+      <tr><td><strong>Pergunta retórica</strong> ("resolve na conversa, né?")</td><td>09</td><td>Virou afirmação, e a pergunta real foi pro fim.</td></tr>
+    </table>
+  </div>
+
+  <div class="bloco destaque">
+    <h3>O que se importou do Gemini, e o que não</h3>
+    <p><strong>Importado:</strong> a ordem (chegar ao ponto rápido), a solução nomeada em vez de
+    escondida, e a legibilidade de frase falada. Era o veredito da Parte 2: manter o lastro da v1
+    e importar a ordem do Gemini.</p>
+    <p><strong>Não importado:</strong> a dor de segmento no lugar da dor da empresa, a bajulação
+    ("nível técnico impecável", "espetacular"), o CTA passivo sem próximo passo, e a afirmação sem
+    fonte. As três mensagens dele tinham pelo menos uma invenção cada.</p>
+    <p class="fonte">A diferença que sobra: a mensagem do Gemini, tirando os nomes próprios, serve
+    para qualquer empresa do segmento. Nenhuma destas nove serve para outro negócio, porque cada
+    uma depende de um fato que só existe naquele lead.</p>
+  </div>
+</section>
+
+<!-- ======================= PARTE 7 ======================= -->
+<section class="secao">
+  <div class="titulo-secao">
+    <h2>7 · Pendências e o que ainda não foi confirmado</h2>
+    <span class="eyebrow">Nada daqui entra em mensagem</span>
+  </div>
+
+  <div class="bloco">
+    <h3>Ações antes de qualquer abordagem</h3>
+    <ul class="limpa">
+      <li><strong>Prático:</strong> descobrir o que foi enviado em 20/09 às 13:32 pelo (71) 99326-6958. Sem isso, a abordagem pode parecer duas pessoas diferentes falando.</li>
+      <li><strong>Euro Tech:</strong> confirmar qual dos números atende, pelo (71) 98205-0610 ou pela DM @eurotechba.</li>
+      <li><strong>Casa Verona:</strong> o Marcelo escolher entre as teses A, B e C.</li>
+      <li><strong>Land Car:</strong> varrer os 24 posts e os três destaques antes de afirmar que o treinamento de fábrica não aparece em canal deles (Regra 1).</li>
+      <li><strong>Danyfisio:</strong> confirmar com o Compliance da casa a régua exata do conselho de fisioterapia sobre depoimento, promessa de resultado e exibição de registro.</li>
+    </ul>
+  </div>
+
+  <div class="bloco">
+    <h3>Variáveis que só o cliente tem (viram pergunta, nunca estimativa)</h3>
+    <table>
+      <tr><th style="width:22%">Lead</th><th>O que falta</th></tr>
+      <tr><td class="nome">Danyfisio</td><td>mensalidade do site Hostinger</td></tr>
+      <tr><td class="nome">Casa Verona</td><td>ticket médio de um evento · o que está incluso em cada pacote · capacidade máxima · se o perfil do Casamentos.com.br é pago</td></tr>
+      <tr><td class="nome">Land Car</td><td>orçamentos por mês que não fecham · ticket médio de revisão</td></tr>
+      <tr><td class="nome">Autobahn</td><td>carros por mês · ticket médio de revisão BMW · se o wa.me da bio leva ao mesmo número</td></tr>
+      <tr><td class="nome">Café Cardamomo</td><td>mensalidade do Goomer · clientes por dia · ticket médio · "aberta 24 horas" no WhatsApp Business</td></tr>
+      <tr><td class="nome">Prático</td><td>ticket médio de uma cozinha · nome do WhatsApp Business (reconferir) · uso do CorteCloud (reconferir)</td></tr>
+      <tr><td class="nome">MAR</td><td>ticket médio de um laudo · quem é o interlocutor · se executam recuperação ou só diagnóstico</td></tr>
+      <tr><td class="nome">Euro Tech</td><td>desde quando operam · ticket médio de revisão de importado</td></tr>
+      <tr><td class="nome">Jeanne</td><td>taxa e plano do iFood · faturamento pelo iFood · mensalidade do Yooga · minutos por briefing de bolo · encomendas por mês</td></tr>
+    </table>
+  </div>
+
+  <div class="bloco">
+    <h3>Informação herdada da v1 que não foi reconferida</h3>
+    <p>Itens abaixo vêm de print ou de fonte não reaberta em 21/09. <span class="selo nv">Não verificado</span>
+    Servem de contexto interno e <strong>não entram em mensagem</strong> antes de conferência.</p>
+    <ul class="limpa">
+      <li>Prático: o WhatsApp Business abrir como "Marcelle Amorim"; o uso do CorteCloud com biblioteca Hellomob, 26 módulos e serviço #23411909; a cliente tratada como "Dra. Bárbara".</li>
+      <li>Café Cardamomo: o "Aberta 24 horas" no WhatsApp Business.</li>
+      <li>Euro Tech: a data de abertura do CNPJ como argumento sobre tempo de operação.</li>
+      <li>MAR: a agência portuguesa que fez o site homônimo, e a existência da terceira MAR com DDD 27 (o site português em si foi reconferido e confirmado).</li>
+      <li>Danyfisio: a contagem de "drenagem linfática" e "limpeza de pele profunda" nas avaliações, que além de não reconferida não sustenta a conclusão que a v1 tirou dela.</li>
+    </ul>
+  </div>
+
+  <div class="bloco">
+    <h3>Status das mensagens da primeira versão</h3>
+    <p>As mensagens da v1 seguem no arquivo <code>prospeccao-do-dia.html</code>, na mesma pasta.
+    Este é o status de cada uma para quem for reescrever:</p>
+    <table>
+      <tr><th style="width:24%">Lead</th><th style="width:22%">Status</th><th>Motivo</th></tr>
+      <tr><td class="nome">Danyfisio</td><td><span class="selo caiu">Aposentada</span></td><td>O passo 3 afirma que o site só fala de fisioterapia. É falso.</td></tr>
+      <tr><td class="nome">Casa Verona</td><td><span class="selo caiu">Aposentada</span></td><td>O passo 2 inteiro é construído sobre a leitura errada das avaliações de som.</td></tr>
+      <tr><td class="nome">Land Car</td><td><span class="selo ok">Base aproveitável</span></td><td>Tese confirmada. Rever só a forma de citar a LAND BAHIA.</td></tr>
+      <tr><td class="nome">Autobahn</td><td><span class="selo ok">Base aproveitável</span></td><td>Tese e elogio confirmados. Tirar a Oficina Platinum se aparecer.</td></tr>
+      <tr><td class="nome">Café Cardamomo</td><td><span class="selo ajuste">Aproveitável com corte</span></td><td>Tirar o "aberta 24 horas" e suavizar a crítica ao Goomer.</td></tr>
+      <tr><td class="nome">Prático</td><td><span class="selo caiu">Aposentada</span></td><td>O passo 2 afirma que não dá para ver projeto no Instagram. É falso.</td></tr>
+      <tr><td class="nome">MAR</td><td><span class="selo ok">Base aproveitável</span></td><td>Tese confirmada e reforçada pelas três avaliações que falam em construtora.</td></tr>
+      <tr><td class="nome">Euro Tech</td><td><span class="selo ok">Base aproveitável</span></td><td>Tudo confere.</td></tr>
+      <tr><td class="nome">Jeanne</td><td><span class="selo ajuste">Aproveitável com corte</span></td><td>Trocar "respondendo uma por uma" e atualizar 136 para 137.</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ======================= APÊNDICE ======================= -->
+<section class="secao">
+  <div class="titulo-secao">
+    <h2>Apêndice · Método comercial preservado da v1</h2>
+    <span class="eyebrow">Continua valendo</span>
+  </div>
+
+  <div class="bloco">
+    <h3>A regra que segura tudo: o número é do cliente, nunca nosso</h3>
+    <p>A Hórus monta a conta e mostra os termos. Quem preenche é ele, de preferência falando em
+    voz alta. Dizer "você perde R$ 8 mil por mês" é invenção com cara de diagnóstico, e a primeira
+    pergunta dele derruba a reunião inteira. Dizer "se a sua revisão média é X e dois orçamentos
+    por mês vão pro vizinho, a conta é 2X; qual é o seu X?" tem a mesma força e não tem mentira
+    dentro.</p>
+  </div>
+
+  <div class="bloco">
+    <h3>As três moedas</h3>
+    <ul class="limpa">
+      <li><strong>Dinheiro.</strong> Orçamento que foi para o concorrente, comissão de intermediário, ferramenta paga que não entrega.</li>
+      <li><strong>Tempo.</strong> Hora de dono e de atendente em trabalho que um formulário resolvia, e visita de quem nunca ia fechar.</li>
+      <li><strong>Exposição.</strong> Avaliação negativa sem resposta, risco de conselho profissional publicado, nome que no Google leva à empresa errada. Essa não se divide por mês: estoura de uma vez.</li>
+    </ul>
+  </div>
+
+  <div class="bloco">
+    <h3>A aritmética que dá para fazer só com dado público</h3>
+    <p>Quantas avaliações cinco estrelas faltam para a nota subir. Com soma igual a nota vezes
+    volume, resolve-se quanto falta para chegar na nota alvo. Serve em seis das nove fichas e é
+    conferível na hora, pelo celular, com o cliente do lado.</p>
+    <p class="conta">soma atual = nota × volume &nbsp;·&nbsp; alvo = (soma + 5x) ÷ (volume + x)</p>
+    <p>Ressalva dita em voz alta: a nota que o Google exibe é arredondada, então o resultado é
+    aproximado. Dizer isso vale mais que a precisão.</p>
+  </div>
+
+  <div class="bloco">
+    <h3>As portas que a mensagem abre sem querer</h3>
+    <table>
+      <tr><th style="width:36%">O que ele responde</th><th>O que a nossa mensagem fez</th></tr>
+      <tr><td>"Obrigado por avisar, vamos ajustar"</td><td>Entregou o problema e o conserto juntos. Sabendo o quê e o como, ele não precisa de ninguém.</td></tr>
+      <tr><td>"Vou passar pra minha equipe"</td><td>Falou com quem não decide, ou pediu decisão antes de existir conversa.</td></tr>
+      <tr><td>"A gente vende bem assim"</td><td>Ofereceu artefato em vez de consequência, ou cutucou o canal que ele tem orgulho de usar.</td></tr>
+      <tr><td>"Você é cliente? O que deseja?"</td><td>Não disse em uma linha por que apareceu.</td></tr>
+      <tr><td>"Não temos interesse"</td><td>Pediu interesse. Pergunta não recebe essa resposta; oferta recebe.</td></tr>
+      <tr><td>"Vou pensar" / "depois eu vejo"</td><td>Terminou em pergunta de sim ou não, ou em "vocês já pensaram em...?"</td></tr>
+    </table>
+  </div>
+
+  <div class="bloco">
+    <h3>"Seria bom ter" contra "está me custando"</h3>
+    <p>Um teste só: tem vítima, tem data, tem valor? Se ninguém perde nada identificável, se não
+    aconteceu recentemente e se não amarra num ticket, é vaidade, e vaidade não paga fatura. Sinal
+    contrário, de dor real: o cliente já improvisou uma gambiarra. Planilha, caderno, dois
+    WhatsApps na bio, Linktree grátis. <strong>Gambiarra é confissão de dor, e todas as nove fichas
+    têm pelo menos uma.</strong></p>
+  </div>
+
+  <div class="bloco">
+    <h3>Valor maior que o investimento, sem inflar nada</h3>
+    <p>A ponte não é "o site se paga". É aritmética de recuperação: quantos negócios a mais por mês
+    empatam o investimento? Onde o ticket é alto (cozinha planejada, casamento, revisão de
+    importado, laudo predial), um único negócio recuperado paga a Fase 1 inteira, e essa frase não
+    precisa de número inflado para funcionar. Nunca prometer resultado, nunca citar percentual de
+    melhoria que a Hórus não mediu.</p>
+  </div>
+
+  <div class="bloco">
+    <h3>Urgência honesta, e só ela</h3>
+    <p>Serve o que tem data real e conferível: prêmio com prazo (Jeanne, até 25/09), avaliação
+    negativa fresca no topo da ficha (Euro Tech), concorrente que já ultrapassou (Autobahn),
+    obrigação legal periódica (MAR), datas anunciadas pelo próprio lead (Casa Verona, 2026/2027).
+    Não serve, e a casa não usa: prazo inventado, vaga limitada, desconto por assinar hoje, medo
+    fabricado. A régua: se a urgência some quando o cliente pergunta "por quê?", ela era
+    apelação.</p>
+  </div>
+
+  <div class="bloco">
+    <h3>O padrão que atravessa o lote, atualizado</h3>
+    <p>Oito das nove não têm site próprio, e cinco usam o link do WhatsApp ou do Instagram no campo
+    "site" da ficha do Google. A Fase 1 da casa, site mais Google Meu Negócio, é a oferta certa para
+    sete delas. Só a Jeanne Garcia pede outra coisa (Fase 2, sistema de encomenda), e só a Danyfisio
+    tem site para refazer em vez de criar.</p>
+    <p><strong>O que ninguém deste lote precisa agora é tráfego pago.</strong> Todas têm buraco de
+    estrutura antes de buraco de demanda, e anúncio em cima de estrutura furada queima verba do
+    cliente e a confiança na agência junto.</p>
+  </div>
+
+  <div class="rodape-doc">
+    <p><strong>Dossiê de prospecção · revisão verificada de 21 de setembro de 2026.</strong>
+    Substitui a análise da v1 onde houver conflito; preserva dela tudo que passou na conferência.
+    A primeira versão continua em <code>prospeccao-do-dia.html</code>, na mesma pasta, como
+    histórico e como fonte das mensagens antigas.</p>
+    <p>Ferramentas usadas na verificação: Playwright em janela visível (Google Maps, avaliações e
+    respostas do dono), navegador com sessão iniciada (Instagram, bios, destaques e legendas de
+    reel), Firecrawl (sites próprios, portais e busca). Leitura do Hound Dog apenas para consulta
+    de perfis; <strong>nada foi gravado no CRM</strong>, conforme a regra do Marcelo de 18/09/2026.</p>
+    <p>Mensagens redigidas e revisadas em 22/09/2026, seguindo o framework da Parte 3 e os fatos
+    da Parte 5. A revisão corrigiu sete defeitos recorrentes, listados na Parte 6. Próximo passo:
+    resolver as travas do painel de envio e disparar na ordem da Parte 5.</p>
+  </div>
+</section>
+
+</body>
+</html>

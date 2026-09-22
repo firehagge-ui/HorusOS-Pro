@@ -45,3 +45,4 @@ Hoje, das duas formas:
 | `recorrencia-e-pos-venda.md` | As 4 pontes pra virar mensalidade (tráfego, GMN, WhatsApp+CRM, suporte) e a régua de recompra (reativação, aniversário, avaliação, ciclo) | 12/09/2026 |
 | `operacao-agencia-e-sociedade.md` | Divisão originação × produção, IA como chão de fábrica, como não virar gargalo, o que deu certo e o que quebrou em sociedades, erros ao escalar | 12/09/2026 |
 | `objecao-ja-tem-alguem-fazendo.md` | Objeção "já tem alguém fazendo o site": testar se é migué, mandar prévia (com trava de gatekeeper), pivotar pra camada adjacente, reaproveitar estrutura sem torrar reputação | 15/09/2026 |
+| `segunda-mensagem-e-agendamento.md` | Depois do primeiro "oi": ler o "obrigado vou ajustar" como objeção de saída, descobrir volume e ticket sem interrogatório ("de cada 10..."), do primeiro contato à reunião em 3-6 trocas, preço só na call | 21/09/2026 |

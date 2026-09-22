@@ -28,6 +28,8 @@ const SAIDA = join(SITE, '_publish');
 /** Tudo que pode ir ao ar. O que não está aqui, não sobe. */
 const RAIZ_PUBLICA = [
   'index.html',
+  'portfolio.html',
+  'portfolio',
   '404.html',
   'robots.txt',
   'sitemap.xml',
@@ -110,7 +112,7 @@ async function main() {
 
   const { total, arquivos } = await pesar(SAIDA);
 
-  console.log(`\n  Hórus — publish montado em site/_publish`);
+  console.log(`\n  Horus — publish montado em site/_publish`);
   console.log(`  ${copiados}/${RAIZ_PUBLICA.length} entradas · ${arquivos} arquivos · ${kb(total)}`);
   if (pulados.length) console.log(`  ${pulados.length} assets órfãos deixados de fora: ${pulados.join(', ')}`);
   console.log(`  Fora do ar por não estarem na lista: CLAUDE.md, PLANO.md, site-fontes/, build-deploy.mjs\n`);

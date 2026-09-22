@@ -9,6 +9,8 @@ import { moverEstagio, novoLead, agendar } from '../acoes.js';
 import { PROB_ESTAGIO } from '../copiloto.js';
 
 const PREF = 'hd-esteira';
+/* Filtros avançados: tudo em branco quer dizer "não filtra por este campo". */
+const VAZIO = { estagio: '', relacao: '', temperatura: '', prioridade: '', cidade: '', categoria: '', origem: '', site: '', contato: '', anuncio: '', acao: '' };
 function lerPref() { try { return JSON.parse(localStorage.getItem(PREF) || '{}'); } catch { return {}; } }
 function gravarPref(p) { try { localStorage.setItem(PREF, JSON.stringify(p)); } catch { /* ok */ } }
 
@@ -18,6 +20,8 @@ export default async function esteira(v) {
   let modo = pref.modo || (innerWidth < 900 ? 'lista' : 'kanban');
   let filtro = pref.filtro || 'todos';
   let mostrarFechados = pref.fechados ?? true;
+  let avancado = { ...VAZIO, ...(pref.avancado || {}) };
+  let painelAberto = pref.painel ?? false;
   let busca = '';
   let ordenar = { campo: 'score', dir: -1 };
   let atencaoIds = new Set();
@@ -31,13 +35,78 @@ export default async function esteira(v) {
       <div class="busca" style="flex:1;max-width:380px">${icone('busca')}<input class="inp" data-busca placeholder="Buscar por nome, nicho, cidade, @…"></div>
       <div class="chips" data-filtros>${[['todos', 'Todos'], ['alta', 'Alta prioridade'], ['atencao', 'Precisa de atenção'], ['quentes', 'Quentes'], ['regulados', 'Regulados'], ['sem_site', 'Sem site']].map(([k, r]) => `<button class="chip ${filtro === k ? 'on' : ''}" data-f="${k}">${r}</button>`).join('')}</div>
       <span class="grow"></span>
+      <button class="btn sm ${painelAberto ? 'on' : ''}" data-abrir-filtros aria-expanded="${painelAberto}">${icone('filtro')}Filtros<span class="badge acc" data-n-filtros hidden></span></button>
       <label class="check"><input type="checkbox" data-fechados ${mostrarFechados ? 'checked' : ''}> Ganhos e perdidos</label>
       <div class="segmento" role="group" aria-label="Modo"><button data-modo="kanban" class="${modo === 'kanban' ? 'on' : ''}">${icone('quadros')}</button><button data-modo="lista" class="${modo === 'lista' ? 'on' : ''}">${icone('lista')}</button></div>
       <button class="btn icone sm" data-csv aria-label="Exportar CSV">${icone('download')}</button>
     </div>
+    <div class="card filtros-avancados mb-16" data-painel ${painelAberto ? '' : 'hidden'}></div>
     <div class="quadro-wrap" data-area></div>`;
 
   const area = $('[data-area]', v);
+  const naEsteira = () => estado.empresas.filter((e) => !e.arquivado && ['lead', 'cliente'].includes(e.relacao));
+  const ativos = () => Object.values(avancado).filter(Boolean).length;
+
+  /** Filtros avançados: cada campo é um "e"; campo em branco não filtra nada. */
+  function passaAvancado(e) {
+    const a = avancado;
+    if (a.estagio && e.estagio !== a.estagio) return false;
+    if (a.relacao && e.relacao !== a.relacao) return false;
+    if (a.temperatura && (a.temperatura === 'sem' ? Boolean(e.temperatura) : e.temperatura !== a.temperatura)) return false;
+    if (a.prioridade && e.prioridade !== a.prioridade) return false;
+    if (a.cidade && (e.cidade || '') !== a.cidade) return false;
+    if (a.categoria && (e.categoria || '') !== a.categoria) return false;
+    if (a.origem && (e.origem || '') !== a.origem) return false;
+    if (a.site && (e.site_status || 'desconhecido') !== a.site) return false;
+    if (a.contato === 'whats' && !e.whatsapp) return false;
+    if (a.contato === 'sem_whats' && e.whatsapp) return false;
+    if (a.contato === 'insta' && !e.instagram) return false;
+    if (a.contato === 'regulado' && !e.regulado) return false;
+    if (a.contato === 'nao_regulado' && e.regulado) return false;
+    if (a.anuncio === 'sim' && e.roda_anuncio !== true) return false;
+    if (a.anuncio === 'nao' && e.roda_anuncio === true) return false;
+    if (a.acao === 'sem' && e.proxima_acao) return false;
+    if (a.acao === 'com' && !e.proxima_acao) return false;
+    if (a.acao === 'vencida' && !(e.proxima_acao_em && new Date(e.proxima_acao_em) < new Date())) return false;
+    return true;
+  }
+
+  function desenharPainel() {
+    const painel = $('[data-painel]', v);
+    const distintos = (c) => [...new Set(naEsteira().map((e) => String(e[c] || '').trim()).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR')).map((x) => [x, x]);
+    const campo = (chave, rotulo, opcoes) => `<div class="campo"><label for="fa-${chave}">${rotulo}</label>
+      <select class="sel sm" id="fa-${chave}" data-fa="${chave}"><option value="">Qualquer</option>
+        ${opcoes.map(([valor, texto]) => `<option value="${esc(valor)}"${avancado[chave] === valor ? ' selected' : ''}>${esc(texto)}</option>`).join('')}</select></div>`;
+    painel.innerHTML = `<div class="grade-filtros">
+      ${campo('estagio', 'Estágio', estado.estagios.filter((x) => x.funil === 'prospeccao').map((x) => [x.id, x.nome]))}
+      ${campo('relacao', 'Relação', [['lead', 'Lead'], ['cliente', 'Cliente']])}
+      ${campo('temperatura', 'Temperatura', [['quente', 'Quente'], ['morno', 'Morno'], ['frio', 'Frio'], ['sem', 'Sem temperatura']])}
+      ${campo('prioridade', 'Prioridade', [['alta', 'Alta'], ['media', 'Média'], ['baixa', 'Baixa']])}
+      ${campo('cidade', 'Cidade', distintos('cidade'))}
+      ${campo('categoria', 'Nicho', distintos('categoria'))}
+      ${campo('origem', 'Origem', distintos('origem'))}
+      ${campo('site', 'Site', [['sem', 'Sem site'], ['fora_do_ar', 'Fora do ar'], ['ruim', 'Fraco'], ['ok', 'OK'], ['desconhecido', 'Não conferido']])}
+      ${campo('contato', 'Contato e conselho', [['whats', 'Com WhatsApp'], ['sem_whats', 'Sem WhatsApp'], ['insta', 'Com Instagram'], ['regulado', 'Setor regulado'], ['nao_regulado', 'Fora de conselho']])}
+      ${campo('anuncio', 'Anúncio', [['sim', 'Roda anúncio'], ['nao', 'Não roda (ou não conferido)']])}
+      ${campo('acao', 'Próxima ação', [['vencida', 'Vencida'], ['sem', 'Sem próxima ação'], ['com', 'Com ação marcada']])}
+    </div>
+    <div class="row mt-8"><span class="dim" style="font-size:13px" data-resumo-filtros></span><span class="grow"></span>
+      <button class="btn sm fantasma" data-limpar-filtros ${ativos() ? '' : 'disabled'}>${icone('x')}Limpar filtros</button></div>`;
+    $$('[data-fa]', painel).forEach((s) => (s.onchange = () => {
+      avancado = { ...avancado, [s.dataset.fa]: s.value };
+      gravarPref({ ...lerPref(), avancado });
+      desenharPainel(); desenhar();
+    }));
+    $('[data-limpar-filtros]', painel).onclick = () => { avancado = { ...VAZIO }; gravarPref({ ...lerPref(), avancado }); desenharPainel(); desenhar(); };
+  }
+
+  function atualizarContagem() {
+    const n = ativos();
+    const badge = $('[data-n-filtros]', v);
+    if (badge) { badge.textContent = n; badge.hidden = !n; }
+    const resumo = $('[data-resumo-filtros]', v);
+    if (resumo) resumo.textContent = n ? `${visiveis().length} de ${naEsteira().length} negócios passam nos filtros` : `${naEsteira().length} negócios na esteira`;
+  }
 
   function visiveis() {
     const q = busca.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
@@ -49,6 +118,7 @@ export default async function esteira(v) {
       if (filtro === 'quentes' && e.temperatura !== 'quente') return false;
       if (filtro === 'regulados' && !e.regulado) return false;
       if (filtro === 'sem_site' && !['sem', 'fora_do_ar'].includes(e.site_status)) return false;
+      if (!passaAvancado(e)) return false;
       if (q && !`${e.nome} ${e.categoria} ${e.cidade} ${e.bairro} ${e.instagram} ${e.decisor} ${(e.tags || []).join(' ')}`.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().includes(q)) return false;
       return true;
     });
@@ -121,7 +191,7 @@ export default async function esteira(v) {
     $$('[data-ord]', area).forEach((t) => (t.onclick = () => { ordenar = { campo: t.dataset.ord, dir: ordenar.campo === t.dataset.ord ? -ordenar.dir : -1 }; desenharLista(); }));
   }
 
-  function desenhar() { desenharKpis(); if (modo === 'kanban') desenharKanban(); else desenharLista(); }
+  function desenhar() { desenharKpis(); if (modo === 'kanban') desenharKanban(); else desenharLista(); atualizarContagem(); }
 
   function ligarArrasto() {
     let arrastando = null;
@@ -163,6 +233,14 @@ export default async function esteira(v) {
   inpBusca.oninput = debounce(() => { busca = inpBusca.value; desenhar(); }, 200);
   $('[data-filtros]', v).onclick = (ev) => { const b = ev.target.closest('[data-f]'); if (!b) return; filtro = b.dataset.f; $$('[data-f]', v).forEach((x) => x.classList.toggle('on', x === b)); gravarPref({ ...lerPref(), filtro }); desenhar(); };
   $('[data-fechados]', v).onchange = (ev) => { mostrarFechados = ev.target.checked; gravarPref({ ...lerPref(), fechados: mostrarFechados }); desenhar(); };
+  $('[data-abrir-filtros]', v).onclick = (ev) => {
+    painelAberto = !painelAberto;
+    $('[data-painel]', v).hidden = !painelAberto;
+    ev.currentTarget.classList.toggle('on', painelAberto);
+    ev.currentTarget.setAttribute('aria-expanded', String(painelAberto));
+    gravarPref({ ...lerPref(), painel: painelAberto });
+    if (painelAberto) { desenharPainel(); atualizarContagem(); }
+  };
   $$('[data-modo]', v).forEach((b) => (b.onclick = () => { modo = b.dataset.modo; $$('[data-modo]', v).forEach((x) => x.classList.toggle('on', x === b)); gravarPref({ ...lerPref(), modo }); desenhar(); }));
   $('[data-csv]', v).onclick = () => baixarArquivo('esteira-hound-dog.csv', paraCSV(visiveis(), [
     { campo: 'nome' }, { rotulo: 'estagio', valor: (e) => achaEstagio(e.estagio).nome }, { campo: 'categoria' }, { campo: 'bairro' }, { campo: 'cidade' }, { campo: 'decisor' },
@@ -175,9 +253,10 @@ export default async function esteira(v) {
     atencaoIds = new Set((data || []).map((x) => x.id));
   }
   await carregarAtencao();
+  desenharPainel();
   desenhar();
 
-  const redesenhar = debounce(async () => { await carregarAtencao(); desenhar(); }, 400);
+  const redesenhar = debounce(async () => { await carregarAtencao(); desenharPainel(); desenhar(); }, 400);
   const tiras = [ouvir('empresas', redesenhar), ouvir('atividades', debounce(async () => { await carregarAtencao(); desenharKpis(); }, 1500))];
   return () => tiras.forEach((f) => f());
 }

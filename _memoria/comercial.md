@@ -72,6 +72,91 @@ grupo depois só para execução
 
 ---
 
+## O custo da inação: como quantificar sem inventar (21/09/2026)
+
+> Pedido do Marcelo: todo documento de **Prospecção do dia** passa a trazer, por lead, o que
+> o negócio está perdendo hoje por não resolver. Sem isso a ficha descreve um problema; com
+> isso ela descreve um **prejuízo em curso**. A trava: `integridade.md` vence a vontade de
+> impressionar com número.
+
+**A regra de ouro: o número é do cliente, nunca nosso.** A Horus monta a conta e mostra os
+termos; quem preenche as variáveis é ele, de preferência falando em voz alta. Dizer "você
+perde R$ 8 mil por mês" é invenção com cara de diagnóstico, e a primeira pergunta dele
+("de onde você tirou isso?") derruba a reunião inteira. Dizer "se sua revisão média é X e
+dois orçamentos por mês vão para o vizinho, a conta é 2X; qual é o seu X?" é a mesma força,
+sem mentira.
+
+**As três moedas.** Nem toda perda é dinheiro direto, e as outras duas costumam doer mais
+rápido:
+
+1. **Dinheiro:** orçamento que foi para o concorrente, comissão de intermediário, ferramenta
+   paga que não entrega (site que o Google não mostra, plano de cardápio que ninguém acha).
+2. **Tempo:** hora de dono e de atendente gasta em trabalho que um formulário resolveria;
+   visita de lead que nunca ia fechar.
+3. **Exposição e reputação:** avaliação negativa sem resposta, risco de conselho profissional
+   publicado, nome que no Google leva à empresa errada. Aqui o custo não se divide por mês:
+   é um evento que estoura de uma vez.
+
+**A conta aberta.** Toda estimativa neste documento aparece com a fórmula à vista, a fonte de
+cada termo verificado e a variável que falta marcada como `[FALTA: ...]`. Três tipos de termo,
+e eles não se misturam:
+
+- **Verificado:** veio de fonte pública checada (nota e volume do Google, número de seguidores,
+  data da última avaliação). Pode virar aritmética.
+- **Do cliente:** ticket médio, orçamentos por mês, taxa do intermediário, quanto paga na
+  ferramenta. Nunca se estima. Vira pergunta.
+- **Leitura da casa:** a interpretação (o que o padrão sugere). Entra como leitura declarada,
+  com `📊 [ESTIMATIVA]` quando tiver número, e é sempre a primeira coisa que o cliente pode
+  contestar sem que a conta caia.
+
+Aritmética que se pode fazer só com dado público, e que vale ouro na conversa: **quantas
+avaliações cinco estrelas faltam para a nota subir**. Com soma ≈ nota × volume, resolver
+`(soma + 5x) / (volume + x) ≥ nota alvo` dá o número de avaliações que a rotina precisa
+produzir. Ressalva obrigatória: a nota exibida é arredondada, então o resultado é aproximado,
+e isso se diz.
+
+**Perguntas que fazem o cliente ver o tamanho sozinho** (fase de consequência do Miner, ver os
+três movimentos acima). Ordem: situação, depois consequência, depois projeção no tempo.
+
+- "Quantas pessoas te procuram por mês e você não sabe de onde vieram?"
+- "Quanto vale, em média, um [serviço/projeto] fechado?"
+- "Dessas que chegam, quantas você perde antes de responder, e para quem elas vão?"
+- "Quanto tempo teu (ou da tua equipe) vai embora por semana só organizando pedido?"
+- "Se daqui a doze meses estiver exatamente como está hoje, isso é problema ou dá pra levar?"
+- Para o que já é perda visível: "isso já aconteceu quantas vezes esse ano?"
+
+A que fecha: **"o que você já tentou pra resolver isso?"** A resposta separa quem tem dor de
+quem tem incômodo, e o que ele já gastou tentando é o piso do valor que ele atribui ao
+problema.
+
+**"Seria bom ter" x "está me custando".** O teste é um só: *tem vítima, tem data, tem valor?*
+Se ninguém perde nada identificável, se não aconteceu recentemente e se não dá pra amarrar a
+um ticket, é vaidade, e vaidade não paga fatura nem sustenta a Fase 2. Sinal claro de dor
+real: o cliente já improvisou uma gambiarra (planilha, caderno, dois números de WhatsApp,
+Linktree grátis). **Gambiarra é confissão de dor.** Onde não houver nenhuma, tratar como
+não-fit e sair (ver "Antes da reunião", item 2).
+
+**Valor maior que o investimento, dito com honestidade.** A ponte não é "o site se paga",
+é aritmética de recuperação: *quantos [serviços] a mais por mês empatam o investimento?* Quando
+o ticket é alto (cozinha planejada, casamento, revisão de importado), **um único negócio
+recuperado costuma pagar a Fase 1 inteira**, e essa frase não precisa de número inflado para
+funcionar. Nunca prometer resultado, nunca citar percentual de melhoria que a Horus não mediu,
+nunca usar benchmark das mentes como meta (são americanos e de high ticket).
+
+**Urgência honesta, e só ela.** Serve o que tem data real e conferível: prêmio com prazo,
+sazonalidade (Dia das Mães para floricultura), obrigação legal periódica (laudo predial),
+avaliação negativa fresca no topo da ficha, concorrente que ultrapassou. Não serve, e a casa
+não usa: prazo inventado, "vaga limitada", desconto por assinar hoje (as mentes vetam, ver
+abaixo), medo fabricado. A régua: **se a urgência some quando o cliente pergunta "por quê?",
+ela era apelação.**
+
+**Compliance trava a conta.** Em cliente regulado (CFO, CFP, CREFITO), não se quantifica
+paciente perdido, não se projeta faturamento clínico e não se usa medo de saúde como alavanca.
+O custo lá se descreve por outro eixo: **risco perante o conselho** e ativo desperdiçado. Vale
+igual na abordagem, não só na peça publicada.
+
+---
+
 ## A tentação do preço baixo (as 4 mentes vetam)
 
 "Se eu tivesse fechado barato já era grana no bolso" é a ideia mais perigosa, e todas

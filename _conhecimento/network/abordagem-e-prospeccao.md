@@ -1,7 +1,7 @@
 # Card — Abordagem e prospecção de negócio local
 
 > **Fonte:** 4 grupos de network do Marcelo, via Q&A do NotebookLM · **primeira gravação:**
-> 12/09/2026 · **atualizado 18/09/2026** (cold call dos 3 "sims", migração pro áudio, nota sabor-site-pronto vs. Mullsanni, auditoria do Spark, trava de honestidade do gancho "site caiu", texto-first no lugar de áudio obrigatório, regra de tom humano).
+> 12/09/2026 · **atualizado 18/09/2026** (cold call dos 3 "sims", migração pro áudio, nota sabor-site-pronto vs. Mullsanni, auditoria do Spark, trava de honestidade do gancho "site caiu", texto-first no lugar de áudio obrigatório, regra de tom humano) · **atualizado 22/09/2026** (anatomia da mensagem em 5 partes e as duas regras de validação, promovidas do dossiê de prospecção de 20/09).
 > **Confiança: ALTA** para os ganchos e modelos de mensagem (prática testada de agências e
 > devs brasileiros) · **MÉDIA e calibrar** para números de ferramenta (variam por conta/uso).
 > ⚠️ Referência de mercado, **não meta e não promessa**. Nada aqui vai para peça de cliente.
@@ -121,6 +121,75 @@ O padrão é **texto** (é onde o Marcelo tem mais controle e é o mais seguro n
 confortável** — áudio inseguro vende pior que texto seguro. **Nunca áudio no primeiro contato
 frio.** ⚠️ Calibração de 18/09: a versão anterior desta seção mandava migrar pro áudio, e isso
 virou contradição com a preferência real do Marcelo (texto). O áudio deixou de ser default.
+
+## 8. A anatomia da mensagem (doutrina da casa, travada 21/09/2026)
+
+> Origem: a revisão da prospecção de 20/09. A v1 escondia o serviço de propósito, o Gemini
+> Spark dizia o que fazia mas inventava fato. O framework junta o lastro da v1 com a clareza do
+> Gemini. Detalhe completo em `saidas/prospeccao-2026-09-20/dossie-prospeccao-v2.html` (Partes 2 e 3).
+
+**Dois passos, sempre.** Abertura curta (só a saudação com o nome, quando existir), manda e
+espera a resposta. Só depois o corpo. Abrir com "oi" pelado de número desconhecido tem cara de
+golpe, então a saudação é curta mas nunca isolada de propósito no vazio.
+
+**O corpo carrega cinco partes, nesta ordem:**
+
+1. **Como cheguei.** Uma linha, verdadeira, em 1ª pessoa. Nunca pretexto falsificável.
+2. **O que eu vi que ele não vê.** Fato exclusivo, verificável por ele em segundos, sobre o
+   negócio dele e de preferência sobre o caminho que o cliente dele percorre, não sobre um campo
+   de ficha.
+3. **Por que aquilo custa.** Ligado ao ticket dele, sem número que a casa não tenha. A variável
+   que falta vira pergunta (o número é do cliente, nunca nosso).
+4. **O que eu faria.** Uma frase concreta, com as partes nomeadas. O dono termina a leitura
+   **sabendo o que a Hórus faz** — este é o ponto onde a v1 falhava e o Gemini ganhava.
+5. **Um passo pequeno.** Pergunta que só ele sabe responder, ou convite com duas opções de
+   horário, conforme o degrau da conversa.
+
+**Três regras que sustentam a anatomia:**
+
+- **Guardar o *como*, nunca o *o quê*.** Diagnóstico completo de graça é ruim; esconder o que se
+  faz é pior. Foi a correção mais cara: dizer o serviço não é entregar a solução.
+- **Tese única por lead.** Se duas mensagens puderem trocar só o nome e continuar valendo, a
+  tese está rasa. A do Gemini, tirando nomes próprios, serve pra qualquer empresa do segmento; a
+  da casa depende de um fato que só existe naquele lead.
+- **O teste final antes de mandar:** qual é a resposta mais fácil que esta mensagem permite? Se
+  for "obrigado" ou o silêncio, a mensagem falhou, por melhor que esteja escrita. A pergunta
+  final precisa ser específica e de resposta que só o dono tem.
+
+**O que se importou do Gemini:** a ordem (chegar ao ponto rápido) e a solução nomeada. **O que
+não se importou:** dor de segmento no lugar da dor da empresa, bajulação ("nível técnico
+impecável"), CTA passivo sem próximo passo, e afirmação sem fonte.
+
+## 9. As duas regras de validação antes de escrever (travadas 21/09/2026)
+
+> Origem: quatro teses caíram na reverificação da prospecção de 20/09. Duas regras impedem a
+> repetição, e as duas nasceram de erro real da casa, não de teoria.
+
+- **Regra 1 · Afirmação de ausência exige varredura completa.** Nunca escrever que o lead "não
+  tem", "não mostra" ou "não fala sobre" algo sem ter aberto **todos** os canais: site com todas
+  as páginas internas, Instagram com bio expandida e destaques abertos, Facebook, Threads,
+  portais de terceiros do setor, Linktree, e o Google com a aba Sobre. Varredura incompleta →
+  a frase vira pergunta, nunca afirmação. Origem: a v1 disse que o site da Danyfisio "só fala de
+  fisioterapia" (fala dos quatro serviços) e que a Prático "não mostra um projeto" (141 posts,
+  portfólio por ambiente). Os dois erros o dono confere em dez segundos.
+- **Regra 2 · Avaliação negativa só entra depois de ler a resposta do dono.** Antes de usar
+  qualquer crítica como argumento: ler a resposta do dono logo abaixo e identificar **quem
+  escreveu**. Cliente, vizinho, fornecedor e concorrente produzem críticas parecidas e
+  significados opostos. Origem: Casa Verona, onde duas das três críticas recentes eram de
+  **vizinhos** e a dona já respondera em público, com base legal. Chegar com esse argumento é
+  contar a ela uma história que ela já desmentiu por escrito.
+
+**As três classes de informação** (o filtro que decide o que entra na mensagem):
+
+- **Fato** — fonte nomeada e data, conferível pelo dono em segundos. Entra como afirmação.
+- **Hipótese** — raciocínio comercial plausível, sem fonte. Entra **obrigatoriamente com "se"**
+  ("se hoje a maior parte dos orçamentos chega por DM..."), nunca como afirmação.
+- **Não verificado** — não deu pra checar, ou a fonte é print de outra ferramenta. **Não entra.**
+
+> Nota de método (pra não repetir perda de tempo): o Google Maps não entrega o texto das
+> respostas do dono por leitura simples (o botão "Mais" precisa de clique real, e clique
+> programático não funciona) — o que funciona é **Playwright em janela visível, entrando pelo CID
+> do lugar**. O Firecrawl não lê Instagram nem Google Maps; pra esses dois, navegador com sessão.
 
 ## Nota da casa (calibração)
 

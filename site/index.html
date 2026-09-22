@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hórus Agência | Nós construímos máquinas, sistemas e marcas</title>
+<title>Horus Agência | Nós construímos máquinas, sistemas e marcas</title>
 <meta name="description" content="Agência de marketing digital com IA. Sites, desenvolvimento web, automação, CRM, Google Meu Negócio e conteúdo. Engenharia visual, inteligência artificial e nada publicado por acaso.">
 
 <!-- 01/09/2026 — o site subiu na Netlify (agenciahorus.netlify.app) como
@@ -19,15 +19,15 @@
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://agenciahorus.netlify.app/">
-<meta property="og:site_name" content="Hórus Agência">
-<meta property="og:title" content="Hórus Agência | Nós construímos máquinas, sistemas e marcas">
+<meta property="og:site_name" content="Horus Agência">
+<meta property="og:title" content="Horus Agência | Nós construímos máquinas, sistemas e marcas">
 <meta property="og:description" content="Sites, desenvolvimento web, automação com IA, CRM, Google Meu Negócio e conteúdo. Engenharia visual, inteligência artificial e nada publicado por acaso.">
 <!-- og:image PRECISA ser absoluta: o WhatsApp e o Facebook buscam a imagem
      fora do contexto da página, e caminho relativo simplesmente não resolve. -->
 <meta property="og:image" content="https://agenciahorus.netlify.app/assets/compartilhar.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Hórus Agência — presença digital para negócios ambiciosos">
+<meta property="og:image:alt" content="Horus Agência — presença digital para negócios ambiciosos">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -37,12 +37,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css?v=4">
-<style>
-  .ps-icon { width: 64px; height: 64px; border: 1px solid rgba(38,95,148,.64); border-radius: 14px; background: rgba(2,8,15,.94); box-shadow: inset 0 0 15px rgba(15,70,130,.16), 0 0 8px rgba(21,111,226,.18); color: #65adff; }
-  .ps-icon svg { width: 34px; height: 34px; stroke-width: 1.7; filter: drop-shadow(0 0 3px rgba(71,163,255,.34)); }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=5">
 </head>
 <body>
 
@@ -70,14 +66,14 @@
      decisão, não como item de menu. -->
 <!-- Cabeçalho refeito em 26/08/2026 (print 1 do Marcelo): faixa de largura total,
      SEM o painel de vidro flutuante e SEM o símbolo do olho — só o nome. Três zonas:
-     HÓRUS à esquerda, nav centralizada em caixa alta sem fundo, botão BRANCO à
+     HORUS à esquerda, nav centralizada em caixa alta sem fundo, botão BRANCO à
      direita. Ao rolar para baixo a nav some; título e botão ficam sempre. Volta ao
      rolar para cima. -->
 <header class="topo" id="topo">
   <div class="topo-linha">
     <a class="marca" href="#topo">
       <img class="marca-logo" src="assets/simbolo.webp" alt="" aria-hidden="true" width="30" height="30">
-      <span class="nome">HÓRUS</span>
+      <span class="nome">HORUS</span>
     </a>
     <nav class="menu" id="menu" aria-label="Principal">
       <a href="#sobre">Sobre</a>
@@ -143,172 +139,318 @@
           </div>
         </div>
 
-        <!-- Logo da Hórus em Gaussian Splat 3D. Carrega depois que a página
-             termina de carregar (assets/hero-splat.js); some sozinho sem
-             WebGL2 ou em conexão de dados limitada. -->
-        <div id="hero-splat" class="hero-splat" aria-hidden="true"></div>
+        <!-- Logo da Horus em Gaussian Splat 3D com Arco de Luz Platinado & Shader.
+             O arco é ancorado concentricamente ao Olho 3D e flutua em sincronia com o splat.
+             Efeito platinado ultra-realista com halo volumétrico, núcleo especular puro (#ffffff),
+             anéis orbitais finos e micro-estrelas astronômicas. -->
+        <div id="hero-splat" class="hero-splat" aria-hidden="true">
+          <svg class="hero-arco" viewBox="0 0 620 620" fill="none" aria-hidden="true">
+            <defs>
+              <!-- Gradiente do Núcleo Platinado Ultra-Nítido (Começa no azul espacial, atinge platina pura no quadrante superior direito 68-45 deg e suaviza) -->
+              <linearGradient id="arcoPlatinadoCore" x1="100" y1="100" x2="700" y2="520" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#1d4ed8" stop-opacity="0" />
+                <stop offset="12%" stop-color="#1d4ed8" stop-opacity="0.3" />
+                <stop offset="18%" stop-color="#2563eb" stop-opacity="0.75" />
+                <stop offset="26%" stop-color="#38bdf8" stop-opacity="0.9" />
+                <stop offset="34%" stop-color="#93c5fd" stop-opacity="1" />
+                <stop offset="40%" stop-color="#e0f2fe" stop-opacity="1" />
+                <!-- PICO MÁXIMO DE PLATINA PURA (Specular Highlight) -->
+                <stop offset="46%" stop-color="#ffffff" stop-opacity="1" />
+                <stop offset="56%" stop-color="#ffffff" stop-opacity="1" />
+                <stop offset="62%" stop-color="#f0f9ff" stop-opacity="1" />
+                <stop offset="68%" stop-color="#c7e8ff" stop-opacity="0.95" />
+                <stop offset="76%" stop-color="#60a5fa" stop-opacity="0.85" />
+                <stop offset="85%" stop-color="#2563eb" stop-opacity="0.55" />
+                <stop offset="93%" stop-color="#1d4ed8" stop-opacity="0.25" />
+                <stop offset="100%" stop-color="#1e3a8a" stop-opacity="0" />
+              </linearGradient>
 
-        <!-- Arco de luz junto ao olho, no canto superior direito. FIXO (não
-             flutua com o símbolo): fica ancorado na coluna, não dentro do splat.
-             O brilho segue a PRÓPRIA linha (uma cópia borrada do mesmo traço),
-             sem bola solta. Tudo azul: apaga nas duas pontas (opacidade e cor) e
-             acende no meio, como na referência. -->
-        <svg class="hero-arco" viewBox="0 0 460 400" fill="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="arcoLinha" x1="40" y1="70" x2="420" y2="320" gradientUnits="userSpaceOnUse">
-              <stop offset="0" stop-color="#4b93e6" stop-opacity="0"></stop>
-              <stop offset="0.5" stop-color="#4b93e6" stop-opacity="1"></stop>
-              <stop offset="1" stop-color="#4b93e6" stop-opacity="0"></stop>
-            </linearGradient>
-            <!-- glow apertado: só existe perto do pico da cor (offset 0.5), não
-                 no arco inteiro. Fora dessa faixa estreita, opacidade zero. -->
-            <linearGradient id="arcoGlow" x1="40" y1="70" x2="420" y2="320" gradientUnits="userSpaceOnUse">
-              <stop offset="0" stop-color="#4b93e6" stop-opacity="0"></stop>
-              <stop offset="0.42" stop-color="#4b93e6" stop-opacity="0"></stop>
-              <stop offset="0.5" stop-color="#4b93e6" stop-opacity="0.7"></stop>
-              <stop offset="0.58" stop-color="#4b93e6" stop-opacity="0"></stop>
-              <stop offset="1" stop-color="#4b93e6" stop-opacity="0"></stop>
-            </linearGradient>
-            <filter id="arcoBlurLargo" x="-60%" y="-60%" width="220%" height="220%">
-              <feGaussianBlur stdDeviation="7"></feGaussianBlur>
-            </filter>
-            <filter id="arcoBlurFino" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="4"></feGaussianBlur>
-            </filter>
-          </defs>
-          <!-- halo largo: azul, só na faixa onde a cor é mais forte -->
-          <path d="M40 70 A 360 360 0 0 1 420 320" stroke="url(#arcoGlow)" stroke-width="12" stroke-linecap="round" filter="url(#arcoBlurLargo)"></path>
-          <!-- brilho médio: mesma faixa, mais nítido -->
-          <path d="M40 70 A 360 360 0 0 1 420 320" stroke="url(#arcoGlow)" stroke-width="6" stroke-linecap="round" filter="url(#arcoBlurFino)"></path>
-          <!-- núcleo nítido, azul -->
-          <path d="M40 70 A 360 360 0 0 1 420 320" stroke="url(#arcoLinha)" stroke-width="2.2" stroke-linecap="round"></path>
-        </svg>
+              <!-- Gradiente do Halo Platinado Especular Intermediário (Cyan / Safira Glow) -->
+              <linearGradient id="arcoPlatinadoSpecular" x1="100" y1="100" x2="700" y2="520" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#1e40af" stop-opacity="0" />
+                <stop offset="14%" stop-color="#2563eb" stop-opacity="0.3" />
+                <stop offset="24%" stop-color="#38bdf8" stop-opacity="0.8" />
+                <stop offset="38%" stop-color="#bae6fd" stop-opacity="1" />
+                <stop offset="46%" stop-color="#ffffff" stop-opacity="1" />
+                <stop offset="56%" stop-color="#ffffff" stop-opacity="1" />
+                <stop offset="66%" stop-color="#bae6fd" stop-opacity="1" />
+                <stop offset="78%" stop-color="#38bdf8" stop-opacity="0.85" />
+                <stop offset="88%" stop-color="#2563eb" stop-opacity="0.4" />
+                <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0" />
+              </linearGradient>
+
+              <!-- Gradiente da Aura Volumétrica Shader (Emissão Atmosférica Profunda) -->
+              <linearGradient id="arcoShaderAura" x1="100" y1="100" x2="700" y2="520" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#1d4ed8" stop-opacity="0" />
+                <stop offset="16%" stop-color="#2563eb" stop-opacity="0.2" />
+                <stop offset="32%" stop-color="#3b82f6" stop-opacity="0.6" />
+                <stop offset="50%" stop-color="#60a5fa" stop-opacity="0.9" />
+                <stop offset="62%" stop-color="#3b82f6" stop-opacity="0.75" />
+                <stop offset="80%" stop-color="#2563eb" stop-opacity="0.4" />
+                <stop offset="100%" stop-color="#1e3a8a" stop-opacity="0" />
+              </linearGradient>
+
+              <!-- Filtros de Shader Bloom -->
+              <filter id="bloomAura" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="18" result="blur" />
+              </filter>
+              <filter id="bloomMedio" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="6.5" result="blur" />
+              </filter>
+              <filter id="bloomFino" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="2.2" result="blur" />
+              </filter>
+            </defs>
+
+            <!-- Arco Luminoso Shader & Platinado Puro -->
+            <!-- Camada 1: Halo Difuso Atmosférico (Emissão Shader) -->
+            <path d="M 17 172 A 415 415 0 0 1 695 548"
+                  stroke="url(#arcoShaderAura)" stroke-width="32" stroke-linecap="round"
+                  filter="url(#bloomAura)" opacity="0.6" />
+
+            <!-- Camada 2: Brilho Especular Intermediário (Cyan / Safira Glow) -->
+            <path d="M 17 172 A 415 415 0 0 1 695 548"
+                  stroke="url(#arcoPlatinadoSpecular)" stroke-width="13" stroke-linecap="round"
+                  filter="url(#bloomMedio)" opacity="0.9" />
+
+            <!-- Camada 3: Feixe Especular Platinado (Soft Platinum Glow) -->
+            <path d="M 17 172 A 415 415 0 0 1 695 548"
+                  stroke="url(#arcoPlatinadoCore)" stroke-width="5.5" stroke-linecap="round"
+                  filter="url(#bloomFino)" opacity="0.98" />
+
+            <!-- Camada 4: Núcleo Platinado Ultra-Nítido (Pure Specular Platinum Center) -->
+            <path d="M 17 172 A 415 415 0 0 1 695 548"
+                  stroke="url(#arcoPlatinadoCore)" stroke-width="2.6" stroke-linecap="round" />
+          </svg>
+        </div>
       </div>
     </div>
 
-    <!-- ===== Seção 1 (reescrita 31/08/2026, 2ª rodada · proporções do print 1) ==
-         Kicker + headline de duas cores no topo, e um bento de três cards, cada um
-         com ARTE ANIMADA à esquerda e mais texto à direita (proporcional ao print):
-         cubo azul = estratégia, gráfico = tecnologia (card alto, coluna 2), e um
-         card "casa" (órbita) que recebeu o texto do 'A Hórus combina...' com título
-         novo. Sem fundo próprio: herda o vídeo/tint do hero acima. -->
-    <div class="valores">
+    <!-- ===== Seção 1 (atualizada 21/09/2026 · novo layout + copy print 1/2) ===== -->
+    <div class="valores s1-secao" id="manifesto">
+      <!-- Fundo de ondas / wireframe mesh ondulado (conforme prints 1 & 2) -->
+      <canvas class="s1-waves-canvas" aria-hidden="true"></canvas>
+
       <div class="envelope">
-        <div class="s1-head">
-          <p class="s1-kicker rev">O digital mudou. Sua empresa também deveria mudar.</p>
-          <h2 class="s1-titulo rev">Soluções pensadas para o negócio.<br><span class="s1-am">Construídas para gerar resultados.</span></h2>
-        </div>
+        <div class="s1-bloco">
+          <!-- Linha vertical guia à esquerda (print 2) com motion ao entrar -->
+          <div class="s1-linha-guia" aria-hidden="true"></div>
 
-        <div class="s1-bento">
-          <!-- Estratégia · cubo azul animado à esquerda -->
-          <article class="s1-card rev">
-            <div class="s1-art s1-art--cubo" aria-hidden="true">
-              <div class="cubo">
-                <span class="cubo-l cubo-l3"></span>
-                <span class="cubo-l cubo-l2"></span>
-                <span class="cubo-l cubo-l1"></span>
-              </div>
-            </div>
-            <div class="s1-txt">
-              <h3>Tecnologia<br>que multiplica</h3>
-              <span class="s1-linha" aria-hidden="true"></span>
-              <p>Utilizamos IA, automações e as melhores ferramentas do mercado para escalar processos, otimizar resultados e economizar o seu tempo.</p>
-              <p>Utilizamos IA, automações e as melhores ferramentas do mercado para escalar processos, otimizar resultados e economizar o seu tempo. Menos trabalho manual e mais capacidade de entrega para o seu negócio crescer.</p>
-            </div>
-          </article>
+          <div class="s1-conteudo">
+            <h2 class="s1-titulo">
+              <span class="s1-linha"><span class="s1-palavra">O digital mudou.</span></span>
+              <span class="s1-linha"><span class="s1-palavra">Seu negócio</span></span>
+              <span class="s1-linha"><span class="s1-palavra s1-azul">também deveria mudar.</span></span>
+            </h2>
 
-          <!-- Tecnologia · gráfico animado, card mais alto (coluna 2) -->
-          <article class="s1-card s1-card--alto rev">
-            <div class="s1-art s1-art--grafico" aria-hidden="true">
-              <img class="s1-grafico-imagem" src="assets/servicos/crescimento-tecnologia.png" alt="" loading="lazy" decoding="async">
-            </div>
-            <div class="s1-txt">
-              <h3>Estratégia<br>com propósito</h3>
-              <span class="s1-linha" aria-hidden="true"></span>
-              <p>Entendemos o seu mercado, seu público e seus objetivos para criar soluções que realmente fazem sentido para o seu negócio.</p>
-              <p>Entendemos o seu mercado, seu público e seus objetivos para criar soluções que realmente fazem sentido para o seu negócio. Cada decisão parte de um objetivo claro, nunca de achismo.</p>
-            </div>
-          </article>
-
-          <!-- Casa · imagem da seção 1 e texto institucional -->
-          <article class="s1-card rev">
-            <div class="s1-art s1-art--orbita" aria-hidden="true">
-              <img class="s1-grafico-imagem s1-grafico-imagem--casa"
-                   src="assets/Grafico seção 1.png" alt="" loading="lazy" decoding="async">
-            </div>
-            <div class="s1-txt">
-              <h3>Resultados<br>que importam</h3>
-              <span class="s1-linha" aria-hidden="true"></span>
-              <p>Mais tráfego, mais clientes, mais vendas. Nosso foco é gerar impacto real no seu negócio, com métricas claras e crescimento sustentável.</p>
-              <p>Mais tráfego, mais clientes, mais vendas. Nosso foco é gerar impacto real no seu negócio, com métricas claras e crescimento sustentável. Você acompanha a evolução por números, não por promessas.</p>
-            </div>
-          </article>
+            <p class="s1-descricao">
+              A Horus une estratégia, marketing e tecnologia para transformar negócios em operações digitais mais inteligentes. Não entregamos apenas ferramentas ou serviços isolados. Construímos estruturas que atraem, convertem, automatizam e fazem o seu negócio crescer.
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ================= NOSSO STACK · duas fileiras opostas (31/08/2026) ========
-       Prova de competência, NÃO "integrações" (a Hórus não é app). Duas fileiras:
-       a de cima corre da direita para a esquerda, a de baixo ao contrário. Cada
-       logo é o ícone COLORIDO oficial (SVG Logos, gilbarbara/logos, em
-       `assets/stack/`) dentro de uma CAIXA DE VIDRO, com um brilho de cor ao
-       fundo (print n8n). Logos pretos (github/notion/vercel/openai/framer) levam
-       `tile-i--inv` para clarear no tile escuro. Cada fileira é o conjunto
-       DUPLICADO, para o laço ser contínuo. ⚠️ Uso nominativo ("ferramentas que
-       usamos"), sem sugerir parceria oficial. -->
-  <section class="stack" aria-labelledby="stack-tit">
-    <img class="stack-logo" src="assets/simbolo-grande.png" alt="" aria-hidden="true">
-    <div class="stack-head">
-      <p class="stack-eyebrow" id="stack-tit">FERRAMENTAS</p>
-      <h2 class="stack-titulo">As ferramentas certas<br>para <span class="destaque-azul">grandes resultados.</span></h2>
-      <p class="stack-desc">Utilizamos as melhores ferramentas do mercado para<br>planejar, criar, automatizar e escalar o seu negócio.</p>
-    </div>
+  <!-- ================= SEÇÃO 2 · NOSSO STACK (atualizada 22/09/2026 · print 1) ================= -->
+  <section class="stk-secao" id="stack" aria-labelledby="stk-tit">
+    <div class="envelope">
+      <!-- Topo: 02 —— NOSSO STACK -->
+      <div class="stk-topo-linha">
+        <span class="stk-numero">02</span>
+        <span class="stk-traco" aria-hidden="true"></span>
+        <span class="stk-tag" id="stk-tit">NOSSO STACK</span>
+      </div>
 
-    <div class="stack-mask">
-        <div class="stack-row stack-row--a">
-          <!-- conjunto 1 (lido por leitor de tela) -->
-          <span class="tile"><img class="tile-i" src="assets/stack/figma.svg" alt="Figma" loading="lazy"></span>
-          <span class="tile"><img class="tile-i tile-i--inv" src="assets/stack/framer.svg" alt="Framer" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/photoshop.svg" alt="Adobe Photoshop" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/webflow.svg" alt="Webflow" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/html.svg" alt="HTML" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/css.svg" alt="CSS" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/javascript.svg" alt="JavaScript" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/typescript.svg" alt="TypeScript" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/react.svg" alt="React" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/nextjs.svg" alt="Next.js" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/tailwind.svg" alt="Tailwind CSS" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/vite.svg" alt="Vite" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/gsap.svg" alt="GSAP" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/astro.svg" alt="Astro" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/node.svg" alt="Node.js" loading="lazy"></span>
-          <!-- o laço (cópias extras) é montado em JS, na quantidade que a largura da tela pedir -->
+      <div class="stk-grid">
+        <!-- Coluna Esquerda: Palco 3D de Teclas de Vidro Flutuantes com Movimento Alternado e Profundidade -->
+        <div class="stk-palco-3d" aria-hidden="true">
+          <!-- Cenario 3D borderless com perspectiva e profundidade contínua -->
+          <div class="stk-cenario-3d">
+            <div class="stk-plano-3d">
+              <!-- Fileira 1: Direita para a Esquerda -->
+              <div class="stk-fileira stk-fileira--r2l">
+                <div class="stk-trilho">
+                  <!-- Conjunto 1 -->
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon stk-icon--inv" src="assets/stack/openai.svg" alt="OpenAI"><span class="stk-nome">OpenAI</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/n8n.svg" alt="n8n"><span class="stk-nome">n8n</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/claude.svg" alt="Claude"><span class="stk-nome">Claude</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/nextjs.svg" alt="Next.js"><span class="stk-nome">Next.js</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/supabase.svg" alt="Supabase"><span class="stk-nome">Supabase</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/docker.svg" alt="Docker"><span class="stk-nome">Docker</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon stk-icon--inv" src="assets/stack/github.svg" alt="GitHub"><span class="stk-nome">GitHub</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/cloudflare.svg" alt="Cloudflare"><span class="stk-nome">Cloudflare</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/netlify.svg" alt="Netlify"><span class="stk-nome">Netlify</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/firebase.svg" alt="Firebase"><span class="stk-nome">Firebase</span></div></div>
+                  <!-- Conjunto 2 (clone para laço contínuo perfeito) -->
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon stk-icon--inv" src="assets/stack/openai.svg" alt=""><span class="stk-nome">OpenAI</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/n8n.svg" alt=""><span class="stk-nome">n8n</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/claude.svg" alt=""><span class="stk-nome">Claude</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/nextjs.svg" alt=""><span class="stk-nome">Next.js</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/supabase.svg" alt=""><span class="stk-nome">Supabase</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/docker.svg" alt=""><span class="stk-nome">Docker</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon stk-icon--inv" src="assets/stack/github.svg" alt=""><span class="stk-nome">GitHub</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/cloudflare.svg" alt=""><span class="stk-nome">Cloudflare</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/netlify.svg" alt=""><span class="stk-nome">Netlify</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/firebase.svg" alt=""><span class="stk-nome">Firebase</span></div></div>
+                </div>
+              </div>
+
+              <!-- Fileira 2: Esquerda para a Direita -->
+              <div class="stk-fileira stk-fileira--l2r">
+                <div class="stk-trilho">
+                  <!-- Conjunto 1 -->
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/react.svg" alt="React"><span class="stk-nome">React</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/typescript.svg" alt="TypeScript"><span class="stk-nome">TypeScript</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/node.svg" alt="Node.js"><span class="stk-nome">Node.js</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/tailwind.svg" alt="Tailwind"><span class="stk-nome">Tailwind</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon stk-icon--inv" src="assets/stack/vercel.svg" alt="Vercel"><span class="stk-nome">Vercel</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/astro.svg" alt="Astro"><span class="stk-nome">Astro</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/vite.svg" alt="Vite"><span class="stk-nome">Vite</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/gsap.svg" alt="GSAP"><span class="stk-nome">GSAP</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/html.svg" alt="HTML5"><span class="stk-nome">HTML5</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/css.svg" alt="CSS3"><span class="stk-nome">CSS3</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/javascript.svg" alt="JavaScript"><span class="stk-nome">JavaScript</span></div></div>
+                  <!-- Conjunto 2 (clone) -->
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/react.svg" alt=""><span class="stk-nome">React</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/typescript.svg" alt=""><span class="stk-nome">TypeScript</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/node.svg" alt=""><span class="stk-nome">Node.js</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/tailwind.svg" alt=""><span class="stk-nome">Tailwind</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon stk-icon--inv" src="assets/stack/vercel.svg" alt=""><span class="stk-nome">Vercel</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/astro.svg" alt=""><span class="stk-nome">Astro</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/vite.svg" alt=""><span class="stk-nome">Vite</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/gsap.svg" alt=""><span class="stk-nome">GSAP</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/html.svg" alt=""><span class="stk-nome">HTML5</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/css.svg" alt=""><span class="stk-nome">CSS3</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/javascript.svg" alt=""><span class="stk-nome">JavaScript</span></div></div>
+                </div>
+              </div>
+
+              <!-- Fileira 3: Direita para a Esquerda -->
+              <div class="stk-fileira stk-fileira--r2l">
+                <div class="stk-trilho">
+                  <!-- Conjunto 1 -->
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/figma.svg" alt="Figma"><span class="stk-nome">Figma</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/gcloud.svg" alt="Google Cloud"><span class="stk-nome">Google Cloud</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/notion.svg" alt="Notion"><span class="stk-nome">Notion</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/make.svg" alt="Make"><span class="stk-nome">Make</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/zapier.svg" alt="Zapier"><span class="stk-nome">Zapier</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/webflow.svg" alt="Webflow"><span class="stk-nome">Webflow</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon stk-icon--inv" src="assets/stack/framer.svg" alt="Framer"><span class="stk-nome">Framer</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/photoshop.svg" alt="Photoshop"><span class="stk-nome">Photoshop</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/shopify.svg" alt="Shopify"><span class="stk-nome">Shopify</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/wordpress.svg" alt="WordPress"><span class="stk-nome">WordPress</span></div></div>
+                  <!-- Conjunto 2 (clone) -->
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/figma.svg" alt=""><span class="stk-nome">Figma</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/gcloud.svg" alt=""><span class="stk-nome">Google Cloud</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/notion.svg" alt=""><span class="stk-nome">Notion</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/make.svg" alt=""><span class="stk-nome">Make</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/zapier.svg" alt=""><span class="stk-nome">Zapier</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/webflow.svg" alt=""><span class="stk-nome">Webflow</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon stk-icon--inv" src="assets/stack/framer.svg" alt=""><span class="stk-nome">Framer</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/photoshop.svg" alt=""><span class="stk-nome">Photoshop</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/shopify.svg" alt=""><span class="stk-nome">Shopify</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/wordpress.svg" alt=""><span class="stk-nome">WordPress</span></div></div>
+                </div>
+              </div>
+
+              <!-- Fileira 4: Esquerda para a Direita -->
+              <div class="stk-fileira stk-fileira--l2r">
+                <div class="stk-trilho">
+                  <!-- Conjunto 1 -->
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/meta.svg" alt="Meta Ads"><span class="stk-nome">Meta Ads</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/zapier.svg" alt="Zapier"><span class="stk-nome">Zapier</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/stripe.svg" alt="Stripe"><span class="stk-nome">Stripe</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/gads.svg" alt="Google Ads"><span class="stk-nome">Google Ads</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/ganalytics.svg" alt="Google Analytics"><span class="stk-nome">Google Analytics</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/whatsapp.svg" alt="WhatsApp"><span class="stk-nome">WhatsApp</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/slack.svg" alt="Slack"><span class="stk-nome">Slack</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/discord.svg" alt="Discord"><span class="stk-nome">Discord</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/mailchimp.svg" alt="Mailchimp"><span class="stk-nome">Mailchimp</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/gmail.svg" alt="Gmail"><span class="stk-nome">Gmail</span></div></div>
+                  <div class="stk-card"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/gcal.svg" alt="Google Calendar"><span class="stk-nome">Google Calendar</span></div></div>
+                  <!-- Conjunto 2 (clone) -->
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/meta.svg" alt=""><span class="stk-nome">Meta Ads</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/zapier.svg" alt=""><span class="stk-nome">Zapier</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/stripe.svg" alt=""><span class="stk-nome">Stripe</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/gads.svg" alt=""><span class="stk-nome">Google Ads</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/ganalytics.svg" alt=""><span class="stk-nome">Google Analytics</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/whatsapp.svg" alt=""><span class="stk-nome">WhatsApp</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/slack.svg" alt=""><span class="stk-nome">Slack</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/discord.svg" alt=""><span class="stk-nome">Discord</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/mailchimp.svg" alt=""><span class="stk-nome">Mailchimp</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/gmail.svg" alt=""><span class="stk-nome">Gmail</span></div></div>
+                  <div class="stk-card" aria-hidden="true"><div class="stk-card-inner"><img class="stk-icon" src="assets/stack/gcal.svg" alt=""><span class="stk-nome">Google Calendar</span></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Linha / anotação decorativa inferior (conforme print): FERRAMENTAS REAIS PARA RESULTADOS REAIS. -->
+          <div class="stk-anotacao">
+            <span class="stk-anotacao-linha"><i class="stk-anotacao-ponto"></i></span>
+            <span class="stk-anotacao-texto">FERRAMENTAS REAIS<br>PARA RESULTADOS REAIS.</span>
+          </div>
         </div>
-        <div class="stack-row stack-row--b">
-          <!-- conjunto 1 (lido por leitor de tela) -->
-          <span class="tile"><img class="tile-i tile-i--inv" src="assets/stack/vercel.svg" alt="Vercel" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/netlify.svg" alt="Netlify" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/cloudflare.svg" alt="Cloudflare" loading="lazy"></span>
-          <span class="tile"><img class="tile-i tile-i--inv" src="assets/stack/github.svg" alt="GitHub" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/docker.svg" alt="Docker" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/shopify.svg" alt="Shopify" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/wordpress.svg" alt="WordPress" loading="lazy"></span>
-          <span class="tile"><img class="tile-i tile-i--inv" src="assets/stack/notion.svg" alt="Notion" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/supabase.svg" alt="Supabase" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/firebase.svg" alt="Firebase" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/ganalytics.svg" alt="Google Analytics" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/gads.svg" alt="Google Ads" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/meta.svg" alt="Meta" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/whatsapp.svg" alt="WhatsApp" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/slack.svg" alt="Slack" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/discord.svg" alt="Discord" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/gmail.svg" alt="Gmail" loading="lazy"></span>
-          <span class="tile"><img class="tile-i tile-i--inv" src="assets/stack/mailchimp.svg" alt="Mailchimp" loading="lazy"></span>
-          <span class="tile"><img class="tile-i" src="assets/stack/gcal.svg" alt="Google Calendar" loading="lazy"></span>
-          <span class="tile"><img class="tile-i tile-i--inv" src="assets/stack/openai.svg" alt="OpenAI" loading="lazy"></span>
-          <!-- o laço (cópias extras) é montado em JS, na quantidade que a largura da tela pedir -->
+
+        <!-- Coluna Direita: Conteúdo Estratégico -->
+        <div class="stk-info">
+          <div class="stk-eyebrow">
+            <span class="stk-eyebrow-dash" aria-hidden="true"></span>
+            <span>TECNOLOGIA QUE IMPULSIONA</span>
+          </div>
+
+          <h2 class="stk-titulo">
+            <span class="stk-linha-t"><span class="stk-palavra-t">Usamos o que há</span></span>
+            <span class="stk-linha-t"><span class="stk-palavra-t">de melhor da tecnologia</span></span>
+            <span class="stk-linha-t"><span class="stk-palavra-t">para transformar</span></span>
+            <span class="stk-linha-t"><span class="stk-palavra-t stk-destaque-azul">negócios em realidade.</span></span>
+          </h2>
+
+          <p class="stk-descricao">
+            Trabalhamos com as ferramentas mais avançadas do mercado — de inteligência artificial e automação a desenvolvimento, dados e marketing — sempre escolhendo o que faz mais sentido para cada projeto.
+          </p>
+
+          <ul class="stk-beneficios">
+            <li class="stk-item">
+              <span class="stk-check" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8.5" stroke="#0077ff" stroke-width="1.6" stroke-opacity="0.75"/>
+                  <path d="M6.2 10.2l2.6 2.6 5.2-5.4" stroke="#0077ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="stk-item-texto">Tecnologias de ponta, aplicadas com estratégia</span>
+            </li>
+            <li class="stk-item">
+              <span class="stk-check" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8.5" stroke="#0077ff" stroke-width="1.6" stroke-opacity="0.75"/>
+                  <path d="M6.2 10.2l2.6 2.6 5.2-5.4" stroke="#0077ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="stk-item-texto">Integrações que simplificam operações</span>
+            </li>
+            <li class="stk-item">
+              <span class="stk-check" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8.5" stroke="#0077ff" stroke-width="1.6" stroke-opacity="0.75"/>
+                  <path d="M6.2 10.2l2.6 2.6 5.2-5.4" stroke="#0077ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="stk-item-texto">Soluções sob medida para cada negócio</span>
+            </li>
+            <li class="stk-item">
+              <span class="stk-check" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8.5" stroke="#0077ff" stroke-width="1.6" stroke-opacity="0.75"/>
+                  <path d="M6.2 10.2l2.6 2.6 5.2-5.4" stroke="#0077ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="stk-item-texto">Atualização constante do nosso stack</span>
+            </li>
+          </ul>
         </div>
+      </div>
     </div>
   </section>
 
@@ -325,7 +467,7 @@
          só dos cards abaixo. A linha divisória que ficava acima do título saiu. -->
     <div class="svcs-intro envelope">
       <p class="svcs-eyebrow">Nossos serviços</p>
-      <h2 class="svcs-titulo">O que a Hórus <span class="svcs-em">instala.</span></h2>
+      <h2 class="svcs-titulo">O que a Horus <span class="svcs-em">instala.</span></h2>
       <p class="svcs-sub">Instalamos um bloco por vez, na ordem que o seu negócio precisa.<br>Sem product&#8209;dump, sem pacote inchado.</p>
     </div>
 
@@ -336,8 +478,11 @@
       <article class="svc svc--void">
         <div class="svc-in envelope">
           <div class="svc-txt">
-            <span class="svc-num">01</span>
-            <p class="svc-cat">Sites e desenvolvimento web</p>
+            <div class="svc-topo-linha">
+              <span class="svc-num">01</span>
+              <span class="svc-traco" aria-hidden="true"></span>
+              <span class="svc-cat">Sites e desenvolvimento web</span>
+            </div>
             <h3 class="svc-h">Sites que explicam a oferta e carregam rápido.</h3>
             <p class="svc-desc">Sites comerciais claros que dizem o que você faz, abrem rápido no celular e facilitam o contato por telefone ou WhatsApp. E o site é seu.</p>
             <ul class="svc-caps">
@@ -389,8 +534,11 @@
       <article class="svc svc--elec">
         <div class="svc-in envelope">
           <div class="svc-txt">
-            <span class="svc-num">02</span>
-            <p class="svc-cat">Agente e atendimento 24/7</p>
+            <div class="svc-topo-linha">
+              <span class="svc-num">02</span>
+              <span class="svc-traco" aria-hidden="true"></span>
+              <span class="svc-cat">Agente e atendimento 24/7</span>
+            </div>
             <h3 class="svc-h">Um agente que responde, qualifica e agenda sozinho.</h3>
             <p class="svc-desc">Atendimento automatizado com IA, integrado a um CRM simples: seus contatos são respondidos na hora, qualificados e agendados, 24 horas por dia, sem você depender do celular.</p>
             <ul class="svc-caps">
@@ -434,8 +582,11 @@
       <article class="svc svc--void">
         <div class="svc-in envelope">
           <div class="svc-txt">
-            <span class="svc-num">03</span>
-            <p class="svc-cat">Sistemas sob medida</p>
+            <div class="svc-topo-linha">
+              <span class="svc-num">03</span>
+              <span class="svc-traco" aria-hidden="true"></span>
+              <span class="svc-cat">Sistemas sob medida</span>
+            </div>
             <h3 class="svc-h">Criamos o sistema que o seu negócio precisa.</h3>
             <p class="svc-desc">Sistemas de gestão e plataformas sob medida para centralizar os seus dados e automatizar o trabalho repetitivo. Feitos para o seu processo, não um molde genérico.</p>
             <ul class="svc-caps">
@@ -529,8 +680,11 @@
       <article class="svc svc--ember">
         <div class="svc-in envelope">
           <div class="svc-txt">
-            <span class="svc-num">04</span>
-            <p class="svc-cat">Loja virtual</p>
+            <div class="svc-topo-linha">
+              <span class="svc-num">04</span>
+              <span class="svc-traco" aria-hidden="true"></span>
+              <span class="svc-cat">Loja virtual</span>
+            </div>
             <h3 class="svc-h">Da vitrine ao pedido confirmado, sem fricção.</h3>
             <p class="svc-desc">Uma jornada de compra clara: catálogo organizado, página de produto que vende, checkout simples e o cliente voltando. Do primeiro clique ao pedido confirmado.</p>
             <ul class="svc-caps">
@@ -601,8 +755,11 @@
       <article class="svc svc--void">
         <div class="svc-in envelope">
           <div class="svc-txt">
-            <span class="svc-num">05</span>
-            <p class="svc-cat">Marketing e anúncios</p>
+            <div class="svc-topo-linha">
+              <span class="svc-num">05</span>
+              <span class="svc-traco" aria-hidden="true"></span>
+              <span class="svc-cat">Marketing e anúncios</span>
+            </div>
             <h3 class="svc-h">Campanhas com uma mensagem e métricas transparentes.</h3>
             <p class="svc-desc">Campanhas focadas em lançamentos, ofertas e demanda local, com uma mensagem, uma página de destino e números que você entende.</p>
             <ul class="svc-caps">
@@ -662,8 +819,11 @@
       <article class="svc svc--elec">
         <div class="svc-in envelope">
           <div class="svc-txt">
-            <span class="svc-num">06</span>
-            <p class="svc-cat">Visibilidade local</p>
+            <div class="svc-topo-linha">
+              <span class="svc-num">06</span>
+              <span class="svc-traco" aria-hidden="true"></span>
+              <span class="svc-cat">Visibilidade local</span>
+            </div>
             <h3 class="svc-h">Apareça quando procuram o seu serviço.</h3>
             <p class="svc-desc">Otimização do Google e do Google Meu Negócio, mais páginas de reserva, para você ser encontrado por quem já está procurando na sua região.</p>
             <ul class="svc-caps">
@@ -714,7 +874,7 @@
     </div>
   </section>
 
-  <!-- Seção "Por que a Hórus · matriz" REMOVIDA em 28/08/2026 a pedido do Marcelo.
+  <!-- Seção "Por que a Horus · matriz" REMOVIDA em 28/08/2026 a pedido do Marcelo.
        Continua no histórico do git. -->
 
   <!-- ================= PROMESSAS DE QUALIDADE ================= -->
@@ -725,42 +885,148 @@
        ⚠️ As cinco são diferenciais REAIS da casa (integridade, revisão humana,
        conferência medida, posse do cliente, compliance do conselho). Nenhuma é
        promessa de resultado — o que a régua proíbe —, são promessas de método. -->
-  <!-- 5 padrões em FILEIRA de cards (28/08, print do Marcelo): glass granulado,
-       ícone shimmer (ember↔electric, o efeito do CTA) no topo, hover que levanta.
-       Sem cores únicas por card, compacto para caber na tela. O orbital saiu. -->
-  <section class="qualidade">
+  <!-- ================= NOSSOS COMPROMISSOS (5 PILARES DE QUALIDADE) ================= -->
+  <!-- Fiel à referência visual (print de 22/09/2026): dark obsidian, badge pill com ponto azul,
+       título 'Nossos cinco compromissos.', subtítulo de 2 linhas, e 5 cards com número 01–05,
+       squircle de ícone temático, botão de seta circular, barra de acento e scroll motion. -->
+  <section class="qualidade" id="compromissos" aria-labelledby="qp-tit">
     <div class="envelope">
       <div class="qp-topo">
-        <p class="qp-eyebrow">Nosso compromisso</p>
-        <h2 class="qp-titulo">Nossos <span class="qp-em">cinco</span> compromissos</h2>
-        <p class="qp-sub">Só ficamos satisfeitos quando você está.</p>
+        <div class="qp-badge" aria-hidden="true">
+          <span class="qp-badge-ponto"></span>
+          <span class="qp-badge-txt">NOSSO COMPROMISSO</span>
+        </div>
+        <h2 class="qp-titulo" id="qp-tit">Nossos <span class="qp-em">cinco</span> compromissos.</h2>
+        <p class="qp-sub">
+          Mais do que entregar projetos, construímos parcerias de longo prazo.<br>
+          Esses são os princípios que guiam tudo o que fazemos.
+        </p>
       </div>
 
-      <div class="qp-fila">
-        <article class="qp-card">
-          <span class="qp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></span>
-          <h3>Conformidade legal</h3>
-          <p>Aviso legal, privacidade e cookies já entram prontos. Seu site nasce dentro da lei.</p>
+      <div class="qp-fila" role="list">
+        <!-- 01: Conformidade legal -->
+        <article class="qp-card" role="listitem" style="--cor-accent: #0077ff; --cor-glow: rgba(0, 119, 255, 0.45); --cor-icon: #38bdf8; --cor-icon-bg: rgba(0, 119, 255, 0.14); --cor-icon-bd: rgba(0, 136, 255, 0.4);">
+          <div class="qp-card-head">
+            <span class="qp-ico-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2.5a12.5 12.5 0 0 0-8 3.2v6.8c0 5.4 3.4 9.8 8 11.5 4.6-1.7 8-6.1 8-11.5V5.7a12.5 12.5 0 0 0-8-3.2Z"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+            </span>
+            <span class="qp-card-num">01</span>
+          </div>
+          <div class="qp-card-corpo">
+            <h3>Conformidade<br>legal</h3>
+            <p>Aviso legal, privacidade e cookies já entram prontos. Seu site nasce dentro da lei.</p>
+          </div>
+          <div class="qp-card-rodape">
+            <span class="qp-btn-seta" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+            <span class="qp-barra-cor" aria-hidden="true"></span>
+          </div>
         </article>
-        <article class="qp-card">
-          <span class="qp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 4.6L18 9l-4.3 1.4L12 15l-1.7-4.6L6 9l4.3-1.4L12 3Z"/><path d="M19 14l.9 2.3L22 17l-2.1.7L19 20l-.9-2.3L16 17l2.1-.7L19 14Z"/></svg></span>
-          <h3>Revisão até aprovar</h3>
-          <p>A gente refina o design até você aprovar. Rodada de revisão faz parte, sem custo extra.</p>
+
+        <!-- 02: Revisão até aprovar -->
+        <article class="qp-card" role="listitem" style="--cor-accent: #a855f7; --cor-glow: rgba(168, 85, 247, 0.45); --cor-icon: #c084fc; --cor-icon-bg: rgba(168, 85, 247, 0.14); --cor-icon-bd: rgba(168, 85, 247, 0.4);">
+          <div class="qp-card-head">
+            <span class="qp-ico-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8.5 3.5 7.2 7a1.2 1.2 0 0 1-.8.8L3 9l3.4 1.2a1.2 1.2 0 0 1 .8.8l1.3 3.5 1.3-3.5a1.2 1.2 0 0 1 .8-.8L14 9l-3.4-1.2a1.2 1.2 0 0 1-.8-.8L8.5 3.5Z"/>
+                <path d="M18 13.5 17 16a1 1 0 0 1-.6.6l-2.4 1 2.4 1a1 1 0 0 1 .6.6l1 2.4 1-2.4a1 1 0 0 1 .6-.6l2.4-1-2.4-1a1 1 0 0 1-.6-.6L18 13.5Z"/>
+              </svg>
+            </span>
+            <span class="qp-card-num">02</span>
+          </div>
+          <div class="qp-card-corpo">
+            <h3>Revisão<br>até aprovar</h3>
+            <p>A gente refina o design até você aprovar. Rodada de revisão faz parte, sem custo extra.</p>
+          </div>
+          <div class="qp-card-rodape">
+            <span class="qp-btn-seta" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+            <span class="qp-barra-cor" aria-hidden="true"></span>
+          </div>
         </article>
-        <article class="qp-card">
-          <span class="qp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0l-7-7A2 2 0 0 1 3 12.2V4a1 1 0 0 1 1-1h8.2a2 2 0 0 1 1.4.6l7 7a2 2 0 0 1 0 2.8Z"/><circle cx="7.5" cy="7.5" r="1.4"/></svg></span>
-          <h3>Preço fechado antes</h3>
-          <p>O valor é combinado antes da primeira linha. Sem surpresa na fatura.</p>
+
+        <!-- 03: Preço fechado antes -->
+        <article class="qp-card" role="listitem" style="--cor-accent: #14b8a6; --cor-glow: rgba(20, 184, 166, 0.45); --cor-icon: #2dd4bf; --cor-icon-bg: rgba(20, 184, 166, 0.14); --cor-icon-bd: rgba(20, 184, 166, 0.4);">
+          <div class="qp-card-head">
+            <span class="qp-ico-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12.5 2.5 21.5 11.5a2.12 2.12 0 0 1 0 3l-6 6a2.12 2.12 0 0 1-3 0L3.5 11.5V3.5h8Z"/>
+                <circle cx="8" cy="8" r="1.5" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
+            </span>
+            <span class="qp-card-num">03</span>
+          </div>
+          <div class="qp-card-corpo">
+            <h3>Preço fechado<br>antes</h3>
+            <p>O valor é combinado antes da primeira linha. Sem surpresa na fatura.</p>
+          </div>
+          <div class="qp-card-rodape">
+            <span class="qp-btn-seta" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+            <span class="qp-barra-cor" aria-hidden="true"></span>
+          </div>
         </article>
-        <article class="qp-card">
-          <span class="qp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span>
-          <h3>Você aprova o resultado</h3>
-          <p>Só vai ao ar quando você estiver satisfeito. O risco fica com a gente, não com você.</p>
+
+        <!-- 04: Você aprova o resultado -->
+        <article class="qp-card" role="listitem" style="--cor-accent: #f97316; --cor-glow: rgba(249, 115, 22, 0.45); --cor-icon: #fb923c; --cor-icon-bg: rgba(249, 115, 22, 0.14); --cor-icon-bd: rgba(249, 115, 22, 0.4);">
+          <div class="qp-card-head">
+            <span class="qp-ico-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21v-1a5 5 0 0 0-5-5h-4a5 5 0 0 0-5 5v1"/>
+                <circle cx="12" cy="8.5" r="3.8"/>
+              </svg>
+            </span>
+            <span class="qp-card-num">04</span>
+          </div>
+          <div class="qp-card-corpo">
+            <h3>Você aprova<br>o resultado</h3>
+            <p>Só vai ao ar quando você estiver satisfeito. O risco fica com a gente, não com você.</p>
+          </div>
+          <div class="qp-card-rodape">
+            <span class="qp-btn-seta" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+            <span class="qp-barra-cor" aria-hidden="true"></span>
+          </div>
         </article>
-        <article class="qp-card">
-          <span class="qp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12Z"/><circle cx="12" cy="12" r="3"/></svg></span>
-          <h3>Esboço antes do pedido</h3>
-          <p>Você vê a proposta antes de decidir. Primeiro convence, depois contrata.</p>
+
+        <!-- 05: Esboço antes do pedido -->
+        <article class="qp-card" role="listitem" style="--cor-accent: #ec4899; --cor-glow: rgba(236, 72, 153, 0.45); --cor-icon: #f472b6; --cor-icon-bg: rgba(236, 72, 153, 0.14); --cor-icon-bd: rgba(236, 72, 153, 0.4);">
+          <div class="qp-card-head">
+            <span class="qp-ico-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2.5 12c2.5-5 6-7.5 9.5-7.5s7 2.5 9.5 7.5c-2.5 5-6 7.5-9.5 7.5s-7-2.5-9.5-7.5Z"/>
+                <circle cx="12" cy="12" r="3.2"/>
+              </svg>
+            </span>
+            <span class="qp-card-num">05</span>
+          </div>
+          <div class="qp-card-corpo">
+            <h3>Esboço antes<br>do pedido</h3>
+            <p>Você vê a proposta antes de decidir. Primeiro convence, depois contrata.</p>
+          </div>
+          <div class="qp-card-rodape">
+            <span class="qp-btn-seta" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+            <span class="qp-barra-cor" aria-hidden="true"></span>
+          </div>
         </article>
       </div>
     </div>
@@ -773,25 +1039,40 @@
     <div class="envelope">
       <p class="ic-linha">Produto próprio / Agente de IA implantável</p>
       <h2 class="ic-nome">ICARUS</h2>
-      <p class="ic-texto">Um agente de IA que a Hórus está construindo para rodar dentro da empresa do cliente, na máquina dela ou num servidor dela, e não numa aba de navegador de terceiro. Em desenvolvimento por Marcelo e Antonio, ainda sem instalação em cliente.</p>
+      <p class="ic-texto">Um agente de IA que a Horus está construindo para rodar dentro da empresa do cliente, na máquina dela ou num servidor dela, e não numa aba de navegador de terceiro. Em desenvolvimento por Marcelo e Antonio, ainda sem instalação em cliente.</p>
     </div>
   </section>
   ================================================================================ -->
 
-  <!-- ================= PORTFÓLIO (4 PROJETOS REAIS) ================= -->
-  <!-- Portfólio com 4 trabalhos reais da Hórus em destaque:
+  <!-- ================= PORTFÓLIO (9 PROJETOS EM DESTAQUE) ================= -->
+  <!-- Portfólio com 9 trabalhos da Horus em destaque:
        1. Novare Psicologia (Saúde & Psicologia Clínica - Salvador)
        2. Café Grão da Serra (Agronegócio & Vendas B2B - Serra de Brejões)
        3. IRS Performance (Automotivo & Alta Performance - Salvador)
        4. VerdiServ (Facilities & Gestão Predial - Salvador / Feira de Santana)
+       5. Soleira Arquitetura (Arquitetura & Design de Interiores)
+       6. Vanguarda Advocacia (Direito & Advocacia Corporativa)
+       7. Lumina Dental Studio (Odontologia Estética & Reabilitação Oral)
+       8. Amêndoa Confeitaria (Gastronomia & Confeitaria Artesanal)
+       9. Solarium Energia Solar (Energia Fotovoltaica & Engenharia B2B)
        No desktop, a seção fixa (pin) e corre na horizontal via GSAP. No mobile,
        vira pista arrastável nativa (scroll-snap). -->
   <section class="portfolio" id="portfolio">
    <div class="pf-pin">
     <div class="pf-grid envelope">
       <div class="pf-lado">
-        <h2 class="pf-h2">Trabalhos em <span class="ouro">destaque</span></h2>
+        <div class="pf-eyebrow"><span class="pf-quadrado" aria-hidden="true"></span> PROJETOS EM DESTAQUE</div>
+        <h2 class="pf-h2">Trabalhos<br>em <span class="pf-azul">destaque.</span></h2>
         <p class="pf-sub">Projetos reais desenhados do posicionamento ao código para gerar autoridade e conversão.</p>
+        <a class="pf-btn-todos" href="portfolio.html">
+          <span class="pf-btn-circulo" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </span>
+          <span>Ver todos os projetos</span>
+        </a>
       </div>
 
       <div class="pf-pista">
@@ -801,9 +1082,12 @@
               <img src="assets/portfolio/pf-novare.webp" alt="Site institucional Novare Psicologia" loading="lazy" decoding="async">
             </div>
             <div class="pf-legenda">
-              <span class="pf-tag">Saúde &amp; Psicologia Clínica</span>
-              <h3>Novare Psicologia</h3>
-              <p>Site institucional acolhedor para clínica de psicologia em Salvador. Uma página por serviço, agendamento direto e conformidade com as diretrizes do conselho.</p>
+              <span class="pf-tag"><span class="pf-dot"></span> SAÚDE &amp; PSICOLOGIA</span>
+              <div class="pf-tit-linha">
+                <h3>Novare Psicologia</h3>
+                <span class="pf-seta" aria-hidden="true">→</span>
+              </div>
+              <p>Site institucional com foco em agendamento e posicionamento de marca.</p>
             </div>
           </article>
           <article class="pf-item">
@@ -811,9 +1095,12 @@
               <img src="assets/portfolio/pf-grao-da-serra.webp" alt="Site e posicionamento comercial Café Grão da Serra" loading="lazy" decoding="async">
             </div>
             <div class="pf-legenda">
-              <span class="pf-tag">Agronegócio &amp; Vendas B2B</span>
-              <h3>Café Grão da Serra</h3>
-              <p>Site institucional e comercial para torrefação artesanal da Bahia. Posicionamento de origem e presença pensada para o consumidor final e clientes corporativos.</p>
+              <span class="pf-tag"><span class="pf-dot"></span> AGRONEGÓCIO &amp; VENDAS B2B</span>
+              <div class="pf-tit-linha">
+                <h3>Café Grão da Serra</h3>
+                <span class="pf-seta" aria-hidden="true">→</span>
+              </div>
+              <p>Site institucional e comercial para torrefação artesanal da Bahia, com foco em vendas B2B.</p>
             </div>
           </article>
           <article class="pf-item">
@@ -821,9 +1108,12 @@
               <img src="assets/portfolio/pf-irs-performance.webp" alt="Site e projetos IRS Performance" loading="lazy" decoding="async">
             </div>
             <div class="pf-legenda">
-              <span class="pf-tag">Automotivo &amp; Alta Performance</span>
-              <h3>IRS Performance</h3>
-              <p>Presença digital para oficina especializada e preparação de alta performance em Salvador. Destaque para infraestrutura técnica, dinamômetro e projetos de pista.</p>
+              <span class="pf-tag"><span class="pf-dot"></span> AUTOMOTIVO &amp; ALTA PERFORMANCE</span>
+              <div class="pf-tit-linha">
+                <h3>IRS Performance</h3>
+                <span class="pf-seta" aria-hidden="true">→</span>
+              </div>
+              <p>Presença digital para oficina especializada e preparação de alta performance em Salvador.</p>
             </div>
           </article>
           <article class="pf-item">
@@ -831,9 +1121,77 @@
               <img src="assets/portfolio/pf-verdiserv.webp" alt="Site institucional e captação VerdiServ Serviços Prediais" loading="lazy" decoding="async">
             </div>
             <div class="pf-legenda">
-              <span class="pf-tag">Facilities &amp; Gestão Predial</span>
-              <h3>VerdiServ — Serviços Prediais</h3>
-              <p>Site de apresentação e captação para empresa de terceirização predial em Salvador e Feira de Santana. Serviços para condomínios e conversão ágil via WhatsApp.</p>
+              <span class="pf-tag"><span class="pf-dot"></span> FACILITIES &amp; GESTÃO PREDIAL</span>
+              <div class="pf-tit-linha">
+                <h3>VerdiServ — Serviços Prediais</h3>
+                <span class="pf-seta" aria-hidden="true">→</span>
+              </div>
+              <p>Site institucional e captação para empresa de terceirização predial em Salvador e região.</p>
+            </div>
+          </article>
+          <article class="pf-item">
+            <div class="pf-tela">
+              <img src="assets/portfolio/pf-soleira.webp" alt="Site editorial de alto padrão Soleira Arquitetura" loading="lazy" decoding="async">
+            </div>
+            <div class="pf-legenda">
+              <span class="pf-tag"><span class="pf-dot"></span> ARQUITETURA &amp; DESIGN</span>
+              <div class="pf-tit-linha">
+                <h3>Soleira Arquitetura</h3>
+                <span class="pf-seta" aria-hidden="true">→</span>
+              </div>
+              <p>Portfólio editorial e captação para escritório de arquitetura contemporânea e interiores de luxo.</p>
+            </div>
+          </article>
+          <article class="pf-item">
+            <div class="pf-tela">
+              <img src="assets/portfolio/pf-vanguarda.webp" alt="Site institucional Vanguarda Advocacia Empresarial" loading="lazy" decoding="async">
+            </div>
+            <div class="pf-legenda">
+              <span class="pf-tag"><span class="pf-dot"></span> DIREITO &amp; CORPORATIVO</span>
+              <div class="pf-tit-linha">
+                <h3>Vanguarda Advocacia</h3>
+                <span class="pf-seta" aria-hidden="true">→</span>
+              </div>
+              <p>Posicionamento de autoridade e assessoria jurídica estratégica para empresas e holdings.</p>
+            </div>
+          </article>
+          <article class="pf-item">
+            <div class="pf-tela">
+              <img src="assets/portfolio/pf-lumina.webp" alt="Site e agendamento Lumina Odontologia e Estética" loading="lazy" decoding="async">
+            </div>
+            <div class="pf-legenda">
+              <span class="pf-tag"><span class="pf-dot"></span> ODONTOLOGIA &amp; ESTÉTICA</span>
+              <div class="pf-tit-linha">
+                <h3>Lumina Dental Studio</h3>
+                <span class="pf-seta" aria-hidden="true">→</span>
+              </div>
+              <p>Site institucional de estética odontológica com foco em lentes de contato e agendamento VIP.</p>
+            </div>
+          </article>
+          <article class="pf-item">
+            <div class="pf-tela">
+              <img src="assets/portfolio/pf-amendoa.webp" alt="Site e encomendas Amêndoa Confeitaria Artesanal" loading="lazy" decoding="async">
+            </div>
+            <div class="pf-legenda">
+              <span class="pf-tag"><span class="pf-dot"></span> GASTRONOMIA &amp; EVENTOS</span>
+              <div class="pf-tit-linha">
+                <h3>Amêndoa Confeitaria</h3>
+                <span class="pf-seta" aria-hidden="true">→</span>
+              </div>
+              <p>Catálogo digital e canal de encomendas para doceria fina e eventos comemorativos.</p>
+            </div>
+          </article>
+          <article class="pf-item">
+            <div class="pf-tela">
+              <img src="assets/portfolio/pf-solarium.webp" alt="Site institucional Solarium Engenharia Solar" loading="lazy" decoding="async">
+            </div>
+            <div class="pf-legenda">
+              <span class="pf-tag"><span class="pf-dot"></span> ENERGIA SOLAR &amp; B2B</span>
+              <div class="pf-tit-linha">
+                <h3>Solarium Energia Solar</h3>
+                <span class="pf-seta" aria-hidden="true">→</span>
+              </div>
+              <p>Plataforma comercial com simulação de economia para usinas fotovoltaicas e indústrias.</p>
             </div>
           </article>
         </div>
@@ -843,59 +1201,116 @@
   </section>
 
   <!-- ================= COMO COMEÇA · 4 PASSOS ================= -->
-  <!-- Seção nova (26/08/2026), no formato do "So einfach geht's, in 4 Schritten"
-       do amphora-it.com: quatro passos numerados, ligados por um fio, do
-       primeiro contato ao ar. Colocada depois do portfólio (pedido do Marcelo);
-       é a seção que a CORTINA do portfólio revela.
-       Os passos descrevem o processo real da casa (o passe duplo, a conferência
-       medida, a posse do cliente) — sem prazo prometido, que a régua proíbe. -->
-  <section class="passos" id="passos">
-    <!-- Degradê em movimento, bem visível (Marcelo, 01/09): aurora azul/violeta/amarelo
-         que desliza e respira ao fundo da seção. Atrás do conteúdo (z-index 0). -->
-    <div class="ps-aurora" aria-hidden="true"></div>
-    
-    <div class="ps-topo envelope">
-      <p class="ps-eyebrow">Como começa</p>
-      <h2 class="ps-titulo">É muito fácil, <span class="ps-em">em quatro passos</span>.</h2>
-      <p class="ps-sub">É assim que a ideia vira site, sistema ou presença no ar.</p>
-    </div>
+  <!-- Seção redesenhada com base no Print 1 (Dark Cosmic Blue + 4 etapas interligadas):
+       quatro passos numerados, ligados por um fio luminoso com nós estelares,
+       do primeiro contato ao resultado sem complicação. -->
+   <section class="passos" id="passos">
+     <div class="ps-bg-glow" aria-hidden="true"></div>
+     <div class="ps-topo envelope">
+       <div class="ps-eyebrow"><span class="ps-quadrado" aria-hidden="true"></span> COMO COMEÇA</div>
+       <h2 class="ps-titulo">Do primeiro contato<br>ao resultado, <span class="ps-destaque-azul">sem complicação.</span></h2>
+       <p class="ps-sub">Um processo claro, rápido e eficiente para transformar sua ideia<br>em um ativo digital que gera resultados.</p>
+     </div>
 
-    <!-- Linha do tempo horizontal (print 5): quatro passos numerados, ligados por um
-         fio electric. Saiu o zigue-zague e a linha degradê arco-íris. -->
-    <div class="ps-tl envelope">
-      <span class="ps-fio" aria-hidden="true"></span>
-      <div class="ps-etapa">
-        <span class="ps-n">01</span>
-        <span class="ps-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M7 8.5h18a2.5 2.5 0 0 1 2.5 2.5v9a2.5 2.5 0 0 1-2.5 2.5h-9l-5 3.5v-3.5H7A2.5 2.5 0 0 1 4.5 20v-9A2.5 2.5 0 0 1 7 8.5Z"/><path d="M10.5 15.5h.01M16 15.5h.01M21.5 15.5h.01"/></svg></span>
-        <h3>Consulta inicial <span class="ps-em">gratuita</span></h3>
-        <p>A gente conversa sobre os seus objetivos, por e-mail, telefone ou WhatsApp. Sem compromisso.</p>
-      </div>
-      <div class="ps-etapa">
-        <span class="ps-n">02</span>
-        <span class="ps-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M9 4.5h10l5 5v18H9z"/><path d="M19 4.5v5h5M13 15h7M13 19h7M13 23h5"/></svg></span>
-        <h3>Esboço <span class="ps-em">antes do sim</span></h3>
-        <p>Você vê uma proposta do seu projeto antes de decidir. Primeiro convence, depois contrata.</p>
-      </div>
-      <div class="ps-etapa">
-        <span class="ps-n">03</span>
-        <span class="ps-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="m13.2 5.5 1.35 2.15a8.7 8.7 0 0 1 2.9 0l1.35-2.15 2.7 1.55-.8 2.4a8.4 8.4 0 0 1 2.05 2.05l2.4-.8 1.55 2.7-2.15 1.35a8.7 8.7 0 0 1 0 2.9l2.15 1.35-1.55 2.7-2.4-.8a8.4 8.4 0 0 1-2.05 2.05l.8 2.4-2.7 1.55-1.35-2.15a8.7 8.7 0 0 1-2.9 0l-1.35 2.15-2.7-1.55.8-2.4a8.4 8.4 0 0 1-2.05-2.05l-2.4.8-1.55-2.7 2.15-1.35a8.7 8.7 0 0 1 0-2.9L5.3 13.4l1.55-2.7 2.4.8a8.4 8.4 0 0 1 2.05-2.05l-.8-2.4 2.7-1.55Z"/><circle cx="16" cy="16" r="3.5"/></svg></span>
-        <h3>A gente <span class="ps-em">desenvolve</span></h3>
-        <p>Com o projeto aprovado, começa a construção, e você acompanha o andamento de perto.</p>
-      </div>
-      <div class="ps-etapa">
-        <span class="ps-n">04</span>
-        <span class="ps-icon" aria-hidden="true"><svg viewBox="4 4 24 24" fill="none"><path d="M18.2 6.2c4.4.7 7.1 3.4 7.8 7.8-1.5 4.3-4.5 7.2-8.8 8.8l-4.6-4.6c1.6-4.3 4.5-7.3 8.8-8.8Z"/><path d="m12.6 18.4-4.2.4-2 2 4.2 1.1 1.1 4.2 2-2 .4-4.2M19 13h.01M22.5 22.5l4 4"/></svg></span>
-        <h3>Lançamento <span class="ps-em">e posse</span></h3>
-        <p>Vai ao ar quando você aprovar, e fica seu: o endereço, as contas e os acessos são seus.</p>
-      </div>
-    </div>
+     <div class="ps-tl envelope">
+       <div class="ps-trilho-linha" aria-hidden="true">
+         <span class="ps-ponto-fio ps-ponto-1"></span>
+         <span class="ps-ponto-fio ps-ponto-2"></span>
+         <span class="ps-ponto-fio ps-ponto-3"></span>
+       </div>
+       <span class="ps-fio" aria-hidden="true"></span>
 
-    <div class="ps-cta">
-      <a class="cta-ember" href="#contato">
-        <span class="cta-txt">Começar projeto <span class="seta" aria-hidden="true">&#8599;</span></span>
-      </a>
-    </div>
-  </section>
+       <div class="ps-etapa">
+         <div class="ps-n-wrap">
+           <span class="ps-n">01</span>
+           <div class="ps-circulo">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+               <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+               <circle cx="8" cy="11.5" r="1" fill="currentColor"/>
+               <circle cx="12" cy="11.5" r="1" fill="currentColor"/>
+               <circle cx="16" cy="11.5" r="1" fill="currentColor"/>
+             </svg>
+           </div>
+         </div>
+         <div class="ps-info">
+           <h3>Consulta inicial</h3>
+           <p>A gente conversa sobre os seus objetivos, por e-mail, telefone ou WhatsApp. Sem compromisso.</p>
+         </div>
+       </div>
+
+       <div class="ps-etapa">
+         <div class="ps-n-wrap">
+           <span class="ps-n">02</span>
+           <div class="ps-circulo">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+               <polyline points="14 2 14 8 20 8"/>
+               <line x1="16" y1="13" x2="8" y2="13"/>
+               <line x1="16" y1="17" x2="8" y2="17"/>
+               <line x1="10" y1="9" x2="8" y2="9"/>
+             </svg>
+           </div>
+         </div>
+         <div class="ps-info">
+           <h3>Diagnóstico e proposta</h3>
+           <p>Analisamos seu negócio e criamos um plano personalizado, com escopo, prazos e investimento transparentes.</p>
+         </div>
+       </div>
+
+       <div class="ps-etapa">
+         <div class="ps-n-wrap">
+           <span class="ps-n">03</span>
+           <div class="ps-circulo">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+               <circle cx="12" cy="12" r="3"/>
+               <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+             </svg>
+           </div>
+         </div>
+         <div class="ps-info">
+           <h3>Execução lado a lado</h3>
+           <p>Com o projeto aprovado, nossa equipe entra em ação. Você acompanha cada etapa de perto, com clareza e comunicação constante.</p>
+         </div>
+       </div>
+
+       <div class="ps-etapa">
+         <div class="ps-n-wrap">
+           <span class="ps-n">04</span>
+           <div class="ps-circulo">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+               <line x1="18" y1="20" x2="18" y2="10"/>
+               <line x1="12" y1="20" x2="12" y2="4"/>
+               <line x1="6" y1="20" x2="6" y2="14"/>
+             </svg>
+           </div>
+         </div>
+         <div class="ps-info">
+           <h3>Lançamento e crescimento</h3>
+           <p>Seu projeto vai ao ar e começa a gerar resultados. E a gente continua ao seu lado, otimizando e buscando novas oportunidades.</p>
+         </div>
+       </div>
+     </div>
+
+     <div class="ps-cta">
+       <a class="ps-btn-dark" href="#contato">
+         <span>Pronto para começar?</span> <span class="ps-seta" aria-hidden="true">→</span>
+       </a>
+     </div>
+
+     <div class="ps-rodape-linha envelope" aria-hidden="true">
+       <div class="ps-pilares">
+         <span>ESTRATÉGIA</span>
+         <span>TECNOLOGIA</span>
+         <span>RESULTADOS</span>
+       </div>
+       <div class="ps-divisor-fio"></div>
+       <div class="ps-marca-ano">
+         <span>HORUS</span>
+         <span class="ps-traco-fio"></span>
+         <span>2026</span>
+       </div>
+     </div>
+   </section>
 
   <!-- ================= CHAMADA FINAL ================= -->
   <!-- Refeita em 26/08/2026 a pedido do Marcelo: SAIU o cartão de vidro. Agora a
@@ -937,7 +1352,7 @@
       <div class="envelope">
         <h2 class="ch-titulo rev">Pronto para criar<br>algo incrível?</h2>
       <div class="ch-acao rev">
-        <!-- Botão "glow" AZUL da Hórus. O componente que o Marcelo mandou é
+        <!-- Botão "glow" AZUL da Horus. O componente que o Marcelo mandou é
              React/shadcn/Tailwind; aqui foi PORTADO para vanilla (a stack do site
              é HTML/CSS/JS nativo — regra da casa: porta o efeito, não instala o
              framework). Chapa azul com halo pulsante e o ícone de sparkles. -->
@@ -966,8 +1381,8 @@
     <div class="rd-topo">
       <div class="rd-marca">
         <a class="marca" href="#topo">
-          <img src="assets/simbolo.webp" width="34" height="28" alt="Hórus Agência">
-          <span class="nome">HÓRUS</span>
+          <img src="assets/simbolo.webp" width="34" height="28" alt="Horus Agência">
+          <span class="nome">HORUS</span>
         </a>
         <p class="rd-assinatura">Visão que conecta.</p>
       </div>
@@ -979,7 +1394,7 @@
     </div>
 
     <div class="rd-pe">
-      <p class="rd-legal">&copy; Hórus Agência | 2026</p>
+      <p class="rd-legal">&copy; Horus Agência | 2026</p>
 
       <!-- Rede social é ÍCONE, não link escrito: o desenho do Instagram é
            reconhecido sem legenda, e o nome ao lado seria a mesma informação
@@ -988,8 +1403,8 @@
            a pedido do Marcelo. -->
       <ul class="rd-redes">
         <li>
-          <a class="rd-rede" href="https://www.instagram.com/agenciahorus02/"
-             aria-label="Instagram da Hórus"
+          <a class="rd-rede" href="https://www.instagram.com/horusagencia.br/"
+             aria-label="Instagram da Horus"
              rel="me noopener" target="_blank">
             <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor"
                  stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
@@ -1016,7 +1431,7 @@
      a palavra fica quase encostada no fundo, como relevo. Em cima, uma luz que
      só acende quando o ponteiro passa, e no lugar em que ele está. Em repouso a
      assinatura é discreta; o gesto é que revela. -->
-<div class="assinatura" role="img" aria-label="Hórus">
+<div class="assinatura" role="img" aria-label="Horus">
   <svg viewBox="0 0 1200 320" aria-hidden="true" focusable="false">
     <defs>
       <!-- Grafite de cima para baixo. O primeiro degrau puxa para o azul da
@@ -1044,15 +1459,13 @@
          Sem isso, a palavra depende da métrica da fonte que estiver desenhando:
          medido, o texto passava de 1283 unidades e o S saía cortado na borda, e
          enquanto a Sora não chega quem desenha é a fonte do sistema, com outra
-         largura. Com o trava, sobra e falta viram espaço, não corte.
-         O corpo 317 com a linha de base em 298 é o que deixa 20 unidades de
-         folga para o acento do Ó, que sobe acima da altura de maiúscula. -->
+         largura. Com o trava, sobra e falta viram espaço, não corte. -->
     <g font-family="Sora, system-ui, sans-serif" font-weight="700"
        font-size="317" letter-spacing="-11" text-anchor="middle">
       <text x="600" y="298" textLength="1160" lengthAdjust="spacing"
-            fill="url(#as-grafite)">HÓRUS</text>
+            fill="url(#as-grafite)">HORUS</text>
       <text class="as-luz" x="600" y="298" textLength="1160" lengthAdjust="spacing"
-            fill="url(#as-brilho)">HÓRUS</text>
+            fill="url(#as-brilho)">HORUS</text>
     </g>
   </svg>
 </div>
@@ -1427,7 +1840,7 @@
      Portado do componente React para o WebGL1 nativo da casa. O componente já era
      WebGL puro (sem three.js), então o porte é fiel: mesma matemática (fbm + campo
      de senos + pós de contraste/vinheta/grão). As ÚNICAS mudanças de parâmetro:
-     a paleta virou a da Hórus (tinta → azul → dourado → tinta) e o `hue` foi
+     a paleta virou a da Horus (tinta → azul → dourado → tinta) e o `hue` foi
      zerado, porque o original tingia um cinza e agora as cores já são reais.
      Contexto GL próprio; pausa fora da tela e com a aba oculta. */
   (function () {
@@ -1920,6 +2333,31 @@ void main(){
   }, { threshold: 0.45 });
   document.querySelectorAll('.estagio').forEach(function (el) { trilho.observe(el); });
 
+  /* ---- Motion de entrada da seção Nossos Compromissos (.qualidade) ----
+     Quando a seção entra no campo de visão (desktop e mobile), a classe `.ativo`
+     é disparada, orquestrando a descida suave do badge, revelação do título
+     e a cascata escalonada dos 5 cards com desenho das barras coloridas. */
+  (function () {
+    var secao = document.querySelector('.qualidade');
+    if (!secao) return;
+
+    if (reduzido || !('IntersectionObserver' in window)) {
+      secao.classList.add('ativo');
+      return;
+    }
+
+    var obsQualidade = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (e.isIntersecting) {
+          secao.classList.add('ativo');
+          obsQualidade.unobserve(secao);
+        }
+      });
+    }, { threshold: [0, 0.05], rootMargin: '0px 0px -4% 0px' });
+
+    obsQualidade.observe(secao);
+  })();
+
   /* ==================================================================
      COREOGRAFIA DE SCROLL (GSAP ScrollTrigger)
      Só roda com movimento ligado (este bloco está depois do return de
@@ -2053,9 +2491,8 @@ void main(){
         pin: pin, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1
       }
     });
-    /* corrida horizontal dos três cards; o título acompanha indo para a esquerda */
+    /* corrida horizontal dos cards enquanto a coluna da esquerda fica ancorada */
     tl.to(tira, { x: function () { return -percurso(); }, ease: 'none', duration: 3 }, 0);
-    if (lado) tl.to(lado, { x: function () { return -percurso() * 0.5; }, ease: 'none', duration: 3 }, 0);
     /* Ao fim da corrida o pin solta e os 4 passos entram no fluxo normal. */
   })();
 
@@ -2066,15 +2503,20 @@ void main(){
   (function () {
     var path = document.querySelector('.ps-fio');
     var passos = gsap.utils.toArray('.ps-etapa');
+    var tlContainer = document.querySelector('.ps-tl');
     var cta = document.querySelector('.ps-cta');
     if (!path || !window.ScrollTrigger) return;
     gsap.set(path, { scaleX: 0, transformOrigin: 'left center' });
     /* limiar de progresso em que cada card acende (a linha "chega" nele) */
-    var limiares = [0.14, 0.40, 0.64, 0.85];
+    var limiares = [0.10, 0.38, 0.70, 0.96];
     gsap.to(path, {
       scaleX: 1, ease: 'none',
       scrollTrigger: {
-        trigger: '.passos', start: 'top 85%', end: '55% 68%', scrub: 1, invalidateOnRefresh: true,
+        trigger: tlContainer || '.passos',
+        start: 'top 65%',
+        end: 'bottom 35%',
+        scrub: 1.5,
+        invalidateOnRefresh: true,
         onUpdate: function (self) {
           passos.forEach(function (el, k) { el.classList.toggle('aceso', self.progress >= limiares[k]); });
           if (cta) cta.classList.toggle('aceso', self.progress >= 0.98);
@@ -2158,6 +2600,8 @@ void main(){
 })();
 </script>
 
+<script src="assets/s1-waves.js" defer></script>
+<script src="assets/s2-stack.js" defer></script>
 <script src="assets/hero-splat.js" defer></script>
 <script src="assets/particles.js" defer></script>
 

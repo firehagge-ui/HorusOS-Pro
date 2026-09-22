@@ -13,6 +13,7 @@ export default async function conversas(v, { args }) {
   let selecionada = args[0] || null;
   let filtro = 'leads', busca = '';
   let lista = [];
+  let ajustouFiltro = false;
   const limpezas = [];
 
   v.className = 'vista cheia';
@@ -23,7 +24,7 @@ export default async function conversas(v, { args }) {
     <div class="inbox">
       <aside class="inbox-lista card pad-0">
         <div class="inbox-topo"><div class="busca">${icone('busca')}<input class="inp sm" data-busca placeholder="Buscar nome, telefone ou mensagem…"></div>
-          <div class="chips mt-8" data-filtros>${[['leads', 'Leads'], ['objecao', 'Com objeção'], ['nao_lidas', 'Não lidas'], ['todas', 'Todas'], ['arquivadas', 'Arquivadas']].map(([k, r]) => `<button class="chip ${k === filtro ? 'on' : ''}" data-f="${k}">${r}</button>`).join('')}</div></div>
+          <div class="chips mt-8" data-filtros>${[['leads', 'Leads'], ['objecao', 'Com objeção'], ['nao_lidas', 'Não lidas'], ['todas', 'Todas'], ['silenciadas', 'Pessoais'], ['arquivadas', 'Arquivadas']].map(([k, r]) => `<button class="chip ${k === filtro ? 'on' : ''}" data-f="${k}">${r}</button>`).join('')}</div></div>
         <div class="inbox-itens" data-itens>${esqueleto(6, 40)}</div>
       </aside>
       <section class="inbox-conversa card pad-0" data-conversa>${vazio('whatsapp', 'Escolha uma conversa', 'A leitura do Claude e as respostas sugeridas aparecem aqui.')}</section>
@@ -35,8 +36,10 @@ export default async function conversas(v, { args }) {
     const st = online ? f.whatsapp_status : 'offline';
     const rot = { conectado: ['verde', `Conectado${f.whatsapp_numero ? ` · ${telefoneBonito(f.whatsapp_numero)}` : ''}`], qr: ['amarelo', 'Aguardando QR'], conectando: ['amarelo', 'Conectando…'], desconectado: ['vermelho', 'Desconectado'], desligado: ['cinza', 'WhatsApp desligado'], erro: ['vermelho', 'Erro na conexão'], offline: ['cinza', 'Farejador offline'] }[st] || ['cinza', st];
     $('[data-conexao]', v).innerHTML = `<span class="selo ${rot[0]}"><span class="ponto ${st === 'conectado' ? 'on' : ''}"></span>${esc(rot[1])}</span>
+      <button class="btn" data-religar title="Procura o número de cada conversa nas fichas do CRM e liga as duas pontas">${icone('link')}Ligar às fichas</button>
       <button class="btn ${st === 'conectado' ? '' : 'prim'}" data-conectar>${icone(st === 'conectado' ? 'ajustes' : 'qr')}${st === 'conectado' ? 'Conexão' : 'Conectar WhatsApp'}</button>`;
     $('[data-conectar]', v).onclick = () => modalConexao();
+    $('[data-religar]', v)?.addEventListener('click', (ev) => religarFichas(ev.currentTarget));
     const banner = $('[data-banner]', v);
     if (!online) banner.innerHTML = `<div class="aviso laranja mb-16">${icone('alerta')}<div><b>O Farejador está offline.</b> Sem ele o WhatsApp não sincroniza e o Claude não analisa. As mensagens que você mandar ficam na fila. Ligue pelo atalho <b>Hound Dog Farejador</b> ou <code>npm run farejador</code> na pasta <code>ferramentas/hound-dog</code>.</div></div>`;
     else if (st !== 'conectado') banner.innerHTML = `<div class="aviso laranja mb-16">${icone('qr')}<div><b>WhatsApp não conectado.</b> Conecte o número comercial para as conversas chegarem aqui com a leitura do Claude.</div><button class="btn sm prim right" data-conectar2>Conectar</button></div>`;
@@ -51,12 +54,47 @@ export default async function conversas(v, { args }) {
     const { data, error } = await q;
     if (error) { $('[data-itens]', v).innerHTML = vazio('alerta', 'Não carregou', erroAmigavel(error)); return; }
     lista = data || [];
+    // O filtro "Leads" só mostra conversa ligada a uma ficha. Enquanto nenhuma
+    // estiver ligada, ele abriria vazio e daria a impressão de que o WhatsApp
+    // não chegou: nesse caso a tela abre em "Todas".
+    if (!ajustouFiltro) {
+      ajustouFiltro = true;
+      if (filtro === 'leads' && lista.length && !lista.some((c) => c.empresa_id)) {
+        filtro = 'todas';
+        $$('[data-f]', v).forEach((x) => x.classList.toggle('on', x.dataset.f === 'todas'));
+      }
+    }
     desenharLista();
+  }
+
+  /** Liga conversa ↔ ficha pelos 8 dígitos finais (WhatsApp ou telefone da ficha). */
+  async function religarFichas(btn) {
+    botaoCarregando(btn, true, 'Ligando…');
+    try {
+      const { data: soltas, error } = await sb.from('whatsapp_conversas').select('id,telefone').is('empresa_id', null);
+      if (error) throw error;
+      const fim = (x) => String(x || '').replace(/\D/g, '').slice(-8);
+      const fichas = estado.empresas.filter((e) => !e.arquivado && (e.whatsapp || e.telefone));
+      let n = 0;
+      for (const c of soltas || []) {
+        const alvo = fim(c.telefone);
+        if (alvo.length < 8) continue;
+        const emp = fichas.find((e) => fim(e.whatsapp) === alvo) || fichas.find((e) => fim(e.telefone) === alvo);
+        if (!emp) continue;
+        const { error: er } = await sb.from('whatsapp_conversas').update({ empresa_id: emp.id }).eq('id', c.id);
+        if (!er) { n++; await registrarAtividade(emp.id, 'whatsapp', 'Conversa do WhatsApp ligada à ficha', telefoneBonito(c.telefone)).catch(() => {}); }
+      }
+      toast(n ? `${n} conversa${n > 1 ? 's ligadas' : ' ligada'} à ficha` : 'Nenhuma conversa bateu com uma ficha do CRM', n ? 'ok' : 'info');
+      if (n) await carregarLista();
+    } catch (e) { toast(erroAmigavel(e), 'erro'); }
+    botaoCarregando(btn, false);
   }
 
   function filtradas() {
     const t = busca.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
     return lista.filter((c) => {
+      if (c.silenciada && !['todas', 'arquivadas', 'silenciadas'].includes(filtro)) return false;
+      if (filtro === 'silenciadas' && !c.silenciada) return false;
       if (filtro === 'leads' && !c.empresa_id) return false;
       if (filtro === 'nao_lidas' && !c.nao_lidas) return false;
       if (filtro === 'objecao' && !(c.analise?.objecoes?.length || (c.ultima_direcao === 'in' && detectarObjecoes(c.ultima_mensagem).length))) return false;
@@ -71,7 +109,10 @@ export default async function conversas(v, { args }) {
     if (!lst.length) {
       const semNada = !lista.length;
       box.innerHTML = vazio('whatsapp', semNada ? 'Nenhuma conversa ainda' : 'Nada neste filtro',
-        semNada ? (estado.farejador?.whatsapp_status === 'conectado' ? 'Assim que alguém mandar mensagem, ela aparece aqui.' : 'Conecte o WhatsApp para sincronizar.') : filtro === 'leads' ? 'Conversas com números que não estão no CRM ficam em "Todas".' : 'Troque o filtro.');
+        semNada ? (estado.farejador?.whatsapp_status === 'conectado' ? 'Assim que alguém mandar mensagem, ela aparece aqui.' : 'Conecte o WhatsApp para sincronizar.')
+          : filtro === 'leads' ? `Há ${lista.length} conversa${lista.length > 1 ? 's' : ''} sincronizada${lista.length > 1 ? 's' : ''}, nenhuma ligada a uma ficha. Use "Ligar às fichas" no topo ou veja em Todas.` : 'Troque o filtro.',
+        filtro === 'leads' ? '<button class="btn sm" data-ver-todas>Ver todas</button>' : '');
+      $('[data-ver-todas]', box)?.addEventListener('click', () => { filtro = 'todas'; $$('[data-f]', v).forEach((x) => x.classList.toggle('on', x.dataset.f === 'todas')); desenharLista(); });
       return;
     }
     box.innerHTML = lst.map((c) => {
@@ -81,7 +122,7 @@ export default async function conversas(v, { args }) {
       return `<button class="conv-item ${c.id === selecionada ? 'on' : ''}" data-conv="${c.id}">
         <span class="avatar sm ${emp ? '' : 'neutro'}">${esc(iniciais(nome))}</span>
         <span class="grow" style="min-width:0"><span class="row gap-6"><b class="ellipsis">${esc(nome)}</b>${c.nao_lidas ? '<span class="ponto on"></span>' : ''}<small class="dim right nowrap">${c.ultima_em ? (Date.now() - new Date(c.ultima_em) < 86400000 ? hora(c.ultima_em) : new Date(c.ultima_em).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })) : ''}</small></span>
-          <span class="row gap-6 mt-4">${emp ? `<span class="selo verde mini">No CRM</span>` : ''}${c.bot_detectado ? `<span class="selo cinza mini">${icone('robo')}Bot</span>` : ''}${obj ? `<span class="selo laranja mini">${esc(obj)}</span>` : ''}</span>
+          <span class="row gap-6 mt-4">${emp ? `<span class="selo verde mini">No CRM</span>` : ''}${c.silenciada ? '<span class="selo cinza mini">Pessoal</span>' : ''}${c.bot_detectado ? `<span class="selo cinza mini">${icone('robo')}Bot</span>` : ''}${obj ? `<span class="selo laranja mini">${esc(obj)}</span>` : ''}</span>
           <span class="conv-prev ellipsis">${c.ultima_direcao === 'out' ? 'Você: ' : ''}${esc(c.ultima_mensagem || '')}</span></span>
         ${c.nao_lidas ? `<span class="badge verde">${c.nao_lidas}</span>` : ''}</button>`;
     }).join('');
@@ -170,6 +211,12 @@ export default async function conversas(v, { args }) {
     $('[data-menu-conv]', painel).onclick = (ev) => import('../ui.js').then(({ menu }) => menu(ev.currentTarget, [
       { icone: 'copiar', rotulo: 'Copiar telefone', fn: () => copiar(c.telefone) },
       ...(c.empresa_id ? [{ icone: 'link', rotulo: 'Desvincular da empresa', fn: async () => { await sb.from('whatsapp_conversas').update({ empresa_id: null }).eq('id', c.id); abrirConversa(c.id); carregarLista(); } }] : []),
+      { icone: c.silenciada ? 'olho' : 'escudo', rotulo: c.silenciada ? 'Voltar a acompanhar' : 'Marcar como pessoal', fn: async () => {
+        const { error } = await sb.from('whatsapp_conversas').update({ silenciada: !c.silenciada }).eq('id', c.id);
+        if (error) { toast(erroAmigavel(error), 'erro'); return; }
+        toast(c.silenciada ? 'Volta a contar no resumo do dia' : 'Fora do resumo do dia e do contador');
+        c.silenciada = !c.silenciada; await carregarLista(); abrirConversa(c.id);
+      } },
       { icone: 'arquivo', rotulo: c.arquivada ? 'Desarquivar' : 'Arquivar conversa', fn: async () => { await sb.from('whatsapp_conversas').update({ arquivada: !c.arquivada }).eq('id', c.id); toast(c.arquivada ? 'Desarquivada' : 'Arquivada'); carregarLista(); } },
     ]));
 

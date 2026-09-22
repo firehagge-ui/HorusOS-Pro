@@ -95,6 +95,11 @@ details summary.rotulo { cursor: pointer; }
 .barra-ferramentas { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
 .barra-ferramentas .busca { min-width: 240px; }
 .barra-ferramentas .chip { padding: 6px 11px; font-size: 12.5px; }
+.barra-ferramentas .btn.on { border-color: var(--accent-line); color: var(--txt-1); background: rgba(255, 122, 26, 0.1); }
+.filtros-avancados { padding: 14px 16px; }
+.grade-filtros { display: grid; grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)); gap: 10px 14px; }
+.grade-filtros .campo { margin-bottom: 0; }
+.grade-filtros .sel { width: 100%; }
 .cartao.atencao { border-color: rgba(240, 82, 82, 0.35); }
 .cartao .ca.vencida { color: #ff9b9b; }
 .cartao .ca.vencida svg { color: #ff8a8a; }

@@ -1,5 +1,5 @@
 /**
- * Logo da Hórus em Gaussian Splat 3D, ao lado do texto do hero.
+ * Logo da Horus em Gaussian Splat 3D, ao lado do texto do hero.
  *
  * Carrega só depois que a página inteira já respondeu (window 'load'), para
  * não atrasar a primeira impressão: os dados (~9MB no total) somam mais que

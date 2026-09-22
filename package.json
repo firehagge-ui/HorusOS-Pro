@@ -1,0 +1,24 @@
+{
+  "name": "horusos",
+  "version": "1.0.0",
+  "description": "> O sistema operacional da Hórus dentro do Claude Code.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/firehagge-ui/HorusOS-Pro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/firehagge-ui/HorusOS-Pro/issues"
+  },
+  "homepage": "https://github.com/firehagge-ui/HorusOS-Pro#readme",
+  "dependencies": {
+    "playwright": "^1.63.0"
+  }
+}

@@ -1,4 +1,4 @@
-# Hórus Agência — agenciahorus.netlify.app
+# Horus Agência — agenciahorus.netlify.app
 #
 # 01/09/2026: o site está no ar como PREVIEW FECHADO (decisão do Marcelo).
 # O bloqueio é de propósito, não é esquecimento: o portfólio ainda está sem

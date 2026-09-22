@@ -104,8 +104,8 @@
 
 [[redirects]]
   from = "/portfolio"
-  to = "/#portfolio"
-  status = 302
+  to = "/portfolio.html"
+  status = 200
 
 [[redirects]]
   from = "/sobre"

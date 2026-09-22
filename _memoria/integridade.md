@@ -103,6 +103,18 @@ endereço contra uma fonte que o cliente controla (print do perfil dele, mensage
 e **mandar uma mensagem de teste** para o número que está no código. Isso entra no
 `/verificar`.
 
+### 🔴 Segundo caso: prospecção da Euro Tech (19-20/09/2026)
+
+A mesma regra falhou de novo, agora na abordagem, não no site. A mensagem de prospecção
+de 19/09 saiu para **71 8205-0610** (dez dígitos), quando o Google publica
+**(71) 98205-0610** e a bio do Instagram publica um terceiro número, **(71) 98443-2921**.
+O número usado não era nenhum dos que eles divulgam, e a mensagem pode simplesmente não ter
+chegado, o que faria o "silêncio" parecer recusa. **Na prospecção vale o mesmo que no site:
+número que não bate com a fonte oficial do lead vira `[FALTA: ...]` e checagem, nunca
+suposição** — inclusive quando o WhatsApp "provavelmente normaliza" o dígito. É o segundo
+episódio do mesmo erro depois da Amparo; o custo aqui é abordar no número errado e ler mal a
+resposta. Origem: auditoria da onda de prospecção 20/09 (`saidas/prospeccao-2026-09-20/`).
+
 ---
 
 ## Fato x recomendação

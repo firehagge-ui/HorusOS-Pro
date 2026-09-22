@@ -89,6 +89,20 @@ export async function conectar({ aoMudar } = {}) {
     }
   });
 
+  // Ler no celular tem que valer aqui também: sem isso o Hound Dog cobra de novo
+  // mensagem que o Marcelo já respondeu ou já leu no aparelho.
+  sock.ev.on('chats.update', async (ups) => {
+    for (const u of ups) {
+      if (u?.unreadCount === undefined || u.unreadCount === null) continue;
+      const telefone = await resolverTelefone(u.id).catch(() => null);
+      if (!telefone) continue;
+      const n = Number(u.unreadCount);
+      const valor = Number.isFinite(n) ? (n < 0 ? 1 : n) : 0; // -1 = marcada como não lida no celular
+      await q(`update whatsapp_conversas set nao_lidas = $2, lida_em = case when $2 = 0 then now() else lida_em end
+               where jid = $1 and nao_lidas is distinct from $2`, [`${telefone}@s.whatsapp.net`, valor]).catch(() => {});
+    }
+  });
+
   sock.ev.on('messaging-history.set', async ({ messages }) => {
     if (!messages?.length) return;
     let n = 0;
@@ -154,14 +168,26 @@ export async function guardarMensagem(m, doHistorico = false) {
   if (doHistorico && momento < new Date(Date.now() - 45 * 86400000)) return false;
   const direcao = key.fromMe ? 'out' : 'in';
 
-  const empresa = await q1(`select id, nome from empresas where right(regexp_replace(coalesce(whatsapp,''),'\\D','','g'), 8) = right($1, 8) limit 1`, [telefone]).catch(() => null);
+  // Casa pelo WhatsApp cadastrado e, se não achar, pelo telefone da ficha: muito
+  // lead da casa entra só com o telefone do Google/Instagram, e sem isso a conversa
+  // nasce solta e some do filtro "Leads".
+  const empresa = await q1(
+    `select id, nome from empresas
+      where right(regexp_replace(coalesce(whatsapp,''),'\\D','','g'), 8) = right($1, 8)
+         or right(regexp_replace(coalesce(telefone,''),'\\D','','g'), 8) = right($1, 8)
+      order by (right(regexp_replace(coalesce(whatsapp,''),'\\D','','g'), 8) = right($1, 8)) desc, atualizado_em desc
+      limit 1`, [telefone]).catch(() => null);
   if (doHistorico && !empresa) return false; // no histórico só puxamos quem já é do CRM
+
+  // pushName numa mensagem QUE EU MANDEI é o meu próprio nome, não o do contato.
+  // Sem esta trava, toda conversa iniciada por nós nascia chamada "Marcelo Hagge".
+  const nomeContato = direcao === 'in' ? (m.pushName || null) : null;
 
   let conversa = await q1('select * from whatsapp_conversas where jid = $1', [jid]);
   if (!conversa) {
     conversa = await q1(`insert into whatsapp_conversas (jid, telefone, nome, empresa_id, ultima_mensagem, ultima_direcao, ultima_em)
                          values ($1,$2,$3,$4,$5,$6,$7) on conflict (jid) do update set atualizado_em = now() returning *`,
-    [jid, telefone, m.pushName || null, empresa?.id || null, (texto || `[${tipo}]`).slice(0, 400), direcao, momento.toISOString()]);
+    [jid, telefone, nomeContato, empresa?.id || null, (texto || `[${tipo}]`).slice(0, 400), direcao, momento.toISOString()]);
   }
   if (empresa && !conversa.empresa_id) await q('update whatsapp_conversas set empresa_id = $2 where id = $1', [conversa.id, empresa.id]);
 
@@ -174,7 +200,7 @@ export async function guardarMensagem(m, doHistorico = false) {
   if (!doHistorico) {
     await q(`update whatsapp_conversas set ultima_mensagem = $2, ultima_direcao = $3, ultima_em = $4, nome = coalesce(nome, $5),
              nao_lidas = case when $3 = 'in' then nao_lidas + 1 else 0 end where id = $1`,
-    [conversa.id, (texto || `[${tipo}]`).slice(0, 400), direcao, momento.toISOString(), m.pushName || null]);
+    [conversa.id, (texto || `[${tipo}]`).slice(0, 400), direcao, momento.toISOString(), nomeContato]);
     if (empresa && direcao === 'in') {
       await q(`insert into atividades (empresa_id, tipo, titulo, descricao, autor) values ($1,'whatsapp',$2,$3,'whatsapp')`,
         [empresa.id, 'Respondeu no WhatsApp', (texto || `[${tipo}]`).slice(0, 400)]).catch(() => {});

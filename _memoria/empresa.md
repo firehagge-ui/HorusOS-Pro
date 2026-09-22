@@ -253,7 +253,7 @@ A descrição de cada função da operação está em `equipe/`, com tipo de exe
 
 Não são clientes, e por isso não moram em `clientes/`:
 
-- **`site/`** — site institucional da agência, na raiz. Tem `CLAUDE.md` e `PLANO.md`
+- **`site/`** — site institucional da agência, na raiz. Instagram oficial: `https://www.instagram.com/horusagencia.br/` (@horusagencia.br). WhatsApp: `(71) 99912-7514`. Netlify preview: `agenciahorus.netlify.app`. Tem `CLAUDE.md` e `PLANO.md`
   próprios, e a home foi refeita várias vezes entre 04 e 05/08/2026. O estudo das
   dez referências que definiram a linguagem está em
   `referencias/agencias-ia-dez-sites.md`

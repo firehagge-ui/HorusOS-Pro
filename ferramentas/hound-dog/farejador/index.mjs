@@ -195,17 +195,26 @@ async function rotinaBriefing() {
     if (ultimoBriefing === hoje) return;
     if (agora.getHours() < h || (agora.getHours() === h && agora.getMinutes() < m)) return;
     if (agora.getHours() > h + 3) { ultimoBriefing = hoje; return; } // perdeu a janela, não manda atrasado
+    // O resumo é da OPERAÇÃO, não da caixa de entrada pessoal: só entra conversa
+    // ligada a uma ficha do CRM, não silenciada, recebida e ainda não lida (o
+    // "lido" vem do celular pelo evento chats.update). Regra do Marcelo, 20/09/2026.
+    const soCrm = cfg.briefing_so_crm !== false;
+    const diasResposta = Number(cfg.briefing_dias_resposta) > 0 ? Number(cfg.briefing_dias_resposta) : 3;
     const [agenda, atencao, quentes] = await Promise.all([
       q(`select a.titulo, a.inicio, a.local, e.nome empresa from agenda a left join empresas e on e.id = a.empresa_id
          where a.status = 'agendado' and a.inicio::date = (now() at time zone 'America/Bahia')::date order by a.inicio`),
       q('select nome, motivo, proxima_acao from vw_atencao limit 6'),
-      q(`select c.nome, c.telefone, e.nome empresa, c.ultima_mensagem from whatsapp_conversas c left join empresas e on e.id = c.empresa_id
-         where c.nao_lidas > 0 order by c.ultima_em desc limit 5`),
+      q(`select c.nome, c.telefone, e.nome empresa, c.ultima_mensagem
+           from whatsapp_conversas c ${soCrm ? 'join' : 'left join'} empresas e on e.id = c.empresa_id
+          where c.nao_lidas > 0 and not c.arquivada and not c.silenciada
+            and c.ultima_direcao = 'in'
+            and c.ultima_em > now() - ($1 || ' days')::interval
+          order by c.ultima_em desc limit 5`, [String(diasResposta)]),
     ]);
     const linhas = [`☀️ *Resumo do dia — Hound Dog*`, ''];
     linhas.push(agenda.length ? `*Agenda de hoje*\n${agenda.map((a) => `• ${new Date(a.inicio).toLocaleTimeString('pt-BR', { timeZone: 'America/Bahia', hour: '2-digit', minute: '2-digit' })} ${a.titulo}${a.empresa ? ` (${a.empresa})` : ''}`).join('\n')}` : '*Agenda de hoje*\nNada marcado.');
     if (atencao.length) linhas.push('', `*Precisa de você*\n${atencao.map((a) => `• ${a.nome} — ${a.motivo === 'acao_vencida' ? 'ação vencida' : a.motivo === 'parado' ? 'parado há dias' : 'sem próxima ação'}${a.proxima_acao ? `: ${a.proxima_acao.slice(0, 80)}` : ''}`).join('\n')}`);
-    if (quentes.length) linhas.push('', `*Respostas não lidas*\n${quentes.map((c) => `• ${c.empresa || c.nome || c.telefone}: ${(c.ultima_mensagem || '').slice(0, 70)}`).join('\n')}`);
+    if (quentes.length) linhas.push('', `*Lead esperando resposta*\n${quentes.map((c) => `• ${c.empresa || c.nome || c.telefone}: ${(c.ultima_mensagem || '').slice(0, 70)}`).join('\n')}`);
     linhas.push('', '_Abra o Hound Dog para os detalhes._');
     if (await WA.enviarParaMim(linhas.join('\n'))) {
       ultimoBriefing = hoje;
@@ -254,6 +263,7 @@ async function inicio() {
       const modo = cfg.auto_analisar || 'leads';
       if (modo === 'nunca') return;
       if (modo === 'leads' && !empresa) return;
+      if (conversa.silenciada) return; // conversa marcada como pessoal não vai para o Claude
       agendarAnalise(conversa.id, empresa?.id);
     } catch (e) { logErro('whatsapp', e); }
   };

@@ -2,6 +2,11 @@
 .DS_Store
 Thumbs.db
 
+# Variáveis de ambiente e segredos
+.env
+.env.local
+.env.*.local
+
 # Editores
 .vscode/
 .idea/
@@ -80,6 +85,10 @@ _biblioteca/squads/
 # Re-clonar num clone novo:
 #   git clone https://github.com/SGrappelli/pronto.git ferramentas/pronto-app
 ferramentas/pronto-app/
+
+# scratch/ — rascunho de trabalho (screenshots de captura, .mjs/.cjs de teste).
+# Não é fonte da Hórus; fica local e nunca vai pro git.
+scratch/
 
 # Netlify — pasta gerada pelo site/build-deploy.mjs a cada deploy.
 # É saída, não fonte: montada a partir de site/ por uma lista explícita.

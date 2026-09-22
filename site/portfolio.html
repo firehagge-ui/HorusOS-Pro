@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfólio | Horus Agência — Trabalhos em Destaque</title>
+<meta name="description" content="Seleção completa dos portfólios e projetos desenvolvidos pela Horus Agência. Engenharia visual, inteligência artificial e presença digital de alto impacto.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://agenciahorus.netlify.app/portfolio">
+<meta name="theme-color" content="#0A0B0F">
+
+<!-- Open Graph / Meta -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://agenciahorus.netlify.app/portfolio">
+<meta property="og:site_name" content="Horus Agência">
+<meta property="og:title" content="Portfólio | Horus Agência — Trabalhos em Destaque">
+<meta property="og:description" content="Projetos reais desenhados do posicionamento ao código para gerar autoridade e conversão.">
+<meta property="og:image" content="https://agenciahorus.netlify.app/assets/compartilhar.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Portfólio de Projetos Horus Agência">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Favicons oficiais da Horus -->
+<link rel="icon" href="assets/simbolo.webp" type="image/webp">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<!-- Tipografia OFICIAL da Horus: DM Sans + JetBrains Mono -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Folha de estilo OFICIAL da Horus -->
+<link rel="stylesheet" href="assets/site.css?v=5">
+
+<style>
+/* ==========================================================================
+   Horus Agência — Página de Portfólio Dedicada (Inspirada no layout Lesse Studio)
+   100% Identidade Visual Horus:
+   - Sem botões de filtro (curadoria direta, contínua e imersiva)
+   - Layout com proporções generosas: padding lateral 5vw, espaçamento e tipografia
+   - Cards com tags sobrepostas no rodapé da imagem
+   - Clique direciona para o estudo de caso individual
+   - Motion engine: Lenis + GSAP ScrollTrigger
+   ========================================================================== */
+
+body {
+  background-color: #030712;
+  color: var(--osso, #d1cece);
+  font-family: var(--corpo, "DM Sans", system-ui, sans-serif);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Espaçamento do hero da página de portfólio (proporções Lesse Studio) */
+.portfolio-hero-page {
+  padding-top: clamp(140px, 11vw, 190px);
+  padding-bottom: clamp(30px, 4vw, 56px);
+  position: relative;
+  background: radial-gradient(circle at 50% 0%, rgba(0, 119, 255, 0.14) 0%, transparent 65%);
+}
+
+.pf-envelope {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 80px);
+}
+
+.pf-page-header-row {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 860px) {
+  .pf-page-header-row {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 48px;
+  }
+}
+
+.pf-page-title-col {
+  flex: 1 1 52%;
+}
+
+.pf-page-title {
+  font-size: clamp(2.4rem, 4vw, 4.2rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  color: #ffffff;
+  margin: 0;
+}
+
+.pf-page-desc-col {
+  flex: 1 1 48%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media (min-width: 860px) {
+  .pf-page-desc-col {
+    justify-content: flex-end;
+  }
+}
+
+.pf-page-desc {
+  color: #94a3b8;
+  font-size: clamp(1rem, 1.15vw, 1.15rem);
+  line-height: 1.6;
+  max-width: 44ch;
+  margin: 0;
+}
+
+/* Grade de 2 colunas para os 9 projetos (proporções Lesse Studio) */
+.portfolio-grid-page {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(48px, 6vw, 84px) clamp(20px, 2vw, 36px);
+  margin-top: clamp(60px, 8vw, 110px);
+  margin-bottom: clamp(80px, 10vw, 140px);
+}
+
+@media (min-width: 860px) {
+  .portfolio-grid-page {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Card Link Oficial do Portfólio */
+.pf-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  outline: none;
+}
+
+.pf-card-link .pf-tela {
+  aspect-ratio: 16 / 10;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: clamp(14px, 1.2vw, 20px);
+  overflow: hidden;
+  position: relative;
+  background: #0b1329;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pf-card-link:hover .pf-tela {
+  border-color: rgba(0, 119, 255, 0.6);
+  box-shadow: 0 0 32px rgba(0, 119, 255, 0.3), 0 24px 50px rgba(0, 0, 0, 0.7);
+  transform: translateY(-6px);
+}
+
+.pf-card-link .pf-tela img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.pf-card-link:hover .pf-tela img {
+  transform: scale(1.04);
+}
+
+/* Tag sobreposta na imagem (exato como na referência lessestudio) */
+.pf-tag-overlay {
+  position: absolute;
+  bottom: clamp(12px, 1.2vw, 18px);
+  left: clamp(12px, 1.2vw, 18px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.pf-tag-overlay .pf-tag {
+  background: rgba(3, 7, 18, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pf-tag-overlay .pf-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+  display: inline-block;
+}
+
+.pf-legenda {
+  margin-top: 14px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.pf-tit {
+  font-size: clamp(1.35rem, 1.7vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  margin: 0;
+  transition: color 0.25s ease;
+}
+
+.pf-card-link:hover .pf-tit {
+  color: #38bdf8;
+}
+
+.pf-meta-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.pf-meta-rotulo {
+  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.pf-meta-dado {
+  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #e2e8f0;
+}
+
+/* Seção de Posicionamento Editorial / Manifesto */
+.pf-manifesto-secao {
+  padding: clamp(80px, 8vw, 120px) 0;
+  background: radial-gradient(circle at 50% 50%, rgba(13, 20, 36, 0.6) 0%, transparent 80%);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: center;
+  position: relative;
+}
+
+.pf-manifesto-secao .pf-h2 {
+  max-width: 24ch;
+  margin: 0 auto;
+  font-size: clamp(2.2rem, 3.4vw, 3.4rem);
+}
+
+.pf-manifesto-texto {
+  max-width: 64ch;
+  margin: 22px auto 0;
+  color: #94a3b8;
+  font-size: clamp(1rem, 1.15vw, 1.15rem);
+  line-height: 1.65;
+}
+</style>
+</head>
+<body>
+
+<!-- ================= CABEÇALHO IDÊNTICO À LANDING PAGE ================= -->
+<header class="topo" id="topo">
+  <div class="topo-linha">
+    <a class="marca" href="index.html">
+      <img class="marca-logo" src="assets/simbolo.webp" alt="" aria-hidden="true" width="30" height="30">
+      <span class="nome">HORUS</span>
+    </a>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a href="index.html#sobre">Sobre</a>
+      <a href="index.html#servicos">Serviços</a>
+      <a href="portfolio.html" class="ativo" aria-current="page">Portfólio</a>
+    </nav>
+    <div class="topo-dir">
+      <button class="hamburguer" type="button" id="abre-menu"
+              aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
+        <span class="hb-caixa" aria-hidden="true"><i></i><i></i></span>
+      </button>
+      <a class="topo-cta btn-roll" href="#contato" id="cta-topo">
+        <span class="roll">
+          <span class="roll-t">Contate-nos <span class="seta" aria-hidden="true">&#8599;</span></span>
+          <span class="roll-t" aria-hidden="true">Contate-nos <span class="seta" aria-hidden="true">&#8599;</span></span>
+        </span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= HERO DA PÁGINA DE PORTFÓLIO ================= -->
+  <section class="portfolio-hero-page">
+    <div class="pf-envelope">
+      <div class="pf-eyebrow"><span class="pf-quadrado" aria-hidden="true"></span> NOSSO PORTFÓLIO COMPLETO</div>
+
+      <div class="pf-page-header-row">
+        <div class="pf-page-title-col">
+          <h1 class="pf-page-title">
+            Trabalhos em <span class="pf-azul">destaque.</span>
+          </h1>
+        </div>
+        <div class="pf-page-desc-col">
+          <p class="pf-page-desc">
+            Uma seleção criteriosa dos projetos desenvolvidos pela Horus Agência. Engenharia visual, inteligência artificial e presença digital de alto impacto — do posicionamento ao código.
+          </p>
+        </div>
+      </div>
+
+      <!-- Grade dos 9 Projetos (Layout em 2 Colunas, sem filtros, inspirado em lessestudio.com/portfolio) -->
+      <div class="portfolio-grid-page" id="pf-grid">
+        
+    <a href="portfolio/novare.html" class="pf-item pf-card-link" aria-label="Ver estudo de caso de Novare Psicologia">
+      <div class="pf-tela">
+        <img src="assets/portfolio/pf-novare.webp" alt="Novare Psicologia" loading="lazy" decoding="async">
+        <div class="pf-tag-overlay">
+          <span class="pf-tag"><span class="pf-dot"></span> SAÚDE & PSICOLOGIA</span>
+        </div>
+      </div>
+      <div class="pf-legenda">
+        <h2 class="pf-tit">Novare Psicologia</h2>
+        <div class="pf-meta-col">
+          <span class="pf-meta-rotulo">Localização</span>
+          <span class="pf-meta-dado">Salvador, BA</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="portfolio/grao-da-serra.html" class="pf-item pf-card-link" aria-label="Ver estudo de caso de Café Grão da Serra">
+      <div class="pf-tela">
+        <img src="assets/portfolio/pf-grao-da-serra.webp" alt="Café Grão da Serra" loading="lazy" decoding="async">
+        <div class="pf-tag-overlay">
+          <span class="pf-tag"><span class="pf-dot"></span> AGRONEGÓCIO & VENDAS B2B</span>
+        </div>
+      </div>
+      <div class="pf-legenda">
+        <h2 class="pf-tit">Café Grão da Serra</h2>
+        <div class="pf-meta-col">
+          <span class="pf-meta-rotulo">Localização</span>
+          <span class="pf-meta-dado">Mantiqueira / Brejões, BA</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="portfolio/irs-performance.html" class="pf-item pf-card-link" aria-label="Ver estudo de caso de IRS Performance">
+      <div class="pf-tela">
+        <img src="assets/portfolio/pf-irs-performance.webp" alt="IRS Performance" loading="lazy" decoding="async">
+        <div class="pf-tag-overlay">
+          <span class="pf-tag"><span class="pf-dot"></span> AUTOMOTIVO & ALTA PERFORMANCE</span>
+        </div>
+      </div>
+      <div class="pf-legenda">
+        <h2 class="pf-tit">IRS Performance</h2>
+        <div class="pf-meta-col">
+          <span class="pf-meta-rotulo">Localização</span>
+          <span class="pf-meta-dado">São Paulo, SP</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="portfolio/verdiserv.html" class="pf-item pf-card-link" aria-label="Ver estudo de caso de VerdiServ — Serviços Prediais">
+      <div class="pf-tela">
+        <img src="assets/portfolio/pf-verdiserv.webp" alt="VerdiServ — Serviços Prediais" loading="lazy" decoding="async">
+        <div class="pf-tag-overlay">
+          <span class="pf-tag"><span class="pf-dot"></span> FACILITIES & GESTÃO PREDIAL</span>
+        </div>
+      </div>
+      <div class="pf-legenda">
+        <h2 class="pf-tit">VerdiServ — Serviços Prediais</h2>
+        <div class="pf-meta-col">
+          <span class="pf-meta-rotulo">Localização</span>
+          <span class="pf-meta-dado">Salvador, BA</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="portfolio/soleira.html" class="pf-item pf-card-link" aria-label="Ver estudo de caso de Soleira Arquitetura">
+      <div class="pf-tela">
+        <img src="assets/portfolio/pf-soleira.webp" alt="Soleira Arquitetura" loading="lazy" decoding="async">
+        <div class="pf-tag-overlay">
+          <span class="pf-tag"><span class="pf-dot"></span> ARQUITETURA & DESIGN</span>
+        </div>
+      </div>
+      <div class="pf-legenda">
+        <h2 class="pf-tit">Soleira Arquitetura</h2>
+        <div class="pf-meta-col">
+          <span class="pf-meta-rotulo">Localização</span>
+          <span class="pf-meta-dado">Salvador, BA</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="portfolio/vanguarda.html" class="pf-item pf-card-link" aria-label="Ver estudo de caso de Vanguarda Advocacia">
+      <div class="pf-tela">
+        <img src="assets/portfolio/pf-vanguarda.webp" alt="Vanguarda Advocacia" loading="lazy" decoding="async">
+        <div class="pf-tag-overlay">
+          <span class="pf-tag"><span class="pf-dot"></span> DIREITO & CORPORATIVO</span>
+        </div>
+      </div>
+      <div class="pf-legenda">
+        <h2 class="pf-tit">Vanguarda Advocacia</h2>
+        <div class="pf-meta-col">
+          <span class="pf-meta-rotulo">Localização</span>
+          <span class="pf-meta-dado">Brasília / Salvador</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="portfolio/lumina.html" class="pf-item pf-card-link" aria-label="Ver estudo de caso de Lumina Dental Studio">
+      <div class="pf-tela">
+        <img src="assets/portfolio/pf-lumina.webp" alt="Lumina Dental Studio" loading="lazy" decoding="async">
+        <div class="pf-tag-overlay">
+          <span class="pf-tag"><span class="pf-dot"></span> ODONTOLOGIA & ESTÉTICA</span>
+        </div>
+      </div>
+      <div class="pf-legenda">
+        <h2 class="pf-tit">Lumina Dental Studio</h2>
+        <div class="pf-meta-col">
+          <span class="pf-meta-rotulo">Localização</span>
+          <span class="pf-meta-dado">Salvador, BA</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="portfolio/amendoa.html" class="pf-item pf-card-link" aria-label="Ver estudo de caso de Amêndoa Confeitaria">
+      <div class="pf-tela">
+        <img src="assets/portfolio/pf-amendoa.webp" alt="Amêndoa Confeitaria" loading="lazy" decoding="async">
+        <div class="pf-tag-overlay">
+          <span class="pf-tag"><span class="pf-dot"></span> GASTRONOMIA & EVENTOS</span>
+        </div>
+      </div>
+      <div class="pf-legenda">
+        <h2 class="pf-tit">Amêndoa Confeitaria</h2>
+        <div class="pf-meta-col">
+          <span class="pf-meta-rotulo">Localização</span>
+          <span class="pf-meta-dado">Salvador, BA</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="portfolio/solarium.html" class="pf-item pf-card-link" aria-label="Ver estudo de caso de Solarium Energia Solar">
+      <div class="pf-tela">
+        <img src="assets/portfolio/pf-solarium.webp" alt="Solarium Energia Solar" loading="lazy" decoding="async">
+        <div class="pf-tag-overlay">
+          <span class="pf-tag"><span class="pf-dot"></span> ENERGIA SOLAR & B2B</span>
+        </div>
+      </div>
+      <div class="pf-legenda">
+        <h2 class="pf-tit">Solarium Energia Solar</h2>
+        <div class="pf-meta-col">
+          <span class="pf-meta-rotulo">Localização</span>
+          <span class="pf-meta-dado">Feira de Santana, BA</span>
+        </div>
+      </div>
+    </a>
+  
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= MANIFESTO EDITORIAL ================= -->
+  <section class="pf-manifesto-secao" aria-label="Nosso Posicionamento">
+    <div class="envelope">
+      <div class="pf-eyebrow" style="justify-content: center; margin-bottom: 16px;">
+        <span class="pf-quadrado" aria-hidden="true"></span> POSICIONAMENTO HORUS
+      </div>
+      <h2 class="pf-h2">Não criamos templates.<br><span class="pf-azul">Construímos presença de mercado.</span></h2>
+      <p class="pf-manifesto-texto">
+        Cada projeto de desenvolvimento ou identidade nasce de um diagnóstico cirúrgico da sua operação. Sem layouts genéricos, sem código descartável e com cada detalhe desenhado para posicionar seu negócio no topo do segmento.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= ENCERRAMENTO: CHAMADA FINAL + RODAPÉ + ASSINATURA ================= -->
+  <div class="encerra">
+    <div class="encerra-glow" aria-hidden="true"></div>
+
+    <section class="chamada" id="contato">
+      <div class="ch-arco rev" aria-hidden="true">
+        <div class="ch-arco-stage">
+          <span class="ch-arco-l ch-arco-rim"></span>
+          <span class="ch-arco-l ch-arco-glowl"></span>
+          <span class="ch-arco-l ch-arco-glowd"></span>
+          <span class="ch-arco-l ch-arco-core"></span>
+        </div>
+      </div>
+      <div class="envelope">
+        <h2 class="ch-titulo rev">Pronto para criar<br>algo incrível?</h2>
+        <div class="ch-acao rev">
+          <a class="glow-btn" href="https://wa.me/5571999127514" aria-label="Começar projeto">
+            <span class="glow-txt">Começar projeto</span>
+            <svg class="glow-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z"/><path d="M19 14l.7 2L22 16.7l-2 .7L19 20l-.7-2L16 16.7l2-.7L19 14Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rodapé Oficial da Horus -->
+    <footer class="rodape">
+      <div class="envelope">
+        <div class="rd-topo">
+          <div class="rd-marca">
+            <a class="marca" href="index.html">
+              <img src="assets/simbolo.webp" width="34" height="28" alt="Horus Agência">
+              <span class="nome">HORUS</span>
+            </a>
+            <p class="rd-assinatura">Visão que conecta.</p>
+          </div>
+
+          <div class="rd-contato">
+            <a class="rd-email" href="mailto:contato.horus@gmail.com">contato.horus@gmail.com</a>
+            <a class="rd-fone" href="https://wa.me/5571999127514">(71) 99912-7514</a>
+          </div>
+        </div>
+
+        <div class="rd-pe">
+          <p class="rd-legal">&copy; Horus Agência | 2026</p>
+          <ul class="rd-redes">
+            <li>
+              <a class="rd-rede" href="https://www.instagram.com/horusagencia.br/"
+                 aria-label="Instagram da Horus"
+                 rel="me noopener" target="_blank">
+                <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor"
+                     stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                  <rect x="3" y="3" width="18" height="18" rx="5"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Assinatura Vetorial Gigante HORUS (Idêntica à Landing Page) -->
+    <div class="assinatura" role="img" aria-label="Horus">
+      <svg viewBox="0 0 1200 320" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="as-grafite" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0"    stop-color="#3B4A66"/>
+            <stop offset="0.52" stop-color="#1A202B"/>
+            <stop offset="1"    stop-color="#0F131A"/>
+          </linearGradient>
+          <radialGradient id="as-brilho" gradientUnits="userSpaceOnUse"
+                          cx="600" cy="110" r="300" fx="600" fy="110">
+            <stop offset="0"    stop-color="#E5E7EB" stop-opacity=".92"/>
+            <stop offset="0.42" stop-color="#4B93E6" stop-opacity=".40"/>
+            <stop offset="1"    stop-color="#4B93E6" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <g font-family="DM Sans, system-ui, sans-serif" font-weight="700"
+           font-size="317" letter-spacing="-11" text-anchor="middle">
+          <text x="600" y="298" textLength="1160" lengthAdjust="spacing"
+                fill="url(#as-grafite)">HORUS</text>
+          <text class="as-luz" x="600" y="298" textLength="1160" lengthAdjust="spacing"
+                fill="url(#as-brilho)">HORUS</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+</main>
+
+<!-- ================= SCRIPTS DE MOTION VENDORIZADOS ================= -->
+<script src="assets/vendor/gsap/gsap.min.js"></script>
+<script src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
+
+<!-- ================= SCRIPTS DA HORUS & COREOGRAFIA DE MOTION ================= -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var reduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ================= 1. SMOOTH SCROLL COM LENIS =================
+  var lenis = null;
+  if (window.Lenis && !reduzido) {
+    lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+    function rafLenis(t) { lenis.raf(t); requestAnimationFrame(rafLenis); }
+    requestAnimationFrame(rafLenis);
+
+    if (window.gsap && window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+      lenis.on('scroll', ScrollTrigger.update);
+      document.documentElement.style.scrollBehavior = 'auto';
+      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          var targetId = a.getAttribute('href');
+          var targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            lenis.scrollTo(targetEl, { offset: -40 });
+          }
+        });
+      });
+    }
+  }
+
+  // ================= 2. MOTION DE ENTRADA DO HERO =================
+  if (window.gsap && !reduzido) {
+    var heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+    heroTl.from('.pf-eyebrow', {
+      y: -20,
+      opacity: 0,
+      duration: 0.8,
+      delay: 0.1
+    })
+    .from('.pf-page-title', {
+      y: 35,
+      opacity: 0,
+      duration: 0.9,
+      ease: 'power4.out'
+    }, '-=0.5')
+    .from('.pf-page-desc', {
+      y: 20,
+      opacity: 0,
+      duration: 0.8
+    }, '-=0.6');
+
+    // ================= 3. SCROLLTRIGGER STAGGER NA GRADE DE CARDS =================
+    var cards = gsap.utils.toArray('.portfolio-grid-page .pf-item');
+    cards.forEach(function (card, index) {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 88%',
+          toggleActions: 'play none none none'
+        },
+        y: 45,
+        opacity: 0,
+        duration: 0.85,
+        ease: 'power3.out',
+        delay: (index % 2) * 0.12,
+        onComplete: function () {
+          gsap.set(card, { clearProps: 'transform' });
+        }
+      });
+    });
+
+    // ================= 4. MANIFESTO EDITORIAL SCROLL TRIGGER =================
+    gsap.from('.pf-manifesto-secao .envelope > *', {
+      scrollTrigger: {
+        trigger: '.pf-manifesto-secao',
+        start: 'top 80%',
+        toggleActions: 'play none none none'
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power3.out'
+    });
+
+    // ================= 5. REVELAÇÃO DA CHAMADA FINAL (.CH-ARCO) =================
+    var chamada = document.querySelector('.chamada');
+    if (chamada) {
+      var alvos = chamada.querySelectorAll('.rev');
+      ScrollTrigger.create({
+        trigger: chamada,
+        start: 'top 78%',
+        once: true,
+        onEnter: function () {
+          alvos.forEach(function (el) { el.classList.add('visivel'); });
+        }
+      });
+    }
+  } else {
+    var chamadaEl = document.querySelector('.chamada');
+    if (chamadaEl) {
+      var alvosEl = chamadaEl.querySelectorAll('.rev');
+      var obsCta = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          alvosEl.forEach(function (el) { el.classList.add('visivel'); });
+          obsCta.disconnect();
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+      obsCta.observe(chamadaEl);
+    }
+  }
+
+  // ================= 6. HEADER ROLADO & MENU MOBILE & INTERAÇÕES DA HORUS =================
+  var topo = document.getElementById('topo');
+  if (topo) {
+    var sentinela = document.createElement('div');
+    sentinela.style.cssText = 'height:1px;position:absolute;top:0;left:0;width:1px;pointer-events:none;';
+    document.body.prepend(sentinela);
+    new IntersectionObserver(function (e) {
+      topo.classList.toggle('rolado', !e[0].isIntersecting);
+    }).observe(sentinela);
+  }
+
+  var botao = document.getElementById('abre-menu');
+  var menu = document.getElementById('menu');
+  if (botao && menu) {
+    function estadoMenu(aberto) {
+      menu.classList.toggle('aberto', aberto);
+      botao.classList.toggle('aberto', aberto);
+      botao.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+      botao.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+    }
+    botao.addEventListener('click', function () {
+      estadoMenu(!menu.classList.contains('aberto'));
+    });
+    menu.addEventListener('click', function (e) {
+      if (e.target.closest('a')) estadoMenu(false);
+    });
+  }
+
+  // Luz interativa da assinatura Horus (#as-brilho)
+  (function () {
+    var caixa = document.querySelector('.assinatura');
+    if (!caixa || reduzido) return;
+    var desenho = caixa.querySelector('svg');
+    var luz = caixa.querySelector('#as-brilho');
+    if (!desenho || !luz) return;
+    var x = 600, y = 110, alvoX = 600, alvoY = 110, rodando = false;
+    function anda() {
+      x += (alvoX - x) * 0.12;
+      y += (alvoY - y) * 0.12;
+      luz.setAttribute('cx', x.toFixed(1));
+      luz.setAttribute('cy', y.toFixed(1));
+      luz.setAttribute('fx', x.toFixed(1));
+      luz.setAttribute('fy', y.toFixed(1));
+      if (Math.abs(alvoX - x) > 0.5 || Math.abs(alvoY - y) > 0.5) {
+        requestAnimationFrame(anda);
+      } else {
+        rodando = false;
+      }
+    }
+    caixa.addEventListener('mousemove', function (e) {
+      var r = desenho.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      var px = (e.clientX - r.left) / r.width;
+      var py = (e.clientY - r.top) / r.height;
+      alvoX = Math.max(0, Math.min(1200, px * 1200));
+      alvoY = Math.max(0, Math.min(320,  py * 320));
+      if (!rodando) { rodando = true; requestAnimationFrame(anda); }
+    });
+  })();
+});
+</script>
+</body>
+</html>

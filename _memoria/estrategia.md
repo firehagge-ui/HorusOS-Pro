@@ -5,7 +5,29 @@
 
 ## Fase da agência
 
-⚠️ **Foto atual (18/09/2026):** oito pastas em `clientes/` (a carteira não mudou). O que mudou
+⚠️ **Foto atual (22/09/2026):** oito pastas em `clientes/` (a carteira não mudou). A onda de
+prospecção passou por uma **reverificação completa** (21/09) e pela **redação das mensagens**
+(22/09), ambas no `saidas/prospeccao-2026-09-20/dossie-prospeccao-v2.html`. A reverificação
+**derrubou 4 das 9 teses da v1** (Danyfisio, Casa Verona, Prático e a comparação de categoria
+que estava errada) e achou material novo mais forte que o antigo. As 9 mensagens foram redigidas
+e revisadas seguindo o framework travado (anatomia de 5 partes, dois passos, tese única por
+lead), e vivem dentro da ficha de cada lead no dossiê. Três seguem travadas antes do envio:
+Prático (o que saiu em 20/09 às 13:32), Land Car (varredura dos 24 posts) e Casa Verona (escolha
+da tese, A montada). O aprendizado da onda subiu para `_conhecimento/network/abordagem-e-prospeccao.md`
+(anatomia + duas regras de validação). Prioridade de produção viva continua a **Amparo**.
+
+⚠️ **Foto anterior (20/09/2026):** oito pastas em `clientes/` (a carteira não mudou). A onda de
+prospecção avançou de "lista pontuada" para **dossiê verificado**: os 9 leads do funil foram
+auditados um a um no Google Meu Negócio, Instagram, WhatsApp Business e site (relatório em
+`saidas/prospeccao-2026-09-20/`, PDF "Prospecção do dia"), com ficha, gancho e mensagem pronta
+de cada um no Hound Dog. Três já estão ligados a conversas de WhatsApp (Euro Tech, Autobahn,
+Prático Marcenaria). Duas correções de rota saíram da auditoria: o número da Euro Tech usado em
+19/09 tinha 10 dígitos (nenhum dos que eles publicam), e o `mar-engenharia.com` é de uma empresa
+**portuguesa** homônima, não da MAR de Salvador. Nenhum dos 9 deve receber tráfego pago agora
+(buraco de estrutura antes de buraco de demanda). Prioridade de produção viva continua a
+**Amparo**. Detalhe da onda em "O que pode esperar", abaixo.
+
+⚠️ **Foto anterior (18/09/2026):** oito pastas em `clientes/` (a carteira não mudou). O que mudou
 é a **prospecção ativa**: onda nova alimentada por planilhas do Gemini Spark, auditada no
 Firecrawl, com o pipeline vivo no **Hound Dog** (em 18/09: ~11 leads no funil, 2 abordados, 8
 qualificados prontos pra disparar). Prioridade de produção viva continua a **Amparo**. Detalhe
@@ -353,9 +375,9 @@ decisão de risco ALTO e boa candidata a `/conselho`.
 - **Site institucional da Hórus:** ⚠️ estados antigos venceram. Em 28/08/2026 o Marcelo
   migrou o site para a **identidade n8n** (void violeta + ember/electric, DM Sans): a
   matriz "por que a Hórus" saiu e os serviços viraram **pilha de scroll**. Mas evoluiu:
-  em **31/08 o AMARELO da marca (#F4C430) voltou** (o laranja saiu) e o site está na
-  **v23 (01/09)**, com os cards de serviço em mockups reais de device. **Estado atual
-  sempre em `site/CLAUDE.md`** (não congelar versão aqui) + `identidade/design-guide.md`.
+  em **31/08 o AMARELO da marca (#F4C430) voltou** (o laranja saiu) e os cards de serviço
+  passaram a mockups reais de device. **Estado e versão atuais sempre em `site/CLAUDE.md`**
+  (não congelar número de versão aqui) + `identidade/design-guide.md`.
   Do Conselho continua de pé: **só publicar quando o `noindex` sair e houver fonte de
   tráfego**. (O gargalo "apresentar a Aion" ficou moot: a Aion foi engavetada em 01/09.)
   Log em `_conselho/logs/2026-08-27-posicionamento-site-cunha-compliance.md`
