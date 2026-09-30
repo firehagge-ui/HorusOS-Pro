@@ -6,7 +6,7 @@ import { sb, estado, ouvir, salvarEmpresa, registrarAtividade, criarJob, acompan
 import { $, $$, el, esc, gaveta, toast, confirmar, perguntar, erroAmigavel, botaoCarregando, copiar, brl, relativo, dataHora, dataLonga, telefoneBonito, linkWhats, vazio, esqueleto, preencherMarkdown, menu, iniciais, num, diasDesde } from './ui.js';
 import { icone, sparkClaude } from './icones.js';
 import { proximaMensagem, detectarObjecoes } from './copiloto.js';
-import { editarEmpresa, agendar, moverEstagio, pedirMensagemClaude, TIPOS_AGENDA, linkGoogleAgenda } from './acoes.js';
+import { editarEmpresa, agendar, moverEstagio, pedirMensagemClaude, TIPOS_AGENDA, linkGoogleAgenda, ORIGENS } from './acoes.js';
 
 const ICONE_TIPO = { nota: 'editar', estagio: 'esteira', ligacao: 'telefone', mensagem: 'enviar', whatsapp: 'whatsapp', reuniao: 'clientes', proposta: 'arquivo', pagamento: 'dinheiro', pesquisa: 'radar', claude: 'comentario', sistema: 'info', visita: 'mapa' };
 const NOMES_TIPO = { nota: 'Nota', ligacao: 'Ligação', mensagem: 'Mensagem enviada', whatsapp: 'WhatsApp', reuniao: 'Reunião', proposta: 'Proposta', pagamento: 'Pagamento', visita: 'Visita' };
@@ -14,6 +14,7 @@ const SITE_SELO = { sem: ['vermelho', 'Sem site'], fora_do_ar: ['vermelho', 'Sit
 const TEMP = { quente: ['vermelho', 'fogo', 'Quente'], morno: ['amarelo', 'termometro', 'Morno'], frio: ['azul', 'termometro', 'Frio'] };
 const ENTREGA = { nao_iniciada: 'Não iniciada', onboarding: 'Onboarding', producao: 'Em produção', revisao: 'Em revisão', entregue: 'Entregue', pausado: 'Pausado' };
 const STATUS_NEG = { aberto: ['azul', 'Em aberto'], ganho: ['verde', 'Ganho'], perdido: ['vermelho', 'Perdido'], pausado: ['cinza', 'Pausado'] };
+const NOMES_ORIGEM = Object.fromEntries(ORIGENS);
 const STATUS_FIN = { previsto: ['cinza', 'Previsto'], a_receber: ['amarelo', 'A receber'], recebido: ['verde', 'Recebido'], cancelado: ['vermelho', 'Cancelado'] };
 
 export function seloSite(s) { const [c, t] = SITE_SELO[s] || SITE_SELO.desconhecido; return `<span class="selo ${c}">${esc(t)}</span>`; }
@@ -33,36 +34,45 @@ export function abrirFicha(id, { aba = 'geral', aoFechar } = {}) {
   function desenharCab() {
     const e = atual();
     const est = achaEstagio(e.estagio);
+    const local = [e.bairro, e.cidade].filter(Boolean).join(', ');
     g.cab.innerHTML = `
-      <div class="row" style="align-items:flex-start">
+      <div class="ficha-topo">
         <span class="avatar lg" style="background:linear-gradient(135deg, ${est.cor}, #1a1a22);color:#fff">${esc(iniciais(e.nome))}</span>
-        <div class="grow">
+        <div class="grow ficha-id">
           <h2 class="ficha-nome">${esc(e.nome)}</h2>
-          <div class="dim" style="font-size:13.5px;margin-top:3px">${esc([e.categoria, [e.bairro, e.cidade].filter(Boolean).join(', ')].filter(Boolean).join(' · ') || 'Sem categoria')}</div>
+          <div class="ficha-sub">${e.categoria ? `<span>${esc(e.categoria)}</span>` : '<span class="dim">Sem categoria</span>'}${local ? `<span class="ficha-local">${icone('mapa')}${esc(local)}</span>` : ''}</div>
         </div>
-        <button class="btn icone sm" data-acao="editar" aria-label="Editar">${icone('editar')}</button>
-        <button class="btn icone sm" data-acao="mais" aria-label="Mais ações">${icone('pontos')}</button>
-        <button class="btn icone sm fantasma" data-acao="fechar" aria-label="Fechar">${icone('x')}</button>
+        <div class="ficha-acoes">
+          <button class="btn icone sm" data-acao="editar" aria-label="Editar" title="Editar">${icone('editar')}</button>
+          <button class="btn icone sm" data-acao="mais" aria-label="Mais ações" title="Mais ações">${icone('pontos')}</button>
+          <button class="btn icone sm fantasma" data-acao="fechar" aria-label="Fechar" title="Fechar">${icone('x')}</button>
+        </div>
       </div>
-      <div class="row wrap gap-6 mt-12">
+      <div class="ficha-status">
         <select class="sel sm sel-estagio" data-acao="estagio" style="width:auto;border-color:${est.cor}66;color:${est.cor}" aria-label="Estágio">${estado.estagios.map((s) => `<option value="${s.id}"${s.id === e.estagio ? ' selected' : ''}>${esc(s.nome)}</option>`).join('')}</select>
-        <span class="score sm ${e.prioridade}" title="${esc((e.score_motivos || []).map((m) => `+${m.pontos} ${m.sinal}`).join('\n') || 'Sem sinais pontuados')}">${e.score}/100</span>
-        ${seloSite(e.site_status)}
-        ${e.regulado ? `<span class="selo vermelho">${icone('escudo')}Regulado${e.conselho ? ` · ${esc(e.conselho)}` : ''}</span>` : ''}
-        <span class="selo cinza">${esc({ lead: 'Lead', cliente: 'Cliente', interno: 'Conta interna', ex_cliente: 'Ex-cliente', nao_fit: 'Não-fit' }[e.relacao] || e.relacao)}</span>
         <div class="segmento seg-temp" role="group" aria-label="Temperatura">${['frio', 'morno', 'quente'].map((t) => `<button class="${e.temperatura === t ? 'on' : ''}" data-temp="${t}">${TEMP[t][2]}</button>`).join('')}</div>
+        <span class="ficha-selos">
+          <span class="score sm ${e.prioridade}" title="${esc((e.score_motivos || []).map((m) => `+${m.pontos} ${m.sinal}`).join('\n') || 'Sem sinais pontuados')}">${e.score}/100</span>
+          ${e.regulado ? `<span class="selo vermelho">${icone('escudo')}Regulado${e.conselho ? ` · ${esc(e.conselho)}` : ''}</span>` : ''}
+          <span class="selo cinza">${esc({ lead: 'Lead', cliente: 'Cliente', interno: 'Conta interna', ex_cliente: 'Ex-cliente', nao_fit: 'Não-fit' }[e.relacao] || e.relacao)}</span>
+        </span>
       </div>
-      <div class="row wrap gap-6 mt-12">
-        ${e.whatsapp ? `<a class="btn sm verde" href="${linkWhats(e.whatsapp)}" target="_blank" rel="noopener">${icone('whatsapp')}${esc(telefoneBonito(e.whatsapp))}</a>` : '<span class="selo cinza">Sem WhatsApp</span>'}
-        ${e.telefone && e.telefone !== e.whatsapp ? `<a class="btn sm" href="tel:+${e.telefone}">${icone('telefone')}Ligar</a>` : ''}
-        ${e.instagram ? `<a class="btn sm" href="https://instagram.com/${esc(e.instagram)}" target="_blank" rel="noopener">${icone('instagram')}@${esc(e.instagram)}</a>` : ''}
-        ${e.site ? `<a class="btn sm" href="${esc(e.site)}" target="_blank" rel="noopener">${icone('globo')}Site</a>` : ''}
-        <a class="btn sm" href="https://www.google.com/maps/search/${encodeURIComponent([e.nome, e.cidade].filter(Boolean).join(' '))}" target="_blank" rel="noopener">${icone('mapa')}Maps</a>
-        <button class="btn sm" data-acao="agendar">${icone('agenda')}Agendar</button>
-        <button class="btn sm claude" data-acao="claude">${sparkClaude(15)}Perguntar ao Claude</button>
+      <div class="ficha-contato">
+        <div class="ficha-canais">
+          ${e.whatsapp ? `<a class="btn sm verde" href="${linkWhats(e.whatsapp)}" target="_blank" rel="noopener">${icone('whatsapp')}${esc(telefoneBonito(e.whatsapp))}</a>` : ''}
+          ${e.telefone && e.telefone !== e.whatsapp ? `<a class="btn sm" href="tel:+${e.telefone}">${icone('telefone')}${e.whatsapp ? 'Ligar' : esc(telefoneBonito(e.telefone))}</a>` : ''}
+          ${e.instagram ? `<a class="btn sm" href="https://instagram.com/${esc(e.instagram)}" target="_blank" rel="noopener">${icone('instagram')}@${esc(e.instagram)}</a>` : ''}
+          ${e.site ? `<a class="btn icone sm" href="${esc(e.site)}" target="_blank" rel="noopener" aria-label="Abrir site" title="Abrir site">${icone('globo')}</a>` : ''}
+          <a class="btn icone sm" href="https://www.google.com/maps/search/${encodeURIComponent([e.nome, e.cidade].filter(Boolean).join(' '))}" target="_blank" rel="noopener" aria-label="Ver no Google Maps" title="Ver no Google Maps">${icone('mapa')}</a>
+        </div>
+        <div class="ficha-canais">
+          <button class="btn sm" data-acao="investigar" title="Investigação profunda">${icone('radar')}Investigar</button>
+          <button class="btn sm" data-acao="agendar">${icone('agenda')}Agendar</button>
+          <button class="btn sm claude" data-acao="claude">${sparkClaude(15)}Falar sobre este lead</button>
+        </div>
       </div>
-      <nav class="abas" style="margin:14px 0 0;border-bottom:0">
-        ${[['geral', 'Visão geral', 'alvo'], ['tempo', 'Linha do tempo', 'relogio'], ['negocios', 'Negócios e R$', 'dinheiro'], ['agenda', 'Agenda', 'agenda'], ['dossie', 'Dossiê', 'radar'], ['whats', 'WhatsApp', 'whatsapp']]
+      <nav class="abas ficha-abas">
+        ${[['geral', 'Geral', 'alvo'], ['tempo', 'Histórico', 'relogio'], ['negocios', 'R$', 'dinheiro'], ['agenda', 'Agenda', 'agenda'], ['dossie', 'Briefing', 'radar'], ['whats', 'WhatsApp', 'whatsapp']]
           .map(([idA, r, ic]) => `<button class="${abaAtual === idA ? 'on' : ''}" data-aba="${idA}">${icone(ic)}${r}</button>`).join('')}
       </nav>`;
   }
@@ -92,11 +102,12 @@ export function abrirFicha(id, { aba = 'geral', aoFechar } = {}) {
     const acao = b.dataset.acao;
     if (acao === 'fechar') g.fechar();
     if (acao === 'editar') editarEmpresa(e);
+    if (acao === 'investigar') { abaAtual = 'dossie'; desenharCab(); desenharCorpo().then(() => $('[data-investigar]', g.corpo)?.click()); }
     if (acao === 'agendar') agendar({ empresa_id: e.id, tipo: ['novo', 'qualificado', 'abordado', 'conversando'].includes(e.estagio) ? 'r1' : 'followup' });
     if (acao === 'claude') { g.fechar(); location.hash = `#/claude?empresa=${e.id}`; }
     if (acao === 'mais') {
       menu(b, [
-        { icone: 'radar', rotulo: 'Gerar dossiê com o Claude', fn: () => { abaAtual = 'dossie'; desenharCab(); desenharCorpo().then(() => $('[data-gerar-dossie]', g.corpo)?.click()); } },
+        { icone: 'radar', rotulo: 'Investigar (investigação profunda)', fn: () => { abaAtual = 'dossie'; desenharCab(); desenharCorpo().then(() => $('[data-investigar]', g.corpo)?.click()); } },
         { icone: 'comentario', rotulo: 'Mensagem personalizada (Claude)', fn: () => pedirMensagemClaude(e) },
         { icone: 'copiar', rotulo: 'Copiar dados da ficha', fn: () => copiar(textoFicha(e), 'Ficha copiada') },
         { icone: 'pasta', rotulo: e.pasta_repo ? `Copiar pasta: ${e.pasta_repo}` : 'Sem pasta no repositório', fn: () => e.pasta_repo && copiar(e.pasta_repo, 'Caminho copiado') },
@@ -122,8 +133,11 @@ export function abrirFicha(id, { aba = 'geral', aoFechar } = {}) {
 
   /* ------------------------------ Aba: visão geral ------------------------------ */
   async function abaGeral(c, e) {
-    const [{ data: conv }, { data: prox }] = await Promise.all([
+    // A ordem aqui tem que ser a mesma das consultas abaixo (estava trocada e o cartão de mensagens nunca aparecia)
+    const [{ data: conv }, { data: ultPesq }, { data: ultDisp }, { data: prox }] = await Promise.all([
       sb.from('whatsapp_conversas').select('id').eq('empresa_id', e.id).limit(1).maybeSingle(),
+      sb.from('pesquisas').select('dados,criado_em').eq('empresa_id', e.id).eq('status', 'pronta').order('criado_em', { ascending: false }).limit(1),
+      sb.from('disparos').select('id,texto,status,formato,passo,variante,angulo,criado_em').eq('empresa_id', e.id).neq('status', 'cancelado').order('criado_em', { ascending: false }).limit(10),
       sb.from('agenda').select('*').eq('empresa_id', e.id).gte('inicio', new Date().toISOString()).eq('status', 'agendado').order('inicio').limit(1),
     ]);
     let ultimaFala = '';
@@ -131,11 +145,19 @@ export function abrirFicha(id, { aba = 'geral', aoFechar } = {}) {
       const { data: ult } = await sb.from('whatsapp_mensagens').select('texto,direcao').eq('conversa_id', conv.id).order('momento', { ascending: false }).limit(1);
       if (ult?.[0]?.direcao === 'in') ultimaFala = ult[0].texto || '';
     }
-    const cop = proximaMensagem(e, ultimaFala);
+    // Quem assina a variação simples (o Antônio também manda pelo mesmo painel); fica guardado neste aparelho
+    let remetente = 'Marcelo';
+    try { remetente = localStorage.getItem('hd.remetente') || 'Marcelo'; } catch { /* sem armazenamento: fica Marcelo */ }
+    const cop = proximaMensagem(e, ultimaFala, remetente);
+    const briefing = ultPesq?.[0]?.dados?.briefing ? ultPesq[0].dados : null;
+    const disp = disparosAtuais(ultDisp);
     const dias = diasDesde(e.estagio_desde);
     const vencida = e.proxima_acao_em && new Date(e.proxima_acao_em) < new Date();
     c.innerHTML = `
-      <div class="card ${vencida ? 'destaque' : ''}">
+      ${raioX(e)}
+      ${cartaoPronto(briefing, disp, e)}
+
+      <div class="card mt-16 ${vencida ? 'destaque' : ''}">
         <div class="card-cab"><div class="icone-caixa sm">${icone('alvo')}</div><h3>Próxima ação</h3>
           <div class="right">${e.proxima_acao_em ? `<span class="selo ${vencida ? 'vermelho' : 'laranja'}">${icone('relogio')}${vencida ? 'venceu ' : ''}${relativo(e.proxima_acao_em)}</span>` : ''}</div></div>
         <p style="white-space:pre-wrap">${e.proxima_acao ? esc(e.proxima_acao) : '<span class="dim">Sem próxima ação definida. Todo negócio em andamento precisa de uma.</span>'}</p>
@@ -146,44 +168,64 @@ export function abrirFicha(id, { aba = 'geral', aoFechar } = {}) {
         </div>
       </div>
 
+      <div class="card mt-16">
+        <div class="card-cab"><div class="icone-caixa sm">${icone('clientes')}</div><h3>Para abordar</h3><div class="right"><button class="btn xs fantasma" data-g="editar">${icone('editar')}Editar</button></div></div>
+        <dl class="ficha-dl">
+          <dt>Quem decide</dt><dd class="${e.decisor ? '' : 'dim'}">${esc(e.decisor || 'Não identificado ainda')}${e.decisor_obs ? `<small>${esc(e.decisor_obs)}</small>` : ''}</dd>
+          <dt>Gancho</dt><dd class="${e.gancho ? '' : 'dim'}">${esc(e.gancho || 'Sem gancho registrado')}</dd>
+          <dt>Dor</dt><dd class="${e.dor ? '' : 'dim'}">${esc(e.dor || 'Sem dor registrada')}</dd>
+        </dl>
+      </div>
+
+      ${e.resumo ? blocoResumo(e.resumo) : ''}
+
       <div class="card mt-16 copiloto">
         <div class="card-cab"><div class="icone-caixa sm claude">${sparkClaude(18)}</div><div class="grow"><h3>Copiloto</h3><div class="dim" style="font-size:12.5px">${esc(cop.modelo)}</div></div>
           <button class="btn sm claude" data-g="claude-msg">${sparkClaude(14)}Pedir ao Claude</button></div>
         <div class="aviso ${cop.liberado ? '' : 'laranja'}" style="margin-bottom:12px">${icone(cop.liberado ? 'info' : 'relogio')}<div>${esc(cop.status)}</div></div>
+        ${cop.simples ? `<div class="chips mb-8" role="group" aria-label="Quem assina">${['Marcelo', 'Antônio'].map((n) => `<button class="chip ${n === remetente ? 'on' : ''}" data-g="remetente" data-nome="${n}">Assina ${n}</button>`).join('')}</div>` : ''}
         ${cop.texto ? `<div class="msg-sugerida">${esc(cop.texto)}</div>
         <div class="row wrap mt-12"><button class="btn sm" data-g="copiar">${icone('copiar')}Copiar</button>
           ${e.whatsapp ? `<a class="btn sm verde" href="${linkWhats(e.whatsapp, cop.texto)}" target="_blank" rel="noopener">${icone('whatsapp')}Abrir no WhatsApp</a>` : ''}
           <button class="btn sm fantasma" data-g="registrar-envio">${icone('check')}Registrar que enviei</button></div>` : ''}
       </div>
 
-      <div class="grade-2 mt-16" style="gap:16px">
-        <div class="card"><div class="rotulo mb-8">Gancho verdadeiro</div><p class="${e.gancho ? '' : 'dim'}" style="white-space:pre-wrap">${esc(e.gancho || 'Sem gancho registrado.')}</p></div>
-        <div class="card"><div class="rotulo mb-8">Dor / oportunidade</div><p class="${e.dor ? '' : 'dim'}" style="white-space:pre-wrap">${esc(e.dor || 'Sem dor registrada.')}</p></div>
-      </div>
-
-      ${e.resumo ? `<div class="card mt-16"><div class="rotulo mb-8">Resumo</div><p style="white-space:pre-wrap">${esc(e.resumo)}</p></div>` : ''}
 
       <div class="card mt-16">
-        <div class="card-cab"><h3>Dados</h3><div class="right"><button class="btn xs" data-g="editar">${icone('editar')}Editar</button></div></div>
-        <div class="dados-grade">
-          ${dado('Quem decide', e.decisor)}${dado('Observação do decisor', e.decisor_obs)}
-          ${dado('WhatsApp', e.whatsapp ? telefoneBonito(e.whatsapp) : null)}${dado('Telefone', e.telefone ? telefoneBonito(e.telefone) : null)}
-          ${dado('E-mail', e.email)}${dado('Instagram', e.instagram ? `@${e.instagram}${e.instagram_seguidores ? ` · ${num(e.instagram_seguidores)} seguidores` : ''}` : null)}
-          ${dado('Site', e.site)}${dado('Google', e.google_nota != null ? `${String(e.google_nota).replace('.', ',')}★ · ${e.google_avaliacoes ?? '?'} avaliações` : null)}
-          ${dado('Perfil no Google', e.gmb_status)}${dado('Roda anúncio', e.roda_anuncio == null ? null : e.roda_anuncio ? 'Sim' : 'Não')}
-          ${dado('CNPJ', e.cnpj)}${dado('Endereço', e.endereco)}
-          ${dado('Origem', [e.origem, e.origem_detalhe].filter(Boolean).join(' · '))}${dado('No estágio há', dias != null ? `${dias} dia${dias === 1 ? '' : 's'}` : null)}
-          ${dado('Valor estimado', e.valor_estimado != null ? brl(e.valor_estimado) : null)}${dado('Pasta no repositório', e.pasta_repo)}
-        </div>
+        <div class="card-cab"><div class="icone-caixa sm neutro">${icone('lista')}</div><h3>Dados</h3><div class="right"><button class="btn xs fantasma" data-g="editar">${icone('editar')}Editar</button></div></div>
+        ${grupoDados('Contato', [['WhatsApp', e.whatsapp ? telefoneBonito(e.whatsapp) : null], ['Telefone', e.telefone ? telefoneBonito(e.telefone) : null], ['E-mail', e.email], ['Endereço', e.endereco]])}
+        ${grupoDados('Presença online', [['Instagram', e.instagram ? `@${e.instagram}` : null], ['Site', e.site], ['Perfil no Google', e.gmb_status]])}
+        ${grupoDados('Comercial', [['Origem', NOMES_ORIGEM[e.origem] || e.origem], ['Lista', e.origem_detalhe], ['No estágio há', dias != null ? `${dias} dia${dias === 1 ? '' : 's'}` : null], ['Valor estimado', e.valor_estimado != null ? brl(e.valor_estimado) : null], ['CNPJ', e.cnpj], ['Pasta no repositório', e.pasta_repo]])}
         ${(e.tags || []).length ? `<div class="chips mt-12">${e.tags.map((t) => `<span class="selo">${icone('tag')}${esc(t)}</span>`).join('')}</div>` : ''}
-        ${(e.score_motivos || []).length ? `<div class="divisor"></div><div class="rotulo mb-8">Por que ${e.score}/100</div><div class="motivos">${e.score_motivos.map((m) => `<div class="motivo"><b>+${m.pontos}</b><span>${esc(m.sinal)}</span><small class="dim">${esc(m.detalhe || '')}</small></div>`).join('')}</div>` : ''}
-      </div>`;
+      </div>
+
+      ${(e.score_motivos || []).length ? `<details class="card mt-16 dobra"><summary><span class="icone-caixa sm neutro">${icone('raio')}</span><h3 class="grow">Por que ${e.score}/100</h3>${icone('chevb', 'seta')}</summary>
+        <div class="motivos mt-12">${e.score_motivos.map((m) => `<div class="motivo"><b>+${m.pontos}</b><span>${esc(m.sinal)}</span><small class="dim">${esc(m.detalhe || '')}</small></div>`).join('')}</div></details>` : ''}
+
+      ${e.lista_item_id ? `<details class="card mt-16 dobra" data-linha-orig><summary><span class="icone-caixa sm neutro">${icone('planilha')}</span><div class="grow"><h3>Linha original da planilha</h3><div class="dim" style="font-size:12.5px">Exatamente o que ${esc(NOMES_ORIGEM[e.origem] || 'a lista')} mandou, coluna por coluna</div></div>${icone('chevb', 'seta')}</summary><div data-linha class="mt-12"></div></details>` : ''}`;
+
+    const dobraOrig = $('[data-linha-orig]', c);
+    if (dobraOrig) dobraOrig.addEventListener('toggle', async () => {
+      const alvo = $('[data-linha]', dobraOrig);
+      if (!dobraOrig.open || alvo.dataset.ok) return;
+      alvo.innerHTML = esqueleto(3, 18);
+      const { data: it, error } = await sb.from('lista_itens').select('dados, lista_id, listas(nome, criado_em)').eq('id', e.lista_item_id).maybeSingle();
+      if (error || !it) { alvo.innerHTML = `<p class="dim">${esc(error ? erroAmigavel(error) : 'A linha de origem não existe mais (a lista pode ter sido apagada).')}</p>`; return; }
+      const pares = Object.entries(it.dados || {});
+      alvo.dataset.ok = '1';
+      alvo.innerHTML = `${it.listas ? `<p class="dim mb-8" style="font-size:12.5px">${esc(it.listas.nome)} · importada ${dataLonga(it.listas.criado_em)} · <a href="#/encontrar/lista/${it.lista_id}">abrir a lista</a></p>` : ''}
+        <dl class="ficha-dl linha-orig">${pares.map(([k, v]) => `<dt>${esc(k)}</dt><dd class="${String(v ?? '').trim() ? '' : 'dim'}">${esc(String(v ?? '').trim() || 'vazio')}</dd>`).join('') || '<dd class="dim">Sem colunas guardadas.</dd>'}</dl>`;
+    });
 
     c.onclick = async (ev) => {
       const b = ev.target.closest('[data-g]'); if (!b) return;
       const a = b.dataset.g;
       if (a === 'editar') editarEmpresa(atual());
+      if (a === 'resumo') { const r = $('.resumo-txt', c); b.textContent = r.classList.toggle('fechado') ? 'Ler tudo' : 'Recolher'; }
       if (a === 'copiar') copiar(cop.texto, 'Mensagem copiada');
+      if (a === 'remetente') { try { localStorage.setItem('hd.remetente', b.dataset.nome); } catch { /* sem armazenamento */ } desenharCorpo(); }
+      if (a === 'copiar-pronta') copiar(b.dataset.texto, 'Mensagem copiada');
+      if (a === 'ir-briefing') { abaAtual = 'dossie'; desenharCab(); desenharCorpo(); }
       if (a === 'claude-msg') pedirMensagemClaude(atual(), ultimaFala ? `Última fala do lead: "${ultimaFala}"` : '');
       if (a === 'acao') {
         const txt = await perguntar('Próxima ação', { valor: atual().proxima_acao || '', multilinha: true, placeholder: 'O que precisa acontecer, e quando', rotulo: 'Salvar' });
@@ -372,34 +414,32 @@ export function abrirFicha(id, { aba = 'geral', aoFechar } = {}) {
     $$('[data-ag]', c).forEach((it) => (it.onclick = () => agendar({}, data.find((x) => x.id === it.dataset.ag))));
   }
 
-  /* ------------------------------ Aba: dossiê ------------------------------ */
+  /* ------------------------------ Aba: briefing (investigação profunda) ------------------------------ */
   async function abaDossie(c, e) {
-    const { data, error } = await sb.from('pesquisas').select('*').eq('empresa_id', e.id).order('criado_em', { ascending: false });
+    const [{ data, error }, fila, { data: disps }] = await Promise.all([
+      sb.from('pesquisas').select('*').eq('empresa_id', e.id).order('criado_em', { ascending: false }),
+      estadoInvestigacao(e.id),
+      sb.from('disparos').select('id,texto,status,formato,passo,variante,angulo,criado_em').eq('empresa_id', e.id).neq('status', 'cancelado').order('criado_em', { ascending: false }).limit(10),
+    ]);
     if (error) throw error;
-    const ultima = data?.[0];
+    const atual = (data || []).find((p) => p.status === 'pronta') || null;
+    const b = atual?.dados?.briefing;
+    const anteriores = (data || []).filter((p) => p !== atual && p.status === 'pronta');
     c.innerHTML = `
-      <div class="card destaque">
-        <div class="row"><div class="icone-caixa claude">${sparkClaude(22)}</div><div class="grow"><h3>Dossiê com o Claude</h3><p class="dim" style="font-size:13.5px">Checa site, Google, Instagram, anúncios na Meta, CNPJ e 2 ou 3 concorrentes do bairro. Sugere gancho verdadeiro e fase de entrada. O que não achar vira [FALTA].</p></div></div>
-        <div class="row wrap mt-12"><button class="btn claude" data-gerar-dossie>${sparkClaude(15)}${ultima ? 'Refazer dossiê' : 'Gerar dossiê'}</button>
-          <button class="btn sm" data-checar-site ${e.site ? '' : 'disabled'}>${icone('globo')}Checar site agora</button>
-          <button class="btn sm" data-cnpj ${e.cnpj ? '' : 'disabled'}>${icone('predio')}Consultar CNPJ</button></div>
-        <div data-rapido class="mt-12"></div>
-        ${!farejadorOnline() ? `<div class="aviso laranja mt-12">${icone('alerta')}<div>O Farejador está offline: o pedido entra na fila e roda quando ele ligar no seu PC.</div></div>` : ''}
-      </div>
-      <div data-lista class="mt-16">${(data || []).map((p) => `<div class="card mt-12 dossie-card"><div class="row"><div class="grow"><b>${esc(p.titulo)}</b><div class="dim" style="font-size:12.5px">${dataHora(p.criado_em)} · ${esc({ fila: 'na fila', processando: 'pesquisando…', pronta: 'pronto', erro: 'erro' }[p.status])}</div></div>
-        ${p.status === 'processando' || p.status === 'fila' ? `<span class="selo claude claude-pensando">${sparkClaude(13)}pesquisando</span>` : ''}</div>
-        ${p.resumo ? `<p class="mt-8">${esc(p.resumo)}</p>` : ''}<div class="md mt-12" data-md="${p.id}"></div></div>`).join('') || vazio('radar', 'Sem dossiê ainda', 'Gere o primeiro: é o estudo que você leva pra reunião.')}</div>`;
+      ${cartaoInvestigar(fila, atual)}
+      ${b ? blocoBriefing(atual, e, disparosAtuais(disps)) + (b.antigo && atual.conteudo_md ? `<div class="card mt-16 dossie-card"><h3>Investigação completa (formato antigo)</h3><div class="md mt-12" data-md="${atual.id}"></div></div>` : '') : atual ? `<div class="card mt-16 dossie-card"><div class="card-cab"><div class="grow"><h3>${esc(atual.titulo)}</h3><div class="dim" style="font-size:12.5px">${dataHora(atual.criado_em)} · formato antigo, sem cartões</div></div></div>${atual.resumo ? `<p>${esc(atual.resumo)}</p>` : ''}<div class="md mt-12" data-md="${atual.id}"></div></div>`
+        : `<div class="card mt-16">${vazio('radar', 'Ainda não investigado', 'A investigação profunda decide se o lead é Qualificado ou Perdido e monta o briefing completo, com as mensagens.')}</div>`}
+      ${anteriores.length ? `<details class="card mt-16 dobra"><summary><span class="icone-caixa sm neutro">${icone('relogio')}</span><h3 class="grow">Pesquisas anteriores (${anteriores.length})</h3>${icone('chevb', 'seta')}</summary>
+        ${anteriores.map((p) => `<div class="mt-16 dossie-card"><b>${esc(p.titulo)}</b><div class="dim" style="font-size:12.5px">${dataHora(p.criado_em)}</div><div class="md mt-8" data-md="${p.id}"></div></div>`).join('')}</details>` : ''}
+      <details class="card mt-16 dobra"><summary><span class="icone-caixa sm neutro">${icone('raio')}</span><h3 class="grow">Checagens rápidas</h3>${icone('chevb', 'seta')}</summary>
+        <div class="row wrap mt-12"><button class="btn sm" data-checar-site ${e.site ? '' : 'disabled'}>${icone('globo')}Checar site agora</button>
+          <button class="btn sm" data-cnpj ${e.cnpj ? '' : 'disabled'}>${icone('predio')}Consultar CNPJ</button></div><div data-rapido class="mt-12"></div></details>`;
     for (const p of data || []) { const alvo = $(`[data-md="${p.id}"]`, c); if (alvo && p.conteudo_md) preencherMarkdown(alvo, p.conteudo_md); }
 
-    $('[data-gerar-dossie]', c).onclick = async (ev) => {
-      const btn = ev.currentTarget; botaoCarregando(btn, true, 'Pedindo…');
-      try {
-        const job = await criarJob('enriquecer_empresa', {}, { empresa_id: e.id }, 4);
-        await sb.from('pesquisas').insert({ tipo: 'dossie', titulo: `Dossiê — ${e.nome}`, empresa_id: e.id, status: 'fila', job_id: job.id, criado_por: quem() });
-        toast('Dossiê na fila do Claude', 'info');
-        desenharCorpo();
-      } catch (err) { toast(erroAmigavel(err), 'erro'); botaoCarregando(btn, false); }
-    };
+    ligarInvestigar(c, e);
+    c.addEventListener('click', (ev) => {
+      const cp = ev.target.closest('[data-copiar-msg]'); if (cp) copiar(cp.dataset.copiarMsg, 'Mensagem copiada');
+    });
     $('[data-checar-site]', c).onclick = async (ev) => {
       const btn = ev.currentTarget; botaoCarregando(btn, true, 'Checando…');
       const rap = $('[data-rapido]', c);
@@ -426,6 +466,29 @@ export function abrirFicha(id, { aba = 'geral', aoFechar } = {}) {
       botaoCarregando(btn, false);
     };
     limpezas.push(ouvir('pesquisas', (p) => { if (p.new?.empresa_id === e.id && abaAtual === 'dossie') desenharCorpo(); }));
+    limpezas.push(ouvir('jobs', (p) => { if (p.new?.tipo === 'investigar_empresa' && abaAtual === 'dossie') desenharCorpo(); }));
+  }
+
+  /* Botão Investigar (cartão no topo do Briefing e atalho no cabeçalho) */
+  function ligarInvestigar(c, e) {
+    $$('[data-investigar]', c).forEach((b) => (b.onclick = async (ev) => {
+      const btn = ev.currentTarget;
+      const fila = await estadoInvestigacao(e.id);
+      if (fila.meu) { toast(fila.meu.status === 'processando' ? 'Já está sendo investigado' : 'Já está na fila', 'info'); return; }
+      botaoCarregando(btn, true, 'Pondo na fila…');
+      try {
+        await criarJob('investigar_empresa', {}, { empresa_id: e.id }, 4);
+        toast(fila.total ? `Na fila: ${fila.total} antes deste` : 'Investigação começando', 'info');
+        desenharCorpo();
+      } catch (err) { toast(erroAmigavel(err), 'erro'); botaoCarregando(btn, false); }
+    }));
+    $$('[data-cancelar-inv]', c).forEach((b) => (b.onclick = async () => {
+      const fila = await estadoInvestigacao(e.id);
+      if (!fila.meu) return;
+      if (!(await confirmar('Tirar da fila?', 'A investigação deste lead é cancelada.', { rotulo: 'Tirar da fila' }))) return;
+      await sb.from('jobs').update({ status: 'cancelado' }).eq('id', fila.meu.id);
+      toast('Tirado da fila'); desenharCorpo();
+    }));
   }
 
   /* ------------------------------ Aba: WhatsApp ------------------------------ */
@@ -449,6 +512,135 @@ export function abrirFicha(id, { aba = 'geral', aoFechar } = {}) {
       ${conv.analise?.resumo ? `<div class="aviso claude mb-12">${sparkClaude(16)}<div><b>Leitura do Claude</b><br>${esc(conv.analise.resumo)}</div></div>` : ''}
       <div class="bolhas card">${lista.map((m) => `<div class="bolha ${m.direcao}"><span>${esc(m.texto || `[${m.tipo}]`)}</span><small>${dataHora(m.momento)}</small></div>`).join('') || '<p class="dim">Sem mensagens sincronizadas.</p>'}</div>`;
   }
+}
+
+/* Fila da investigação: posição deste lead e quantos há antes */
+async function estadoInvestigacao(empresaId) {
+  const { data } = await sb.from('jobs').select('id,empresa_id,status,progresso,criado_em,prioridade').eq('tipo', 'investigar_empresa').in('status', ['fila', 'processando']).order('prioridade').order('criado_em');
+  const lista = data || [];
+  const rodando = lista.find((j) => j.status === 'processando');
+  const meu = lista.find((j) => j.empresa_id === empresaId);
+  const espera = lista.filter((j) => j.status === 'fila');
+  const pos = meu && meu.status === 'fila' ? espera.findIndex((j) => j.id === meu.id) + 1 + (rodando ? 1 : 0) : 0;
+  return { meu, pos, total: lista.length, rodando };
+}
+
+function cartaoInvestigar(fila, atual) {
+  if (fila.meu?.status === 'processando') {
+    return `<div class="card destaque"><div class="card-cab"><div class="icone-caixa claude">${sparkClaude(20)}</div><div class="grow"><h3>Investigando agora</h3><div class="dim" style="font-size:13px">${esc(fila.meu.progresso || 'Começando')}</div></div><span class="selo claude claude-pensando">${sparkClaude(12)}20 a 40 min</span></div>
+      ${!farejadorOnline() ? `<div class="aviso laranja">${icone('alerta')}<div>O Farejador está offline: a investigação continua quando ele ligar.</div></div>` : ''}</div>`;
+  }
+  if (fila.meu) {
+    return `<div class="card destaque"><div class="card-cab"><div class="icone-caixa">${icone('relogio')}</div><div class="grow"><h3>Na fila · posição ${fila.pos}</h3><div class="dim" style="font-size:13px">Uma investigação por vez. ${fila.rodando ? 'Tem outra rodando agora.' : 'Começa em instantes.'}</div></div>
+      <button class="btn sm fantasma" data-cancelar-inv>${icone('x')}Tirar da fila</button></div></div>`;
+  }
+  const dec = atual?.dados?.decisao;
+  return `<div class="card ${atual ? '' : 'destaque'}"><div class="row wrap"><div class="icone-caixa claude">${sparkClaude(20)}</div>
+    <div class="grow"><h3>${atual ? 'Investigação' : 'Investigar este lead'}</h3><p class="dim" style="font-size:13px">${atual
+      ? `Última: ${dataHora(atual.criado_em)}${dec ? ` · ${dec === 'perdido' ? 'Perdido' : 'Qualificado'}` : ''}. Refazer substitui a mensagem que ainda não foi aprovada.`
+      : 'Seis camadas: empresa e pessoas, reputação, presença, dinheiro e momento, concorrência e cruzamento. Decide Qualificado ou Perdido e deixa a mensagem no Disparos. Leva de 20 a 40 minutos.'}</p></div>
+    <button class="btn ${atual ? '' : 'claude'}" data-investigar>${sparkClaude(15)}${atual ? 'Investigar de novo' : 'Investigar'}</button></div>
+    ${fila.total ? `<div class="dim mt-8" style="font-size:12.5px">${fila.total} na fila agora.</div>` : ''}</div>`;
+}
+
+/* O briefing em cartões: o que decide fica aberto, a referência fica fechada */
+/* O Disparos é a fonte da mensagem: fica o rascunho mais recente de cada passo e variante, em ordem */
+function disparosAtuais(lista) {
+  const porPasso = new Map();
+  for (const d of lista || []) { const k = `${d.passo || 1}:${d.variante || 'A'}`; if (!porPasso.has(k)) porPasso.set(k, d); }
+  return [...porPasso.values()].sort((a, b) => (a.passo || 1) - (b.passo || 1) || String(a.variante || 'A').localeCompare(b.variante || 'A'));
+}
+
+const ST_DISPARO = { rascunho: 'esperando sua aprovação', aprovado: 'aprovada, na fila de envio', agendado: 'agendada', enviando: 'enviando', enviado: 'enviada', erro: 'com erro' };
+const ROTULO_PASSO = { 1: 'Passo 1 · abertura, manda e espera', 2: 'Passo 2 · o corpo, só depois da resposta', 3: 'Passo 3' };
+
+function blocoBriefing(p, e, disps = []) {
+  const d = p.dados || {}; const b = d.briefing || {};
+  const perdido = d.decisao === 'perdido';
+  const dobra = (ic, tit, corpo, aberto = false) => corpo ? `<details class="card mt-16 dobra"${aberto ? ' open' : ''}><summary><span class="icone-caixa sm neutro">${icone(ic)}</span><h3 class="grow">${tit}</h3>${icone('chevb', 'seta')}</summary><div class="mt-12">${corpo}</div></details>` : '';
+  const lista = (arr) => (arr || []).length ? `<ul class="achados">${arr.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : '';
+  const leitura = (b.leitura || []).length ? `<ul class="achados">${b.leitura.map((x) => `<li class="${x.classe === 'fato' ? 'verde' : 'amarelo'}">${esc(x.texto)} <span class="selo ${x.classe === 'fato' ? 'verde' : 'amarelo'}" style="margin-left:4px">${x.classe === 'fato' ? 'fato' : 'hipótese'}</span></li>`).join('')}</ul>` : '';
+  // As mensagens moram só na aba Geral (Marcelo, 28/09: duas abas com duas mensagens confundiam)
+  const nMsgs = disps.length || (b.mensagens || []).length;
+  const pessoas = [(b.pessoas || []).map((x) => `<dt>${esc(x.nome)}</dt><dd>${esc(x.papel || '')}${x.fonte ? `<small>${esc(x.fonte)}</small>` : ''}</dd>`).join(''),
+    b.empresa ? `<dt>Empresa</dt><dd>${esc([b.empresa.cnpj && `CNPJ ${b.empresa.cnpj}`, b.empresa.razao_social, b.empresa.abertura && `aberta em ${b.empresa.abertura}`].filter(Boolean).join(' · '))}${b.empresa.cnaes?.length ? `<small>${esc(b.empresa.cnaes.join(' · '))}</small>` : ''}${b.empresa.obs ? `<small>${esc(b.empresa.obs)}</small>` : ''}</dd>` : ''].join('');
+  return `
+    <div class="card mt-16 ${perdido ? '' : 'destaque'} veredito">
+      <div class="card-cab"><div class="icone-caixa ${perdido ? 'vermelho' : 'verde'}">${icone(perdido ? 'x' : 'checkc')}</div><div class="grow"><h3>${perdido ? 'Perdido' : 'Qualificado'}${d.nota != null ? ` · nota ${d.nota}` : ''}</h3><div class="dim" style="font-size:12.5px">Investigado em ${dataHora(p.criado_em)}${d.formato ? ` · mensagem no formato ${d.formato === 'casa' ? 'A · casa' : 'B · curiosidade'}` : ''}</div></div></div>
+      ${b.veredito ? `<p>${esc(b.veredito)}</p>` : ''}${d.motivo_decisao ? `<p class="dim mt-8" style="font-size:13.5px">${esc(d.motivo_decisao)}</p>` : ''}
+    </div>
+    ${b.tese ? `<div class="card mt-16"><div class="card-cab"><div class="icone-caixa sm">${icone('alvo')}</div><h3>Tese recomendada</h3></div><p>${esc(b.tese)}</p>${(b.tese_alternativas || []).length ? `<div class="rotulo mt-12 mb-8">Alternativas</div>${lista(b.tese_alternativas)}` : ''}</div>` : ''}
+    ${nMsgs && !perdido ? `<div class="card mt-16"><div class="row wrap"><div class="icone-caixa sm claude">${sparkClaude(16)}</div><p class="grow" style="font-size:13.5px">As mensagens deste lead ficam na aba <b>Geral</b>, num lugar só.</p><button class="btn xs" data-aba="geral">${icone('alvo')}Ver mensagens</button></div></div>` : ''}
+    ${b.mapa ? dobra('alvo', 'Caminho até o fechamento', `<dl class="ficha-dl">${[['Por que esta abertura', b.mapa.objetivo_abertura], ['A ligação (R1)', b.mapa.r1], ['Proposta', b.mapa.proposta]].filter(([, t]) => t).map(([k, t]) => `<dt>${k}</dt><dd>${esc(t)}</dd>`).join('')}</dl>${(b.mapa.descobrir || []).length ? `<div class="rotulo mt-12 mb-8">Descobrir antes da proposta</div>${lista(b.mapa.descobrir)}` : ''}${(b.mapa.oportunidades || []).length ? `<div class="rotulo mt-12 mb-8">Oportunidades além da primeira venda</div>${lista(b.mapa.oportunidades)}` : ''}`, true) : ''}
+    ${dobra('lampada', 'Leitura cruzada', leitura, true)}
+    ${dobra('alerta', 'O que custa não resolver', b.custo ? `<p>${esc(b.custo)}</p>` : '')}
+    ${dobra('maleta', 'O que vender', b.vender ? `<dl class="ficha-dl"><dt>Fase 1</dt><dd>${esc(b.vender.fase1 || '—')}</dd><dt>Fase 2</dt><dd>${esc(b.vender.fase2 || '—')}</dd><dt>Não oferecer</dt><dd>${esc(b.vender.nao_oferecer || '—')}</dd></dl>` : '')}
+    ${dobra('comentario', 'Se responder assim', (b.respostas || []).length ? `<dl class="ficha-dl">${b.respostas.map((x) => `<dt>"${esc(x.se)}"</dt><dd>${esc(x.entao)}</dd>`).join('')}</dl>` : '')}
+    ${dobra('x', 'Não usar na mensagem', lista(b.nao_usar))}
+    ${dobra('clientes', 'Pessoas e empresa', pessoas ? `<dl class="ficha-dl">${pessoas}</dl>` : '')}
+    ${dobra('mercado', 'Concorrência', (b.concorrencia || []).length ? `<dl class="ficha-dl">${b.concorrencia.map((x) => `<dt>${esc(x.nome)}</dt><dd>${esc(x.obs || '')}${x.fonte ? `<small>${esc(x.fonte)}</small>` : ''}</dd>`).join('')}</dl>` : '')}
+    ${dobra('escudo', 'Compliance', lista(b.compliance))}
+    ${dobra('lista', `Fatos conferidos${(b.fatos || []).length ? ` (${b.fatos.length})` : ''}`, (b.fatos || []).length ? `<div class="tabela-wrap"><table class="tabela"><thead><tr><th>Fato</th><th>Fonte</th><th>Como conferi</th></tr></thead><tbody>${b.fatos.map((x) => `<tr><td>${esc(x.fato)}</td><td>${esc(x.fonte || '')}</td><td>${esc(x.como_conferiu || '')}</td></tr>`).join('')}</tbody></table></div>` : '')}
+    ${dobra('info', 'Pendências', lista(b.pendencias), (b.pendencias || []).length > 0)}`;
+}
+
+/* Aba Geral: veredito da investigação + a mensagem que vai (ou foi) no Disparos */
+function cartaoPronto(d, disps, e) {
+  if (!d && !disps.length) return '';
+  const b = d?.briefing || {};
+  const perdido = d?.decisao === 'perdido';
+  // O Disparos manda; sem rascunho lá, cai para as mensagens da investigação
+  const msgs = disps.length
+    ? disps.map((x) => ({ passo: x.passo || 1, variante: x.variante, angulo: x.angulo, texto: x.texto, st: ST_DISPARO[x.status] || x.status }))
+    : (b.mensagens || []).map((m, i) => ({ passo: m.passo || i + 1, variante: m.variante, angulo: m.angulo, texto: m.texto, st: 'da investigação, ainda não está no Disparos' }));
+  // Com mais de uma abordagem no mesmo passo, cada uma leva a letra e o ângulo
+  const variasNoPasso = (p) => msgs.filter((m) => m.passo === p).length > 1;
+  const rotulo = (m) => variasNoPasso(m.passo) || m.angulo ? `Passo ${m.passo} · abordagem ${m.variante || 'A'}${m.angulo ? `: ${m.angulo}` : ''}` : (ROTULO_PASSO[m.passo] || `Passo ${m.passo}`);
+  return `<div class="card mt-16 ${perdido ? '' : 'destaque'}">
+    ${d ? `<div class="row wrap"><span class="selo ${perdido ? 'vermelho' : 'verde'}">${icone(perdido ? 'x' : 'checkc')}${perdido ? 'Perdido' : 'Qualificado'}${d.nota != null ? ` · ${d.nota}` : ''}</span><b class="grow" style="font-size:14px">${esc(b.tese || d.motivo_decisao || '')}</b><button class="btn xs fantasma" data-g="ir-briefing">${icone('radar')}Briefing</button></div>` : ''}
+    ${msgs.length && !perdido ? `<h3 class="mt-16">Mensagens</h3>` + msgs.map((m) => `<div class="rotulo mt-16 mb-8">${esc(rotulo(m))} · ${esc(m.st)}</div><div class="msg-sugerida">${esc(m.texto)}</div>
+      <div class="row wrap mt-12"><button class="btn sm" data-g="copiar-pronta" data-texto="${esc(m.texto)}">${icone('copiar')}Copiar</button>${e.whatsapp ? `<a class="btn sm verde" href="${linkWhats(e.whatsapp, m.texto)}" target="_blank" rel="noopener">${icone('whatsapp')}Abrir no WhatsApp</a>` : ''}</div>`).join('') + `<div class="row wrap mt-12"><a class="btn sm fantasma" href="#/disparos">${icone('enviar')}Disparos</a></div>` : ''}
+    ${(b.respostas || []).length && !perdido ? `<details class="mt-16 dobra" open><summary><h3 class="grow">Se responder assim (${b.respostas.length})</h3>${icone('chevb', 'seta')}</summary>
+      <dl class="ficha-dl mt-8">${b.respostas.map((x) => `<dt>"${esc(x.se)}"</dt><dd>${esc(x.entao)}</dd>`).join('')}</dl></details>` : ''}
+  </div>`;
+}
+
+/* Raio-x: os quatro sinais que a prospecção levanta, lado a lado, pra ler em 2 segundos */
+function raioX(e) {
+  const nota = e.google_nota != null ? `${String(e.google_nota).replace('.', ',')}★` : null;
+  const [corSite, txtSite] = SITE_SELO[e.site_status] || SITE_SELO.desconhecido;
+  const celulas = [
+    ['estrela', 'Google', nota, nota ? `${e.google_avaliacoes != null ? num(e.google_avaliacoes) : '?'} avaliações` : 'não levantado', nota && e.google_nota < 4 ? 'amarelo' : ''],
+    ['instagram', 'Instagram', e.instagram_seguidores != null ? num(e.instagram_seguidores) : e.instagram ? `@${e.instagram}` : null, e.instagram_seguidores != null ? 'seguidores' : e.instagram ? 'seguidores não levantados' : 'sem perfil registrado', ''],
+    ['globo', 'Site', txtSite, e.site ? e.site.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '') : 'sem endereço registrado', corSite === 'cinza' ? '' : corSite],
+    ['raio', 'Anúncio', e.roda_anuncio == null ? null : e.roda_anuncio ? 'Roda' : 'Não roda', e.roda_anuncio == null ? 'não verificado' : 'Biblioteca da Meta', e.roda_anuncio ? 'verde' : ''],
+  ];
+  return `<div class="raio-x">${celulas.map(([ic, r, v, sub, cor]) => `<div class="rx ${cor}"><div class="rx-r">${icone(ic)}${r}</div><div class="rx-v${v ? '' : ' dim'}">${esc(v || '—')}</div><div class="rx-s">${esc(sub)}</div></div>`).join('')}</div>`;
+}
+
+/* Resumo: o texto da pesquisa (Spark/Claude) vem corrido, com 🔴🟢🟡 marcando achados.
+   Quebra nos marcadores e vira lista; sem marcador, respeita os parágrafos. */
+const MARCAS = { '🔴': 'vermelho', '🟠': 'laranja', '🟡': 'amarelo', '🟢': 'verde', '⚠️': 'amarelo', '✅': 'verde', '❌': 'vermelho' };
+function blocoResumo(txt) {
+  const re = /(🔴|🟠|🟡|🟢|⚠️|✅|❌)/u;
+  const partes = txt.split(re);
+  const abertura = partes.shift().trim();
+  const achados = [];
+  for (let i = 0; i < partes.length; i += 2) { const t = (partes[i + 1] || '').trim(); if (t) achados.push([MARCAS[partes[i]], t]); }
+  const longo = !achados.length && txt.length > 520;
+  const corpo = achados.length
+    ? `${abertura ? `<p class="resumo-abre">${esc(abertura)}</p>` : ''}<ul class="achados">${achados.map(([cor, t]) => `<li class="${cor}">${esc(t)}</li>`).join('')}</ul>`
+    : `<p class="resumo-txt${longo ? ' fechado' : ''}">${esc(txt)}</p>${longo ? '<button class="btn xs fantasma mt-8" data-g="resumo">Ler tudo</button>' : ''}`;
+  return `<div class="card mt-16"><div class="card-cab"><div class="icone-caixa sm neutro">${icone('radar')}</div><h3>O que o levantamento achou</h3></div>${corpo}</div>`;
+}
+
+/* Grupo de dados: mostra só o que tem valor; o que falta vira uma linha discreta */
+function grupoDados(titulo, pares) {
+  const cheios = pares.filter(([, v]) => v);
+  const vazios = pares.filter(([, v]) => !v).map(([r]) => r);
+  return `<div class="dados-grupo"><div class="rotulo mb-8">${esc(titulo)}</div>
+    ${cheios.length ? `<div class="dados-grade">${cheios.map(([r, v]) => dado(r, v)).join('')}</div>` : ''}
+    ${vazios.length ? `<p class="dados-falta">Sem registro: ${esc(vazios.join(', '))}</p>` : ''}</div>`;
 }
 
 function dado(rotulo, valor) {

@@ -115,6 +115,14 @@ suposição** — inclusive quando o WhatsApp "provavelmente normaliza" o dígit
 episódio do mesmo erro depois da Amparo; o custo aqui é abordar no número errado e ler mal a
 resposta. Origem: auditoria da onda de prospecção 20/09 (`saidas/prospeccao-2026-09-20/`).
 
+### Terceiro caso, o lado oposto: Bioclin (25/09/2026)
+
+O link da bio (`wa.me/557193289625`) não tinha o nono dígito, e o Google publica **(71) 99328-9625**.
+Tratei a diferença como pendência e o Marcelo testou: o link abre a conversa certa. Muita conta de
+WhatsApp foi cadastrada antes do nono dígito e abre dos dois jeitos. **O mesmo número com e sem o 9
+não é divergência nem erro.** Divergência é número diferente (a Euro Tech). A regra continua a mesma:
+nunca acrescentar nem tirar dígito do que está gravado.
+
 ---
 
 ## Fato x recomendação
@@ -160,8 +168,14 @@ Pare e verifique quando se pegar escrevendo:
 - Biografia, formação ou especialização que não veio do cliente
 - Ano de fundação, prêmio, certificação ou parceria não confirmados
 - Preenchimento de seção só porque o layout pedia texto ali
+- Posição na busca que não foi vista ("vocês não aparecem", "o primeiro resultado é").
+  Posição só se afirma com a busca feita no dia; não se deduz da categoria. Origem:
+  prospecção de 20/09, três teses caíram assim em 23/09
+- Suposição sobre a operação do cliente escrita como fato ("ninguém guardou a data",
+  "a informação é repassada de novo"). Entra com "imagino" ou não entra
 
-A última é a mais perigosa, porque o motivo da invenção é estético.
+A última da lista original (preencher seção porque o layout pedia) é a mais perigosa,
+porque o motivo da invenção é estético.
 
 ---
 
@@ -176,6 +190,14 @@ falsa, perfil falso, avaliação plantada, engajamento comprado — estão fora,
 eficazes que sejam. O caminho honesto existe (aquecimento por uso real, ou a rota
 oficial que dispensa aquecimento). Se a tática depende de mentir para quem está de
 fora, não entra na operação.
+
+### Norma de conselho não é obstáculo vencido (case Novare, 26/09/2026)
+
+Texto sobre cliente regulado (CFP, CFO e afins) **nunca** apresenta a norma do conselho como
+algo que a Horus "superou", "driblou" ou "contornou". O case da Novare dizia "superando a
+rigidez das normas éticas do CFP", passou sem ninguém ver e foi parar no resultado do Google:
+lê como burlar o código de ética, compromete a cliente e a Horus. O certo é **"respeitando as
+normas do CFP/CFO"**. Vale para site, case, proposta, post e descrição de portfólio.
 
 ---
 

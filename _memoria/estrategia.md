@@ -5,7 +5,37 @@
 
 ## Fase da agência
 
-⚠️ **Foto atual (22/09/2026):** oito pastas em `clientes/` (a carteira não mudou). A onda de
+⚠️ **Foto atual (27/09/2026):** a **esteira de prospecção rodou pela primeira vez no Hounder**
+(triagem → investigação profunda de seis camadas → briefing + rascunho no Disparos). Sete leads
+investigados: **Bioclin 85, Mônica Pita 84, Alessandra Araújo 80, Cintya Gualberto 80, Cavalcante 74,
+Revita 68** (manual; tem agência, entra como complemento) e **Marilúsia 58**, que o Marcelo pôs na
+geladeira em 26/09 (veterana, Instagram parado, agenda provavelmente cheia; reavaliar em 01/12). As
+mensagens esperam aprovação do Marcelo no Disparos; **nenhum envio da esteira saiu ainda**. Seis
+qualificados antigos (Harmony, Vida e Beleza, Talina, LevSaúde, Studio Fisio, Movimente) ainda não
+passaram pela investigação. Prioridade de produção viva continua a **Amparo**.
+
+⚠️ **Foto anterior (24/09/2026):** primeiros envios medidos da onda. **Autobahn** recebeu a
+mensagem completa (tinha respondido "em que podemos te ajudar?" em 21/09); aguardando resposta.
+**Land Car** abordada em 24/09. **Casa Verona recusou** em 24/09 ("não tenho interesse em um
+molde engessado"; entendeu a oferta como exposição de valores); o protótipo virou template em
+`templates/sites/espaco-eventos/`. Lições subiram para `_conhecimento/network/abordagem-e-prospeccao.md`
+§10. Próximo movimento do Marcelo: ficha nova do Spark, com triagem antes. Seguem no dossiê
+sem envio: Euro Tech, MAR, Cardamomo, Prático e Jeanne (gancho até 25/09). Prioridade de
+produção viva continua a **Amparo**.
+
+⚠️ **Foto anterior (23/09/2026):** oito pastas em `clientes/` (a carteira não mudou). As mensagens
+da onda de prospecção foram **reescritas no jeito novo** (22/09: o problema é do Google, não do
+dono; a pergunta pede licença pra dar; aceitar o "obrigado"; várias variações por lead com
+"quando usar"), e a escada de perguntas foi aposentada. Na conferência feita pelo Marcelo
+(23/09), **três teses caíram**: Autobahn e Prático aparecem em primeiro no Google, e o Café
+Cardamomo aparece bem. Seguem de pé: Land Car, Euro Tech e Casa Verona (a Dani foi descartada pelo Marcelo em 23/09: já tem site, e R$ 1.200 pra corrigir não muda nada pra ela). A MAR aguarda o
+endereço do site em PT-BR que o Marcelo encontrou (o `mar-engenharia.com` continua sendo o
+português). Jeanne tem gancho até 25/09. **Decisão em aberto, do Marcelo:** manter os três que
+caíram ou mandar pra geladeira, e puxar lote novo do Spark com triagem antes da ficha.
+Recomendação registrada: enviar os três de pé primeiro, porque ainda não há nenhum envio
+medido. Prioridade de produção viva continua a **Amparo**.
+
+⚠️ **Foto anterior (22/09/2026):** oito pastas em `clientes/` (a carteira não mudou). A onda de
 prospecção passou por uma **reverificação completa** (21/09) e pela **redação das mensagens**
 (22/09), ambas no `saidas/prospeccao-2026-09-20/dossie-prospeccao-v2.html`. A reverificação
 **derrubou 4 das 9 teses da v1** (Danyfisio, Casa Verona, Prático e a comparação de categoria
@@ -378,9 +408,43 @@ decisão de risco ALTO e boa candidata a `/conselho`.
   em **31/08 o AMARELO da marca (#F4C430) voltou** (o laranja saiu) e os cards de serviço
   passaram a mockups reais de device. **Estado e versão atuais sempre em `site/CLAUDE.md`**
   (não congelar número de versão aqui) + `identidade/design-guide.md`.
-  Do Conselho continua de pé: **só publicar quando o `noindex` sair e houver fonte de
-  tráfego**. (O gargalo "apresentar a Aion" ficou moot: a Aion foi engavetada em 01/09.)
+  ⚠️ **Histórico (fica como contexto):** o Conselho pediu "só publicar quando o `noindex`
+  sair e houver fonte de tráfego". Em **25/09/2026** o site foi para `https://horusagencia.com.br`
+  e o `noindex` saiu por decisão do Marcelo. **O que continua pendente é a fonte de tráfego:**
+  o perfil da Horus no Google existe e está verificado desde 26/09; faltam o link na bio do
+  Instagram e as primeiras avaliações (zero em 26/09). (O gargalo "apresentar a Aion" ficou moot: a Aion foi engavetada em 01/09.)
   Log em `_conselho/logs/2026-08-27-posicionamento-site-cunha-compliance.md`
+
+## Plano de negócio (v2, 27/09/2026) — em execução
+
+A v2 em `_gestao/plano-de-negocio.md` (a v1 ficou em `plano-de-negocio-v1.md`) organizou o plano
+em 7 objetivos (O1 Caixa, O2 Originação, O3 Oferta, O4 Prova, O5 Operação, O6 Time e sociedade,
+O7 Fábrica) e 3 ondas até o Marco 1 (26/12/2026). **As tarefas moram no Hounder** (tela Tarefas,
+70 carregadas em 27/09). **Todos os serviços são construídos** (correção do Marcelo, 27/09: "não
+ter o Icarus agora não tira ele do plano; montar é tarefa nossa"): a fábrica de serviços (plano,
+seção 4.4) tem meta semanal e demo do Icarus em 31/10. Sem horário fixo, vale o prazo; semana
+abaixo da meta de abordagens pausa a fábrica na seguinte. Pontos que a revisão mudou: recebido real é R$ 0; metas de 6 e 12 meses
+viram hipótese até 11/11; o nicho se decide com a taxa de resposta por segmento (06/11); CNPJ com
+dois sócios não é MEI, então a decisão de sociedade vem antes do CNPJ; avaliação no Google só de
+quem recebeu serviço real (meta do Marco 1 caiu para 5).
+
+## Plano de negócio (v1, 26/09/2026)
+
+Rascunho em `_gestao/plano-de-negocio.md` (interno, fora do Git): diagnóstico, posicionamento
+("a agência de Salvador que opera com agentes de IA e instala agentes de IA no seu negócio"),
+ofertas novas (SEO local + aparecer nas IAs, funcionário digital no WhatsApp, reputação,
+workshop de IA, automação interna) e metas em marcos de 90 dias, 6, 12 e 24 meses.
+⚠️ **É proposta, não decisão travada.** Preço, nicho e contratação passam pelo `/conselho`
+antes de virar regra; as metas se recalibram com o número real depois dos primeiros 90 dias.
+
+## Pendência de segurança (aberta em 25/09/2026)
+
+- **Verificação em duas etapas** nas contas que controlam o site: Netlify, Registro.br
+  (quem entra ali pode tomar o domínio), GitHub e o Google da agência.
+- **Chaves do Pronto** (Supabase e token da Vercel) coladas em chat desde 08/09: rotacionar
+  antes de qualquer dado real de cliente. Detalhe em `ferramentas/pronto.md`.
+- O site institucional em si é de risco baixo: estático, sem formulário, login ou banco;
+  arquivos internos conferidos como 404 no ar em 25/09.
 
 ## Ambiguidade no site do Dr. Giovanni (encerrada — ex-cliente)
 

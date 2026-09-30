@@ -88,3 +88,9 @@ Isso muda o reflexo de "vamos anunciar mais" para "onde exatamente vaza?".
 
 Tipologia de quatro perfis de SDR e limites de leads por pessoa. Pressupõe time
 comercial montado. Guardar para quando a Horus tiver equipe.
+
+---
+
+## Fonte completa (29/09/2026)
+
+Este cartão é o resumo. A mente original do mega-brain está em `fontes/full-sales-system/mega-brain/` (`AGENT.md` + `SOUL.md`), 1.017 + 308 linhas. Destaques: 3.1 filosofias, 3.3 heurísticas, 3.4 frameworks, 3.5 metodologia. A `/consultar` lê o cartão e depois busca na fonte a parte do assunto (grep pelo título ou pelo código). Citar assim: `^[fontes/full-sales-system/mega-brain/AGENT.md:<seção ou código>]`.

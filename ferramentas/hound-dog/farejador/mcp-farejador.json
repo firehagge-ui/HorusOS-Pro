@@ -9,6 +9,25 @@
       "env": {
         "HD_AUTOR": "claude"
       }
+    },
+    "navegador": {
+      "type": "stdio",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@playwright/mcp@0.0.82",
+        "--browser",
+        "chrome",
+        "--headless",
+        "--user-data-dir",
+        "E:\\Users\\hagge\\Downloads\\HorusOS\\ferramentas\\hound-dog\\.navegador",
+        "--output-dir",
+        "E:\\Users\\hagge\\Downloads\\HorusOS\\ferramentas\\hound-dog\\.navegador-saidas",
+        "--viewport-size",
+        "1366x900"
+      ]
     }
   }
 }

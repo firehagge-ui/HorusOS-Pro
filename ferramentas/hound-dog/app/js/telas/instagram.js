@@ -4,16 +4,21 @@
 import { sb, estado, ouvir, criarJob, farejadorOnline, acompanharJob } from '../sb.js';
 import { $, $$, esc, num, compacto, relativo, dataLonga, vazio, esqueleto, debounce, kpi, toast, erroAmigavel, botaoCarregando, preencherMarkdown } from '../ui.js';
 import { icone, sparkClaude } from '../icones.js';
+import { ABAS, abaMidia, barraMidia } from './midia.js';
 
 export default async function instagram(v) {
   const handle = estado.config.instagram?.handle || 'horuspublicidade';
   let ordem = 'recentes';
+  let aba = (location.hash.match(/aba=(w+)/) || [])[1] || 'visao';
+  let desligarAba = null;
   v.innerHTML = `<div class="cab"><div class="tt"><h1>Instagram</h1><p>O painel do <b>@${esc(handle)}</b>: crescimento, o que engaja e o que postar.</p></div>
     <div class="acoes"><a class="btn" href="https://instagram.com/${esc(handle)}" target="_blank" rel="noopener">${icone('instagram')}Abrir perfil</a><button class="btn" data-manual-topo>${icone('editar')}Registrar na mão</button><button class="btn prim" data-coletar>${icone('atualizar')}Atualizar agora</button></div></div>
+    <div data-midia-barra></div>
+    <nav class="abas mt-12" data-abas><button data-aba="visao">${icone('instagram')}Visão</button>${ABAS.map(([k, r, ic]) => `<button data-aba="${k}">${icone(ic)}${r}</button>`).join('')}</nav>
     <div data-corpo>${esqueleto(8, 30)}</div>`;
 
   async function carregar() {
-    if (!v.isConnected) return;
+    if (!v.isConnected || aba !== 'visao') return;
     const [{ data: snaps, error }, { data: ideias }, { data: jobIg }] = await Promise.all([
       sb.from('instagram_snapshots').select('*').eq('handle', handle).order('coletado_em', { ascending: false }).limit(120),
       sb.from('pesquisas').select('*').eq('tipo', 'instagram').order('criado_em', { ascending: false }).limit(1),
@@ -148,9 +153,19 @@ export default async function instagram(v) {
     } catch (e) { toast(erroAmigavel(e), 'erro'); botaoCarregando(btn, false); }
   }
 
+  async function trocar(nova) {
+    aba = nova;
+    $$('[data-aba]', v).forEach((b) => b.classList.toggle('on', b.dataset.aba === aba));
+    desligarAba?.(); desligarAba = null;
+    if (aba === 'visao') { $('[data-corpo]', v).innerHTML = esqueleto(8, 30); await carregar(); }
+    else desligarAba = await abaMidia(aba, $('[data-corpo]', v));
+  }
+  $('[data-abas]', v).onclick = (e) => { const b = e.target.closest('[data-aba]'); if (b) trocar(b.dataset.aba); };
+  barraMidia($('[data-midia-barra]', v));
+
   $('[data-coletar]', v).onclick = coletar;
   $('[data-manual-topo]', v)?.addEventListener('click', registrarManual);
-  await carregar();
+  await trocar(aba);
   const tiras = [ouvir('instagram_snapshots', debounce(carregar, 800)), ouvir('pesquisas', (p) => { if (p.new?.tipo === 'instagram') debounce(carregar, 800)(); })];
-  return () => tiras.forEach((t) => t());
+  return () => { tiras.forEach((t) => t()); desligarAba?.(); };
 }

@@ -1,0 +1,9 @@
+# Redirecionamentos (horusagencia.com.br). Mesmo motivo do _headers: vive na pasta
+# publicada para valer também quando o site sobe arrastando a pasta.
+# Páginas que ainda não existem levam à âncora equivalente da home. Quando a
+# página real nascer, a linha dela sai daqui.
+
+/servicos   /#servicos        302
+/sobre      /#sobre           302
+/contato    /#contato         302
+/portfolio  /portfolio.html   200

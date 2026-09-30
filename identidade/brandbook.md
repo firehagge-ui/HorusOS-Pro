@@ -449,8 +449,9 @@ mão em SVG avulso.
 ### 11.1 Dados operacionais que faltam (não inventar nenhum)
 
 `[FALTA: domínio oficial]` · `[FALTA: WhatsApp da agência]` · `[FALTA: e-mail]` ·
-**@agenciahorus02** ✅ confirmado pelo Marcelo em 17/09/2026 (o mockup antigo trazia
-`@horuspublicidade`, que é outra conta — o site ainda aponta para a errada) ·
+**@horusagencia.br** ✅ confirmado pelo Marcelo em 27/09/2026 e conferido pela API da Meta
+(conta Empresa; substitui o `@agenciahorus02` registrado em 17/09 e o `@horuspublicidade` do
+mockup antigo; o site já aponta para o certo desde 22/09) ·
 `[FALTA: cidade/endereço]` · `[FALTA: CNPJ]`.
 
 ### 11.2 Divergências a reconciliar em outros arquivos

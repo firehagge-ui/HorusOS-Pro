@@ -81,6 +81,24 @@
         ],
         "createdAt": "2026-09-15T20:37:13.303Z",
         "reason": "Titulo da Home em gradiente: escolha do cliente (Marcelo), mantido de proposito"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "clientes/_prototipos/casa-verona/**"
+        ],
+        "createdAt": "2026-09-23T21:30:00.000Z",
+        "reason": "O creme #F4EDE2 e o reboco da parede da propria Casa Verona, amostrado das fotos reais do jardim e da fachada, e o creme do traco do logo dela (registrado em clientes/_prototipos/casa-verona/marca.md). A marca do cliente vence a direcao visual generica (regra de precedencia do CLAUDE.md). O contraste continua cobrado pela low-contrast, que NAO esta dispensada. Vale so para este prototipo."
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "marketing/conteudo/fixados-horus-2026-09-27/post-1/carrossel.html"
+        ],
+        "createdAt": "2026-09-28T01:52:18.985Z",
+        "reason": "Marcelo confirmou em 27/09/2026: o quadradinho azul com brilho é o elemento-assinatura do site (.stk-quadrado)"
       }
     ]
   }

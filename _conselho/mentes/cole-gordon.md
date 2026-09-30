@@ -111,3 +111,9 @@ não instala nada; "o que você acha que acontece se nada mudar em 12 meses?" in
 
 Estrutura de time de closers, sales coordinator, double booking, quota. Não existe
 esse volume aqui. E qualquer tática de pressão fica proibida em cliente regulado.
+
+---
+
+## Fonte completa (29/09/2026)
+
+Este cartão é o resumo. A mente original do mega-brain está em `fontes/cole-gordon/mega-brain/` (`AGENT.md` + `SOUL.md`), 1.170 + 356 linhas. Destaques: FIL-CG-001 a 005 (filosofias), MM-CG-001 as 7 crenças como mapa de objeção, MM-CG-003 ilha do inferno x ilha do céu, FW-CG-001 as 7 crenças do comprador, FW-CG-002 a ligação em 6 fases, FW-CG-003 o pitch em 4 pilares, FW-CG-004 os 3 níveis de tonalidade, FW-CG-005 as 7 alavancas de comparecimento, MET-CG-001 double tie down, MET-CG-004 a transição sem "anvil drop", PARTE 5 (voz) e PARTE 6 (motor de decisão). A `/consultar` lê o cartão e depois busca na fonte a parte do assunto (grep pelo título ou pelo código). Citar assim: `^[fontes/cole-gordon/mega-brain/AGENT.md:<seção ou código>]`.

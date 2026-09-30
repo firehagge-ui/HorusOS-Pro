@@ -1,13 +1,13 @@
 /* =============================================================================
-   HOUND DOG — Falar com o Claude (roda pela assinatura, no Farejador: sem API)
+   HOUNDER — Falar com o Claude (roda pela assinatura, no Farejador: sem API)
    O Claude tem o contexto da Hórus (CLAUDE.md, memória, clientes) e as
-   ferramentas do Hound Dog: cria lead, move estágio, agenda, pesquisa.
+   ferramentas do Hounder: cria lead, move estágio, agenda, pesquisa.
    ============================================================================= */
 import { sb, estado, ouvir, criarJob, farejadorOnline, quem } from '../sb.js';
 import { $, $$, el, esc, toast, confirmar, erroAmigavel, relativo, vazio, esqueleto, debounce, preencherMarkdown, copiar, iniciais } from '../ui.js';
 import { icone, sparkClaude } from '../icones.js';
 
-const MODELOS = [['opus', 'Opus 5 · mais inteligente'], ['sonnet', 'Sonnet 5 · rápido'], ['haiku', 'Haiku 4.5 · mais rápido']];
+const MODELOS = [['claude-opus-5-5', 'Opus 5.5 · mais inteligente'], ['opus', 'Opus mais novo'], ['sonnet', 'Sonnet 5 · rápido'], ['haiku', 'Haiku 4.5 · mais rápido']];
 const SUGESTOES = [
   'Quem eu devo abordar hoje e por quê?',
   'Resume a Amparo Flores e me diz o próximo passo',
@@ -21,7 +21,7 @@ export default async function claude(v, { args, params }) {
   let threadId = args[0] || null;
   let threads = [];
   const limpezas = [];
-  const pref = (() => { try { return localStorage.getItem('hd-modelo-chat') || estado.config.claude?.modelo_chat || 'opus'; } catch { return 'opus'; } })();
+  const pref = (() => { try { return localStorage.getItem('hd-modelo-chat') || estado.config.claude?.modelo_chat || 'claude-opus-5-5'; } catch { return 'claude-opus-5-5'; } })();
   let modelo = pref;
 
   v.className = 'vista cheia';
@@ -98,7 +98,7 @@ export default async function claude(v, { args, params }) {
 
   function desenharVazio() {
     $('[data-msgs]', v).innerHTML = `<div class="chat-vazio"><span class="chat-logo-grande">${sparkClaude(64)}</span><h2>Como posso ajudar a Hórus hoje?</h2>
-      <p class="dim">Eu leio a carteira, o funil e a doutrina da casa. Posso pesquisar mercado, preparar abordagem, responder objeção e atualizar o Hound Dog por você.</p>
+      <p class="dim">Eu leio a carteira, o funil e a doutrina da casa. Posso pesquisar mercado, preparar abordagem, responder objeção e atualizar o Hounder por você.</p>
       <div class="chat-sugestoes">${SUGESTOES.map((s) => `<button class="chip" data-sug="${esc(s)}">${esc(s)}</button>`).join('')}</div></div>`;
     $$('[data-sug]', v).forEach((b) => (b.onclick = () => { const ta = $('[data-texto]', v); ta.value = b.dataset.sug.includes('xxxx') ? b.dataset.sug : b.dataset.sug; ta.focus(); if (!b.dataset.sug.includes('xxxx')) enviar(); }));
   }

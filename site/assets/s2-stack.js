@@ -21,11 +21,12 @@
   if ('IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
+        var trilhos = secao.querySelectorAll('.stk-trilho');
         if (entry.isIntersecting) {
           secao.classList.add('ativo');
-          if (plano) plano.style.animationPlayState = 'running';
+          trilhos.forEach(function (t) { t.style.animationPlayState = 'running'; });
         } else {
-          if (plano) plano.style.animationPlayState = 'paused';
+          trilhos.forEach(function (t) { t.style.animationPlayState = 'paused'; });
         }
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });

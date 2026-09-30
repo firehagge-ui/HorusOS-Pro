@@ -253,10 +253,14 @@ A descrição de cada função da operação está em `equipe/`, com tipo de exe
 
 Não são clientes, e por isso não moram em `clientes/`:
 
-- **`site/`** — site institucional da agência, na raiz. Instagram oficial: `https://www.instagram.com/horusagencia.br/` (@horusagencia.br). WhatsApp: `(71) 99912-7514`. Netlify preview: `agenciahorus.netlify.app`. Tem `CLAUDE.md` e `PLANO.md`
+- **`site/`** — site institucional da agência, na raiz. Instagram oficial: `https://www.instagram.com/horusagencia.br/` (@horusagencia.br). WhatsApp: `(71) 99912-7514`. No ar em `https://horusagencia.com.br` desde 25/09/2026 (domínio no Registro.br, hospedagem Netlify), aberto ao Google. Tem `CLAUDE.md` e `PLANO.md`
   próprios, e a home foi refeita várias vezes entre 04 e 05/08/2026. O estudo das
   dez referências que definiram a linguagem está em
   `referencias/agencias-ia-dez-sites.md`
+- **Perfil da Empresa no Google** — verificado, nome **"Horus Agência"** (aprovado em
+  26/09/2026), categoria "Agência de marketing digital", sem endereço público (atende em
+  Salvador, Camaçari, Lauro de Freitas e Simões Filho), link para o site e WhatsApp. Detalhe e
+  ajustes em `site/CLAUDE.md` (v48). Textos e fotos usados em `Downloads/Horus - Perfil do Google/`
 - **`identidade/`** — marca da agência (peça institucional). Não confundir com
   `clientes/<nome>/marca.md`, que é a marca do cliente e vence em peça de cliente
 - **Icarus** — agente de IA implantável, produto da Hórus, iniciado em 01/08/2026.

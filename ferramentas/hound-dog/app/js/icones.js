@@ -1,5 +1,5 @@
 /* =============================================================================
-   HOUND DOG — ícones (traço, 24px), símbolo do Claude e marca do Hound Dog
+   HOUNDER — ícones (traço, 24px), símbolo do Claude e marca do Hounder
    ============================================================================= */
 const P = {
   inicio: 'M3 10.5 12 3l9 7.5M5 9.5V21h5v-6h4v6h5V9.5',
@@ -47,7 +47,7 @@ const P = {
   olho: 'M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12ZM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z',
   enviar: 'M22 2 11 13M22 2l-7 20-4-9-9-4Z',
   menu: 'M3 6h18M3 12h18M3 18h18',
-  pontos: 'M5 12h.01M12 12h.01M19 12h.01',
+  pontos: 'M5 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM12 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM19 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z',
   sino: 'M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0',
   pasta: 'M3 7a2 2 0 0 1 2-2h4.5l2 2.5H19a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z',
   dinheiro: 'M3 6.5h18v11H3zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM6.5 9.5v.01M17.5 14.5v.01',
@@ -91,17 +91,9 @@ export function sparkClaude(tamanho = 20, cor = '#D97757') {
   return `<svg class="spark" viewBox="0 0 100 100" width="${tamanho}" height="${tamanho}" aria-label="Claude" role="img"><path fill="${cor}" d="${SPARK}"/><circle cx="50" cy="50" r="9" fill="${cor}"/></svg>`;
 }
 
-let _gid = 0;
-/** Marca do Hound Dog: cabeça de sabujo de perfil, orelha caída, faro pra frente. */
+/** Marca do Hound Dog: cabeça de cão de perfil, laranja em degradê (assets/logo-hound.png, fundo transparente). */
 export function logoHound(tamanho = 28) {
-  const id = `hdg${++_gid}`;
-  return `<svg viewBox="0 0 48 48" width="${tamanho}" height="${tamanho}" aria-label="Hound Dog" role="img">
-    <defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb877"/><stop offset="1" stop-color="#ff7a1a"/></linearGradient></defs>
-    <path fill="url(#${id})" d="M14 10C18 6 26 6 30 9L40 14C43 15 45 17 44 20C43.5 22 41.8 22.6 40.5 22.4L37 24.6C35.6 25.4 34.2 25.6 33 25.3C32.6 27.8 30.6 29.4 28.4 29.6C27.4 32.6 26.8 36.4 27.4 41H16C15.2 35.6 12.6 30.6 12 24.5C11.4 18.2 11.6 12.8 14 10Z"/>
-    <path fill="#b3480a" d="M16.5 11.2C12.4 13.8 10.6 22.4 12.6 31.2C13.3 34.4 15.6 36 17.8 34.7C19.6 33.6 20 30.6 20.3 27.2C20.9 20.4 20.4 14.2 16.5 11.2Z"/>
-    <circle cx="28.6" cy="13.8" r="1.7" fill="#1c0d03"/>
-    <path fill="#1c0d03" d="M41.2 15.4C42.9 15.4 44.4 16.8 44.2 18.6C44 20.2 42.4 21 41 20.6C39.8 20.2 39.2 19 39.4 17.6C39.6 16.3 40.2 15.4 41.2 15.4Z"/>
-  </svg>`;
+  return `<img class="logo-hound" src="assets/logo-hound.png" width="${tamanho}" height="${tamanho}" alt="Hounder" decoding="async">`;
 }
 
 export const ICONES = Object.keys(P);

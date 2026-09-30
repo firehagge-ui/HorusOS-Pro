@@ -8,3 +8,5 @@ farejador/.wa-auth/
 farejador/logs/
 farejador/.estado/
 .vercel/
+.navegador/
+.navegador-saidas/

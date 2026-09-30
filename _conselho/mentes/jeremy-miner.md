@@ -104,3 +104,9 @@ Tonalidade não se transporta pra texto escrito sem tradução: no WhatsApp, o q
 substitui o tom é o tamanho da frase e a ausência de pressão. E pergunta de
 consequência em paciente de saúde não pode virar apelo ao medo, que é
 sensacionalismo vedado pelo CFP e pelo CFO.
+
+---
+
+## Fonte completa (29/09/2026)
+
+Este cartão é o resumo. A mente original do mega-brain está em `fontes/jeremy-miner/mega-brain/` (`AGENT.md` + `SOUL.md`), 1.273 + 229 linhas. Destaques: 3.1 os 10 insights, 5.2 a 5.4 frases que usa, que nunca usa e as substituições de linguagem, 6.1 heurísticas se-então, 6.2 regras sempre/nunca, 10.3 o NEPQ em 6 fases, as 7 tonalidades e as 3 perguntas de compromisso. A `/consultar` lê o cartão e depois busca na fonte a parte do assunto (grep pelo título ou pelo código). Citar assim: `^[fontes/jeremy-miner/mega-brain/AGENT.md:<seção ou código>]`.

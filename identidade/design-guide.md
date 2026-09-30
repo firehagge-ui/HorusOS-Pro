@@ -42,7 +42,12 @@ Os cinco hexes abaixo são os oficiais do manual.
   cores do manual, mas está no arquivo, e medir é melhor que estimar.
   A primeira versão do site usava `#0A0C12`, que era chute e errou por pouco
 
-⚠️ **31/08/2026 — no SITE institucional o AMARELO da marca (#F4C430) VOLTOU e o
+⚠️ **25/09/2026, conferido no CSS:** o acento dominante do site institucional hoje é o
+**azul elétrico `#0077ff`** (23 usos em `site/assets/site.css`, contra 8 do amarelo; os
+botões viraram azul na v36, 23/09). O amarelo `#F4C430` segue só em usos pontuais. O parágrafo abaixo é **histórico**; a verdade da cor do site
+está em `site/assets/site.css` e no `site/CLAUDE.md`.
+
+⚠️ **Histórico: 31/08/2026 — no SITE institucional o AMARELO da marca (#F4C430) VOLTOU e o
 laranja (ember n8n) saiu.** O Marcelo apontou que o laranja era cor importada do
 n8n e a logo tem amarelo. O token `--ember` do `site/assets/site.css` passou a
 carregar o amarelo `#F4C430` (gradiente amarelo→dourado `#dca514`), propagando para

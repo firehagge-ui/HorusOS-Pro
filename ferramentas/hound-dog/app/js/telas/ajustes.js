@@ -1,5 +1,5 @@
 /* =============================================================================
-   HOUND DOG — Ajustes: Farejador, WhatsApp, Claude, Instagram, playbook,
+   HOUNDER — Ajustes: Farejador, WhatsApp, Claude, Instagram, playbook,
    régua de pontuação, metas, operadores, dados e conta
    ============================================================================= */
 import { sb, estado, ouvir, criarJob, farejadorOnline, salvarConfig, quem } from '../sb.js';
@@ -12,7 +12,7 @@ const SECOES = [['farejador', 'Farejador', 'radar'], ['whatsapp', 'WhatsApp', 'w
 export default async function ajustes(v, { params }) {
   let secao = params.secao || 'farejador';
   const limpezas = [];
-  v.innerHTML = `<div class="cab"><div class="tt"><h1>Ajustes</h1><p>Como o Hound Dog pensa, conecta e pontua.</p></div></div>
+  v.innerHTML = `<div class="cab"><div class="tt"><h1>Ajustes</h1><p>Como o Hounder pensa, conecta e pontua.</p></div></div>
     <div class="ajustes-grade"><nav class="ajustes-nav card pad-0">${SECOES.map(([k, r, i]) => `<button data-s="${k}" class="${k === secao ? 'on' : ''}">${k === 'claude' ? sparkClaude(16) : icone(i)}${r}</button>`).join('')}</nav><div data-sec></div></div>`;
   const alvo = $('[data-sec]', v);
   function ir(s) {
@@ -65,7 +65,7 @@ async function whatsapp(c, limpezas) {
     const f = estado.farejador || {};
     c.innerHTML = `
       <section class="card"><div class="card-cab"><div class="icone-caixa verde">${icone('whatsapp')}</div><div class="grow"><h3>Conexão</h3><p class="dim" style="font-size:13px">${f.whatsapp_status === 'conectado' ? `Conectado · ${esc(telefoneBonito(f.whatsapp_numero))}` : `Status: ${esc(f.whatsapp_status || 'desligado')}`}</p></div><button class="btn prim" data-conexao>${icone('qr')}${f.whatsapp_status === 'conectado' ? 'Gerenciar' : 'Conectar'}</button></div>
-        <div class="aviso">${icone('escudo')}<div>Conexão pelo WhatsApp Web (não oficial). O Hound Dog <b>não dispara em massa e não responde sozinho</b>: lê, analisa com o Claude e envia só o que você aprovar, uma por vez. É o ritmo que protege o número.</div></div></section>
+        <div class="aviso">${icone('escudo')}<div>Conexão pelo WhatsApp Web (não oficial). O Hounder <b>não dispara em massa e não responde sozinho</b>: lê, analisa com o Claude e envia só o que você aprovar, uma por vez. É o ritmo que protege o número.</div></div></section>
       <section class="card mt-16"><div class="card-cab"><h3>Comportamento</h3></div>
         <div class="campo"><label>O Claude analisa sozinho quando chega mensagem de</label><select class="sel" data-k="auto_analisar"><option value="leads"${cfg.auto_analisar === 'leads' ? ' selected' : ''}>Só números que estão no CRM (recomendado)</option><option value="todos"${cfg.auto_analisar === 'todos' ? ' selected' : ''}>Todos os contatos</option><option value="nunca"${cfg.auto_analisar === 'nunca' ? ' selected' : ''}>Ninguém (só quando eu pedir)</option></select></div>
         <label class="linha-alternar"><span class="grow"><b>Lembretes de compromisso no meu WhatsApp</b><br><small class="dim">Mensagem para você mesmo antes de cada reunião.</small></span><span class="alternar"><input type="checkbox" data-k="lembretes" ${cfg.lembretes ? 'checked' : ''}><span></span></span></label>
@@ -87,11 +87,12 @@ async function whatsapp(c, limpezas) {
 
 /* ------------------------------ Claude ------------------------------ */
 function claudeSec(c) {
-  const cfg = { modelo_chat: 'opus', modelo_analise: 'sonnet', modelo_pesquisa: 'opus', ...(estado.config.claude || {}) };
-  const sel = (k) => `<select class="sel" data-k="${k}">${[['opus', 'Opus 5 (mais inteligente)'], ['sonnet', 'Sonnet 5 (rápido e ótimo)'], ['haiku', 'Haiku 4.5 (mais rápido)']].map(([m, r]) => `<option value="${m}"${cfg[k] === m ? ' selected' : ''}>${r}</option>`).join('')}</select>`;
-  c.innerHTML = `<section class="card"><div class="card-cab"><div class="icone-caixa claude">${sparkClaude(22)}</div><div class="grow"><h3>Claude no Hound Dog</h3><p class="dim" style="font-size:13px">Roda pelo Claude Code da sua assinatura, no Farejador. Sem chave de API, sem custo por mensagem.</p></div></div>
+  // Leitura do WhatsApp em Opus 5.5 desde 29/09 (pedido do Marcelo: a melhor análise possível)
+  const cfg = { modelo_chat: 'claude-opus-5-5', modelo_analise: 'claude-opus-5-5', modelo_pesquisa: 'claude-opus-5-5', ...(estado.config.claude || {}) };
+  const sel = (k) => `<select class="sel" data-k="${k}">${[['claude-opus-5-5', 'Opus 5.5 (fixo)'], ['opus', 'Opus mais novo'], ['sonnet', 'Sonnet 5 (rápido e ótimo)'], ['haiku', 'Haiku 4.5 (mais rápido)']].map(([m, r]) => `<option value="${m}"${cfg[k] === m ? ' selected' : ''}>${r}</option>`).join('')}</select>`;
+  c.innerHTML = `<section class="card"><div class="card-cab"><div class="icone-caixa claude">${sparkClaude(22)}</div><div class="grow"><h3>Claude no Hounder</h3><p class="dim" style="font-size:13px">Roda pelo Claude Code da sua assinatura, no Farejador. Sem chave de API, sem custo por mensagem.</p></div></div>
     <div class="grade-3"><div class="campo"><label>Conversa (chat)</label>${sel('modelo_chat')}</div><div class="campo"><label>Leitura do WhatsApp</label>${sel('modelo_analise')}</div><div class="campo"><label>Pesquisas e dossiês</label>${sel('modelo_pesquisa')}</div></div>
-    <div class="aviso">${icone('info')}<div>O Claude do Hound Dog tem o contexto da Hórus (CLAUDE.md, memória, clientes, doutrina comercial e cards do network) e as ferramentas do CRM: pode criar lead, mover estágio, registrar atividade, agendar e salvar pesquisa. Ele segue as travas de integridade: o que não sabe vira [FALTA].</div></div>
+    <div class="aviso">${icone('info')}<div>O Claude do Hounder tem o contexto da Hórus (CLAUDE.md, memória, clientes, doutrina comercial e cards do network) e as ferramentas do CRM: pode criar lead, mover estágio, registrar atividade, agendar e salvar pesquisa. Ele segue as travas de integridade: o que não sabe vira [FALTA].</div></div>
     <button class="btn prim mt-16" data-salvar>${icone('check')}Salvar</button></section>`;
   $('[data-salvar]', c).onclick = async () => { $$('[data-k]', c).forEach((s) => (cfg[s.dataset.k] = s.value)); try { await salvarConfig('claude', cfg); toast('Modelos salvos'); } catch (e) { toast(erroAmigavel(e), 'erro'); } };
 }
@@ -113,7 +114,7 @@ function instagram(c) {
         <li>No <b>Graph API Explorer</b>, gere um token com as permissões <code>instagram_basic</code>, <code>pages_show_list</code> e <code>pages_read_engagement</code>.</li>
         <li>Ainda no Explorer, rode <code>me/accounts</code> para achar a página e depois <code>&lt;id-da-pagina&gt;?fields=instagram_business_account</code>: o número que voltar é o ID da conta.</li>
         <li>Troque o token por um de <b>longa duração</b> (60 dias) e cole aqui. O painel avisa quando ele vencer.</li>
-      </ol><p class="dim mt-8" style="font-size:12.5px">O token fica no banco do Hound Dog, que só operador enxerga. Se preferir não guardar aqui, use o registro manual na tela do Instagram.</p></details>
+      </ol><p class="dim mt-8" style="font-size:12.5px">O token fica no banco do Hounder, que só operador enxerga. Se preferir não guardar aqui, use o registro manual na tela do Instagram.</p></details>
       <button class="btn prim mt-16" data-salvar>${icone('check')}Salvar</button></section>`;
   $('[data-salvar]', c).onclick = async () => {
     const h = String($('[data-k=handle]', c).value).replace(/^@/, '').trim().toLowerCase();
@@ -206,7 +207,7 @@ async function operadores(c) {
   const { data, error } = await sb.from('operadores').select('*').order('criado_em');
   if (error) { c.innerHTML = vazio('alerta', 'Não carregou', erroAmigavel(error)); return; }
   const dono = estado.eu?.papel === 'dono';
-  c.innerHTML = `<section class="card"><div class="card-cab"><div class="icone-caixa">${icone('clientes')}</div><div class="grow"><h3>Quem opera o Hound Dog</h3><p class="dim" style="font-size:13px">Só quem está aqui vê os dados. O resto, mesmo logado, não vê nada.</p></div>${dono ? `<button class="btn sm prim" data-add>${icone('usuariomais')}Adicionar</button>` : ''}</div>
+  c.innerHTML = `<section class="card"><div class="card-cab"><div class="icone-caixa">${icone('clientes')}</div><div class="grow"><h3>Quem opera o Hounder</h3><p class="dim" style="font-size:13px">Só quem está aqui vê os dados. O resto, mesmo logado, não vê nada.</p></div>${dono ? `<button class="btn sm prim" data-add>${icone('usuariomais')}Adicionar</button>` : ''}</div>
     ${data.map((o) => `<div class="item"><span class="avatar">${esc(o.nome[0])}</span><div class="grow"><div class="tit">${esc(o.nome)}${o.user_id === estado.eu?.user_id ? ' <span class="selo">você</span>' : ''}</div><div class="sub">${esc(o.email || '')}</div></div><span class="selo ${o.papel === 'dono' ? 'laranja' : 'cinza'}">${o.papel === 'dono' ? 'Dono' : 'Operador'}</span>
       ${dono && o.user_id !== estado.eu?.user_id ? `<button class="btn xs perigo" data-tirar="${o.user_id}">Remover acesso</button>` : ''}</div>`).join('')}
     ${!dono ? '<p class="dim mt-12">Só o dono adiciona ou remove operadores.</p>' : ''}</section>`;
@@ -225,7 +226,7 @@ async function operadores(c) {
     };
   });
   $$('[data-tirar]', c).forEach((b) => (b.onclick = async () => {
-    if (!(await confirmar('Remover o acesso?', 'A pessoa deixa de ver os dados do Hound Dog.', { rotulo: 'Remover', perigo: true }))) return;
+    if (!(await confirmar('Remover o acesso?', 'A pessoa deixa de ver os dados do Hounder.', { rotulo: 'Remover', perigo: true }))) return;
     const { error: e } = await sb.from('operadores').delete().eq('user_id', b.dataset.tirar);
     if (e) toast(erroAmigavel(e), 'erro'); else { toast('Acesso removido'); operadores(c); }
   }));
@@ -241,7 +242,7 @@ function dados(c) {
       <div class="grade-2 mt-12"><div class="campo"><label>Nova senha</label><input class="inp" type="password" data-s1 autocomplete="new-password" placeholder="Mínimo de 10 caracteres"></div><div class="campo"><label>Repita</label><input class="inp" type="password" data-s2 autocomplete="new-password"></div></div>
       <div class="row"><button class="btn" data-senha>${icone('check')}Trocar senha</button><span class="grow"></span><button class="btn perigo" data-sair>${icone('sair')}Sair</button></div></section>
     <section class="card mt-16"><div class="card-cab"><div class="icone-caixa sm">${icone('info')}</div><h3>Sobre</h3></div>
-      <p class="dim">Hound Dog · Hórus CRM. Banco Supabase (São Paulo), painel na Vercel, Farejador local com Claude Code e WhatsApp. Código em <code>ferramentas/hound-dog</code>.</p></section>`;
+      <p class="dim">Hounder · Hórus CRM. Banco Supabase (São Paulo), painel na Vercel, Farejador local com Claude Code e WhatsApp. Código em <code>ferramentas/hound-dog</code>.</p></section>`;
   $('[data-backup]', c).onclick = async (ev) => {
     botaoCarregando(ev.currentTarget, true, 'Juntando…');
     try {

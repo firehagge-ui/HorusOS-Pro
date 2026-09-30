@@ -4,7 +4,7 @@
    estágio, com os templates do Horus-Comercial. O Claude refina por cima.
    ============================================================================= */
 import { estado } from './sb.js';
-import { semAcento } from './score.js';
+import { semAcento, pareceRobo } from './score.js';
 
 const norm = (s) => semAcento(String(s || '')).toLowerCase();
 
@@ -20,11 +20,8 @@ export function detectarObjecoes(texto) {
   return achadas.sort((a, b) => b.forca - a.forca);
 }
 
-/** Heurística de resposta automática (o selo "Bot" das referências). */
-export function pareceBot(texto) {
-  const t = norm(texto);
-  return /seja bem[- ]vind|mensagem automatica|resposta automatica|nosso horario de atendimento|em breve retornaremos|digite (1|um|a opcao)|escolha uma das opcoes|agradecemos (o|seu) contato.*(breve|retorn)|assistente virtual|atendimento automatico/.test(t);
-}
+/** Heurística de resposta automática (o selo "Bot" das referências). A regra mora no score.js, compartilhada com o Farejador. */
+export function pareceBot(texto) { return pareceRobo(texto); }
 
 /** Leitura rápida de temperatura pela última fala do lead. */
 export function temperaturaRapida(texto) {
@@ -36,16 +33,32 @@ export function temperaturaRapida(texto) {
 
 function primeiroNome(e) {
   const d = String(e?.decisor || '').replace(/\(.*?\)|\[.*?\]/g, '').trim();
-  if (d && !/falta/i.test(d)) return d.split(/\s+/)[0];
-  return '';
+  // Campo com mais de uma pessoa ("Três sócias: ...", "Fulano e Beltrano") ou sem nome: sem nome na saudação
+  if (!d || /falta|:|s[óo]ci[oa]s\b|^(dois|duas|tr[êe]s|quatro|\d)\b/i.test(d) || /\se\s[A-ZÁÉÍÓÚ]/.test(d)) return '';
+  const p = d.split(/\s+/)[0].replace(/,$/, '');
+  if (/^Dra?\.$/i.test(p)) return p; // "Oi, Dra.!" como antes
+  return /^[A-ZÁÉÍÓÚÂÊÔÃÕÇ][a-záéíóúâêôãõç]{2,}$/.test(p) ? p : '';
+}
+
+/* Categoria em linguagem de busca: só a primeira parte, em minúsculas ("Espaço de Eventos, Salão..." vira "espaço de eventos") */
+const buscaDe = (e) => String(e?.categoria || '').split(/[:(,/;]/)[0].trim().toLowerCase() || 'o serviço de vocês';
+
+/** A variação simples (a que o Antônio mandou em 28/09): uma mensagem só, direta, com quem assina. */
+export function mensagemSimples(emp, remetente = 'Marcelo') {
+  const nome = primeiroNome(emp);
+  const oi = nome ? `Oi, ${nome}! Tudo bem?` : 'Oi, tudo bem?';
+  const cidade = String(emp?.cidade || '').split('/')[0].trim();
+  const onde = cidade ? ` em ${cidade}` : '';
+  const quem = `Aqui é o ${remetente}, da Hórus.`;
+  if (emp?.site_status === 'fora_do_ar') return `${oi} ${quem} Fui ver o site de vocês e ele está fora do ar. Quer que eu te mostre como colocar de volta, pra aparecer no Google quando alguém procura ${buscaDe(emp)}${onde}?`;
+  if (emp?.site_status === 'sem') return `${oi} ${quem} Vi o perfil de vocês no Instagram e reparei que vocês ainda não têm um site próprio. Já pensaram em ter um, pra aparecer no Google quando alguém procura ${buscaDe(emp)}${onde}?`;
+  return `${oi} ${quem} Vi o perfil de vocês e tive uma ideia pra vocês aparecerem melhor no Google quando alguém procura ${buscaDe(emp)}${onde}. Posso te explicar?`;
 }
 
 /** Próxima mensagem sugerida pelo estágio (doutrina: não insistir antes da resposta). */
-export function proximaMensagem(emp, ultimaFala = '') {
+export function proximaMensagem(emp, ultimaFala = '', remetente = 'Marcelo') {
   const nome = primeiroNome(emp);
   const oi = nome ? `Oi, ${nome}!` : 'Oi, tudo bem?';
-  const cat = (emp?.categoria || 'o seu serviço').toLowerCase();
-  const cidade = String(emp?.cidade || 'sua cidade').split('/')[0];
   const reg = emp?.regulado;
   const aviso = reg ? `\n\n⚠️ Setor regulado (${emp.conselho || 'conselho'}): sem promessa de resultado, sem antes/depois, sem depoimento.` : '';
 
@@ -56,13 +69,9 @@ export function proximaMensagem(emp, ultimaFala = '') {
 
   switch (emp?.estagio) {
     case 'novo':
-    case 'qualificado': {
-      let txt;
-      if (emp.site_status === 'fora_do_ar') txt = `${oi} Aqui é da Hórus.\nFui procurar ${emp.nome} e o site de vocês está fora do ar${emp.site ? ` (${emp.site.replace(/^https?:\/\//, '')} não abre)` : ''}. Isso costuma derrubar quem procura vocês pelo Google. Faz sentido eu te mostrar rapidinho o que dá pra fazer?`;
-      else if (emp.site_status === 'sem') txt = `${oi} Aqui é da Hórus.\nVi ${emp.nome}${emp.instagram ? ' no Instagram' : ''} e reparei que vocês ainda não têm um site próprio. Já pensaram em ter um, pra aparecer no Google quando alguém procura por ${cat} em ${cidade}?`;
-      else txt = `${oi} Aqui é da Hórus.\nAcompanhei ${emp.nome} e fiquei pensando: quando alguém procura por ${cat} em ${cidade} no Google, o que aparece de vocês? É essa parte que a gente resolve. Posso te explicar em 5 minutos?`;
-      return { liberado: true, modelo: 'Primeira abordagem (personalizada, termina em pergunta)', status: 'Estude o negócio antes (15 a 20 min). Um detalhe real, uma pergunta, um CTA só.', texto: txt + aviso };
-    }
+    case 'qualificado':
+      // A variação simples voltou a pedido do Marcelo (29/09): as mensagens da investigação ficam no cartão Mensagens acima
+      return { liberado: true, simples: true, modelo: 'Variação simples (uma mensagem só)', status: 'As abordagens da investigação estão no cartão Mensagens, acima. Esta é a versão simples, pra mandar rápido.', texto: mensagemSimples(emp, remetente) };
     case 'abordado':
       return { liberado: false, modelo: 'Aguardando resposta', status: 'Abordado. Não mande de novo antes de ele responder: insistência queima o lead e o número. Cadência de follow-up: dia +3 e dia +7, depois para.', texto: `${oi} Passando pra ver se você chegou a ver minha mensagem. Sem pressa, só não queria que se perdesse aqui no meio da correria. 🙂` };
     case 'conversando':

@@ -6,6 +6,7 @@ import { $, $$, esc, brl, relativo, dataHora, hora, saudacao, kpi, vazio, esquel
 import { icone, sparkClaude } from '../icones.js';
 import { abrirFicha } from '../ficha.js';
 import { PROB_ESTAGIO } from '../copiloto.js';
+import { linhaTarefa, alternarFeita, editarTarefa, hojeBahia } from './tarefas.js';
 
 const MOTIVO = { acao_vencida: ['vermelho', 'Ação vencida'], parado: ['amarelo', 'Parado há +3 dias'], sem_proxima_acao: ['laranja', 'Sem próxima ação'] };
 
@@ -26,6 +27,7 @@ export default async function inicio(v) {
     <div class="kpis mt-16" data-kpis>${Array.from({ length: 5 }, () => '<div class="kpi"><div class="esq" style="height:14px;width:60%"></div><div class="esq" style="height:28px;width:40%;margin-top:14px"></div></div>').join('')}</div>
     <div class="inicio-grade">
       <div class="col gap-18">
+        <section class="card pad-0"><div class="card-cab pad-cab"><div class="icone-caixa sm violeta">${icone('checkc')}</div><h3>Tarefas de hoje</h3><div class="right"><a class="btn xs fantasma" href="#/tarefas">Todas ${icone('chevd')}</a></div></div><div class="tarefas-lista" data-tarefas>${esqueleto(3)}</div></section>
         <section class="card"><div class="card-cab"><div class="icone-caixa sm vermelho">${icone('alerta')}</div><h3>Precisa de você</h3><div class="right"><a class="btn xs fantasma" href="#/esteira">Esteira ${icone('chevd')}</a></div></div><div data-atencao>${esqueleto(3)}</div></section>
         <section class="card"><div class="card-cab"><div class="icone-caixa sm">${icone('agenda')}</div><h3>Agenda: hoje e amanhã</h3><div class="right"><a class="btn xs fantasma" href="#/agenda">Agenda ${icone('chevd')}</a></div></div><div data-agenda>${esqueleto(2)}</div></section>
         <section class="card"><div class="card-cab"><div class="icone-caixa sm violeta">${icone('esteira')}</div><h3>A esteira agora</h3></div><div data-funil>${esqueleto(4, 12)}</div></section>
@@ -46,16 +48,17 @@ export default async function inicio(v) {
     const semana = new Date(hoje); semana.setDate(semana.getDate() - ((semana.getDay() + 6) % 7));
     const em7 = new Date(hoje); em7.setDate(em7.getDate() + 7);
 
-    const [atencao, agenda, itens, conversas, feed, fin, abordagens, reunioes, ig] = await Promise.all([
+    const [atencao, agenda, itens, conversas, feed, fin, abordagens, reunioes, ig, tarefas] = await Promise.all([
       sb.from('vw_atencao').select('id,nome,estagio,motivo,proxima_acao,proxima_acao_em,categoria,cidade').limit(8),
       sb.from('agenda').select('*').gte('inicio', hoje.toISOString()).lt('inicio', depoisAmanha.toISOString()).neq('status', 'cancelado').order('inicio'),
       sb.from('lista_itens').select('id,nome,categoria,cidade,bairro,score,prioridade,site_status,whatsapp,lista_id,instagram_seguidores,google_avaliacoes').is('empresa_id', null).eq('descartado', false).order('score', { ascending: false }).limit(6),
-      sb.from('whatsapp_conversas').select('*').eq('arquivada', false).order('ultima_em', { ascending: false, nullsFirst: false }).limit(20),
+      sb.from('whatsapp_conversas').select('*').not('empresa_id', 'is', null).eq('arquivada', false).order('ultima_em', { ascending: false, nullsFirst: false }).limit(20),
       sb.from('atividades').select('*').order('criado_em', { ascending: false }).limit(10),
       sb.from('financeiro').select('valor,status'),
       sb.from('atividades').select('id', { count: 'exact', head: true }).in('tipo', ['mensagem', 'ligacao', 'visita']).gte('criado_em', semana.toISOString()),
       sb.from('agenda').select('id', { count: 'exact', head: true }).in('tipo', ['r1', 'r2', 'visita']).gte('inicio', hoje.toISOString()).lt('inicio', em7.toISOString()).neq('status', 'cancelado'),
       sb.from('instagram_snapshots').select('seguidores,coletado_em').order('coletado_em', { ascending: false }).limit(1),
+      sb.from('tarefas').select('*').in('status', ['a_fazer', 'fazendo', 'travada']).order('prazo', { nullsFirst: false }).limit(300),
     ]);
     if (!v.isConnected) return;
 
@@ -79,6 +82,17 @@ export default async function inicio(v) {
     const online = farejadorOnline();
     const igTxt = ig.data?.[0]?.seguidores ? ` · @${estado.config.instagram?.handle || 'horuspublicidade'} com ${compacto(ig.data[0].seguidores)} seguidores` : '';
     $('[data-resumo]', v).innerHTML = `${nAt ? `<b>${nAt}</b> ${nAt === 1 ? 'negócio pede' : 'negócios pedem'} atenção` : 'Nenhum negócio travado'} · ${nAg ? `<b>${nAg}</b> compromisso${nAg > 1 ? 's' : ''} hoje` : 'agenda livre hoje'} · Farejador <b class="${online ? 'ok' : 'erro'}">${online ? 'online' : 'offline'}</b>${esc(igTxt)}`;
+
+    // ------------------------------- Tarefas (atrasadas + hoje; se não houver, as 3 próximas)
+    const abertas = tarefas.data || [];
+    const h = hojeBahia();
+    let doDia = abertas.filter((t) => t.prazo && t.prazo <= h);
+    const proximas = !doDia.length;
+    if (proximas) doDia = abertas.filter((t) => t.prazo).slice(0, 3);
+    const boxT = $('[data-tarefas]', v);
+    boxT.innerHTML = doDia.length ? `${proximas ? '<p class="dim pad-cab" style="font-size:12.5px;padding-top:0">Nada para hoje. As próximas:</p>' : ''}${doDia.slice(0, 8).map((t) => linhaTarefa(t, abertas)).join('')}`
+      : `<div class="pad-cab">${vazio('checkc', 'Nenhuma tarefa com prazo', 'Crie em Tarefas ou peça ao Claude.')}</div>`;
+    boxT._lista = abertas;
 
     // ------------------------------- Atenção
     $('[data-atencao]', v).innerHTML = (atencao.data || []).length ? atencao.data.map((e) => {
@@ -106,7 +120,7 @@ export default async function inicio(v) {
       : vazio('radar', 'Nenhuma lista ainda', 'Suba a planilha do Spark ou peça uma farejada ao Claude: os melhores aparecem aqui.', '<a class="btn sm prim" href="#/encontrar">Encontrar clientes</a>');
 
     // ------------------------------- Conversas
-    const quentes = (conversas.data || []).filter((c) => c.empresa_id || c.analise).slice(0, 5);
+    const quentes = (conversas.data || []).filter((c) => c.empresa_id).slice(0, 5);
     $('[data-conv]', v).innerHTML = quentes.length ? quentes.map((c) => {
       const emp = estado.empresas.find((e) => e.id === c.empresa_id);
       const obj = c.analise?.objecoes?.[0]?.rotulo;
@@ -122,7 +136,14 @@ export default async function inicio(v) {
     }).join('')}</div>` : vazio('relogio', 'Sem movimento ainda');
   }
 
+  v.addEventListener('change', async (e) => {
+    const c = e.target.closest('[data-tarefas] [data-check]'); if (!c) return;
+    const t = ($('[data-tarefas]', v)._lista || []).find((x) => x.id === c.closest('[data-tarefa]').dataset.tarefa);
+    if (t && !(await alternarFeita(t, c.checked))) c.checked = !c.checked;
+  });
   v.addEventListener('click', (e) => {
+    const tf = e.target.closest('[data-tarefas] [data-abrir]');
+    if (tf) { const t = ($('[data-tarefas]', v)._lista || []).find((x) => x.id === tf.closest('[data-tarefa]').dataset.tarefa); if (t) editarTarefa(t); return; }
     const emp = e.target.closest('[data-emp]');
     if (emp) { abrirFicha(emp.dataset.emp); return; }
     const ag = e.target.closest('[data-ag]');
@@ -131,6 +152,6 @@ export default async function inicio(v) {
 
   try { await carregar(); } catch (e) { console.error(e); $('[data-resumo]', v).textContent = 'Parte do painel não carregou. Recarregue a página.'; }
   const recarregar = debounce(() => carregar().catch(console.error), 1200);
-  const tiras = ['empresas', 'agenda', 'atividades', 'whatsapp_conversas', 'financeiro', 'farejador_status', 'listas'].map((t) => ouvir(t, recarregar));
+  const tiras = ['empresas', 'agenda', 'atividades', 'whatsapp_conversas', 'financeiro', 'farejador_status', 'listas', 'tarefas'].map((t) => ouvir(t, recarregar));
   return () => tiras.forEach((f) => f());
 }

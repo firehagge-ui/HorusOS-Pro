@@ -1,9 +1,15 @@
 # Mentes
 
-Oito especialistas destilados. Sete portados de `agents/minds/` do
+Doze especialistas destilados. Sete portados de `agents/minds/` do
 [mega-brain](https://github.com/YuriRDev/mega-brain); o oitavo (Pedro Sobral) promovido
-dos squads em 04/09/2026. Cada arquivo é a doutrina de uma pessoa ou escola: no que ela
-acredita, com que números ela decide, que estruturas ela usa.
+dos squads em 04/09/2026; quatro (Voss, Cialdini, Rackham, Fitzpatrick) entraram em
+29/09/2026, a partir de skills de livro (wondelai/skills e founder-playbook, MIT). Cada
+arquivo é a doutrina de uma pessoa ou escola: no que ela acredita, com que números ela
+decide, que estruturas ela usa.
+
+**Desde 29/09 cada cartão é o resumo; a doutrina completa está em `fontes/`** (a porta
+original tinha deixado ~4% do material pra trás). Ver `fontes/README.md` e a pesquisa que
+motivou a mudança em `PESQUISA-2026-09-29.md`.
 
 Serve pra duas coisas:
 
@@ -17,7 +23,11 @@ Serve pra duas coisas:
 
 | Arquivo | Quem | Domínio | Peso pra Horus |
 |---|---|---|---|
-| [alex-hormozi.md](alex-hormozi.md) | Alex Hormozi | Oferta, pricing, sistema, escala | Alto |
+| [alex-hormozi.md](alex-hormozi.md) | Alex Hormozi | Oferta, aquisição (abordagem fria, iscas), sequência de ofertas, escala | Alto |
+| [chris-voss.md](chris-voss.md) | Chris Voss | Negociação, objeção, lead que sumiu, conversa difícil | Alto |
+| [robert-cialdini.md](robert-cialdini.md) | Robert Cialdini | Por que as pessoas dizem sim; revisar mensagem e proposta | Alto (com trava de compliance) |
+| [neil-rackham.md](neil-rackham.md) | Neil Rackham (SPIN) | Perguntas da R1; o único método daqui nascido de pesquisa | Alto |
+| [rob-fitzpatrick.md](rob-fitzpatrick.md) | Rob Fitzpatrick (Mom Test) | Pergunta sem viés, compromisso, validar nicho | Médio-alto |
 | [cole-gordon.md](cole-gordon.md) | Cole Gordon | Venda high-ticket, discovery, objeção | Alto |
 | [jeremy-miner.md](jeremy-miner.md) | Jeremy Miner | NEPQ: perguntas e tonalidade na call | Alto |
 | [jeremy-haynes.md](jeremy-haynes.md) | Jeremy Haynes | Paid media, funil, show rate, follow-up | Alto |
@@ -71,4 +81,12 @@ social por depoimento, promessa de resultado) são **vedadas** para o Dr. Giovan
 
 No Conselho, os cargos puxam a mente relevante do domínio deles: Estrategista puxa
 Hormozi e G4, Mídia puxa Haynes, e quem estiver discutindo venda puxa Cole Gordon
-e Miner.
+e Miner. Desde 29/09: objeção e negociação puxam Voss; pauta da R1 puxa SPIN
+(Rackham) e Mom Test (Fitzpatrick); revisão de mensagem, proposta e página puxa
+Cialdini (sempre com o Compliance ao lado).
+
+**Fora do Conselho, no dia a dia** (é o que faz a mente ser usada):
+- `/revisar-mensagem` confere a mensagem contra Cialdini (reciprocidade, prova social
+  negativa, escassez falsa) e Voss (nada de "por quê?", pergunta orientada ao não)
+- A investigação do Farejador monta a pauta da R1 em SPIN + Mom Test e o mapa de
+  respostas com Voss e Cole Gordon (`ferramentas/hound-dog/farejador/prompts.mjs`)

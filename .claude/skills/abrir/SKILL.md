@@ -22,20 +22,30 @@ Curto e direto. O objetivo é carregar contexto e devolver uma síntese de uma f
    > "Vi que `_memoria/<arquivo>.md` ainda não foi preenchido. Quer rodar `/instalar` agora?"
    E parar.
 
-3. Se tudo estiver preenchido, devolver UMA mensagem curta no formato:
+3. Puxar as tarefas no Hounder (`mcp__hound-dog__hd_tarefas`, padrão = abertas). Separar
+   **atrasadas** (prazo antes de hoje) e **de hoje**. É a cobrança combinada com o Marcelo
+   em 27/09/2026: o plano de negócio (`_gestao/plano-de-negocio.md`) e as pendências da casa
+   vivem na tela Tarefas do Hounder.
+
+4. Se tudo estiver preenchido, devolver UMA mensagem curta no formato:
 
 ```
 [Nome do negócio] — [o que faz em 5-8 palavras]
 Foco atual: [prioridade da estratégia, em uma frase]
-Tom: [resumo de 3-4 palavras do tom de voz]
+Atrasadas: [N] · [título da mais importante]   (omitir a linha se não houver)
+Hoje: [até 3 títulos, os de prioridade alta primeiro]
 
-Pronto. O que vamos fazer?
+Pronto. Começamos pela [tarefa mais importante]?
 ```
 
-4. Não listar quais arquivos foram lidos. Não confirmar leitura. Só usar o contexto.
+   Tarefa atrasada se resolve de três jeitos, e só de três: fazer, mudar o prazo com motivo
+   ou cancelar com motivo. Não deixar passar em silêncio.
+
+5. Não listar quais arquivos foram lidos. Não confirmar leitura. Só usar o contexto.
 
 ## Regras
 
-- Resposta tem que caber em 5 linhas no terminal
-- Não fazer perguntas além de "o que vamos fazer?"
+- Resposta tem que caber em 7 linhas no terminal
+- Não fazer perguntas além da de começar
+- Se o MCP do Hounder não responder, dizer em uma linha que as tarefas não foram lidas (nunca inventar a lista)
 - Se o `design-guide.md` estiver em branco, não mencionar — só vira problema quando alguma skill visual for chamada

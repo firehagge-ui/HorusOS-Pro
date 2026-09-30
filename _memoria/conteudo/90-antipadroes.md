@@ -122,6 +122,17 @@ torra, embalagem e do Nelson.
 modelo quando ninguém definiu nada. Se a marca do cliente não define, o caminho é
 o `identidade/catalogo-estilos.md`, não o reflexo.
 
+**Frase quebrada em rótulo pequeno + título grande.** "QUEM TE SEGUE" em
+eyebrow minúsculo e "Já te conhece." no título: é **uma frase só** partida em dois
+tamanhos, e o olho lê o grande primeiro, que sozinho não faz sentido. Se o rótulo
+completa a frase do título, ele entra no título ("Quem te segue *já te conhece.*",
+com a ênfase na cor da marca). Rótulo pequeno só existe quando é uma **categoria**
+de verdade, independente da frase, e mesmo assim não na capa, onde compete com o
+gancho.
+→ *Origem: o Marcelo sobre o carrossel "Seu próximo cliente ainda não te segue",
+post fixado da Horus, 27/09/2026: "faz o menor sentido esse título pequeno em cima
+e o grande embaixo".*
+
 ---
 
 ## Compliance (trava, não é gosto)

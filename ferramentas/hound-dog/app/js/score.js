@@ -15,9 +15,11 @@ export const NICHOS_PADRAO = ['floricultura', 'flores', 'café', 'cafe', 'psicol
 export const PRACA_PADRAO = ['salvador', 'lauro de freitas', 'camaçari', 'camacari', 'simões filho', 'simoes filho', 'candeias', "dias d'ávila"];
 
 const REGULADOS = [
-  [/odonto|dentist|implant|ortodont/i, 'CFO'],
+  [/odonto|dentist|implant|ortodont|orofacial/i, 'CFO'],
   [/psicol|psicó|psico(?!d)|neuropsic/i, 'CFP'],
-  [/m[eé]dic|cl[ií]nica m[eé]d|dermatolog|cardiolog|pediatr|ginecolog|oftalm/i, 'CFM'],
+  [/m[eé]dic|cl[ií]nica m[eé]d|dermatolog|cardiolog|pediatr|ginecolog|oftalm|cirurgi|pl[aá]stica ocular/i, 'CFM'],
+  // Procedimento que dentista, médico e biomédico fazem: é regulado, mas o conselho depende de quem aplica
+  [/harmoniza|toxina|preenchimento|bioestimulador/i, 'conselho a confirmar'],
   [/nutri[cç]/i, 'CFN'],
   [/fisioterap/i, 'COFFITO'],
   [/advoca|advogad|jur[ií]dic/i, 'OAB'],
@@ -103,7 +105,9 @@ export function statusDoSite(texto, url) {
   if (/fora|off|quebrad|nao abre|nao carrega|dns|expirad|caiu|morto|404|erro/.test(s)) return 'fora_do_ar';
   if (/ruim|feio|antigo|desatualiz|lento|amador|quebr/.test(s)) return 'ruim';
   if (/^(sem|nao tem|nao possui|inexistente|nenhum|nao)\b/.test(s) || /sem site|nao tem site|so instagram|apenas instagram/.test(s)) return 'sem';
-  if (/ok|bom|no ar|funciona|ativo|profissional/.test(s)) return 'ok';
+  // Página em plataforma gratuita ou de links (Wix, Linktree, Canva...) existe, mas é site fraco
+  if (/plataforma|wix|linktree|linktr|canva|beacons|google sites|gratuit|subdominio|basico|template/.test(s)) return 'ruim';
+  if (/\bok\b|bom|no ar|funciona|ativo|profissional|site proprio|dominio proprio/.test(s)) return 'ok';
   if (url) return 'desconhecido';
   if (texto === '' || texto == null) return 'sem';
   return 'desconhecido';
@@ -117,19 +121,21 @@ const SINONIMOS = {
   cidade: ['cidade', 'municipio', 'city', 'localidade'],
   bairro: ['bairro', 'neighborhood', 'regiao', 'zona'],
   endereco: ['endereco', 'address', 'logradouro', 'localizacao', 'local'],
-  telefone: ['telefone', 'fone', 'phone', 'tel', 'contato', 'telefone_fixo', 'numero'],
+  telefone: ['telefone', 'fone', 'phone', 'tel', 'contato', 'telefone_fixo', 'numero', 'whatsapp_telefone', 'telefone_whatsapp'],
   whatsapp: ['whatsapp', 'whats', 'zap', 'celular', 'wa', 'whatsapp_link', 'link_whatsapp'],
   instagram: ['instagram', 'insta', 'ig', 'perfil_instagram', 'instagram_handle', 'arroba', 'perfil'],
   instagram_seguidores: ['seguidores', 'followers', 'instagram_seguidores', 'seguidores_instagram', 'n_seguidores', 'qtd_seguidores'],
-  site: ['site', 'website', 'url', 'pagina', 'dominio', 'web', 'link_site', 'site_url'],
-  site_status: ['situacao_site', 'status_site', 'tem_site', 'site_status', 'situacao_do_site', 'estado_site'],
+  site: ['site', 'website', 'url', 'pagina', 'dominio', 'web', 'link_site', 'site_url', 'link_do_site', 'link_do_site_rede_social', 'link_site_rede_social', 'link'],
+  site_status: ['situacao_site', 'status_site', 'tem_site', 'site_status', 'situacao_do_site', 'estado_site', 'status_do_site'],
   google_nota: ['nota', 'rating', 'nota_google', 'estrelas', 'avaliacao_media', 'google_rating', 'media'],
   google_avaliacoes: ['avaliacoes', 'reviews', 'num_avaliacoes', 'qtd_avaliacoes', 'total_avaliacoes', 'avaliacoes_google', 'numero_avaliacoes', 'reviews_count'],
   gmb_status: ['gmb', 'google_meu_negocio', 'perfil_google', 'ficha_google', 'perfil_empresa_google', 'google_business', 'status_gmb'],
   roda_anuncio: ['anuncio', 'anuncios', 'roda_anuncio', 'meta_ads', 'ads', 'trafego_pago', 'biblioteca_anuncios'],
   cnpj: ['cnpj'],
   decisor: ['dono', 'decisor', 'responsavel', 'proprietario', 'socio', 'contato_nome'],
-  observacao: ['observacao', 'obs', 'notas', 'nota_interna', 'comentario', 'descricao', 'resumo', 'dor', 'oportunidade', 'motivo'],
+  observacao: ['observacao', 'obs', 'notas', 'nota_interna', 'comentario', 'descricao', 'resumo', 'dor', 'oportunidade', 'motivo', 'principal_lacuna_digital', 'lacuna_digital', 'lacuna'],
+  servico_sugerido: ['servico_recomendado_da_horus', 'servico_recomendado', 'servico_sugerido', 'oferta_sugerida'],
+  abordagem_sugerida: ['sugestao_de_abordagem', 'abordagem_sugerida', 'mensagem_sugerida', 'abordagem'],
   email: ['email', 'e_mail', 'mail'],
 };
 
@@ -142,9 +148,14 @@ export function mapearColunas(cabecalhos) {
   const mapa = {};
   const usadas = new Set();
   const chaves = cabecalhos.map(chaveCabecalho);
+  // Duas passadas: todo nome exato ganha antes de qualquer aproximação ("Status do Site" não pode virar o campo site)
   for (const [campo, sins] of Object.entries(SINONIMOS)) {
-    let idx = chaves.findIndex((k, i) => !usadas.has(i) && sins.includes(k));
-    if (idx < 0) idx = chaves.findIndex((k, i) => !usadas.has(i) && sins.some((s) => k.startsWith(s + '_') || k.endsWith('_' + s)));
+    const idx = chaves.findIndex((k, i) => !usadas.has(i) && sins.includes(k));
+    if (idx >= 0) { mapa[campo] = cabecalhos[idx]; usadas.add(idx); }
+  }
+  for (const [campo, sins] of Object.entries(SINONIMOS)) {
+    if (mapa[campo]) continue;
+    const idx = chaves.findIndex((k, i) => !usadas.has(i) && sins.some((s) => k.startsWith(s + '_') || k.endsWith('_' + s)));
     if (idx >= 0) { mapa[campo] = cabecalhos[idx]; usadas.add(idx); }
   }
   return mapa;
@@ -158,9 +169,11 @@ export function linhaParaItem(linha, mapa) {
     const v = linha[col];
     if (v == null) return null;
     const s = String(v).trim();
-    return s === '' || /^\[?falta/i.test(s) ? null : s;
+    return s === '' || /^\[?falta/i.test(s) || /^(n[aã]o dispon[ií]vel|n\/a|-|—)$/i.test(s) ? null : s;
   };
-  const site = normalizarSite(pega('site'));
+  // Coluna única "Site/Rede social": link de Instagram vira o @, o resto segue como site
+  const linkSite = pega('site');
+  const site = normalizarSite(linkSite);
   const temColunaSite = Boolean(mapa.site || mapa.site_status);
   const statusTxt = pega('site_status');
   let site_status = statusTxt ? statusDoSite(statusTxt, site) : (site ? 'desconhecido' : (temColunaSite ? 'sem' : 'desconhecido'));
@@ -177,7 +190,7 @@ export function linhaParaItem(linha, mapa) {
     endereco: pega('endereco'),
     telefone,
     whatsapp,
-    instagram: normalizarInstagram(pega('instagram')),
+    instagram: normalizarInstagram(pega('instagram')) || (/instagram\.com\//i.test(linkSite || '') ? normalizarInstagram(linkSite) : null),
     instagram_seguidores: numero(pega('instagram_seguidores')),
     site,
     site_status,
@@ -189,6 +202,8 @@ export function linhaParaItem(linha, mapa) {
     decisor: pega('decisor'),
     email: pega('email'),
     observacao: pega('observacao'),
+    servico_sugerido: pega('servico_sugerido'),
+    abordagem_sugerida: pega('abordagem_sugerida'),
   };
 }
 
@@ -282,4 +297,11 @@ Regras:
 - observacao: 1 frase com a oportunidade mais visível (ex.: "site não abre", "abriu nova unidade").
 
 No fim: Arquivo → Compartilhar → Publicar na web → formato CSV, e me passe o link.`;
+}
+
+/** Resposta automática de WhatsApp (boas-vindas, ausência, menu de opções). Não conta como o lead respondendo.
+    Compartilhado: o Farejador usa pra não mover o estágio, o painel pra marcar o selo "Bot" (LevSaúde, 29/09/2026). */
+export function pareceRobo(texto) {
+  const t = semAcento(String(texto || '')).toLowerCase();
+  return /seja (muito )?bem[- ]vind|bem[- ]vind[oa] ?\(a\)|mensagem automatica|resposta automatica|nosso horario de atendimento|em breve (retornaremos|responderemos|entraremos)|responderemos (assim que|em breve|o mais breve)|nao estamos disponiveis|estamos (fora do horario|ausentes)|digite (1|um|a opcao|o numero)|escolha uma das opcoes|agradecemos (o|seu|a sua|sua) (contato|mensagem)|assistente virtual|atendimento automatico|como posso te chamar|sou (a|o) assistente/.test(t);
 }

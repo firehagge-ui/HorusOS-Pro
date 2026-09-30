@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- TEMPLATE · espaço de eventos. Tudo entre [colchetes] é do cliente. Ver ../README.md -->
+<title>[NOME DO ESPAÇO] · [frase do hero], em [BAIRRO]</title>
+<meta name="description" content="[FALTA: descrição de 1 a 2 frases, com tipos de evento e bairro]">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="[NOME DO ESPAÇO]">
+<meta property="og:title" content="[NOME DO ESPAÇO] · [frase do hero]">
+<meta property="og:description" content="[FALTA: descrição curta para compartilhamento]">
+<meta property="og:image" content="img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Tipos da Casa Verona (Bodoni Moda + Jost). Trocar pelos da marca do cliente (kit-tipo) -->
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..500&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"EventVenue","name":"[NOME DO ESPAÇO]","address":{"@type":"PostalAddress","streetAddress":"[RUA, NÚMERO]","addressLocality":"[CIDADE]","addressRegion":"[UF]","postalCode":"[CEP]","addressCountry":"BR"},"telephone":"[FALTA: telefone confirmado]","sameAs":["[FALTA: Instagram]"]}
+</script>
+</head>
+<body>
+
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topo">
+  <div class="topo-in">
+    <a class="marca" href="#inicio" aria-label="[NOME DO ESPAÇO], início">
+      <img src="img/foto.svg" width="44" height="44" alt=""><!-- [FALTA: selo/logo do cliente] -->
+      <span>[NOME DO ESPAÇO]</span>
+    </a>
+    <nav class="menu" id="menu" aria-label="Seções">
+      <a href="#eventos">Eventos</a>
+      <a href="#casa">O espaço</a>
+      <a href="#pacote">Pacote</a>
+      <a href="#perguntas">Perguntas</a>
+    </nav>
+    <div class="topo-acoes">
+      <a class="btn btn-cheio btn-p" href="#visita">Agendar visita</a>
+      <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<!-- 1 · Hero: a janela (arco + sacada em traço) com 3 fotos do espaço passando dentro.
+     O desenho do arco veio do logo e da fachada da Casa Verona: redesenhar a partir da
+     arquitetura REAL do cliente, ou trocar por moldura reta se ele não tiver arco. -->
+<section class="hero" id="inicio" aria-labelledby="hero-titulo">
+  <div class="hero-cabeca">
+    <h1 class="hero-titulo" id="hero-titulo">
+      <span class="l"><span>[Palavra]</span></span>
+      <span class="l"><span><em>[de emoção]</em></span></span>
+      <span class="l l-menor"><span>[o que o espaço é], em [BAIRRO].</span></span>
+    </h1>
+  </div>
+
+  <div class="hero-resto">
+    <p class="lead">[Tipos de evento que o espaço recebe] numa casa com [os 2 ou 3 elementos físicos que só ele tem].</p>
+    <div class="acoes">
+      <a class="btn btn-cheio" href="#visita">Agendar visita</a>
+      <a class="btn btn-linha" href="#casa">Conhecer o espaço</a>
+    </div>
+    <p class="hero-prova"><strong>[nota]</strong> no Google, em [nº] avaliações</p>
+  </div>
+
+  <div class="cena">
+    <div class="janela" role="region" aria-roledescription="carrossel" aria-label="Fotos do espaço">
+      <img class="cipreste cipreste-e" src="img/cipreste-1.webp" width="221" height="1300" alt="" aria-hidden="true">
+      <img class="cipreste cipreste-d" src="img/cipreste-2.webp" width="218" height="1300" alt="" aria-hidden="true">
+
+      <div class="janela-vao">
+        <!-- 3 fotos RETRATO (3:4), 600 e 1020 px de largura, do lugar em si -->
+        <figure class="slide ativo" data-legenda="[legenda da foto 1]">
+          <img src="img/foto.svg" width="1020" height="1360" fetchpriority="high" alt="[FALTA: descrição da foto 1]">
+        </figure>
+        <figure class="slide" data-legenda="[legenda da foto 2]" aria-hidden="true">
+          <img src="img/foto.svg" width="1020" height="1360" fetchpriority="low" decoding="async" alt="[FALTA: descrição da foto 2]">
+        </figure>
+        <figure class="slide" data-legenda="[legenda da foto 3]" aria-hidden="true">
+          <img src="img/foto.svg" width="1020" height="1360" fetchpriority="low" decoding="async" alt="[FALTA: descrição da foto 3]">
+        </figure>
+      </div>
+
+      <svg class="janela-traco" viewBox="0 0 300 400" aria-hidden="true" focusable="false">
+        <defs>
+          <mask id="arco-desenho" maskUnits="userSpaceOnUse" x="-40" y="-40" width="380" height="480">
+            <path class="arco-mascara" d="M -7 400 V 150 A 157 157 0 0 1 307 150 V 400" pathLength="1"/>
+          </mask>
+        </defs>
+        <path class="arco-contorno" d="M -15 404 V 150 A 165 165 0 0 1 315 150 V 404"/>
+        <path class="arco-tijolos" d="M -7 400 V 150 A 157 157 0 0 1 307 150 V 400" mask="url(#arco-desenho)"/>
+        <path class="arco-borda" d="M 0 400 V 150 A 150 150 0 0 1 300 150 V 400"/>
+        <g class="sacada">
+          <path class="sacada-grade" d="M 10 400 V 340 M 30 400 V 340 M 50 400 V 340 M 70 400 V 340 M 90 400 V 340 M 110 400 V 340 M 130 400 V 340 M 150 400 V 340 M 170 400 V 340 M 190 400 V 340 M 210 400 V 340 M 230 400 V 340 M 250 400 V 340 M 270 400 V 340 M 290 400 V 340 M 10 340 A 10 10 0 0 1 30 340 M 30 340 A 10 10 0 0 1 50 340 M 50 340 A 10 10 0 0 1 70 340 M 70 340 A 10 10 0 0 1 90 340 M 90 340 A 10 10 0 0 1 110 340 M 110 340 A 10 10 0 0 1 130 340 M 130 340 A 10 10 0 0 1 150 340 M 150 340 A 10 10 0 0 1 170 340 M 170 340 A 10 10 0 0 1 190 340 M 190 340 A 10 10 0 0 1 210 340 M 210 340 A 10 10 0 0 1 230 340 M 230 340 A 10 10 0 0 1 250 340 M 250 340 A 10 10 0 0 1 270 340 M 270 340 A 10 10 0 0 1 290 340"/>
+          <rect class="sacada-corrimao" x="-18" y="321" width="336" height="5" rx="2"/>
+          <rect class="sacada-corrimao" x="-4" y="378" width="308" height="2.5" rx="1"/>
+          <rect class="sacada-base" x="-24" y="398" width="348" height="8" rx="1.5"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="janela-controle">
+      <div class="janela-pontos" role="group" aria-label="Escolher a foto">
+        <button type="button" class="ponto ativo" aria-pressed="true" aria-label="Foto 1: [legenda da foto 1]">I</button>
+        <button type="button" class="ponto" aria-pressed="false" aria-label="Foto 2: [legenda da foto 2]">II</button>
+        <button type="button" class="ponto" aria-pressed="false" aria-label="Foto 3: [legenda da foto 3]">III</button>
+      </div>
+      <p class="janela-legenda" data-legenda-alvo>[legenda da foto 1]</p>
+      <button type="button" class="janela-pausa" aria-pressed="false">Pausar</button>
+      <span class="janela-tempo" aria-hidden="true"><span></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · Faixa com os tipos de evento (repetida mais abaixo em texto, por isso aria-hidden).
+     A lista se repete duas vezes para o loop não ter emenda. -->
+<div class="faixa" aria-hidden="true">
+  <div class="faixa-trilho">
+    <span>[Evento 1]</span><span>[Evento 2]</span><span>[Evento 3]</span><span>[Evento 4]</span><span>[Evento 5]</span><span>[Nome do pacote]</span>
+    <span>[Evento 1]</span><span>[Evento 2]</span><span>[Evento 3]</span><span>[Evento 4]</span><span>[Evento 5]</span><span>[Nome do pacote]</span>
+  </div>
+</div>
+
+<!-- 3 · Manifesto: a assinatura que o CLIENTE já usa (bio, legenda), nunca frase inventada -->
+<section class="manifesto" aria-labelledby="manifesto-titulo">
+  <div class="manifesto-ramo" aria-hidden="true"><img src="img/ramo-oliveira.webp" width="260" height="570" alt="" loading="lazy" decoding="async"></div>
+  <h2 id="manifesto-titulo">[FALTA: assinatura do cliente, com a palavra de <em>emoção</em> em itálico]</h2>
+  <p class="manifesto-texto" data-palavras>[FALTA: 1 a 2 frases tiradas das legendas do cliente, fortificadas sem inventar]</p>
+</section>
+
+<!-- 4 · O espaço em movimento: loops verticais recortados dos reels DO CLIENTE, sem som e sem texto -->
+<section class="filme" aria-labelledby="filme-titulo">
+  <div class="cabeca">
+    <h2 id="filme-titulo">O espaço <em>em movimento</em>.</h2>
+    <p>Um passeio antes da visita: [o que os três vídeos mostram].</p>
+  </div>
+  <div class="filme-grade">
+    <figure class="filme-item rev">
+      <div class="filme-quadro">
+        <video data-poster="img/foto.svg" width="540" height="960" muted loop playsinline preload="none" aria-label="Vídeo sem som: [FALTA: descrição do vídeo 1]"></video>
+      </div>
+      <figcaption><span class="filme-num">I</span>[Legenda do vídeo 1].</figcaption>
+    </figure>
+    <figure class="filme-item rev">
+      <div class="filme-quadro">
+        <video data-poster="img/foto.svg" width="540" height="960" muted loop playsinline preload="none" aria-label="Vídeo sem som: [FALTA: descrição do vídeo 2]"></video>
+      </div>
+      <figcaption><span class="filme-num">II</span>[Legenda do vídeo 2].</figcaption>
+    </figure>
+    <figure class="filme-item rev">
+      <div class="filme-quadro">
+        <video data-poster="img/foto.svg" width="540" height="960" muted loop playsinline preload="none" aria-label="Vídeo sem som: [FALTA: descrição do vídeo 3]"></video>
+      </div>
+      <figcaption><span class="filme-num">III</span>[Legenda do vídeo 3].</figcaption>
+    </figure>
+  </div>
+  <p class="filme-mais"><a class="link link-claro" href="[FALTA: link do tour no Instagram]" target="_blank" rel="noopener">Ver o tour completo pelo espaço no Instagram</a></p>
+</section>
+
+<!-- 5 · Tipos de evento: foto do evento REAL e um fato visto em post, não adjetivo -->
+<section class="eventos" id="eventos" aria-labelledby="eventos-titulo">
+  <div class="cabeca">
+    <p class="rotulo">Eventos</p>
+    <h2 id="eventos-titulo">[Do evento maior] ao <em>[evento menor]</em>.</h2>
+  </div>
+  <div class="mosaico">
+    <article class="ev ev-grande rev">
+      <div class="ev-foto"><img data-parallax src="img/foto.svg" width="900" height="1125" loading="lazy" decoding="async" alt="[FALTA: foto do evento principal]"></div>
+      <div class="ev-card">
+        <h3>[Evento principal]</h3>
+        <p>[O que inclui, em uma frase, e o mínimo de convidados se o cliente publicar].</p>
+        <a class="link" href="#pacote">Ver o pacote</a>
+      </div>
+    </article>
+    <article class="ev rev">
+      <div class="ev-foto"><img data-parallax src="img/foto.svg" width="640" height="852" loading="lazy" decoding="async" alt="[FALTA: foto do evento 2]"></div>
+      <div class="ev-card">
+        <h3>[Evento 2]</h3>
+        <p>[Um fato visto em post].</p>
+      </div>
+    </article>
+    <article class="ev rev">
+      <div class="ev-foto"><img data-parallax src="img/foto.svg" width="760" height="506" loading="lazy" decoding="async" alt="[FALTA: foto do evento 3]"></div>
+      <div class="ev-card">
+        <h3>[Evento 3]</h3>
+        <p>[Um fato visto em post].</p>
+      </div>
+    </article>
+    <article class="ev rev">
+      <div class="ev-foto"><img data-parallax src="img/foto.svg" width="640" height="640" loading="lazy" decoding="async" alt="[FALTA: foto do evento 4]"></div>
+      <div class="ev-card">
+        <h3>[Evento 4]</h3>
+        <p>[Um fato visto em post].</p>
+      </div>
+    </article>
+    <article class="ev rev">
+      <div class="ev-foto"><img data-parallax src="img/foto.svg" width="640" height="853" loading="lazy" decoding="async" alt="[FALTA: foto do evento 5]"></div>
+      <div class="ev-card">
+        <h3>[Evento 5]</h3>
+        <p>[Um fato visto em post].</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 6 · O espaço: galeria por ambiente, com legenda que diz o papel de cada um no dia -->
+<section class="casa" id="casa" aria-labelledby="casa-titulo">
+  <div class="cabeca">
+    <h2 id="casa-titulo">Onde cada <em>momento</em> acontece.</h2>
+    <p>[Como é o espaço, em uma frase]. Cada ambiente tem o seu papel no dia.</p>
+  </div>
+  <div class="galeria">
+    <figure class="g g-jardim rev rev-cortina">
+      <div class="g-foto"><img src="img/foto.svg" width="800" height="1066" loading="lazy" decoding="async" alt="[FALTA: foto do ambiente 1]"></div>
+      <figcaption><strong>[Ambiente 1].</strong> [Para que serve no dia].</figcaption>
+    </figure>
+    <figure class="g g-patio rev rev-cortina">
+      <div class="g-foto"><img src="img/foto.svg" width="800" height="1067" loading="lazy" decoding="async" alt="[FALTA: foto do ambiente 2]"></div>
+      <figcaption><strong>[Ambiente 2].</strong> [Para que serve no dia].</figcaption>
+    </figure>
+    <figure class="g g-escada rev rev-cortina">
+      <div class="g-foto"><img src="img/foto.svg" width="760" height="1013" loading="lazy" decoding="async" alt="[FALTA: foto do ambiente 3]"></div>
+      <figcaption><strong>[Ambiente 3],</strong> [para que serve no dia].</figcaption>
+    </figure>
+    <figure class="g g-varanda rev rev-cortina">
+      <div class="g-foto"><img src="img/foto.svg" width="760" height="1013" loading="lazy" decoding="async" alt="[FALTA: foto do ambiente 4]"></div>
+      <figcaption><strong>[Ambiente 4],</strong> [para que serve no dia].</figcaption>
+    </figure>
+    <figure class="g g-entrada rev rev-cortina">
+      <div class="g-foto"><img src="img/foto.svg" width="760" height="1012" loading="lazy" decoding="async" alt="[FALTA: foto da entrada]"></div>
+      <figcaption><strong>A entrada.</strong> [Como se chega].</figcaption>
+    </figure>
+    <figure class="g g-prep rev rev-cortina">
+      <div class="g-foto"><img src="img/foto.svg" width="760" height="1013" loading="lazy" decoding="async" alt="[FALTA: foto da preparação]"></div>
+      <figcaption><strong>A preparação,</strong> [onde acontece].</figcaption>
+    </figure>
+    <aside class="ficha rev" aria-labelledby="ficha-titulo">
+      <h3 id="ficha-titulo">No espaço</h3>
+      <table class="amb">
+        <thead><tr><th scope="col">Ambiente</th><th scope="col">Serve para</th><th scope="col">Capacidade</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">[Ambiente 1]</th><td>[Uso]</td><td><span class="falta"><span class="falta-t">[FALTA: capacidade do ambiente 1]</span><span class="falta-a">a confirmar</span></span></td></tr>
+          <tr><th scope="row">[Ambiente 2]</th><td>[Uso]</td><td><span class="falta"><span class="falta-t">[FALTA: capacidade do ambiente 2]</span><span class="falta-a">a confirmar</span></span></td></tr>
+          <tr><th scope="row">[Ambiente 3]</th><td>[Uso]</td><td><span class="falta"><span class="falta-t">[FALTA: capacidade do ambiente 3]</span><span class="falta-a">a confirmar</span></span></td></tr>
+        </tbody>
+      </table>
+      <p class="ficha-tambem"><strong>Também tem</strong> [estrutura vista no portal ou nas avaliações: cozinha, suíte da noiva, camarim...].</p>
+      <p class="ficha-maior">[FALTA: maior evento já recebido, se estiver publicado].</p>
+    </aside>
+  </div>
+</section>
+
+<!-- 7 · Pacote: cartão de cardápio. Valor só se o cliente quiser publicar
+     (espaço de orçamento personalizado costuma NÃO querer: ver ../README.md) -->
+<section class="pacote" id="pacote" aria-labelledby="pacote-titulo">
+  <div class="cabeca">
+    <p class="rotulo">Pacote</p>
+    <h2 id="pacote-titulo">O pacote <em>[Nome&nbsp;do&nbsp;pacote]</em>.</h2>
+    <p>[O que o pacote resolve, em uma frase].</p>
+  </div>
+  <div class="pacote-grade">
+    <article class="cardapio rev" aria-labelledby="cardapio-titulo">
+      <img class="cardapio-rosa" src="img/ramo-rosa.webp" width="300" height="550" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <p class="cardapio-casa">[NOME DO ESPAÇO]</p>
+      <h3 id="cardapio-titulo">[Nome do pacote]</h3>
+      <p class="cardapio-sub">[tipo de evento]</p>
+      <ul>
+        <li>[Item 1]</li>
+        <li>[Item 2]</li>
+        <li>[Item 3]</li>
+        <li>[Item 4]</li>
+      </ul>
+      <p class="cardapio-min">[a partir de N convidados]</p>
+      <p class="cardapio-valor">
+        <span class="falta"><span class="falta-t">[FALTA: valor de partida, só se o cliente publicar]</span><span class="falta-a">valor sob consulta, na visita</span></span>
+      </p>
+      <p class="cardapio-nota"><span class="falta"><span class="falta-t">[FALTA: o que entra em cada item]</span><span class="falta-a">detalhe de cada item na visita</span></span></p>
+    </article>
+    <figure class="pacote-foto rev">
+      <img src="img/foto.svg" width="640" height="852" loading="lazy" decoding="async" alt="[FALTA: foto de detalhe da mesa posta]">
+    </figure>
+    <article class="outros rev">
+      <h3>Outros formatos</h3>
+      <p>[Os outros tipos de evento, numa frase].</p>
+      <p class="outros-falta"><span class="falta"><span class="falta-t">[FALTA: formato dos outros eventos, e se o espaço aluga só o lugar]</span><span class="falta-a">formato a combinar</span></span></p>
+      <a class="link" href="#visita">Contar o que você está planejando</a>
+    </article>
+  </div>
+</section>
+
+<!-- 8 · Como funciona a visita -->
+<section class="passos" aria-labelledby="passos-titulo">
+  <img class="passos-lirio" src="img/ramo-lirio.webp" width="300" height="629" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <h2 id="passos-titulo">Como funciona a <em>visita</em>.</h2>
+  <ol>
+    <li class="rev">
+      <span class="num" aria-hidden="true">I</span>
+      <h3>Conte o que está planejando</h3>
+      <p>Tipo de evento, mês e quantos convidados. O pedido chega direto no WhatsApp do espaço.</p>
+    </li>
+    <li class="rev">
+      <span class="num" aria-hidden="true">II</span>
+      <h3>Venha conhecer o espaço</h3>
+      <p>A visita é no próprio espaço, [RUA, NÚMERO]. <span class="falta"><span class="falta-t">[FALTA: dias e horários de visita]</span><span class="falta-a">Horários a combinar.</span></span></p>
+    </li>
+    <li class="rev">
+      <span class="num" aria-hidden="true">III</span>
+      <h3>Receba a proposta</h3>
+      <p>Com a data e o formato definidos, o espaço monta a proposta. <span class="falta"><span class="falta-t">[FALTA: como funciona a reserva da data]</span><span class="falta-a">Reserva da data a combinar.</span></span></p>
+    </li>
+  </ol>
+</section>
+
+<!-- 9 · Depoimentos: SÓ trechos literais, com nome, fonte e data. Nunca inventar, nunca completar.
+     Cliente regulado (CFP, CFO...): conferir a régua antes. -->
+<section class="vozes" aria-labelledby="vozes-titulo">
+  <img class="vozes-ramo" src="img/ramo-eucalipto.webp" width="280" height="598" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <h2 id="vozes-titulo" class="vozes-titulo">Histórias que <em>já aconteceram</em> aqui.</h2>
+  <div class="vozes-grade">
+    <figure class="voz voz-grande rev">
+      <blockquote><p>[FALTA: depoimento literal mais forte, com reticências no corte]</p></blockquote>
+      <figcaption>[Nome] · [fonte], [ano]</figcaption>
+    </figure>
+    <div class="vozes-lado">
+      <figure class="voz rev">
+        <blockquote><p>[FALTA: depoimento literal 2]</p></blockquote>
+        <figcaption>[Nome] · [fonte], [ano]</figcaption>
+      </figure>
+      <figure class="voz rev">
+        <blockquote><p>[FALTA: depoimento literal 3]</p></blockquote>
+        <figcaption>[Nome] · [fonte], [ano]</figcaption>
+      </figure>
+      <figure class="voz rev">
+        <blockquote><p>[FALTA: depoimento literal 4]</p></blockquote>
+        <figcaption>[Nome] · [fonte], [ano]</figcaption>
+      </figure>
+    </div>
+  </div>
+  <p class="vozes-nota">[nota] de 5 em [nº] avaliações no Google. <a href="[FALTA: link das avaliações no Google Maps]" target="_blank" rel="noopener">Ler as avaliações</a></p>
+</section>
+
+<!-- 10 · Pedir visita (assinatura): a placa de boas-vindas que se escreve enquanto a pessoa digita.
+     O pedido abre no WhatsApp com a mensagem pronta (número em assets/site.js) -->
+<section class="visita" id="visita" aria-labelledby="visita-titulo">
+  <div class="visita-form">
+    <h2 id="visita-titulo">Pedir uma <em>visita</em>.</h2>
+    <p>Preencha o que já souber. O pedido abre no WhatsApp do espaço com a mensagem pronta.</p>
+    <form id="form-visita" novalidate>
+      <div class="campo">
+        <label for="f-nome">Seu nome</label>
+        <input id="f-nome" name="nome" type="text" autocomplete="name" required>
+      </div>
+      <div class="campo">
+        <label for="f-tipo">Tipo de evento</label>
+        <select id="f-tipo" name="tipo">
+          <option>[Evento 1]</option>
+          <option>[Evento 2]</option>
+          <option>[Evento 3]</option>
+          <option>[Evento 4]</option>
+          <option>[Evento 5]</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="campo-par">
+        <div class="campo">
+          <label for="f-mes">Mês que você imagina</label>
+          <input id="f-mes" name="mes" type="month">
+        </div>
+        <div class="campo">
+          <label for="f-conv">Convidados, mais ou menos</label>
+          <input id="f-conv" name="convidados" type="number" inputmode="numeric" min="10" max="500" step="5">
+        </div>
+      </div>
+      <div class="campo">
+        <label for="f-msg">Quer contar mais alguma coisa? <span class="opcional">(opcional)</span></label>
+        <textarea id="f-msg" name="mensagem" rows="3" data-lenis-prevent></textarea>
+      </div>
+      <p class="erro" id="f-erro" role="alert" hidden>Falta o seu nome, pro espaço saber com quem vai falar.</p>
+      <button class="btn btn-cheio btn-largo" type="submit">Pedir visita pelo WhatsApp</button>
+      <p class="aviso">Abre o WhatsApp do espaço, [FALTA: telefone confirmado, nunca presumir dígito]. Nada é enviado antes de você apertar enviar lá.</p>
+    </form>
+  </div>
+
+  <div class="placa-lugar" aria-hidden="true">
+    <div class="placa" id="placa">
+      <p class="placa-bem">Bem-vindos</p>
+      <p class="placa-nome" data-p="nome">Seu nome</p>
+      <p class="placa-tipo" data-p="tipo">[Evento 1]</p>
+      <p class="placa-linha"><span data-p="mes">o mês que você escolher</span></p>
+      <p class="placa-linha"><span data-p="conv">quantos convidados vierem</span></p>
+      <p class="placa-casa">[NOME DO ESPAÇO]</p>
+    </div>
+    <img class="placa-flores" src="img/flores-brancas.webp" width="900" height="480" alt="" loading="lazy" decoding="async">
+    <p class="placa-legenda">Prévia do seu pedido.</p>
+  </div>
+</section>
+
+<!-- 11 · Perguntas + onde fica: as perguntas de viabilidade de quem está decidindo -->
+<section class="fim" id="perguntas" aria-labelledby="faq-titulo">
+  <div class="faq">
+    <h2 id="faq-titulo">Perguntas de quem está <em>decidindo</em>.</h2>
+    <details>
+      <summary>Quanto custa?</summary>
+      <p>Depende do formato, da data e do número de convidados. <span class="falta"><span class="falta-t">[FALTA: valor de partida, só se o cliente publicar]</span><span class="falta-a">O valor a gente te passa na visita.</span></span></p>
+    </details>
+    <details>
+      <summary>Quantas pessoas cabem?</summary>
+      <p><span class="falta"><span class="falta-t">[FALTA: capacidade máxima]</span><span class="falta-a">Capacidade a confirmar.</span></span></p>
+    </details>
+    <details>
+      <summary>O que vem no pacote?</summary>
+      <p>[Itens do pacote]. <span class="falta"><span class="falta-t">[FALTA: o que entra em cada item]</span><span class="falta-a">O detalhe de cada item a gente mostra na visita.</span></span></p>
+    </details>
+    <details>
+      <summary>Posso trazer meus fornecedores?</summary>
+      <p><span class="falta"><span class="falta-t">[FALTA: se o espaço aluga só o lugar, e como funciona]</span><span class="falta-a">A confirmar com o espaço.</span></span></p>
+    </details>
+    <details>
+      <summary>A cerimônia pode ser aqui?</summary>
+      <p><span class="falta"><span class="falta-t">[FALTA: onde a cerimônia é montada]</span><span class="falta-a">A confirmar com o espaço.</span></span></p>
+    </details>
+    <details>
+      <summary>E se chover?</summary>
+      <p><span class="falta"><span class="falta-t">[FALTA: plano de chuva]</span><span class="falta-a">O plano pra chuva a gente mostra na visita.</span></span></p>
+    </details>
+  </div>
+
+  <div class="onde">
+    <h2>Onde fica.</h2>
+    <address>
+      [RUA, NÚMERO]<br>
+      [BAIRRO], [CIDADE], [UF]<br>
+      [CEP]
+    </address>
+    <ul class="contato">
+      <li><a href="https://wa.me/[FALTA]" target="_blank" rel="noopener">WhatsApp [FALTA: telefone confirmado]</a></li>
+      <li><a href="[FALTA: Instagram]" target="_blank" rel="noopener">Instagram [@perfil]</a></li>
+    </ul>
+    <div class="mapa">
+      <iframe title="Mapa de [NOME DO ESPAÇO]" src="about:blank" loading="lazy" referrerpolicy="no-referrer-when-downgrade" data-lenis-prevent></iframe>
+      <!-- src: https://www.google.com/maps?q=[NOME]+[ENDEREÇO]&amp;output=embed -->
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <!-- O nome do espaço com o vídeo do lugar tocando por dentro das letras.
+       Só faz sentido se o nome for curto e forte; senão, trocar por selo + frase. -->
+  <div class="assinatura" aria-hidden="true">
+    <video class="assinatura-video" data-poster="img/foto.svg" muted loop playsinline preload="none"></video>
+    <svg class="assinatura-letras" viewBox="0 0 1200 250" focusable="false">
+      <defs>
+        <mask id="verona-letras" maskUnits="userSpaceOnUse" x="0" y="0" width="1200" height="250">
+          <rect x="-10" y="-10" width="1220" height="270" fill="#fff"/>
+          <text x="600" y="224" text-anchor="middle" textLength="1180" lengthAdjust="spacing">[NOME]</text>
+        </mask>
+      </defs>
+      <rect x="-10" y="-10" width="1220" height="270" mask="url(#verona-letras)"/>
+    </svg>
+  </div>
+  <div class="rodape-in">
+    <div class="rodape-marca">
+      <img src="img/foto.svg" width="64" height="64" alt="[NOME DO ESPAÇO]" loading="lazy">
+      <p>[Frase curta do cliente, com a palavra de <em>emoção</em>].</p>
+    </div>
+    <a class="btn btn-claro" href="#visita">Agendar visita</a>
+  </div>
+  <p class="creditos">Fotos e vídeos: [@perfis dos fotógrafos]. Ramos e ciprestes em aquarela: ilustração.</p>
+</footer>
+
+<script src="assets/vendor/gsap.min.js" defer></script>
+<script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+<script src="assets/vendor/lenis.min.js" defer></script>
+<script src="assets/site.js" defer></script>
+</body>
+</html>

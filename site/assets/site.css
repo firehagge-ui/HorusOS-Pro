@@ -164,7 +164,7 @@ a:hover { color: var(--branco); }
    fica de pé e a arte do hero empurra o CTA para fora da tela. */
 img { max-width: 100%; height: auto; display: block; }
 
-section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
+section[id], main[id], #sobre, .s1-secao[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
 
 :focus-visible { outline: 2px solid var(--azul-luz); outline-offset: 3px; border-radius: 4px; }
 
@@ -379,32 +379,79 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
 .cta-ember .seta { font-size: var(--t-17); }
 .cta-ember:hover { transform: translateY(-2px); filter: brightness(1.06); }
 
-/* ---------- 4e. Botão "glow" AZUL (chamada final) ----------
-   Porte vanilla do componente glow-button (shadcn/React/Tailwind) que o Marcelo
-   mandou — a stack do site é HTML/CSS nativo, então porta-se o EFEITO, não o
-   framework. Chapa azul da Horus, halo pulsante, ícone de sparkles, mais horizontal. */
+/* ---------- 4e. Botão "glow" AZUL (chamada final - réplica fiel ao anexo) ----------
+   Cápsula escura (#030712) com contorno azul elétrico vibrante (#0066ff),
+   halo luminoso sutil projetado para fora, texto branco e seta diagonal azul. */
 .glow-btn {
-  position: relative; isolation: isolate;
-  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
-  padding: 17px 54px; border-radius: var(--pilula);
-  border: none; cursor: pointer;
-  font-family: var(--display); font-size: var(--t-17); font-weight: 600; color: #fff;
-  text-decoration: none; white-space: nowrap;
-  background: linear-gradient(135deg, #077ac7, #4b93e6);
-  box-shadow: 0 0 0 1px rgba(130,175,255,.45), 0 12px 34px rgba(37,99,235,.45);
-  transition: transform .2s var(--curva), box-shadow .3s var(--curva);
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 44px;
+  border-radius: 9999px;
+  border: 1.8px solid #0066ff;
+  background: #030712;
+  cursor: pointer;
+  font-family: var(--display, 'DM Sans', sans-serif);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow:
+    0 0 16px -2px rgba(0, 102, 255, 0.55),
+    0 0 32px 2px rgba(0, 80, 220, 0.28),
+    inset 0 0 12px rgba(0, 102, 255, 0.15);
+  transition: transform 0.25s var(--curva), box-shadow 0.25s var(--curva), border-color 0.25s var(--curva);
 }
 .glow-btn::before {
-  content: ""; position: absolute; inset: -4px; z-index: -1; border-radius: inherit;
-  background: linear-gradient(135deg, #077ac7, #6b21ef);
-  filter: blur(15px); opacity: .5;
-  animation: glow-pulse 3s ease-in-out infinite;
+  content: "";
+  position: absolute;
+  inset: -3px;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 119, 255, 0.65), transparent 70%);
+  filter: blur(14px);
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
 }
-.glow-btn:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgba(130,175,255,.65), 0 16px 42px rgba(37,99,235,.6), 0 0 55px rgba(75,147,230,.45); }
-.glow-btn:active { transform: translateY(-2px) scale(.97); }
-.glow-btn .glow-spark { width: 16px; height: 16px; }
-@keyframes glow-pulse { 0%,100% { opacity: .38; } 50% { opacity: .68; } }
-@media (prefers-reduced-motion: reduce) { .glow-btn::before { animation: none; } }
+.glow-btn:hover {
+  transform: translateY(-2px);
+  border-color: #38bdf8;
+  box-shadow:
+    0 0 24px 0 rgba(0, 130, 255, 0.75),
+    0 0 48px 4px rgba(0, 90, 240, 0.4),
+    inset 0 0 16px rgba(0, 130, 255, 0.25);
+}
+.glow-btn:hover::before {
+  opacity: 0.85;
+}
+.glow-btn:active {
+  transform: translateY(-1px) scale(0.98);
+}
+.glow-btn .glow-txt {
+  font-family: var(--display, 'DM Sans', sans-serif);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+.glow-btn .glow-arrow {
+  width: 15px;
+  height: 15px;
+  color: #2975e9;
+  transition: transform 0.25s var(--curva), color 0.25s ease;
+  flex-shrink: 0;
+}
+.glow-btn:hover .glow-arrow {
+  transform: translate(2px, -2px);
+  color: #38bdf8;
+}
+@media (prefers-reduced-motion: reduce) {
+  .glow-btn::before { animation: none; }
+}
 
 /* A onda do clique nasce onde o dedo tocou. */
 .metal-onda {
@@ -545,27 +592,29 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
 .cta-lbl { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 8px; }
 .topo-cta .seta { color: #2975e9; font-size: var(--t-13); }
 
-/* Gatilho do menu no celular. Ícone de dois traços. */
+/* Gatilho do menu no celular. Ícone de três traços. */
 .hamburguer {
   display: none;
   place-items: center;
-  width: 42px; height: 42px; flex: none;
+  width: 40px; height: 40px; flex: none;
   padding: 0;
   background: var(--vidro); border: 1px solid var(--vidro-fio);
   box-shadow: var(--vidro-luz);
   border-radius: var(--raio-reto); color: var(--osso);
   font: inherit; cursor: pointer;
 }
-.hb-caixa { position: relative; display: block; width: 18px; height: 12px; }
+.hb-caixa { position: relative; display: block; width: 18px; height: 13px; }
 .hb-caixa i {
   position: absolute; left: 0; right: 0; height: 2px;
   background: currentColor; border-radius: 1px;
-  transition: transform .35s var(--curva);
+  transition: transform .35s var(--curva), opacity .25s ease;
 }
-.hb-caixa i:first-child { top: 0; }
-.hb-caixa i:last-child  { bottom: 0; }
-.hamburguer.aberto .hb-caixa i:first-child { transform: translateY(5px) rotate(45deg); }
-.hamburguer.aberto .hb-caixa i:last-child  { transform: translateY(-5px) rotate(-45deg); }
+.hb-caixa i:nth-child(1) { top: 0; }
+.hb-caixa i:nth-child(2) { top: 5.5px; }
+.hb-caixa i:nth-child(3) { bottom: 0; }
+.hamburguer.aberto .hb-caixa i:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+.hamburguer.aberto .hb-caixa i:nth-child(2) { opacity: 0; }
+.hamburguer.aberto .hb-caixa i:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
 
 /* ---------- 6. Hero (fundido com a Seção 1 em 31/08/2026) ---------- */
 /* Hero e Seção 1 viraram UMA seção só (pedido do Marcelo): `.hero` é o
@@ -776,6 +825,20 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
 }
 .gira-fantasma { visibility: hidden; }
 
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--corpo, 'Plus Jakarta Sans', system-ui, sans-serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #38bdf8;
+  margin-bottom: 20px;
+}
+.hero-br-mob { display: none; }
+.pf-rodape-mob { display: none; }
+
 .hero-lead {
   font-size: var(--t-22); color: var(--osso);
   max-width: 44ch; margin: 24px 0 0; line-height: 1.5;
@@ -938,6 +1001,21 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
   z-index: 0;
   pointer-events: none;
   opacity: 0.85;
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 65%, transparent 96%);
+  mask-image: linear-gradient(to bottom, black 0%, black 65%, transparent 96%);
+}
+
+/* Transição contínua entre Seção 1 e Seção 2: dissolve o fundo e ondas no preto obsidiana (#000206) */
+.valores::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 260px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 2, 6, 0.5) 45%, #000206 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .valores .envelope {
@@ -1128,29 +1206,28 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
   max-width: 1240px;
 }
 
-/* Header superior: 02 —— NOSSO STACK */
+/* Header superior: NOSSO STACK (com quadradinho azul, sem número) */
 .stk-topo-linha {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 8px;
   margin-bottom: clamp(40px, 5.5vw, 68px);
   opacity: 0;
   transform: translateY(-16px);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.stk-numero {
-  font-family: var(--display);
-  font-size: 15px;
-  font-weight: 700;
-  color: #0077ff;
-  letter-spacing: 0.05em;
-}
-.stk-traco {
-  width: 38px;
-  height: 1.5px;
-  background: rgba(59, 130, 246, 0.45);
+.stk-quadrado {
+  width: 7px;
+  height: 7px;
+  background: #0077ff;
+  border-radius: 1.5px;
+  box-shadow: 0 0 10px rgba(0, 119, 255, 0.7);
+  display: inline-block;
+  flex-shrink: 0;
+  transform: translateY(-1px);
 }
 .stk-tag {
+  font-family: var(--display, 'DM Sans', sans-serif);
   font-size: 11.5px;
   font-weight: 600;
   letter-spacing: 0.24em;
@@ -1187,8 +1264,8 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
   overflow: visible;
   background: transparent;
   border: none;
-  mask-image: linear-gradient(to right, black 0%, black 50%, rgba(0,0,0,0.65) 68%, rgba(0,0,0,0.15) 84%, transparent 96%);
-  -webkit-mask-image: linear-gradient(to right, black 0%, black 50%, rgba(0,0,0,0.65) 68%, rgba(0,0,0,0.15) 84%, transparent 96%);
+  mask-image: linear-gradient(to right, black 0%, black 45%, rgba(0,0,0,0.65) 60%, rgba(0,0,0,0.15) 75%, transparent 88%);
+  -webkit-mask-image: linear-gradient(to right, black 0%, black 45%, rgba(0,0,0,0.65) 60%, rgba(0,0,0,0.15) 75%, transparent 88%);
 }
 
 /* Plano 3D que recua em perspectiva para bem longe no fundo */
@@ -1203,7 +1280,7 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
   transform: rotateX(-8deg) rotateY(-36deg) rotateZ(8deg);
   transform-style: preserve-3d;
   will-change: transform;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+  transition: opacity 0.8s ease;
   opacity: 0;
   pointer-events: auto;
 }
@@ -1261,7 +1338,7 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
   width: 134px;
   height: 134px;
   border-radius: 26px;
-  background: linear-gradient(145deg, rgba(18, 30, 54, 0.72) 0%, rgba(7, 13, 25, 0.88) 100%);
+  background: linear-gradient(145deg, rgba(18, 30, 54, 0.85) 0%, rgba(7, 13, 25, 0.95) 100%);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-top: 1px solid rgba(255, 255, 255, 0.28);
   border-left: 1px solid rgba(255, 255, 255, 0.18);
@@ -1271,15 +1348,12 @@ section[id], main[id] { scroll-margin-top: calc(var(--cabecalho) + 24px); }
     inset 0 0 16px 0 rgba(0, 119, 255, 0.06),
     0 16px 32px -6px rgba(0, 0, 0, 0.85),
     0 0 20px -2px rgba(0, 102, 255, 0.12);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 12px 10px;
   cursor: default;
-  transform-style: preserve-3d;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.35s ease,
               border-color 0.35s ease;
@@ -1845,14 +1919,30 @@ html.viagem-on .viagem { display: grid; }
    cima e sai do viewport. Só os cards abaixo empilham. Centralizado, sem a linha
    divisória que ficava acima do título (removida a pedido). */
 .svcs-intro { position: relative; z-index: 1; text-align: center; padding: 96px 24px 56px; }
-/* Rótulo padronizado pelo "Nosso compromisso" (.qp-eyebrow): mono 10px,
-   tracking largo, e o quadradinho azul COM GLOW. Mesmo tratamento em todas
-   as seções (Marcelo, 16/09/2026). */
+/* Rótulo da seção padronizado com o nosso stack: DM Sans 11.5px 600,
+   tracking 0.24em, e o quadradinho azul padrão da Horus. */
 .svcs-eyebrow {
-  font-family: var(--mono); font-size: .625rem; font-weight: 500;
-  letter-spacing: .32em; text-transform: uppercase; color: #8ea8c9; margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--display, 'DM Sans', sans-serif);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(226, 232, 240, 0.65);
+  margin-bottom: 18px;
 }
-.svcs-eyebrow::before { content: "■  "; color: #2096ff; text-shadow: 0 0 9px rgba(32,150,255,.9); }
+.svcs-quadrado {
+  width: 7px;
+  height: 7px;
+  background: #0077ff;
+  border-radius: 1.5px;
+  box-shadow: 0 0 10px rgba(0, 119, 255, 0.7);
+  display: inline-block;
+  flex-shrink: 0;
+  transform: translateY(-1px);
+}
 .svcs-titulo { font-size: var(--t-54); max-width: 20ch; margin: 0 auto; font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; }
 .svcs-em { color: #0486f8; }   /* ênfase em "instala." (Marcelo, 16/09/2026) */
 .svcs-sub { margin: 18px auto 0; max-width: 58ch; color: #94a3b8; font-size: var(--t-22); font-weight: 400; line-height: 1.5; }
@@ -2550,6 +2640,22 @@ html.viagem-on .viagem { display: grid; }
   overflow: hidden;
   border-top: 1px solid rgba(255, 255, 255, 0.04);
 }
+/* Transição perfeita com o Portfólio: dissolve suavemente o fundo #000206 no #030712 */
+.qualidade > * {
+  position: relative;
+  z-index: 2;
+}
+.qualidade::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 260px;
+  background: linear-gradient(to bottom, transparent, #030712);
+  pointer-events: none;
+  z-index: 1;
+}
 
 /* Header / Topo */
 .qp-topo {
@@ -2558,35 +2664,38 @@ html.viagem-on .viagem { display: grid; }
   max-width: 900px;
 }
 
-/* Badge / Eyebrow Pill */
+/* Badge / Eyebrow */
 .qp-badge {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 7px 18px 7px 14px;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.03);
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(13, 20, 36, 0.65);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  border-radius: 9999px;
+  box-shadow: 0 0 16px rgba(0, 119, 255, 0.12);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   margin-bottom: 24px;
 }
+.qp-quadrado,
 .qp-badge-ponto {
   width: 7px;
   height: 7px;
-  border-radius: 2px;
+  border-radius: 1.5px;
   background: #0077ff;
-  box-shadow: 0 0 9px rgba(0, 119, 255, 0.9);
+  box-shadow: 0 0 10px rgba(0, 119, 255, 0.7);
   display: inline-block;
+  flex-shrink: 0;
+  transform: translateY(-1px);
 }
 .qp-badge-txt {
-  font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-family: var(--display, 'DM Sans', sans-serif);
+  font-size: 11.5px;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: #94a3b8;
+  color: rgba(226, 232, 240, 0.65);
 }
 
 /* Título Principal */
@@ -2633,9 +2742,10 @@ html.viagem-on .viagem { display: grid; }
   isolation: isolate;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 420px;
-  padding: 28px 22px 30px;
+  justify-content: flex-start;
+  gap: 16px;
+  min-height: 320px;
+  padding: 30px 24px 34px;
   border-radius: 20px;
   background: linear-gradient(180deg, rgba(13, 20, 36, 0.65) 0%, rgba(6, 11, 22, 0.85) 100%);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -2717,6 +2827,10 @@ html.viagem-on .viagem { display: grid; }
   padding-top: 3px;
 }
 
+.qp-num-mob {
+  display: none;
+}
+
 /* Corpo do Card: Título + Descrição */
 .qp-card-corpo {
   flex: 1;
@@ -2740,13 +2854,9 @@ html.viagem-on .viagem { display: grid; }
   font-weight: 400;
 }
 
-/* Rodapé do Card: Botão de Seta Circular + Barra de Cor */
+/* Rodapé do Card removido a pedido do usuário */
 .qp-card-rodape {
-  margin-top: auto;
-  padding-top: 32px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
+  display: none !important;
 }
 
 .qp-btn-seta {
@@ -2756,8 +2866,8 @@ html.viagem-on .viagem { display: grid; }
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   color: #ffffff;
   transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
 }
@@ -2779,12 +2889,12 @@ html.viagem-on .viagem { display: grid; }
   height: 2.5px;
   border-radius: 9999px;
   background: var(--cor-accent);
-  box-shadow: 0 0 8px var(--cor-glow);
+  box-shadow: 0 0 10px var(--cor-glow);
   transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
 }
 .qp-card:hover .qp-barra-cor {
   width: 44px;
-  box-shadow: 0 0 12px var(--cor-accent);
+  box-shadow: 0 0 14px var(--cor-accent);
 }
 
 /* ==========================================================================
@@ -2896,31 +3006,115 @@ html.viagem-on .viagem { display: grid; }
   .qp-card { min-height: 380px; }
 }
 @media (max-width: 768px) {
-  .qualidade { padding: 90px 20px 100px; }
-  .qp-topo { margin-bottom: 44px; }
-  .qp-fila {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+  .qualidade {
+    padding: 70px 20px 80px;
   }
-  .qp-card {
-    min-height: 360px;
-    padding: 24px 18px 26px;
+  .qp-topo {
+    margin-bottom: 36px;
   }
-  .qp-card-corpo h3 { font-size: 1.15rem; }
-  .qp-card-corpo p { font-size: 0.84rem; }
-}
-@media (max-width: 540px) {
-  .qualidade { padding: 80px 16px 90px; }
+  .qp-titulo {
+    font-size: clamp(2.1rem, 6vw, 2.7rem);
+    line-height: 1.12;
+  }
+  .qp-sub {
+    font-size: 0.95rem;
+    max-width: 360px;
+  }
   .qp-fila {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 14px;
+    max-width: 480px;
+    margin-inline: auto;
   }
   .qp-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     min-height: auto;
-    padding: 26px 20px;
+    padding: 16px 18px 16px 16px;
+    gap: 14px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(13, 20, 36, 0.72) 0%, rgba(6, 11, 22, 0.9) 100%);
+    border: 1px solid color-mix(in srgb, var(--cor-accent) 35%, rgba(255, 255, 255, 0.08));
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 0 24px -6px var(--cor-glow);
   }
-  .qp-card-corpo { margin-bottom: 24px; }
-  .qp-card-rodape { padding-top: 12px; }
+  .qp-card::before {
+    opacity: 0.75;
+    background: radial-gradient(circle 160px at 50% 50%, var(--cor-glow), transparent 75%);
+  }
+  .qp-card-head {
+    display: flex;
+    margin: 0;
+    width: auto;
+    flex-shrink: 0;
+  }
+  .qp-card-head .qp-card-num {
+    display: none;
+  }
+  .qp-ico-box {
+    width: 54px;
+    height: 54px;
+    border-radius: 15px;
+    flex-shrink: 0;
+  }
+  .qp-ico-box svg {
+    width: 26px;
+    height: 26px;
+  }
+  .qp-card-corpo {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    gap: 2px;
+  }
+  .qp-num-mob {
+    display: block;
+    font-family: var(--display), sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #52637a;
+    letter-spacing: 0.05em;
+    margin-bottom: 1px;
+    line-height: 1;
+  }
+  .qp-card-corpo h3 {
+    font-size: clamp(0.98rem, 3.7vw, 1.15rem);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.25;
+    margin: 0 0 3px;
+    letter-spacing: -0.02em;
+    white-space: normal;
+  }
+  .qp-card-corpo p {
+    font-size: 0.82rem;
+    color: #94a3b8;
+    line-height: 1.45;
+    margin: 0;
+    font-weight: 400;
+  }
+}
+@media (max-width: 480px) {
+  .qualidade {
+    padding: 60px 16px 70px;
+  }
+  .qp-card {
+    padding: 14px 14px 14px 12px;
+    gap: 12px;
+  }
+  .qp-ico-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 13px;
+  }
+  .qp-ico-box svg {
+    width: 23px;
+    height: 23px;
+  }
 }
 
 .ql-topo { text-align: center; margin: 0 auto; max-width: 680px; }
@@ -3094,32 +3288,18 @@ html.viagem-on .viagem { display: grid; }
    (preto), que era o bug. */
 .portfolio {
   position: relative; overflow: clip; z-index: 2;
+  background-color: #030712;
 }
-/* A cortina: no fim do portfólio, a seção seguinte (Como começa) entra
-   deslizando da direita, fixa e opaca, cobrindo a tela enquanto o portfólio sai
-   por baixo para a esquerda. A classe entra e sai pelo scroll (GSAP). */
-/* Handoff da cortina, CORRIGIDO (28/08/2026). O bug: os passos eram fingidos como
-   painel `position: fixed` durante a cortina e, ao soltar, voltavam ao fluxo lá
-   embaixo — piscavam e sumiam, exigindo rolar mais para revê-los.
-   Agora os passos ficam no FLUXO, mas puxados uma tela inteira para cima
-   (`margin-top: -100vh`), encostados ATRÁS do portfólio (z-index baixo). O
-   portfólio (o pin, z-index alto e opaco) cobre-os durante a corrida e, no fim,
-   desliza para a esquerda e os REVELA. Como já estão na posição final, ao soltar o
-   pin a rolagem continua neles SEM salto. Só no modo GSAP (desktop + movimento);
-   no celular e em movimento reduzido os passos fluem normalmente. */
-/* A CORTINA foi REMOVIDA (28/08/2026): depois de duas tentativas (primeiro o
-   flash, depois a faixa preta acima dos passos), o handoff virou fluxo vertical
-   limpo — o portfólio termina e os passos entram normalmente por baixo. Sem slide,
-   sem banda. Se um dia voltar, volta como reveal já testado. */
 .pf-pin {
   min-height: 100dvh;
   display: flex;
   align-items: center;
   padding: var(--cabecalho) 0 40px;
   background:
+    linear-gradient(to bottom, #030712 0%, transparent 160px, transparent calc(100% - 200px), #030712 100%),
     radial-gradient(circle at 12% 25%, rgba(14, 43, 92, 0.45) 0%, transparent 55%),
-    radial-gradient(circle at 90% 80%, rgba(30, 58, 138, 0.3) 0%, transparent 55%),
-    #020617;
+    radial-gradient(circle at 90% 70%, rgba(30, 58, 138, 0.25) 0%, transparent 50%),
+    #030712;
 }
 .pf-grid {
   display: grid;
@@ -3138,12 +3318,12 @@ html.viagem-on .viagem { display: grid; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
-  font-size: 0.75rem;
+  font-family: var(--display, 'DM Sans', sans-serif);
+  font-size: 11.5px;
   font-weight: 600;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: #94a3b8;
+  color: rgba(226, 232, 240, 0.65);
   margin-bottom: 24px;
 }
 .pf-quadrado {
@@ -3153,6 +3333,7 @@ html.viagem-on .viagem { display: grid; }
   border-radius: 1.5px;
   box-shadow: 0 0 10px rgba(0, 119, 255, 0.7);
   display: inline-block;
+  transform: translateY(-1px);
 }
 .pf-h2 {
   font-size: clamp(2.5rem, 4.2vw, 3.8rem);
@@ -3373,22 +3554,35 @@ html.viagem-on .viagem { display: grid; }
    E como no akis não há fio nenhum separando esta seção do rodapé: quem separa
    é a caixa acabar e o ar começar. */
 /* ---------- 15b. Como começa · 4 passos (design de referência light/white) ---------- */
-/* ---------- 15b. Como começa · 4 passos (Design fiel ao Print 1 / Dark Cosmic Blue) ---------- */
+/* ---------- 15b. Como começa · 4 passos (Design fiel ao Print 1 / Dark Cosmic Blue — Unificado com Portfólio) ---------- */
 .passos {
   min-height: auto;
-  padding: 130px 24px 80px;
+  padding: 70px 24px 80px;
   position: relative;
   overflow: hidden;
   z-index: 2;
   background-color: #030712;
   background-image:
-    radial-gradient(circle at 50% 20%, rgba(14, 43, 92, 0.45) 0%, rgba(3, 7, 18, 0) 65%),
-    radial-gradient(circle at 85% 15%, rgba(30, 58, 138, 0.3) 0%, rgba(3, 7, 18, 0) 50%),
+    linear-gradient(to bottom, #030712 0%, #030712 6%, transparent 32%),
+    radial-gradient(circle at 50% 28%, rgba(14, 43, 92, 0.42) 0%, rgba(3, 7, 18, 0) 65%),
+    radial-gradient(circle at 85% 20%, rgba(30, 58, 138, 0.25) 0%, rgba(3, 7, 18, 0) 50%),
     radial-gradient(circle at 15% 85%, rgba(14, 43, 92, 0.25) 0%, rgba(3, 7, 18, 0) 55%);
   color: #f1f5f9;
 }
 .passos > * {
   position: relative;
+  z-index: 2;
+}
+/* Transição perfeita com a Chamada Final: dissolve suavemente o fundo #030712 no #000206 */
+.passos::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 260px;
+  background: linear-gradient(to bottom, transparent, #000206);
+  pointer-events: none;
   z-index: 1;
 }
 .ps-bg-glow {
@@ -3411,13 +3605,35 @@ html.viagem-on .viagem { display: grid; }
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
-  font-size: 0.75rem;
+  padding: 6px 16px;
+  background: rgba(13, 20, 36, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  box-shadow: 0 0 16px rgba(0, 119, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-family: var(--display, 'DM Sans', sans-serif);
+  font-size: 11.5px;
   font-weight: 600;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: #94a3b8;
-  margin-bottom: 20px;
+  color: rgba(226, 232, 240, 0.65);
+  margin-bottom: 24px;
+}
+.ps-linha-v {
+  display: none;
+}
+.ps-cosmic-arc {
+  position: absolute;
+  bottom: -40px;
+  left: -20%;
+  width: 140%;
+  height: 240px;
+  border-radius: 50% 50% 0 0;
+  border-top: 1.5px solid rgba(0, 119, 255, 0.65);
+  box-shadow: 0 -12px 35px rgba(0, 119, 255, 0.4), inset 0 10px 30px rgba(0, 119, 255, 0.15);
+  pointer-events: none;
+  z-index: 1;
 }
 .ps-quadrado {
   width: 7px;
@@ -3426,6 +3642,7 @@ html.viagem-on .viagem { display: grid; }
   border-radius: 1.5px;
   box-shadow: 0 0 10px rgba(0, 119, 255, 0.7);
   display: inline-block;
+  transform: translateY(-1px);
 }
 .ps-titulo {
   font-size: clamp(2.3rem, 4.2vw, 3.6rem);
@@ -3640,7 +3857,7 @@ html.viagem-on .viagem { display: grid; }
   transform: translateX(4px);
 }
 
-/* Linha Editorial no Rodapé da Seção (conforme Print 1) */
+/* Linha Editorial no Rodapé da Seção (sem barra divisória horizontal para integração fluida) */
 .ps-rodape-linha {
   display: flex;
   align-items: center;
@@ -3648,7 +3865,7 @@ html.viagem-on .viagem { display: grid; }
   gap: 32px;
   margin-top: 90px;
   padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: none;
   max-width: 1240px;
   margin-inline: auto;
 }
@@ -3664,9 +3881,7 @@ html.viagem-on .viagem { display: grid; }
   line-height: 1.4;
 }
 .ps-divisor-fio {
-  flex: 1;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.06);
+  display: none;
 }
 .ps-marca-ano {
   display: flex;
@@ -3687,7 +3902,7 @@ html.viagem-on .viagem { display: grid; }
 
 @media (max-width: 1060px) {
   .passos {
-    padding: 100px 20px 70px;
+    padding: 60px 20px 70px;
   }
   .ps-tl {
     grid-template-columns: repeat(2, 1fr);
@@ -3701,29 +3916,227 @@ html.viagem-on .viagem { display: grid; }
     max-width: 34ch;
   }
 }
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .passos {
-    padding: 80px 16px 60px;
+    padding: 60px 20px 70px;
   }
-  .ps-tl {
-    grid-template-columns: 1fr;
-    gap: 36px;
+  .ps-topo {
+    margin-bottom: 38px;
   }
   .ps-titulo {
-    font-size: 2rem;
+    font-size: clamp(2.1rem, 6vw, 2.7rem);
+    line-height: 1.15;
   }
-  .ps-btn-dark {
+  .ps-sub {
+    font-size: 0.95rem;
+    max-width: 380px;
+    margin-inline: auto;
+    text-wrap: balance;
+  }
+  .ps-tl {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 440px;
+    margin-inline: auto;
+    position: relative;
+    padding: 0;
+  }
+  .ps-trilho-linha,
+  .ps-fio {
+    display: none !important;
+  }
+  .ps-etapa {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
     width: 100%;
+    gap: 18px;
+    text-align: left;
+  }
+  .ps-n-wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .ps-n {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    width: auto;
+    min-width: 64px;
+    text-align: right;
+    margin: 0;
+    color: rgba(60, 95, 150, 0.45);
+    background: linear-gradient(180deg, rgba(70, 130, 210, 0.55) 0%, rgba(20, 50, 100, 0.2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    flex-shrink: 0;
+    overflow: visible;
+  }
+  .ps-circulo {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+    background: radial-gradient(circle at 35% 35%, #0c1e3d 0%, #030816 100%);
+    border: 1px solid rgba(59, 130, 246, 0.45);
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.35), inset 0 0 12px rgba(56, 189, 248, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #38bdf8;
+  }
+  .ps-circulo svg {
+    width: 26px;
+    height: 26px;
+    stroke: #ffffff;
+  }
+  .ps-circulo svg rect[fill="currentColor"] {
+    fill: #ffffff;
+  }
+  .ps-linha-v {
+    display: block !important;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 40px;
+    background: #0077ff;
+    box-shadow: 0 0 8px rgba(0, 119, 255, 0.8), 0 0 14px rgba(56, 189, 248, 0.5);
+    z-index: 1;
+  }
+  .ps-ponto-v {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #38bdf8;
+    box-shadow: 0 0 10px #38bdf8, 0 0 4px #ffffff;
+  }
+  .ps-etapa:last-child .ps-linha-v {
+    display: none !important;
+  }
+  .ps-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+  }
+  .ps-info h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.25;
+    margin: 0 0 5px;
+    letter-spacing: -0.02em;
+  }
+  .ps-info p {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    line-height: 1.45;
+    margin: 0;
+    max-width: 26ch;
+  }
+  .ps-cta {
+    margin-top: 48px;
+    width: 100%;
+    display: flex;
     justify-content: center;
   }
+  .ps-btn-dark {
+    display: inline-flex;
+    width: auto;
+    max-width: 320px;
+    justify-content: center;
+    padding: 14px 34px;
+    background: rgba(3, 8, 22, 0.85);
+    border: 1px solid #0077ff;
+    box-shadow: 0 0 24px rgba(0, 119, 255, 0.45), inset 0 0 14px rgba(0, 119, 255, 0.15);
+    border-radius: 9999px;
+  }
   .ps-rodape-linha {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 440px;
+    margin: 54px auto 0;
+    padding: 0;
+  }
+  .ps-pilares {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    margin-top: 60px;
+    gap: 2px;
+    font-family: var(--mono, 'JetBrains Mono', monospace);
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    color: #64748b;
+    line-height: 1.4;
+    flex-shrink: 0;
   }
   .ps-divisor-fio {
-    display: none;
+    display: block !important;
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 0 16px;
+  }
+  .ps-marca-ano {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--mono, 'JetBrains Mono', monospace);
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    color: #64748b;
+    flex-shrink: 0;
+  }
+}
+@media (max-width: 480px) {
+  .passos {
+    padding: 50px 16px 60px;
+  }
+  .ps-etapa {
+    gap: 12px;
+  }
+  .ps-n-wrap {
+    gap: 12px;
+  }
+  .ps-n {
+    font-size: 42px;
+    width: auto;
+    min-width: 52px;
+    text-align: right;
+  }
+  .ps-circulo {
+    width: 50px;
+    height: 50px;
+  }
+  .ps-circulo svg {
+    width: 22px;
+    height: 22px;
+  }
+  .ps-info h3 {
+    font-size: 1.15rem;
+  }
+  .ps-info p {
+    font-size: 0.82rem;
   }
 }
 
@@ -4072,10 +4485,194 @@ html.viagem-on .viagem { display: grid; }
 
   .sobre { padding: 90px 24px 84px; }
   .icarus { padding: 88px 24px; }
-  /* No celular a fileira vira fluxo: título em cima, cards arrastando embaixo. */
-  .pf-pin { min-height: 0; padding: 72px 0; display: block; }
-  .pf-grid { grid-template-columns: 1fr; gap: 28px; }
-  .pf-h2 { font-size: var(--t-40); }
+
+  /* Header mobile: Contate-nos ↗ na esquerda, hamburguer ☰ na direita */
+  .topo-dir {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .topo-cta {
+    order: 1;
+    padding: 8px 18px;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .topo-cta .seta {
+    display: inline-block !important;
+    color: #38bdf8;
+    margin-left: 3px;
+  }
+  .hamburguer {
+    order: 2;
+    display: grid;
+    border-radius: 9999px;
+    width: 38px;
+    height: 38px;
+  }
+
+  /* Hero no celular */
+  .hero-br-mob { display: block; }
+  .hero-topo {
+    padding-top: calc(var(--cabecalho, 70px) + 20px);
+    padding-bottom: 24px;
+    min-height: auto;
+  }
+  .hero-txt {
+    text-align: left;
+    width: 100%;
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 16px;
+    color: #38bdf8;
+  }
+  .hero h1 {
+    font-size: clamp(2.35rem, 8.8vw, 3.2rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+  .hero-lead {
+    font-size: 0.98rem;
+    line-height: 1.55;
+    margin-top: 16px;
+    color: #94a3b8;
+    max-width: 100%;
+  }
+  .hero-acao {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+    flex-wrap: nowrap !important;
+    margin-top: 24px !important;
+    width: 100% !important;
+    position: relative !important;
+    z-index: 5 !important;
+  }
+  .hero-acao .btn-azul,
+  .hero-acao .btn-linha {
+    border-radius: 9999px !important;
+    padding: 12px 20px !important;
+    font-size: 0.9rem !important;
+    white-space: nowrap !important;
+    flex: 0 0 auto !important;
+  }
+  .hero-acao .btn-azul {
+    background: #ffffff !important;
+    color: #050a14 !important;
+    border: 1px solid #ffffff !important;
+    box-shadow: 0 0 28px rgba(255, 255, 255, 0.35) !important;
+    font-weight: 600 !important;
+  }
+  .hero-acao .btn-azul .cta-lbl {
+    color: #050a14 !important;
+  }
+  .hero-acao .btn-azul .seta {
+    color: #050a14 !important;
+  }
+  .hero-acao .btn-linha {
+    background: transparent !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.32) !important;
+    font-weight: 500 !important;
+  }
+  .hero-splat {
+    width: min(94vw, 440px) !important;
+    margin: -65px auto 0 !important;
+    align-self: center !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+  .hero-splat .hero-arco {
+    display: none !important;
+  }
+
+  /* Portfólio no celular: cards empilhados verticalmente, sem efeito da direita para a esquerda */
+  .portfolio {
+    overflow: visible;
+  }
+  .pf-pin {
+    min-height: 0 !important;
+    padding: 72px 0 80px !important;
+    display: block !important;
+    position: static !important;
+    height: auto !important;
+  }
+  .pf-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 32px !important;
+    width: 100% !important;
+  }
+  .pf-lado {
+    width: 100% !important;
+  }
+  .pf-lado .pf-btn-todos {
+    display: none !important;
+  }
+  .pf-h2 {
+    font-size: var(--t-40);
+  }
+  .pf-pista {
+    overflow: visible !important;
+    scroll-snap-type: none !important;
+    -webkit-overflow-scrolling: auto !important;
+    width: 100% !important;
+    padding: 0 !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+  }
+  .pf-tira {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 36px !important;
+    transform: none !important;
+  }
+  .pf-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+    scroll-snap-align: none !important;
+  }
+  .pf-tela {
+    width: 100% !important;
+    aspect-ratio: 16 / 10 !important;
+    border-radius: 16px !important;
+  }
+  .pf-rodape-mob {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin-top: 36px !important;
+  }
+  .pf-rodape-mob .pf-btn-ver-mais {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    padding: 14px 28px !important;
+    border-radius: 9999px !important;
+    background: #ffffff !important;
+    color: #050a14 !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    text-decoration: none !important;
+    box-shadow: 0 0 24px rgba(255, 255, 255, 0.28) !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  }
+  .pf-rodape-mob .pf-btn-ver-mais .cta-lbl {
+    color: #050a14 !important;
+  }
+  .pf-rodape-mob .pf-btn-ver-mais .seta {
+    color: #050a14 !important;
+    font-size: 16px !important;
+  }
+
   .ch-cartao { padding: 72px 26px 64px; }
   .titulao { font-size: var(--t-28); }
   .ic-nome { font-size: var(--t-40); }
@@ -4091,7 +4688,6 @@ html.viagem-on .viagem { display: grid; }
   .rol-item h2 { font-size: var(--t-28); }
   /* Sem órbita no celular: o sistema orbital e o círculo saem, os cards empilham
      e o texto fica sempre visível. */
-  .qualidade { padding: 88px 24px; }
   .ql-topo h2 { font-size: var(--t-40); }
   .ql-orbita { aspect-ratio: auto; max-width: 460px; margin: 32px auto; }
   .ql-sistema, .ql-centro { display: none; }
@@ -4104,19 +4700,10 @@ html.viagem-on .viagem { display: grid; }
     position: static; width: auto; transform: none;
     max-height: none; opacity: 1; margin: 12px 0 0;
   }
-  /* Os passos e portfólio no mobile */
-  .passos { padding: 88px 24px 70px; }
-  .ps-titulo { font-size: clamp(2rem, 5vw, 2.5rem); }
-  .ps-topo { margin-bottom: 48px; }
-  .pf-item { width: min(85vw, 360px); }
   .assinatura { padding: 64px 24px 32px; }
 }
 
 @media (max-width: 600px) {
-  /* No celular o título do hero ocupa quatro linhas com a palavra que gira. */
-  .hero-topo { padding-top: 20px; }
-  .hero-lead { margin-top: 18px; font-size: var(--t-17); }
-  .hero-acao { margin-top: 26px; }
   .sv-ficha > div { grid-template-columns: 1fr; gap: 4px; }
   /* O contato desce para baixo da marca e volta a alinhar pela esquerda: em
      coluna única, texto encostado à direita perde a margem de leitura. */
@@ -4125,10 +4712,6 @@ html.viagem-on .viagem { display: grid; }
   .rd-fone { font-size: var(--t-17); }
   .rd-pe { gap: 20px; }
   .sv-cat { font-size: var(--t-13); }
-  /* O percurso da tira NÃO precisa mais de ajuste por breakpoint: a conta
-     `-100% + 100cqw` já é exata em qualquer largura. O que muda aqui é só a
-     largura do card. */
-  .pf-item { width: 78vw; }
 }
 
 /* ---------- 19. Movimento reduzido ---------- */

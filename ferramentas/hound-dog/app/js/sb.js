@@ -60,7 +60,8 @@ export async function carregarBase() {
 /* ------------------------------ Tempo real ------------------------------ */
 let canal;
 const TABELAS_RT = ['empresas', 'atividades', 'agenda', 'jobs', 'chat_mensagens', 'chat_threads', 'whatsapp_conversas',
-  'whatsapp_mensagens', 'farejador_status', 'listas', 'pesquisas', 'instagram_snapshots', 'negocios', 'financeiro'];
+  'whatsapp_mensagens', 'farejador_status', 'listas', 'pesquisas', 'instagram_snapshots', 'negocios', 'financeiro', 'disparos', 'tarefas',
+  'social_posts', 'social_rotinas', 'social_acoes', 'social_interacoes', 'social_aprendizados'];
 
 export function ligarTempoReal() {
   if (canal) sb.removeChannel(canal);

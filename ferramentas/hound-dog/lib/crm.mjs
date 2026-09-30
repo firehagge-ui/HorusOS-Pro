@@ -177,7 +177,7 @@ export async function adicionarItensLista(listaId, itens) {
 }
 
 export async function resumoCRM() {
-  const [estagios, abertos, atencao, agenda, ativ, fin] = await Promise.all([
+  const [estagios, abertos, atencao, agenda, ativ, fin, tarefas] = await Promise.all([
     q(`select e.id, e.nome, count(emp.id)::int n, coalesce(sum(emp.valor_estimado),0)::float valor from estagios e
        left join empresas emp on emp.estagio = e.id and not emp.arquivado and emp.relacao in ('lead','cliente') group by e.id, e.nome, e.ordem order by e.ordem`),
     q(`select id, nome, categoria, cidade, estagio, relacao, score, temperatura, valor_estimado, proxima_acao, proxima_acao_em, ultimo_contato_em, regulado, conselho
@@ -187,8 +187,12 @@ export async function resumoCRM() {
        where a.inicio between now() - interval '1 day' and now() + interval '14 days' and a.status <> 'cancelado' order by a.inicio limit 20`),
     q(`select a.titulo, a.tipo, a.autor, a.criado_em, e.nome empresa from atividades a left join empresas e on e.id = a.empresa_id order by a.criado_em desc limit 12`),
     q(`select status, sum(valor)::float total from financeiro group by status`),
+    // Tarefas atrasadas e dos próximos 7 dias (o resto sai em hd_tarefas)
+    q(`select id, titulo, prioridade, status, responsavel, prazo, marco from tarefas
+       where status in ('a_fazer','fazendo','travada') and prazo <= (now() at time zone 'America/Bahia')::date + 7
+       order by prazo, array_position(array['alta','media','baixa'], prioridade) limit 20`).catch(() => []),
   ]);
-  return { estagios, empresas: abertos, precisam_de_atencao: atencao, agenda_14_dias: agenda, atividade_recente: ativ, financeiro: fin, agora: new Date().toISOString() };
+  return { estagios, empresas: abertos, precisam_de_atencao: atencao, agenda_14_dias: agenda, atividade_recente: ativ, financeiro: fin, tarefas_7_dias: tarefas, agora: new Date().toISOString() };
 }
 
 export async function detalheEmpresa(id) {

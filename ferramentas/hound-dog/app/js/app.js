@@ -1,5 +1,5 @@
 /* =============================================================================
-   HOUND DOG — casca do app: login, barra lateral, rotas, paleta (Ctrl+K),
+   HOUNDER — casca do app: login, barra lateral, rotas, paleta (Ctrl+K),
    notificações e status do Farejador
    ============================================================================= */
 import { sb, estado, carregarBase, ligarTempoReal, desligarTempoReal, ouvir, farejadorOnline } from './sb.js';
@@ -8,10 +8,12 @@ import { icone, sparkClaude, logoHound } from './icones.js';
 
 const ROTAS = {
   inicio: { titulo: 'Início', icone: 'inicio', mod: () => import('./telas/inicio.js') },
+  tarefas: { titulo: 'Tarefas', icone: 'checkc', mod: () => import('./telas/tarefas.js') },
   encontrar: { titulo: 'Encontrar clientes', icone: 'radar', mod: () => import('./telas/encontrar.js') },
   mercado: { titulo: 'Mercado', icone: 'mercado', mod: () => import('./telas/mercado.js') },
   esteira: { titulo: 'Esteira', icone: 'esteira', mod: () => import('./telas/esteira.js') },
   conversas: { titulo: 'Conversas', icone: 'whatsapp', mod: () => import('./telas/conversas.js') },
+  disparos: { titulo: 'Disparos', icone: 'enviar', mod: () => import('./telas/disparos.js') },
   agenda: { titulo: 'Agenda', icone: 'agenda', mod: () => import('./telas/agenda.js') },
   clientes: { titulo: 'Clientes', icone: 'clientes', mod: () => import('./telas/clientes.js') },
   instagram: { titulo: 'Instagram', icone: 'instagram', mod: () => import('./telas/instagram.js') },
@@ -20,19 +22,19 @@ const ROTAS = {
   ajustes: { titulo: 'Ajustes', icone: 'ajustes', mod: () => import('./telas/ajustes.js') },
   empresa: { titulo: 'Empresa', icone: 'predio', mod: () => import('./telas/esteira.js') },
 };
-const MENU = ['inicio', 'encontrar', 'mercado', 'esteira', 'conversas', 'agenda', 'clientes', 'instagram', 'relatorios'];
+const MENU = ['inicio', 'tarefas', 'encontrar', 'mercado', 'esteira', 'conversas', 'disparos', 'agenda', 'clientes', 'instagram', 'relatorios'];
 
-const contadores = { conversas: 0, agenda: 0, esteira: 0 };
+const contadores = { conversas: 0, agenda: 0, esteira: 0, tarefas: 0 };
 let limparTela = null;
 let rotaAtual = null;
 
 /* =============================== Login =============================== */
 function telaLogin(mensagem = '') {
-  document.title = 'Entrar · Hound Dog';
+  document.title = 'Entrar · Hounder';
   document.body.innerHTML = '';
   const t = el(`<main class="login">
     <div class="login-card">
-      <div class="login-marca">${logoHound(52)}<div><h1>Hound Dog</h1><p>O painel de controle da Hórus</p></div></div>
+      <div class="login-marca">${logoHound(52)}<div><h1>Hounder</h1><p>O painel de controle da Hórus</p></div></div>
       <form class="login-form" novalidate>
         <div class="campo"><label for="lg-email">E-mail</label><input class="inp" id="lg-email" type="email" autocomplete="username" required placeholder="voce@exemplo.com"></div>
         <div class="campo"><label for="lg-senha">Senha</label><input class="inp" id="lg-senha" type="password" autocomplete="current-password" required placeholder="Sua senha"></div>
@@ -67,7 +69,7 @@ function telaLogin(mensagem = '') {
 function telaSemAcesso() {
   document.body.innerHTML = '';
   document.body.appendChild(el(`<main class="login"><div class="login-card">
-    <div class="login-marca">${logoHound(52)}<div><h1>Sem acesso</h1><p>Esta conta não é operadora do Hound Dog.</p></div></div>
+    <div class="login-marca">${logoHound(52)}<div><h1>Sem acesso</h1><p>Esta conta não é operadora do Hounder.</p></div></div>
     <p class="muted">Peça ao dono do painel para adicionar seu e-mail em Ajustes → Operadores.</p>
     <button class="btn bloco mt-16" data-sair>${icone('sair')}Sair</button></div></main>`));
   $('[data-sair]').onclick = () => sb.auth.signOut();
@@ -101,7 +103,7 @@ function montarCasca() {
   document.body.innerHTML = '';
   const app = el(`<div class="app">
     <aside class="side" id="side">
-      <a class="marca" href="#/inicio" aria-label="Hound Dog, início"><span class="logo">${logoHound(30)}</span><span class="marca-txt"><b>HOUND DOG</b><span>Hórus CRM</span></span></a>
+      <a class="marca" href="#/inicio" aria-label="Hounder, início"><span class="logo">${logoHound(30)}</span><span class="marca-txt"><b>HOUNDER</b><span>Hórus CRM</span></span></a>
       <div class="side-scroll">
         <nav class="nav" id="nav"></nav>
         <a class="nav-claude" href="#/claude" data-rota="claude"><span class="cl">${sparkClaude(20)}</span><span class="grow">Falar com o Claude<small id="claude-sub">pela sua assinatura</small></span></a>
@@ -139,6 +141,7 @@ function montarCasca() {
   $('[data-notif]').onclick = (e) => abrirNotificacoes(e.currentTarget);
   $('[data-novo]').onclick = (e) => menu(e.currentTarget, [
     { icone: 'usuariomais', rotulo: 'Novo lead', fn: async () => (await import('./acoes.js')).novoLead() },
+    { icone: 'checkc', rotulo: 'Nova tarefa', fn: async () => (await import('./telas/tarefas.js')).editarTarefa() },
     { icone: 'agenda', rotulo: 'Agendar compromisso', fn: async () => (await import('./acoes.js')).agendar() },
     { icone: 'planilha', rotulo: 'Subir planilha do Spark', fn: () => { location.hash = '#/encontrar?aba=spark'; } },
     { icone: 'radar', rotulo: 'Farejar clientes com o Claude', fn: () => { location.hash = '#/encontrar?aba=claude'; } },
@@ -169,7 +172,7 @@ function desenharNav() {
   nav.innerHTML = MENU.map((id) => {
     const r = ROTAS[id];
     const n = contadores[id];
-    const badge = n ? `<span class="badge ${id === 'conversas' ? 'verde' : id === 'esteira' ? '' : 'acc'}">${n > 99 ? '99+' : n}</span>` : '';
+    const badge = n ? `<span class="badge ${id === 'conversas' ? 'verde' : id === 'esteira' || id === 'tarefas' ? '' : 'acc'}">${n > 99 ? '99+' : n}</span>` : '';
     return `<a href="#/${id}" data-rota="${id}">${icone(r.icone)}<span>${r.titulo}</span>${badge}</a>`;
   }).join('');
   marcarAtivo();
@@ -195,14 +198,19 @@ async function atualizarContadores() {
   try {
     const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
     const amanha = new Date(hoje); amanha.setDate(amanha.getDate() + 1);
-    const [conv, ag, at] = await Promise.all([
-      sb.from('whatsapp_conversas').select('nao_lidas').gt('nao_lidas', 0).eq('arquivada', false).eq('silenciada', false),
+    const hojeBahia = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Bahia' });
+    const [conv, ag, at, tf] = await Promise.all([
+      // Só conversa ligada a uma ficha do CRM conta (pedido do Marcelo, 29/09/2026): número solto não é da operação
+      sb.from('whatsapp_conversas').select('nao_lidas').gt('nao_lidas', 0).eq('arquivada', false).eq('silenciada', false).not('empresa_id', 'is', null),
       sb.from('agenda').select('id', { count: 'exact', head: true }).gte('inicio', hoje.toISOString()).lt('inicio', amanha.toISOString()).eq('status', 'agendado'),
       sb.from('vw_atencao').select('id', { count: 'exact', head: true }),
+      // Tarefas atrasadas ou para hoje
+      sb.from('tarefas').select('id', { count: 'exact', head: true }).in('status', ['a_fazer', 'fazendo', 'travada']).lte('prazo', hojeBahia),
     ]);
     contadores.conversas = (conv.data || []).reduce((a, c) => a + (c.nao_lidas || 0), 0);
     contadores.agenda = ag.count || 0;
     contadores.esteira = at.count || 0;
+    contadores.tarefas = tf.count || 0;
     desenharNav();
   } catch (e) { console.warn('[contadores]', e); }
 }
@@ -222,11 +230,15 @@ async function navegar() {
   const { rota, args, params } = parseHash();
   const def = ROTAS[rota];
   if (!def) { location.hash = '#/inicio'; return; }
-  const vista = $('#vista');
+  // Elemento novo a cada tela: as telas ligam `v.addEventListener('click')` e o mesmo #vista era reaproveitado, então
+  // cada visita empilhava mais um ouvinte e um clique abria N modais (Tarefas e Agenda, 29/09/2026).
+  const antiga = $('#vista');
+  const vista = antiga.cloneNode(false);
+  antiga.replaceWith(vista);
   if (limparTela) { try { limparTela(); } catch (e) { console.error(e); } limparTela = null; }
   rotaAtual = rota;
   marcarAtivo();
-  document.title = `${def.titulo} · Hound Dog`;
+  document.title = `${def.titulo} · Hounder`;
   vista.className = 'vista';
   vista.innerHTML = `<div class="carregando-tela">${icone('radar')}<span>Carregando ${esc(def.titulo.toLowerCase())}…</span></div>`;
   vista.scrollTop = 0;
@@ -323,7 +335,8 @@ function abrirNotificacoes(ancora) {
 const NOMES_JOB = {
   pesquisar_clientes: 'Farejada de clientes', pesquisa_mercado: 'Pesquisa de mercado', enriquecer_empresa: 'Dossiê da empresa',
   analisar_conversa: 'Análise da conversa', chat: 'Resposta do Claude', instagram: 'Coleta do Instagram', ideias_instagram: 'Ideias de conteúdo',
-  whatsapp_enviar: 'Mensagem no WhatsApp', enriquecer_lista: 'Enriquecimento da lista', mensagem_personalizada: 'Mensagem personalizada',
+  midia_semana: '📣 Mídia: sessão da semana', midia_ajuste: '📣 Mídia: ajuste de post', midia_triagem: '📣 Mídia: triagem',
+  whatsapp_enviar: 'Mensagem no WhatsApp', investigar_empresa: 'Investigação profunda', enriquecer_lista: 'Enriquecimento da lista', triar_lista: 'Triagem da lista', mensagem_personalizada: 'Mensagem personalizada',
 };
 function ligarNotificacoes() {
   ouvir('jobs', (p) => {
@@ -341,13 +354,14 @@ function ligarNotificacoes() {
   ouvir('whatsapp_mensagens', async (p) => {
     if (p.eventType !== 'INSERT' || p.new?.direcao !== 'in') return;
     contadoresDepois();
-    // Conversa marcada como pessoal não interrompe o trabalho.
-    const { data: c } = await sb.from('whatsapp_conversas').select('silenciada').eq('id', p.new.conversa_id).maybeSingle();
-    if (c?.silenciada) return;
+    // Só avisa de conversa ligada a uma ficha do CRM; pessoal (silenciada) ou número solto não interrompe o trabalho.
+    const { data: c } = await sb.from('whatsapp_conversas').select('silenciada, empresa_id').eq('id', p.new.conversa_id).maybeSingle();
+    if (c?.silenciada || !c?.empresa_id) return;
     notificar({ icone: 'whatsapp', titulo: 'Nova mensagem no WhatsApp', texto: (p.new.texto || '').slice(0, 70), link: `#/conversas/${p.new.conversa_id}` });
   });
   ouvir('whatsapp_conversas', () => contadoresDepois());
   ouvir('agenda', () => contadoresDepois());
+  ouvir('tarefas', () => contadoresDepois());
   ouvir('empresas', () => contadoresDepois());
   ouvir('farejador_status', () => desenharFarejador());
   ouvir('_conexao', ({ status }) => {

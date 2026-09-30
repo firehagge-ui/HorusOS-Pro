@@ -98,3 +98,9 @@ saúde vira presente a paciente, o que cheira a captação indevida). Métricas 
 ROAS de infoproduto não se comparam com clínica local. E nenhuma tática de
 retargeting pode expor que a pessoa buscou tratamento: isso é dado sensível de
 saúde e cai na LGPD.
+
+---
+
+## Fonte completa (29/09/2026)
+
+Este cartão é o resumo. A mente original do mega-brain está em `fontes/jeremy-haynes/mega-brain/` (`AGENT.md` + `SOUL.md`), 1.069 + 169 linhas. Destaques: top 5 filosofias, top 5 frameworks proprietários, top 10 heurísticas com número, heurísticas se-então, regras sempre/nunca, o Interest Spectrum e os 25 frameworks documentados. A `/consultar` lê o cartão e depois busca na fonte a parte do assunto (grep pelo título ou pelo código). Citar assim: `^[fontes/jeremy-haynes/mega-brain/AGENT.md:<seção ou código>]`.

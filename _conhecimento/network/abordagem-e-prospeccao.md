@@ -142,8 +142,9 @@ golpe, então a saudação é curta mas nunca isolada de propósito no vazio.
    que falta vira pergunta (o número é do cliente, nunca nosso).
 4. **O que eu faria.** Uma frase concreta, com as partes nomeadas. O dono termina a leitura
    **sabendo o que a Hórus faz** — este é o ponto onde a v1 falhava e o Gemini ganhava.
-5. **Um passo pequeno.** Pergunta que só ele sabe responder, ou convite com duas opções de
-   horário, conforme o degrau da conversa.
+5. **Um passo pequeno.** Pedido de licença pra dar ("quer que eu te mostre?", "posso te
+   explicar?") ou convite com duas opções de horário. ⚠️ Revisto em 22/09: "pergunta que só ele
+   sabe responder" saiu, porque virava interrogatório. Ver seção 10.
 
 **Três regras que sustentam a anatomia:**
 
@@ -153,8 +154,9 @@ golpe, então a saudação é curta mas nunca isolada de propósito no vazio.
   tese está rasa. A do Gemini, tirando nomes próprios, serve pra qualquer empresa do segmento; a
   da casa depende de um fato que só existe naquele lead.
 - **O teste final antes de mandar:** qual é a resposta mais fácil que esta mensagem permite? Se
-  for "obrigado" ou o silêncio, a mensagem falhou, por melhor que esteja escrita. A pergunta
-  final precisa ser específica e de resposta que só o dono tem.
+  for o silêncio, a mensagem falhou. ⚠️ Revisto em 22/09: o "obrigado" deixou de ser fracasso a
+  evitar a qualquer custo. Tentar impedir o "obrigado" foi o que gerou a escada de perguntas
+  intrometidas. Ver seção 10.
 
 **O que se importou do Gemini:** a ordem (chegar ao ponto rápido) e a solução nomeada. **O que
 não se importou:** dor de segmento no lugar da dor da empresa, bajulação ("nível técnico
@@ -179,6 +181,36 @@ impecável"), CTA passivo sem próximo passo, e afirmação sem fonte.
   **vizinhos** e a dona já respondera em público, com base legal. Chegar com esse argumento é
   contar a ela uma história que ela já desmentiu por escrito.
 
+- **Regra 3 · Posição na busca só com a busca feita no dia (22/09/2026).** "Vocês não
+  aparecem", "o Google empurra vocês pra baixo", "o primeiro resultado é" só entram se o
+  Marcelo pesquisar do celular no dia do envio e guardar o print. Posição não se deduz da
+  categoria nem do bloco "as pessoas também pesquisam", e muda conforme de onde se pesquisa.
+  Origem: a tese da Autobahn ("categoria genérica tira ele da busca por marca") caiu quando o
+  Marcelo pesquisou e encontrou a Autobahn. Cardamomo, Prático e MAR tinham a mesma falha.
+- **Regra 4 · Suposição sobre a operação do lead entra com "imagino", nunca como fato.** Ex.:
+  "ninguém guardou a data da cliente" (Jeanne) não foi visto em lugar nenhum.
+- **Regra 5 · A oferta sai da maior falha verificável, nunca do produto que a gente quer vender
+  (Marcelo, 27/09/2026).** Nem todo negócio precisa de site. Primeiro o diagnóstico: qual é a maior
+  falha que o dono confere em segundos? Depois o serviço do catálogo inteiro (`_memoria/empresa.md`:
+  site, Google e visibilidade local, atendimento e CRM no WhatsApp, sistema de agendamento, loja,
+  anúncio, conteúdo) que resolve aquela falha. A Fase 1 é o que resolve a dor mais visível, e ela pode
+  não ser site: na Bioclin (25/09) a entrada virou confirmação de agendamento, porque a dona reclamou em
+  público da paciente que confirma e falta. Três situações:
+  1. **Tem o problema e sabe:** oferta direta pra essa dor.
+  2. **Tem e não sabe (não foi educado):** não se convence com argumento. Mostra um fato que ele
+     confere sozinho (o botão do Google que leva pro Instagram) e deixa a conclusão com ele.
+  3. **Tem, mas pra ele não é problema** (agenda cheia, nome consolidado): não insiste, vai pra
+     geladeira. Origem: Marilúsia, 26/09.
+
+  **Antes da geladeira, a prévia (Marcelo, 28/09/2026).** Quando o lead já tem "quase tudo" (nota boa,
+  agenda, um mini-site ou cartão de links) e nenhum argumento convence, o ângulo é **mostrar, não
+  argumentar**: montar uma prévia leve do site dele e perguntar "quer dar uma olhada?". É o modelo
+  campeão da rede (§2A, "sabor de projeto pronto"). Travas: o passo 1 confirma o decisor antes de gastar
+  horas na prévia (lição do Mullsanni); "montei uma prévia" só com a prévia no ar; ela mora em
+  `clientes/_prototipos/<nome>/` com `noindex`; em cliente regulado, a prévia já nasce dentro da régua do
+  conselho. Origem: Cavalcante Odontologia, que tinha ficha 4,9 e agenda on-line, mas só um cartão de
+  links no lugar do site.
+
 **As três classes de informação** (o filtro que decide o que entra na mensagem):
 
 - **Fato** — fonte nomeada e data, conferível pelo dono em segundos. Entra como afirmação.
@@ -190,6 +222,143 @@ impecável"), CTA passivo sem próximo passo, e afirmação sem fonte.
 > respostas do dono por leitura simples (o botão "Mais" precisa de clique real, e clique
 > programático não funciona) — o que funciona é **Playwright em janela visível, entrando pelo CID
 > do lugar**. O Firecrawl não lê Instagram nem Google Maps; pra esses dois, navegador com sessão.
+
+## 10. O jeito de falar (Marcelo, 22/09/2026; substitui a escada de perguntas)
+
+> Origem: o Marcelo leu o dossiê de 20/09 e sentiu as mensagens e, principalmente, as respostas
+> a objeção como **intrometidas**: pergunta em cima de pergunta, cada resposta desenterrando um
+> problema novo e cobrando explicação. A escada (sintoma, fato, tempo, consequência, permissão)
+> e o repertório de objeções eram teoria, nunca testada. As mensagens que ele preferiu vieram do
+> Gemini Spark, do network e da voz dele mesmo, e têm o que a escada não tinha.
+
+**As regras:**
+
+- **O problema é do Google, não do dono.** "Vocês têm nota ótima, mas o Google empurra vocês pra
+  baixo" em vez de "vocês erraram nisso". O dono fica no papel de prejudicado, não de culpado, e
+  não se defende. Elogio de verdade + o que está escondendo esse mérito.
+- **Olhar como cliente, não como auditor.** "Pesquisei oficina de Land Rover", "quando busquei
+  'higienização de ar-condicionado em [cidade]'". Isso explica sozinho por que você olhou. Citar a
+  busca exata entre aspas é a melhor prova: ele pode refazer.
+- **Nomear o problema, guardar o conserto.** O conserto é o trabalho. Entregar ele inteiro ("é só
+  mudar a categoria") faz o dono resolver sozinho.
+- **A pergunta pede licença pra dar, nunca pede que ele se explique.** Vale: "quer que eu te
+  explique?", "posso te mandar?", "quer ver como ficou?". Não vale no chat: "como você lida com
+  isso?", "de cada dez clientes, quantos...?" (isso vai pra reunião), e nem perguntar o que dá
+  pra ver sozinho ("vocês têm site?"). **Exceção:** a pergunta de prioridade ("seria uma
+  prioridade pra vocês agora?") é a qualificação da rede e vale, **uma vez**, como a única
+  pergunta do fio (ver `cold-message-processo.md`).
+- **Resposta a objeção: aceitar a saída vence agarrar.** Quando ele diz "obrigado, vou ajustar",
+  fechar com porta aberta ("Fecha. Qualquer coisa tô por aqui."). Nunca desenterrar um segundo
+  problema pra ele não sair. No máximo **uma** pergunta no fio inteiro, e calor ("tranquilo, pois
+  é") nunca vem seguido de "mas" e de um novo empurrão.
+- **Oferecer e entregar de frente, o catálogo depois.** Dizer o que você faz, sem rodeio, mas só o
+  serviço ligado ao problema citado. Tráfego, funil, mentoria entram depois que ele responde.
+- **Um gancho por mensagem.** O fato mais forte. Os outros ficam para quando ele engajar.
+- **Sem jargão de agência pra dono de negócio local:** "call" vira "ligação rápida"; "funil de
+  vendas", "otimizar perfil" e "autoridade" saem ou viram frase comum.
+
+**O piso que não muda** (não é doutrina, é integridade): só afirmar o que você viu (seção 9),
+nunca prometer resultado ("colocar no topo" vira "subir bem"), e "montei uma prévia" só se ela
+existir.
+
+**O que os primeiros envios medidos ensinaram (24/09/2026, Autobahn e Casa Verona):**
+
+- **Negócio de orçamento personalizado** (evento, obra, marcenaria, laudo) lê "informações sobre
+  pacotes" como **tabela de preço**, e preço exposto é tabu pra esse dono. A Casa Verona recusou
+  por isso ("são várias variantes", "o cliente tem que entrar em contato", "não quero um molde
+  engessado"). A oferta tem que dizer que a página **leva a pessoa pro atendimento dele**, não
+  substitui a conversa. Nunca falar em valor, tabela ou "pacotes no site" na primeira mensagem.
+- **"Vive só no Instagram" soa como crítica** ao jeito dele trabalhar (foi a frase que ela citou
+  ao recusar), e abre a porta pro "o Insta já resolve". O que funciona: **elogiar o Instagram e
+  separar os papéis**: "o Instagram é muito bom, mas quem chega pelo Google é outro cliente,
+  geralmente quem precisa daquilo naquela hora" (usado na Autobahn).
+- **O corpo vai numa mensagem só**, logo depois da abertura. Picotado em 4 ou 5 balões seguidos,
+  lê como ataque e como textão ao mesmo tempo.
+- **A pergunta final pede licença pra explicar quando não há prévia** ("quer que eu te explique
+  como funcionaria pra [Empresa]?") e pra **mostrar só quando a prévia existe**. O "seria uma
+  prioridade?" fica pra depois do primeiro sinal de interesse. Benefício na pergunta, só um e
+  só se sair do próprio mecanismo ("ganhar tempo no agendamento"), nunca resultado prometido
+  ("trazer mais clientes").
+- **Não perguntar o que você já sabe** ("vocês possuem site cadastrado?"): afirmar o fato.
+
+**Variações por lead:** o dossiê do dia traz de 3 a 5 variações por lead, cada uma com uma linha
+de "quando usar", pra escolher na hora do envio.
+
+**O jeito de escrever do Marcelo, sem cara de IA (29/09/2026).** O modelo que ele escreveu: *"Vi que
+vocês estão com anúncio novo de criolipólise e ultrassom levando para o WhatsApp. Para evitar que as
+pessoas apenas chamem, perguntem o valor e depois desapareçam, eu posso montar para vocês um WhatsApp
+que faz retorno automático para essas pessoas no momento certo."* A fórmula: **o fato que eu vi → "pra
+evitar que [problema]" → "eu posso montar pra vocês [solução]" → a pergunta.** O "pra evitar que" resolve
+a Regra 4 sem o "imagino": fala do problema como coisa a evitar, sem afirmar que acontece com ele. O que
+denuncia IA e sai: dois-pontos de efeito ("com anúncio é assim:", "eu faço isso:"), frase de impacto no
+fim ("e cada conversa dessas já foi paga"), lista de três coisas, "imagino que", "geralmente", "sem
+ninguém precisar lembrar de cada uma", elogio enfeitado. Frase curta, verbo simples, uma ideia por frase.
+
+**A variação simples (29/09/2026).** Uma mensagem só, que o Antônio mandou pra lista inteira em 28/09
+enquanto a versão elaborada ainda estava sendo revisada: *"Oi, [nome]! Tudo bem? Aqui é o [Marcelo ou
+Antônio], da Hórus. Vi o perfil de vocês no Instagram e reparei que vocês ainda não têm um site próprio.
+Já pensaram em ter um, pra aparecer no Google quando alguém procura [serviço] em [cidade]?"* Fica como
+variante B do passo 1 de todo lead, ao lado da abertura em dois passos. As duas entram no teste: o que
+responde mais decide, não a revisão.
+
+**Modelos reutilizáveis (segmento automotivo e estética), já com os ajustes:** só usar quando o
+fato for verdade naquele lead (conferir a categoria na ficha e refazer a busca antes).
+
+> **Categoria genérica (oficina de marca):** "Achei a oficina de vocês pesquisando manutenção de
+> [Marca] aqui na região. Vocês têm uma nota ótima, mas o Google coloca outros lugares na frente,
+> e um dos motivos é que a ficha de vocês tá como 'Mecânica' comum. Pro dono de [Marca], ter a
+> certeza de que tá levando o carro num especialista faz toda a diferença na hora de fechar. Quer
+> que eu te explique como corrigir isso?"
+
+> **Serviço específico escondido:** "Cara, vi que vocês têm ótimas avaliações, mas quando pesquisei
+> '[serviço exato] em [Cidade]', vocês apareceram lá pra baixo. A ficha tá cadastrada só como
+> mecânica geral, e ajustando isso e organizando o perfil dá pra subir bem nessa busca. Quer que eu
+> te mostre o que eu vi?"
+
+> **Estética automotiva (vitrificação, PPF, martelinho):** "Quem pesquisa vitrificação, PPF ou
+> martelinho de alto padrão aqui na região acaba caindo em [o que você viu na busca], e vocês, que
+> [mérito real que você viu], nem aparecem [onde apareceram]. Eu faço site e Google pra esse tipo de
+> serviço. Quer que eu te mostre como ficaria pra vocês?" (A primeira versão perguntava "vocês já
+> têm site ou é tudo no WhatsApp?": saiu, porque isso você confere sozinho.)
+
+## 11. Teste A/B de formato (aberto em 24/09/2026)
+
+O Marcelo trouxe um prompt de prospecção com outra tese pra mensagem 1 e mandou testar os dois:
+
+- **A · casa** (seções 8 e 10): abertura curta, depois o fato verificado, o que eu faço e o pedido
+  de licença ("quer que eu te explique?").
+- **B · curiosidade**: mensagem 1 sem se apresentar e sem oferta. Aponta um problema real e o
+  prejuízo que o dono não vê (quem cai no problema não avisa, vai pro concorrente) e fecha com uma
+  pergunta sobre o **negócio** dele (o que mais sai, a história), nunca sobre site ou marketing.
+  A mensagem 2, só depois da resposta: "aliás, nem me apresentei: sou o Marcelo", o que faço, e
+  "se fizer sentido, te mostro". Proibido: "achei melhor avisar", "vocês sabiam?", "quem cuida do
+  site?", prova social que a casa não tem.
+
+Nos dois: toda frase de fato conferida por dois caminhos independentes (tabela frase | fonte |
+como conferi), sem travessão, sem emoji, sem parêntese, link dentro da frase. O que não passar
+sai da mensagem. Cada disparo registra o formato (`disparos.formato`); comparar a taxa de
+resposta depois de uma semana e travar o vencedor aqui.
+
+## 12. Dez passos à frente: a conversa, não a mensagem (Marcelo, 29/09/2026)
+
+A mensagem é o primeiro lance de uma conversa que termina em reunião e proposta. Todo lead sai com:
+
+1. **Abertura pela resposta que ela provoca (objeção controlada).** Uma pergunta fácil, de duas saídas, sobre
+   um fato que o dono confere em segundos, em que as respostas prováveis abrem a porta. Caso de origem, a
+   Cavalcante: ela tem uma página de links, mas a ficha do Google está sem site. A abertura: *"a ficha aparece
+   sem site. É porque vocês concentram tudo no Instagram, ou ainda não deu tempo de ligar um site?"*. O "já tenho
+   site" que viria vira a deixa: *"vi sim, a sua página de links. O detalhe é que ela não está ligada à ficha."*
+   🔴 Nunca afirmação falsa pra provocar ("vocês não têm site" pra quem tem): o dono corrige e a gente vira quem
+   não olhou.
+2. **Uma variante do passo 2 pra cada resposta provável**, com pedido pequeno: licença pra explicar, pra montar
+   uma prévia (que só se monta depois do sim, a trava do Mullsanni) ou uma ligação de 10 minutos com dois horários.
+3. **O mapa de respostas:** já tenho site ou fornecedor, uso o Instagram, quanto custa, já tenho quem cuida, quem
+   é você, manda mais informações, agora não, silêncio de 4 dias, e o sim.
+4. **O caminho até o fechamento:** a pauta da R1 com as perguntas, o que descobrir antes da proposta, a proposta em
+   fases ancorada no ticket dele, e as oportunidades além da primeira venda.
+
+**Contrapeso (o que o 28/09 ensinou):** pensar mais longe não é revisar mais. O mapa sai pronto da investigação e
+o Marcelo só escolhe e manda. A resposta real do lead ensina mais do que a próxima rodada de revisão.
 
 ## Nota da casa (calibração)
 

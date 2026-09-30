@@ -85,3 +85,9 @@ perguntas de implicação e necessidade, maior a conversão.
 CFP. Prova social por depoimento também: proibida na Aion em qualquer formato, e
 restrita no Dr. Giovanni. Sobram reciprocidade, autoridade (CRO/CRP, formação,
 tempo de casa), consistência e afinidade.
+
+---
+
+## Fonte completa (29/09/2026)
+
+Este cartão é o resumo. A mente original do mega-brain está em `fontes/g4-educacao/mega-brain/` (`AGENT.md` + `SOUL.md`), 726 + 193 linhas. Destaques: frameworks principais, metodologias clássicas, terminologia do Brasil (calibração cultural), heurísticas com número, regras se-então e sempre/nunca. A `/consultar` lê o cartão e depois busca na fonte a parte do assunto (grep pelo título ou pelo código). Citar assim: `^[fontes/g4-educacao/mega-brain/AGENT.md:<seção ou código>]`.

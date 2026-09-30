@@ -42,6 +42,17 @@ quando deveria, o Crítico invalida a sessão.
 - Alerta conhecido: o texto atual deles no MundoPsicologos usa "os melhores
   profissionais da área". É superlativo vedado, não reaproveitar
 
+**Fisioterapia / COFFITO — régua de referência (Res. COFFITO 532/2021)**
+> Pesquisada em 22/09/2026 para o lead Danyfisio (prospecção). Confirmar a leitura final
+> antes do primeiro cliente de fisioterapia fechado.
+- Permitido desde 2021: divulgar texto, imagem e áudio de paciente, **com autorização
+  escrita do paciente (termo de consentimento)**
+- Vedado: identificar o paciente sem essa autorização, promessa de resultado
+- Na prática: selo com nota e volume do Google e botão "ver avaliações" é livre;
+  depoimento reproduzido só com termo assinado; widget que copia avaliações com nome e
+  foto, evitar
+- Fontes: CREFITO-17 (notícia da 532/2021) e Cartilha de Publicidade do CREFITO-3 (2024)
+
 **Permita-se Fitness**
 - Sem regulação de conselho, mas evitar promessa de resultado físico garantido
 - Cuidado com imagem de aluno sem autorização
@@ -51,7 +62,7 @@ quando deveria, o Crítico invalida a sessão.
 ```
 [ ] Superlativo? ("o melhor", "referência", "nº 1", "único")
 [ ] Promessa de resultado, cura ou prazo?
-[ ] Depoimento? (odonto: com autorização · psicologia: nunca)
+[ ] Depoimento? (odonto: com autorização · psicologia: nunca · fisioterapia: com termo assinado)
 [ ] Antes/depois, inclusive gerado por IA?
 [ ] Preço, desconto ou promoção como chamariz?
 [ ] Registro profissional visível? (CRO / CRP, mais responsável técnico)

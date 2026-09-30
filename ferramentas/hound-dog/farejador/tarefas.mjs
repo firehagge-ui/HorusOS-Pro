@@ -7,20 +7,26 @@ import { salvarEmpresa, registrarAtividade, adicionarItensLista, resumoCRM, deta
 import { criarOperador } from '../lib/operadores.mjs';
 import { rodarClaude } from './claude.mjs';
 import * as P from './prompts.mjs';
+import { revisar, similaridade } from '../app/js/revisor.js';
 import * as WA from './whatsapp.mjs';
 import { coletarESalvar } from './instagram.mjs';
 import { log } from './log.mjs';
 import { detectarObjecoesTexto } from './objecoes.mjs';
+import { midiaSemana, midiaAjuste, midiaTriagem, coletarAgora } from './midia.mjs';
+import { cicloAgente } from './agente.mjs';
+import { pedirCiclo } from '../lib/agentes.mjs';
 
 const FERR_PESQUISA = ['WebSearch', 'WebFetch', 'Read', 'Grep', 'Glob', 'mcp__firecrawl', 'mcp__hound-dog'];
+const FERR_INVESTIGACAO = [...FERR_PESQUISA, 'mcp__navegador'];
 
 /** Limite da assinatura do Claude não é erro: a tarefa espera e volta sozinha. */
-export const ehLimiteDoClaude = (e) => /session limit|usage limit|limite de uso|rate limit|resets? \d/i.test(String(e?.message || e || ''));
+export const ehLimiteDoClaude = (e) => /session limit|usage limit|weekly limit|hit your .{0,20}limit|limite de uso|rate limit|resets? \d/i.test(String(e?.message || e || ''));
 const AVISO_LIMITE = 'O limite da assinatura do Claude foi atingido. A tarefa volta sozinha assim que liberar.';
 const FERR_CHAT = ['Read', 'Grep', 'Glob', 'WebSearch', 'WebFetch', 'mcp__hound-dog', 'mcp__firecrawl'];
 
 async function config(chave, padrao = {}) { return (await q1('select valor from config where chave = $1', [chave]))?.valor ?? padrao; }
-const modeloDe = async (qual) => (await config('claude', {}))[qual] || (qual === 'modelo_analise' ? 'sonnet' : 'opus');
+// Tudo em Opus 5.5 com esforço alto por padrão (a leitura de conversa também, desde 29/09, pedido do Marcelo)
+const modeloDe = async (qual) => (await config('claude', {}))[qual] || 'claude-opus-5-5';
 
 /* =============================== Chat =============================== */
 export async function chat(job, progresso, cancelado) {
@@ -33,7 +39,11 @@ export async function chat(job, progresso, cancelado) {
   partes.push(`\nSITUAÇÃO DO CRM (resumo automático)\n${JSON.stringify(await resumoCRM(), null, 1).slice(0, 9000)}`);
   if (empresa_id) {
     const d = await detalheEmpresa(empresa_id);
-    if (d) partes.push(`\nEMPRESA EM FOCO (o Marcelo anexou)\n${JSON.stringify(d, null, 1).slice(0, 7000)}`);
+    if (d) partes.push(`\nEMPRESA EM FOCO (o Marcelo anexou; "ele", "ela", "esse lead", "a mensagem" = esta empresa)\n${JSON.stringify(d, null, 1).slice(0, 7000)}`);
+    const inv = await q1("select titulo, criado_em, nota_oportunidade, resumo, dados from pesquisas where empresa_id = $1 and status = 'pronta' order by criado_em desc limit 1", [empresa_id]);
+    if (inv) partes.push(`\nÚLTIMA INVESTIGAÇÃO (${new Date(inv.criado_em).toLocaleDateString('pt-BR', { timeZone: 'America/Bahia' })}, nota ${inv.nota_oportunidade ?? '?'})\n${inv.resumo || ''}\n${JSON.stringify(inv.dados?.briefing || inv.dados || {}, null, 1).slice(0, 9000)}`);
+    const disp = await q("select id, status, formato, passo, texto, verificacao, criado_em from disparos where empresa_id = $1 and status <> 'cancelado' order by criado_em desc limit 3", [empresa_id]);
+    if (disp.length) partes.push(`\nMENSAGENS NO DISPAROS\n${JSON.stringify(disp, null, 1).slice(0, 4000)}`);
   }
   if (pesquisa_id) {
     const p = await q1('select titulo, resumo, dados, conteudo_md from pesquisas where id = $1', [pesquisa_id]);
@@ -53,7 +63,15 @@ export async function chat(job, progresso, cancelado) {
   try {
     const r = await rodarClaude({
       prompt: partes.join('\n'),
-      sistema: `${P.REGRAS_CASA}\n\n${P.REGRAS_CRM}\n\nVocê está no chat do Hound Dog com o Marcelo (dono da Hórus). Responda curto e direto; use listas quando ajudar. Se ele pedir algo que dá para fazer com as ferramentas do CRM, faça e confirme.`,
+      sistema: `${P.REGRAS_CASA}\n\n${P.REGRAS_CRM}\n\nVocê está no chat do Hound Dog com o Marcelo (dono da Hórus). Responda curto e direto; use listas quando ajudar. Se ele pedir algo que dá para fazer com as ferramentas do CRM, faça e confirme.${empresa_id ? `
+
+HÁ UMA EMPRESA EM FOCO: toda pergunta é sobre ela, a não ser que ele diga outra. Use o id dela nas ferramentas.
+- "Atualize", "adicione ao histórico", "registre": hd_salvar_empresa (com motivo) ou hd_registrar_atividade. Diga em uma linha o que gravou.
+- "Confirme se está correto": confira na fonte (web, Firecrawl) antes de responder; diga o que viu, onde e quando. Não confirme de memória.
+- "Melhore a mensagem" ou "crie outra": leia a doutrina (_conhecimento/network/abordagem-e-prospeccao.md §8 a §11) e grave com
+  hd_preparar_disparo (substitui o rascunho anterior da mesma variante do mesmo passo; o corpo sempre com mais de uma abordagem: variantes "A", "B" e "C", cada uma com um angulo), com a tabela de verificação. Nada é enviado: o Marcelo aprova no Disparos.
+- "O que falta descobrir": as pendências da investigação e o que a ficha não tem, marcado [FALTA: ...].
+- Nunca mude WhatsApp nem telefone sem o Marcelo confirmar o número; nunca invente fato.` : ''}`,
       modelo: modelo || (await modeloDe('modelo_chat')), modo: 'horus', ferramentas: FERR_CHAT, timeoutMs: 8 * 60 * 1000,
       aoTexto: (t) => salvarParcial(t, ferramentas),
       aoFerramenta: (f, todas) => { ferramentas = todas; progresso(`${f.rotulo}${f.detalhe ? `: ${f.detalhe.slice(0, 60)}` : ''}`); salvarParcial(undefined, todas); },
@@ -69,6 +87,41 @@ export async function chat(job, progresso, cancelado) {
 }
 
 /* =============================== Análise de conversa =============================== */
+// Formato garantido da análise (--json-schema): acabou o "não devolveu a análise em JSON" (29/09)
+const TXT = { type: 'string' };
+const ESQ_ANALISE = {
+  type: 'object',
+  required: ['momento', 'resumo', 'temperatura', 'sugestoes', 'respostas_provaveis', 'evitar'],
+  properties: {
+    momento: TXT, resumo: TXT, intencao: TXT, temperatura: { type: 'string', enum: ['frio', 'morno', 'quente'] },
+    eh_bot: { type: 'boolean' }, eh_lead_comercial: { type: 'boolean' },
+    objecoes: { type: 'array', items: { type: 'object', properties: { id: TXT, rotulo: TXT, confianca: { type: 'number' }, leitura: TXT }, required: ['rotulo'] } },
+    sinais_compra: { type: 'array', items: TXT },
+    sugestoes: { type: 'array', items: { type: 'object', properties: { rotulo: TXT, texto: TXT }, required: ['rotulo', 'texto'] } },
+    respostas_provaveis: { type: 'array', items: { type: 'object', properties: { se: TXT, entao: TXT }, required: ['se', 'entao'] } },
+    evitar: { type: 'array', items: TXT },
+    proximo_estagio: { type: ['string', 'null'] }, proxima_acao: TXT,
+  },
+};
+
+/**
+ * Mensagem mandada pelo celular que é uma das preparadas no Disparos (29/09, LevSaúde: o Marcelo mandou o passo 2
+ * pelo celular e o painel continuou mostrando as três opções como se nada tivesse saído). Marca a preparada como
+ * enviada e descarta as outras abordagens do mesmo passo.
+ */
+async function reconciliarEnviosManuais(empresaId) {
+  const prep = await q("select id, passo, texto, criado_em from disparos where empresa_id = $1 and status in ('rascunho','aprovado')", [empresaId]);
+  if (!prep.length) return;
+  const saidas = await q(`select m.texto, m.momento, m.wa_id from whatsapp_mensagens m join whatsapp_conversas c on c.id = m.conversa_id
+    where c.empresa_id = $1 and m.direcao = 'out' and m.texto is not null order by m.momento desc limit 30`, [empresaId]);
+  for (const d of prep) {
+    const par = saidas.find((m) => new Date(m.momento) > new Date(d.criado_em) && similaridade(m.texto, d.texto) >= 0.6);
+    if (!par) continue;
+    await q("update disparos set status = 'enviado', enviado_em = $2, wa_id = coalesce(wa_id, $3), erro = 'Enviado pelo celular (reconhecido pelo Hounder)' where id = $1", [d.id, par.momento, par.wa_id]);
+    await q("update disparos set status = 'cancelado', erro = 'Outra abordagem deste passo já foi enviada' where empresa_id = $1 and passo = $2 and id <> $3 and status in ('rascunho','aprovado')", [empresaId, d.passo, d.id]);
+    log('disparos', `passo ${d.passo} reconhecido como enviado pelo celular`);
+  }
+}
 export async function analisarConversa(job, progresso, cancelado) {
   const convId = job.conversa_id || job.entrada?.conversa_id;
   const conversa = await q1('select * from whatsapp_conversas where id = $1', [convId]);
@@ -81,14 +134,31 @@ export async function analisarConversa(job, progresso, cancelado) {
   ]);
   const ultimaIn = [...mensagens].reverse().find((m) => m.direcao === 'in');
   const suspeitas = detectarObjecoesTexto(ultimaIn?.texto || '', playbook);
-  progresso('Lendo a conversa e o playbook');
+  let briefing = null; let disparos = [];
+  if (empresa) {
+    await reconciliarEnviosManuais(empresa.id);
+    briefing = (await q1("select dados from pesquisas where empresa_id = $1 and status = 'pronta' order by criado_em desc limit 1", [empresa.id]))?.dados?.briefing || null;
+    if (briefing) briefing = Object.fromEntries(['veredito', 'tese', 'fatos', 'nao_usar', 'compliance', 'mapa', 'respostas', 'pendencias', 'sinais'].filter((k) => briefing[k]).map((k) => [k, briefing[k]]));
+    disparos = await q("select passo, variante, angulo, status, texto from disparos where empresa_id = $1 and status in ('rascunho','aprovado','agendado','enviado') order by passo, variante", [empresa.id]);
+  }
+  const modelo = await modeloDe('modelo_analise');
+  progresso('Lendo a conversa com o conhecimento de prospecção da casa');
   try {
+    // Modo horus com ferramentas SÓ de leitura (29/09, pedido do Marcelo: usar todo o conhecimento). Lê o
+    // repositório (mentes completas em _conselho/mentes/fontes, network, briefing), mas não escreve, não
+    // executa comando e não mexe no CRM: o texto do lead não tem como virar ação.
     const r = await rodarClaude({
-      prompt: P.promptAnalise({ empresa, conversa, mensagens, playbook, suspeitas }),
-      sistema: P.REGRAS_CASA, modelo: await modeloDe('modelo_analise'), modo: 'leve', timeoutMs: 4 * 60 * 1000, deveParar: cancelado,
+      prompt: P.promptAnalise({ empresa, conversa, mensagens, playbook, suspeitas, briefing, disparos }),
+      sistema: P.REGRAS_CASA, modelo, modo: 'horus', ferramentas: ['Read', 'Grep', 'Glob'],
+      proibidas: ['WebSearch', 'WebFetch', 'mcp__hound-dog', 'mcp__firecrawl'], esquemaJson: ESQ_ANALISE,
+      timeoutMs: 8 * 60 * 1000, deveParar: cancelado,
+      aoFerramenta: (f) => progresso(`${f.rotulo}${f.detalhe ? `: ${f.detalhe.slice(0, 70)}` : ''}`),
     });
     const a = r.json;
     if (!a) throw new Error('O Claude não devolveu a análise em JSON.');
+    a._modelo = modelo;
+    a._consultou = (r.ferramentas || []).filter((f) => !/structured/i.test(`${f.nome || ''} ${f.rotulo || ''}`))
+      .map((f) => f.detalhe || f.rotulo).filter((x) => x && !/structuredoutput/i.test(x)).slice(0, 12);
     await q("update whatsapp_conversas set analise = $2, analise_status = 'pronta', analise_em = now(), bot_detectado = coalesce($3, bot_detectado) where id = $1",
       [convId, JSON.stringify(a), typeof a.eh_bot === 'boolean' ? a.eh_bot : null]);
     if (empresa) {
@@ -174,6 +244,106 @@ export async function enriquecerEmpresa(job, progresso, cancelado) {
   }
 }
 
+/* =============================== Investigação profunda (esteira) =============================== */
+// Um lead por vez (a fila garante). Decide Qualificado ou Perdido, grava o briefing em campos,
+// atualiza a ficha e, se qualificado, deixa o rascunho no Disparos (nada é enviado sem o Marcelo).
+function briefingParaMd(b = {}, d = {}) {
+  const l = (arr, f) => (arr || []).map(f).join('\n');
+  return [
+    `## Veredito\n**${d.decisao === 'perdido' ? 'Perdido' : 'Qualificado'} · nota ${d.nota ?? '?'}.** ${b.veredito || ''}`,
+    (b.personalizacao || b.sinais?.length || b.por_que_agora) && `## Sinais\n${b.personalizacao ? `Personalização: **${b.personalizacao}**.` : ''}${b.por_que_agora ? ` Por que agora: ${b.por_que_agora}.` : ''}\n\n${l(b.sinais, (x) => `- **${x.id || ''}** ${x.fato || ''}${x.forca ? ` (${x.forca})` : ''}`)}`,
+    b.leitura?.length && `## Leitura cruzada\n${l(b.leitura, (x) => `- ${x.texto} **(${x.classe === 'fato' ? 'fato' : 'hipótese'})**`)}`,
+    b.pessoas?.length && `## Pessoas\n${l(b.pessoas, (x) => `- **${x.nome}**, ${x.papel || ''}${x.fonte ? ` (${x.fonte})` : ''}`)}`,
+    b.empresa && `## Empresa\n${[b.empresa.cnpj && `CNPJ ${b.empresa.cnpj}`, b.empresa.razao_social, b.empresa.abertura && `aberta em ${b.empresa.abertura}`].filter(Boolean).join(' · ')}${b.empresa.cnaes?.length ? `\n\nAtividades: ${b.empresa.cnaes.join(', ')}` : ''}${b.empresa.obs ? `\n\n${b.empresa.obs}` : ''}`,
+    b.concorrencia?.length && `## Concorrência\n${l(b.concorrencia, (x) => `- **${x.nome}**: ${x.obs || ''}`)}`,
+    b.tese && `## Tese recomendada\n${b.tese}${b.tese_alternativas?.length ? `\n\nAlternativas:\n${l(b.tese_alternativas, (x) => `- ${x}`)}` : ''}`,
+    b.custo && `## O que custa não resolver\n${b.custo}`,
+    b.vender && `## O que vender\n- **Fase 1:** ${b.vender.fase1 || '—'}\n- **Fase 2:** ${b.vender.fase2 || '—'}\n- **Não oferecer:** ${b.vender.nao_oferecer || '—'}`,
+    b.mensagens?.length && `## Mensagens\n${l(b.mensagens, (x) => `**${x.rotulo}**${x.quando ? ` (${x.quando})` : ''}\n> ${x.texto}`)}`,
+    b.respostas?.length && `## Se responder assim\n${l(b.respostas, (x) => `- **"${x.se}"** → ${x.entao}`)}`,
+    b.nao_usar?.length && `## Não usar na mensagem\n${l(b.nao_usar, (x) => `- ${x}`)}`,
+    b.compliance?.length && `## Compliance\n${l(b.compliance, (x) => `- ${x}`)}`,
+    b.fatos?.length && `## Fatos conferidos\n| Fato | Fonte | Como conferi |\n|---|---|---|\n${l(b.fatos, (x) => `| ${x.fato} | ${x.fonte} | ${x.como_conferiu || ''} |`)}`,
+    b.pendencias?.length && `## Pendências\n${l(b.pendencias, (x) => `- ${x}`)}`,
+    b.autocritica?.length && `## Autocrítica (o que a checklist pegou)\n${l(b.autocritica, (x) => `- ${x}`)}`,
+  ].filter(Boolean).join('\n\n');
+}
+
+async function proximoFormato() {
+  const r = await q("select formato, count(*)::int n from disparos where status <> 'cancelado' group by formato");
+  const n = Object.fromEntries(r.map((x) => [x.formato, x.n]));
+  return (n.casa || 0) <= (n.curiosidade || 0) ? 'casa' : 'curiosidade';
+}
+
+export async function investigarEmpresa(job, progresso, cancelado) {
+  const empresaId = job.empresa_id || job.entrada?.empresa_id;
+  const empresa = await q1('select * from empresas where id = $1', [empresaId]);
+  if (!empresa) throw new Error('Empresa não encontrada');
+  const atividades = await q('select * from atividades where empresa_id = $1 order by criado_em desc limit 20', [empresaId]);
+  const linha = empresa.lista_item_id ? (await q1('select dados from lista_itens where id = $1', [empresa.lista_item_id]))?.dados : null;
+  const anterior = await q1("select resumo from pesquisas where empresa_id = $1 and status = 'pronta' order by criado_em desc limit 1", [empresaId]);
+  const formato = job.entrada?.formato || await proximoFormato();
+  // Variação no lote (29/09): o que já foi preparado pra outros leads, pra este não sair com o mesmo esqueleto
+  const lote = (await q(`select texto from disparos where empresa_id <> $1 and status in ('rascunho','aprovado','agendado','enviado')
+    and criado_em > now() - interval '14 days' order by criado_em desc limit 16`, [empresaId])).map((x) => x.texto);
+  const pesquisa = await q1(`insert into pesquisas (tipo, titulo, empresa_id, status, job_id, criado_por) values ('dossie', $1, $2, 'processando', $3, 'claude') returning id`,
+    [`Investigação — ${empresa.nome}`, empresaId, job.id]);
+  progresso('Investigando: empresa, pessoas, reputação, presença, dinheiro, concorrência');
+  try {
+    const r = await rodarClaude({
+      prompt: P.promptInvestigacao({ empresa, atividades, linhaOriginal: linha, pesquisasAnteriores: anterior?.resumo, formato, lote }),
+      sistema: P.REGRAS_CASA, modelo: await modeloDe('modelo_pesquisa'), modo: 'horus', ferramentas: FERR_INVESTIGACAO, timeoutMs: 45 * 60 * 1000,
+      aoFerramenta: (f) => progresso(`${f.rotulo}${f.detalhe ? `: ${f.detalhe.slice(0, 70)}` : ''}`),
+      deveParar: cancelado,
+    });
+    const d = r.json;
+    if (!d || !d.decisao) throw new Error('O Claude não devolveu a investigação no formato esperado.');
+    const b = d.briefing || {};
+    // Lead com agente ativo: a investigação vira contexto e quem escreve a mensagem é o agente, no ciclo que vem depois
+    // (29/09: o agente da LevSaúde pediu investigação com a conversa já no passo 2; gravar passo 1 aqui atropelaria)
+    const comAgente = (await q1("select 1 from agentes where empresa_id = $1 and status = 'ativo'", [empresaId])) != null;
+    const limpo = Object.fromEntries(Object.entries(d.atualizacoes || {}).filter(([k, v]) => v !== null && v !== '' && v !== undefined && !['whatsapp', 'telefone'].includes(k)));
+    const tags = [...new Set([...(empresa.tags || []), 'investigado'])];
+    const estagio = d.decisao === 'perdido' ? 'perdido' : (['novo', 'qualificado'].includes(empresa.estagio) ? 'qualificado' : empresa.estagio);
+    await salvarEmpresa({ id: empresaId, ...limpo, tags, estagio, resumo: d.resumo || empresa.resumo,
+      proxima_acao: comAgente ? empresa.proxima_acao : d.decisao === 'perdido' ? null : 'Revisar o briefing e aprovar a mensagem no Disparos',
+      _motivo: `Investigação profunda: ${d.decisao} (${d.motivo_decisao || ''})` }, 'claude');
+    await q(`update pesquisas set status = 'pronta', titulo = $2, resumo = $3, conteudo_md = $4, nota_oportunidade = $5, dados = $6 where id = $1`,
+      [pesquisa.id, `Briefing — ${empresa.nome}`, d.resumo || null, briefingParaMd(b, d), Number.isFinite(d.nota) ? Math.round(d.nota) : null,
+        JSON.stringify({ briefing: b, decisao: d.decisao, motivo_decisao: d.motivo_decisao, nota: d.nota, formato, fontes: d.fontes || [] })]);
+    let disparo = null;
+    const tel = String(empresa.whatsapp || '').replace(/\D/g, '');
+    if (!comAgente && d.decisao !== 'perdido' && d.disparo?.texto && tel.length >= 12 && !/[—–]/.test(d.disparo.texto)) {
+      await q("update disparos set status = 'cancelado', erro = 'Substituído pela investigação nova' where empresa_id = $1 and status in ('rascunho','aprovado')", [empresaId]);
+      // Revisor mecânico: o que ele acusar vai junto e aparece no Disparos (veto em vermelho). Não barra aqui,
+      // porque a investigação é cara; quem decide é o Marcelo, com o aviso na frente dele.
+      const rev = (texto, passo) => JSON.stringify(revisar(texto, { passo, empresa: empresa.nome, lote }).itens);
+      const textoP1 = d.disparo.texto.replace(/\s*\n+\s*/g, ' ').trim();
+      disparo = await q1(`insert into disparos (empresa_id, telefone, texto, formato, passo, verificacao, revisao, criado_por) values ($1,$2,$3,$4,1,$5,$6,'claude') returning id`,
+        [empresaId, tel, textoP1, formato, JSON.stringify(d.disparo.verificacao || []), rev(textoP1, 1)]);
+      // Os passos seguintes também vão pro Disparos (antes ficavam só no briefing e a ficha mostrava duas versões).
+      // A verificação do corpo são os fatos conferidos da investigação.
+      const verifFatos = (b.fatos || []).map((f) => ({ frase: f.fato, fonte: f.fonte || '', como_conferiu: f.como_conferiu || '' }));
+      for (const m of (b.mensagens || []).filter((x) => (Number(x.passo) > 1 || (Number(x.passo) === 1 && ['B', 'C'].includes(x.variante))) && x.texto && !/[—–]/.test(x.texto))) {
+        if (m.texto.trim() === d.disparo.texto.trim()) continue;
+        const variante = ['A', 'B', 'C'].includes(m.variante) ? m.variante : 'A';
+        const textoM = m.texto.replace(/\s*\n+\s*/g, ' ').trim();
+        await q(`insert into disparos (empresa_id, telefone, texto, formato, passo, variante, angulo, verificacao, revisao, criado_por) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,'claude')`,
+          [empresaId, tel, textoM, formato, Number(m.passo), variante, m.angulo ? String(m.angulo).slice(0, 60) : null, JSON.stringify(verifFatos.length ? verifFatos : d.disparo.verificacao || []), rev(textoM, Number(m.passo))]);
+      }
+    }
+    await registrarAtividade(empresaId, 'pesquisa', `Investigação profunda: ${d.decisao === 'perdido' ? 'perdido' : 'qualificado'}`, d.motivo_decisao || d.resumo || null, 'claude');
+    await WA.enviarParaMim(`🔎 *Investigação pronta:* ${empresa.nome}\n${d.decisao === 'perdido' ? '❌ Perdido' : `✅ Qualificado · nota ${d.nota ?? '?'}`}\n${d.motivo_decisao || ''}${disparo ? '\n\nMensagem no Disparos esperando você.' : comAgente ? '\n\nO agente do lead vai ler e decidir o próximo passo.' : ''}\n\n— Hounder`).catch(() => {});
+    // Lead com agente: a investigação é o ciclo zero, e o agente relê tudo com o crítico antes de o Marcelo aprovar
+    await pedirCiclo(empresaId, 'investigacao_pronta', `Investigação: ${d.decisao} (nota ${d.nota ?? '?'}). ${d.motivo_decisao || ''}${job.entrada?.motivo ? ` Você pediu porque: ${job.entrada.motivo}` : ''}`).catch(() => {});
+    return { decisao: d.decisao, nota: d.nota, disparo: disparo?.id || null };
+  } catch (e) {
+    await q("update pesquisas set status = $2, resumo = $3 where id = $1",
+      [pesquisa.id, ehLimiteDoClaude(e) ? 'fila' : 'erro', ehLimiteDoClaude(e) ? AVISO_LIMITE : String(e.message).slice(0, 300)]).catch(() => {});
+    throw e;
+  }
+}
+
 /* =============================== Pesquisa de mercado =============================== */
 export async function pesquisaMercado(job, progresso, cancelado) {
   const { pesquisa_id, tipo = 'mercado', nicho, cidade, perguntas } = job.entrada;
@@ -232,6 +402,82 @@ export async function enriquecerLista(job, progresso, cancelado) {
   return { atualizados, pedidos: itens.length };
 }
 
+/* =============================== Triagem da lista (Spark → Novo) =============================== */
+// Confere cada lead da lista (existe? o Spark acertou? tem gancho?) e decide: passa vai pro funil em Novo,
+// descarta fica na lista marcado, com o motivo. Nada daqui vai pro Disparos: isso só depois da investigação.
+export async function triarLista(job, progresso, cancelado) {
+  const ids = job.entrada?.item_ids || [];
+  const itens = await q(`select i.*, l.nome lista_nome, l.origem lista_origem from lista_itens i join listas l on l.id = i.lista_id
+    where i.id = any($1) and not i.descartado and i.empresa_id is null`, [ids]);
+  if (!itens.length) return { passaram: 0, descartados: 0, pedidos: ids.length };
+  progresso(`Triagem de ${itens.length} leads: existe, o Spark acertou, tem gancho`);
+  const enviar = itens.map((i) => ({ id: i.id, nome: i.nome, categoria: i.categoria, cidade: i.cidade, bairro: i.bairro, endereco: i.endereco,
+    whatsapp: i.whatsapp, telefone: i.telefone, instagram: i.instagram, site: i.site, site_status: i.site_status, observacao: i.observacao, dados: i.dados }));
+  const r = await rodarClaude({
+    prompt: P.promptTriagem({ itens: enviar }), sistema: P.REGRAS_CASA, modelo: await modeloDe('modelo_pesquisa'), modo: 'horus',
+    ferramentas: FERR_INVESTIGACAO, timeoutMs: Math.min(60, 8 + itens.length * 6) * 60 * 1000,
+    aoFerramenta: (f) => progresso(`${f.rotulo}${f.detalhe ? `: ${f.detalhe.slice(0, 60)}` : ''}`), deveParar: cancelado,
+  });
+  const res = r.json?.itens;
+  if (!Array.isArray(res)) throw new Error('O Claude não devolveu a triagem no formato esperado.');
+  const { pontuar, detectarRegulado, linhaParaItem, mapearColunas } = await import('../app/js/score.js');
+  const opc = (await q("select chave, valor from config where chave in ('score','nichos_conhecidos','praca')")).reduce((a, l) => ({ ...a, [l.chave]: l.valor }), {});
+  const hoje = new Date().toLocaleDateString('pt-BR', { timeZone: 'America/Bahia', day: '2-digit', month: '2-digit' });
+  const passaram = [], descartados = [];
+  for (const up of res) {
+    const it = itens.find((i) => i.id === up.id);
+    if (!it) continue;
+    const campos = ['site', 'site_status', 'instagram', 'instagram_seguidores', 'google_nota', 'google_avaliacoes', 'gmb_status', 'roda_anuncio'];
+    const novo = Object.fromEntries(campos.filter((c) => up[c] !== undefined && up[c] !== null && up[c] !== '').map((c) => [c, up[c]]));
+    if (novo.site_status && !['sem', 'fora_do_ar', 'ruim', 'ok'].includes(novo.site_status)) delete novo.site_status;
+    if (novo.instagram) novo.instagram = String(novo.instagram).replace(/^@/, '').trim();
+    const comb = { ...it, ...novo };
+    const p = pontuar(comb, { pesos: opc.score, nichos: opc.nichos_conhecidos, praca: opc.praca?.regiao });
+    const passa = up.decisao === 'passa';
+    const div = (up.divergencias || []).filter(Boolean);
+    const nota = `Triagem ${hoje}: ${passa ? 'passou' : 'descartado'}. ${up.motivo || ''}${div.length ? ` Divergências: ${div.join(' · ')}` : ''}`.trim();
+    const cols = Object.keys(novo);
+    await q(`update lista_itens set ${cols.map((c, i) => `${c} = $${i + 2}, `).join('')}score = $${cols.length + 2}, prioridade = $${cols.length + 3},
+      score_motivos = $${cols.length + 4}, observacao = $${cols.length + 5}, descartado = $${cols.length + 6} where id = $1`,
+      [it.id, ...cols.map((c) => novo[c]), p.score, p.prioridade, JSON.stringify(p.motivos), nota.slice(0, 1500), !passa]);
+    if (!passa) { descartados.push(`${it.nome}: ${up.motivo || 'sem motivo'}`); continue; }
+    // Passou: entra no funil em Novo (mesmo mapeamento do botão "Funil" da lista). Se já existe no CRM, só liga.
+    const existente = await q1(`select id from empresas where lista_item_id = $1 or (instagram is not null and lower(instagram) = lower($2))
+      or (whatsapp is not null and $3 <> '' and right(whatsapp, 8) = right($3, 8)) limit 1`,
+      [it.id, comb.instagram || '__nada__', String(it.whatsapp || '').replace(/\D/g, '')]);
+    let empId = existente?.id;
+    if (!empId) {
+      const cru = it.dados && Object.keys(it.dados).length ? linhaParaItem(it.dados, mapearColunas(Object.keys(it.dados))) : {};
+      const conselho = detectarRegulado(`${it.categoria || ''} ${it.nome}`);
+      const s = await salvarEmpresa({
+        nome: it.nome, categoria: it.categoria, cidade: it.cidade, bairro: it.bairro, endereco: it.endereco, telefone: it.telefone, whatsapp: it.whatsapp,
+        instagram: comb.instagram, instagram_seguidores: comb.instagram_seguidores, site: comb.site, site_status: comb.site_status, google_nota: comb.google_nota,
+        google_avaliacoes: comb.google_avaliacoes, gmb_status: comb.gmb_status, roda_anuncio: comb.roda_anuncio, cnpj: it.cnpj,
+        ...(conselho ? { regulado: true, conselho } : {}), estagio: 'novo', relacao: 'lead', tags: ['triado'],
+        origem: it.lista_origem === 'claude' ? 'claude' : it.lista_origem === 'network' ? 'network' : 'spark', origem_detalhe: it.lista_nome, lista_item_id: it.id,
+        decisor: cru.decisor || null, email: cru.email || null, dor: cru.observacao || null,
+        resumo: cru.servico_sugerido ? `Serviço sugerido na lista: ${cru.servico_sugerido}` : null,
+        gancho: up.gancho || null,
+      }, 'claude');
+      empId = s.empresa.id;
+      if (!s.criada) { await q('update lista_itens set empresa_id = $2 where id = $1', [it.id, empId]); passaram.push(`${it.nome} (já estava no CRM)`); continue; }
+    } else {
+      await q('update lista_itens set empresa_id = $2 where id = $1', [it.id, empId]);
+      passaram.push(`${it.nome} (já estava no CRM)`);
+      continue;
+    }
+    await q('update lista_itens set empresa_id = $2 where id = $1', [it.id, empId]);
+    await registrarAtividade(empId, 'pesquisa', 'Triagem da lista: passou', nota, 'claude');
+    passaram.push(it.nome);
+  }
+  const linhas = [`🧹 *Triagem pronta:* ${passaram.length} pro Novo, ${descartados.length} descartado${descartados.length === 1 ? '' : 's'}`];
+  if (passaram.length) linhas.push('', '*Foram pro funil*', ...passaram.map((n) => `• ${n}`));
+  if (descartados.length) linhas.push('', '*Descartados*', ...descartados.map((n) => `• ${n.slice(0, 140)}`));
+  linhas.push('', 'Próximo passo: botão Investigar na ficha de quem passou.', '', '— Hounder');
+  await WA.enviarParaMim(linhas.join('\n')).catch(() => {});
+  return { passaram: passaram.length, descartados: descartados.length, pedidos: ids.length };
+}
+
 /* =============================== Mensagem personalizada =============================== */
 export async function mensagemPersonalizada(job, progresso, cancelado) {
   const empresaId = job.empresa_id || job.entrada?.empresa_id;
@@ -242,10 +488,12 @@ export async function mensagemPersonalizada(job, progresso, cancelado) {
     q('select * from playbook_objecoes order by ordem'),
     q(`select m.direcao, m.texto, m.tipo, m.momento from whatsapp_mensagens m join whatsapp_conversas c on c.id = m.conversa_id where c.empresa_id = $1 order by m.momento desc limit 20`, [empresaId]).then((r) => r.reverse()),
   ]);
-  progresso('Escrevendo a mensagem');
+  progresso('Escrevendo a mensagem com o conhecimento de prospecção da casa');
+  // Mesmo tratamento da análise de conversa (29/09): doutrina no pedido + leitura do repositório, sem escrita
   const r = await rodarClaude({
-    prompt: P.promptMensagem({ empresa, atividades, mensagens, playbook, pedido: job.entrada?.pedido }),
-    sistema: P.REGRAS_CASA, modelo: await modeloDe('modelo_analise'), modo: 'leve', timeoutMs: 4 * 60 * 1000, deveParar: cancelado,
+    prompt: `${P.promptMensagem({ empresa, atividades, mensagens, playbook, pedido: job.entrada?.pedido })}\n\nO CONHECIMENTO DE PROSPECÇÃO DA CASA (use tudo; se precisar de mais, leia _conselho/mentes/fontes/ e _conhecimento/network/)\n${P.doutrinaConversa()}`,
+    sistema: P.REGRAS_CASA, modelo: await modeloDe('modelo_analise'), modo: 'horus', ferramentas: ['Read', 'Grep', 'Glob'],
+    proibidas: ['WebSearch', 'WebFetch', 'mcp__hound-dog', 'mcp__firecrawl'], timeoutMs: 8 * 60 * 1000, deveParar: cancelado,
   });
   if (!r.json?.variantes?.length) return { texto: r.texto };
   return { variantes: r.json.variantes, porque: r.json.porque };
@@ -253,6 +501,8 @@ export async function mensagemPersonalizada(job, progresso, cancelado) {
 
 /* =============================== Instagram =============================== */
 export async function instagram(job, progresso) {
+  // Com o 📣 Mídia ligado, a coleta é pela API oficial (a leitura pública foi bloqueada pela Meta)
+  if ((await config('midia', {})).ativo) { progresso('Coletando pela API oficial'); return { resumo: await coletarAgora() }; }
   const cfg = await config('instagram', { handle: 'horuspublicidade' });
   const handle = job.entrada?.handle || cfg.handle;
   progresso(`Coletando @${handle}`);
@@ -328,8 +578,12 @@ export const TAREFAS = {
   chat, analisar_conversa: analisarConversa, pesquisar_clientes: pesquisarClientes, enriquecer_empresa: enriquecerEmpresa,
   pesquisa_mercado: pesquisaMercado, enriquecer_lista: enriquecerLista, mensagem_personalizada: mensagemPersonalizada,
   instagram, ideias_instagram: ideiasInstagram, whatsapp_conectar: whatsappConectar, whatsapp_desconectar: whatsappDesconectar,
-  whatsapp_codigo: whatsappCodigo, whatsapp_enviar: whatsappEnviar, criar_operador: criarOperadorJob,
+  whatsapp_codigo: whatsappCodigo, whatsapp_enviar: whatsappEnviar, criar_operador: criarOperadorJob, investigar_empresa: investigarEmpresa, triar_lista: triarLista,
+  midia_semana: midiaSemana, midia_ajuste: midiaAjuste, midia_triagem: midiaTriagem, agente_ciclo: cicloAgente,
 };
 
+/** Tarefas que abrem o navegador do Farejador: uma de cada vez (o perfil do Chrome não abre duas vezes). */
+export const USA_NAVEGADOR = new Set(['investigar_empresa', 'triar_lista']);
+
 /** Tarefas que usam o Claude (limite de concorrência menor). */
-export const USA_CLAUDE = new Set(['chat', 'analisar_conversa', 'pesquisar_clientes', 'enriquecer_empresa', 'pesquisa_mercado', 'enriquecer_lista', 'mensagem_personalizada', 'ideias_instagram']);
+export const USA_CLAUDE = new Set(['investigar_empresa', 'triar_lista', 'chat', 'analisar_conversa', 'pesquisar_clientes', 'enriquecer_empresa', 'pesquisa_mercado', 'enriquecer_lista', 'mensagem_personalizada', 'ideias_instagram', 'midia_semana', 'midia_ajuste', 'midia_triagem', 'agente_ciclo']);

@@ -130,6 +130,12 @@ A regra que fica:
 - [ ] `noindex` retirado no dia da publicação, e não antes
 - [ ] Uma checagem em 390px de largura, não só no desktop
 - [ ] Peso da página conferido
+- [ ] **Vídeo testado tocando de verdade.** O Chromium que vem com o Playwright **não tem H.264**:
+      o `.mp4` falha calado e parece bug do site. Testar com `chromium.launch({ channel: 'chrome' })`
+      (o Chrome instalado). *Casa Verona, 24/09/2026.*
+- [ ] **Peso medido por HTTP, não por `file://`.** A API de performance não lista recurso local;
+      servir a pasta (`python -m http.server`) e somar as respostas. No Windows esse servidor
+      reseta conexão de vez em quando sob carga paralela: repetir antes de chamar de bug.
 
 ### Como olhar em 390px de verdade (armadilha)
 
@@ -164,8 +170,10 @@ Depois recortar os 390px da esquerda. Duas coisas mais:
 ## 5. Regras de conteúdo em cliente de saúde
 
 - Registro profissional visível para cada pessoa citada **e** para a pessoa jurídica
-- Sem depoimento, sem antes/depois, sem promessa de resultado, sem superlativo,
-  sem preço como chamariz, sem autoteste ou quiz de diagnóstico
+- Sem antes/depois, sem promessa de resultado, sem superlativo, sem preço como
+  chamariz, sem autoteste ou quiz de diagnóstico
+- Depoimento depende do conselho: psicologia nunca, odontologia e fisioterapia só com
+  autorização escrita (ver `_conselho/cargos/compliance.md`). Na dúvida, sem depoimento
 - "Para quem é" descreve **situações**, nunca sintomas em formato de teste
 - Dado que não temos vira placeholder marcado, nunca texto plausível inventado
 - Clínica de saúde mental leva faixa de crise (CVV 188, emergência 192)

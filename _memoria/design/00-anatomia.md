@@ -219,6 +219,7 @@ Nos dois, o site mostra o produto muito bem e **não responde o que trava a comp
 |---|---|---|
 | Doceria de encomenda | foto de bolo, categorias, formulário de orçamento | **prazo mínimo, pedido mínimo, área de entrega** |
 | Interiores de alto padrão | portfólio, filosofia, foto grande | **etapas, prazo em semanas, faixa de investimento, o que está fora do escopo** |
+| Espaço de eventos (23/09/2026, `espaco-eventos-tres-sites.md`) | tipos de evento, capacidade, galeria, formulário de orçamento | **preço de partida, o que o pacote inclui, e marcar visita** (o botão é "orçamento" num negócio que fecha na visita) |
 
 O visitante desses dois nichos chega com uma pergunta de **viabilidade**, não de
 gosto: "ainda dá tempo?", "quanto tempo isso leva?", "cabe no meu bolso?". Enquanto a

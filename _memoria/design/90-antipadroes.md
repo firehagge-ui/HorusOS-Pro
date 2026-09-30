@@ -971,6 +971,38 @@ com você** — e por isso o contato é que ganha a escala de título, sem "E-ma
 frente: o formato do dado já diz o que ele é.
 → *Origem: web3.xmethod.de, aplicado no site da Hórus, 25/08/2026.*
 
+**Legenda que muda de tamanho dentro de coluna `auto`.** Slideshow com legenda por foto, numa
+coluna de grid dimensionada pelo conteúdo: cada legenda nova tem outra largura, a coluna cresce,
+e o hero **inteiro reflui a cada troca de foto**. Na Casa Verona a janela andava de lugar e o
+título virava "inesquecívei" (o "s" cortado). Não aparece em print estático, só clicando foto por
+foto. A saída: o bloco da legenda com `width:0; min-width:100%` (ocupa a coluna, mas não entra na
+conta da largura dela) e altura mínima de duas linhas. Testar clicando cada foto em vários
+tamanhos de tela e comparando a posição da janela.
+→ *Origem: Casa Verona, rodada 3, 24/09/2026. 11 tamanhos, de 1920 a 360.*
+
+**Recorte da animação de título com `overflow:clip` corta o itálico.** A linha que "sobe" na
+entrada precisa de máscara embaixo, e o `overflow` recorta os quatro lados: o itálico, que avança
+além da própria caixa, perde a última letra. Recortar só embaixo:
+`clip-path: inset(-50% -50% 0 -50%)`, e só quando a animação existe (`.js-motion`).
+→ *Origem: Casa Verona, rodada 3, 24/09/2026.*
+
+**Serifa de exibição de alto contraste como máscara de vídeo.** No "VERONA" com o vídeo dentro
+das letras, a Bodoni no tamanho ótico de cartaz (opsz 96) tem traço fino de fio de cabelo: o N e
+o A viraram barras soltas e a palavra não lia. Letra que serve de janela precisa de haste grossa:
+`font-variation-settings: "opsz" 6` e peso 700.
+→ *Origem: Casa Verona, rodada 3, 24/09/2026.*
+
+**Ornamento girado vaza a tela no celular.** `transform: rotate()` aumenta a caixa do elemento, e
+uma rosa decorativa no canto do cartão criou 15px de rolagem lateral a 390px (e o cabeçalho fixo
+esticou junto). `overflow-x: clip` na seção resolve sem quebrar `position: sticky` (o `hidden`
+quebraria). Medir `scrollWidth` a 390 **e** a 360: o arranjo da placa só vazava no menor.
+→ *Origem: Casa Verona, rodada 3, 24/09/2026.*
+
+**Capa de vídeo (`poster`) ignora carregamento preguiçoso.** `preload="none"` segura o vídeo, não a
+capa: as quatro capas baixavam na abertura da página, lá do rodapé, e somavam 340 KB. Capa entra
+por `data-poster` e o JS põe no `poster` quando o vídeo chega a ~900px da tela.
+→ *Origem: Casa Verona, rodada 3, 24/09/2026. Carga inicial caiu de 1.047 para 697 KB.*
+
 ---
 
 ## O que o detector pega sozinho

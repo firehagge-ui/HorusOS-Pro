@@ -63,11 +63,14 @@ export function rotuloFerramenta(nome, input = {}) {
  */
 export function rodarClaude({
   prompt, sistema = '', modelo = 'sonnet', modo = 'horus', ferramentas = [], proibidas = [], timeoutMs = 10 * 60 * 1000,
-  aoTexto, aoFerramenta, deveParar, esquemaJson,
+  aoTexto, aoFerramenta, deveParar, esquemaJson, esforco,
 }) {
   const { bin, shell } = binarioClaude();
   const args = ['-p', '--output-format', 'stream-json', '--verbose', '--include-partial-messages', '--model', modelo, '--no-session-persistence',
     '--permission-mode', 'dontAsk'];
+  // Opus roda com esforço alto (pedido do Marcelo, 27/09); os outros no padrão do modelo
+  const nivel = esforco || (/opus/i.test(modelo) ? 'high' : null);
+  if (nivel) args.push('--effort', nivel);
   let cwd;
   if (modo === 'leve') {
     cwd = PASTA_LEVE;

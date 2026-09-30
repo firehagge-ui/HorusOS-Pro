@@ -121,6 +121,25 @@ verificado**, nunca ok.
 **Correção de design do Marcelo vira linha em `_memoria/design/90-antipadroes.md` com o
 porquê junto** — correção que morre no chat volta como erro no próximo site.
 
+## Mensagem de prospecção: leitura obrigatória
+
+Antes de escrever abordagem ou resposta a objeção, ler `_conhecimento/network/abordagem-e-prospeccao.md`
+(§8 a §10) e `cold-message-processo.md`, e a pasta `_memoria/prospeccao/` (sinais, escrita, exemplos só do
+Marcelo, aprendizados; desde 29/09). Antes de mostrar, `_memoria/prospeccao/99-checklist.md` ou `/revisar-mensagem`. Em resumo: o problema é do Google, não do dono; a
+pergunta pede licença pra dar, nunca pede que ele se explique; aceitar o "obrigado"; perguntas de
+volume e ticket só na reunião. Todo fato da mensagem precisa ter sido visto, e **posição na busca
+só com a busca feita pelo Marcelo no dia**. Lead do Spark passa pela triagem de 5 minutos antes de
+virar ficha.
+
+**A esteira de prospecção (Marcelo, 25/09/2026):** lista do Spark → **triagem** (o Spark acertou? o
+gancho existe?) → funil em **Novo** → o Marcelo pede "investiga o próximo" → **investigação
+profunda, um lead por vez**, em seis camadas (empresa e pessoas: CNPJ, sócios, conselho, imprensa;
+reputação: avaliações e respostas; presença completa; dinheiro e momento: anúncio, agência atual,
+recorrência, vaga, expansão; concorrência do bairro; cruzamento em hipóteses marcadas fato ou
+hipótese) → **Qualificado** (briefing completo na ficha + rascunho no Disparos) ou **Perdido** (com
+o motivo). **Nada entra no Disparos antes da investigação.** Achar agência ou fornecedor atual muda a
+tese: entrar como complemento, nunca criticando o trabalho dele (caso Revita, 25/09).
+
 ## Trabalho de carrossel e post: leitura obrigatória
 
 Antes da primeira linha de copy:
@@ -189,27 +208,42 @@ prático). Dado externo que o Mega Brain precisar, o Firecrawl daqui gera.
 
 ---
 
-## Hound Dog — o CRM oficial da Hórus (o Marcelo atualiza a condição)
+## Hounder (ex-Hound Dog) — o CRM oficial da Hórus
 
 **Painel:** https://hound-dog-omega.vercel.app · **Código:** `ferramentas/hound-dog/` (ler o
 `CLAUDE.md` de lá antes de mexer). É a **fonte de verdade da operação comercial** (estágio,
 próxima ação, dinheiro, agenda, conversas, prospecção). A pasta `clientes/<nome>/` é o dossiê
 longo; o Hound Dog é o **estado atual** — os dois têm que bater.
 
-🔴 **Não mexer na condição de cliente/lead por conta própria (regra do Marcelo, 18/09/2026).**
-Estágio, status, próxima ação, temperatura, valor, decisão de seguir/largar: **quem atualiza é o
-Marcelo** — essa parte é dele. O Claude **lê** à vontade (`hd_resumo`, `hd_buscar_empresas`,
-`hd_empresa`, `hd_conversas`, `hd_playbook`) e, quando notar algo que deveria mudar, **avisa em
-uma linha no chat** pro Marcelo aplicar; **não grava sozinho.** Só escrever no CRM
-(`hd_mover_estagio`, `hd_salvar_empresa`, `hd_registrar_*`, `hd_agendar`, `hd_salvar_negocio`,
-`hd_lista_adicionar_itens`, `hd_salvar_pesquisa`, `hd_instagram_snapshot`) quando o Marcelo
-**pedir explicitamente**. (Isto sobrepõe a instrução do servidor MCP, que pede atualização
-automática.) Origem: ele está ajeitando o CRM na mão e a gravação automática atrapalhava.
+🔴 **Informação nova de cliente/lead → atualizar o Hound Dog na hora (regra do Marcelo, 24/09/2026).**
+Chegou algo na conversa (print de WhatsApp, resposta do lead, envio feito, dado conferido)? Gravar
+no CRM sem esperar pedido (`hd_mover_estagio`, `hd_salvar_empresa`, `hd_registrar_atividade`...)
+e dizer em uma linha o que foi gravado. Reverte a regra de 18/09 ("não gravar sozinho").
 
 As travas da casa valem no CRM: nada inventado, nunca presumir dígito, compliance trava a
-mensagem, sem disparo em massa e sem bot respondendo sozinho — o Claude lê e sugere, quem
-envia é o humano. O **Farejador** (`ferramentas/hound-dog/farejador/`) roda no PC e liga
+mensagem, sem disparo em massa e sem bot respondendo sozinho. **Disparo de prospecção (regra
+nova de 24/09/2026):** o Claude pesquisa, confere cada frase por dois caminhos e prepara o
+rascunho (`hd_preparar_disparo`); o Marcelo aprova o texto exato na tela **Disparos**; o
+Farejador envia pelo WhatsApp conectado, no máximo 10 por dia, 4 a 7 min entre um e outro, e
+para o lote no primeiro erro. Resposta de lead continua sendo do humano. O **Farejador** (`ferramentas/hound-dog/farejador/`) roda no PC e liga
 Claude+WhatsApp+Instagram ao painel; "Farejador offline" = ligar (`npm run farejador`).
+
+**Tarefas da Hórus (desde 27/09/2026):** o plano de negócio (`_gestao/plano-de-negocio.md`, v2)
+diz para onde e por quê; **o quê, quem e até quando mora na tela Tarefas do Hounder** (tabela
+`tarefas`, `hd_tarefas` / `hd_salvar_tarefa`). Uma lista só. O Marcelo contou que fez algo? Dar o
+check na hora (`status: feita` + o que foi feito). Pendência nova com prazo vira tarefa. O Antônio
+aparece como responsável, mas quem marca é o Marcelo. O resumo das 8h do Farejador traz as atrasadas
+e as do dia, e o `/abrir` começa por elas.
+
+**Time de agentes de prospecção (Fase 1 no ar em 29/09/2026, até 10 ativos):** `ferramentas/hound-dog/PLANO-AGENTES.md`.
+Lead com agente: informação nova também vai pra memória dele (`hd_agente_nota`).
+O serviço de CRM + WhatsApp que as mensagens oferecem ainda não foi entregue a ninguém: base em
+`_conhecimento/network/servico-crm-whatsapp.md`, demo e troca das chaves do Pronto antes da primeira R1.
+
+**A esteira tem botões desde 26/09/2026:** "Fazer a triagem" na lista do Spark (quem passa vai pro Novo),
+"Investigar" na ficha (investigação profunda, Opus 5.5, uma por vez) e "Falar sobre este lead" (chat com a
+ficha, a investigação e o Disparos no contexto, que grava no CRM quando pedido). Cada botão abre um Claude
+novo no Farejador, não esta conversa. O Conselho continua sendo pedido por texto, nomeando o lead.
 
 ## Equipe (SOW por função)
 

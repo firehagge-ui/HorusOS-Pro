@@ -1,0 +1,482 @@
+/* Casa Verona · protótipo · rodada 3 · tokens tirados do logo e das fotos (ver ../marca.md) */
+:root{
+  --reboco:#F4EDE2;      /* parede creme, fundo */
+  --linho:#EAE0D0;       /* traço creme do logo, fundo alternado */
+  --papel:#FBF7F0;       /* cardápio, placa, campo */
+  --cafe:#4B3D34;        /* fundo do logo, texto (8,96:1 no reboco) */
+  --suave:#6E5E52;       /* texto secundário (5,33:1 no reboco, 4,75:1 no linho) */
+  --cipreste:#2F4632;    /* a única cor de ação (8,84:1) */
+  --cipreste-hov:#223425;
+  --tijolo:#A8683F;      /* só o arco de tijolo, a barra de tempo e o ponto da faixa; nunca texto */
+  --ferro:#2E2520;       /* a sacada de ferro da janela */
+  --creme-escuro:#D9CBB6;/* texto secundário sobre o café (6,53:1) */
+  --creme-claro:#E6DBCB; /* texto corrido sobre o café */
+  --fio:rgba(75,61,52,.18);
+
+  --serif:"Bodoni Moda", "Didot", Georgia, serif;
+  --sans:"Jost", "Futura", system-ui, sans-serif;
+
+  /* escala: 14 · 16 · 18 · 21 · 26 · 34 · 48 · 96 */
+  --t-xs:14px; --t-sm:16px; --t-body:18px; --t-lead:21px;
+  --t-h3:26px; --t-cit:34px; --t-h2:48px; --t-h1:96px;
+
+  --topo:72px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--reboco);color:var(--cafe);font:400 var(--t-body)/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;margin:0}
+h1 em,h2 em,h3 em,p em{font-style:italic}
+h2 em{font-weight:400}
+p{margin:0}
+[id]{scroll-margin-top:calc(var(--topo) + 16px)}
+:focus-visible{outline:2px solid var(--cipreste);outline-offset:3px}
+
+.pular{position:absolute;left:16px;top:-60px;background:var(--cipreste);color:#fff;padding:10px 16px;border-radius:8px;z-index:30}
+.pular:focus{top:12px}
+
+/* ---------- botões e links ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 26px;border-radius:999px;font:500 17px/1.2 var(--sans);text-decoration:none;cursor:pointer;border:1.5px solid transparent;transition:background-color .2s,color .2s,border-color .2s}
+.btn-cheio{background:var(--cipreste);color:#fff}
+.btn-cheio:hover{background:var(--cipreste-hov)}
+.btn-linha{border-color:var(--cipreste);color:var(--cipreste)}
+.btn-linha:hover{background:var(--cipreste);color:#fff}
+.btn-claro{background:var(--reboco);color:var(--cafe)}
+.btn-claro:hover{background:#fff}
+.btn-p{padding:11px 20px;font-size:16px}
+.btn-largo{width:100%}
+.link{color:var(--cipreste);font-weight:500;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.link:hover{text-decoration-thickness:2px}
+.link-claro{color:var(--reboco)}
+
+/* ---------- pendências: apresentação (padrão) × trabalho (tecla P) ---------- */
+.falta-t{display:none}
+.falta-a{color:var(--suave);font-style:italic;border-bottom:1px dashed currentColor}
+.modo-trabalho .falta-a{display:none}
+.modo-trabalho .falta-t{display:inline;background:#FCE3CF;color:#7A2E0E;font-style:normal;font-size:.9em;padding:1px 6px;border-radius:4px}
+
+/* ---------- topo ---------- */
+.topo{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(244,237,226,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
+.topo.rolou{border-bottom-color:var(--fio)}
+.topo-in{max-width:1304px;margin:0 auto;height:var(--topo);padding:0 32px;display:flex;align-items:center;gap:40px}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none;flex:none}
+.marca img{width:44px;height:44px;border-radius:50%}
+.marca span{font:500 22px/1 var(--serif)}
+.menu{display:flex;gap:28px;margin-left:auto}
+.menu a{font-size:var(--t-sm);text-decoration:none;padding:6px 0}
+.menu a:hover{color:var(--cipreste);text-decoration:underline;text-underline-offset:6px}
+.topo-acoes{display:flex;align-items:center;gap:12px;margin-left:24px}
+.menu-botao{display:none;background:none;border:1.5px solid var(--fio);border-radius:999px;padding:10px 16px;font:500 16px/1 var(--sans);color:var(--cafe);cursor:pointer}
+
+/* ---------- seções: o recuo mora na seção, não num wrapper ---------- */
+section{padding:112px max(32px, calc((100% - 1240px) / 2))}
+.cabeca{margin-bottom:56px}
+.cabeca h2{font-size:var(--t-h2);max-width:20ch}
+.cabeca > p:not(.rotulo){font-size:var(--t-lead);color:var(--suave);max-width:46ch;margin-top:18px}
+.rotulo{font:500 var(--t-xs)/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--cipreste);margin-bottom:16px}
+
+/* ===================================================================
+   1 · HERO: a janela do logo (arco de tijolo, ciprestes, sacada)
+   =================================================================== */
+.hero{position:relative;min-height:100svh;padding:calc(var(--topo) + 40px) max(32px, calc((100% - 1240px) / 2)) 48px;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"cabeca cena" "resto cena";column-gap:40px;align-content:center;overflow:clip}
+.hero-cabeca{grid-area:cabeca;align-self:end}
+.hero-resto{grid-area:resto;align-self:start;margin-top:30px}
+.hero-titulo{font-size:var(--t-h1);font-weight:400;line-height:.98;letter-spacing:-.01em;color:var(--cafe)}
+.hero-titulo .l{display:block;padding:0 .12em .1em 0;margin-bottom:-.08em}
+/* a linha só recorta EMBAIXO (é por onde o texto sobe na entrada); nos lados o itálico fica livre */
+.js-motion .hero-titulo .l{clip-path:inset(-50% -50% 0 -50%)}
+.hero-titulo .l > span{display:inline-block}
+.hero-titulo .l-menor{font-size:var(--t-cit);line-height:1.25;margin-top:22px;padding-bottom:.12em}
+.hero .lead{font-size:var(--t-lead);color:var(--suave);max-width:34ch}
+.acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero-prova{margin-top:26px;font-size:15px;color:var(--suave)}
+.hero-prova strong{font:500 21px/1 var(--serif);color:var(--cafe);margin-right:4px}
+
+.cena{grid-area:cena;align-self:center;display:grid;justify-items:center;padding:0 88px}
+.janela{position:relative;height:clamp(440px, calc(100svh - 280px), 640px);aspect-ratio:3/4}
+.janela-vao{position:absolute;inset:0;border-radius:50% 50% 0 0 / 37.5% 37.5% 0 0;overflow:hidden;background:#D8CDBC;isolation:isolate}
+.slide{position:absolute;inset:0;margin:0;opacity:0;transition:opacity 1.4s ease}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide.ativo{opacity:1;z-index:2}
+.slide.saindo{opacity:1;z-index:1;transition:none}
+
+.janela-traco{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:3;pointer-events:none}
+.arco-contorno{fill:none;stroke:var(--cafe);stroke-width:.8;opacity:.35}
+.arco-tijolos{fill:none;stroke:var(--tijolo);stroke-width:12;stroke-dasharray:15.6 1.9}
+.arco-borda{fill:none;stroke:var(--cafe);stroke-width:1.2;opacity:.55}
+.arco-mascara{fill:none;stroke:#fff;stroke-width:20;stroke-dasharray:1;stroke-dashoffset:0}
+.sacada-grade{fill:none;stroke:var(--ferro);stroke-width:2.2;stroke-linecap:round}
+.sacada-corrimao,.sacada-base{fill:var(--ferro)}
+
+.cipreste{position:absolute;bottom:-3%;width:auto;z-index:4;transform-origin:50% 100%;pointer-events:none}
+.cipreste-e{height:109%;right:calc(100% - 34px)}
+.cipreste-d{height:104%;left:calc(100% - 30px)}
+
+/* width:0 + min-width:100%: o controle ocupa a largura da janela, mas a legenda (que muda de
+   tamanho a cada foto) não alarga a coluna nem empurra o título */
+.janela-controle{margin-top:22px;width:0;min-width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pontos pausa" "legenda legenda" "tempo tempo";align-items:center;gap:4px 16px}
+.janela-pontos{grid-area:pontos;display:flex;gap:2px}
+.ponto{min-width:38px;min-height:38px;padding:6px 8px;background:none;border:0;border-bottom:1.5px solid transparent;font:500 16px/1 var(--serif);color:var(--suave);cursor:pointer}
+.ponto:hover{color:var(--cafe)}
+.ponto.ativo{color:var(--cafe);border-bottom-color:var(--tijolo)}
+/* altura fixa de duas linhas: a legenda que quebra não pode mexer a janela de lugar */
+.janela-legenda{grid-area:legenda;min-height:2.6em;display:flex;align-items:center;padding-bottom:4px;font:italic 400 18px/1.3 var(--serif);color:var(--cafe)}
+.janela-pausa{grid-area:pausa;justify-self:end;min-height:38px;padding:8px 14px;background:none;border:1px solid rgba(47,70,50,.45);border-radius:999px;font:500 var(--t-xs)/1 var(--sans);letter-spacing:.06em;color:var(--cipreste);cursor:pointer}
+.janela-pausa:hover{background:var(--cipreste);color:#fff}
+.janela-tempo{grid-area:tempo;height:2px;background:var(--fio);border-radius:2px;overflow:hidden}
+.janela-tempo span{display:block;height:100%;background:var(--tijolo);transform-origin:0 50%;transform:scaleX(0)}
+
+/* entrada do hero e movimento contínuo (só com JS e sem "reduzir movimento") */
+.js-motion .hero-titulo .l > span{animation:sobe 1.1s cubic-bezier(.2,.7,.2,1) both}
+.js-motion .hero-titulo .l:nth-child(2) > span{animation-delay:.12s}
+.js-motion .hero-titulo .l:nth-child(3) > span{animation-delay:.3s}
+.js-motion .hero-resto{animation:aparece .9s ease .55s both}
+.js-motion .janela-vao{animation:abre-janela 1.3s cubic-bezier(.3,.6,.2,1) .1s both}
+.js-motion .arco-mascara{animation:desenha 2.1s cubic-bezier(.6,0,.25,1) .25s both}
+.js-motion .sacada{animation:aparece .9s ease 1.3s both}
+.js-motion .cipreste-e{animation:aparece 1.2s ease .8s both, balanca 7s ease-in-out 0s infinite alternate both}
+.js-motion .cipreste-d{animation:aparece 1.2s ease 1s both, balanca 8.5s ease-in-out -4s infinite alternate both}
+.js-motion .slide.ativo img{animation:aproxima 7.4s linear both}
+.js-motion .slide.saindo img{transform:scale(1.065)}
+.js-motion .janela-tempo span.corre{animation:enche 6s linear forwards}
+.cena.pausado .slide.ativo img,.cena.pausado .janela-tempo span{animation-play-state:paused}
+
+@keyframes sobe{from{transform:translateY(106%)}to{transform:none}}
+@keyframes aparece{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes abre-janela{from{opacity:0;transform:scale(.965)}to{opacity:1;transform:none}}
+@keyframes desenha{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes balanca{from{rotate:-1.3deg}to{rotate:1.5deg}}
+@keyframes aproxima{from{transform:scale(1)}to{transform:scale(1.08)}}
+@keyframes enche{to{transform:scaleX(1)}}
+
+/* ===================================================================
+   2 · Faixa dos tipos de evento (um marquee só na página)
+   =================================================================== */
+.faixa{background:var(--linho);overflow:hidden;padding:28px 0}
+.faixa-trilho{display:flex;width:max-content}
+.faixa-trilho span{display:flex;align-items:center;font:italic 400 44px/1.15 var(--serif);color:var(--cafe);white-space:nowrap}
+.faixa-trilho span::after{content:"";width:8px;height:8px;margin:0 38px;border-radius:50%;background:var(--tijolo)}
+/* a faixa não corre sozinha: anda de lado só enquanto a pessoa rola (site.js). Nada se move sem
+   o gesto dela (WCAG 2.2.2), e o efeito do The Grand continua */
+
+/* ===================================================================
+   3 · Manifesto
+   =================================================================== */
+.manifesto{text-align:center;padding-top:120px;padding-bottom:128px}
+.manifesto-ramo{position:relative;width:200px;height:84px;margin:0 auto 18px}
+.manifesto-ramo img{position:absolute;left:50%;top:50%;width:64px;transform:translate(-50%,-50%) rotate(98deg)}
+.manifesto h2{font-size:var(--t-h2);max-width:18ch;margin:0 auto}
+.manifesto-texto{font:400 var(--t-cit)/1.42 var(--serif);max-width:31ch;margin:34px auto 0;color:var(--cafe)}
+
+/* ===================================================================
+   4 · A casa em movimento (vídeos dela)
+   =================================================================== */
+.filme{background:var(--cafe);color:var(--reboco)}
+.filme .cabeca{text-align:center}
+.filme .cabeca h2{color:var(--reboco);margin:0 auto}
+.filme .cabeca > p:not(.rotulo){color:var(--creme-claro);margin-left:auto;margin-right:auto}
+.filme-grade{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;max-width:1080px;margin:0 auto;align-items:start}
+.filme-item{margin:0}
+.filme-item:nth-child(2){margin-top:88px}
+.filme-quadro{aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:#3A2F28}
+.filme-quadro video{display:block;width:100%;height:100%;object-fit:cover}
+.filme-item figcaption{margin-top:16px;font:italic 400 21px/1.35 var(--serif);color:var(--reboco)}
+.filme-num{font:500 var(--t-xs)/1 var(--sans);letter-spacing:.2em;color:var(--creme-escuro);margin-right:12px}
+.filme-mais{margin-top:56px;text-align:center;font-size:var(--t-body)}
+
+/* ===================================================================
+   5 · Eventos, mosaico
+   =================================================================== */
+.mosaico{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:44px 28px}
+.ev{margin:0;position:relative}
+.ev-foto{border-radius:6px;overflow:hidden}
+.ev-foto img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.ev-grande{grid-row:span 2}
+.ev-grande .ev-foto img{aspect-ratio:4/4.6}
+.ev-card{position:relative;margin:-52px 18% 0 16px;background:var(--papel);border:1px solid var(--fio);border-radius:12px;padding:18px 22px 20px}
+.ev-grande .ev-card{margin:-96px 26% 0 24px;padding:28px 30px 30px}
+.ev h3{font-size:var(--t-h3);margin:0 0 6px}
+.ev p{font-size:17px;max-width:36ch}
+.ev-grande h3{font-size:34px}
+.ev-grande p{font-size:var(--t-body);max-width:40ch;margin-bottom:12px}
+
+/* ===================================================================
+   6 · A casa, galeria por ambiente
+   =================================================================== */
+.casa{background:var(--linho)}
+.galeria{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.g{margin:0}
+.g-foto{border-radius:6px;overflow:hidden}
+.g-foto img{width:100%;height:320px;object-fit:cover}
+.g figcaption{font-size:15px;color:var(--suave);margin-top:10px}
+.g strong{color:var(--cafe);font-weight:500}
+.g-jardim{grid-column:1/6;grid-row:1/3}
+.g-jardim .g-foto img{height:702px}
+.g-patio{grid-column:6/10;grid-row:1}
+.g-escada{grid-column:10/13;grid-row:1}
+.g-varanda{grid-column:6/9;grid-row:2}
+.g-entrada{grid-column:9/13;grid-row:2}
+.g-prep{grid-column:1/5;grid-row:3}
+.ficha{grid-column:5/13;grid-row:3;align-self:stretch;background:var(--papel);border-radius:14px;padding:36px 40px;align-content:center;display:grid}
+.ficha h3{font-size:30px;margin-bottom:14px}
+.amb{width:100%;border-collapse:collapse;font-size:17px}
+.amb th,.amb td{text-align:left;padding:11px 16px 11px 0;border-bottom:1px solid var(--fio);vertical-align:baseline}
+.amb thead th{font-size:var(--t-xs);font-weight:500;letter-spacing:.08em;color:var(--suave);padding-top:0}
+.amb tbody th{font:500 20px/1.3 var(--serif)}
+.ficha-tambem{margin-top:18px;font-size:17px;color:var(--suave);max-width:60ch}
+.ficha-tambem strong{color:var(--cafe);font-weight:500}
+.ficha-maior{margin-top:12px;font:500 20px/1.3 var(--serif)}
+
+/* ===================================================================
+   7 · Pacote
+   =================================================================== */
+.pacote{background:var(--reboco);overflow-x:clip} /* a rosa girada do cardápio passava 15px da tela no celular */
+.pacote-grade{display:grid;grid-template-columns:5fr 3fr 4fr;gap:32px;align-items:stretch}
+.cardapio{position:relative;background:var(--papel);border:1px solid rgba(75,61,52,.28);border-radius:12px;padding:52px 40px;text-align:center;outline:1px solid rgba(75,61,52,.18);outline-offset:-12px}
+.cardapio-rosa{position:absolute;top:-58px;right:-22px;width:104px;transform:rotate(24deg);pointer-events:none}
+.cardapio-casa{font-size:var(--t-xs);letter-spacing:.24em;text-transform:uppercase;color:var(--suave)}
+.cardapio h3{font-size:46px;font-style:italic;font-weight:400;margin-top:18px}
+.cardapio-sub{font:italic 400 19px/1.4 var(--serif);color:var(--suave);margin-top:6px}
+.cardapio ul{list-style:none;margin:28px auto 0;padding:24px 0 0;border-top:1px solid var(--fio);max-width:260px}
+.cardapio li{font:400 22px/1.9 var(--serif)}
+.cardapio-min{margin-top:20px;font-size:17px}
+.cardapio-valor{margin-top:22px;padding-top:20px;border-top:1px solid var(--fio);font-weight:500}
+.cardapio-nota{margin-top:10px;font-size:var(--t-sm)}
+.pacote-foto{margin:0}
+.pacote-foto img{width:100%;height:100%;min-height:420px;object-fit:cover;border-radius:6px}
+.outros{align-self:center}
+.outros h3{font-size:30px}
+.outros p{margin-top:12px;max-width:34ch}
+.outros-falta{font-size:var(--t-sm)}
+.outros .link{display:inline-block;margin-top:20px}
+
+/* ===================================================================
+   8 · Como funciona a visita
+   =================================================================== */
+.passos{position:relative;overflow:clip;background:var(--cafe);color:var(--reboco)}
+.passos h2{font-size:var(--t-h2);margin-bottom:52px;max-width:14ch}
+.passos-lirio{position:absolute;top:44px;right:max(32px, calc((100% - 1240px) / 2));width:112px;transform:rotate(-10deg);pointer-events:none}
+.passos ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:48px}
+.passos li{border-top:1px solid rgba(244,237,226,.3);padding-top:24px}
+.num{display:block;font:400 64px/1 var(--serif);color:var(--creme-escuro)}
+.passos h3{font-size:var(--t-h3);margin:20px 0 10px}
+.passos p{max-width:34ch;color:var(--creme-claro)}
+.passos .falta-a{color:var(--creme-escuro)}
+
+/* ===================================================================
+   9 · Depoimentos
+   =================================================================== */
+.vozes{position:relative;overflow:clip;background:var(--linho)}
+.vozes-ramo{position:absolute;top:44px;right:max(32px, calc((100% - 1240px) / 2));width:82px;transform:rotate(14deg);pointer-events:none}
+.vozes-titulo{font-size:var(--t-h2);margin-bottom:84px;max-width:16ch}
+.vozes-grade{display:grid;grid-template-columns:7fr 5fr;gap:72px;align-items:center}
+.voz{margin:0}
+.voz blockquote{margin:0}
+.voz-grande blockquote p{font:italic 400 var(--t-cit)/1.35 var(--serif)}
+.voz figcaption{font-size:15px;color:var(--suave);margin-top:16px}
+.vozes-lado{display:grid;gap:32px}
+.vozes-lado .voz{padding-top:28px;border-top:1px solid var(--fio)}
+.vozes-lado .voz:first-child{padding-top:0;border-top:0}
+.vozes-lado blockquote p{font:italic 400 21px/1.45 var(--serif)}
+.vozes-nota{margin-top:56px;font-size:var(--t-sm);color:var(--suave)}
+.vozes-nota a{color:var(--cipreste);font-weight:500;margin-left:8px;text-underline-offset:4px}
+
+/* ===================================================================
+   10 · Pedido de visita, a placa (assinatura da rodada 1)
+   =================================================================== */
+.visita{display:grid;grid-template-columns:6fr 5fr;gap:80px;align-items:start;overflow-x:clip} /* clip não quebra o sticky da placa */
+.visita h2{font-size:var(--t-h2)}
+.visita-form > p{font-size:var(--t-lead);color:var(--suave);margin-top:16px;max-width:40ch}
+form{margin-top:36px;display:grid;gap:20px}
+.campo{display:grid;gap:8px}
+.campo-par{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+label{font-size:var(--t-sm);font-weight:500}
+.opcional{font-weight:400;color:var(--suave)}
+input,select,textarea{width:100%;font:400 var(--t-body)/1.4 var(--sans);color:var(--cafe);background:var(--papel);border:1px solid rgba(75,61,52,.4);border-radius:10px;padding:13px 16px}
+textarea{resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--cipreste);outline-offset:1px;border-color:var(--cipreste)}
+.erro{color:#8A2E1A;font-size:var(--t-sm);font-weight:500}
+.aviso{font-size:15px;color:var(--suave)}
+
+.placa-lugar{position:sticky;top:calc(var(--topo) + 32px);display:grid;justify-items:center}
+.placa{width:100%;max-width:380px;background:var(--papel);border:1.5px solid var(--tijolo);border-radius:190px 190px 14px 14px;box-shadow:inset 0 0 0 10px var(--papel),inset 0 0 0 11px rgba(168,104,63,.45);padding:96px 36px 112px;text-align:center;min-height:540px;display:flex;flex-direction:column;align-items:center}
+.placa-bem{font-size:var(--t-xs);letter-spacing:.28em;text-transform:uppercase;color:var(--suave)}
+.placa-nome{font:italic 400 44px/1.1 var(--serif);margin:22px 0 14px;overflow-wrap:anywhere}
+.placa-tipo{font:500 22px/1.3 var(--serif)}
+.placa-linha{font-size:17px;color:var(--suave);margin-top:6px}
+.placa-casa{margin-top:auto;padding-top:32px;font-size:var(--t-xs);letter-spacing:.24em;text-transform:uppercase;color:var(--cipreste)}
+/* o arranjo passa da placa, mas nunca da margem da seção (vazava 3px em 1024 e 9px em 360) */
+.placa-flores{position:relative;z-index:2;width:min(470px, calc(100% + 48px));max-width:none;margin-top:-104px;pointer-events:none}
+.placa-legenda{text-align:center;font-size:15px;color:var(--suave);margin-top:6px}
+
+/* ===================================================================
+   11 · Perguntas + onde fica
+   =================================================================== */
+.fim{background:var(--linho);display:grid;grid-template-columns:7fr 5fr;gap:80px;align-items:start}
+.fim h2{font-size:36px;margin-bottom:28px}
+details{border-top:1px solid var(--fio)}
+details:last-of-type{border-bottom:1px solid var(--fio)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;padding:18px 0;font:500 22px/1.3 var(--serif)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:400 26px/1 var(--sans);color:var(--cipreste)}
+details[open] summary::after{content:"\2212"}
+details p{padding:0 0 20px;max-width:56ch;font-size:17px}
+address{font-style:normal;line-height:1.7}
+.contato{list-style:none;padding:0;margin:20px 0 28px;display:grid;gap:8px}
+.contato a{color:var(--cipreste);font-weight:500;text-underline-offset:4px}
+.mapa{background:#DDD1BE;border-radius:12px}
+.mapa iframe{display:block;width:100%;height:300px;border:0;border-radius:12px}
+
+/* ===================================================================
+   12 · Rodapé, com VERONA e o jardim dentro das letras
+   =================================================================== */
+.rodape{background:var(--cafe);color:var(--reboco);padding:72px max(32px, calc((100% - 1240px) / 2)) 40px}
+/* O texto do SVG é só máscara (nunca é pintado): as letras mostram o vídeo, e o resto vira café.
+   Logotipo decorativo com aria-hidden (exceção de logotipo do WCAG 1.4.3); a cor clara herdada
+   descreve o que se vê na letra, que é o reboco creme do jardim no vídeo */
+.assinatura{position:relative;aspect-ratio:1200/250;margin-bottom:60px;color:var(--reboco);overflow:hidden}
+.assinatura-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.assinatura-letras{position:absolute;top:-1px;left:-1px;width:calc(100% + 2px);height:calc(100% + 2px)}
+.assinatura-letras > rect{fill:var(--cafe)}
+/* tamanho ótico baixo (6) e peso 700: na Bodoni de exibição (opsz 96) os traços finos somem
+   e o N e o A viram barras soltas; aqui o vídeo precisa de haste grossa para aparecer */
+.assinatura-letras text{font-family:var(--serif);font-size:262px;font-weight:700;font-variation-settings:"opsz" 6,"wght" 700;fill:#000}
+.rodape-in{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;padding-bottom:36px;margin-bottom:24px;border-bottom:1px solid rgba(244,237,226,.2)}
+.rodape-marca{display:flex;align-items:center;gap:18px}
+.rodape-marca img{width:64px;height:64px;border-radius:50%}
+.rodape-marca p{font:italic 400 24px/1.3 var(--serif)}
+.creditos{font-size:var(--t-xs);color:#C9BBA6;margin-top:6px}
+
+/* ---------- entrada progressiva (só com JS; ver site.js para a trava de duas camadas) ---------- */
+.js-rev .rev{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.js-rev .rev.dentro{opacity:1;transform:none}
+.js-rev .rev.rev-cortina{opacity:1;transform:none}
+.js-rev .rev-cortina .g-foto{clip-path:inset(100% 0 0 0);transition:clip-path 1.2s cubic-bezier(.65,0,.2,1)}
+.js-rev .rev-cortina.dentro .g-foto{clip-path:inset(0 0 0 0)}
+.js-rev .rev-cortina figcaption{opacity:0;transition:opacity .6s ease .5s}
+.js-rev .rev-cortina.dentro figcaption{opacity:1}
+.js-rev .filme-item:nth-child(2){transition-delay:.12s}
+.js-rev .filme-item:nth-child(3){transition-delay:.24s}
+@keyframes troca-fade{from{opacity:0}to{opacity:1}}
+.troca{animation:troca-fade .35s ease}
+
+@media (prefers-reduced-motion:reduce){
+  .js-rev .rev{opacity:1;transform:none;transition:none}
+  .troca{animation:none}
+  .slide{transition:none}
+  .faixa-trilho{flex-wrap:wrap;justify-content:center;width:auto;padding:0 20px;row-gap:6px}
+  .faixa-trilho span:nth-child(n+8){display:none}
+}
+
+/* ---------- até 1280px ---------- */
+@media (max-width:1280px){
+  :root{--t-h1:84px}
+}
+
+/* ---------- até 1100px: o hero empilha (título, janela, texto) ---------- */
+@media (max-width:1100px){
+  :root{--t-h1:76px}
+  .menu{gap:20px}
+  .hero{min-height:0;grid-template-columns:minmax(0,1fr);grid-template-areas:"cabeca" "cena" "resto";row-gap:36px;padding-bottom:72px}
+  .hero-resto{margin-top:0}
+  .cena{padding:0;justify-self:center}
+  .janela{height:auto;width:min(52vw, 420px)}
+  .pacote-grade{grid-template-columns:1fr 1fr}
+  .pacote-foto{display:none}
+  .ficha{padding:32px}
+}
+
+/* ---------- até 900px ---------- */
+@media (max-width:900px){
+  :root{--t-h1:56px;--t-h2:34px;--t-h3:23px;--t-cit:26px;--t-lead:19px;--topo:64px}
+  section{padding:72px 20px}
+  .rodape{padding:56px 20px 36px}
+  .topo-in{padding:0 16px;gap:12px}
+  .marca span{display:none}
+  .menu{display:none;position:absolute;top:var(--topo);left:0;right:0;background:var(--reboco);flex-direction:column;gap:0;padding:8px 20px 20px;border-bottom:1px solid var(--fio)}
+  .menu.aberta{display:flex}
+  .menu a{padding:14px 0;font-size:var(--t-body);border-bottom:1px solid var(--fio)}
+  .topo-acoes{margin-left:auto}
+  .menu-botao{display:inline-block}
+
+  .hero{padding:calc(var(--topo) + 28px) 20px 64px;row-gap:30px}
+  .hero-titulo .l-menor{font-size:24px;margin-top:14px}
+  .cena{justify-self:center;width:min(100%, 380px)}
+  .janela{width:min(66vw, 320px)}
+  .cipreste-e{right:calc(100% - 14px)}
+  .cipreste-d{left:calc(100% - 12px)}
+  .janela-legenda{font-size:17px}
+
+  .faixa{padding:20px 0}
+  .faixa-trilho span{font-size:30px}
+  .faixa-trilho span::after{margin:0 24px}
+
+  .manifesto{padding-top:80px;padding-bottom:88px}
+  .manifesto-texto{font-size:24px}
+
+  .cabeca h2,.passos h2,.visita h2,.vozes-titulo{font-size:var(--t-h2)}
+
+  .filme-grade{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:70%;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -20px;padding:0 20px 10px;scrollbar-width:none}
+  .filme-grade::-webkit-scrollbar{display:none}
+  .filme-item{scroll-snap-align:center}
+  .filme-item:nth-child(2){margin-top:0}
+  .filme-item figcaption{font-size:19px}
+
+  .mosaico{grid-template-columns:1fr 1fr;gap:36px 20px}
+  .ev-grande{grid-column:1/-1;grid-row:auto}
+  .ev-grande .ev-foto img{aspect-ratio:4/3}
+  .ev-grande h3{font-size:28px}
+  .ev-card,.ev-grande .ev-card{margin:-40px 12px 0 12px;padding:18px 20px}
+
+  .galeria{grid-template-columns:1fr 1fr;gap:20px 16px}
+  .galeria > *{grid-column:auto;grid-row:auto}
+  .g-jardim,.ficha{grid-column:1/-1}
+  .g-foto img{height:260px}
+  .g-jardim .g-foto img{height:460px}
+  .ficha{padding:28px 20px}
+  .amb{font-size:16px}
+  .amb tbody th{font-size:18px}
+
+  .pacote-grade{grid-template-columns:1fr}
+  .cardapio{padding:44px 24px}
+  .cardapio h3{font-size:40px}
+  .cardapio-rosa{width:66px;top:-50px;right:-10px}
+  .outros{align-self:start}
+
+  .passos-lirio{width:60px;top:24px;right:14px}
+  .passos h2{max-width:11ch}
+  .passos ol{grid-template-columns:1fr;gap:36px}
+
+  .vozes-ramo{width:56px;top:26px;right:10px}
+  .vozes-titulo{max-width:11ch;margin-bottom:48px}
+  .vozes-grade{grid-template-columns:1fr;gap:48px}
+
+  .visita{grid-template-columns:1fr;gap:40px}
+  .placa-lugar{position:static;order:-1}
+  .placa{max-width:320px;min-height:440px;padding:80px 28px 96px}
+  .placa-nome{font-size:36px}
+  .placa-flores{width:min(390px, calc(100% + 32px));margin-top:-86px}
+
+  .fim{grid-template-columns:1fr;gap:56px}
+  .fim h2{font-size:30px}
+
+  .assinatura{margin-bottom:44px}
+}
+
+/* ---------- até 560px ---------- */
+@media (max-width:560px){
+  .mosaico{grid-template-columns:1fr}
+  .galeria{grid-template-columns:1fr}
+  .g-foto img{height:300px}
+  .g-jardim .g-foto img{height:420px}
+  .campo-par{grid-template-columns:1fr}
+  .btn-p{padding:10px 16px}
+}
+
+/* ---------- até 420px ---------- */
+@media (max-width:420px){
+  :root{--t-h1:52px}
+}

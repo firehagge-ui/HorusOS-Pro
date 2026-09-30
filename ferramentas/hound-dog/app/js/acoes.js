@@ -1,5 +1,5 @@
 /* =============================================================================
-   HOUND DOG — ações compartilhadas: novo lead, editar empresa, agendar,
+   HOUNDER — ações compartilhadas: novo lead, editar empresa, agendar,
    mover estágio, pedir mensagem ao Claude, exportar compromisso
    ============================================================================= */
 import { sb, estado, criarEmpresa, salvarEmpresa, registrarAtividade, acharDuplicada, criarJob, acompanharJob, farejadorOnline, estagio as achaEstagio, quem } from './sb.js';
@@ -211,7 +211,7 @@ export function linkGoogleAgenda(it) {
 export function gerarICS(it) {
   const fim = it.fim || new Date(new Date(it.inicio).getTime() + 30 * 60000).toISOString();
   const l = (s) => String(s || '').replace(/[,;\\]/g, (c) => '\\' + c).replace(/\n/g, '\\n');
-  return ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Hórus//Hound Dog//PT', 'BEGIN:VEVENT', `UID:${it.id}@hounddog`, `DTSTAMP:${fmtG(new Date())}`,
+  return ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Hórus//Hounder//PT', 'BEGIN:VEVENT', `UID:${it.id}@hounddog`, `DTSTAMP:${fmtG(new Date())}`,
     `DTSTART:${fmtG(it.inicio)}`, `DTEND:${fmtG(fim)}`, `SUMMARY:${l(it.titulo)}`, `DESCRIPTION:${l(it.descricao)}`, `LOCATION:${l(it.local)}`, 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
 }
 

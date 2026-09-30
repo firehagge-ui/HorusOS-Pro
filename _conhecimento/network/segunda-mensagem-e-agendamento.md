@@ -6,6 +6,8 @@
 > consolidada e coerente com o que a casa já pratica) · **MÉDIA e calibrar** para a técnica
 > de extrair ticket e para o "enviar a prévia assim mesmo".
 > ⚠️ Referência de mercado, **não meta e não promessa**. Nada aqui vai para peça de cliente.
+> ⚠️ **Revisto em 22/09/2026:** o "de cada 10" e o caminho 1 do item 1 deixaram de valer no
+> chat (soavam intrometidos). Ver a Nota da casa no fim e `cold-message-processo.md`.
 > Cross-ref: `abordagem-e-prospeccao.md`, `objecao-ja-tem-alguem-fazendo.md`,
 > `taxas-de-conversao.md`, `_memoria/comercial.md` (custo da inação e regra central),
 > e o log `_conselho/logs/2026-09-21-abertura-prospeccao-site-ou-google.md`.
@@ -61,6 +63,13 @@ o grupo usa para a conversa continuar:
   valor sem entender o projeto.
 
 ## Nota da casa (calibração, e duas coisas que não passam)
+
+- ⚠️ **Revisto em 22/09/2026 (Marcelo):** as perguntas do item 2 ("de cada 10", ticket,
+  capacidade) soaram intrometidas no WhatsApp frio. **Elas saem do chat e vão para a reunião
+  (R1)**, onde a pessoa já aceitou falar do negócio. No chat, qualificação leve: decisor e, no
+  máximo, a pergunta de prioridade, uma vez. E o caminho 1 do item 1 deixou de ser o padrão pro
+  "obrigado, vou ajustar": o padrão agora é aceitar a saída com a porta aberta. Ver
+  `cold-message-processo.md` e `abordagem-e-prospeccao.md` §10.
 
 - ✅ **Adotado direto:** o caminho 1 (foco no que está sendo perdido), o "de cada 10", a
   pergunta de capacidade, a reunião na 3ª ou 4ª mensagem e o preço só na call. Tudo isso já

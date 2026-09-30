@@ -58,6 +58,58 @@ rascunho. A ordem abaixo é a que funcionou.
 5. **Divulgar o link** onde ele trabalha: Google Meu Negócio, bio do Instagram,
    WhatsApp Business. Site publicado e não divulgado não traz ninguém.
 
+## Armadilhas que já custaram (site da Horus, 24 e 25/09/2026)
+
+- **Arrastar a pasta ignora o `netlify.toml` que está fora dela.** Quando a pasta que
+  vai ao ar é gerada por build (ex.: `site/_publish`), cabeçalhos e redirecionamentos
+  vão em `_headers` e `_redirects` **dentro** dela, que valem por arrasto e por Git.
+  Depois de todo deploy, conferir no ar com `curl -I` (o cabeçalho está lá?) e uma rota
+  de redirecionamento. No site da Horus, a segurança e o `/sobre` estavam desligados no
+  ar sem ninguém perceber.
+- **Regra de segurança (CSP) se testa com o cabeçalho aplicado.** O servidor local não
+  manda CSP, então tudo funciona na máquina e quebra no ar. Servir a pasta localmente com
+  o mesmo cabeçalho e abrir no navegador antes de subir. Efeito 3D/WebGL que usa worker ou
+  WebAssembly (ex.: gaussian-splats-3d) precisa de `worker-src blob:`,
+  `connect-src blob:` e `'wasm-unsafe-eval'`; sem isso o hero sobe vazio.
+- **Arquivo de origem não sobe.** PNG original ao lado do WebP que o HTML usa, vídeo de
+  rodada antiga, fundo que saiu: tudo isso é servido se estiver na pasta. Varrer o que
+  nenhum HTML/CSS/JS referencia antes de subir (no site da Horus: 33 MB viraram 12 MB).
+- **Ícone na busca do Google:** tem que ser **quadrado e múltiplo de 48px** (48, 96,
+  192), com `favicon.ico` na raiz. Símbolo retangular (96x80) ou PNG de 32px fazem o
+  Google mostrar o globo genérico no resultado.
+
+## Domínio próprio (Registro.br + Netlify)
+
+1. Netlify → **Domain management** → **Add a domain** (`cliente.com.br`). O `www` entra
+   junto e redireciona para o principal.
+2. Registro.br → o domínio → **DNS** → **Configurar zona DNS** (aceitar o modo avançado):
+   - **A**, nome vazio, valor `75.2.60.5` (balanceador da Netlify)
+   - **CNAME**, nome `www`, valor `<site>.netlify.app`
+3. Esperar de 30 min a algumas horas → **Verify DNS configuration** na Netlify. O https
+   (Let's Encrypt) sai sozinho em seguida.
+4. Trocar no código **todo** endereço antigo (`canonical`, `og:url`, `og:image`, sitemap,
+   robots, JSON-LD) e subir de novo.
+5. **Search Console:** propriedade do tipo **Domínio**, verificada por registro **TXT** no
+   mesmo painel DNS do Registro.br; depois enviar `sitemap.xml` e pedir indexação da home.
+
+## Perfil da Empresa no Google (armadilhas, perfil da Horus, 26/09/2026)
+
+- **Área de atendimento só com as cidades atendidas de verdade.** "Brasil" ou o estado inteiro
+  dilui o ranqueamento local; o Google orienta região de até ~2 h de deslocamento.
+- **Nome sem palavra-chave.** O nome real da empresa ("Horus Agência"), não "Hórus Marketing
+  Digital". Palavra-chave no nome arrisca suspensão; a categoria faz esse trabalho. Troca de
+  nome passa por revisão (até 7 dias).
+- **Atributo só se for verdade.** "Empresa de empreendedoras" = liderada por mulheres;
+  agendamento on-line, idiomas: marcar só o que existe. Informação falsa arrisca suspensão.
+- **Link de chat com o mesmo número do telefone do perfil.** Número diferente faz o Google
+  reprovar o link.
+- **Serviços personalizados além da lista padrão**, e tirar da lista padrão o que o cliente
+  não faz (a lista vem com telemarketing, afiliados etc.).
+- **Marcação estruturada do site (JSON-LD) batendo com o perfil**: nome, telefone, cidades,
+  horário. Mudou num, muda no outro.
+- **Avaliação é o fator que mais pesa no mapa.** Pedir às primeiras pessoas atendidas de verdade
+  logo que o perfil for verificado (nunca avaliação plantada, ver `integridade.md`).
+
 ## Registrar
 
 A URL de produção é fato durável: gravar no `CLAUDE.md` do cliente (topo) e no

@@ -1,6 +1,6 @@
 ---
 name: consultar
-description: Consulta uma mente específica (Hormozi, Cole Gordon, Jeremy Miner, Jeremy Haynes, G4 Educação, Full Sales System, The Scalable Company) ou um cargo da agência sobre uma pergunta, aplicando a doutrina dele com citação rastreável. Use quando o Marcelo disser "/consultar", "/ask", "o que o Hormozi diria sobre isso", "pergunta pro gestor de tráfego", ou quiser a lente de um especialista sem rodar o Conselho inteiro.
+description: Consulta uma mente específica (Hormozi, Cole Gordon, Jeremy Miner, Jeremy Haynes, G4 Educação, Full Sales System, The Scalable Company, Pedro Sobral, Chris Voss, Robert Cialdini, Neil Rackham/SPIN, Rob Fitzpatrick/Mom Test) ou um cargo da agência sobre uma pergunta, aplicando a doutrina dele com citação rastreável. Use quando o Marcelo disser "/consultar", "/ask", "o que o Hormozi diria sobre isso", "como o Voss responderia essa objeção", "monta a R1 no SPIN", "pergunta pro gestor de tráfego", ou quiser a lente de um especialista sem rodar o Conselho inteiro. Use também, sem esperar o pedido, quando a tarefa for objeção, negociação, pauta de reunião ou oferta e a mente certa tiver a resposta.
 ---
 
 # Consultar
@@ -17,15 +17,32 @@ Mentes em `_conselho/mentes/`. Cargos em `_conselho/cargos/`.
 /consultar compliance "posso usar essa frase no site da Aion?"
 ```
 
-Aceita apelido: `hormozi`, `cole`, `miner`, `haynes`, `g4`, `fss`, `tsc`, e os
+Aceita apelido: `hormozi`, `cole`, `miner`, `haynes`, `g4`, `fss`, `tsc`, `sobral`,
+`voss`, `cialdini`, `spin` (ou `rackham`), `momtest` (ou `fitzpatrick`), e os
 cargos `estrategista`, `criacao`, `midia`, `financeiro`, `operacoes`, `compliance`.
 
 Se o Marcelo não disser quem, escolher pelo domínio da pergunta e **avisar qual
-foi escolhida e por quê** antes de responder.
+foi escolhida e por quê** antes de responder. Atalho por assunto:
+
+| Assunto | Mente |
+|---|---|
+| Oferta, preço, garantia, isca, abordagem fria, sequência de ofertas | hormozi |
+| Objeção na ligação, "vou pensar", "vou ver com o sócio", pitch | cole, voss |
+| Negociação de valor, lead que sumiu depois de se interessar | voss |
+| Pauta e perguntas da R1 | spin, momtest, miner |
+| Mensagem, proposta, página: por que convence (ou não) | cialdini |
+| Validar nicho ou oferta nova antes de investir | momtest, hormozi |
+| Anúncio, funil, comparecimento | haynes, sobral |
 
 ## Como responder
 
-1. Ler o arquivo da mente ou do cargo, inteiro
+1. Ler o cartão da mente (`_conselho/mentes/<mente>.md`) ou do cargo, inteiro
+1b. **Ir na fonte.** O cartão é resumo; a doutrina completa está em
+   `_conselho/mentes/fontes/<mente>/` (ver o bloco "Fonte completa" no fim de cada
+   cartão e `fontes/README.md`). Buscar a parte do assunto com Grep (pelo título,
+   pelo código tipo `FW-CG-001`, ou por palavra-chave) e ler só o trecho. Citar a
+   fonte: `^[fontes/cole-gordon/mega-brain/AGENT.md:FW-CG-001]`. As fontes da
+   wondelai e do founder-playbook estão em inglês: responder em português
 2. Ler o contexto que a pergunta exige: `_memoria/` sempre, `clientes/<nome>/` se
    for sobre um cliente
 3. Responder **na voz daquela mente**, em primeira pessoa, usando o vocabulário

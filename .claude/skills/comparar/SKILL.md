@@ -1,6 +1,6 @@
 ---
 name: comparar
-description: Compara a perspectiva de duas ou mais mentes (Hormozi, Cole Gordon, Jeremy Miner, Jeremy Haynes, G4, Full Sales System, The Scalable Company) sobre a mesma pergunta, mostrando onde convergem e onde brigam, sem sintetizar. Use quando o Marcelo disser "/comparar", "/compare", "o que cada um diria", "quero ver os dois pontos de vista".
+description: Compara a perspectiva de duas ou mais mentes (Hormozi, Cole Gordon, Jeremy Miner, Jeremy Haynes, G4, Full Sales System, The Scalable Company, Pedro Sobral, Chris Voss, Robert Cialdini, Neil Rackham/SPIN, Rob Fitzpatrick/Mom Test) sobre a mesma pergunta, mostrando onde convergem e onde brigam, sem sintetizar. Use quando o Marcelo disser "/comparar", "/compare", "o que cada um diria", "quero ver os dois pontos de vista".
 ---
 
 # Comparar
@@ -8,7 +8,11 @@ description: Compara a perspectiva de duas ou mais mentes (Hormozi, Cole Gordon,
 Duas ou mais mentes, a mesma pergunta, **sem síntese**. A graça está na
 divergência: se as duas dizem a mesma coisa, você aprendeu pouco.
 
-Mentes em `_conselho/mentes/`.
+Mentes em `_conselho/mentes/` (cartão) e `_conselho/mentes/fontes/<mente>/` (doutrina
+completa: buscar o trecho do assunto e citar a fonte). Mesmos apelidos da `/consultar`.
+Pares que brigam de verdade: `cole,voss` (pitch com convicção x empatia sem pressão),
+`spin,cole` (sem técnica de fechamento x fechar com crença instalada), `hormozi,cialdini`
+(escassez como alavanca x escassez só se for real).
 
 ## Uso
 

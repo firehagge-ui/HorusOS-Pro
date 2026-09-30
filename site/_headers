@@ -1,0 +1,51 @@
+# Cabeçalhos do site (horusagencia.com.br). Vive DENTRO da pasta publicada de
+# propósito: o site sobe arrastando site/_publish no painel da Netlify, e nesse
+# caminho o netlify.toml da raiz é ignorado. Este arquivo vale nos dois (arrastar
+# ou GitHub). Movido do netlify.toml em 25/09/2026.
+#
+# Aberto ao Google em 25/09/2026 (decisão do Marcelo): saíram o X-Robots-Tag daqui,
+# a <meta robots> das páginas (fica só na 404) e o Disallow do robots.txt.
+#
+# CSP: o logo 3D do hero (gaussian-splats-3d) precisa de blob: em connect/worker e de
+# 'wasm-unsafe-eval'. Sem isso o hero sobe vazio.
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self'; connect-src 'self' blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; object-src 'none'
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# Portfólio fora do Google (decisão do Marcelo, 25/09/2026): a página do portfólio só se
+# acessa navegando pelo site. As páginas de case saíram em 26/09 (hoje dão 404); a regra
+# /portfolio/* fica para cobrir qualquer endereço antigo que o Google ainda tenha. Vale junto com a <meta robots> de cada página. As imagens
+# do portfólio também saem do Google Imagens. NÃO bloquear no robots.txt: o Google precisa
+# ler a página para ver o noindex, senão ela pode continuar aparecendo só com o endereço.
+/portfolio
+  X-Robots-Tag: noindex, follow
+/portfolio.html
+  X-Robots-Tag: noindex, follow
+/portfolio/*
+  X-Robots-Tag: noindex, follow
+/assets/portfolio/*
+  X-Robots-Tag: noindex
+
+# HTML revalida sempre: rodada nova aparece na hora, inclusive no meio de reunião.
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# CSS e JS mudam a cada rodada e não têm hash no nome: uma hora de cache.
+/assets/*.css
+  Cache-Control: public, max-age=3600, must-revalidate
+/assets/*.js
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# Imagem, vídeo e ícone são estáveis.
+/assets/video/*
+  Cache-Control: public, max-age=604800
+/assets/stack/*
+  Cache-Control: public, max-age=604800
+/assets/portfolio/*
+  Cache-Control: public, max-age=604800
+/assets/servicos/*
+  Cache-Control: public, max-age=604800

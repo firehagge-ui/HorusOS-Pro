@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Quatro mitos da ficha do Google que o próprio Google desmente</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=JetBrains+Mono:wght@500;600;700&display=swap');
+
+/* ============ Sistema de design: Horus no Instagram (herda o site) ============
+   Formato 1080 x 1440 (3:4). Fundo void, azul elétrico como destaque, DM Sans +
+   JetBrains Mono nos rótulos. Pisos de 10-legibilidade.md: corpo >= 34px, nada < 24px,
+   peso >= 500 em texto de leitura. Ritmo: void, claro, painel, elétrico. */
+:root {
+  --void: #0e0918;  --painel: #1b1728;  --claro: #f2f0f6;
+  --osso: #d1cece;  --osso-2: #9d9797;  --branco: #ffffff;
+  --azul: #0077ff;  --azul-tinta: #0057d9;  --tinta-clara: #3a3446;
+  --eletrico: linear-gradient(141deg, #077ac7, #6b21ef);
+}
+* { box-sizing: border-box; margin: 0; }
+body { background: #444; font-family: 'DM Sans', system-ui, sans-serif; }
+.slide {
+  width: 1080px; height: 1440px; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; padding: 88px 96px 84px;
+  background: var(--void); color: var(--osso); margin-bottom: 40px;
+}
+.topo { display: flex; align-items: center; gap: 18px; position: relative; z-index: 2; }
+.topo .marca { width: 76px; height: 76px; border-radius: 18px; background: var(--void);
+  display: grid; place-items: center; }
+.topo .marca img { width: 60px; }
+.topo .nome { font-weight: 800; font-size: 30px; letter-spacing: .06em; color: var(--osso); }
+.miolo { flex: 1; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2; }
+.rotulo { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 26px;
+  letter-spacing: .2em; text-transform: uppercase; color: rgba(226,232,240,.75);
+  display: flex; align-items: center; gap: 18px; }
+.rotulo i { width: 14px; height: 14px; border-radius: 3px; background: var(--azul);
+  box-shadow: 0 0 18px rgba(0,119,255,.85); flex-shrink: 0; }
+h1 { font-size: 112px; font-weight: 600; line-height: 1; letter-spacing: -.028em; text-wrap: balance; color: var(--branco); margin-top: 44px; }
+h2 { font-size: 74px; font-weight: 600; line-height: 1.06; letter-spacing: -.025em; text-wrap: balance; color: var(--branco); margin-top: 36px; }
+p { font-size: 38px; font-weight: 500; line-height: 1.45; color: var(--osso); margin-top: 34px; max-width: 870px; }
+em { font-style: normal; color: var(--azul); }
+.rodape { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2;
+  font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 500; color: var(--osso-2);
+  border-top: 1px solid rgba(255,255,255,.12); padding-top: 28px; }
+
+/* variantes de fundo */
+.claro { background: var(--claro); color: var(--tinta-clara); }
+.claro h1, .claro h2 { color: var(--void); }
+.claro p { color: var(--tinta-clara); }
+.claro em { color: var(--azul-tinta); }
+.claro .rotulo { color: #4a4458; }
+.claro .rodape { color: #5c5668; border-top-color: rgba(14,9,24,.14); }
+.painel { background: var(--painel); }
+.eletrico { background: var(--eletrico); }
+.eletrico h1, .eletrico h2 { color: var(--branco); }
+.eletrico p { color: rgba(255,255,255,.94); }
+.eletrico .rotulo { color: rgba(255,255,255,.88); }
+.eletrico .rotulo i { background: #fff; box-shadow: 0 0 16px rgba(255,255,255,.8); }
+.eletrico .rodape { color: rgba(255,255,255,.85); border-top-color: rgba(255,255,255,.25); }
+.eletrico .topo .nome { color: #fff; }
+
+/* capa: o olho carrega a página (brandbook 1.4); brilho só atrás do objeto (5.6) */
+.capa .olho { position: absolute; right: -150px; bottom: 110px; width: 720px; z-index: 1; opacity: .95; }
+.capa .luz { position: absolute; right: -80px; bottom: 120px; width: 720px; height: 620px; z-index: 0;
+  background: radial-gradient(closest-side, rgba(0,119,255,.32), transparent 72%); }
+.capa .miolo { justify-content: flex-start; padding-top: 120px; }
+.capa h1 { max-width: 880px; }
+
+/* barra de busca (slide 3): o jeito que o cliente pesquisa */
+.busca { margin-top: 26px; background: #fff; border-radius: 999px; padding: 30px 40px;
+  display: flex; align-items: center; gap: 24px; color: #1a1624; font-size: 36px; font-weight: 500; }
+.busca svg { width: 40px; height: 40px; flex-shrink: 0; }
+.busca + .busca { margin-top: 22px; }
+.buscas { margin-top: 30px; }
+
+/* lista (slide 6) */
+.lista { margin-top: 44px; display: flex; flex-direction: column; gap: 30px; }
+.item { display: flex; gap: 28px; align-items: baseline; padding-bottom: 30px; border-bottom: 1px solid rgba(14,9,24,.12); }
+.item:last-child { border-bottom: 0; }
+.item b { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 30px; color: var(--azul-tinta); }
+.item span { font-size: 42px; font-weight: 600; color: var(--void); line-height: 1.2; letter-spacing: -.02em; }
+
+/* citação (slide 7) */
+.aspas { position: absolute; left: 64px; top: 170px; font-size: 420px; line-height: 1; font-weight: 800;
+  color: rgba(0,119,255,.16); z-index: 1; }
+.citacao h2 { font-size: 70px; line-height: 1.1; }
+.citacao .miolo::before { content: ""; width: 80px; height: 4px; background: var(--azul); margin-bottom: 48px; }
+.claro.citacao .miolo::before { background: var(--azul-tinta); }
+
+/* SOLO grande (frase curta): o título ocupa o quadro */
+.grande h2 { font-size: 118px; line-height: 1; letter-spacing: -.03em; }
+.grande p { font-size: 42px; margin-top: 44px; }
+
+/* CTA (slide 8) */
+.cta .miolo { align-items: center; text-align: center; }
+.cta .selo { width: 250px; height: 250px; border-radius: 50%; background: var(--void); display: grid; place-items: center;
+  box-shadow: 0 0 0 10px rgba(255,255,255,.12); }
+.cta .selo img { width: 190px; }
+.cta h2 { font-size: 72px; max-width: 860px; margin-top: 64px; }
+.cta p { max-width: 800px; }
+/* NÚMERO: o numeral é o elemento gráfico do slide */
+.numero .num { font-size: 230px; font-weight: 700; line-height: .86; letter-spacing: -.05em; color: var(--azul); margin-top: 40px; }
+.claro.numero .num { color: var(--azul-tinta); }
+.numero h2 { margin-top: 28px; }
+
+/* capa com número gigante (post 2) */
+.capa-num .num-gigante { font-size: 560px; font-weight: 700; line-height: .78; letter-spacing: -.06em; color: var(--azul-tinta); margin-bottom: 56px; }
+.capa-num h1 { font-size: 104px; }
+
+/* capa com busca (post 3) */
+.capa-busca .busca { margin-top: 64px; }
+.cursor { display: inline-block; width: 3px; height: 44px; background: #1a1624; margin-left: -12px; }
+
+/* linha de fonte: dado com origem na própria peça */
+.fonte { margin-top: 40px; font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 500; color: #5c5668; }
+
+/* Acentos desenhados (biblioteca da marca, gerados no ChatGPT, identidade/social/file:///E:/Users/hagge/Downloads/HorusOS/identidade/social/elementos/).
+   Presos à palavra: o traço acompanha o tamanho do trecho marcado, sem posição manual. */
+.sublinha, .sublinha2, .circula { position: relative; white-space: nowrap; display: inline-block; }
+.sublinha::after, .sublinha2::after, .circula::after { content: ""; position: absolute; pointer-events: none; background-repeat: no-repeat; background-size: 100% 100%; }
+.sublinha::after { left: -2%; right: -2%; bottom: -.34em; height: .32em; background-image: url(file:///E:/Users/hagge/Downloads/HorusOS/identidade/social/elementos/sublinhado-onda.png); }
+.sublinha2::after { left: -2%; right: -4%; bottom: -.36em; height: .36em; background-image: url(file:///E:/Users/hagge/Downloads/HorusOS/identidade/social/elementos/sublinhado-duplo.png); }
+.circula::after { left: -10%; right: -10%; top: -22%; bottom: -26%; background-image: url(file:///E:/Users/hagge/Downloads/HorusOS/identidade/social/elementos/circulo.png); }
+.seta-desenho { position: absolute; width: 190px; pointer-events: none; }
+.buscas { position: relative; }
+.buscas .seta-desenho { right: 24px; top: -150px; width: 150px; transform: scaleX(-1) rotate(-4deg); }
+.com-seta p { max-width: 640px; }
+/* título com sublinhado desenhado: mais respiro até o texto de baixo */
+.grande h2:has(.sublinha, .sublinha2) + p { margin-top: 76px; }
+
+.botao { margin-top: 56px; background: #fff; color: var(--void); border-radius: 999px; padding: 30px 54px;
+  font-size: 36px; font-weight: 700; letter-spacing: -.01em; }
+</style>
+</head>
+<body>
+<section class="slide eletrico capa-busca"><div class="topo"><div class="marca"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><span class="nome">HORUS</span></div><div class="miolo"><h1>Quatro coisas que&nbsp;te falaram da&nbsp;ficha do&nbsp;Google. E&nbsp;o próprio Google desmente.</h1><div class="busca"><svg viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg>como aparecer no Google Maps<span class="cursor"></span></div></div><div class="rodape"><span>@horusagencia.br</span><span>arrasta →</span></div></section>
+
+<section class="slide claro numero"><div class="topo"><div class="marca"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><span class="nome" style="color:#0e0918">HORUS</span></div><div class="miolo"><div class="num">01</div><h2>“Põe o&nbsp;serviço e&nbsp;o bairro no&nbsp;nome, que&nbsp;aparece mais.”</h2><p>Na real, não. O Google pede o nome de verdade, o mesmo da fachada e do cartão. Enfiar serviço, bairro ou slogan ali pode até suspender o seu perfil.</p></div><div class="rodape"><span>@horusagencia.br</span></div></section>
+
+<section class="slide painel numero"><div class="topo"><div class="marca"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><span class="nome">HORUS</span></div><div class="miolo"><div class="num">02</div><h2>“Quanto mais categoria, mais gente te acha.”</h2><p>Não é bem assim. O Google pede poucas, e as mais específicas. O teste é fácil: a categoria completa a frase “essa empresa é”, e não “essa empresa tem”.</p></div><div class="rodape"><span>@horusagencia.br</span></div></section>
+
+<section class="slide numero"><div class="topo"><div class="marca"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><span class="nome">HORUS</span></div><div class="miolo"><div class="num">03</div><h2>“Dá pra&nbsp;pagar pra&nbsp;subir <span class="sublinha2">no&nbsp;mapa</span>.”</h2><p>Não dá. A própria ajuda do Google diz que não tem como pedir nem pagar por uma posição melhor. O que conta é relevância, distância e destaque.</p></div><div class="rodape"><span>@horusagencia.br</span></div></section>
+
+<section class="slide claro numero"><div class="topo"><div class="marca"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><span class="nome" style="color:#0e0918">HORUS</span></div><div class="miolo"><div class="num">04</div><h2>“Quem trabalha de&nbsp;casa tem que&nbsp;mostrar o&nbsp;endereço.”</h2><p>Não tem. Se você vai até o cliente, dá pra esconder o endereço e mostrar só a área que você atende, até 2 horas de distância.</p></div><div class="rodape"><span>@horusagencia.br</span></div></section>
+
+<section class="slide painel"><div class="topo"><div class="marca"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><span class="nome">HORUS</span></div><div class="miolo"><h2>No&nbsp;fim, a&nbsp;ficha só precisa contar a&nbsp;verdade do&nbsp;jeito que&nbsp;o <span class="sublinha">Google lê</span>.</h2><p>Nome da fachada, poucas categorias certeiras e a área que você atende de verdade. Nada disso custa dinheiro, só um pouco de atenção na hora de preencher.</p><div class="fonte">Fonte: Ajuda do Perfil da Empresa no Google: Diretrizes para representar sua empresa e Dicas para melhorar sua classificação local, consultadas em 28/09/2026</div></div><div class="rodape"><span>@horusagencia.br</span></div></section>
+
+<section class="slide citacao"><div class="topo"><div class="marca"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><span class="nome">HORUS</span></div><div class="miolo"><h2>Quanta ficha boa tá escondida por um detalhe que&nbsp;ninguém contou pro dono?</h2></div><div class="rodape"><span>@horusagencia.br</span></div></section>
+
+<section class="slide eletrico cta"><div class="miolo"><div class="selo"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt="Símbolo da Horus"></div><h2>Tem alguém aí montando a ficha do Google agora? Manda esse post antes que a pessoa caia no mito do nome.</h2><div class="botao">Enviar pra alguém</div></div><div class="rodape"><span>@horusagencia.br</span><span>Site e Google em Salvador</span></div></section>
+</body>
+</html>

@@ -85,3 +85,9 @@ sabe dizer quais são, ainda não entende a operação.
 
 Estrutura de reunião de time, scorecard por pessoa e desenho de organograma.
 Guardar para quando houver equipe.
+
+---
+
+## Fonte completa (29/09/2026)
+
+Este cartão é o resumo. A mente original do mega-brain está em `fontes/the-scalable-company/mega-brain/` (`AGENT.md` + `SOUL.md`), 1.134 + 182 linhas. Destaques: top filosofias, modelos mentais, frameworks assinatura, heurísticas se-então, regras sempre/nunca, 10.2 metodologias completas. A `/consultar` lê o cartão e depois busca na fonte a parte do assunto (grep pelo título ou pelo código). Citar assim: `^[fontes/the-scalable-company/mega-brain/AGENT.md:<seção ou código>]`.

@@ -11,7 +11,7 @@ import makeWASocket, { useMultiFileAuthState, DisconnectReason, fetchLatestBaile
 import { RAIZ_HD } from '../lib/env.mjs';
 import { q, q1 } from '../lib/db.mjs';
 import { log, logErro } from './log.mjs';
-import { normalizarTelefone } from '../app/js/score.js';
+import { normalizarTelefone, pareceRobo } from '../app/js/score.js';
 
 const PASTA_AUTH = path.join(RAIZ_HD, 'farejador', '.wa-auth');
 const LIMITE_PADRAO = 30;
@@ -177,7 +177,9 @@ export async function guardarMensagem(m, doHistorico = false) {
          or right(regexp_replace(coalesce(telefone,''),'\\D','','g'), 8) = right($1, 8)
       order by (right(regexp_replace(coalesce(whatsapp,''),'\\D','','g'), 8) = right($1, 8)) desc, atualizado_em desc
       limit 1`, [telefone]).catch(() => null);
-  if (doHistorico && !empresa) return false; // no histórico só puxamos quem já é do CRM
+  // Só entra no banco conversa de quem é ficha do CRM (Marcelo, 30/09/2026): o Antônio também abre
+  // o painel e a conversa pessoal não pode ficar ao alcance dele, nem escondida atrás de um filtro.
+  if (!empresa) return false;
 
   // pushName numa mensagem QUE EU MANDEI é o meu próprio nome, não o do contato.
   // Sem esta trava, toda conversa iniciada por nós nascia chamada "Marcelo Hagge".
@@ -202,11 +204,15 @@ export async function guardarMensagem(m, doHistorico = false) {
              nao_lidas = case when $3 = 'in' then nao_lidas + 1 else 0 end where id = $1`,
     [conversa.id, (texto || `[${tipo}]`).slice(0, 400), direcao, momento.toISOString(), nomeContato]);
     if (empresa && direcao === 'in') {
+      // Resposta automática (boas-vindas, ausência, menu) não é o lead respondendo: registra, mas não muda o estágio (LevSaúde, 29/09)
+      const robo = pareceRobo(texto);
       await q(`insert into atividades (empresa_id, tipo, titulo, descricao, autor) values ($1,'whatsapp',$2,$3,'whatsapp')`,
-        [empresa.id, 'Respondeu no WhatsApp', (texto || `[${tipo}]`).slice(0, 400)]).catch(() => {});
-      await q(`update empresas set estagio = 'conversando', atualizado_por = 'whatsapp' where id = $1 and estagio = 'abordado'`, [empresa.id]).catch(() => {});
+        [empresa.id, robo ? 'Resposta automática no WhatsApp (robô, não conta como resposta)' : 'Respondeu no WhatsApp', (texto || `[${tipo}]`).slice(0, 400)]).catch(() => {});
+      if (!robo) await q(`update empresas set estagio = 'conversando', atualizado_por = 'whatsapp' where id = $1 and estagio = 'abordado'`, [empresa.id]).catch(() => {});
     }
     if (direcao === 'in') { try { wa.aoMensagemNova?.({ conversa, empresa, texto, tipo }); } catch (e) { logErro('whatsapp', e); } }
+    // Saiu mensagem pra um lead com agente: a bola passou pro lead
+    if (empresa && direcao === 'out') await q("update agentes set fase = 'esperando_lead' where empresa_id = $1 and status = 'ativo' and fase = 'pronto_aprovar'", [empresa.id]).catch(() => {});
   }
   return { conversa, direcao, texto, empresa };
 }

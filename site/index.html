@@ -3,37 +3,61 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Horus Agência | Nós construímos máquinas, sistemas e marcas</title>
-<meta name="description" content="Agência de marketing digital com IA. Sites, desenvolvimento web, automação, CRM, Google Meu Negócio e conteúdo. Engenharia visual, inteligência artificial e nada publicado por acaso.">
+<title>Horus Agência | Marketing digital e criação de sites em Salvador</title>
+<meta name="description" content="Agência de marketing digital em Salvador. Criamos sites, lojas virtuais, atendimento com IA no WhatsApp, Google Meu Negócio e anúncios, com preço fechado.">
 
-<!-- 01/09/2026 — o site subiu na Netlify (agenciahorus.netlify.app) como
-     PREVIEW FECHADO, decisão do Marcelo. O `noindex` continua de propósito:
-     o portfólio ainda está sem imagem por falta de autorização, não existe
-     página Sobre nem CNPJ, e essas pendências não devem entrar em busca.
-     Para abrir ao Google um dia: apagar a linha `robots` abaixo E trocar o
-     Disallow do `robots.txt` na raiz. As duas coisas, não só uma. -->
-<meta name="robots" content="noindex, nofollow">
+<!-- 25/09/2026: aberto ao Google no domínio próprio (horusagencia.com.br),
+     decisão do Marcelo. Até então era preview fechado (desde 01/09), com
+     trinco aqui, no robots.txt e no site/_headers. Os três saíram juntos. -->
 
-<link rel="canonical" href="https://agenciahorus.netlify.app/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://horusagencia.com.br/#empresa",
+  "name": "Horus Agência",
+  "description": "Agência de marketing digital em Salvador. Sites, lojas virtuais, sistemas sob medida, atendimento com IA no WhatsApp, Google Meu Negócio, anúncios e conteúdo.",
+  "url": "https://horusagencia.com.br/",
+  "logo": "https://horusagencia.com.br/assets/favicon-192.png",
+  "image": "https://horusagencia.com.br/assets/compartilhar.jpg",
+  "telephone": "+55 71 99912-7514",
+  "email": "contato.horus@gmail.com",
+  "address": {"@type": "PostalAddress", "addressLocality": "Salvador", "addressRegion": "BA", "addressCountry": "BR"},
+  "areaServed": [
+    {"@type": "City", "name": "Salvador"},
+    {"@type": "City", "name": "Lauro de Freitas"},
+    {"@type": "City", "name": "Camaçari"},
+    {"@type": "City", "name": "Simões Filho"}
+  ],
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "opens": "09:00", "closes": "22:00"
+  }],
+  "sameAs": ["https://www.instagram.com/horusagencia.br/"],
+  "knowsAbout": ["Criação de sites","Loja virtual","Google Meu Negócio","SEO local","Google Ads","Atendimento automatizado no WhatsApp","CRM","Marketing digital"]
+}
+</script>
+<link rel="canonical" href="https://horusagencia.com.br/">
 <meta name="theme-color" content="#0A0B0F">
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://agenciahorus.netlify.app/">
+<meta property="og:url" content="https://horusagencia.com.br/">
 <meta property="og:site_name" content="Horus Agência">
-<meta property="og:title" content="Horus Agência | Nós construímos máquinas, sistemas e marcas">
-<meta property="og:description" content="Sites, desenvolvimento web, automação com IA, CRM, Google Meu Negócio e conteúdo. Engenharia visual, inteligência artificial e nada publicado por acaso.">
+<meta property="og:title" content="Horus Agência | Marketing digital e criação de sites em Salvador">
+<meta property="og:description" content="Agência de marketing digital em Salvador. Criamos sites, lojas virtuais, atendimento com IA no WhatsApp, Google Meu Negócio e anúncios, com preço fechado.">
 <!-- og:image PRECISA ser absoluta: o WhatsApp e o Facebook buscam a imagem
      fora do contexto da página, e caminho relativo simplesmente não resolve. -->
-<meta property="og:image" content="https://agenciahorus.netlify.app/assets/compartilhar.jpg">
+<meta property="og:image" content="https://horusagencia.com.br/assets/compartilhar.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Horus Agência — presença digital para negócios ambiciosos">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" href="assets/simbolo.webp" type="image/webp">
-<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,7 +107,7 @@
     <div class="topo-dir">
       <button class="hamburguer" type="button" id="abre-menu"
               aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
-        <span class="hb-caixa" aria-hidden="true"><i></i><i></i></span>
+        <span class="hb-caixa" aria-hidden="true"><i></i><i></i><i></i></span>
       </button>
       <a class="topo-cta btn-roll" href="#contato" id="cta-topo">
         <span class="roll">
@@ -102,7 +126,7 @@
        Título e subtítulo trocados em 05/08/2026 (noite): a versão anterior
        prendia a agência a Salvador e descrevia o método em vez de afirmar o
        que a casa faz. -->
-  <section class="hero" id="sobre">
+  <section class="hero" id="hero">
     <!-- Vídeo de fundo VOLTOU (31/08/2026, pedido do Marcelo): hero e Seção 1
          fundidos numa seção só, com o vídeo (Higgsfield) sangrando por baixo das
          duas. Ele vem em tons roxos; aqui é dessaturado e repintado num AZUL
@@ -121,7 +145,9 @@
     <div class="hero-topo">
       <div class="envelope hero-grade">
         <div class="hero-txt">
-          <h1 class="rev">Presença digital para negócios <span class="h1-am">ambiciosos.</span></h1>
+          <div class="hero-eyebrow rev">MARKETING &nbsp;&times;&nbsp; IA &nbsp;&times;&nbsp; TECNOLOGIA</div>
+
+          <h1 class="rev">Presença digital<br class="hero-br-mob"> para negócios<br class="hero-br-mob"> <span class="h1-am">ambiciosos.</span></h1>
 
           <p class="hero-lead rev">Produzimos soluções com o que há de mais novo em tecnologia e inteligência artificial, unindo design, estratégia e desenvolvimento numa execução só.</p>
 
@@ -227,7 +253,7 @@
     </div>
 
     <!-- ===== Seção 1 (atualizada 21/09/2026 · novo layout + copy print 1/2) ===== -->
-    <div class="valores s1-secao" id="manifesto">
+    <div class="valores s1-secao" id="sobre">
       <!-- Fundo de ondas / wireframe mesh ondulado (conforme prints 1 & 2) -->
       <canvas class="s1-waves-canvas" aria-hidden="true"></canvas>
 
@@ -255,10 +281,9 @@
   <!-- ================= SEÇÃO 2 · NOSSO STACK (atualizada 22/09/2026 · print 1) ================= -->
   <section class="stk-secao" id="stack" aria-labelledby="stk-tit">
     <div class="envelope">
-      <!-- Topo: 02 —— NOSSO STACK -->
+      <!-- Topo: NOSSO STACK (sem número, com quadradinho azul padrão) -->
       <div class="stk-topo-linha">
-        <span class="stk-numero">02</span>
-        <span class="stk-traco" aria-hidden="true"></span>
+        <span class="stk-quadrado" aria-hidden="true"></span>
         <span class="stk-tag" id="stk-tit">NOSSO STACK</span>
       </div>
 
@@ -411,44 +436,7 @@
             Trabalhamos com as ferramentas mais avançadas do mercado — de inteligência artificial e automação a desenvolvimento, dados e marketing — sempre escolhendo o que faz mais sentido para cada projeto.
           </p>
 
-          <ul class="stk-beneficios">
-            <li class="stk-item">
-              <span class="stk-check" aria-hidden="true">
-                <svg viewBox="0 0 20 20" fill="none">
-                  <circle cx="10" cy="10" r="8.5" stroke="#0077ff" stroke-width="1.6" stroke-opacity="0.75"/>
-                  <path d="M6.2 10.2l2.6 2.6 5.2-5.4" stroke="#0077ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-              <span class="stk-item-texto">Tecnologias de ponta, aplicadas com estratégia</span>
-            </li>
-            <li class="stk-item">
-              <span class="stk-check" aria-hidden="true">
-                <svg viewBox="0 0 20 20" fill="none">
-                  <circle cx="10" cy="10" r="8.5" stroke="#0077ff" stroke-width="1.6" stroke-opacity="0.75"/>
-                  <path d="M6.2 10.2l2.6 2.6 5.2-5.4" stroke="#0077ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-              <span class="stk-item-texto">Integrações que simplificam operações</span>
-            </li>
-            <li class="stk-item">
-              <span class="stk-check" aria-hidden="true">
-                <svg viewBox="0 0 20 20" fill="none">
-                  <circle cx="10" cy="10" r="8.5" stroke="#0077ff" stroke-width="1.6" stroke-opacity="0.75"/>
-                  <path d="M6.2 10.2l2.6 2.6 5.2-5.4" stroke="#0077ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-              <span class="stk-item-texto">Soluções sob medida para cada negócio</span>
-            </li>
-            <li class="stk-item">
-              <span class="stk-check" aria-hidden="true">
-                <svg viewBox="0 0 20 20" fill="none">
-                  <circle cx="10" cy="10" r="8.5" stroke="#0077ff" stroke-width="1.6" stroke-opacity="0.75"/>
-                  <path d="M6.2 10.2l2.6 2.6 5.2-5.4" stroke="#0077ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-              <span class="stk-item-texto">Atualização constante do nosso stack</span>
-            </li>
-          </ul>
+
         </div>
       </div>
     </div>
@@ -466,7 +454,7 @@
          rola para cima e sai do viewport naturalmente. O empilhamento (sticky) é
          só dos cards abaixo. A linha divisória que ficava acima do título saiu. -->
     <div class="svcs-intro envelope">
-      <p class="svcs-eyebrow">Nossos serviços</p>
+      <div class="svcs-eyebrow"><span class="svcs-quadrado" aria-hidden="true"></span> NOSSOS SERVIÇOS</div>
       <h2 class="svcs-titulo">O que a Horus <span class="svcs-em">instala.</span></h2>
       <p class="svcs-sub">Instalamos um bloco por vez, na ordem que o seu negócio precisa.<br>Sem product&#8209;dump, sem pacote inchado.</p>
     </div>
@@ -893,7 +881,7 @@
     <div class="envelope">
       <div class="qp-topo">
         <div class="qp-badge" aria-hidden="true">
-          <span class="qp-badge-ponto"></span>
+          <span class="qp-quadrado"></span>
           <span class="qp-badge-txt">NOSSO COMPROMISSO</span>
         </div>
         <h2 class="qp-titulo" id="qp-tit">Nossos <span class="qp-em">cinco</span> compromissos.</h2>
@@ -916,16 +904,9 @@
             <span class="qp-card-num">01</span>
           </div>
           <div class="qp-card-corpo">
-            <h3>Conformidade<br>legal</h3>
+            <span class="qp-num-mob" aria-hidden="true">01</span>
+            <h3>Conformidade legal</h3>
             <p>Aviso legal, privacidade e cookies já entram prontos. Seu site nasce dentro da lei.</p>
-          </div>
-          <div class="qp-card-rodape">
-            <span class="qp-btn-seta" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </span>
-            <span class="qp-barra-cor" aria-hidden="true"></span>
           </div>
         </article>
 
@@ -941,16 +922,9 @@
             <span class="qp-card-num">02</span>
           </div>
           <div class="qp-card-corpo">
-            <h3>Revisão<br>até aprovar</h3>
+            <span class="qp-num-mob" aria-hidden="true">02</span>
+            <h3>Revisão até aprovar</h3>
             <p>A gente refina o design até você aprovar. Rodada de revisão faz parte, sem custo extra.</p>
-          </div>
-          <div class="qp-card-rodape">
-            <span class="qp-btn-seta" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </span>
-            <span class="qp-barra-cor" aria-hidden="true"></span>
           </div>
         </article>
 
@@ -959,23 +933,16 @@
           <div class="qp-card-head">
             <span class="qp-ico-box" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12.5 2.5 21.5 11.5a2.12 2.12 0 0 1 0 3l-6 6a2.12 2.12 0 0 1-3 0L3.5 11.5V3.5h8Z"/>
-                <circle cx="8" cy="8" r="1.5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+                <line x1="7" y1="7" x2="7.01" y2="7"/>
               </svg>
             </span>
             <span class="qp-card-num">03</span>
           </div>
           <div class="qp-card-corpo">
-            <h3>Preço fechado<br>antes</h3>
+            <span class="qp-num-mob" aria-hidden="true">03</span>
+            <h3>Preço fechado antes</h3>
             <p>O valor é combinado antes da primeira linha. Sem surpresa na fatura.</p>
-          </div>
-          <div class="qp-card-rodape">
-            <span class="qp-btn-seta" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </span>
-            <span class="qp-barra-cor" aria-hidden="true"></span>
           </div>
         </article>
 
@@ -991,16 +958,9 @@
             <span class="qp-card-num">04</span>
           </div>
           <div class="qp-card-corpo">
-            <h3>Você aprova<br>o resultado</h3>
+            <span class="qp-num-mob" aria-hidden="true">04</span>
+            <h3>Você aprova o resultado</h3>
             <p>Só vai ao ar quando você estiver satisfeito. O risco fica com a gente, não com você.</p>
-          </div>
-          <div class="qp-card-rodape">
-            <span class="qp-btn-seta" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </span>
-            <span class="qp-barra-cor" aria-hidden="true"></span>
           </div>
         </article>
 
@@ -1016,16 +976,9 @@
             <span class="qp-card-num">05</span>
           </div>
           <div class="qp-card-corpo">
-            <h3>Esboço antes<br>do pedido</h3>
+            <span class="qp-num-mob" aria-hidden="true">05</span>
+            <h3>Esboço antes do pedido</h3>
             <p>Você vê a proposta antes de decidir. Primeiro convence, depois contrata.</p>
-          </div>
-          <div class="qp-card-rodape">
-            <span class="qp-btn-seta" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </span>
-            <span class="qp-barra-cor" aria-hidden="true"></span>
           </div>
         </article>
       </div>
@@ -1079,106 +1032,54 @@
         <div class="pf-tira">
           <article class="pf-item">
             <div class="pf-tela">
-              <img src="assets/portfolio/pf-novare.webp" alt="Site institucional Novare Psicologia" loading="lazy" decoding="async">
+              <img src="assets/portfolio/pf-soluna.webp" alt="Site institucional Soluna Arquitetura" loading="lazy" decoding="async">
             </div>
             <div class="pf-legenda">
-              <span class="pf-tag"><span class="pf-dot"></span> SAÚDE &amp; PSICOLOGIA</span>
+              <span class="pf-tag"><span class="pf-dot"></span> ARQUITETURA &amp; HOSPITALIDADE</span>
               <div class="pf-tit-linha">
-                <h3>Novare Psicologia</h3>
+                <h3>Soluna Arquitetura</h3>
                 <span class="pf-seta" aria-hidden="true">→</span>
               </div>
-              <p>Site institucional com foco em agendamento e posicionamento de marca.</p>
+              <p>Presença digital imersiva para estúdio de arquitetura contemporânea e hotelaria boutique.</p>
             </div>
           </article>
           <article class="pf-item">
             <div class="pf-tela">
-              <img src="assets/portfolio/pf-grao-da-serra.webp" alt="Site e posicionamento comercial Café Grão da Serra" loading="lazy" decoding="async">
+              <img src="assets/portfolio/pf-atelier-noir.webp" alt="Site e portfólio Atelier Noir" loading="lazy" decoding="async">
             </div>
             <div class="pf-legenda">
-              <span class="pf-tag"><span class="pf-dot"></span> AGRONEGÓCIO &amp; VENDAS B2B</span>
+              <span class="pf-tag"><span class="pf-dot"></span> ARQUITETURA &amp; INTERIORES</span>
               <div class="pf-tit-linha">
-                <h3>Café Grão da Serra</h3>
+                <h3>Atelier Noir</h3>
                 <span class="pf-seta" aria-hidden="true">→</span>
               </div>
-              <p>Site institucional e comercial para torrefação artesanal da Bahia, com foco em vendas B2B.</p>
+              <p>Design editorial austero com estética brutalista refinada e manifesto institucional.</p>
             </div>
           </article>
           <article class="pf-item">
             <div class="pf-tela">
-              <img src="assets/portfolio/pf-irs-performance.webp" alt="Site e projetos IRS Performance" loading="lazy" decoding="async">
+              <img src="assets/portfolio/pf-nava.webp" alt="E-commerce NAVA Studio" loading="lazy" decoding="async">
             </div>
             <div class="pf-legenda">
-              <span class="pf-tag"><span class="pf-dot"></span> AUTOMOTIVO &amp; ALTA PERFORMANCE</span>
+              <span class="pf-tag"><span class="pf-dot"></span> MODA AUTORAL &amp; E-COMMERCE</span>
               <div class="pf-tit-linha">
-                <h3>IRS Performance</h3>
+                <h3>NAVA Studio</h3>
                 <span class="pf-seta" aria-hidden="true">→</span>
               </div>
-              <p>Presença digital para oficina especializada e preparação de alta performance em Salvador.</p>
+              <p>E-commerce editorial contemporâneo de vestuário básico premium e peças atemporais.</p>
             </div>
           </article>
           <article class="pf-item">
             <div class="pf-tela">
-              <img src="assets/portfolio/pf-verdiserv.webp" alt="Site institucional e captação VerdiServ Serviços Prediais" loading="lazy" decoding="async">
+              <img src="assets/portfolio/pf-lucas-almeida.webp" alt="Portfólio Lucas Almeida Design de Produto" loading="lazy" decoding="async">
             </div>
             <div class="pf-legenda">
-              <span class="pf-tag"><span class="pf-dot"></span> FACILITIES &amp; GESTÃO PREDIAL</span>
+              <span class="pf-tag"><span class="pf-dot"></span> DESIGN DE PRODUTO &amp; HARDWARE</span>
               <div class="pf-tit-linha">
-                <h3>VerdiServ — Serviços Prediais</h3>
+                <h3>Lucas Almeida</h3>
                 <span class="pf-seta" aria-hidden="true">→</span>
               </div>
-              <p>Site institucional e captação para empresa de terceirização predial em Salvador e região.</p>
-            </div>
-          </article>
-          <article class="pf-item">
-            <div class="pf-tela">
-              <img src="assets/portfolio/pf-soleira.webp" alt="Site editorial de alto padrão Soleira Arquitetura" loading="lazy" decoding="async">
-            </div>
-            <div class="pf-legenda">
-              <span class="pf-tag"><span class="pf-dot"></span> ARQUITETURA &amp; DESIGN</span>
-              <div class="pf-tit-linha">
-                <h3>Soleira Arquitetura</h3>
-                <span class="pf-seta" aria-hidden="true">→</span>
-              </div>
-              <p>Portfólio editorial e captação para escritório de arquitetura contemporânea e interiores de luxo.</p>
-            </div>
-          </article>
-          <article class="pf-item">
-            <div class="pf-tela">
-              <img src="assets/portfolio/pf-vanguarda.webp" alt="Site institucional Vanguarda Advocacia Empresarial" loading="lazy" decoding="async">
-            </div>
-            <div class="pf-legenda">
-              <span class="pf-tag"><span class="pf-dot"></span> DIREITO &amp; CORPORATIVO</span>
-              <div class="pf-tit-linha">
-                <h3>Vanguarda Advocacia</h3>
-                <span class="pf-seta" aria-hidden="true">→</span>
-              </div>
-              <p>Posicionamento de autoridade e assessoria jurídica estratégica para empresas e holdings.</p>
-            </div>
-          </article>
-          <article class="pf-item">
-            <div class="pf-tela">
-              <img src="assets/portfolio/pf-lumina.webp" alt="Site e agendamento Lumina Odontologia e Estética" loading="lazy" decoding="async">
-            </div>
-            <div class="pf-legenda">
-              <span class="pf-tag"><span class="pf-dot"></span> ODONTOLOGIA &amp; ESTÉTICA</span>
-              <div class="pf-tit-linha">
-                <h3>Lumina Dental Studio</h3>
-                <span class="pf-seta" aria-hidden="true">→</span>
-              </div>
-              <p>Site institucional de estética odontológica com foco em lentes de contato e agendamento VIP.</p>
-            </div>
-          </article>
-          <article class="pf-item">
-            <div class="pf-tela">
-              <img src="assets/portfolio/pf-amendoa.webp" alt="Site e encomendas Amêndoa Confeitaria Artesanal" loading="lazy" decoding="async">
-            </div>
-            <div class="pf-legenda">
-              <span class="pf-tag"><span class="pf-dot"></span> GASTRONOMIA &amp; EVENTOS</span>
-              <div class="pf-tit-linha">
-                <h3>Amêndoa Confeitaria</h3>
-                <span class="pf-seta" aria-hidden="true">→</span>
-              </div>
-              <p>Catálogo digital e canal de encomendas para doceria fina e eventos comemorativos.</p>
+              <p>Portfólio interativo em Bento Grid para robótica urbana, engenharia de produto e hardware.</p>
             </div>
           </article>
           <article class="pf-item">
@@ -1196,6 +1097,13 @@
           </article>
         </div>
       </div>
+
+      <div class="pf-rodape-mob">
+        <a class="btn-azul pf-btn-ver-mais js-glow" href="portfolio.html">
+          <span class="cta-brilho" aria-hidden="true"></span>
+          <span class="cta-lbl">Ver mais projetos <span class="seta" aria-hidden="true">&#8599;</span></span>
+        </a>
+      </div>
     </div>
    </div>
   </section>
@@ -1208,7 +1116,7 @@
      <div class="ps-bg-glow" aria-hidden="true"></div>
      <div class="ps-topo envelope">
        <div class="ps-eyebrow"><span class="ps-quadrado" aria-hidden="true"></span> COMO COMEÇA</div>
-       <h2 class="ps-titulo">Do primeiro contato<br>ao resultado, <span class="ps-destaque-azul">sem complicação.</span></h2>
+       <h2 class="ps-titulo">Do primeiro contato<br>ao resultado,<br><span class="ps-destaque-azul">sem complicação.</span></h2>
        <p class="ps-sub">Um processo claro, rápido e eficiente para transformar sua ideia<br>em um ativo digital que gera resultados.</p>
      </div>
 
@@ -1230,11 +1138,12 @@
                <circle cx="12" cy="11.5" r="1" fill="currentColor"/>
                <circle cx="16" cy="11.5" r="1" fill="currentColor"/>
              </svg>
+             <span class="ps-linha-v" aria-hidden="true"><span class="ps-ponto-v"></span></span>
            </div>
          </div>
          <div class="ps-info">
-           <h3>Consulta inicial</h3>
-           <p>A gente conversa sobre os seus objetivos, por e-mail, telefone ou WhatsApp. Sem compromisso.</p>
+           <h3>Descobrir</h3>
+           <p>Entendemos seu negócio, seus objetivos e o que precisa ser resolvido.</p>
          </div>
        </div>
 
@@ -1249,11 +1158,12 @@
                <line x1="16" y1="17" x2="8" y2="17"/>
                <line x1="10" y1="9" x2="8" y2="9"/>
              </svg>
+             <span class="ps-linha-v" aria-hidden="true"><span class="ps-ponto-v"></span></span>
            </div>
          </div>
          <div class="ps-info">
-           <h3>Diagnóstico e proposta</h3>
-           <p>Analisamos seu negócio e criamos um plano personalizado, com escopo, prazos e investimento transparentes.</p>
+           <h3>Projetar</h3>
+           <p>Definimos a solução, escopo, prioridades e próximos passos.</p>
          </div>
        </div>
 
@@ -1265,11 +1175,12 @@
                <circle cx="12" cy="12" r="3"/>
                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
              </svg>
+             <span class="ps-linha-v" aria-hidden="true"><span class="ps-ponto-v"></span></span>
            </div>
          </div>
          <div class="ps-info">
-           <h3>Execução lado a lado</h3>
-           <p>Com o projeto aprovado, nossa equipe entra em ação. Você acompanha cada etapa de perto, com clareza e comunicação constante.</p>
+           <h3>Construir</h3>
+           <p>Nossa equipe desenvolve, implementa e conecta as tecnologias necessárias.</p>
          </div>
        </div>
 
@@ -1278,15 +1189,16 @@
            <span class="ps-n">04</span>
            <div class="ps-circulo">
              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-               <line x1="18" y1="20" x2="18" y2="10"/>
-               <line x1="12" y1="20" x2="12" y2="4"/>
-               <line x1="6" y1="20" x2="6" y2="14"/>
+               <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+               <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+               <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+               <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
              </svg>
            </div>
          </div>
          <div class="ps-info">
-           <h3>Lançamento e crescimento</h3>
-           <p>Seu projeto vai ao ar e começa a gerar resultados. E a gente continua ao seu lado, otimizando e buscando novas oportunidades.</p>
+           <h3>Evoluir</h3>
+           <p>Publicamos, acompanhamos os resultados e continuamos otimizando.</p>
          </div>
        </div>
      </div>
@@ -1297,20 +1209,7 @@
        </a>
      </div>
 
-     <div class="ps-rodape-linha envelope" aria-hidden="true">
-       <div class="ps-pilares">
-         <span>ESTRATÉGIA</span>
-         <span>TECNOLOGIA</span>
-         <span>RESULTADOS</span>
-       </div>
-       <div class="ps-divisor-fio"></div>
-       <div class="ps-marca-ano">
-         <span>HORUS</span>
-         <span class="ps-traco-fio"></span>
-         <span>2026</span>
-       </div>
-     </div>
-   </section>
+    </section>
 
   <!-- ================= CHAMADA FINAL ================= -->
   <!-- Refeita em 26/08/2026 a pedido do Marcelo: SAIU o cartão de vidro. Agora a
@@ -1356,9 +1255,12 @@
              React/shadcn/Tailwind; aqui foi PORTADO para vanilla (a stack do site
              é HTML/CSS/JS nativo — regra da casa: porta o efeito, não instala o
              framework). Chapa azul com halo pulsante e o ícone de sparkles. -->
-        <a class="glow-btn" href="https://wa.me/5571999127514" aria-label="Começar projeto">
-          <span class="glow-txt">Começar projeto</span>
-          <svg class="glow-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z"/><path d="M19 14l.7 2L22 16.7l-2 .7L19 20l-.7-2L16 16.7l2-.7L19 14Z"/></svg>
+        <a class="glow-btn" href="https://wa.me/5571999127514" aria-label="Começar meu projeto">
+          <span class="glow-txt">Começar meu projeto</span>
+          <svg class="glow-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="15" x2="15" y2="5" />
+            <polyline points="7 5 15 5 15 13" />
+          </svg>
         </a>
       </div>
     </div>
@@ -1734,7 +1636,7 @@
     var pista = document.querySelector('.pf-pista');
     var tira = document.querySelector('.pf-tira');
     if (!secao || !pista || !tira) return;
-    if (reduzido) return;
+    if (reduzido || window.innerWidth < 861) return;
     /* No desktop com GSAP, quem move a fileira é o bloco de pin (mais abaixo).
        Este laço é só o piso para quando o GSAP não está disponível. */
     if (window.gsap && window.ScrollTrigger && window.innerWidth >= 861) return;
@@ -2507,19 +2409,19 @@ void main(){
     var cta = document.querySelector('.ps-cta');
     if (!path || !window.ScrollTrigger) return;
     gsap.set(path, { scaleX: 0, transformOrigin: 'left center' });
-    /* limiar de progresso em que cada card acende (a linha "chega" nele) */
-    var limiares = [0.10, 0.38, 0.70, 0.96];
+    /* limiar de progresso em que cada card acende (a linha "chega" nele) - acelerado para chegar ao 4 antes de sair da seção */
+    var limiares = [0.06, 0.32, 0.60, 0.88];
     gsap.to(path, {
       scaleX: 1, ease: 'none',
       scrollTrigger: {
         trigger: tlContainer || '.passos',
-        start: 'top 65%',
-        end: 'bottom 35%',
-        scrub: 1.5,
+        start: 'top 75%',
+        end: 'bottom 55%',
+        scrub: 0.6,
         invalidateOnRefresh: true,
         onUpdate: function (self) {
           passos.forEach(function (el, k) { el.classList.toggle('aceso', self.progress >= limiares[k]); });
-          if (cta) cta.classList.toggle('aceso', self.progress >= 0.98);
+          if (cta) cta.classList.toggle('aceso', self.progress >= 0.92);
         }
       }
     });

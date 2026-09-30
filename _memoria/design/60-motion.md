@@ -227,6 +227,31 @@ em volta da esfera e a linha curva dos "4 passos".
 
 ---
 
+## Espaço de eventos com emoção (Casa Verona, rodada 3, 24/09/2026)
+
+Pedido do Marcelo com quatro referências de casamento (`referencias/eventos-emocao-quatro-sites.md`):
+"gostei dos vídeos, do motion e dos efeitos; deixe tão decorado quanto". Cliente não regulado,
+então o arsenal entrou quase inteiro. O que funcionou e vale para o próximo:
+
+- **O símbolo do logo se mexendo é a assinatura.** A Austo balança as palmeiras do logo no hero;
+  na Casa Verona, os ciprestes do logo (e do jardim) balançam dos lados da janela. Usar a
+  propriedade `rotate` (não `transform`) no balanço: ela soma com o `transform` da entrada e as
+  duas animações não brigam. `transform-origin` na base, 1,3 a 1,5 grau, dois ritmos (7 s e 8,5 s).
+- **Slideshow no hero só com pausa visível** (WCAG 2.2.2), numerais para escolher a foto, parada
+  quando o hero sai da tela ou a aba some, e começando **pausado** com "reduzir movimento".
+  Fusão sem "respiro": a foto nova entra por cima e a velha fica congelada embaixo até o fim.
+  Aproximação lenta de 1 para 1,08 em 7,4 s.
+- **Marquee que anda com a rolagem, não sozinho.** A faixa em loop infinito foi barrada pelo
+  detector (`marquee`) e pelo WCAG 2.2.2. Amarrada à rolagem (`scrub` no `xPercent`), nada se
+  move sem o gesto da pessoa e o efeito do The Grand continua. Resolve os dois sem dispensa.
+- **Texto revelado palavra a palavra** só no manifesto (um bloco), com o texto inteiro no HTML;
+  sem GSAP ou com "reduzir movimento", fica como está.
+- **Vídeo real, curto e sem som**, tocando só quando entra na tela (IntersectionObserver). Vídeo
+  do próprio cliente (reel) vale mais que qualquer efeito: é a prova.
+- **Vídeo dentro das letras** para fechar a página com o nome, em SVG `<mask>` sobre `<video>`.
+
+---
+
 ## Como uma correção entra aqui
 
 Igual ao resto da casa: o Marcelo corrige algo de movimento no chat, e a correção

@@ -1,0 +1,32 @@
+{
+  "id": "horus",
+  "nome": "Horus",
+  "rede": "instagram",
+  "handle": "@horusagencia.br",
+  "regulado": false,
+  "fuso": "America/Bahia",
+  "contexto": [
+    "_memoria/empresa.md",
+    "_memoria/preferencias.md",
+    "_memoria/estrategia.md",
+    "_memoria/integridade.md",
+    "_memoria/comercial.md",
+    "identidade/design-guide.md",
+    "identidade/brandbook.md",
+    "_memoria/conteudo",
+    "identidade/social/auditoria-2026-09-27.md",
+    "identidade/social/perfil.md"
+  ],
+  "politica": {
+    "fase": 1,
+    "graduacao": { "aprovacoes_sem_edicao": 8 },
+    "limites": {
+      "publicar_feed": 1,
+      "publicar_carrossel": 1,
+      "publicar_reel": 1,
+      "publicar_story": 4,
+      "responder_comentario": 30,
+      "ocultar_comentario": 10
+    }
+  }
+}

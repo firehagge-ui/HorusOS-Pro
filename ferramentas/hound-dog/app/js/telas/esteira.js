@@ -29,7 +29,7 @@ export default async function esteira(v) {
   v.className = 'vista cheia';
   v.innerHTML = `
     <div class="cab"><div class="tt"><h1>Esteira</h1><p>Onde cada negócio está, do primeiro contato ao fechamento.</p></div>
-      <div class="acoes"><a class="btn" href="#/encontrar?aba=listas">${icone('upload')}Importar da lista</a><button class="btn prim" data-novo>${icone('mais')}Novo lead</button></div></div>
+      <div class="acoes"><a class="btn" href="#/encontrar?aba=listas">${icone('upload')}Importar da lista</a><button class="btn" data-investigar-lote title="Põe os leads do Novo na fila da investigação profunda, um por vez">${icone('radar')}Investigar Novos</button><button class="btn prim" data-novo>${icone('mais')}Novo lead</button></div></div>
     <div class="kpis" data-kpis></div>
     <div class="barra-ferramentas">
       <div class="busca" style="flex:1;max-width:380px">${icone('busca')}<input class="inp" data-busca placeholder="Buscar por nome, nicho, cidade, @…"></div>
@@ -229,6 +229,24 @@ export default async function esteira(v) {
   area.addEventListener('keydown', (ev) => { if (ev.key === 'Enter' && ev.target.classList.contains('cartao')) abrirFicha(ev.target.dataset.id); });
 
   $('[data-novo]', v).onclick = () => novoLead();
+  $('[data-investigar-lote]', v).onclick = async () => {
+    const { perguntar, toast, erroAmigavel } = await import('../ui.js');
+    const { criarJob } = await import('../sb.js');
+    const { data: fila } = await sb.from('jobs').select('empresa_id').eq('tipo', 'investigar_empresa').in('status', ['fila', 'processando']);
+    const naFila = new Set((fila || []).map((j) => j.empresa_id));
+    const candidatos = estado.empresas
+      .filter((e) => e.estagio === 'novo' && e.relacao === 'lead' && !e.arquivado && !naFila.has(e.id) && !(e.tags || []).includes('investigado'))
+      .sort((a, b) => (b.score || 0) - (a.score || 0));
+    if (!candidatos.length) { toast('Nenhum lead do Novo esperando investigação', 'info'); return; }
+    const r = await perguntar(`Quantos investigar? (${candidatos.length} no Novo, do maior score pro menor)`, { valor: String(Math.min(5, candidatos.length)), placeholder: 'um número, ou "todos"', rotulo: 'Pôr na fila' });
+    if (r == null) return;
+    const n = /todos/i.test(r) ? candidatos.length : Math.max(0, Math.min(candidatos.length, parseInt(r, 10) || 0));
+    if (!n) return;
+    try {
+      for (const e of candidatos.slice(0, n)) await criarJob('investigar_empresa', {}, { empresa_id: e.id }, 5);
+      toast(`${n} na fila da investigação. Um por vez, 20 a 40 min cada; aviso no seu WhatsApp a cada um.`, 'info');
+    } catch (err) { toast(erroAmigavel(err), 'erro'); }
+  };
   const inpBusca = $('[data-busca]', v);
   inpBusca.oninput = debounce(() => { busca = inpBusca.value; desenhar(); }, 200);
   $('[data-filtros]', v).onclick = (ev) => { const b = ev.target.closest('[data-f]'); if (!b) return; filtro = b.dataset.f; $$('[data-f]', v).forEach((x) => x.classList.toggle('on', x === b)); gravarPref({ ...lerPref(), filtro }); desenhar(); };

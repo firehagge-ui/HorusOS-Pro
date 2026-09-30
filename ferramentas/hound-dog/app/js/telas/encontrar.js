@@ -1,5 +1,5 @@
 /* =============================================================================
-   HOUND DOG — Encontrar clientes
+   HOUNDER — Encontrar clientes
    Farejada do Claude · Planilha do Spark · Listas pontuadas → funil
    ============================================================================= */
 import { sb, estado, ouvir, criarJob, farejadorOnline, acharDuplicada, criarEmpresa, quem } from '../sb.js';
@@ -74,7 +74,7 @@ function abaClaude(c, limpezas) {
       </section>
       <section class="col gap-18">
         <div class="card"><div class="card-cab"><div class="icone-caixa sm">${icone('ampulheta')}</div><h3>Farejadas</h3></div><div data-jobs>${esqueleto(3)}</div></div>
-        <div class="card destaque"><div class="card-cab"><div class="icone-caixa sm amarelo">${icone('planilha')}</div><div class="grow"><h3>Delegar o volume pro Spark</h3><p class="dim" style="font-size:13px">Precisa de 100+ leads? O Gemini Spark faz o volume e o Hound Dog pontua.</p></div></div>
+        <div class="card destaque"><div class="card-cab"><div class="icone-caixa sm amarelo">${icone('planilha')}</div><div class="grow"><h3>Delegar o volume pro Spark</h3><p class="dim" style="font-size:13px">Precisa de 100+ leads? O Gemini Spark faz o volume e o Hounder pontua.</p></div></div>
           <button class="btn bloco" data-spark>${icone('copiar')}Gerar prompt pro Spark</button></div>
       </section>
     </div>`;
@@ -125,7 +125,7 @@ function abaClaude(c, limpezas) {
 
 function modalSpark(nicho, cidade) {
   const m = modal({
-    titulo: 'Prompt pro Gemini Spark', subtitulo: 'Cole no Spark. Ele monta a planilha no formato que o Hound Dog lê direto.', icone: 'planilha', largo: true,
+    titulo: 'Prompt pro Gemini Spark', subtitulo: 'Cole no Spark. Ele monta a planilha no formato que o Hounder lê direto.', icone: 'planilha', largo: true,
     corpo: `<div class="grade-2"><div class="campo"><label>Nicho</label><input class="inp" data-n value="${esc(nicho)}"></div><div class="campo"><label>Cidade</label><input class="inp" data-c value="${esc(cidade)}"></div></div>
       <div class="campo"><label>Quantidade</label><input class="inp" data-q type="number" min="10" max="500" value="80"></div>
       <textarea class="txt mono" data-p rows="14" style="font-size:12.5px"></textarea>
@@ -331,6 +331,7 @@ async function detalheLista(v, id) {
   v.innerHTML = `<div class="card">${esqueleto(8, 22)}</div>`;
   let lista, itens = [];
   let filtro = 'nao_importados', busca = '', ordem = 'score', pagina = 0;
+  let triando = new Set(), triagemAgora = null;
   const POR_PAGINA = 50;
   const sel = new Set();
 
@@ -340,6 +341,9 @@ async function detalheLista(v, id) {
       sb.from('lista_itens').select('*').eq('lista_id', id).order('score', { ascending: false }).limit(5000),
     ]);
     if (e1 || e2) throw e1 || e2;
+    const { data: jt } = await sb.from('jobs').select('entrada,status,progresso').eq('tipo', 'triar_lista').eq('lista_id', id).in('status', ['fila', 'processando']);
+    triando = new Set((jt || []).flatMap((j) => j.entrada?.item_ids || []));
+    triagemAgora = (jt || []).find((j) => j.status === 'processando')?.progresso || null;
     if (!l) { v.innerHTML = vazio('alerta', 'Lista não encontrada', 'Ela pode ter sido excluída.', '<a class="btn sm" href="#/encontrar?aba=listas">Voltar às listas</a>'); return false; }
     lista = l; itens = its || [];
     return true;
@@ -382,7 +386,14 @@ async function detalheLista(v, id) {
       ${lista.status === 'processando' ? `<div class="aviso claude mb-16">${sparkClaude(18)}<div><b>O Claude ainda está farejando esta lista.</b> Os leads aparecem aqui conforme ele encontra.</div></div>` : ''}
       <div class="card destaque lista-resumo"><div class="icone-caixa">${icone('usuariomais')}</div>
         <div class="grow"><div class="resumo-num"><b>${num(cont.nao_importados)}</b> leads prontos pra entrar no funil</div><div class="dim">${num(cont.todos)} na lista · ${num(cont.alta)} alta prioridade · ${num(cont.sem_site)} sem site · ${num(cont.importados)} já no CRM</div></div>
-        <div class="right">${(() => { const n = Math.min(10, ativos.filter((i) => !i.empresa_id && i.prioridade === 'alta').length); return n ? `<button class="btn prim" data-importar-top>${icone('setad')}Mandar os ${n} melhores pro funil</button>` : `<span class="dim" style="font-size:13px">${cont.nao_importados ? 'Nenhum de alta prioridade ainda: escolha na tabela abaixo.' : 'Tudo o que valia já está no funil.'}</span>`; })()}</div></div>
+        <div class="right row wrap" style="gap:8px;justify-content:flex-end">${(() => {
+          const pend = ativos.filter((i) => !i.empresa_id && !triando.has(i.id)).length;
+          const n = Math.min(10, ativos.filter((i) => !i.empresa_id && i.prioridade === 'alta').length);
+          const tri = pend ? `<button class="btn prim" data-triagem title="O Claude confere cada lead (existe? o Spark acertou? tem gancho?): quem passa vai pro Novo, quem não passa é descartado com o motivo">${icone('radar')}Fazer a triagem</button>` : '';
+          const dir = n ? `<button class="btn" data-importar-top title="Pula a triagem">${icone('setad')}Mandar os ${n} melhores direto</button>` : '';
+          return tri || dir ? tri + dir : `<span class="dim" style="font-size:13px">${cont.nao_importados ? 'Nenhum de alta prioridade ainda: escolha na tabela abaixo.' : 'Tudo o que valia já está no funil.'}</span>`;
+        })()}</div></div>
+      ${triando.size ? `<div class="aviso claude mt-12">${sparkClaude(18)}<div><b>Triagem na fila: ${triando.size} lead${triando.size > 1 ? 's' : ''}.</b> ${triagemAgora ? esc(triagemAgora) : 'Começa quando o navegador do Farejador estiver livre (uma investigação ou triagem por vez).'} Quem passar aparece no Novo; o resumo chega no seu WhatsApp.</div></div>` : ''}
       <div class="chips mt-16">${[['nao_importados', 'Ainda fora do CRM'], ['alta', 'Alta oportunidade'], ['media', 'Média ou +'], ['sem_site', 'Sem site'], ['whats', 'Com WhatsApp'], ['importados', 'No CRM'], ['todos', 'Todos'], ['descartados', 'Descartados']]
         .map(([k, r]) => `<button class="chip ${filtro === k ? 'on' : ''}" data-filtro="${k}">${k === 'alta' ? icone('estrela') : ''}${r} <span class="n">${cont[k]}</span></button>`).join('')}</div>
       <div class="row wrap mt-16"><div class="busca grow" style="max-width:420px">${icone('busca')}<input class="inp" data-busca placeholder="Buscar por nome, bairro, @…" value="${esc(busca)}"></div>
@@ -443,6 +454,22 @@ async function detalheLista(v, id) {
       if (b.dataset.bulk === 'descartar') { await atualizarItens(ids, { descartado: true }); sel.clear(); desenhar(); }
       if (b.dataset.bulk === 'enriquecer') { await enriquecer(ids.slice(0, 15)); sel.clear(); desenhar(); }
     }));
+    const btnTri = $('[data-triagem]', v);
+    if (btnTri) btnTri.onclick = async () => {
+      const { perguntar } = await import('../ui.js');
+      const cand = itens.filter((i) => !i.descartado && !i.empresa_id && !triando.has(i.id)).sort((a, b) => b.score - a.score);
+      const r = await perguntar(`Quantos leads passar pela triagem? (${cand.length} fora do CRM, do maior score pro menor)`, { valor: String(Math.min(10, cand.length)), placeholder: 'um número, ou "todos"', rotulo: 'Pôr na fila' });
+      if (r == null) return;
+      const n = /todos/i.test(r) ? cand.length : Math.max(0, Math.min(cand.length, parseInt(r, 10) || 0));
+      if (!n) return;
+      const alvo = cand.slice(0, n).map((i) => i.id);
+      try {
+        for (let k = 0; k < alvo.length; k += 8) await criarJob('triar_lista', { item_ids: alvo.slice(k, k + 8) }, { lista_id: id }, 5);
+        toast(`${n} lead${n > 1 ? 's' : ''} na triagem, de 8 em 8${farejadorOnline() ? '' : ' (Farejador offline: roda quando ligar)'}`, 'info');
+        for (const x of alvo) triando.add(x);
+        desenhar();
+      } catch (e) { toast(erroAmigavel(e), 'erro'); }
+    };
     const btnTop = $('[data-importar-top]', v);
     if (btnTop) btnTop.onclick = async (e) => {
       const top = itens.filter((i) => !i.descartado && !i.empresa_id && i.prioridade === 'alta').sort((a, b) => b.score - a.score).slice(0, 10);
@@ -484,13 +511,18 @@ async function detalheLista(v, id) {
         let empId = dup?.id;
         if (!dup) {
           const conselho = detectarRegulado(`${it.categoria || ''} ${it.nome}`);
+          // A lista guarda dono/e-mail/observação juntos num texto só; a linha crua devolve cada um pro seu campo
+          const cru = it.dados && Object.keys(it.dados).length ? linhaParaItem(it.dados, mapearColunas(Object.keys(it.dados))) : {};
           const emp = await criarEmpresa({
             nome: it.nome, categoria: it.categoria, cidade: it.cidade, bairro: it.bairro, endereco: it.endereco, telefone: it.telefone, whatsapp: it.whatsapp,
             instagram: it.instagram, instagram_seguidores: it.instagram_seguidores, site: it.site, site_status: it.site_status, google_nota: it.google_nota,
             google_avaliacoes: it.google_avaliacoes, gmb_status: it.gmb_status, roda_anuncio: it.roda_anuncio, cnpj: it.cnpj, score: it.score, prioridade: it.prioridade,
             score_motivos: it.score_motivos, regulado: Boolean(conselho), conselho, estagio: 'novo', relacao: 'lead',
             origem: lista.origem === 'claude' ? 'claude' : lista.origem === 'network' ? 'network' : 'spark', origem_detalhe: lista.nome, lista_item_id: it.id,
-            resumo: it.observacao, gancho: it.site_status === 'fora_do_ar' ? 'Site fora do ar (conferir antes de citar)' : it.site_status === 'sem' ? 'Não tem site próprio: quem procura no Google não acha' : null,
+            decisor: cru.decisor || null, email: cru.email || null,
+            // A lacuna que a lista apontou é a dor; o resumo guarda o que a lista sugeriu vender
+            dor: cru.nome ? cru.observacao || null : null,
+            resumo: cru.nome ? (cru.servico_sugerido ? `Serviço sugerido na lista: ${cru.servico_sugerido}` : null) : it.observacao, gancho: it.site_status === 'fora_do_ar' ? 'Site fora do ar (conferir antes de citar)' : it.site_status === 'sem' ? 'Não tem site próprio: quem procura no Google não acha' : null,
           });
           empId = emp.id; novos++;
         } else ligados++;

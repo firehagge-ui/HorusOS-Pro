@@ -34,6 +34,9 @@ const RAIZ_PUBLICA = [
   'robots.txt',
   'sitemap.xml',
   'assets',
+  'favicon.ico', // o Google procura na raiz; ícone de busca precisa ser quadrado e múltiplo de 48px
+  '_headers',   // cabeçalhos e redirecionamentos moram aqui (e não no netlify.toml)
+  '_redirects', // porque o site sobe arrastando a pasta, e aí o toml é ignorado
 ];
 
 /**
@@ -52,6 +55,33 @@ const ASSETS_ORFAOS = new Set([
   'servicos/sv-4.webp',
   'servicos/sv-5.webp',
   'servicos/sv-6.webp',
+  // 24/09/2026: varredura antes do deploy. Os PNG do portfólio são a fonte dos
+  // WebP que o HTML usa; o vídeo e os fundos de "passos" saíram em rodadas antigas.
+  // Juntos são ~17 MB que ninguém pede.
+  'Grafico seção 1.png',
+  'bg-passos-user.png',
+  'bg-passos.jpg',
+  'fundo-passos.png',
+  'fundo-passos-light.jpg',
+  'fundo-passos-light.webp',
+  'simbolo-grande.png',
+  'servicos/crescimento-tecnologia.png',
+  'video/hero-1440.mp4',
+  'video/hero-1440.webm',
+  'video/hero-poster.jpg',
+  'portfolio/pf-1.webp',
+  'portfolio/pf-2.webp',
+  'portfolio/pf-3.webp',
+  'portfolio/pf-amendoa.png',
+  'portfolio/pf-atelier-noir.png',
+  'portfolio/pf-brincar.png',
+  'portfolio/pf-casa-alba.png',
+  'portfolio/pf-lucas-almeida.png',
+  'portfolio/pf-lumina.png',
+  'portfolio/pf-nava.png',
+  'portfolio/pf-solarium.png',
+  'portfolio/pf-soleira.png',
+  'portfolio/pf-soluna.png',
 ]);
 
 const kb = (b) => (b / 1024).toFixed(0) + ' KB';

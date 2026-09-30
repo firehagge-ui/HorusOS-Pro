@@ -227,6 +227,8 @@ reunião. Régua:
 
 > Promovido do dossiê da Mullsanni Performance (07/09/2026), lead #8. Vale para qualquer
 > prospecção, por isso subiu para cá. Fechar bem começa por abordar com verdade.
+> O jeito de escrever a mensagem e o processo até a reunião (revistos em 22/09/2026) moram
+> em `_conhecimento/network/abordagem-e-prospeccao.md` §8 a §10 e `cold-message-processo.md`.
 
 1. 🔴 **Gancho verdadeiro, nunca pretexto falso.** Abrir com "falei com um funcionário
    seu" (ou qualquer pretexto inventado) é falsificável na hora e queima a credibilidade

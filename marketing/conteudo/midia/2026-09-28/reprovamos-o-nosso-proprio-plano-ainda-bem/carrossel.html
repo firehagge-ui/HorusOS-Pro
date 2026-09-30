@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Reprovamos o nosso próprio plano. Ainda bem.</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=JetBrains+Mono:wght@500;600;700&display=swap');
+
+/* ============ Sistema de design: Horus no Instagram (herda o site) ============
+   Formato 1080 x 1440 (3:4). Fundo void, azul elétrico como destaque, DM Sans +
+   JetBrains Mono nos rótulos. Pisos de 10-legibilidade.md: corpo >= 34px, nada < 24px,
+   peso >= 500 em texto de leitura. Ritmo: void, claro, painel, elétrico. */
+:root {
+  --void: #0e0918;  --painel: #1b1728;  --claro: #f2f0f6;
+  --osso: #d1cece;  --osso-2: #9d9797;  --branco: #ffffff;
+  --azul: #0077ff;  --azul-tinta: #0057d9;  --tinta-clara: #3a3446;
+  --eletrico: linear-gradient(141deg, #077ac7, #6b21ef);
+}
+* { box-sizing: border-box; margin: 0; }
+body { background: #444; font-family: 'DM Sans', system-ui, sans-serif; }
+.slide {
+  width: 1080px; height: 1440px; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; padding: 88px 96px 84px;
+  background: var(--void); color: var(--osso); margin-bottom: 40px;
+}
+.topo { display: flex; align-items: center; gap: 18px; position: relative; z-index: 2; }
+.topo .marca { width: 76px; height: 76px; border-radius: 18px; background: var(--void);
+  display: grid; place-items: center; }
+.topo .marca img { width: 60px; }
+.topo .nome { font-weight: 800; font-size: 30px; letter-spacing: .06em; color: var(--osso); }
+.miolo { flex: 1; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2; }
+.rotulo { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 26px;
+  letter-spacing: .2em; text-transform: uppercase; color: rgba(226,232,240,.75);
+  display: flex; align-items: center; gap: 18px; }
+.rotulo i { width: 14px; height: 14px; border-radius: 3px; background: var(--azul);
+  box-shadow: 0 0 18px rgba(0,119,255,.85); flex-shrink: 0; }
+h1 { font-size: 112px; font-weight: 600; line-height: 1; letter-spacing: -.028em; text-wrap: balance; color: var(--branco); margin-top: 44px; }
+h2 { font-size: 74px; font-weight: 600; line-height: 1.06; letter-spacing: -.025em; text-wrap: balance; color: var(--branco); margin-top: 36px; }
+p { font-size: 38px; font-weight: 500; line-height: 1.45; color: var(--osso); margin-top: 34px; max-width: 870px; }
+em { font-style: normal; color: var(--azul); }
+.rodape { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2;
+  font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 500; color: var(--osso-2);
+  border-top: 1px solid rgba(255,255,255,.12); padding-top: 28px; }
+
+/* variantes de fundo */
+.claro { background: var(--claro); color: var(--tinta-clara); }
+.claro h1, .claro h2 { color: var(--void); }
+.claro p { color: var(--tinta-clara); }
+.claro em { color: var(--azul-tinta); }
+.claro .rotulo { color: #4a4458; }
+.claro .rodape { color: #5c5668; border-top-color: rgba(14,9,24,.14); }
+.painel { background: var(--painel); }
+.eletrico { background: var(--eletrico); }
+.eletrico h1, .eletrico h2 { color: var(--branco); }
+.eletrico p { color: rgba(255,255,255,.94); }
+.eletrico .rotulo { color: rgba(255,255,255,.88); }
+.eletrico .rotulo i { background: #fff; box-shadow: 0 0 16px rgba(255,255,255,.8); }
+.eletrico .rodape { color: rgba(255,255,255,.85); border-top-color: rgba(255,255,255,.25); }
+.eletrico .topo .nome { color: #fff; }
+
+/* capa: o olho carrega a página (brandbook 1.4); brilho só atrás do objeto (5.6) */
+.capa .olho { position: absolute; right: -150px; bottom: 110px; width: 720px; z-index: 1; opacity: .95; }
+.capa .luz { position: absolute; right: -80px; bottom: 120px; width: 720px; height: 620px; z-index: 0;
+  background: radial-gradient(closest-side, rgba(0,119,255,.32), transparent 72%); }
+.capa .miolo { justify-content: flex-start; padding-top: 120px; }
+.capa h1 { max-width: 880px; }
+
+/* barra de busca (slide 3): o jeito que o cliente pesquisa */
+.busca { margin-top: 26px; background: #fff; border-radius: 999px; padding: 30px 40px;
+  display: flex; align-items: center; gap: 24px; color: #1a1624; font-size: 36px; font-weight: 500; }
+.busca svg { width: 40px; height: 40px; flex-shrink: 0; }
+.busca + .busca { margin-top: 22px; }
+.buscas { margin-top: 30px; }
+
+/* lista (slide 6) */
+.lista { margin-top: 44px; display: flex; flex-direction: column; gap: 30px; }
+.item { display: flex; gap: 28px; align-items: baseline; padding-bottom: 30px; border-bottom: 1px solid rgba(14,9,24,.12); }
+.item:last-child { border-bottom: 0; }
+.item b { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 30px; color: var(--azul-tinta); }
+.item span { font-size: 42px; font-weight: 600; color: var(--void); line-height: 1.2; letter-spacing: -.02em; }
+
+/* citação (slide 7) */
+.aspas { position: absolute; left: 64px; top: 170px; font-size: 420px; line-height: 1; font-weight: 800;
+  color: rgba(0,119,255,.16); z-index: 1; }
+.citacao h2 { font-size: 70px; line-height: 1.1; }
+.citacao .miolo::before { content: ""; width: 80px; height: 4px; background: var(--azul); margin-bottom: 48px; }
+.claro.citacao .miolo::before { background: var(--azul-tinta); }
+
+/* SOLO grande (frase curta): o título ocupa o quadro */
+.grande h2 { font-size: 118px; line-height: 1; letter-spacing: -.03em; }
+.grande p { font-size: 42px; margin-top: 44px; }
+
+/* CTA (slide 8) */
+.cta .miolo { align-items: center; text-align: center; }
+.cta .selo { width: 250px; height: 250px; border-radius: 50%; background: var(--void); display: grid; place-items: center;
+  box-shadow: 0 0 0 10px rgba(255,255,255,.12); }
+.cta .selo img { width: 190px; }
+.cta h2 { font-size: 72px; max-width: 860px; margin-top: 64px; }
+.cta p { max-width: 800px; }
+/* NÚMERO: o numeral é o elemento gráfico do slide */
+.numero .num { font-size: 230px; font-weight: 700; line-height: .86; letter-spacing: -.05em; color: var(--azul); margin-top: 40px; }
+.claro.numero .num { color: var(--azul-tinta); }
+.numero h2 { margin-top: 28px; }
+
+/* capa com número gigante (post 2) */
+.capa-num .num-gigante { font-size: 560px; font-weight: 700; line-height: .78; letter-spacing: -.06em; color: var(--azul-tinta); margin-bottom: 56px; }
+.capa-num h1 { font-size: 104px; }
+
+/* capa com busca (post 3) */
+.capa-busca .busca { margin-top: 64px; }
+.cursor { display: inline-block; width: 3px; height: 44px; background: #1a1624; margin-left: -12px; }
+
+/* linha de fonte: dado com origem na própria peça */
+.fonte { margin-top: 40px; font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 500; color: #5c5668; }
+
+/* Acentos desenhados (biblioteca da marca, gerados no ChatGPT, identidade/social/file:///e:/Users/hagge/Downloads/HorusOS/identidade/social/elementos/).
+   Presos à palavra: o traço acompanha o tamanho do trecho marcado, sem posição manual. */
+.sublinha, .sublinha2, .circula { position: relative; white-space: nowrap; }
+.sublinha::after, .sublinha2::after, .circula::after { content: ""; position: absolute; pointer-events: none; background-repeat: no-repeat; background-size: 100% 100%; }
+.sublinha::after { left: -2%; right: -2%; bottom: -.34em; height: .32em; background-image: url(file:///e:/Users/hagge/Downloads/HorusOS/identidade/social/elementos/sublinhado-onda.png); }
+.sublinha2::after { left: -2%; right: -4%; bottom: -.36em; height: .36em; background-image: url(file:///e:/Users/hagge/Downloads/HorusOS/identidade/social/elementos/sublinhado-duplo.png); }
+.circula::after { left: -10%; right: -10%; top: -22%; bottom: -26%; background-image: url(file:///e:/Users/hagge/Downloads/HorusOS/identidade/social/elementos/circulo.png); }
+.seta-desenho { position: absolute; width: 190px; pointer-events: none; }
+.buscas { position: relative; }
+.buscas .seta-desenho { right: 24px; top: -150px; width: 150px; transform: scaleX(-1) rotate(-4deg); }
+.com-seta p { max-width: 640px; }
+/* título com sublinhado desenhado: mais respiro até o texto de baixo */
+.grande h2:has(.sublinha, .sublinha2) + p { margin-top: 76px; }
+
+.botao { margin-top: 56px; background: #fff; color: var(--void); border-radius: 999px; padding: 30px 54px;
+  font-size: 36px; font-weight: 700; letter-spacing: -.01em; }
+</style>
+</head>
+<body>
+<section class="slide  capa"><div class="luz"></div><img class="olho" src="file:///e:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""><div class="topo"><div class="marca"><img src="file:///e:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><span class="nome">HORUS</span></div><div class="miolo"><h1>Reprovamos o&nbsp;nosso próprio plano. <em>Ainda bem.</em></h1></div><div class="rodape"><span>@horusagencia.br</span><span>arrasta →</span></div></section>
+
+<section class="slide claro"><div class="topo"><div class="marca"><img src="file:///e:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><span class="nome" style="color:#0e0918">HORUS</span></div><div class="miolo"><h2>Amêndoa Preta é&nbsp;um projeto nosso.</h2><p>Uma doceria de encomenda em Salvador, fictícia, criada pra mostrar como a gente pensa um site. Marca e telefone são inventados de propósito, pra nada ali fingir ser cliente.</p></div><div class="rodape"><span>@horusagencia.br</span></div></section>
+
+<section class="slide painel grande"><div class="topo"><div class="marca"><img src="file:///e:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><span class="nome">HORUS</span></div><div class="miolo"><h2>O&nbsp;primeiro plano saiu <span class="sublinha">no&nbsp;automático</span>.</h2><p>Fundo creme, letra serifada, foto de bolo, três quadradinhos iguais e a frase “feito com carinho”. Bonito, e igual ao de qualquer doceria.</p></div><div class="rodape"><span>@horusagencia.br</span></div></section>
+
+<section class="slide"><div class="topo"><div class="marca"><img src="file:///e:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><span class="nome">HORUS</span></div><div class="miolo"><h2>Eu chegaria nesse plano com qualquer doceria?</h2><p>A resposta era sim. Pior: nos três sites reais de doceria que estudamos antes, faltava o que trava a encomenda. Prazo, pedido mínimo e área de entrega.</p></div><div class="rodape"><span>@horusagencia.br</span></div></section>
+
+<section class="slide eletrico"><div class="topo"><div class="marca"><img src="file:///e:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><span class="nome">HORUS</span></div><div class="miolo"><h2 style="font-size:88px">Quem encomenda bolo não compra doce. Compra a&nbsp;data cumprida.</h2><p>A festa já está marcada. Na cabeça de quem procura, a pergunta é uma só: ainda dá tempo?</p></div><div class="rodape"><span>@horusagencia.br</span></div></section>
+
+<section class="slide claro"><div class="topo"><div class="marca"><img src="file:///e:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><span class="nome" style="color:#0e0918">HORUS</span></div><div class="miolo"><h2>Então o&nbsp;site passou a&nbsp;responder isso na&nbsp;primeira tela.</h2><p>Um painel lê a data do dia e mostra a próxima entrega possível, quantos dias faltam e a que horas fecha o pedido. Sem ninguém precisar perguntar no WhatsApp.</p></div><div class="rodape"><span>@horusagencia.br</span></div></section>
+
+<section class="slide painel"><div class="topo"><div class="marca"><img src="file:///e:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><span class="nome">HORUS</span></div><div class="miolo"><h2>O&nbsp;que mudou do&nbsp;primeiro para o&nbsp;segundo plano</h2><div class="lista"><div class="item"><b>01</b><span>Cor tirada do produto: cacau e calda</span></div><div class="item"><b>02</b><span>Letra de rótulo de confeitaria antiga</span></div><div class="item"><b>03</b><span>Linhas com prazo e pedido mínimo no lugar de cards iguais</span></div><div class="item"><b>04</b><span>Um painel que trabalha no lugar de um adjetivo</span></div></div></div><div class="rodape"><span>@horusagencia.br</span></div></section>
+
+<section class="slide grande"><div class="topo"><div class="marca"><img src="file:///e:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><span class="nome">HORUS</span></div><div class="miolo"><h2>Pesquisa que&nbsp;<span class="sublinha2">não muda o&nbsp;plano</span> não precisava ser feita.</h2><p>Por isso a gente estuda o segmento antes de abrir o editor. É lá que aparece o que o concorrente esconde, e o que o seu site pode mostrar.</p></div><div class="rodape"><span>@horusagencia.br</span></div></section>
+
+<section class="slide painel citacao"><div class="topo"><div class="marca"><img src="file:///e:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><span class="nome">HORUS</span></div><div class="miolo"><h2>Qual pergunta o&nbsp;seu cliente faz antes de&nbsp;comprar, e&nbsp;o seu site ainda não responde?</h2></div><div class="rodape"><span>@horusagencia.br</span></div></section>
+
+<section class="slide eletrico cta"><div class="miolo"><div class="selo"><img src="file:///e:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt="Símbolo da Horus"></div><h2>Quer ver o painel da Amêndoa Preta funcionando? Chama no WhatsApp pelo link da bio que a gente mostra.</h2><div class="botao">Chamar no WhatsApp</div></div><div class="rodape"><span>@horusagencia.br</span><span>Site e Google em Salvador</span></div></section>
+</body>
+</html>

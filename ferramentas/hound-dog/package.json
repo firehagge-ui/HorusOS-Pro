@@ -9,7 +9,8 @@
     "semear": "node scripts/semear-real.mjs",
     "farejador": "node farejador/index.mjs",
     "mcp": "node mcp/server.mjs",
-    "hd": "node cli/hd.mjs"
+    "hd": "node cli/hd.mjs",
+    "navegador": "node scripts/navegador-login.mjs"
   },
   "engines": {
     "node": ">=22"
