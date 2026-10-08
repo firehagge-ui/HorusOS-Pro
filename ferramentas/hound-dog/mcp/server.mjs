@@ -183,13 +183,13 @@ servidor.registerTool('hd_agente_designar', {
 
 servidor.registerTool('hd_agente_nota', {
   title: 'Acrescentar à memória do agente',
-  description: 'Grava uma informação nova na memória do agente do lead: fato (com a fonte), hipótese ou correção do Marcelo. reagir=true pede um ciclo pra ele agir em cima disso.',
-  inputSchema: { empresa_id: z.string(), texto: z.string(), tipo: z.enum(['fato', 'hipotese', 'correcao']).optional(), fonte: z.string().optional().describe('De onde veio: "Marcelo", "print do WhatsApp", url...'), reagir: z.boolean().optional() },
-}, envolver(({ empresa_id, texto, tipo, fonte, reagir }) => notaAgente(empresa_id, texto, { tipo, fonte: fonte || 'Marcelo', reagir }, AUTOR)));
+  description: 'Grava uma informação nova na memória do agente do lead: fato (com a fonte), hipótese ou correção do Marcelo. reagir=true pede um ciclo pra ele agir em cima disso. nicho=true quando a lição vale pra todos os leads do mesmo segmento (vira nota do especialista: Clara, clínicas; Lia, eventos; Rafa, oficinas).',
+  inputSchema: { empresa_id: z.string(), texto: z.string(), tipo: z.enum(['fato', 'hipotese', 'correcao']).optional(), fonte: z.string().optional().describe('De onde veio: "Marcelo", "print do WhatsApp", url...'), reagir: z.boolean().optional(), nicho: z.boolean().optional().describe('A lição vale pro nicho todo, não só pra este lead') },
+}, envolver(({ empresa_id, texto, tipo, fonte, reagir, nicho }) => notaAgente(empresa_id, texto, { tipo, fonte: fonte || 'Marcelo', reagir, nicho }, AUTOR)));
 
 servidor.registerTool('hd_agente_pedir', {
   title: 'Pedir um ciclo ao agente',
-  description: 'O Marcelo pediu algo ao agente do lead ("outra opção", "responde isso", "vê de novo"): enfileira um ciclo com o pedido. O resultado sai no Disparos ou na conversa.',
+  description: 'O Marcelo pediu algo ao agente do lead ("outra opção", "responde isso", "vê de novo"): enfileira um ciclo com o pedido. O resultado sai na Mesa de agentes.',
   inputSchema: { empresa_id: z.string(), pedido: z.string() },
 }, envolver(async ({ empresa_id, pedido }) => {
   const id = await pedirCiclo(empresa_id, 'pedido', pedido, AUTOR);

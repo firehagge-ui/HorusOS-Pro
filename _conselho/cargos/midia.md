@@ -37,6 +37,11 @@ pergunta que sempre faz: "por qual canal essa pessoa realmente chega?"
 - Não promete volume de agendamento sem histórico
 - Não recomenda escalar verba antes de a primeira campanha ter dado sinal
 
+## Manual da casa
+
+`_memoria/trafego/` (01/10/2026): estrutura com verba pequena, medição no WhatsApp, números de
+referência com o grau de confiança. Quando o Mídia falar de tráfego, fala a partir dele.
+
 ## Doutrina que ele cita
 
 - `mentes/jeremy-haynes.md` — funil, arquitetura de follow-up, volume de teste,

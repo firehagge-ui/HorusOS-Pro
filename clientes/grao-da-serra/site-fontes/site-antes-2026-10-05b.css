@@ -1,0 +1,952 @@
+/* ==========================================================================
+   Café Grão da Serra — site institucional
+   Refeito em 05/08/2026 a partir das SEIS referências que o Marcelo mandou:
+   imagens/referencia-home/HOME PT 1..6.png (mockup "Café Serra de Brejão").
+
+     PT 1 → cabeçalho verde + hero: texto à esquerda, paisagem e pacote à direita
+     PT 2 → faixa verde com quatro pilares, ícone em traço dourado
+     PT 3 → "Nosso café": foto à esquerda, texto e três atributos à direita
+     PT 4 → "Nossa origem": texto à esquerda, paisagem à direita, selo redondo
+     PT 5 → "Peça o seu café": formulário em creme, ornamento botânico
+     PT 6 → rodapé escuro em quatro colunas
+
+   O mockup é de outra marca ("Serra de Brejão"). O que foi copiado dele é o
+   LAYOUT e a paleta. O nome, a logo, os dados e a copy são do Grão da Serra,
+   e a copy dele foi reescrita: o mockup diz "cultivado", "do cultivo à
+   colheita", "região de altitude", "solo fértil" e "café especial", e esta
+   família NÃO planta, NÃO colhe, e nada disso está confirmado.
+   Ver briefing.md e marca.md.
+
+   ---------------------------------------------------------------------
+   PALETA, e de onde cada cor vem
+
+   Do mockup (amostragem das áreas chapadas, 05/08):
+     verde escuro  #20301C   ← cabeçalho, faixa de pilares, botão
+     creme         #E4D0B4   ← fundo das seções claras
+     rodapé        #2C1C10
+
+   O verde NÃO está no manual do cliente: é a cor autorizada verbalmente por
+   ele em 30/07 ("seria interessante sim, coisa pouca"). ⚠️ A marca.md limita
+   o verde a detalhe e proíbe fundo de seção inteira — o Marcelo agora pediu
+   exatamente o contrário, e pedido do cliente vence a diretriz interna.
+   Fica registrado que a diferença é intencional.
+
+   Existem TRÊS cremes, e cada um tem motivo:
+     #F8E4CF  hero  ← #EFC294 oficial + 55% branco
+     #FDF6EA  origem, só para separar as duas seções de #E7D2B8
+     #E7D2B8  "Nosso café" e formulário ← a cor EXATA do fundo dos desenhos
+              de planta que o Marcelo mandou, pedida por ele em 05/08
+
+   Contraste medido em 05/08 (a régua, não o olho):
+     sobre #F8E4CF : tinta 11,91 · marrom 5,89 · verde 11,32 · verde-md 6,24
+     sobre #E7D2B8 : tinta  9,82 · marrom 4,86 · verde  9,34 · verde-md 5,15
+                     dourado-esc 4,92 ✅ · dourado #D6B35F 1,44 🔴
+     sobre #20301C : creme 11,3 · #EFC294 8,54 · dourado 6,98 · verde-cl 4,57
+     sobre #3D2115 : branco 14,72 · #EFC294 8,98 · dourado 7,34
+
+   Consequências que não devem ser desfeitas:
+   · O eyebrow do mockup é DOURADO SOBRE CREME. Isso dá 1,44:1 e é o erro
+     clássico que vira texto ilegível. Aqui ele usa o degrau escuro
+     #6B521C, que fecha 4,92:1 no MAIS ESCURO dos três cremes e por isso
+     pode ser o mesmo em todas as seções.
+   · O #D6B35F só existe como preenchimento e como traço de ícone SOBRE O
+     VERDE, onde ele dá 6,98:1.
+   · Sobre o verde é o contrário do fundo claro: quem some é o verde médio,
+     e quem serve é creme, dourado e branco.
+   ========================================================================== */
+
+:root{
+  /* --- fundos --- */
+  --creme:  #F8E4CF;  /* seção clara principal — #EFC294 oficial + 55% branco */
+  /* 05/08, pedido do Marcelo: a seção 1 e o formulário usam a MESMA cor de
+     fundo dos desenhos de planta que ele mandou. Amostrada do arquivo
+     "Planta desenho 3", que é opaco. Sem isso o desenho apareceria como um
+     retângulo de cor diferente em cima da seção. */
+  --creme-fundo: #E7D2B8;
+  --origem:      #F1E4D1;  /* fundo da "Nossa origem" — cor pedida em 07/08  */
+  --campo:  #F6EBD9;  /* superfície de campo, MAIS CLARA que --creme-fundo   */
+  /* ⚠️ O verde escuro #20301C SAIU do site em 06/08, junto com a faixa verde
+     e com os botões verdes: o manual do Nelson não tem verde, e o pedido foi
+     alinhar as cores a ele. O que ficou é o --verde-md, em ícone e link, que
+     é a dose de "coisa pouca" que a marca.md sempre autorizou. */
+  --escuro: #3D2115;  /* rodapé — o marrom oficial no lugar do #2C1C10        */
+
+  /* --- texto --- */
+  --tinta:    #3D2115;
+  --marrom:   #764D36;
+  --verde-md: #3F5A34;  /* verde legível sobre creme (6,24:1)                */
+  --sobre-verde:   #F8E4CF;
+  --sobre-verde-2: #EFC294;
+
+  /* --- acentos --- */
+  --dourado:     #D6B35F;  /* preenchimento e traço sobre o verde            */
+  /* 05/08: caiu de #7E6124 para #6B521C. Com a entrada do --creme-fundo
+     (#E4D0B8), o tom anterior dava 3,87:1 nele e reprovava. Este dá 4,92 no
+     mais escuro dos três cremes, então o eyebrow é o MESMO em todas as
+     seções — a regra é "o mesmo acento medido contra cada fundo", não um
+     acento por seção. */
+  --dourado-esc: #6B521C;  /* eyebrow e texto pequeno sobre creme            */
+
+  /* --- tipografia: 8 degraus, valores literais.
+     Sem clamp(): o detector não resolve clamp e passa a enxergar três
+     tamanhos onde existem oito (flat-type-hierarchy). Media query resolve. */
+  --t-xs:   .8125rem;   /* 13,0px */
+  --t-sm:   .9375rem;   /* 15,0px */
+  --t-base: 1.09375rem; /* 17,5px — corpo. NÃO reduzir no celular */
+  --t-lg:   1.375rem;   /* 22,0px */
+  --t-xl:   1.75rem;    /* 28,0px */
+  --t-2xl:  2.375rem;   /* 38,0px */
+  --t-3xl:  3rem;       /* 48,0px */
+  --t-hero: 3.5rem;     /* 56,0px — cai em media query */
+
+  --serif: "DM Serif Display", Georgia, serif;
+  --sans:  "Source Sans 3", system-ui, -apple-system, sans-serif;
+
+  --maxw: 1200px;
+  --gut: 24px;
+  --r: 14px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+/* Cabeçalho sticky de ~84px: sem isso a barra cobre o título de todo link
+   de âncora. Ver 90-antipadroes.md, seção Técnico. */
+main[id],section[id],footer[id]{scroll-margin-top:110px}
+
+body{
+  margin:0;
+  background:var(--creme);
+  color:var(--marrom);
+  font-family:var(--sans);
+  font-size:var(--t-base);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  /* 10/08: sem seleção/cópia (pedido do Marcelo, peça de portfólio). Os campos
+     do formulário voltam a permitir seleção logo abaixo, senão não dá pra
+     digitar/corrigir. */
+  -webkit-user-select:none;user-select:none;
+}
+/* imagens não arrastáveis (evita salvar arrastando pro desktop) */
+img{-webkit-user-drag:none;user-drag:none}
+/* formulário precisa de seleção pra ser usável */
+input,textarea,select{-webkit-user-select:text;user-select:text}
+
+img{max-width:100%;height:auto;display:block}
+
+h1,h2,h3{
+  font-family:var(--serif);
+  color:var(--tinta);
+  font-weight:400;
+  line-height:1.16;
+  margin:0 0 .5em;
+  letter-spacing:-.012em;
+}
+h1{font-size:var(--t-hero);line-height:1.12}
+h2{font-size:var(--t-2xl)}
+h3{font-size:var(--t-lg);line-height:1.3}
+
+p{margin:0 0 1.15em;max-width:64ch}
+
+a{color:var(--verde-md);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--tinta)}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut);position:relative}
+
+/* O eyebrow do mockup, no degrau escuro do dourado. Teto de um a cada três
+   seções (90-antipadroes.md): aqui ele aparece em "Nosso café", "Nossa
+   origem" e "Peça o seu café", e em nenhum h1. */
+.eyebrow{
+  font-size:var(--t-xs);
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--dourado-esc);
+  font-weight:700;
+  margin:0 0 14px;
+}
+
+/* Ornamento divisor do PT 3: fio com um losango dourado no meio. */
+/* `width`, não `max-width`: dentro de um flex em coluna com align-items
+   flex-start o divisor encolhia para o tamanho do losango e os dois fios
+   sumiam. */
+.divisor{display:flex;align-items:center;gap:10px;margin:0 0 22px;width:180px}
+.divisor::before,.divisor::after{content:"";height:1px;background:var(--dourado);flex:1}
+.divisor i{
+  width:7px;height:7px;background:var(--dourado);
+  transform:rotate(45deg);display:block;
+}
+
+/* ------------------------------- botões -------------------------------- */
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--sans);
+  font-size:var(--t-sm);
+  font-weight:700;
+  line-height:1.2;
+  padding:15px 28px;
+  border-radius:8px;
+  border:1px solid transparent;
+  cursor:pointer;
+  text-decoration:none;
+  transition:background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+.btn svg{width:18px;height:18px;flex:none}
+/* O ícone oficial do WhatsApp é um glifo cheio. As regras de ícone da casa
+   são todas de traço (`fill:none;stroke:currentColor`), então ele precisa
+   desligar as duas, em qualquer lugar onde apareça. */
+.ico-wa{fill:currentColor !important;stroke:none !important}
+
+/* Botão principal DOURADO com texto tinta = 7,34:1. É o par que a marca.md
+   fixa como botão, e é o do print novo. O verde saiu de botão junto com a
+   faixa verde: o manual do Nelson não tem verde, e ele volta a ser "coisa
+   pouca" (ícone e link), como a marca.md sempre pediu. */
+.btn-ouro{background:var(--dourado);color:var(--tinta);border-color:var(--dourado)}
+.btn-ouro:hover{background:#C6A250;color:var(--tinta)}
+
+/* Nas seções claras o botão é o MARROM do manual com texto creme (8,98:1).
+   Dourado só funciona como botão sobre fundo escuro: sobre creme ele tem
+   1,44:1 de contraste com o próprio fundo e deixa de ler como botão. Não é
+   acento novo: o acento continua sendo o dourado, e o marrom é neutro. */
+.btn-escuro{background:var(--escuro);color:var(--sobre-verde-2);border-color:var(--escuro)}
+.btn-escuro:hover{background:#54321F;color:#FFFFFF}
+
+/* botão de fio sobre o hero escurecido */
+.btn-claro{background:none;color:#FFFFFF;border-color:rgba(255,255,255,.55)}
+.btn-claro:hover{background:#FFFFFF;color:var(--tinta);border-color:#FFFFFF}
+
+.btn-fio{background:none;color:var(--tinta);border-color:rgba(61,33,21,.42)}
+.btn-fio:hover{background:var(--escuro);color:var(--sobre-verde-2);border-color:var(--escuro)}
+
+/* pílula de fio do cabeçalho, sobre o verde */
+.btn-pilula{
+  background:none;color:var(--sobre-verde);
+  border:1px solid rgba(214,179,95,.65);
+  border-radius:999px;padding:11px 20px;
+  font-size:var(--t-sm);font-weight:700;
+  display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+  transition:background-color .18s ease, color .18s ease;
+}
+.btn-pilula:hover{background:var(--dourado);color:var(--tinta)}
+.btn-pilula svg{width:17px;height:17px}
+
+/* ------------------------- marcação de pendência ------------------------ */
+.aviso-demo{
+  background:var(--escuro);color:var(--sobre-verde-2);
+  font-size:var(--t-sm);text-align:center;padding:11px 18px;
+}
+.alterna-btn{
+  position:fixed;right:16px;bottom:16px;z-index:60;
+  font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+  background:var(--escuro);color:#FFFFFF;
+  border:0;border-radius:999px;padding:12px 20px;cursor:pointer;
+}
+/* 06/08 — a marcação de pendência era tarja #EFD09A por trás do texto. Num
+   parágrafo inteiro ela virava um bloco amarelo de quatro linhas que lia
+   como defeito de renderização, não como aviso, e foi exatamente a queixa do
+   Marcelo na "Nossa origem".
+   Agora é fio tracejado por baixo: continua dizendo "isso ainda não está
+   confirmado", não briga com o desenho da página, e some igual no modo
+   limpo. O mecanismo do integridade.md fica de pé. */
+.pend{
+  background:none;padding:0;
+  border-bottom:1px dashed rgba(107,82,28,.7);
+}
+/* Nota do bloco: para o que é pendência inteira e não dá para sublinhar
+   (uma lista, uma tira de atributos). */
+.pend-nota{
+  margin:22px auto 0;max-width:60ch;text-align:center;
+  font-size:var(--t-sm);color:var(--dourado-esc);font-weight:600;
+}
+.pend-nota::before{content:"⚠ ";}
+body.limpo .aviso-demo{display:none}
+body.limpo .pend{border-bottom:0}
+body.limpo .pend-nota{display:none}
+body.limpo .rotulo{display:none}
+
+/* ============================== CABEÇALHO ==============================
+   PT 1: verde chapado, logo à esquerda (emblema + nome empilhado), links à
+   direita, botão de fio no fim. Chapado desde o repouso, então o texto creme
+   está garantido em 11,3:1 e não depende da foto que estiver atrás. */
+/* Transparente sobre o hero, como o print. O véu não é enfeite: sem ele o
+   texto creme depende da sorte de a foto ser escura naquele ponto. Ele
+   desce a zero, então lê como "sem cabeçalho", e vira chapa sólida assim
+   que a página rola. */
+/* 07/08: o gradiente do cabeçalho escurecia o TOPO (faixa vazia sobre o céu
+   claro do hero) e criava uma "barra cinza" acima da logo — justamente onde
+   não há texto. Removido: em repouso o cabeçalho é transparente e a
+   legibilidade da logo/nav vem do véu do próprio hero (que escurece o lado
+   esquerdo, onde a logo mora). Ao rolar, vira chapa sólida (`.solido`). */
+.topo{
+  position:sticky;top:0;z-index:50;
+  background:transparent;
+  transition:background-color .25s ease;
+}
+.topo.solido{
+  background:var(--escuro);
+  box-shadow:0 1px 0 rgba(214,179,95,.18);
+}
+.topo .wrap{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding-top:14px;padding-bottom:14px;
+}
+
+/* 07/08: logo maior, a pedido do Marcelo ("deixe a logo grande também") e
+   como no print — emblema de 60px e o nome em corpo maior. */
+/* 07/08: logo e nome maiores, a pedido do Marcelo. Emblema 60 → 78px, nome
+   28 → 34px, "Café" acompanhando. */
+.marca{display:flex;align-items:center;gap:16px;text-decoration:none}
+.marca img{width:78px;height:78px}
+.marca-txt{display:block;line-height:1.02}
+.marca-cafe{
+  display:block;
+  font-size:var(--t-base);letter-spacing:.38em;
+  color:var(--dourado);font-weight:600;
+}
+.marca-nome{
+  display:block;
+  font-family:var(--serif);font-size:2.125rem;
+  color:var(--sobre-verde);letter-spacing:.01em;
+}
+
+/* Botão dourado do cabeçalho: um pouco mais baixo que o botão padrão para
+   caber na barra sem esticá-la. */
+.btn-topo{padding:12px 22px;font-size:var(--t-sm)}
+
+.nav{display:flex;align-items:center;gap:30px}
+.nav a{
+  color:var(--sobre-verde);text-decoration:none;
+  font-size:var(--t-sm);font-weight:600;
+  border-bottom:1px solid transparent;padding-bottom:3px;
+}
+.nav a:hover,.nav a.aqui{border-bottom-color:var(--dourado)}
+
+.menu-btn{
+  display:none;background:none;border:0;cursor:pointer;
+  font-size:var(--t-lg);line-height:1;padding:8px 10px;color:var(--sobre-verde);
+}
+
+/* ================================ HERO =================================
+   PT 1: texto à esquerda sobre creme, paisagem sangrando pela direita com
+   uma passagem para o creme, e o pacote na frente.
+
+   🔴 A foto é de SERRA, não de lavoura. A família compra o grão maduro de
+   produtores: cafezal, terreiro e colheita afirmariam uma etapa que ela não
+   executa. Ver 90-antipadroes.md, "o que reprova é a cena de produção". */
+/* margem negativa da altura do cabeçalho: a foto passa por baixo dele e o
+   cabeçalho transparente fica sobre a imagem, como no print. */
+/* 06/08 (2º retorno) — fundo PRETO, a pedido do Marcelo ("essa cor escura da
+   esquerda, que está marrom, quero preta"). Era #2D190F. */
+/* margem negativa = ALTURA do cabeçalho (106px com a logo maior de 07/08), não
+   mais 72px. Com o cabeçalho transparente, se o hero não subir a altura toda
+   sobra uma faixa do fundo creme do body acima da foto — foi o que apareceu ao
+   aumentar a logo. O hero sobe 106px e a foto passa por baixo do cabeçalho. */
+.hero{position:relative;background:#000;overflow:hidden;margin-top:-106px}
+
+/* 🔴 Histórico do hero, para não repetir os dois erros já cometidos:
+   1) foto ajustada pela ALTURA e ancorada à direita → sobrava uma chapa de
+      cor à esquerda com emenda vertical dura ("quadrado marrom gigante").
+   2) foto em `cover` cobrindo a largura inteira → sem quadrado, mas o pacote
+      ficava GIGANTE (em 1920 o rótulo inteiro ficava legível), porque `cover`
+      preenche a altura e o pacote ocupa quase toda a altura da foto-fonte.
+
+   06/08 (2º retorno) — a foto é dimensionada pela LARGURA do seu contêiner
+   (54%, teto 820px) e ancorada embaixo à direita. Assim o pacote encolhe de
+   forma proporcional em qualquer tela, e o preto preenche o resto. Não há
+   emenda dura porque o véu preto cobre a borda da foto e dissolve nela — o
+   erro do "quadrado" era a emenda, não o escurecimento. */
+/* 06/08 (3º retorno): a foto volta a cobrir a LARGURA INTEIRA — a paisagem
+   aparece atrás do texto, como no print de referência do Marcelo. Nada de
+   painel na direita nem de máscara: `cover` na tela toda. O `object-position`
+   escolhe o enquadramento (pacote e saca embaixo à direita, horizonte no
+   meio). */
+.hero-arte{position:absolute;inset:0;z-index:0}
+/* 07/08: foto de fundo (11/08: hero-home.webp, 1812x868, larga = 2,09:1). Como o
+   hero tem ~680px de altura, a 1440 o `cover` a mostra quase inteira sem
+   ampliar (escala .795). O pacote fica à direita, o texto sobre a serra à
+   esquerda. `object-position:center` porque a composição já é equilibrada. */
+/* 10/08: object-position enviesado à DIREITA e um pouco acima do centro. A
+   queixa foi que o pacote (à direita da foto) não aparecia inteiro: com `cover`
+   e `center`, telas largas cortavam a lateral direita (pacote) e telas altas
+   cortavam o topo. Ancorar em 74%/40% mantém o pacote e o topo dele sempre no
+   quadro; a serra da esquerda, atrás do texto, é o que cede o corte. */
+.hero-arte img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:74% 40%}
+
+/* Véu LEVE sobre a esquerda — a queixa foi "o escurecimento é bem leve",
+   e o anterior era preto chapado cobrindo metade. Aqui a paisagem continua
+   visível atrás do texto, só rebaixada o suficiente para o branco ler. O
+   ponto do texto cai sobre as montanhas escuras da esquerda, não sobre o
+   sol do centro; medido, o branco fica acima de 4,5:1 na faixa do título.
+   Uma passagem de cima segura o cabeçalho transparente sobre o céu claro. */
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.10) 16%, rgba(0,0,0,0) 30%),
+    linear-gradient(90deg,
+      rgba(0,0,0,.62) 0%,
+      rgba(0,0,0,.46) 26%,
+      rgba(0,0,0,.24) 46%,
+      rgba(0,0,0,.06) 66%,
+      rgba(0,0,0,0) 80%);
+}
+/* 07/08: min-height baixou de 680 → 600 a pedido do Marcelo ("tá com muito
+   zoom"). Com a foto larga (2,09:1) em `cover`, um contêiner MAIS BAIXO fica
+   com proporção mais larga que a imagem, então o `cover` passa a ajustar pela
+   LARGURA e mostra a cena inteira (serra + saca + pacote) em vez de ampliar o
+   centro. Em 1280px+ o contêiner já é mais largo que a foto e não há corte
+   lateral. */
+.hero .wrap{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  align-items:center;
+  padding-top:174px;padding-bottom:60px;
+  min-height:820px;
+  z-index:2;
+}
+.hero-txt{position:relative;z-index:2;max-width:540px}
+/* Eyebrow do print, sobre a foto: versalete claro. Não é o .eyebrow dourado
+   das seções claras — aqui o fundo é foto e ele vai em creme. */
+/* 07/08: cor pedida pelo Marcelo — dourado #D6B35F. Sobre a foto escurecida
+   do hero (véu na faixa do texto) ele mantém o mesmo par de contraste do
+   dourado sobre o verde, acima de 6:1. */
+.hero-eyebrow{
+  font-size:var(--t-xs);letter-spacing:.24em;text-transform:uppercase;
+  color:var(--dourado);font-weight:700;margin:0 0 16px;
+}
+.hero-txt h1{margin-bottom:20px;color:#FFFFFF}
+.hero-txt h1 em{font-style:normal;color:var(--dourado)}
+/* 08/08: a linha pontilhada de pendência saiu do h1 a pedido do Marcelo (ele
+   achou feia no título grande). A pendência de origem continua marcada no
+   parágrafo da "Nossa origem" e registrada no CLAUDE.md. */
+.hero-sub{max-width:44ch;margin-bottom:30px;color:#FFFFFF}
+.hero-acao{display:flex;flex-wrap:wrap;gap:14px}
+
+/* 12/08: selos de diferencial DENTRO do hero — só no celular (ver o HTML e a
+   media query). No desktop ficam ocultos; quem mostra os 4 atributos é a
+   .faixa marrom. */
+.hero-selos{display:none}
+
+/* ============================== FAIXA (marrom) =======================
+   07/08: pedida pelo Marcelo, recebe os 4 atributos.
+   10/08: fundo trocado de verde #20301C para o marrom oficial #3D2115, para
+   alinhar 100% à paleta do Instagram (o feed não tem verde). Texto creme
+   #F8E4CF sobre #3D2115 = 12,6:1; ícones dourados #D6B35F = 7,34:1. */
+.faixa{background:var(--escuro)}
+.faixa-grid{
+  list-style:none;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+  padding-top:30px;padding-bottom:30px;
+}
+.faixa-item{display:flex;align-items:center;justify-content:center;gap:12px}
+.faixa-item .ic{width:34px;height:34px;flex:none;color:var(--dourado)}
+.faixa-nome{
+  margin:0;font-size:var(--t-base);font-weight:600;line-height:1.2;
+  color:var(--sobre-verde);
+}
+
+/* ---- vocabulário dos ícones desenhados dos prints ----
+   Os dois prints usam a mesma gramática: massa cheia para folha, grão e
+   montanha, fio fino para roseta, haste e linhas de terra. `.ic` é a massa
+   cheia; `.ic-fio` desliga o preenchimento e liga o traço, e vale tanto no
+   próprio <svg> quanto num <g> dentro dele. */
+.ic{fill:currentColor;stroke:none}
+.ic .ic-fio,.ic.ic-fio{
+  fill:none;stroke:currentColor;stroke-width:1.35;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+/* A montanha tem massa cheia E contorno no mesmo caminho: é assim que as
+   calotas de neve aparecem vazadas com fio em volta, como no print. */
+.ic-mont path{
+  fill:currentColor;stroke:currentColor;stroke-width:1.4;
+  stroke-linejoin:round;stroke-linecap:round;
+}
+/* Rasgo de papel removido em 07/08 a pedido do Marcelo. O hero agora encosta
+   direto na faixa verde. */
+
+/* ======================= NOSSO CAFÉ (parte original) ==================
+   Texto à esquerda, pacote à direita. (Restaurado em 08/08 — a extensão
+   grão/moído fica na seção .opcoes logo abaixo, não aqui dentro.) */
+/* 18/08: fundo da seção = a MESMA cor do fundo da foto dos produtos (#F2CDA6),
+   pedido do Marcelo, pra a imagem se fundir com a seção (parecer um cenário só).
+   Amostrado da foto (4ª versão, rótulo nítido). É claro o bastante para os tons
+   de marca passarem no contraste, então esta seção volta a usá-los. */
+.cafe{background:#F2CDA6;padding:104px 0;position:relative;overflow:hidden}
+/* 18/08: de volta ao layout de antes do print 1 — texto à esquerda, a foto dos
+   dois produtos à direita. Mantidos o fundo #F2CDA6 e a foto nova. A coluna da
+   imagem ganhou mais peso (imagem maior, pedido do Marcelo). Sobre #F2CDA6 os
+   tons de marca passam (--dourado-esc 4,93, --marrom 4,87), então a seção usa a
+   paleta padrão original. */
+/* 05/10/2026: a coluna de texto era .66fr e espremia os atributos ("Aroma
+   intenso" quebrava em duas linhas, efeito colateral anotado na 33ª rodada).
+   Com a cena nova (transparente, mais quadrada) a imagem não precisa de 1.62fr
+   para ter presença: o texto ganha um piso de 380px e os atributos cabem. */
+.cafe-grid{display:grid;grid-template-columns:minmax(380px,.85fr) 1.25fr;gap:48px;align-items:center}
+
+.cafe-txt{display:flex;flex-direction:column;align-items:flex-start}
+.cafe-txt .eyebrow{margin-bottom:8px}
+.cafe-txt h2{font-size:var(--t-3xl);margin-bottom:.32em}
+.cafe-txt p{max-width:44ch;margin-bottom:.7em}
+.cafe-txt .btn{padding-left:48px;padding-right:48px}
+
+/* a foto grande dos dois produtos. Fundo da seção = fundo da foto, e a máscara
+   dissolve topo/base, então a imagem se funde na seção (merge sem retângulo). */
+.cafe-produto{margin:0;display:flex;justify-content:center;align-items:center}
+/* 05/10/2026: a cena nova é TRANSPARENTE (pacote kraft novo + saco de grão,
+   com sombra de chão embutida), então a máscara de merge da foto antiga saiu:
+   não há mais retângulo de fundo para dissolver. */
+.cena-img{width:100%;max-width:640px;height:auto;display:block;margin:0 auto}
+.atributos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:18px 0 24px}
+.atributo{display:grid;gap:8px}
+.atributo .selo{
+  width:42px;height:42px;border-radius:50%;border:1px solid var(--dourado);
+  display:flex;align-items:center;justify-content:center;
+}
+.atributo .selo svg{
+  width:20px;height:20px;stroke:var(--dourado-esc);stroke-width:1.5;fill:none;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.atributo b{font-size:var(--t-sm);color:var(--tinta);display:block}
+.atributo span{font-size:var(--t-sm);color:var(--marrom);display:block}
+
+/* 10/08: a seção "Como você preferir / Em grãos ou moído" (.opcoes #formatos)
+   foi REMOVIDA a pedido do Marcelo — HTML e CSS. As fotos foto-graos-real.webp
+   e foto-moido-real.webp ficam órfãs em assets; mover para site-fontes se não
+   voltarem. */
+
+/* Desenhos de planta que o Marcelo mandou (`Planta desenho 1/2/3`).
+   Substituíram o ornamento em SVG que eu tinha desenhado: ilustração de
+   verdade em vez de traço feito na mão, que é a regra do 90-antipadroes.md. */
+.planta{position:absolute;pointer-events:none;z-index:0}
+.planta img{width:100%}
+
+/* desenho 2 na "Nosso café". 07/08: com o texto na esquerda e a foto na
+   direita, a planta acompanha o texto — foi para a ESQUERDA, espelhada,
+   ancorada embaixo. */
+/* 18/08: plantas mais para os cantos (o Marcelo). Sangram mais pelas bordas. */
+.planta-cafe{left:-120px;right:auto;bottom:0;top:auto;width:430px;opacity:.9;transform:scaleX(-1)}
+/* 11/08: segunda planta na direita da "Nosso café" (Planta 4), atrás do
+   pacote, sangrando/cortada pela borda direita a pedido do Marcelo. PNG sem
+   fundo colado direto — sem tratamento (o glow claro some no bege da seção). */
+/* z-index:2 = na FRENTE da foto (a cena é z-index 1). Com a foto grande, o galho
+   ficava atrás/coberto; à frente ele reaparece na borda direita, sobre a margem
+   da foto (fundo), sem tapar os produtos. Pedido do Marcelo (17/08). */
+/* 05/10/2026: com a cena nova TRANSPARENTE o galho pode voltar para TRÁS
+   (z-index 0): aparece pelos vãos da imagem e não cobre mais a quina do
+   pacote kraft, que era o que acontecia na frente. */
+.planta-cafe-dir{right:-230px;left:auto;bottom:-20px;top:auto;width:470px;opacity:.95;z-index:0}
+
+/* PT 5: desenho 1 na direita do formulário, desenho 3 na esquerda por trás
+   da xícara e um pouco acima dela */
+.planta-form-dir{right:-56px;bottom:-24px;top:auto;width:400px;opacity:.9}
+/* O arquivo do desenho 3 vinha CHAPADO, e dependia de uma máscara radial
+   para se dissolver no fundo. Como o galho mora no canto de baixo à
+   esquerda da arte e o centro da máscara caía na parte vazia, ele sumia
+   inteiro. Hoje o arquivo tem alfa de verdade (mesmo tratamento das plantas
+   1 e 2) e não precisa de máscara nenhuma. */
+.planta-form-esq{left:-58px;bottom:96px;top:auto;width:360px;opacity:1}
+/* Grande como na referência, mas o limite é a borda esquerda da caixa do
+   formulário: passando dela, a xícara cobre os rótulos dos campos. */
+.xicara-form{
+  position:absolute;left:-96px;bottom:-52px;top:auto;
+  width:340px;z-index:1;pointer-events:none;
+}
+
+/* Cabeçalho centralizado de seção. Morava dentro do bloco do processo e saiu
+   junto quando a seção foi removida; o formulário usa. */
+.sec-head{max-width:720px;margin:0 auto 56px;text-align:center}
+.sec-head p{margin:0 auto;max-width:52ch}
+
+.fig{position:relative;margin:0}
+.fig img{border-radius:var(--r);width:100%}
+.rotulo{
+  position:absolute;left:12px;bottom:12px;
+  background:rgba(32,48,28,.9);color:var(--sobre-verde);
+  font-size:var(--t-xs);font-weight:600;
+  padding:6px 12px;border-radius:6px;
+}
+
+/* reveal na entrada: só transform e opacity */
+.revela{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}
+.revela.dentro{opacity:1;transform:none}
+.revela.d1{transition-delay:.08s}
+
+/* ========================= NOSSA ORIGEM (PT 4) =========================
+   Texto à esquerda, paisagem à direita sangrando até a borda, e o selo
+   redondo montado na junção das duas. */
+/* 06/08 — seção refeita a pedido do Marcelo: foto DEITADA, encostando na
+   borda direita, e seção mais baixa.
+
+   O truque de sangria: a coluna esquerda do `.wrap` termina sempre em 50% da
+   largura da página. Acima de 1200px porque a calha lateral é
+   (100% - 1200)/2 e a coluna vale 600; abaixo, porque é 24 + (100% - 48)/2.
+   Os dois dão exatamente 50%. Então a foto é absoluta de `left:50%` até
+   `right:0` e não precisa de conta nenhuma com 100vw — que, aliás, contaria
+   a barra de rolagem e criaria overflow horizontal. */
+/* O recuo vertical mora na SEÇÃO — tirar dela e passar para a coluna de
+   texto faz o detector acusar `cramped-padding`, e ele está certo: quem tem
+   fundo colorido é a seção. A foto é que sai do recuo, com um deslocamento
+   negativo do MESMO tamanho, e sangra até a primeira linha da seção como no
+   PT 4. Só para cima: para baixo ela para no fim do bloco, senão invade a
+   tira de atributos. */
+/* 07/08: a calha horizontal saiu do .wrap e passou para a PRÓPRIA seção. Até a
+   8ª rodada a foto sangrava até a borda (`right:0`), e era esse sangramento
+   que fazia o detector aceitar a seção colorida com padding horizontal 0.
+   Agora a foto é contida, então a seção precisa do próprio recuo lateral para
+   não cair em `cramped-padding` — as .wrap de dentro zeram o padding e o
+   conteúdo mantém os mesmos 24px das outras seções. */
+/* 10/08: seções 1 (origem), 3 (público) e 4 (passos) ganharam altura a pedido
+   do Marcelo — deixaram de ser "faixas" e passam a ocupar a tela como a seção 2
+   (café, 104px). Recuo vertical subiu para ~100px em cada. */
+.origem{background:var(--origem);position:relative;padding:100px var(--gut)}
+.origem .wrap{padding-left:0;padding-right:0}
+.origem-topo{position:relative}
+.origem-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;min-height:460px}
+.origem-txt{padding:0 56px 0 0}
+.origem-txt h2{font-size:var(--t-3xl)}
+.origem-txt p{max-width:46ch}
+.origem-txt .btn{margin-top:6px}
+
+/* 07/08: a foto deixou de sangrar até a borda da tela e virou uma figura
+   CONTIDA na coluna direita, com as pontas arredondadas, a pedido do Marcelo.
+   Sem posição absoluta: agora é o próprio item direito do grid. */
+.origem-foto{position:relative;margin:0}
+.origem-foto > img{
+  width:100%;aspect-ratio:3/2;object-fit:cover;object-position:center 60%;
+  border-radius:20px;
+  box-shadow:0 20px 44px rgba(61,33,21,.20);
+}
+
+/* Selo redondo (arte `Selo Bahia` que o Marcelo mandou). 07/08: montado na
+   BORDA ESQUERDA da foto, centrado na vertical e deslocado -50% em X — fica
+   metade dentro da foto e metade fora, "passando pela metade". */
+.selo-lugar{
+  position:absolute;left:0;top:50%;transform:translate(-50%,-50%);
+  z-index:3;width:132px;
+  filter:drop-shadow(0 8px 16px rgba(61,33,21,.24));
+}
+.selo-lugar img{width:100%}
+
+/* ==================== PARA QUEM ATENDE (B2B) ==========================
+   08/08: bloco reintroduzido (o "para quem é" do 00-anatomia.md). Grade de
+   perfis: cada um tem ícone e rótulo PRÓPRIOS, então carrega informação real
+   e não é o "container preguiçoso" de cards iguais do 90-antipadroes.md. */
+/* 08/08: remodelado no print 2 — 7 perfis numa linha, separados por fio
+   vertical, ícone em traço em cima e o nome em duas linhas. Sem cartão.
+   Faixa CURTA a pedido do Marcelo: recuo enxuto e cabeçalho compacto. */
+.publico{background:var(--origem);padding:100px 0}
+.publico .sec-head{margin-bottom:24px}
+.publico .divisor{margin-left:auto;margin-right:auto;margin-bottom:0}
+.publico-grid{
+  list-style:none;margin:30px 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(8,1fr);
+}
+.publico-item{
+  text-align:center;display:grid;justify-items:center;align-content:start;gap:18px;
+  padding:18px 12px;
+  border-left:1px solid rgba(118,77,54,.22);
+}
+.publico-item:first-child{border-left:0}
+/* 10/08: ícones em MARROM a pedido do Marcelo (eram verde). Uso o --tinta
+   (#3D2115) e não o --marrom (#764D36), que sobre o creme claro fica em 2:1 e
+   o detector marca low-contrast. O escuro lê como marrom e passa folgado. */
+.publico-item svg{
+  width:48px;height:48px;color:var(--tinta);
+  fill:none;stroke:currentColor;stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.publico-item b{font-size:var(--t-sm);font-weight:600;color:var(--tinta);line-height:1.4}
+/* 12/08: negrito extra do "Para tomar em casa" removido a pedido do Marcelo —
+   ele achou a letra mais escura/diferente das demais. Peso igual aos outros 7. */
+
+/* ==================== COMO COMPRAR (print 1) =========================
+   08/08: banner "Imagem banner etapas" (xícara com a logo à direita) de fundo,
+   com véu escuro à esquerda para o texto. Os 3 passos ficam na coluna esquerda
+   sobre o escuro; a xícara aparece à direita. Ícones dourados. */
+.passos{position:relative;background:var(--escuro);padding:100px 0;overflow:hidden}
+.passos-bg{position:absolute;inset:0;z-index:0;background:url(cafe-como-comprar.webp) right center/cover no-repeat}
+.passos::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,
+    rgba(28,17,9,.95) 0%, rgba(28,17,9,.88) 36%,
+    rgba(28,17,9,.48) 60%, rgba(28,17,9,0) 84%);
+}
+.passos-wrap{position:relative;z-index:2}
+.passos-txt{max-width:740px}
+.passos .eyebrow{color:var(--dourado)}
+.passos h2{color:var(--sobre-verde)}
+.passos-grid{
+  list-style:none;margin:36px 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:26px;
+}
+.passo{display:grid;gap:14px;align-content:start}
+.passo-topo{display:flex;align-items:center;gap:13px}
+/* 10/08: número em SANS negrito (era serif/DM Serif Display, ficou pesado e
+   estranho num círculo pequeno). Limpo e legível. */
+.passo-num{
+  width:34px;height:34px;border-radius:50%;flex:none;
+  background:var(--dourado);color:var(--tinta);
+  font-family:var(--sans);font-weight:700;font-size:1.05rem;
+  display:flex;align-items:center;justify-content:center;
+}
+/* 08/08: ícones MAIORES a pedido do Marcelo. */
+.passo-ic{width:54px;height:54px;color:var(--dourado);flex:none}
+.passo-ic svg{width:100%;height:100%}
+/* 08/08: a linha é VERTICAL (em pé), desce do marcador e fica à ESQUERDA do
+   texto — não mais horizontal. É o border-left do parágrafo. */
+.passo p{
+  margin:0 0 0 16px;
+  padding-left:20px;
+  border-left:2px solid rgba(214,179,95,.5);
+  font-size:var(--t-sm);color:var(--sobre-verde-2);max-width:24ch;
+}
+
+/* ====================== PEÇA O SEU CAFÉ (PT 5) ========================= */
+/* Recuo de baixo curto de propósito: na referência a xícara e o galho
+   descem até encostar no rodapé, e com 100px sobrava uma faixa de creme
+   vazia embaixo deles. */
+/* 06/08: seção mais baixa a pedido do Marcelo. O recuo de cima caiu de 88
+   para 64px e o cabeçalho de seção encolheu junto — o formulário não ficou
+   mais apertado, só parou de flutuar no meio de creme vazio. */
+.pedido{background:var(--creme-fundo);padding:64px 0 30px;position:relative;overflow:hidden}
+.pedido .sec-head{margin-bottom:24px}
+.pedido .sec-head p{margin-bottom:0}
+.pedido-caixa{max-width:820px;margin:0 auto;position:relative;z-index:2}
+/* 05/10/2026: duas colunas, chamada à esquerda e campos à direita (mockup do
+   Marcelo). A chamada fica no topo da coluna; a xícara e o galho da esquerda
+   continuam embaixo dela, onde sobra espaço. */
+.pedido{padding:88px 0 40px}
+.pedido-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px;align-items:start;position:relative;z-index:2}
+.pedido-txt h2{font-size:var(--t-3xl);margin-bottom:.3em}
+.pedido-txt > p{max-width:34ch}
+.pedido-apoio{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:12px}
+.pedido-apoio li{display:flex;align-items:center;gap:12px;font-size:var(--t-sm);font-weight:600;color:var(--tinta)}
+.pedido-apoio svg{width:22px;height:22px;flex:none;fill:none;stroke:var(--dourado-esc);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.pedido-grid .pedido-caixa{max-width:none;margin:0;background:var(--campo);border:1px solid rgba(118,77,54,.18);border-radius:var(--r);padding:28px 28px 22px}
+.pedido-grid input,.pedido-grid select,.pedido-grid textarea{background:#FFFDF9}
+.form-duplo{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.form-campo{margin-bottom:14px}
+label{display:block;font-size:var(--t-sm);font-weight:600;color:var(--tinta);margin-bottom:7px}
+input,select,textarea{
+  width:100%;
+  font-family:var(--sans);font-size:var(--t-base);color:var(--tinta);
+  background:var(--campo);
+  border:1px solid rgba(118,77,54,.34);
+  border-radius:8px;
+  padding:11px 15px;
+}
+textarea{min-height:82px;resize:vertical}
+/* placeholder pede os mesmos 4,5:1 do corpo. O #8A6A52 anterior dava 4,18
+   sobre o campo e reprovava. */
+input::placeholder,textarea::placeholder{color:var(--marrom)}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--verde-md);outline-offset:1px}
+.form-ajuda{font-size:var(--t-sm);color:var(--marrom);margin:2px 0 16px;max-width:60ch}
+.form-envio{width:100%;justify-content:center;padding:17px 28px;font-size:var(--t-base)}
+
+/* ============================ RODAPÉ (PT 6) ============================ */
+/* 10/08: a casinha SAIU do fundo (estava gravada num print, cover recortava
+   e reposicionava ela de um jeito diferente em cada largura — por isso
+   competia com o texto e parecia desnivelada). Fundo voltou a ser o marrom
+   chapado. A casinha é agora uma imagem própria, DENTRO da 4ª coluna
+   ("Produzido na Bahia"), abaixo do parágrafo — a posição que o Marcelo
+   confirmou pelo print: sob o texto, alinhada com ele, não centralizada na
+   largura inteira do rodapé. */
+/* 10/08: casinha REMOVIDA do rodapé a pedido do Marcelo, e o rodapé ficou mais
+   baixo (recuos 70→44 e 52→34). O casinha-rodape.webp fica órfão em assets. */
+.rodape{
+  background:var(--escuro);
+  color:var(--sobre-verde-2);padding:44px 0 0;
+}
+.rodape-grid{
+  display:grid;grid-template-columns:1.3fr 1fr 1.2fr 1.3fr;gap:44px;
+  padding-bottom:34px;
+}
+.rodape h3{
+  font-family:var(--sans);font-size:var(--t-xs);
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dourado);font-weight:700;margin:0 0 18px;
+}
+.rodape .marca-nome{color:#FFFFFF;font-size:1.75rem;white-space:nowrap}
+.rodape p{font-size:var(--t-sm);max-width:32ch;margin:16px 0 0}
+.rodape ul{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.rodape a{color:var(--sobre-verde-2);text-decoration:none;font-size:var(--t-sm)}
+.rodape a:hover{color:#FFFFFF;text-decoration:underline}
+/* 05/10/2026: o <span> do endereço e do horário herdava o corpo (17,5px) e o
+   <a> do telefone/Instagram usa 15px — duas linhas maiores que as outras na
+   mesma lista. A linha inteira agora tem um tamanho só. */
+.rodape-linha{display:flex;align-items:center;gap:9px;font-size:var(--t-sm)}
+.rodape-linha svg{width:16px;height:16px;flex:none;stroke:var(--dourado);stroke-width:1.5;fill:none}
+.sociais{display:flex;gap:12px;margin-top:18px}
+.sociais a{
+  width:36px;height:36px;border:1px solid rgba(239,194,148,.4);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+}
+.sociais svg{width:17px;height:17px;stroke:var(--sobre-verde-2);stroke-width:1.5;fill:none}
+.sociais a:hover{border-color:var(--dourado)}
+.rodape-pe{
+  border-top:1px solid rgba(239,194,148,.2);
+  padding:22px 0 26px;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-size:var(--t-xs);
+}
+
+/* ============================== RESPONSIVO ============================== */
+@media (max-width:1080px){
+  :root{--t-hero:2.875rem;--t-3xl:2.375rem}
+  .nav{gap:20px}
+  .rodape-grid{grid-template-columns:1fr 1fr;gap:40px}
+  /* perfis B2B: 7 numa linha só cabe no desktop. Abaixo, vira grade sem os
+     fios verticais (o espaçamento separa). */
+  .publico-grid{grid-template-columns:repeat(4,1fr);row-gap:34px;column-gap:16px}
+  .publico-item{border-left:0;padding:12px 10px}
+}
+
+@media (max-width:900px){
+  /* 12/08: hambúrguer REMOVIDO no celular a pedido do Marcelo — o header fica só
+     com a logo e o botão "Solicitar Orçamento". A navegação no celular passa a
+     ser pelos botões do hero e pela rolagem (o menu de âncoras não abre mais).
+     No desktop nada muda: o .nav continua visível e o hambúrguer nunca aparece. */
+  .menu-btn{display:none}
+  .topo .wrap{flex-wrap:wrap;row-gap:0}
+  .nav{display:none;width:100%;flex-direction:column;align-items:flex-start;gap:16px}
+  .topo.aberto .nav{display:flex;padding:14px 0 4px}
+  .topo .btn-topo{margin-left:auto}
+
+  /* faixa verde: 4 → 2 colunas */
+  .faixa-grid{grid-template-columns:1fr 1fr;gap:18px 24px}
+  /* perfis B2B: 4 → 3 colunas */
+  .publico-grid{grid-template-columns:repeat(3,1fr)}
+
+  /* 12/08: hero como no print — a imagem volta a ser o FUNDO (cover) com o texto
+     e os botões POR CIMA, no lugar da faixa de foto em cima + texto no preto.
+     SÓ no celular; o desktop não muda. Como aqui o texto é de largura cheia sobre
+     a foto (no desktop ele fica só à esquerda), o véu é mais forte no topo e na
+     base para o branco/dourado lerem. */
+  .hero{display:block}
+  .hero-arte{position:absolute;inset:0;width:auto;height:auto;order:0}
+  /* 12/08: enquadramento no celular. 38% (muito à esquerda) escondeu o pacote;
+     50% caía no centro escuro da foto e, com o véu escuro mantido, o produto
+     sumia de novo. 58% assenta sobre a saca/pacote (região iluminada), que
+     aparece mesmo com o escurecimento. SÓ mobile. */
+  .hero-arte img{width:100%;height:100%;object-fit:cover;object-position:58% center}
+  /* 12/08: escurecimento mantido a pedido do Marcelo (ele confirmou que quer o
+     fundo escuro). Segura o texto branco e os selos de diferencial sobre a foto. */
+  .hero::after{
+    background:linear-gradient(180deg,
+      rgba(0,0,0,.6) 0%, rgba(0,0,0,.5) 30%,
+      rgba(0,0,0,.48) 60%, rgba(0,0,0,.66) 100%);
+  }
+  .hero .wrap{grid-template-columns:1fr;min-height:600px;padding-top:124px;padding-bottom:48px;align-content:start}
+
+  /* 12/08: no celular a faixa marrom some e os 4 diferenciais aparecem aqui,
+     dentro do hero, abaixo dos botões (2×2 sobre a foto). */
+  .faixa{display:none}
+  .hero-selos{
+    display:grid;grid-template-columns:1fr 1fr;gap:16px 18px;
+    list-style:none;margin:26px 0 0;padding:0;
+  }
+  .hero-selos li{display:flex;align-items:center;gap:10px}
+  .hero-selos .ic{width:27px;height:27px;flex:none;color:var(--dourado)}
+  .hero-selos span{font-size:var(--t-sm);font-weight:600;color:#FFFFFF;line-height:1.2}
+
+  .hero-eyebrow{letter-spacing:.14em;text-wrap:balance}
+
+  .origem-grid{grid-template-columns:1fr}
+  /* 05/10/2026: no celular a foto dos produtos vinha DEPOIS do botão, no fim
+     da seção, e o leitor passava por título, texto, três atributos e o botão
+     sem ver o café. O .cafe-txt vira `display:contents` só aqui, e a ordem
+     passa a ser: eyebrow → título → texto → FOTO → atributos → botão. */
+  .cafe-grid{display:flex;flex-direction:column;align-items:flex-start;gap:0}
+  .cafe-txt{display:contents}
+  .cafe-txt .eyebrow{order:1}
+  .cafe-txt h2{order:2}
+  .cafe-txt p{order:3}
+  .cafe-produto{order:4;width:100%;margin:8px 0 6px}
+  .cafe-txt .atributos{order:5}
+  .cafe-txt .btn{order:6}
+  .passos-grid{grid-template-columns:1fr;gap:22px}
+  /* 05/10/2026: a xícara do "Como comprar" ficava a 50% sob um véu de 72-90%,
+     ou seja, invisível: no celular a seção era um retângulo escuro vazio. Agora
+     ela aparece inteira numa faixa no topo e se dissolve no escuro onde o texto
+     começa. */
+  .passos{background:#1C1109;padding-top:0}
+  .passos-bg{inset:0 0 auto 0;height:320px;background-position:100% center;background-size:cover;opacity:1}
+  .passo-ic{width:44px;height:44px}
+  .passos::after{background:linear-gradient(180deg, rgba(28,17,9,0) 0, rgba(28,17,9,.2) 150px, rgba(28,17,9,.85) 250px, #1C1109 320px)}
+  .passos-wrap{padding-top:250px}
+  .passo p{max-width:none}
+  .origem{padding:56px var(--gut)}
+  .origem-txt{padding:0 0 36px}
+  /* numa coluna só a foto ocupa a largura toda. O selo não pode mais
+     "passar pela metade" pela esquerda — metade dele sairia da tela — então
+     encosta DENTRO da foto, ainda à esquerda, centrado na vertical. */
+  .origem-topo,.origem-grid{min-height:0}
+  .selo-lugar{left:14px;top:50%;transform:translateY(-50%);width:100px}
+  /* 12/08: a xícara também some no celular (entra na lista das plantas). Antes
+     ela virava relative e subia para o topo da seção do formulário, aparecendo
+     ANTES dos campos — o Marcelo apontou isso. No celular o formulário fica
+     limpo; a xícara e as plantas seguem no desktop. */
+  .planta-cafe,.planta-cafe-dir,.planta-form-dir,.planta-form-esq,.xicara-form{display:none}
+  .pedido-grid{grid-template-columns:1fr;gap:26px}
+  .pedido{padding:64px 0 40px}
+}
+
+@media (max-width:620px){
+  /* cabeçalho numa linha só: hambúrguer, logo e o botão dourado compacto. */
+  .topo .wrap{flex-wrap:nowrap;gap:10px;padding-top:10px;padding-bottom:10px}
+  /* 05/10/2026: a 390px o botão quebrava em duas linhas e o nome também
+     ("Grão da / Serra"), e o cabeçalho ficava com quase 120px de altura,
+     grudado em cima do conteúdo o tempo todo. Uma linha só, sem quebra. */
+  .btn-topo{padding:10px 13px;font-size:var(--t-xs);white-space:nowrap}
+  .marca{gap:10px}
+  .marca img{width:44px;height:44px}
+  .marca-nome{font-size:1.25rem;white-space:nowrap}
+  .marca-cafe{font-size:.6875rem}
+  .topo .btn-topo{margin-left:0}
+  .hero{margin-top:-64px}
+  .hero .wrap{padding-top:104px;min-height:0}
+
+  :root{--t-hero:2.25rem;--t-2xl:1.875rem;--t-3xl:1.875rem;--gut:20px}
+  /* no celular encolhe espaçamento, não texto: --t-base fica em 17,5px */
+  .cafe,.pedido,.publico{padding:64px 0}
+  .passos{padding:56px 0}
+  /* perfis B2B: 3 → 2 colunas */
+  /* 05/10/2026: 8 perfis em 2 colunas com ícone em cima ocupavam ~1.700px de
+     rolagem no celular, a seção mais longa do site para o conteúdo mais curto.
+     Viram linhas: ícone à esquerda, nome ao lado, numa linha só. */
+  .publico-grid{grid-template-columns:1fr 1fr;column-gap:14px;row-gap:0;margin-top:22px}
+  .publico-item{
+    grid-template-columns:30px 1fr;justify-items:start;align-items:center;
+    text-align:left;gap:10px;padding:13px 0;
+    border-top:1px solid rgba(118,77,54,.2);
+  }
+  .publico-item svg{width:30px;height:30px}
+  .publico-item b{line-height:1.25}
+  .publico-item b br{display:none}
+  /* faixa: 2 → 1 coluna. 12/08: tags CENTRALIZADAS a pedido do Marcelo (eram
+     alinhadas à esquerda). Ícone + rótulo centrados na linha. SÓ no mobile. */
+  .faixa-grid{grid-template-columns:1fr;gap:14px;justify-items:center}
+  .faixa-item{justify-content:center}
+  /* 05/10/2026: os 3 atributos eram empilhados com folga grande entre o
+     título e a sub-linha (~400px). Lado a lado, ícone em cima, cabem numa
+     faixa só. */
+  .atributos{grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0 26px;width:100%}
+  .atributo{gap:4px;align-content:start}
+  .atributo .selo{width:38px;height:38px;margin-bottom:4px}
+  .atributo b{line-height:1.25}
+  .atributo span{font-size:var(--t-xs);line-height:1.35}
+  .cafe-txt .btn{width:100%;justify-content:center}
+  .form-duplo{grid-template-columns:1fr;gap:0}
+  .pedido-grid .pedido-caixa{padding:20px 16px 16px}
+  .rodape-grid{grid-template-columns:1fr;gap:30px}
+  /* navegação do rodapé em duas colunas: quatro links empilhados com 11px de
+     folga viravam uma escada longa no fim da página. */
+  .rodape-grid > div:nth-child(2) ul{grid-template-columns:1fr 1fr;column-gap:16px}
+  .rodape-pe{flex-direction:column;gap:4px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    transition-duration:.001ms !important;
+  }
+  .revela{opacity:1;transform:none}
+}

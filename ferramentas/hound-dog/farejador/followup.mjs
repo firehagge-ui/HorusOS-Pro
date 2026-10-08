@@ -21,6 +21,15 @@ const DIAS_PREPARO = 3;   // prepara com um dia de folga; a data sugerida é o 4
 const HORAS_DEVENDO = 3;
 let ocupado = false;
 
+/**
+ * Claude automático em lead (05/10/2026, Marcelo: "análises de conversa e lead só quando eu pedir").
+ * Desligado por padrão: nada de ciclo por data, silêncio ou resposta do lead. Os avisos no WhatsApp continuam.
+ * Para religar: config 'claude' com automatico = true.
+ */
+export async function claudeAutomatico() {
+  return (await q1("select valor from config where chave = 'claude'"))?.valor?.automatico === true;
+}
+
 /** Aviso automático do WhatsApp e robô não são fala de ninguém. */
 const eFala = (m) => !(m.tipo === 'outro' && !m.texto) && !(m.direcao === 'in' && pareceAutoResposta(m.texto));
 const horaBahia = () => Number(new Date().toLocaleString('en-US', { timeZone: 'America/Bahia', hour: 'numeric', hourCycle: 'h23' }));
@@ -43,10 +52,13 @@ export async function rotinaFollowup() {
   if (ocupado) return;
   ocupado = true;
   try {
+    const auto = await claudeAutomatico();
     // 1. Data que o agente marcou venceu: acorda (e zera a data pra não acordar de novo a cada volta)
-    const vencidos = await q(`select a.empresa_id, a.motivo_proximo, a.status from agentes a
-      where a.proximo_ciclo_em <= now() and (a.status = 'ativo' or (a.status = 'encerrado' and a.fase = 'geladeira'))`);
-    for (const a of vencidos) {
+    // 05/10: lead perdido ou ganho na ficha não acorda, mesmo com o agente ainda marcado como geladeira
+    const vencidos = await q(`select a.empresa_id, a.motivo_proximo, a.status from agentes a join empresas e on e.id = a.empresa_id
+      where a.proximo_ciclo_em <= now() and (a.status = 'ativo' or (a.status = 'encerrado' and a.fase = 'geladeira'))
+        and e.estagio not in ('perdido', 'ganho')`);
+    for (const a of auto ? vencidos : []) {
       if (await temCicloNaFila(a.empresa_id)) continue;
       await q('update agentes set proximo_ciclo_em = null where empresa_id = $1', [a.empresa_id]);
       const texto = `Chegou a data que você marcou${a.motivo_proximo ? `: ${a.motivo_proximo}` : ''}.`;
@@ -77,7 +89,8 @@ export async function rotinaFollowup() {
         continue;
       }
 
-      // 2b. Nós falamos por último e o lead sumiu
+      // 2b. Nós falamos por último e o lead sumiu (só com o Claude automático ligado)
+      if (!auto) continue;
       if (ultima.direcao !== 'out' || horas < DIAS_PREPARO * 24) continue;
       const ag = await agenteDa(c.empresa_id);
       if (ag && ag.status !== 'ativo') continue; // pausado ou encerrado: o Marcelo decidiu
@@ -118,14 +131,14 @@ export async function rotinaFollowup() {
       for (const { c } of devendo) {
         const ag = await agenteDa(c.empresa_id);
         // Com agente: se não há resposta preparada nem ciclo na fila, pede uma
-        if (ag?.status === 'ativo' && !(await temCicloNaFila(c.empresa_id))) {
+        if (auto && ag?.status === 'ativo' && !(await temCicloNaFila(c.empresa_id))) {
           const prep = await q1("select 1 from disparos where empresa_id = $1 and status in ('rascunho','aprovado') and passo > 1", [c.empresa_id]);
           if (!prep) await pedirCiclo(c.empresa_id, 'lead_respondeu', 'O lead falou por último e ainda está sem resposta nossa.', 'farejador');
         }
       }
       const linhas = devendo.sort((a, b) => b.horas - a.horas).map(({ c, ultima, horas }) =>
         `• *${c.nome}* · há ${horas >= 24 ? `${Math.floor(horas / 24)} dia(s)` : `${Math.floor(horas)}h`}: «${String(ultima.texto || '').replace(/\s+/g, ' ').slice(0, 90)}»`);
-      if (await WA.enviarParaMim(`💬 *Esperando a sua resposta*\n${linhas.join('\n')}\n\nA resposta preparada está na conversa de cada um, em "Mensagens preparadas".\n\n— Hounder`)) {
+      if (await WA.enviarParaMim(`💬 *Esperando a sua resposta*\n${linhas.join('\n')}\n\n${auto ? 'A resposta preparada está na conversa de cada um, em "Mensagens preparadas".' : 'Se quiser ajuda do agente, peça na ficha do lead no Hounder.'}\n\n— Hounder`)) {
         for (const { c } of devendo) await q('update whatsapp_conversas set lembrete_resposta_em = now() where id = $1', [c.id]);
         log('followup', `${devendo.length} lead(s) esperando resposta: aviso enviado`);
       }

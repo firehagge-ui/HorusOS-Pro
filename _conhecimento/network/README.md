@@ -47,4 +47,14 @@ Hoje, das duas formas:
 | `objecao-ja-tem-alguem-fazendo.md` | Objeção "já tem alguém fazendo o site": testar se é migué, mandar prévia (com trava de gatekeeper), pivotar pra camada adjacente, reaproveitar estrutura sem torrar reputação | 15/09/2026 |
 | `cold-message-processo.md` | O processo inteiro em etapas (preparar, abrir, qualificar leve, agendar com 2 horários e trava do sócio, R1 gravada com consentimento, gerir); qualificação profunda só na reunião; veredito dos 4 modelos da rede e o que não passa | 22/09/2026 |
 | `servico-crm-whatsapp.md` | O serviço de CRM + WhatsApp inteiro: Pronto como base, o que falta (lista de espera, retorno de orçamento), VPS + Coolify, Coexistence, preço da Meta conferido (utilidade × marketing, atendimento cobrado a partir de 1º/10/2026), contrato, saída do cliente, LGPD e as lacunas | 29/09/2026 |
+| `trafego-pago-cobranca-e-primeiro-cliente.md` | Tráfego pago: fee fixo como padrão (R$ 500 a 1.500, combo R$ 800 a 1.200), verba à parte, por que porcentagem não serve pra verba pequena, verba inicial R$ 500 a 1.000, as 5 táticas de primeiro cliente sem portfólio; custo por conversa R$ 20 a 40 e conversão 5 a 10% em serviço local (confiança baixa); valor antes do preço no criativo; medição simples (mensagem pronta + etiqueta/planilha, sem CAPI); contrato (3 a 6 meses, verba e conta do cliente); revisão paga não vale no começo; como explicar impulsionar x Gerenciador (com 3 correções) | 01/10/2026 |
+| `agente-atendimento-clinica.md` | Agente de WhatsApp pra clínica: o que denuncia o robô, como humanizar (digitando, pausa variável, mensagens picadas, áudio espelhado, conversas reais da recepção), agenda com checagem no servidor, migrar de outro robô por Coexistence, preço de consultório solo (R$ 1.500 a 3.000 + R$ 400 a 800, mais aceito R$ 500 a 600), ligar aos poucos e 15 a 30 dias de ajuste, não anunciar nem negar que é IA, dores pós-entrega, cadência do retorno de orçamento (com o "jeitinho" de modelo que a casa não usa) | 03/10/2026 |
+| `follow-up.md` | Follow-up que entrega valor em vez de cobrar: os 4 modelos (frio, prévia, quase fechado, sumiu depois do preço) com a leitura da casa, cadência de 5 a 12 contatos só pra quem já conversou, confirmação 1 dia e 2 horas antes da R1 | 05/10/2026 |
 | `segunda-mensagem-e-agendamento.md` | Depois do primeiro "oi": ler o "obrigado vou ajustar" como objeção de saída, descobrir volume e ticket sem interrogatório ("de cada 10..."), do primeiro contato à reunião em 3-6 trocas, preço só na call | 21/09/2026 |
+
+## Ao destilar uma resposta (lição de 01/10/2026)
+
+**Conferir se o número responde à pergunta feita.** O oráculo deu os mesmos "5 a 10% de conversão"
+para prospecção fria e para cliente que chega pelo anúncio, e "R$ 0,035 por mensagem" (custo da API do
+WhatsApp) quando a pergunta era custo do anúncio. Número que não responde à pergunta fica marcado no
+card como tal, e a pergunta volta reformulada.

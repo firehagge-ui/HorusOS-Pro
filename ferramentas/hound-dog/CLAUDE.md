@@ -109,7 +109,56 @@ na oferta, nunca se passar por cliente), pode investigar sozinho (freio: 1 por s
   agente preparar UM follow-up com data do 4º dia (`disparos.sugerido_para`, tela Disparos › "Follow-ups programados");
   avisa o Marcelo quando o lead falou por último há 3h sem resposta; acorda o agente na data que ele marcou. Migração 012.
   Detalhe no `PLANO-AGENTES.md`.
-- Não implementado ainda: Mesa de agentes (Fase 2), provas/segmentos (Fase 3), teste casa × curiosidade (Fase 4).
+- **Claude automático DESLIGADO (05/10/2026, Marcelo: "análises de conversa e lead só quando eu pedir"):** um loop do
+  follow-up comeu o limite da assinatura (72 ciclos Opus em 3 dias). Chave `config.claude.automatico` (falta ou `false` =
+  desligado, `claudeAutomatico()` em `followup.mjs`): resposta de lead não dispara ciclo nem análise, data vencida e
+  silêncio de 3 dias não acordam o agente. Seguem os avisos no WhatsApp (sem Claude) e todo botão do painel.
+  `config.whatsapp.auto_analisar = 'nunca'`. Crítico do agente roda no Sonnet; agente e reescrita no Opus com esforço médio.
+- **Mesa de agentes (Fase 2, 30/09):** `app/js/telas/agentes.js`, rota `#/agentes`. Cartão por lead com a conversa, a
+  proposta e "Aprovar e enviar" (resposta sai na hora pela conversa; primeira mensagem e follow-up vão pra fila do
+  Disparos com janela e limite). Detalhe no `PLANO-AGENTES.md`. Botão "Agente" na ficha.
+- **Especialistas por segmento e teste casa × curiosidade (Fases 3 e 4, 30/09):** Clara (clínicas), Lia (eventos), Rafa
+  (oficinas), migração 014. O agente lê o caderno do nicho (`_memoria/prospeccao/segmentos/`) e as lições válidas; pode
+  propor lição nova (o Marcelo aceita no caderno, na Mesa). A abertura segue o formato com menos envios. Escritório em
+  pixel art no topo da Mesa (`app/js/pixel.js`). Mapa completo em "Como tudo se conecta", no `PLANO-AGENTES.md`.
+- **Escritório com arte do ChatGPT (01/10):** palco manhã/tarde/noite e uma folha de 6 poses por especialista em
+  `app/assets/escritorio/`; o código recorta, encaixa atrás dos monitores e anima. Especialista novo: `scripts/escritorio/LEIAME.md`.
+  A cena conta sem palavras: pilha de pastas = leads de cada um, quadro da parede = placar do dia, Farejador desligado = escritório apagado.
+  A página da Mesa: faixa "sua vez" no topo, a cena, Os leads (lista + painel), O time (cartões + resumo), Diário e lições.
+- **Mesa como central de comando (01/10, revisão de UX do Marcelo):**
+  - **Arquitetura:** lead com agente se decide SÓ na Mesa (aprovar, agendar, reagendar, cancelar envio, responder,
+    decidir parar). Disparos é a fila de envio: primeira mensagem de lead sem agente e o histórico; o cartão de lead com
+    agente lá só mostra e leva pra Mesa (`cartaoNaMesa`). Nunca dois botões de aprovar pra mesma mensagem.
+  - **Links internos:** `#/agentes?lead=ID`, `?esp=clinicas`, `?filtro=voce|agendadas`. Toda notificação e tarefa tem
+    destino (`linkDoJob` em `app/js/central.js`); notificação fica guardada no navegador.
+  - **Central de tarefas** (ampulheta no topo, `central.js`): em andamento com progresso real, fila, últimas 24 h,
+    cancelar e tentar de novo. `criarJob` avisa a central na hora.
+  - **Desistência controlada** (`app/js/saude.js`, migração 015): a régua (respondendo, em acompanhamento, sem resposta,
+    baixa chance, desinteressado) vai pra tela e pro pedido do agente. "encerrar" do agente virou RECOMENDAÇÃO
+    (`agentes.recomendacao`); o lead fica em "Decidir" até o Marcelo aprovar (geladeira com data, perdido) ou mandar continuar.
+  - **Balão do especialista** abre as demandas dele (o que aconteceu, por que chama, botão de resolver); abas por especialista.
+  - **Escritório:** mapa da Bahia na tela da parede (leads por cidade, `CIDADES` em pixel.js), camadas fixas + rAF ~24 fps.
+- **Perdido sai da Mesa e não volta (05/10, Marcelo):** lead com agente em perdido/ganho (fase do agente OU estágio
+  da ficha) ou encerrado fora da geladeira some da Mesa (filtro no carregamento de `telas/agentes.js`); geladeira e
+  pausado seguem em "Parados", com o selo "Geladeira". Mover a ficha pra perdido NÃO muda o agente: por isso o
+  `followup.mjs` também não acorda agente de ficha perdida ou ganha. Origem: Land Car e Autobahn, que iam voltar
+  em 10/11 e 23/11 depois de perdidos. Geladeira com data só pra quem demonstrou interesse; quem nunca reagiu
+  vai pra perdido e só reabre com fato novo (anúncio, inauguração, vaga), nunca por data.
+- **Revisão sem sair do aviso (02/10, pedido do Marcelo):** tudo que espera o Marcelo (aprovar, responder, decidir) abre
+  na **gaveta de revisão** (`abrirRevisao` em `telas/agentes.js`), vinda do sino (`&revisar=1`), do balão do especialista,
+  dos cartões, do diário e da faixa "sua vez". Um componente só (`revisao(a, g, modo)`) serve a gaveta, o painel do lead
+  e o balão do especialista (modo `pop`: editar, aprovar, agendar, rejeitar e refazer dentro do próprio balão).
+  No painel: conversa à esquerda, mensagem proposta à direita no alto, contexto embaixo dela (pedido do Marcelo, 02/10).
+  - A mensagem aparece como a PRÓXIMA fala da conversa: linha "entra aqui", balão tracejado com o rosto de quem escreveu
+    e "ainda não saiu". Editar é no próprio balão (clique, `E`), com "editada por você" e "desfazer edição".
+  - Ações num rodapé fixo: Rejeitar e Refazer (o motivo é pedido ali, com "vale pro nicho"), Agendar, Aprovar.
+    Aprovar e enviar na hora dá 5 s pra desfazer; aprovar pra fila mostra "Desfazer" no aviso (falha honesta se o
+    Farejador já pegou). Depois de decidir, a gaveta passa pro próximo; setas/J/K navegam, Esc fecha.
+  - **Uma cor por estado:** laranja = sua vez (aprovar/responder/decidir: muda verbo e ícone, não a cor), azul = pensando,
+    violeta = agendada, verde = enviada, cinza = com o lead. Verde nunca significa "precisa de você".
+- **Enriquecer lista (01/10):** só completa dados de itens da lista (não cria cliente). `lista_itens.enriquecido_em`
+  (migração 016) marca quem já foi; o "top 10" pula esses; a lista mostra faixa de andamento/pronto, filtro "Enriquecidos"
+  e a oportunidade de cada um.
 
 ## Revisor e aprendizado da prospecção (29/09/2026)
 

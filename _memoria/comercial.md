@@ -196,6 +196,13 @@ receita recorrente vem depois, não na largada. Vender CRM ou tráfego antes do 
 telhado antes da parede. E **não concentrar receita numa fase que depende de evento incerto**
 (ex.: Washington, cuja Fase 2 dependia de ele gravar vídeos — receita presa a um "se").
 
+**Ressalva (01/10/2026, Paralela Film):** quando o cliente **recusa site** e o anúncio leva **direto ao
+WhatsApp**, o tráfego pode ser a entrada. O "destino pronto" passa a ser o atendimento (quem responde,
+em quanto tempo, com roteiro) e a ficha do Google arrumada, não um site. Antes de vender, fazer a conta
+do CPA máximo (`_memoria/trafego/40-medicao-e-atendimento.md` §3) e ler as avaliações ruins: o anúncio
+aumenta o que a loja já é. Preço de referência do primeiro cliente: R$ 990/mês por 3 meses como
+condição de primeiro case, com contrapartida, + verba paga pelo cliente direto à Meta.
+
 **Casa com a doutrina de fechamento:** a Fase 1 barata **não** é "desconto por ação rápida"
 (que as mentes vetam acima) — é *escopo* menor por um preço justo, com o valor cheio
 reinstalado na reunião. O piso do network segue valendo por fase (projeto de site+sistema

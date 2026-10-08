@@ -257,8 +257,8 @@ Instagram dele hoje. Checklist do que pedir:
 - [ ] **Foto de capa:** o café pronto, ou o pacote em cena
 - [ ] **Produto:** o pacote de frente, fundo limpo, luz natural. Um por SKU
 - [ ] **O café coado / na xícara**
-- [ ] **A lavoura** ⭐ é o diferencial dele, e ninguém mais tem
-- [ ] **Ele trabalhando:** embalando, entregando, no cafezal
+- [ ] ~~A lavoura~~ 🔴 **removido em 05/10/2026: a família NÃO tem lavoura** (ver `../briefing.md`). O diferencial que dá foto é o **beneficiamento**: pilão, secagem, torra
+- [ ] **Ele trabalhando:** embalando, torrando, entregando (nunca "no cafezal")
 - [ ] **A entrega no cliente** (padaria, mercadinho), se algum autorizar
 
 ⚠️ **Só foto real.** Banco de imagem em perfil de Google Meu Negócio é fácil de

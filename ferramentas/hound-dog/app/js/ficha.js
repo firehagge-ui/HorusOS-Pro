@@ -68,6 +68,7 @@ export function abrirFicha(id, { aba = 'geral', aoFechar } = {}) {
         <div class="ficha-canais">
           <button class="btn sm" data-acao="investigar" title="Investigação profunda">${icone('radar')}Investigar</button>
           <button class="btn sm" data-acao="agendar">${icone('agenda')}Agendar</button>
+          <button class="btn sm" data-acao="agente" title="Plano, memória e diário do agente deste lead">${icone('robo')}Agente</button>
           <button class="btn sm claude" data-acao="claude">${sparkClaude(15)}Falar sobre este lead</button>
         </div>
       </div>
@@ -105,6 +106,7 @@ export function abrirFicha(id, { aba = 'geral', aoFechar } = {}) {
     if (acao === 'investigar') { abaAtual = 'dossie'; desenharCab(); desenharCorpo().then(() => $('[data-investigar]', g.corpo)?.click()); }
     if (acao === 'agendar') agendar({ empresa_id: e.id, tipo: ['novo', 'qualificado', 'abordado', 'conversando'].includes(e.estagio) ? 'r1' : 'followup' });
     if (acao === 'claude') { g.fechar(); location.hash = `#/claude?empresa=${e.id}`; }
+    if (acao === 'agente') (await import('./telas/agentes.js')).abrirAgente(e.id);
     if (acao === 'mais') {
       menu(b, [
         { icone: 'radar', rotulo: 'Investigar (investigação profunda)', fn: () => { abaAtual = 'dossie'; desenharCab(); desenharCorpo().then(() => $('[data-investigar]', g.corpo)?.click()); } },

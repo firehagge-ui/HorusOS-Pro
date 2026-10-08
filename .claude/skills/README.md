@@ -57,6 +57,9 @@ roteamento de estilo e precedência das `kit-*` no `CLAUDE.md`.
 | `aprovar-post` | aprova e publica post da fila (blog + Instagram/Facebook) |
 | `email-profissional` | rascunho de email calibrado |
 | `responder-avaliacoes` | resposta a avaliações |
+| `midia` | agente de social media (Mídia): planeja, escreve e publica o Instagram aprovado |
+| `revisar-mensagem` | revisão de mensagem de prospecção antes de mostrar (checklist de `_memoria/prospeccao/`) |
+| `ingerir-network` | transforma export de grupo de WhatsApp do network em card de `_conhecimento/network/` |
 
 ## Marketing e dados
 | Skill | Pra quê |
@@ -83,6 +86,13 @@ roteamento de estilo e precedência das `kit-*` no `CLAUDE.md`.
 
 ## Estilos de marca (escolher UM por peça — ver catalogo-estilos.md)
 `brutalist-skill` · `minimalist-skill` · `riso` · `soft-skill`
+
+## Engavetadas pelo Marcelo (não listar, não sugerir, não apontar no /atualizar)
+As pastas continuam em `.claude/skills/`, mas estão **engavetadas por decisão do Marcelo**. Não são
+pendência de documentação: o `/atualizar` não deve mais propor listá-las.
+`asking-with-evidence` · `configuring-vision` · `extracting-structure` · `learning-from-mistakes` ·
+`recovering-from-errors` · `sharing-results` · `the-loop` · `video-memory` · `watch` · `watching-videos`
+(registrado em 01/10/2026).
 
 ## Geração de mídia — REMOVIDA em 07/09/2026
 🔴 O Higgsfield foi **abandonado** (decisão do Marcelo) e as 8 skills `higgsfield-*` foram

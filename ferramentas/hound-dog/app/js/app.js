@@ -12,6 +12,7 @@ const ROTAS = {
   encontrar: { titulo: 'Encontrar clientes', icone: 'radar', mod: () => import('./telas/encontrar.js') },
   mercado: { titulo: 'Mercado', icone: 'mercado', mod: () => import('./telas/mercado.js') },
   esteira: { titulo: 'Esteira', icone: 'esteira', mod: () => import('./telas/esteira.js') },
+  agentes: { titulo: 'Mesa de agentes', icone: 'robo', mod: () => import('./telas/agentes.js') },
   conversas: { titulo: 'Conversas', icone: 'whatsapp', mod: () => import('./telas/conversas.js') },
   disparos: { titulo: 'Disparos', icone: 'enviar', mod: () => import('./telas/disparos.js') },
   agenda: { titulo: 'Agenda', icone: 'agenda', mod: () => import('./telas/agenda.js') },
@@ -22,9 +23,9 @@ const ROTAS = {
   ajustes: { titulo: 'Ajustes', icone: 'ajustes', mod: () => import('./telas/ajustes.js') },
   empresa: { titulo: 'Empresa', icone: 'predio', mod: () => import('./telas/esteira.js') },
 };
-const MENU = ['inicio', 'tarefas', 'encontrar', 'mercado', 'esteira', 'conversas', 'disparos', 'agenda', 'clientes', 'instagram', 'relatorios'];
+const MENU = ['inicio', 'tarefas', 'agentes', 'encontrar', 'mercado', 'esteira', 'conversas', 'disparos', 'agenda', 'clientes', 'instagram', 'relatorios'];
 
-const contadores = { conversas: 0, agenda: 0, esteira: 0, tarefas: 0 };
+const contadores = { conversas: 0, agenda: 0, esteira: 0, tarefas: 0, agentes: 0 };
 let limparTela = null;
 let rotaAtual = null;
 
@@ -124,6 +125,7 @@ function montarCasca() {
         <button class="busca-global" data-paleta>${icone('busca')}<span>Buscar empresa, tela ou ação…</span><kbd>Ctrl K</kbd></button>
         <div class="right row gap-6">
           <span class="tempo-real" id="tempo-real" title="Tempo real"><span class="ponto"></span></span>
+          <button class="btn icone central-btn" data-central aria-label="Tarefas em andamento">${icone('ampulheta')}<span class="central-n hide"></span></button>
           <button class="btn icone" data-notif aria-label="Notificações">${icone('sino')}<span class="notif-bolha hide" id="notif-bolha"></span></button>
           <button class="btn prim" data-novo>${icone('mais')}<span class="rotulo-novo">Novo</span></button>
         </div>
@@ -139,6 +141,7 @@ function montarCasca() {
   $('[data-menu]').onclick = () => alternarMenu();
   $('[data-paleta]').onclick = abrirPaleta;
   $('[data-notif]').onclick = (e) => abrirNotificacoes(e.currentTarget);
+  import('./central.js').then(({ ligarCentral }) => ligarCentral($('[data-central]')));
   $('[data-novo]').onclick = (e) => menu(e.currentTarget, [
     { icone: 'usuariomais', rotulo: 'Novo lead', fn: async () => (await import('./acoes.js')).novoLead() },
     { icone: 'checkc', rotulo: 'Nova tarefa', fn: async () => (await import('./telas/tarefas.js')).editarTarefa() },
@@ -199,18 +202,23 @@ async function atualizarContadores() {
     const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
     const amanha = new Date(hoje); amanha.setDate(amanha.getDate() + 1);
     const hojeBahia = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Bahia' });
-    const [conv, ag, at, tf] = await Promise.all([
+    const [conv, ag, at, tf, ags, rasc] = await Promise.all([
       // Só conversa ligada a uma ficha do CRM conta (pedido do Marcelo, 29/09/2026): número solto não é da operação
       sb.from('whatsapp_conversas').select('nao_lidas').gt('nao_lidas', 0).eq('arquivada', false).eq('silenciada', false).not('empresa_id', 'is', null),
       sb.from('agenda').select('id', { count: 'exact', head: true }).gte('inicio', hoje.toISOString()).lt('inicio', amanha.toISOString()).eq('status', 'agendado'),
       sb.from('vw_atencao').select('id', { count: 'exact', head: true }),
       // Tarefas atrasadas ou para hoje
       sb.from('tarefas').select('id', { count: 'exact', head: true }).in('status', ['a_fazer', 'fazendo', 'travada']).lte('prazo', hojeBahia),
+      // Mesa de agentes (30/09): leads com mensagem pra aprovar ou pedido do agente pra você
+      sb.from('agentes').select('empresa_id,fase,precisa_de_voce').eq('status', 'ativo'),
+      sb.from('disparos').select('empresa_id').eq('status', 'rascunho'),
     ]);
     contadores.conversas = (conv.data || []).reduce((a, c) => a + (c.nao_lidas || 0), 0);
     contadores.agenda = ag.count || 0;
     contadores.esteira = at.count || 0;
     contadores.tarefas = tf.count || 0;
+    const comRascunho = new Set((rasc.data || []).map((d) => d.empresa_id));
+    if (rotaAtual !== 'agentes') contadores.agentes = (ags.data || []).filter((a) => comRascunho.has(a.empresa_id) || (a.fase === 'precisa_voce' && a.precisa_de_voce)).length;
     desenharNav();
   } catch (e) { console.warn('[contadores]', e); }
 }
@@ -307,49 +315,80 @@ function abrirPaleta() {
 }
 
 /* =============================== Notificações =============================== */
-const notificacoes = [];
+/* Toda notificação leva ao lugar exato que a originou (01/10: "clico e não vai pra lugar nenhum"): mensagem abre a
+   conversa, aprovação abre o lead na Mesa, tarefa abre o que ela mexeu (linkDoJob). Ficam guardadas no navegador,
+   então recarregar a página não apaga o histórico. */
 const CHAVE_VISTO = 'hd-notif-visto';
-function notificar(n) {
-  notificacoes.unshift({ ...n, quando: new Date().toISOString() });
-  notificacoes.splice(40);
+const CHAVE_LISTA = 'hd-notificacoes';
+const notificacoes = (() => { try { return JSON.parse(localStorage.getItem(CHAVE_LISTA) || '[]').slice(0, 50); } catch { return []; } })();
+function guardarNotificacoes() { try { localStorage.setItem(CHAVE_LISTA, JSON.stringify(notificacoes.slice(0, 50))); } catch { /* sem armazenamento: some ao recarregar */ } }
+function bolhaNotificacoes() {
   const visto = Number(localStorage.getItem(CHAVE_VISTO) || 0);
   const novas = notificacoes.filter((x) => new Date(x.quando).getTime() > visto).length;
   const b = $('#notif-bolha');
   if (b) { b.textContent = novas > 9 ? '9+' : String(novas); b.classList.toggle('hide', !novas); }
 }
+function notificar(n) {
+  // A mesma coisa duas vezes seguidas (tempo real repetido) não vira duas notificações
+  if (n.chave && notificacoes.some((x) => x.chave === n.chave)) return;
+  notificacoes.unshift({ ...n, quando: new Date().toISOString() });
+  notificacoes.splice(50);
+  guardarNotificacoes();
+  bolhaNotificacoes();
+}
+const TIPO_NOTIF = { conversa: 'Mensagem', aprovacao: 'Aprovação', agente: 'Agente', tarefa: 'Tarefa', erro: 'Falhou', lista: 'Lista', lembrete: 'Lembrete' };
 function abrirNotificacoes(ancora) {
   localStorage.setItem(CHAVE_VISTO, String(Date.now()));
   $('#notif-bolha')?.classList.add('hide');
   $$('.menu-pop').forEach((m) => m.remove());
-  const m = el(`<div class="menu-pop notif-pop"><div class="row" style="padding:8px 10px"><b>Notificações</b></div>
-    ${notificacoes.length ? notificacoes.map((n, i) => `<button data-i="${i}">${icone(n.icone || 'info')}<span class="grow"><span class="ellipsis" style="display:block">${esc(n.titulo)}</span><small class="dim">${esc(n.texto || '')} · ${relativo(n.quando)}</small></span></button>`).join('')
-      : `<div class="vazio" style="padding:18px">${icone('sino')}<span>Nada novo por aqui. Pesquisas, respostas do WhatsApp e lembretes aparecem aqui.</span></div>`}
+  const m = el(`<div class="menu-pop notif-pop"><div class="notif-cab"><b>Notificações</b>${notificacoes.length ? '<button class="btn xs fantasma" data-limpar-notif>Limpar</button>' : ''}</div>
+    <div class="notif-lista">${notificacoes.length ? notificacoes.map((n, i) => `<button data-i="${i}" class="${n.link ? 'navega' : ''}">${icone(n.icone || 'info')}<span class="grow">
+        <span class="notif-linha"><span class="ellipsis">${esc(n.titulo)}</span>${n.tipo ? `<small class="notif-tipo">${esc(TIPO_NOTIF[n.tipo] || n.tipo)}</small>` : ''}</span>
+        <small class="dim">${esc(n.texto || '')}${n.texto ? ' · ' : ''}${relativo(n.quando)}</small></span>${n.link ? icone('chevd') : ''}</button>`).join('')
+      : `<div class="vazio" style="padding:18px">${icone('sino')}<span>Nada novo por aqui. Respostas do WhatsApp, mensagens dos agentes pra aprovar e tarefas prontas aparecem aqui, e o clique leva direto ao lugar.</span></div>`}</div>
   </div>`);
   document.body.appendChild(m);
   const r = ancora.getBoundingClientRect();
-  m.style.width = '360px'; m.style.left = `${Math.max(8, r.right - 360)}px`; m.style.top = `${r.bottom + 6}px`;
-  m.onclick = (e) => { const b = e.target.closest('button[data-i]'); if (!b) return; const n = notificacoes[+b.dataset.i]; m.remove(); if (n?.link) location.hash = n.link; };
+  const larg = Math.min(380, window.innerWidth - 16);
+  m.style.width = `${larg}px`; m.style.left = `${Math.max(8, r.right - larg)}px`; m.style.top = `${r.bottom + 6}px`;
+  m.onclick = async (e) => {
+    if (e.target.closest('[data-limpar-notif]')) { notificacoes.splice(0); guardarNotificacoes(); m.remove(); return; }
+    const b = e.target.closest('button[data-i]'); if (!b) return;
+    const n = notificacoes[+b.dataset.i]; m.remove();
+    if (n?.link) (await import('./central.js')).irPara(n.link);
+  };
   setTimeout(() => document.addEventListener('click', function fora(e) { if (!m.contains(e.target)) { m.remove(); document.removeEventListener('click', fora); } }), 0);
 }
 
-const NOMES_JOB = {
-  pesquisar_clientes: 'Farejada de clientes', pesquisa_mercado: 'Pesquisa de mercado', enriquecer_empresa: 'Dossiê da empresa',
-  analisar_conversa: 'Análise da conversa', chat: 'Resposta do Claude', instagram: 'Coleta do Instagram', ideias_instagram: 'Ideias de conteúdo',
-  midia_semana: '📣 Mídia: sessão da semana', midia_ajuste: '📣 Mídia: ajuste de post', midia_triagem: '📣 Mídia: triagem',
-  whatsapp_enviar: 'Mensagem no WhatsApp', investigar_empresa: 'Investigação profunda', enriquecer_lista: 'Enriquecimento da lista', triar_lista: 'Triagem da lista', mensagem_personalizada: 'Mensagem personalizada',
-};
 function ligarNotificacoes() {
-  ouvir('jobs', (p) => {
+  bolhaNotificacoes();
+  ouvir('jobs', async (p) => {
     const j = p.new; if (!j || p.eventType !== 'UPDATE') return;
     if (!['concluido', 'erro'].includes(j.status) || p.old?.status === j.status) return;
-    if (['chat', 'analisar_conversa', 'whatsapp_conectar', 'whatsapp_codigo', 'instagram'].includes(j.tipo) && j.status === 'concluido') return;
-    const nome = NOMES_JOB[j.tipo] || j.tipo;
-    const link = j.tipo === 'pesquisar_clientes' && j.saida?.lista_id ? `#/encontrar/lista/${j.saida.lista_id}`
-      : j.tipo === 'pesquisa_mercado' && j.saida?.pesquisa_id ? `#/mercado/${j.saida.pesquisa_id}`
-      : j.empresa_id ? `#/empresa/${j.empresa_id}` : null;
-    notificar({ icone: j.status === 'erro' ? 'alerta' : 'checkc', titulo: `${nome} ${j.status === 'erro' ? 'falhou' : 'pronta'}`, texto: j.status === 'erro' ? (j.erro || '').slice(0, 80) : (j.progresso || '').slice(0, 80), link });
-    if (j.status === 'concluido') toast(`${nome} pronta`, 'ok', link ? { acao: { rotulo: 'Abrir', fn: () => { location.hash = link; } } } : {});
-    else toast(`${nome} falhou: ${(j.erro || '').slice(0, 90)}`, 'erro');
+    if (['chat', 'analisar_conversa', 'whatsapp_conectar', 'whatsapp_codigo', 'instagram', 'agente_ciclo'].includes(j.tipo) && j.status === 'concluido') return;
+    const { nomeDoJob, linkDoJob, irPara } = await import('./central.js');
+    const nome = nomeDoJob(j), link = linkDoJob(j);
+    const s = j.saida || {};
+    const texto = j.status === 'erro' ? (j.erro || '').slice(0, 90)
+      : j.tipo === 'enriquecer_lista' ? `${s.atualizados ?? '?'} de ${s.pedidos ?? '?'} leads atualizados · toque pra ver quais` : (j.progresso || '').slice(0, 90);
+    notificar({ chave: `job:${j.id}:${j.status}`, tipo: j.status === 'erro' ? 'erro' : 'tarefa', icone: j.status === 'erro' ? 'alerta' : 'checkc', titulo: `${nome} ${j.status === 'erro' ? 'falhou' : 'pronta'}`, texto, link });
+    if (j.status === 'concluido') toast(`${nome}: pronta`, 'ok', link ? { acao: { rotulo: 'Ver resultado', fn: () => irPara(link) } } : {});
+    else toast(`${nome} falhou: ${(j.erro || '').slice(0, 90)}`, 'erro', link ? { acao: { rotulo: 'Abrir', fn: () => irPara(link) } } : {});
+  });
+  // O que os agentes decidem e precisa de você: leva direto ao lead na Mesa (com o especialista no título)
+  const especialistas = new Map();
+  ouvir('agente_eventos', async (p) => {
+    const e = p.new;
+    if (p.eventType !== 'INSERT' || !e?.empresa_id || !['mensagem', 'precisa_marcelo', 'encerrar'].includes(e.decisao)) return;
+    if (!especialistas.size) { const { data } = await sb.from('especialistas').select('id,nome'); (data || []).forEach((x) => especialistas.set(x.id, x.nome)); }
+    const { data: ag } = await sb.from('agentes').select('especialista_id,precisa_de_voce').eq('empresa_id', e.empresa_id).maybeSingle();
+    const quem = especialistas.get(ag?.especialista_id) || 'Agente';
+    const emp = estado.empresas.find((x) => x.id === e.empresa_id)?.nome || 'um lead';
+    const titulo = { mensagem: `${quem}: mensagem pronta pra ${emp}`, precisa_marcelo: `${quem} precisa de você em ${emp}`, encerrar: `${quem} recomenda parar com ${emp}` }[e.decisao];
+    // Mensagem pronta: o aviso já mostra o começo do texto proposto, pra saber o que vai aprovar antes de abrir
+    const { data: rd } = e.decisao === 'mensagem' ? await sb.from('disparos').select('texto').eq('empresa_id', e.empresa_id).eq('status', 'rascunho').order('criado_em', { ascending: false }).limit(1) : { data: null };
+    notificar({ chave: `ev:${e.id}`, tipo: e.decisao === 'mensagem' ? 'aprovacao' : 'agente', icone: e.decisao === 'mensagem' ? 'check' : 'robo', titulo,
+      texto: (rd?.[0]?.texto ? `«${rd[0].texto}»` : ag?.precisa_de_voce || e.leitura || e.porque || '').slice(0, 90), link: `#/agentes?lead=${e.empresa_id}&revisar=1` });
   });
   ouvir('whatsapp_mensagens', async (p) => {
     if (p.eventType !== 'INSERT' || p.new?.direcao !== 'in') return;
@@ -357,11 +396,16 @@ function ligarNotificacoes() {
     // Só avisa de conversa ligada a uma ficha do CRM; pessoal (silenciada) ou número solto não interrompe o trabalho.
     const { data: c } = await sb.from('whatsapp_conversas').select('silenciada, empresa_id').eq('id', p.new.conversa_id).maybeSingle();
     if (c?.silenciada || !c?.empresa_id) return;
-    notificar({ icone: 'whatsapp', titulo: 'Nova mensagem no WhatsApp', texto: (p.new.texto || '').slice(0, 70), link: `#/conversas/${p.new.conversa_id}` });
+    const emp = estado.empresas.find((x) => x.id === c.empresa_id)?.nome;
+    notificar({ chave: `msg:${p.new.id}`, tipo: 'conversa', icone: 'whatsapp', titulo: emp ? `${emp} respondeu` : 'Nova mensagem no WhatsApp', texto: (p.new.texto || '[mídia]').slice(0, 70), link: `#/conversas/${p.new.conversa_id}` });
   });
   ouvir('whatsapp_conversas', () => contadoresDepois());
   ouvir('agenda', () => contadoresDepois());
   ouvir('tarefas', () => contadoresDepois());
+  ouvir('agentes', () => contadoresDepois());
+  // A Mesa conhece a trava do passo 2 (mensagem que espera o lead não conta); com ela aberta, o número dela vale
+  window.addEventListener('hounder:contador', (ev) => { const { rota, n } = ev.detail || {}; if (rota in contadores && contadores[rota] !== n) { contadores[rota] = n; desenharNav(); } });
+  ouvir('disparos', () => contadoresDepois());
   ouvir('empresas', () => contadoresDepois());
   ouvir('farejador_status', () => desenharFarejador());
   ouvir('_conexao', ({ status }) => {

@@ -73,6 +73,15 @@ Salvar/editar só a linha relevante, sem reformatar o arquivo inteiro; confirmar
 linha. Não perguntar para correção óbvia de contexto imediato. `/atualizar` faz a varredura
 completa quando houver dúvida.
 
+## Decisão pendente e pedido de apagar
+
+- **Opção apresentada ao Marcelo não fica só no chat.** Toda decisão pendente (preço A/B, escopo,
+  caminho) vai também pro documento do cliente e vira tarefa no Hounder. Origem: 01/10/2026, Paralela
+  Film (as opções de preço estavam só na conversa e o Marcelo não achou).
+- **Apagar só o que foi pedido.** Pedido de apagar uma parte apaga só aquela parte; na dúvida sobre o
+  escopo, perguntar. Arquivo fora do Git (`_gestao/`) não tem volta. Origem: 01/10/2026, o arquivo de
+  perguntas do oráculo foi apagado inteiro quando o pedido era só as perguntas novas (reconstruído).
+
 ## Edição concorrente: não presumir regressão
 
 Se um arquivo aparece diferente do que esta conversa produziu, **pode ser o próprio usuário
@@ -121,6 +130,13 @@ verificado**, nunca ok.
 **Correção de design do Marcelo vira linha em `_memoria/design/90-antipadroes.md` com o
 porquê junto** — correção que morre no chat volta como erro no próximo site.
 
+## Trabalho de tráfego pago: leitura obrigatória
+
+Antes de propor, orçar ou montar campanha, ler `_memoria/trafego/` (README, `00-principios`,
+`40-medicao-e-atendimento` pra conta do CPA máximo) e rodar o `99-checklist` antes de subir. Manual
+nascido da pesquisa profunda de 01/10/2026 (fontes em `_memoria/trafego/fontes/relatorio.md`).
+Número de benchmark nunca vira promessa; o dado real de cada campanha substitui o benchmark.
+
 ## Mensagem de prospecção: leitura obrigatória
 
 Antes de escrever abordagem ou resposta a objeção, ler `_conhecimento/network/abordagem-e-prospeccao.md`
@@ -139,6 +155,12 @@ recorrência, vaga, expansão; concorrência do bairro; cruzamento em hipóteses
 hipótese) → **Qualificado** (briefing completo na ficha + rascunho no Disparos) ou **Perdido** (com
 o motivo). **Nada entra no Disparos antes da investigação.** Achar agência ou fornecedor atual muda a
 tese: entrar como complemento, nunca criticando o trabalho dele (caso Revita, 25/09).
+
+**Estudo de cliente olha além do pedido (Marcelo, 03/10/2026).** Toda investigação, preparo de R1 ou
+dossiê passa pelo catálogo de soluções (`_gestao/catalogo/`, começar pela "ideia central" do README) e
+anota, na pasta do cliente e na ficha do Hounder, quais sistemas do nicho encaixam ali, como hipótese.
+"Ainda não temos" não é filtro: vendeu, a gente constrói. IA de atendimento que se vende ao cliente
+responde sozinha; aprovar mensagem por mensagem é só o jeito da nossa prospecção.
 
 ## Trabalho de carrossel e post: leitura obrigatória
 
@@ -236,7 +258,13 @@ aparece como responsável, mas quem marca é o Marcelo. O resumo das 8h do Farej
 e as do dia, e o `/abrir` começa por elas.
 
 **Time de agentes de prospecção (Fase 1 no ar em 29/09/2026, até 10 ativos):** `ferramentas/hound-dog/PLANO-AGENTES.md`.
+**Mesa de agentes (30/09):** tela do Hounder onde o Marcelo aprova e envia o que cada agente propõe, com a conversa ao lado.
+**Especialistas por nicho (30/09):** Clara (clínicas), Lia (eventos), Rafa (oficinas). Cada um tem um caderno em
+`_memoria/prospeccao/segmentos/` que todo agente do nicho lê; correção do Marcelo marcada "vale pro nicho todo" vira lição de todos.
 Lead com agente: informação nova também vai pra memória dele (`hd_agente_nota`).
+**Follow-up programado (30/09):** o Farejador acha lead parado há 3 dias e o agente deixa UM follow-up pronto pro 4º dia, em
+Disparos › "Follow-ups programados". Lead que falou por último e ficou 3h sem resposta vira aviso no WhatsApp do Marcelo.
+Nada sai sem aprovação.
 O serviço de CRM + WhatsApp que as mensagens oferecem ainda não foi entregue a ninguém: base em
 `_conhecimento/network/servico-crm-whatsapp.md`, demo e troca das chaves do Pronto antes da primeira R1.
 
@@ -256,7 +284,8 @@ publica sem revisão do profissional responsável.
 
 ## Estrutura do workspace
 
-- `_memoria/` — a agência; inclui `integridade.md`, `design/`, `conteudo/`, `comercial.md` e
+- `_memoria/` — a agência; inclui `integridade.md`, `design/`, `conteudo/`, `trafego/` (manual de
+  tráfego pago, com as fontes em `trafego/fontes/`), `prospeccao/`, `comercial.md` e
   `manual-horus.md` (referência/histórico)
 - `_conselho/` — sistema de decisão · `_conhecimento/network/` — oráculo do network
   (consultar antes de precificar; material privado, nunca em peça de cliente)
@@ -312,3 +341,19 @@ produzir PARA um cliente, ler os dois; a marca das peças é a do cliente, não 
   Site fora do ar + zero anúncio; alavancas são site e tráfego pago. Oferta em fases (ancorar
   R$ 2.000). 🔴 gancho verdadeiro ("vi vocês no Bon Odori"), nunca pretexto falsificável; nada
   de bot no número deles.
+- **#9 — Paralela Film** (película/insulfilm, estética e som automotivo, Av. Paralela/Salvador) —
+  LEAD, R1 remarcada para **segunda 05/10/2026** (horário a confirmar), com Daniel e Danilo (Danilo é
+  o sócio no CNPJ). Pediu **tráfego pago, não site**; primeiro cliente de tráfego da Hórus. Tudo em
+  `clientes/paralela-film/` (comece pelo `CLAUDE.md` de lá) e no dossiê do Hounder. 🔴 Avaliações de
+  1★ de qualidade e agenda: processo de entrega antes de subir verba; anúncio só com película dentro
+  da lei e sem percentual de calor sem ficha.
+- **#10 — Leal Oral Clinic** (odontologia estética, Caminho das Árvores/Salvador · CFO) — LEAD conversando,
+  indicação (é o dentista do Antônio); R1 a marcar, Antônio presencial e Marcelo online. Quer **IA que
+  responda paciente no WhatsApp de um jeito humano** (a "Fini" atual soa robô) e perguntou de tráfego.
+  **Primeiro cliente do Icarus** (`Icarus/PLANO-V2.md`). Tudo em `clientes/leal-oral-clinic/`. 🔴 A
+  Clinicorp já é a agenda dele: integrar, nunca vender CRM por cima; IA não fala nada clínico nem preço de
+  tratamento; homônimo `@lealconsultorios` não é ele.
+- **#11 — Sates Saúde** (odontologia domiciliar, Salvador · CFO) — LEAD, amigas de turma do Marcelo, abordagem
+  em 06/10/2026 com a live na Band (08/10) como gancho. Oferta: piloto de 60 dias sem honorário, com
+  contrapartida e cobrança combinada no dia 1. Tudo em `clientes/sates-saude/` (`playbook.md`). 🔴 Nada se
+  constrói antes do aceite; parceria B2B sem comissão por paciente; quem compra é a família do paciente.

@@ -69,6 +69,9 @@ noção de compliance de saúde.
 `_conselho/mentes/full-sales-system.md` (ROAS 7 para operar, funil como
 diagnóstico). Antes de escalar verba, os dois dizem a mesma coisa: valide a conta.
 
+**Manual da casa (desde 01/10/2026):** `_memoria/trafego/`. Ler antes de propor ou montar campanha;
+rodar o `99-checklist.md` antes de subir.
+
 ⚠️ Em cliente de saúde: sem preço como chamariz, sem promessa de resultado, sem
 antes/depois, e cuidado com retargeting que revele busca por tratamento (dado
 sensível, LGPD).

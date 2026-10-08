@@ -29,11 +29,14 @@ const STATUS = { rascunho: ['cinza', 'Para aprovar'], aprovado: ['azul', 'Aprova
 
 export default async function disparos(v) {
   v.innerHTML = `
-    <div class="cab"><div class="tt"><h1>Disparos de prospecção</h1><p>O Claude pesquisa e confere cada frase. Você aprova o texto exato. O Farejador envia pelo seu WhatsApp, no máximo ${LIMITE_DIA} por dia, com 4 a 7 minutos entre um e outro.</p></div></div>
+    <div class="cab"><div class="tt"><h1>Disparos de prospecção</h1><p>A fila de envio: a primeira mensagem dos leads que ainda não têm agente, o que está agendado e o que já saiu. O Farejador envia pelo seu WhatsApp, no máximo ${LIMITE_DIA} por dia, com 4 a 7 minutos entre um e outro.</p></div>
+      <div class="acoes"><a class="btn" href="#/agentes">${icone('robo')}Mesa de agentes</a></div></div>
+    <div class="aviso azul mb-16">${icone('info')}<div><b>Lead com agente se decide na Mesa de agentes.</b> Aqui ele aparece só pra consulta, com o atalho pro cartão dele: aprovar, agendar, reagendar e responder ficam num lugar só, pra mesma mensagem nunca ter dois botões de aprovar.</div></div>
     <div data-aviso></div>
     <div data-corpo>${esqueleto(8, 26)}</div>`;
 
   let lista = [];
+  let comAgente = new Map(); // empresa_id -> nome do especialista (lead com agente ativo: decide-se na Mesa)
   let entradas = new Map(); // empresa_id -> momento da última mensagem que o lead mandou
   const hojeBahia = () => new Date().toLocaleDateString('en-CA', { timeZone: 'America/Bahia' });
   const diaBahia = (d) => new Date(d).toLocaleDateString('en-CA', { timeZone: 'America/Bahia' });
@@ -43,6 +46,8 @@ export default async function disparos(v) {
     const { data, error } = await sb.from('disparos').select('*').order('criado_em', { ascending: true }).limit(500);
     if (error) { $('[data-corpo]', v).innerHTML = vazio('alerta', 'Não carregou', erroAmigavel(error)); return; }
     lista = data || [];
+    const [{ data: ags }, { data: esps }] = await Promise.all([sb.from('agentes').select('empresa_id,especialista_id').eq('status', 'ativo'), sb.from('especialistas').select('id,nome')]);
+    comAgente = new Map((ags || []).map((a) => [a.empresa_id, (esps || []).find((e) => e.id === a.especialista_id)?.nome || 'o agente']));
     // Quem tem passo 2 pendente: saber se o lead já respondeu no WhatsApp
     const ids = [...new Set(lista.filter((d) => d.passo > 1 && ['rascunho', 'aprovado', 'agendado'].includes(d.status)).map((d) => d.empresa_id))];
     entradas = new Map();
@@ -93,7 +98,19 @@ export default async function disparos(v) {
     return `<div class="aviso ${cr && cr.nivel !== 'ok' ? 'laranja' : ''} mt-8">${icone('robo')}<div>${d.raciocinio ? `<b>Por quê:</b> ${esc(d.raciocinio)}` : ''}${cr ? `${d.raciocinio ? '<br>' : ''}<span class="dim">${esc(cr.dica)}</span>` : ''}</div></div>`;
   }
 
+  /* Lead com agente: o cartão só mostra e leva pra Mesa (lá ficam aprovar, agendar e responder) */
+  function cartaoNaMesa(empresaId, opcoes) {
+    const quem = comAgente.get(empresaId);
+    return `<article class="card mt-12 disparo na-mesa" data-emp-card="${empresaId}">
+      <div class="card-cab"><div class="grow"><h3><a href="#" data-emp="${empresaId}">${esc(nomeEmp(empresaId))}</a></h3>
+        <div class="dim" style="font-size:12.5px">${icone('robo')} Acompanhado por ${esc(quem)} · ${opcoes.length > 1 ? `${opcoes.length} opções` : '1 mensagem'} esperando você</div></div>
+        <a class="btn sm prim" href="#/agentes?lead=${empresaId}&revisar=1">${icone('setad')}Decidir na Mesa</a></div>
+      ${opcoes.map((d) => `<div class="msg-sugerida mt-8"><b>${esc(d.variante ? `Opção ${d.variante}` : 'Mensagem')}${d.angulo ? ` · ${esc(d.angulo)}` : ''}:</b> ${esc(d.texto)}</div>`).join('')}
+    </article>`;
+  }
+
   function cartao(d, { edita = false } = {}) {
+    if (comAgente.has(d.empresa_id) && ['rascunho', 'aprovado'].includes(d.status)) return cartaoNaMesa(d.empresa_id, [d]);
     const [cf, rf] = FORMATO[d.formato] || FORMATO.casa;
     const [cs, rs] = STATUS[d.status];
     const ver = Array.isArray(d.verificacao) ? d.verificacao : [];
@@ -122,6 +139,7 @@ export default async function disparos(v) {
 
   /* Um cartão por cliente com as opções A, B, C da mensagem inicial: escolher uma sobe pra "Prontos pra sair" (Marcelo, 29/09) */
   function cartaoEscolha(empresaId, opcoes) {
+    if (comAgente.has(empresaId)) return cartaoNaMesa(empresaId, opcoes);
     const tel = opcoes[0]?.telefone;
     return `<article class="card mt-12 disparo" data-emp-card="${empresaId}">
       <div class="card-cab"><div class="grow"><h3><a href="#" data-emp="${empresaId}">${esc(nomeEmp(empresaId))}</a></h3>
@@ -149,6 +167,7 @@ export default async function disparos(v) {
     return naJanela(alvo) ? new Date(alvo) : proximaAbertura(alvo);
   }
   function cartaoFollowup(empresaId, opcoes) {
+    if (comAgente.has(empresaId)) return cartaoNaMesa(empresaId, opcoes);
     const h = horaDoFollowup(opcoes[0]);
     return `<article class="card mt-12 disparo" data-emp-card="${empresaId}">
       <div class="card-cab"><div class="grow"><h3><a href="#" data-emp="${empresaId}">${esc(nomeEmp(empresaId))}</a></h3>

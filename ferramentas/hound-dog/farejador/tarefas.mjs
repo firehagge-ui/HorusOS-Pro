@@ -395,11 +395,15 @@ export async function enriquecerLista(job, progresso, cancelado) {
     const combinado = { ...atual, ...novo };
     const p = pontuar(combinado, { pesos: opc.score, nichos: opc.nichos_conhecidos, praca: opc.praca?.regiao });
     const cols = Object.keys(novo);
-    await q(`update lista_itens set ${cols.map((c, i) => `${c} = $${i + 2}`).join(', ')}, score = $${cols.length + 2}, prioridade = $${cols.length + 3}, score_motivos = $${cols.length + 4} where id = $1`,
-      [atual.id, ...cols.map((c) => novo[c]), p.score, p.prioridade, JSON.stringify(p.motivos)]);
+    await q(`update lista_itens set ${cols.map((c, i) => `${c} = $${i + 2}`).join(', ')}, score = $${cols.length + 2}, prioridade = $${cols.length + 3}, score_motivos = $${cols.length + 4},
+      enriquecido_em = now(), enriquecido_job = $${cols.length + 5} where id = $1`,
+      [atual.id, ...cols.map((c) => novo[c]), p.score, p.prioridade, JSON.stringify(p.motivos), job.id]);
     atualizados++;
   }
-  return { atualizados, pedidos: itens.length };
+  // Quem o Claude não achou nada também foi olhado: marca, pra o próximo "top 10" não pegar de novo
+  await q('update lista_itens set enriquecido_em = coalesce(enriquecido_em, now()), enriquecido_job = coalesce(enriquecido_job, $2) where id = any($1)', [ids, job.id]);
+  progresso(`Pronto: ${atualizados} de ${itens.length} leads com dado novo`);
+  return { atualizados, pedidos: itens.length, lista_id: job.lista_id || null, item_ids: ids };
 }
 
 /* =============================== Triagem da lista (Spark → Novo) =============================== */

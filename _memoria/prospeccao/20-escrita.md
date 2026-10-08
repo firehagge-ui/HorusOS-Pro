@@ -118,3 +118,8 @@ resposta, o lead vai pra geladeira **com data de ressurgir** (a próxima janela 
 segmento), em vez de ficar parado sem data.
 
 Não entra em mensagem até o Marcelo aprovar.
+
+**Decidido em 05/10 (Marcelo):** o follow-up com **fato novo** vence o "passando só pra saber" (LevSaúde, Bioclin;
+reforçado pelo card `follow-up.md` do oráculo), e o fato tem que ser algo que o lead não conserta sozinho em um
+minuto. A **geladeira com data** só vale pra quem mostrou interesse; quem nunca reagiu vai pra **perdido** e só
+reabre com fato novo (Land Car e Autobahn, 05/10).

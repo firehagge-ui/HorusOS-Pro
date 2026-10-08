@@ -17,7 +17,7 @@ const SITE = { sem: ['vermelho', 'Sem site'], fora_do_ar: ['vermelho', 'Fora do 
 const opcScore = () => ({ pesos: estado.config.score, nichos: estado.config.nichos_conhecidos, praca: estado.config.praca?.regiao });
 
 export default async function encontrar(v, { args, params }) {
-  if (args[0] === 'lista' && args[1]) return detalheLista(v, args[1]);
+  if (args[0] === 'lista' && args[1]) return detalheLista(v, args[1], params);
   let aba = params.aba || 'claude';
   v.innerHTML = `
     <div class="cab"><div class="tt"><h1>Encontrar clientes</h1><p>Fareje, pontue e mande pro funil quem tem mais potencial primeiro.</p></div>
@@ -327,11 +327,13 @@ async function abaListas(c, limpezas) {
 }
 
 /* =============================== Detalhe da lista =============================== */
-async function detalheLista(v, id) {
+async function detalheLista(v, id, params = {}) {
   v.innerHTML = `<div class="card">${esqueleto(8, 22)}</div>`;
   let lista, itens = [];
-  let filtro = 'nao_importados', busca = '', ordem = 'score', pagina = 0;
+  // Quem chega pela notificação do enriquecimento cai direto nos leads enriquecidos
+  let filtro = params.filtro === 'enriquecidos' ? 'enriquecidos' : 'nao_importados', busca = '', ordem = 'score', pagina = 0;
   let triando = new Set(), triagemAgora = null;
+  let enriquecendo = [], ultimoEnriq = null;
   const POR_PAGINA = 50;
   const sel = new Set();
 
@@ -344,6 +346,11 @@ async function detalheLista(v, id) {
     const { data: jt } = await sb.from('jobs').select('entrada,status,progresso').eq('tipo', 'triar_lista').eq('lista_id', id).in('status', ['fila', 'processando']);
     triando = new Set((jt || []).flatMap((j) => j.entrada?.item_ids || []));
     triagemAgora = (jt || []).find((j) => j.status === 'processando')?.progresso || null;
+    // O enriquecimento em andamento e o último que terminou (01/10: o Marcelo pediu dois e não achou o resultado)
+    const { data: je } = await sb.from('jobs').select('id,status,progresso,entrada,saida,erro,criado_em,concluido_em').eq('tipo', 'enriquecer_lista').eq('lista_id', id)
+      .order('criado_em', { ascending: false }).limit(6);
+    enriquecendo = (je || []).filter((j) => ['fila', 'processando'].includes(j.status));
+    ultimoEnriq = (je || []).find((j) => ['concluido', 'erro'].includes(j.status) && Date.now() - new Date(j.concluido_em || j.criado_em) < 2 * 864e5) || null;
     if (!l) { v.innerHTML = vazio('alerta', 'Lista não encontrada', 'Ela pode ter sido excluída.', '<a class="btn sm" href="#/encontrar?aba=listas">Voltar às listas</a>'); return false; }
     lista = l; itens = its || [];
     return true;
@@ -359,6 +366,7 @@ async function detalheLista(v, id) {
       if (filtro === 'nao_importados' && (i.empresa_id || i.descartado)) return false;
       if (filtro === 'importados' && !i.empresa_id) return false;
       if (filtro === 'descartados' && !i.descartado) return false;
+      if (filtro === 'enriquecidos' && (!i.enriquecido_em || i.descartado)) return false;
       if (filtro === 'todos' && i.descartado) return false;
       if (q && !`${i.nome} ${i.categoria} ${i.cidade} ${i.bairro} ${i.instagram}`.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().includes(q)) return false;
       return true;
@@ -373,7 +381,10 @@ async function detalheLista(v, id) {
       todos: ativos.length, alta: ativos.filter((i) => i.prioridade === 'alta').length, media: ativos.filter((i) => i.prioridade !== 'baixa').length,
       sem_site: ativos.filter((i) => ['sem', 'fora_do_ar'].includes(i.site_status)).length, whats: ativos.filter((i) => i.whatsapp).length,
       nao_importados: ativos.filter((i) => !i.empresa_id).length, importados: itens.filter((i) => i.empresa_id).length, descartados: itens.filter((i) => i.descartado).length,
+      enriquecidos: ativos.filter((i) => i.enriquecido_em).length,
     };
+    const enriqAgora = enriquecendo.reduce((a, j) => a + (j.entrada?.item_ids?.length || 0), 0);
+    const proc = enriquecendo.find((j) => j.status === 'processando');
     const lst = filtrados();
     const total = lst.length;
     pagina = Math.min(pagina, Math.max(0, Math.ceil(total / POR_PAGINA) - 1));
@@ -393,9 +404,14 @@ async function detalheLista(v, id) {
           const dir = n ? `<button class="btn" data-importar-top title="Pula a triagem">${icone('setad')}Mandar os ${n} melhores direto</button>` : '';
           return tri || dir ? tri + dir : `<span class="dim" style="font-size:13px">${cont.nao_importados ? 'Nenhum de alta prioridade ainda: escolha na tabela abaixo.' : 'Tudo o que valia já está no funil.'}</span>`;
         })()}</div></div>
+      ${enriqAgora ? `<div class="aviso claude mt-12 tarefa-viva">${sparkClaude(18)}<div class="grow"><b>Enriquecendo ${enriqAgora} lead${enriqAgora > 1 ? 's' : ''}${proc ? '' : ' (na fila)'}.</b> <span data-enriq-prog>${proc?.progresso ? esc(proc.progresso) : farejadorOnline() ? 'Começa em instantes.' : 'O Farejador está desligado: começa quando ele ligar.'}</span> O Claude confere site, Instagram, Google e WhatsApp de cada um; nenhum lead novo é criado, os dados destes é que mudam.</div><span class="girando" aria-hidden="true"></span></div>` : ''}
+      ${!enriqAgora && ultimoEnriq ? (ultimoEnriq.status === 'erro'
+        ? `<div class="aviso vermelho mt-12">${icone('alerta')}<div class="grow"><b>O último enriquecimento falhou</b> ${relativo(ultimoEnriq.concluido_em || ultimoEnriq.criado_em)}: ${esc((ultimoEnriq.erro || '').slice(0, 160))}</div></div>`
+        : `<div class="aviso verde mt-12">${icone('checkc')}<div class="grow"><b>Enriquecimento pronto ${relativo(ultimoEnriq.concluido_em)}:</b> ${ultimoEnriq.saida?.atualizados ?? '?'} de ${ultimoEnriq.saida?.pedidos ?? '?'} leads com dado novo (site, Instagram, Google, a oportunidade em uma frase e o score refeito).</div>${filtro !== 'enriquecidos' ? '<button class="btn sm" data-filtro="enriquecidos">Ver os enriquecidos</button>' : ''}</div>`) : ''}
       ${triando.size ? `<div class="aviso claude mt-12">${sparkClaude(18)}<div><b>Triagem na fila: ${triando.size} lead${triando.size > 1 ? 's' : ''}.</b> ${triagemAgora ? esc(triagemAgora) : 'Começa quando o navegador do Farejador estiver livre (uma investigação ou triagem por vez).'} Quem passar aparece no Novo; o resumo chega no seu WhatsApp.</div></div>` : ''}
-      <div class="chips mt-16">${[['nao_importados', 'Ainda fora do CRM'], ['alta', 'Alta oportunidade'], ['media', 'Média ou +'], ['sem_site', 'Sem site'], ['whats', 'Com WhatsApp'], ['importados', 'No CRM'], ['todos', 'Todos'], ['descartados', 'Descartados']]
-        .map(([k, r]) => `<button class="chip ${filtro === k ? 'on' : ''}" data-filtro="${k}">${k === 'alta' ? icone('estrela') : ''}${r} <span class="n">${cont[k]}</span></button>`).join('')}</div>
+      <div class="chips mt-16">${[['nao_importados', 'Ainda fora do CRM'], ['alta', 'Alta oportunidade'], ['media', 'Média ou +'], ['sem_site', 'Sem site'], ['whats', 'Com WhatsApp'], ['enriquecidos', 'Enriquecidos'], ['importados', 'No CRM'], ['todos', 'Todos'], ['descartados', 'Descartados']]
+        .filter(([k]) => k !== 'enriquecidos' || cont.enriquecidos)
+        .map(([k, r]) => `<button class="chip ${filtro === k ? 'on' : ''}" data-filtro="${k}">${k === 'alta' ? icone('estrela') : ''}${k === 'enriquecidos' ? sparkClaude(12) : ''}${r} <span class="n">${cont[k]}</span></button>`).join('')}</div>
       <div class="row wrap mt-16"><div class="busca grow" style="max-width:420px">${icone('busca')}<input class="inp" data-busca placeholder="Buscar por nome, bairro, @…" value="${esc(busca)}"></div>
         <select class="sel sm" data-ordem style="width:auto">${[['score', 'Maior score'], ['nome', 'Nome'], ['seguidores', 'Mais seguidores'], ['avaliacoes', 'Mais avaliações']].map(([k, r]) => `<option value="${k}"${ordem === k ? ' selected' : ''}>${r}</option>`).join('')}</select>
         <span class="grow"></span>
@@ -413,7 +429,8 @@ async function detalheLista(v, id) {
     const reg = detectarRegulado(`${i.categoria || ''} ${i.nome}`);
     return `<tr class="${marcado ? 'sel' : ''} ${i.descartado ? 'descartado' : ''}" data-item="${i.id}">
       <td><input type="checkbox" data-sel="${i.id}" ${marcado ? 'checked' : ''} aria-label="Selecionar ${esc(i.nome)}"></td>
-      <td><div class="nm">${esc(i.nome)}</div><div class="sb">${esc(i.categoria || '—')}${reg ? ` · <span class="erro">${esc(reg)}</span>` : ''}</div></td>
+      <td><div class="nm">${esc(i.nome)}${i.enriquecido_em ? ` <span class="selo mini claude" title="Enriquecido ${esc(relativo(i.enriquecido_em))}">${sparkClaude(10)}enriquecido</span>` : ''}</div><div class="sb">${esc(i.categoria || '—')}${reg ? ` · <span class="erro">${esc(reg)}</span>` : ''}</div>
+        ${i.enriquecido_em && i.observacao ? `<div class="oportunidade">${icone('lampada')}<span>${esc(i.observacao)}</span></div>` : ''}</td>
       <td><div>${esc(i.bairro || '—')}</div><div class="sb">${esc(i.cidade || '')}</div></td>
       <td>${i.whatsapp ? `<a class="ok nowrap" href="https://wa.me/${i.whatsapp}" target="_blank" rel="noopener">${icone('check')} ${esc(telefoneBonito(i.whatsapp))}</a>` : i.telefone ? `<span class="dim nowrap">${esc(telefoneBonito(i.telefone))}</span>` : '<span class="fraco">—</span>'}</td>
       <td>${i.instagram ? `<a class="nowrap" href="https://instagram.com/${esc(i.instagram)}" target="_blank" rel="noopener">@${esc(i.instagram)}</a><div class="sb">${i.instagram_seguidores != null ? `${compacto(i.instagram_seguidores)} seg.` : ''}</div>` : '<span class="fraco">—</span>'}</td>
@@ -477,7 +494,12 @@ async function detalheLista(v, id) {
       botaoCarregando(e.currentTarget, true, 'Importando…');
       await importar(top.map((i) => i.id));
     };
-    $('[data-enriquecer]', v).onclick = () => enriquecer(itens.filter((i) => !i.descartado && !i.empresa_id).sort((a, b) => b.score - a.score).slice(0, 10).map((i) => i.id));
+    $('[data-enriquecer]', v).onclick = () => {
+      const ocupados = new Set(enriquecendo.flatMap((j) => j.entrada?.item_ids || []));
+      const cand = itens.filter((i) => !i.descartado && !i.empresa_id && !i.enriquecido_em && !ocupados.has(i.id)).sort((a, b) => b.score - a.score).slice(0, 10);
+      if (!cand.length) { toast('Todos os leads fora do CRM já foram enriquecidos. Escolha na tabela e use "Enriquecer" na seleção pra refazer.', 'info'); return; }
+      enriquecer(cand.map((i) => i.id));
+    };
     $('[data-csv]', v).onclick = () => baixarArquivo(`${lista.nome.replace(/[^\w-]+/g, '_')}.csv`, paraCSV(filtrados(), [
       { campo: 'nome' }, { campo: 'categoria' }, { campo: 'bairro' }, { campo: 'cidade' }, { campo: 'whatsapp' }, { campo: 'telefone' }, { campo: 'instagram' }, { campo: 'instagram_seguidores', rotulo: 'seguidores' },
       { campo: 'site' }, { campo: 'site_status' }, { campo: 'google_nota' }, { campo: 'google_avaliacoes' }, { campo: 'score' }, { campo: 'prioridade' }, { rotulo: 'motivos', valor: (i) => (i.score_motivos || []).map((m) => `+${m.pontos} ${m.sinal}`).join(' | ') },
@@ -538,7 +560,8 @@ async function detalheLista(v, id) {
     if (!ids.length) { toast('Nada para enriquecer', 'info'); return; }
     try {
       await criarJob('enriquecer_lista', { item_ids: ids.slice(0, 15) }, { lista_id: id }, 5);
-      toast(`${ids.length} leads na fila do Claude${farejadorOnline() ? '' : ' (Farejador offline: roda quando ligar)'}`, 'info');
+      toast(`Recebido: ${Math.min(15, ids.length)} leads pra enriquecer${farejadorOnline() ? '' : ' (Farejador offline: roda quando ligar)'}. Acompanhe aqui e na central de tarefas.`, 'info');
+      await carregar(); desenhar();
     } catch (e) { toast(erroAmigavel(e), 'erro'); }
   }
 
@@ -567,6 +590,12 @@ async function detalheLista(v, id) {
   desenhar();
   const recarregar = debounce(async () => { try { if (await carregar()) desenhar(); } catch (e) { console.error(e); } }, 1500);
   const t1 = ouvir('listas', (p) => { if (p.new?.id === id) recarregar(); });
-  const t2 = ouvir('jobs', (p) => { if (p.new?.lista_id === id && ['concluido', 'erro'].includes(p.new.status)) recarregar(); });
+  // Mudou o estado de uma tarefa desta lista (entrou, começou, terminou): redesenha. Só o progresso: troca o texto da faixa.
+  const t2 = ouvir('jobs', (p) => {
+    if (p.new?.lista_id !== id) return;
+    if (p.eventType === 'INSERT' || p.old?.status !== p.new.status) return recarregar();
+    const alvo = p.new.tipo === 'enriquecer_lista' && $('[data-enriq-prog]', v);
+    if (alvo && p.new.progresso) alvo.textContent = p.new.progresso;
+  });
   return () => { t1(); t2(); };
 }

@@ -309,10 +309,10 @@ table.tabela { width: 100%; border-collapse: collapse; font-size: 14px; }
 
 /* ------------------------------- Menu suspenso ------------------------------- */
 .menu-pop { position: fixed; z-index: 110; min-width: 220px; padding: 6px; border-radius: 14px; background: var(--card-2); border: 1px solid var(--line-2); box-shadow: var(--sombra); animation: sobe 0.18s var(--ease); }
-.menu-pop button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 9px 11px; border: 0; border-radius: 9px; background: none; color: var(--txt-2); font-size: 14px; text-align: left; }
-.menu-pop button svg { width: 16px; height: 16px; }
-.menu-pop button:hover { background: rgba(255, 255, 255, 0.05); color: var(--txt); }
-.menu-pop button.perigo { color: #ff8a8a; }
+.menu-pop button:not(.btn) { display: flex; align-items: center; gap: 10px; width: 100%; padding: 9px 11px; border: 0; border-radius: 9px; background: none; color: var(--txt-2); font-size: 14px; text-align: left; }
+.menu-pop button:not(.btn) svg { width: 16px; height: 16px; }
+.menu-pop button:not(.btn):hover { background: rgba(255, 255, 255, 0.05); color: var(--txt); }
+.menu-pop button.perigo:not(.btn) { color: #ff8a8a; }
 .menu-pop hr { border: 0; border-top: 1px solid var(--line); margin: 5px 4px; }
 
 /* ------------------------------- Paleta de comando ------------------------------- */

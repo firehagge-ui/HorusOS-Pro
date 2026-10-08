@@ -29,6 +29,8 @@ do lead, como não repetir o lote, e o circuito de aprendizado.
 4. `voz-marcelo.md` — como o Marcelo escreve de verdade, tirado das mensagens que ele mandou.
 5. `aprendizados.md` — o que as respostas reais e as edições do Marcelo ensinaram. Lê inteiro:
    é curto de propósito.
+6. `segmentos/<nicho>.md` — o caderno do nicho do lead (clínicas, eventos, oficinas), desde 30/09. O que vale pra
+   todos os leads daquele segmento: quem atende, onde vaza dinheiro, o que já deu errado, compliance, o que oferecer.
 
 ## Antes de entregar
 

@@ -18,7 +18,7 @@ import { precisaColetar, coletarESalvar } from './instagram.mjs';
 import { detectarObjecoesTexto } from './objecoes.mjs';
 import { rotinaDisparos } from './disparos.mjs';
 import { rotinaMidia } from './midia.mjs';
-import { rotinaFollowup } from './followup.mjs';
+import { rotinaFollowup, claudeAutomatico } from './followup.mjs';
 import { agenteDa, pedirCiclo } from '../lib/agentes.mjs';
 import { pareceAutoResposta } from '../app/js/revisor.js';
 
@@ -272,6 +272,16 @@ async function rotinaBriefing() {
     linhas.push(agenda.length ? `*Agenda de hoje*\n${agenda.map((a) => `• ${new Date(a.inicio).toLocaleTimeString('pt-BR', { timeZone: 'America/Bahia', hour: '2-digit', minute: '2-digit' })} ${a.titulo}${a.empresa ? ` (${a.empresa})` : ''}`).join('\n')}` : '*Agenda de hoje*\nNada marcado.');
     if (atencao.length) linhas.push('', `*Precisa de você*\n${atencao.map((a) => `• ${a.nome} — ${a.motivo === 'acao_vencida' ? 'ação vencida' : a.motivo === 'parado' ? 'parado há dias' : 'sem próxima ação'}${a.proxima_acao ? `: ${a.proxima_acao.slice(0, 80)}` : ''}`).join('\n')}`);
     if (quentes.length) linhas.push('', `*Lead esperando resposta*\n${quentes.map((c) => `• ${c.empresa || c.nome || c.telefone}: ${(c.ultima_mensagem || '').slice(0, 70)}`).join('\n')}`);
+    // Mesa de agentes (30/09): uma linha por especialista, com o que espera o Marcelo
+    const esp = await q(`select e.nome, e.segmento,
+        (select count(distinct d.empresa_id)::int from disparos d join agentes a on a.empresa_id = d.empresa_id where a.especialista_id = e.id and a.status = 'ativo' and d.status = 'rascunho') prontos,
+        (select count(*)::int from agentes a where a.especialista_id = e.id and a.status = 'ativo' and a.fase = 'precisa_voce') precisa,
+        (select count(*)::int from especialista_notas n where n.especialista_id = e.id and n.status = 'proposta') licoes
+      from especialistas e where e.ativo order by e.ordem`).catch(() => []);
+    const comAlgo = esp.filter((e) => e.prontos || e.precisa || e.licoes);
+    const linhaEsp = (e) => `• ${e.nome} (${e.segmento.toLowerCase()}): ${[e.prontos && `${e.prontos} com mensagem pronta`, e.precisa && `${e.precisa} precisa de você`,
+      e.licoes && `${e.licoes} ${e.licoes > 1 ? 'lições' : 'lição'} pra aceitar`].filter(Boolean).join(' · ')}`;
+    if (comAlgo.length) linhas.push('', ['*Mesa de agentes*', ...comAlgo.map(linhaEsp)].join('\n'));
     linhas.push('', '_Abra o Hounder para os detalhes._');
     if (await WA.enviarParaMim(linhas.join('\n'))) {
       ultimoBriefing = hoje;
@@ -330,6 +340,8 @@ async function inicio() {
   // quando chega mensagem de lead, o Claude lê sozinho (conforme o ajuste do painel)
   WA.wa.aoMensagemNova = async ({ conversa, empresa, texto, tipo }) => {
     try {
+      // Claude automático desligado (05/10/2026): resposta de lead não dispara ciclo nem análise; o Marcelo pede no painel
+      if (!(await claudeAutomatico())) return;
       if (empresa && !conversa.silenciada && (await agenteDa(empresa.id))?.status === 'ativo') {
         // Resposta automática do WhatsApp Business não é o lead respondendo: não gasta ciclo
         // nem aviso do WhatsApp sem texto (mensagens temporárias etc., Cintya 30/09)

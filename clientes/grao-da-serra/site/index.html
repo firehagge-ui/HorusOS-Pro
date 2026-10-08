@@ -4,44 +4,90 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-<title>Café Grão da Serra | Café artesanal do interior da Bahia</title>
-<meta name="description" content="Café 100% arábica, puro, de torra artesanal. Grão escolhido maduro, seco no sol, pilado no pilão e torrado aos poucos em Brejões, na Bahia. Para tomar em casa ou para revender.">
-<link rel="canonical" href="https://graodaserra.netlify.app/">
+<!-- 05/10/2026 — SEO. 🔴 O canonical, o og:url, o sitemap e o JSON-LD apontavam
+     para https://graodaserra.netlify.app/, que dá 404: o site diz ao Google que a
+     versão "oficial" dele é uma página morta. Tudo passou para o endereço real,
+     https://cafegraodaserra.netlify.app/. Se um dia entrar domínio próprio,
+     trocar aqui, no sitemap.xml e no robots.txt de uma vez.
+     Título e descrição com o que se busca de verdade (café 100% arábica, torra
+     artesanal, em grão ou moído, revenda, Bahia). "Salvador e região" é a praça
+     que ele mesmo declara na bio do Instagram (briefing.md). -->
+<title>Café Grão da Serra | Café 100% arábica artesanal da Bahia</title>
+<meta name="description" content="Café 100% arábica de torra artesanal, em grão ou moído, beneficiado em Brejões, na Bahia. Para tomar em casa ou revender. Atendemos Salvador e região: peça pelo WhatsApp.">
+<link rel="canonical" href="https://cafegraodaserra.netlify.app/">
+<meta name="theme-color" content="#3D2115">
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://graodaserra.netlify.app/">
+<meta property="og:url" content="https://cafegraodaserra.netlify.app/">
 <meta property="og:site_name" content="Café Grão da Serra">
-<meta property="og:title" content="Café Grão da Serra | Café artesanal do interior da Bahia">
-<meta property="og:description" content="Café puro, 100% arábica, torrado à mão em Brejões, na Bahia. Pacote de 250 g. Para tomar em casa ou revender.">
+<meta property="og:title" content="Café Grão da Serra | Café 100% arábica artesanal da Bahia">
+<meta property="og:description" content="Café puro, 100% arábica, de torra artesanal, em grão ou moído. Beneficiado em Brejões, na Bahia. Para tomar em casa ou revender.">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:image" content="https://graodaserra.netlify.app/assets/og-capa.webp">
+<meta property="og:image" content="https://cafegraodaserra.netlify.app/assets/og-capa-2026.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pacote do Café Grão da Serra, 100% arábica">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://graodaserra.netlify.app/assets/og-capa.webp">
+<meta name="twitter:image" content="https://cafegraodaserra.netlify.app/assets/og-capa-2026.jpg">
 
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icone-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/icone-180.png">
 
+<!-- A foto do hero é o maior elemento da primeira dobra (LCP). Pré-carregada,
+     e no celular vem a versão de 900px (39 KB) em vez da de 1812px (157 KB). -->
+<link rel="preload" as="image" href="assets/hero-home-v3-mob.webp" media="(max-width:900px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/hero-home-v3.webp" media="(min-width:901px)" fetchpriority="high">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
+<!-- ?v= obrigatório: o netlify.toml guarda /assets/* em cache imutável de 1 ano.
+     Mudou o CSS, muda a data aqui, senão quem já visitou continua vendo o antigo. -->
+<link rel="stylesheet" href="assets/site.css?v=2026-10-07b">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Café Grão da Serra",
-  "description": "Café torrado 100% arábica, artesanal, beneficiado no Distrito Serrana, em Brejões, na Bahia.",
-  "url": "https://graodaserra.netlify.app/",
-  "image": "https://graodaserra.netlify.app/assets/og-capa.webp",
-  "telephone": "+5575991467309",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Brejões",
-    "addressRegion": "BA",
-    "addressCountry": "BR"
-  },
-  "sameAs": ["https://www.instagram.com/graodaserra__"]
+  "@graph": [
+    {
+      "@type": "Store",
+      "@id": "https://cafegraodaserra.netlify.app/#negocio",
+      "name": "Café Grão da Serra",
+      "description": "Café torrado 100% arábica, de torra artesanal, em grão ou moído, beneficiado no Distrito Serrana, em Brejões, na Bahia. Venda para consumo em casa e para revenda.",
+      "url": "https://cafegraodaserra.netlify.app/",
+      "logo": "https://cafegraodaserra.netlify.app/assets/icone-180.png",
+      "image": "https://cafegraodaserra.netlify.app/assets/og-capa-2026.jpg",
+      "telephone": "+5575991467309",
+      "taxID": "65.816.871/0001-23",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Brejões",
+        "addressRegion": "BA",
+        "postalCode": "45325-000",
+        "addressCountry": "BR"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Salvador" },
+        { "@type": "State", "name": "Bahia" }
+      ],
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "07:00",
+        "closes": "20:00"
+      },
+      "knowsAbout": ["café 100% arábica", "torra artesanal", "café em grão", "café moído", "café para revenda"],
+      "sameAs": ["https://www.instagram.com/graodaserra__"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://cafegraodaserra.netlify.app/#site",
+      "url": "https://cafegraodaserra.netlify.app/",
+      "name": "Café Grão da Serra",
+      "inLanguage": "pt-BR",
+      "publisher": { "@id": "https://cafegraodaserra.netlify.app/#negocio" }
+    }
+  ]
 }
 </script>
 </head>
@@ -66,7 +112,7 @@
       <a href="#topo" class="aqui">Início</a>
       <a href="#cafe">Nossos Cafés</a>
       <a href="#origem">Origem</a>
-      <a href="#fornecimento">Fornecimento</a>
+      <a href="#publico">Para o seu negócio</a>
       <a href="#contato">Contato</a>
     </nav>
 
@@ -95,7 +141,17 @@
        segue sem confirmação. Marcado como pendência. -->
   <section class="hero">
     <div class="hero-arte" aria-hidden="true">
-      <img src="assets/hero-home.webp" width="1812" height="868" alt="" fetchpriority="high">
+      <!-- 05/10/2026: pacote ANTIGO da arte trocado pelo pacote kraft novo (recorte
+         do arquivo do Marcelo, escurecido e aquecido para a luz da cena, sombra de
+         contato na mesa, grãos da frente devolvidos por máscara). Fonte em
+         site-fontes/hero-home-pacote-novo.png. -->
+      <!-- 05/10/2026 (3ª rodada): foto nova que o Marcelo mandou (pacote kraft novo
+           sobre a serra ao pôr do sol). No celular entra um recorte dela (saco +
+           pacote) ABAIXO do texto, para o pacote aparecer inteiro, sem texto por cima. -->
+      <picture>
+        <source media="(max-width:900px)" srcset="assets/hero-home-v3-mob.webp" width="900" height="562">
+        <img src="assets/hero-home-v3.webp" width="1808" height="870" alt="" fetchpriority="high">
+      </picture>
     </div>
 
     <div class="wrap">
@@ -202,6 +258,7 @@
           </g>
         </svg>
         <p class="faixa-nome">Grãos 100% arábica</p>
+        <p class="faixa-sub">Grãos selecionados, café puro</p>
       </li>
       <li class="faixa-item revela">
         <svg class="ic ic-mont" viewBox="0 0 24 24" aria-hidden="true">
@@ -210,6 +267,7 @@
             M15.3 6.4 13.9 10.7C14.5 11.4 15.1 10.5 15.7 11 16.3 11.5 16.9 10.9 17.5 10.7Z"/>
         </svg>
         <p class="faixa-nome">Do interior da Bahia</p>
+        <p class="faixa-sub">Beneficiado no Distrito Serrana, em Brejões</p>
       </li>
       <li class="faixa-item revela">
         <svg class="ic ic-fio" viewBox="0 0 24 24" aria-hidden="true">
@@ -220,6 +278,7 @@
           <path d="M14.7 15.7 17.8 21.5 15 21.1 14.1 23.6 11.5 18.7"/>
         </svg>
         <p class="faixa-nome">Torra artesanal</p>
+        <p class="faixa-sub">Mais aroma e sabor na xícara</p>
       </li>
       <li class="faixa-item revela">
         <!-- 08/08: ícone trocado a pedido do Marcelo. Caixas empilhadas =
@@ -233,6 +292,7 @@
           <rect x="8" y="4.5" width="8" height="7" rx="1"/>
         </svg>
         <p class="faixa-nome">Atacado e varejo</p>
+        <p class="faixa-sub">Para a sua casa ou para revender</p>
       </li>
     </ul>
   </section>
@@ -262,7 +322,15 @@
            o container preguiçoso do 90-antipadroes.md.
          11/08: origem confirmada (Nelson aprovou o site; confirmação repassada
          pelo Marcelo). As marcações .pend foram removidas para a publicação. -->
+    <!-- 05/10/2026: layout do mockup do Marcelo (print 5), com a Serra mantida à
+         DIREITA como ele pediu: a foto sangra até a borda direita e se dissolve no
+         creme pela esquerda. O galho de café cortado (ChatGPT, fundo transparente)
+         emoldura a borda esquerda. É raminho solto, decoração botânica: não afirma
+         lavoura. -->
     <div class="origem-topo">
+      <div class="galho-origem" aria-hidden="true">
+        <img src="assets/galho-cafe.webp" width="396" height="900" loading="lazy" decoding="async" alt="">
+      </div>
       <div class="wrap origem-grid">
         <div class="origem-txt revela">
           <p class="eyebrow">Nossa origem</p>
@@ -273,7 +341,7 @@
             grãos de alta qualidade e sabor marcante. É de lá que nasce o
             Grão da Serra.
           </p>
-          <a class="btn btn-fio" href="#pedido">Peça o seu café</a>
+          <a class="btn btn-ouro" href="#pedido">Peça o seu café</a>
         </div>
 
         <figure class="origem-foto revela d1">
@@ -305,6 +373,12 @@
          textos, ícones e cores originais + botão "Quero experimentar", SEM os
          botões de pedir — MANTENDO a cor de fundo (#F2CDA6) e a foto nova (a cena
          única dos dois produtos, no lugar do pacote+saco separados). -->
+    <!-- 05/10/2026: assinatura de movimento do site (60-motion.md: UMA por página).
+         Grãos torrados soltos que caem nas LATERAIS da seção (3ª rodada, pedido do
+         Marcelo) conforme ela entra na tela (GSAP ScrollTrigger, scrub). Decorativos e sem
+         texto: com JS desligado ou "reduzir movimento", ficam parados no lugar. -->
+    <div class="graos-voo" aria-hidden="true"></div>
+
     <div class="wrap cafe-grid">
       <div class="cafe-txt revela">
         <p class="eyebrow">Nosso café</p>
@@ -336,8 +410,13 @@
         <a class="btn btn-ouro" href="#pedido">Quero experimentar</a>
       </div>
 
-      <figure class="cafe-produto revela d1">
-        <img class="cena-img" src="assets/produtos-cena.webp" width="1400" height="933" loading="lazy" decoding="async" alt="Café Grão da Serra nos dois formatos: em grãos e moído">
+      <!-- 05/10/2026 (3ª rodada): o Marcelo achou a cena anterior poluída, cor de
+           pele e com produtos gigantes. Agora: só os dois pacotes juntos e poucos
+           grãos (ChatGPT, fundo transparente), sobre o marrom da marca. O rótulo
+           gerado tinha erro de letra no zoom ("CAEÉ"); o rótulo do pacote REAL foi
+           colado por cima. Fonte: site-fontes/dois-pacotes-rotulo-real.png. -->
+      <figure class="cafe-produto">
+        <img class="cafe-dois" src="assets/dois-pacotes.webp" width="720" height="697" loading="lazy" decoding="async" alt="Café Grão da Serra 100% arábica nos dois formatos: o saco de café em grão e o pacote kraft de café moído">
       </figure>
     </div>
   </section>
@@ -349,48 +428,43 @@
        clientes que já existem), alinhados ao campo "Você é" do formulário.
        Sem alegação de origem, saúde ou superlativo. -->
   <section class="publico" id="publico">
+    <!-- 05/10/2026: "Para quem é" refeito em DOIS caminhos, pedido do Marcelo. A
+         fileira de 8 ícones iguais dizia "para quem" mas não levava a lugar nenhum.
+         Agora cada público tem o seu bloco e o seu botão, e o botão já deixa o campo
+         "Você é" do formulário preenchido (data-tipo). Nada de "nossos cafés estão
+         presentes em..." (mockup): é público-alvo, não lista de clientes. -->
     <div class="wrap">
       <div class="sec-head">
         <h2>Feito para o seu negócio e para a sua casa.</h2>
         <div class="divisor" aria-hidden="true"><i></i></div>
       </div>
 
-      <ul class="publico-grid">
-        <!-- 11/08: consumidor final ganhou ícone próprio (o Nelson também vende
-             B2C). Fica como primeiro da fileira, antes dos canais de revenda. -->
-        <li class="publico-item publico-casa revela">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.6V19a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V9.6"/><path d="M10 20v-4.5a2 2 0 0 1 4 0V20"/></svg>
-          <b>Para tomar<br>em casa</b>
-        </li>
-        <li class="publico-item revela">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8z"/><path d="M17 9.5h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M8 2.6c-.6.8-.6 1.6 0 2.4M12 2.6c-.6.8-.6 1.6 0 2.4"/></svg>
-          <b>Cafeterias<br></b>
-        </li>
-        <li class="publico-item revela">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>
-          <b>Restaurantes<br>e Bares</b>
-        </li>
-        <li class="publico-item revela">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 19.5h20"/><path d="M4 19.5a8 8 0 0 1 16 0"/><path d="M12 6.5v-2"/><path d="M9.5 4.5h5"/></svg>
-          <b>Hotéis<br>e Pousadas</b>
-        </li>
-        <li class="publico-item revela">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 12h13l-1.5 8.2a1 1 0 0 1-1 .8H8a1 1 0 0 1-1-.8z"/><path d="M4.5 12a7.5 7.5 0 0 1 15 0z"/><path d="M12 3.2v3"/></svg>
-          <b>Padarias<br>e Confeitarias</b>
-        </li>
-        <li class="publico-item revela">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9.5" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/><path d="M2 3h2.2l2.3 11.2a1 1 0 0 0 1 .8h9.1a1 1 0 0 0 1-.78L20.5 7.5H5.3"/></svg>
-          <b>Mercados<br>e Empórios</b>
-        </li>
-        <li class="publico-item revela">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16"/><path d="M14 10h4a1 1 0 0 1 1 1v10"/><path d="M7 8h3M7 12h3M7 16h3"/><path d="M3 21h18"/></svg>
-          <b>Empresas<br>e Escritórios</b>
-        </li>
-        <li class="publico-item revela">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5h12v11H2z"/><path d="M14 8h3.5l3 3.5V16H14z"/><circle cx="6" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg>
-          <b>Revendedores<br>e Distribuidores</b>
-        </li>
-      </ul>
+      <!-- 05/10/2026 (3ª rodada): o Marcelo não curtiu os dois cartões. Virou o
+           padrão de site de café com os dois públicos: DOIS banners com foto, o
+           cartão inteiro é o link, texto curto por cima e um botão. Os segmentos do
+           negócio viram uma linha de texto, sem ícone por ícone. As fotos são do
+           ChatGPT: a da casa usa o pacote real (rótulo conferido); a do negócio é
+           um balcão genérico, SEM o pacote, para não sugerir cliente que não existe. -->
+      <div class="pq-banners">
+        <a class="pqb pqb-casa revela" href="#pedido" data-tipo="Consumidor, para tomar em casa">
+          <img src="assets/publico-casa.webp" width="1000" height="1000" loading="lazy" decoding="async" alt="Mesa de café da manhã com uma xícara de café e o pacote do Café Grão da Serra">
+          <div class="pqb-txt">
+            <p class="pqb-eyebrow">Para a sua casa</p>
+            <h3>O café do seu dia a dia.</h3>
+            <p>100% arábica, em grão ou moído. Você pede pelo WhatsApp e combina a entrega com a gente.</p>
+            <span class="btn btn-ouro">Quero para minha casa</span>
+          </div>
+        </a>
+        <a class="pqb pqb-negocio revela d1" href="#pedido" data-foco="p-tipo">
+          <img src="assets/publico-negocio.webp" width="1000" height="1000" loading="lazy" decoding="async" alt="Balcão de cafeteria com xícaras de café servidas">
+          <div class="pqb-txt">
+            <p class="pqb-eyebrow">Para o seu negócio</p>
+            <h3>Café para servir ou revender.</h3>
+            <p>Cafeterias, padarias, restaurantes, hotéis, mercados, escritórios e revendedores. A quantidade e o formato você combina com a gente.</p>
+            <span class="btn btn-ouro">Pedir orçamento</span>
+          </div>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -457,11 +531,22 @@
       <img src="assets/planta-1.webp" width="460" height="690" loading="lazy" decoding="async" alt="">
     </div>
 
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">Como comprar</p>
+    <!-- 05/10/2026: formulário em DUAS colunas (layout do mockup que o Marcelo
+         mandou): chamada à esquerda, campos à direita. A seção encurta e o
+         título deixa de flutuar centralizado acima de uma caixa larga. Os três
+         itens de apoio são fatos já ditos no site (horário, formatos, público),
+         nada novo. Copy do mockup ("nossa equipe", e-mail) NÃO entrou: quem
+         atende é o Nelson, sozinho, e o formulário não envia nada. -->
+    <div class="wrap pedido-grid">
+      <div class="pedido-txt">
+        <p class="eyebrow">Pedido</p>
         <h2>Peça o seu café</h2>
-        <p>Preencha os dados abaixo e faça seu pedido pelo WhatsApp.</p>
+        <p>Preencha os dados e o pedido abre no WhatsApp, já montado, direto com a gente.</p>
+        <ul class="pedido-apoio">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Todos os dias, das 7h às 20h</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>Em grão ou moído</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.6V19a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V9.6"/></svg>Para a sua casa ou para revender</li>
+        </ul>
       </div>
 
       <div class="pedido-caixa">
@@ -480,6 +565,8 @@
                 <option>Cafeteria ou lanchonete</option>
                 <option>Mercearia ou empório</option>
                 <option>Escritório ou consultório</option>
+                <option>Restaurante, bar ou hotel</option>
+                <option>Revendedor ou distribuidor</option>
                 <option>Outro</option>
               </select>
             </div>
@@ -571,7 +658,7 @@
           </li>
           <li class="rodape-linha">
             <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>Distrito serrana, Brejões, Bahia</span>
+            <span>Distrito Serrana, Brejões, Bahia</span>
           </li>
           <li class="rodape-linha">
             <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
@@ -596,6 +683,8 @@
   </div>
 </footer>
 
+<script src="assets/js/gsap.min.js"></script>
+<script src="assets/js/ScrollTrigger.min.js"></script>
 <script>
 (function(){
   var reduz = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -618,6 +707,15 @@
       topo.classList.remove('aberto');
       btn.setAttribute('aria-expanded','false');
     }
+  });
+
+  /* ---- botões do "Para quem é" preenchem o campo "Você é" ---- */
+  document.querySelectorAll('[data-tipo],[data-foco]').forEach(function(el){
+    el.addEventListener('click', function(){
+      var sel = document.getElementById('p-tipo');
+      if (el.dataset.tipo) sel.value = el.dataset.tipo;
+      if (el.dataset.foco) setTimeout(function(){ sel.focus({ preventScroll:true }); }, 650);
+    });
   });
 
   /* ---- formulário monta a mensagem e abre o WhatsApp já preenchido ---- */
@@ -667,6 +765,38 @@
       });
     }, { threshold:.16, rootMargin:'0px 0px -8% 0px' });
     for (var r2 = 0; r2 < revelaveis.length; r2++) obs.observe(revelaveis[r2]);
+  }
+
+  /* ---- grãos que caem e assentam no "Nosso café" (assinatura de motion) ----
+     Só no computador (no celular a foto é um recorte em fluxo e os grãos
+     ficariam soltos no meio do texto). Posição final em % da seção, perto da
+     pilha da foto; o scroll traz cada grão de cima, girando, em tempos
+     diferentes. Sem GSAP ou com "reduzir movimento", ficam parados no lugar. */
+  var voo = document.querySelector('.graos-voo');
+  if (voo && window.matchMedia('(min-width:1400px)').matches) {
+    var pousos = [
+      { f:1, x:3,  y:22, w:40, r:-24 }, { f:2, x:7,  y:58, w:30, r:32 },
+      { f:3, x:2,  y:84, w:34, r:-60 }, { f:4, x:93, y:16, w:32, r:14 },
+      { f:5, x:96, y:46, w:42, r:-12 }, { f:6, x:91, y:74, w:28, r:70 },
+      { f:7, x:95, y:92, w:34, r:-40 }
+    ];
+    var graos = pousos.map(function(p){
+      var im = document.createElement('img');
+      im.src = 'assets/grao-' + p.f + '.webp'; im.alt = ''; im.decoding = 'async';
+      im.style.left = p.x + '%'; im.style.top = p.y + '%';
+      im.style.setProperty('--w', p.w + 'px');
+      im.style.transform = 'rotate(' + p.r + 'deg)';
+      voo.appendChild(im); return im;
+    });
+    if (window.gsap && window.ScrollTrigger && !reduz.matches) {
+      gsap.registerPlugin(ScrollTrigger);
+      graos.forEach(function(g, i){
+        gsap.fromTo(g,
+          { y: -(260 + i * 70), x: (i % 2 ? 40 : -30), rotation: '+=' + (i % 2 ? 220 : -200), opacity: 0 },
+          { y: 0, x: 0, rotation: pousos[i].r, opacity: 1, ease: 'power2.out',
+            scrollTrigger: { trigger: '.cafe', start: 'top ' + (88 - i * 3) + '%', end: 'center ' + (62 - i * 2) + '%', scrub: 0.8 } });
+      });
+    }
   }
 
   /* ---- proteção: sem cópia, sem arrastar imagem, sem zoom ----

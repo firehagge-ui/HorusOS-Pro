@@ -61,7 +61,7 @@ export async function carregarBase() {
 let canal;
 const TABELAS_RT = ['empresas', 'atividades', 'agenda', 'jobs', 'chat_mensagens', 'chat_threads', 'whatsapp_conversas',
   'whatsapp_mensagens', 'farejador_status', 'listas', 'pesquisas', 'instagram_snapshots', 'negocios', 'financeiro', 'disparos', 'tarefas',
-  'social_posts', 'social_rotinas', 'social_acoes', 'social_interacoes', 'social_aprendizados'];
+  'social_posts', 'social_rotinas', 'social_acoes', 'social_interacoes', 'social_aprendizados', 'agentes', 'agente_eventos', 'especialista_notas'];
 
 export function ligarTempoReal() {
   if (canal) sb.removeChannel(canal);
@@ -129,6 +129,8 @@ export async function salvarConfig(chave, valor) {
 export async function criarJob(tipo, entrada = {}, vinculos = {}, prioridade = 5) {
   const { data, error } = await sb.from('jobs').insert({ tipo, entrada, prioridade, criado_por: quem(), ...vinculos }).select().single();
   if (error) throw error;
+  // A central de tarefas (topo) mostra na hora que o pedido foi recebido
+  window.dispatchEvent(new CustomEvent('hounder:job', { detail: data }));
   return data;
 }
 

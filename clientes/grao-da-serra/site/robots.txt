@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://graodaserra.netlify.app/sitemap.xml
+Sitemap: https://cafegraodaserra.netlify.app/sitemap.xml

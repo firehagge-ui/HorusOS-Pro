@@ -84,6 +84,9 @@ do símbolo. Sem Inter, Montserrat ou Poppins em texto.
 - **Formato: 1080 × 1440 (3:4)**, aprovado em 27/09/2026 para a Horus como teste; a regra dos
   clientes segue 4:5 até o teste dizer o contrário.
 - Identidade travada em `identidade/social/carrossel-referencia.html` (criada com os 3 fixados).
+- **ChatGPT liberado em todo post da Hórus** para elementos visuais (fundo, textura, objeto
+  ilustrativo): o Mídia gera pelo Chrome do Marcelo, que fica aberto no PC; nunca no lugar de
+  pessoa ou trabalho real. (Marcelo, 07/10/2026)
 
 ## 9. Autonomia
 

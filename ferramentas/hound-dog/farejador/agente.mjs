@@ -6,10 +6,11 @@
 // =============================================================================
 import { q, q1 } from '../lib/db.mjs';
 import { registrarAtividade } from '../lib/crm.mjs';
-import { agentesAtivos, pedirCiclo } from '../lib/agentes.mjs';
+import { agentesAtivos, pedirCiclo, garantirEspecialista, saberDoEspecialista, notaEspecialista, placarFormatos, formatoDaVez } from '../lib/agentes.mjs';
 import { rodarClaude } from './claude.mjs';
 import * as P from './prompts.mjs';
 import { revisar, pareceAutoResposta, similaridade } from '../app/js/revisor.js';
+import { saudeDoLead, saudeParaPrompt } from '../app/js/saude.js';
 import * as WA from './whatsapp.mjs';
 import { naJanela, proximaAbertura } from './disparos.mjs';
 import { log } from './log.mjs';
@@ -33,6 +34,7 @@ const ESQ_CICLO = {
     mensagens: { type: 'array', items: MSG },
     verificacao: { type: 'array', items: { type: 'object', required: ['frase', 'fonte'], properties: { frase: TXT, fonte: TXT, como_conferiu: TXT } } },
     precisa_de_voce: { type: ['string', 'null'] },
+    aprendizado_nicho: { type: ['string', 'null'], description: 'Lição nova que vale pra outros leads do mesmo nicho, numa frase, com a origem; senão null' },
     encerrar: { type: ['object', 'null'], properties: { resultado: { type: 'string', enum: ['geladeira', 'perdido', 'ganho'] }, voltar_em: { type: ['string', 'null'] }, motivo: TXT } },
     proximo_passo_em: { type: ['string', 'null'], description: 'AAAA-MM-DD ou AAAA-MM-DD HH:mm, horário da Bahia' }, motivo_proximo: { type: ['string', 'null'] },
     plano: { type: 'object', properties: { tese: TXT, proxima_jogada: TXT, quando_parar: TXT, formato: { type: 'string', enum: ['casa', 'curiosidade'] } } },
@@ -77,6 +79,8 @@ const ESQ_RESPOSTAS = {
 
 const agoraBahia = () => new Date().toLocaleString('pt-BR', { timeZone: 'America/Bahia' });
 const modeloAgente = async () => (await q1("select valor from config where chave = 'claude'"))?.valor?.modelo_agente || 'claude-opus-5-5';
+// Economia de limite (05/10/2026, Marcelo): o crítico só confere a mensagem, roda no Sonnet; o agente segue no Opus, com esforço médio
+const MODELO_CRITICO = 'sonnet';
 const umaLinha = (t) => String(t || '').replace(/\s*\n+\s*/g, ' ').trim();
 /**
  * Quando o follow-up deveria sair: 4º dia depois da nossa última mensagem, às 9h e pouco da Bahia (regra da casa,
@@ -160,7 +164,7 @@ function proximoPasso(disparos, mensagens) {
   return { passo: base + 1, tipo: !leadFalou ? 'followup' : base === 1 && respostas <= 1 ? 'corpo' : 'resposta' };
 }
 
-async function contexto(empresaId, gatilhos) {
+export async function contexto(empresaId, gatilhos) {
   const [empresa, agente] = await Promise.all([
     q1('select * from empresas where id = $1', [empresaId]),
     q1('select * from agentes where empresa_id = $1', [empresaId]),
@@ -177,6 +181,10 @@ async function contexto(empresaId, gatilhos) {
     q(`select texto from disparos where empresa_id <> $1 and status in ('rascunho','aprovado','agendado','enviado')
        and criado_em > now() - interval '14 days' order by criado_em desc limit 16`, [empresaId]).then((r) => r.map((x) => x.texto)),
   ]);
+  // O especialista do nicho (Fase 3): liga na primeira vez e traz o caderno + as lições válidas
+  const especialista = await saberDoEspecialista(await garantirEspecialista(agente, empresa));
+  // Teste casa × curiosidade (Fase 4): o placar do nicho (ou da casa, sem nicho) decide o formato da próxima abertura
+  const placar = await placarFormatos(especialista?.id || null);
   let briefing = inv?.dados?.briefing || null;
   if (briefing) briefing = Object.fromEntries(['veredito', 'personalizacao', 'sinais', 'por_que_agora', 'leitura', 'pessoas', 'tese', 'tese_alternativas', 'custo', 'vender', 'respostas', 'mapa', 'nao_usar', 'compliance', 'fatos', 'pendencias'].filter((k) => briefing[k]).map((k) => [k, briefing[k]]));
   else if (inv) briefing = { dossie_antigo: `${new Date(inv.criado_em).toLocaleDateString('pt-BR', { timeZone: 'America/Bahia' })}, sem briefing em campos. ${inv.resumo || ''}\n${(inv.conteudo_md || '').slice(0, 7000)}` };
@@ -186,16 +194,22 @@ async function contexto(empresaId, gatilhos) {
   const msgs = mensagens.map((m) => (m.tipo === 'outro' && !m.texto ? { ...m, texto: '[aviso automático do WhatsApp ou item sem texto: não é fala de ninguém, ignore]' }
     : m.direcao === 'in' && pareceAutoResposta(m.texto) ? { ...m, texto: `[robô] ${m.texto}` } : m));
   const pendentes = disparos.filter((d) => ['rascunho', 'aprovado'].includes(d.status));
+  // Desistência controlada (01/10): os mesmos números que a Mesa mostra, pro agente não decidir no escuro
+  const saude = saudeDoLead({
+    falas: mensagens.filter((m) => m.texto || m.tipo !== 'outro').map((m) => ({ momento: m.momento, direcao: m.direcao, texto: m.texto, humana: m.direcao === 'in' ? !!m.texto && !pareceAutoResposta(m.texto) : undefined })),
+    envios: disparos.filter((d) => d.status === 'enviado'), desde: agente.criado_em,
+  });
   const visiveis = disparos.filter((d) => d.status !== 'cancelado' || !d.erro || !/Substituído/.test(d.erro));
-  return { empresa, agente, eventos, briefing, briefingFatos: inv?.dados?.briefing?.fatos || [], mensagens: msgs, disparos, visiveis, pendentes, playbook, outros, lote, gatilhos };
+  return { empresa, agente, eventos, briefing, briefingFatos: inv?.dados?.briefing?.fatos || [], mensagens: msgs, disparos, visiveis, pendentes, playbook, outros, lote, gatilhos,
+    especialista, placar, formatoDaVez: formatoDaVez(placar), saude };
 }
 
-async function criticar({ empresa, mensagens, candidatas, verificacao, lote, correcoes = [], modelo, cancelado, progresso }) {
+async function criticar({ empresa, mensagens, candidatas, verificacao, lote, correcoes = [], especialista = null, modelo, cancelado, progresso }) {
   progresso('Crítico lendo as mensagens como o dono leria');
   const r = await rodarClaude({
-    prompt: P.promptCritico({ empresa, mensagens, candidatas, verificacao, lote, correcoes }),
+    prompt: P.promptCritico({ empresa, mensagens, candidatas, verificacao, lote, correcoes, especialista }),
     sistema: 'Você é o crítico de mensagens de prospecção da Hórus. Responda só no formato pedido.',
-    modelo, modo: 'leve', esquemaJson: ESQ_CRITICO, timeoutMs: 6 * 60 * 1000, deveParar: cancelado,
+    modelo: MODELO_CRITICO, modo: 'leve', esquemaJson: ESQ_CRITICO, timeoutMs: 6 * 60 * 1000, deveParar: cancelado,
   });
   const lista = r.json?.mensagens || [];
   return candidatas.map((_, i) => lista.find((x) => x.indice === i) || { aprovada: false, nota: 0, problemas: ['O crítico não devolveu parecer desta mensagem.'] });
@@ -208,7 +222,7 @@ async function revisarRespostas({ empresa, mensagens, respostas, verificacao, co
     const r = await rodarClaude({
       prompt: P.promptRespostas({ empresa, mensagens, respostas, verificacao, correcoes }),
       sistema: 'Você é o crítico de mensagens de prospecção da Hórus. Responda só no formato pedido.',
-      modelo, modo: 'leve', esquemaJson: ESQ_RESPOSTAS, timeoutMs: 5 * 60 * 1000, deveParar: cancelado,
+      modelo: MODELO_CRITICO, modo: 'leve', esquemaJson: ESQ_RESPOSTAS, timeoutMs: 5 * 60 * 1000, deveParar: cancelado,
     });
     const parecer = r.json?.respostas || [];
     const out = [];
@@ -257,9 +271,10 @@ export async function cicloAgente(job, progresso, cancelado) {
       gatilho: gatilhos.map((g) => g.gatilho).join(' + '), detalhe: gatilhos.map((g) => g.detalhe).filter(Boolean).join('\n'),
       agora: agoraBahia(), empresa, agente, eventos: ctx.eventos, briefing: ctx.briefing, mensagens: ctx.mensagens,
       disparos: ctx.visiveis, marcelo: correcoes, pendentes: ctx.pendentes, outros: ctx.outros, lote: ctx.lote, playbook: ctx.playbook,
-      passoSugerido: passo, tipoSugerido: tipo,
+      passoSugerido: passo, tipoSugerido: tipo, especialista: ctx.especialista, placar: ctx.placar, formatoDaVez: ctx.formatoDaVez,
+      saude: saudeParaPrompt(ctx.saude),
     }),
-    sistema: P.REGRAS_CASA, modelo, modo: 'horus', ferramentas: ['Read', 'Grep', 'Glob'],
+    sistema: P.REGRAS_CASA, modelo, esforco: 'medium', modo: 'horus', ferramentas: ['Read', 'Grep', 'Glob'],
     // Só leitura, como a análise de conversa: o texto do lead não tem como virar ação
     proibidas: ['WebSearch', 'WebFetch', 'mcp__hound-dog', 'mcp__firecrawl', 'mcp__navegador'],
     esquemaJson: ESQ_CICLO, timeoutMs: 12 * 60 * 1000, deveParar: cancelado,
@@ -278,7 +293,7 @@ export async function cicloAgente(job, progresso, cancelado) {
   let reprovadas = [];
   let reciclar = null;
   let parecer = null;
-  const formatoSaida = d.plano?.formato || agente.plano?.formato || 'casa';
+  const formatoSaida = d.plano?.formato || (passo === 1 ? ctx.formatoDaVez : null) || agente.plano?.formato || 'casa';
 
   // Verificação: a do ciclo + os fatos conferidos da investigação (o crítico confere a mensagem contra as duas)
   const verificacao = [...(d.verificacao || []), ...ctx.briefingFatos.map((f) => ({ frase: f.fato, fonte: f.fonte || '', como_conferiu: f.como_conferiu || '' }))];
@@ -287,11 +302,11 @@ export async function cicloAgente(job, progresso, cancelado) {
 
   if (decisao === 'mensagem' && d.mensagens?.length) {
     let candidatas = d.mensagens.filter((m) => m.texto && !/[—–]/.test(m.texto)).slice(0, 3).map((m, i) => ({
-      ...m, texto: umaLinha(m.texto), passo, tipo: m.tipo || tipo, variante: m.variante || 'ABC'[i],
+      ...m, texto: umaLinha(m.texto), passo, tipo: m.tipo || tipo, variante: m.variante || 'ABC'[i], formato: passo === 1 ? formatoSaida : undefined,
     }));
     candidatas.forEach((c) => { c.revisor = revisar(c.texto, { passo, tipo: c.tipo, empresa: empresa.nome, lote: ctx.lote }).itens; });
     // Crítico → uma reescrita no que ele reprovou → crítico de novo só nas reescritas
-    let criticas = await criticar({ empresa, mensagens: ctx.mensagens, candidatas, verificacao, lote: ctx.lote, correcoes: todasCorrecoes, modelo, cancelado, progresso });
+    let criticas = await criticar({ empresa, mensagens: ctx.mensagens, candidatas, verificacao, lote: ctx.lote, correcoes: todasCorrecoes, especialista: ctx.especialista, modelo, cancelado, progresso });
     const primeiraRodada = candidatas.map((c, i) => [c, criticas[i], i]).filter(([, cr]) => !cr.aprovada);
     if (primeiraRodada.length) {
       progresso(`Reescrevendo ${primeiraRodada.length} mensagem(ns) com o que o crítico apontou`);
@@ -300,7 +315,7 @@ export async function cicloAgente(job, progresso, cancelado) {
           const rr = await rodarClaude({
             prompt: P.promptReescrita({ empresa, mensagens: ctx.mensagens, candidata: c, critica: cr, verificacao, plano: d.plano,
               correcoes: todasCorrecoes }),
-            sistema: P.REGRAS_CASA, modelo, modo: 'leve', esquemaJson: ESQ_REESCRITA, timeoutMs: 5 * 60 * 1000, deveParar: cancelado,
+            sistema: P.REGRAS_CASA, modelo, esforco: 'medium', modo: 'leve', esquemaJson: ESQ_REESCRITA, timeoutMs: 5 * 60 * 1000, deveParar: cancelado,
           });
           if (rr.json?.texto && !/[—–]/.test(rr.json.texto)) {
             candidatas[i] = { ...c, texto: umaLinha(rr.json.texto), angulo: rr.json.angulo || c.angulo, porque: rr.json.porque || c.porque, reescrita: { antes: c.texto, critica: cr, mudou: rr.json.mudou || '' } };
@@ -309,7 +324,7 @@ export async function cicloAgente(job, progresso, cancelado) {
         } catch (e) { if (/Cancelado/.test(e.message)) throw e; log('agente', `reescrita falhou: ${e.message}`); }
       }
       const idx = primeiraRodada.map(([, , i]) => i);
-      const segunda = await criticar({ empresa, mensagens: ctx.mensagens, candidatas: idx.map((i) => candidatas[i]), verificacao, lote: ctx.lote, correcoes: todasCorrecoes, modelo, cancelado, progresso });
+      const segunda = await criticar({ empresa, mensagens: ctx.mensagens, candidatas: idx.map((i) => candidatas[i]), verificacao, lote: ctx.lote, correcoes: todasCorrecoes, especialista: ctx.especialista, modelo, cancelado, progresso });
       idx.forEach((i, k) => { criticas[i] = segunda[k]; });
     }
     parecer = criticas;
@@ -334,7 +349,7 @@ export async function cicloAgente(job, progresso, cancelado) {
 
   if (decisao === 'manter' && ctx.pendentes.length) {
     const candidatas = ctx.pendentes.map((p) => ({ passo: p.passo, variante: p.variante, angulo: p.angulo, texto: p.texto, revisor: revisar(p.texto, { passo: p.passo, empresa: empresa.nome, lote: ctx.lote }).itens }));
-    parecer = await criticar({ empresa, mensagens: ctx.mensagens, candidatas, verificacao, lote: ctx.lote, correcoes: todasCorrecoes, modelo, cancelado, progresso });
+    parecer = await criticar({ empresa, mensagens: ctx.mensagens, candidatas, verificacao, lote: ctx.lote, correcoes: todasCorrecoes, especialista: ctx.especialista, modelo, cancelado, progresso });
     // Mesma régua das mensagens novas (29/09, Cavalcante: o estrategista manteve 5 pendentes e o crítico reprovou as 5,
     // uma com fato falso): a reprovada sai; se o passo atual ficar sem mensagem, um ciclo novo escreve com as notas.
     const notas = [];
@@ -361,12 +376,25 @@ export async function cicloAgente(job, progresso, cancelado) {
   // O diário primeiro: as mensagens gravadas apontam pro ciclo que as escreveu
   const faseDe = { mensagem: 'pronto_aprovar', manter: 'pronto_aprovar', precisa_marcelo: 'precisa_voce', investigar: 'trabalhando', esperar: 'esperando_lead' };
   let fase = reciclar ? 'trabalhando' : faseDe[decisao] || 'esperando_lead';
-  let status = 'ativo';
-  if (decisao === 'encerrar') { fase = d.encerrar?.resultado || 'geladeira'; status = 'encerrado'; }
+  const status = 'ativo';
+  let recomendacao = null;
+  if (decisao === 'encerrar') {
+    const tipoRec = d.encerrar?.resultado || 'geladeira';
+    const volta = tipoRec === 'geladeira' ? dataPara(d.encerrar?.voltar_em) : null;
+    recomendacao = {
+      tipo: tipoRec, voltar_em: volta || null, resumo: d.encerrar?.motivo || d.porque || '',
+      motivos: [ctx.saude?.motivo, d.leitura, d.porque].filter(Boolean).map((x) => String(x).slice(0, 300)),
+      sinais: ctx.saude?.sinais || null, estado: ctx.saude?.estado || null, criado_em: new Date().toISOString(), autor: 'agente',
+    };
+    fase = 'precisa_voce';
+    const nome = { geladeira: `pôr na geladeira${volta ? ` até ${new Date(volta).toLocaleDateString('pt-BR', { timeZone: 'America/Bahia' })}` : ''}`, perdido: 'encerrar como perdido', ganho: 'marcar como ganho' }[tipoRec] || tipoRec;
+    precisa = `Recomendo ${nome}: ${recomendacao.resumo}`.slice(0, 900);
+  }
   const evento = await q1(`insert into agente_eventos (agente_id, empresa_id, gatilho, aconteceu, leitura, decisao, porque, dados, job_id)
     values ($1,$2,$3,$4,$5,$6,$7,$8,$9) returning id`,
   [agente.id, empresaId, gatilhos.map((g) => g.gatilho).join('+'), d.aconteceu, d.leitura, decisao, d.porque,
     JSON.stringify({ pensamento: d.pensamento, plano: d.plano, parecer_critico: parecer, precisa_de_voce: precisa, encerrar: d.encerrar || null, modelo,
+      aprendizado_nicho: d.aprendizado_nicho || null, especialista: ctx.especialista?.id || null, formato: passo === 1 ? formatoSaida : undefined,
       reescritas: saidas.filter((c) => c.reescrita).map((c) => c.reescrita), reprovadas, consultou: (r.ferramentas || []).map((f) => f.detalhe || f.rotulo).filter(Boolean).slice(0, 12) }),
     job.id]);
 
@@ -395,14 +423,17 @@ export async function cicloAgente(job, progresso, cancelado) {
     }
   }
 
+  // A lição que o agente tirou pro nicho entra como proposta: o Marcelo aceita ou descarta na Mesa
+  if (d.aprendizado_nicho && ctx.especialista) await notaEspecialista(ctx.especialista.id, d.aprendizado_nicho, { empresaId, origem: 'agente', autor: 'agente' }).catch((e) => log('agente', `nota do nicho falhou: ${e.message}`));
   const memoria = juntarMemoria(agente.memoria, d.memoria, correcoes);
   const plano = { ...(agente.plano || {}), ...(d.plano || {}) };
-  const proximo = decisao === 'encerrar' ? dataPara(d.encerrar?.voltar_em) : dataPara(d.proximo_passo_em);
+  // Com recomendação de encerrar, o agente não marca próximo ciclo: espera a decisão do Marcelo
+  const proximo = decisao === 'encerrar' ? null : dataPara(d.proximo_passo_em);
   await q(`update agentes set status = $2, fase = $3, plano = $4, memoria = $5, precisa_de_voce = $6, proximo_ciclo_em = $7, motivo_proximo = $8,
-    ultimo_ciclo_em = now(), ciclos = ciclos + 1 where id = $1`,
+    recomendacao = $9, ultimo_ciclo_em = now(), ciclos = ciclos + 1 where id = $1`,
   // precisa_de_voce fica gravado mesmo com mensagem pronta: é a conferência que o Marcelo faz antes de aprovar
   [agente.id, status, fase, JSON.stringify(plano), JSON.stringify(memoria), precisa, proximo,
-    decisao === 'encerrar' ? (d.encerrar?.motivo || null) : (d.motivo_proximo || null)]);
+    decisao === 'encerrar' ? null : (d.motivo_proximo || null), recomendacao ? JSON.stringify(recomendacao) : null]);
 
   // O crítico derrubou o que o estrategista quis manter: um ciclo novo escreve com as notas (uma vez só por rodada)
   if (reciclar) await pedirCiclo(empresaId, 'critico_reprovou', reciclar, 'agente');
@@ -419,15 +450,15 @@ export async function cicloAgente(job, progresso, cancelado) {
   if (d.analise?.temperatura && d.analise.temperatura !== empresa.temperatura) await q("update empresas set temperatura = $2, atualizado_por = 'agente' where id = $1", [empresaId, d.analise.temperatura]);
   if (plano.proxima_jogada) await q("update empresas set proxima_acao = $2, proxima_acao_em = coalesce($3, proxima_acao_em), atualizado_por = 'agente' where id = $1", [empresaId, plano.proxima_jogada.slice(0, 300), proximo]);
 
-  const rotulo = { mensagem: 'mensagem pronta pra aprovar', manter: 'manteve as mensagens pendentes', esperar: 'esperando o lead', precisa_marcelo: 'precisa de você', investigar: 'pediu uma investigação', encerrar: `encerrou (${fase})` }[decisao];
+  const rotulo = { mensagem: 'mensagem pronta pra aprovar', manter: 'manteve as mensagens pendentes', esperar: 'esperando o lead', precisa_marcelo: 'precisa de você', investigar: 'pediu uma investigação', encerrar: `recomenda ${recomendacao?.tipo || 'encerrar'} (espera você)` }[decisao];
   await registrarAtividade(empresaId, 'nota', `Agente: ${rotulo}`, [d.leitura, d.porque, precisa].filter(Boolean).join(' · ').slice(0, 900), 'agente');
 
   const saiu = saidas;
   if (saiu.length) {
-    const onde = passo === 1 ? 'na tela Disparos' : saiu[0].tipo === 'followup' ? 'em Disparos › Follow-ups programados' : 'na conversa (Mensagens preparadas) e na ficha';
+    const onde = 'na Mesa de agentes, no cartão do lead';
     await WA.enviarParaMim(`🤖 *Agente · ${empresa.nome}*\n${d.leitura}\n\n${saiu.length} opção(ões) ${onde}. A: ${saiu[0].porque}${precisa ? `\n\n*Antes de aprovar:* ${precisa}` : ''}\n\n— Hounder`).catch(() => {});
   } else if (fase === 'precisa_voce') {
-    await WA.enviarParaMim(`🤖 *Agente · ${empresa.nome} precisa de você*\n${precisa}\n\n— Hounder`).catch(() => {});
+    await WA.enviarParaMim(`🤖 *Agente · ${empresa.nome} precisa de você*\n${precisa}${recomendacao ? '\n\nDecida na Mesa de agentes: aprovar, mudar a data ou continuar.' : ''}\n\n— Hounder`).catch(() => {});
   }
   log('agente', `${empresa.nome}: ${decisao} (${fase})${saiu.length ? `, ${saiu.length} mensagem(ns)` : ''}`);
   return { decisao, fase, mensagens: saiu.length, evento_id: evento.id };

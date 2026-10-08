@@ -3,6 +3,147 @@
 > Projeto criado em 29/07/2026. Pasta dedicada — instruções aqui sobrescrevem as
 > da raiz quando relevantes.
 
+## 📱 Trigésima-oitava rodada (07/10/2026) — celular, depois do layout quebrado no ar
+
+- **Causa do "saiu bugado":** o CSS da 37ª mudou sem trocar o `?v=` (cache imutável de 1 ano).
+  Agora `site.css?v=2026-10-07b`. Zip refeito com `/` nas pastas (o `Compress-Archive` do
+  PowerShell 5.1 grava `assets\site.css`, não usar).
+- **Celular (bloco "07/10/2026" no fim do `site.css`, só ≤900px):** foto da abertura começa abaixo
+  dos botões e dissolve em 48% (antes subia atrás deles e mostrava uma faixa de céu, print do
+  Marcelo); selos em 2×2 com fio em cruz; galho da origem inteiro no canto (estava cortado nos
+  frutos); "Para quem é" com foto em cima e texto embaixo sobre o escuro (o texto sumia na foto
+  da padaria); pacotes do "Nosso café" menores. ≤380px: nome menor no topo (encostava no botão) e
+  os dois botões da abertura em largura cheia.
+- **Conferido:** 320/360/390/430/768/1024/1440 sem estouro lateral, sem imagem quebrada, sem erro
+  de JS; detector exit 0. Computador não mudou. ⚠️ **Falta republicar** (zip no Downloads).
+
+## 🔁 Trigésima-sétima rodada (05/10/2026, noite) — correções do Marcelo na 36ª
+
+- **Abertura:** foto nova que o Marcelo mandou (`site-fontes/hero-home-marcelo-2026-10-05.png`,
+  pacote real sobre a serra; o @ do rótulo é o impresso, com um underscore) → `hero-home-v3.webp`.
+  No celular, recorte saco+pacote (`hero-home-v3-mob.webp`) ABAIXO do texto, sem nada por cima. A
+  vertical do ChatGPT e a montagem anterior saíram (estão em `site-fontes/`).
+- **Nossa origem:** galho à mostra, ocupando a calha esquerda de cima a baixo (texto andou 150px).
+- **Nosso café:** saiu a cena de fundo (bege "cor de pele", poluída, produtos gigantes). Agora só os
+  dois pacotes juntos + poucos grãos (ChatGPT, fundo transparente) sobre o marrom #3D2115 com halo
+  quente, teto de 470px. O rótulo gerado errava ("CAEÉ"): colado o real por cima
+  (`site-fontes/trocar-rotulo.py`). Virou linha em `_memoria/design/90-antipadroes.md`.
+- **Grãos animados:** agora nas LATERAIS da seção do café, só ≥1400px (em 1280 encostavam no texto).
+- **Para quem é:** dois banners com foto (casa: mesa com coador de pano e o pacote, rótulo real
+  colado; negócio: balcão de padaria-cafeteria SEM pacote nem marca), texto curto sobre degradê,
+  cartão inteiro clicável, segmentos numa linha de texto. Fontes `publico-*-chatgpt-2026-10-05.png`.
+  Pesquisa: Orfeu deixa o B2B só no rodapé; a Fazenda São Gabriel (teardown de 30/07) segmenta
+  por negócio com foto + texto próprio + CTA.
+- **Conferido visualmente** seção por seção em 390, 1024, 1280, 1440 e 1920; detector exit 0; sem
+  erro de JS; botões preenchem o formulário. ⚠️ Servidor `python -m http.server` derrubava conexão e
+  fazia imagem parecer quebrada: trocado por servidor Node mínimo.
+- 🔴 **Publicado em 06/10 mas QUEBRADO para quem já tinha visitado** (07/10/2026): os arquivos no ar
+  eram idênticos aos locais, só que o CSS da 37ª mudou sem trocar o `?v=2026-10-05`. Quem tinha o
+  CSS anterior em cache (imutável, 1 ano) via o HTML novo com o CSS velho: faixa escura, "Nossa
+  origem" vazia, abertura cortada. Num navegador limpo estava certo, e foi isso que eu conferi, por
+  isso não pegou. Corrigido para `?v=2026-10-07`; zip refeito (com `/` nas pastas: o
+  `Compress-Archive` do PowerShell 5.1 grava `assets\site.css`, não usar). **Falta republicar.**
+  Depois, o Search Console (verificar a propriedade e enviar o sitemap) é com o Marcelo.
+
+## 🎬 Trigésima-sexta rodada (05/10/2026, noite) — mockups 4 e 5, ChatGPT, motion, GMN
+
+Pedido do Marcelo (fora de casa, "faça até onde for possível"): faixa abaixo da abertura e
+"Nossa origem" no print 5 (com a Serra mantida à DIREITA), cena única dos dois produtos no
+print 4, "Para quem é" melhor, foto mais comercial/artística via ChatGPT, motion ("grãos
+surgindo") e melhorar o GMN.
+
+**Imagens geradas no ChatGPT do Chrome dele** (conversa "Gerar imagem comercial premium"),
+sempre com a foto REAL dos dois produtos anexada e rótulo conferido no zoom (logo, 100% arábica,
+(75) 99146-7309 e o @ iguais ao pacote real). Fontes em `site-fontes/*-chatgpt-2026-10-05.png`:
+- **Cena dos dois produtos** (pacote kraft + saco de grão, mesa, colher, raminhos) → `assets/cafe-banner.webp`
+  (fundo do "Nosso café" no computador) + `cafe-banner-mob.webp` (recorte no celular).
+- **Galho de café + 7 grãos soltos**, fundo transparente real → `galho-cafe.webp` e `grao-1..7.webp`.
+- **Vertical 9:16** (pacote no terço de baixo, grãos voando, serra ao pôr do sol) → `hero-vertical.webp`,
+  abertura no CELULAR (`<picture>`). Com ele os 4 selos saíram de dentro da abertura no celular e a
+  faixa clara voltou a aparecer abaixo dela (2×2) — muda a decisão de 12/08, por causa do pacote.
+- Raminho cortado e fruto = decoração botânica (permitido). Nada de pé de café, lavoura ou fazenda.
+
+**Seções:**
+- **Faixa**: clara (#F8EFE3), título serifado + linha de apoio (todas já ditas no site), fios entre itens.
+- **Nossa origem**: foto da Serra sangra até a borda direita e se dissolve no creme pela esquerda
+  (máscara); selo sobre a foto; galho na calha esquerda só ≥1280px (abaixo encostava no texto). No
+  celular a foto vai abaixo do texto, largura cheia, dissolvendo por cima. Botão virou dourado.
+- **Nosso café**: a cena é o fundo da seção (texto no terço liso), véu bege à esquerda porque a mesa
+  e um raminho passavam por baixo dos atributos. Texto da seção em #5E3D2A e eyebrow/ícones em
+  #5A4416 (o bege da foto derruba os tons de marca para 4,3:1).
+- **Motion (a 1 assinatura da página, 60-motion.md)**: 7 grãos caem girando e assentam na pilha da
+  foto conforme o "Nosso café" entra (GSAP + ScrollTrigger locais em `assets/js/`, scrub). Só no
+  computador; com "reduzir movimento" ou sem JS ficam parados no lugar.
+- **Para quem é**: dois blocos, "Para a sua casa" (claro) e "Para o seu negócio" (marrom, 7 segmentos),
+  cada um com botão que já preenche o "Você é" do formulário (`data-tipo`). Opções novas no select:
+  "Restaurante, bar ou hotel" e "Revendedor ou distribuidor".
+- **Abertura no computador**: o pacote novo foi realinhado à borda do antigo e a pilha de grãos da
+  frente devolvida em diagonal (a 1ª versão deixava um degrau no canto inferior esquerdo).
+
+**GMN:** o Google bloqueia o Perfil da Empresa (e o Search Console) pela extensão do Chrome. Kit
+pronto em `google-meu-negocio/kit-2026-10/` (LEIA-PRIMEIRO.md + 5 imagens): link do site, descrição
+(598/750), 2 produtos (preço e peso do saco = [FALTA]), fotos, 4 posts, mensagem de pedido de
+avaliação. Removida do `perfil.md` a linha falsa "A lavoura ⭐" do checklist de fotos.
+
+**Verificado:** detector exit 0; sem overflow em 1440/390; JSON-LD válido; todas as imagens visíveis
+carregam; sem erro de JS; botão preenche o formulário; grãos parados com movimento reduzido.
+Pasta publicada 1,7 MB (acima da meta de 1 MB: cena 177 KB, recorte 141 KB, GSAP 116 KB).
+⚠️ **NÃO publicado** (publicação em produção exige aprovação do Marcelo). Zip atualizado em
+`Downloads/Site Grão da Serra (publicar).zip`.
+
+## 🔄 Trigésima-quinta rodada (05/10/2026) — pacote novo, SEO e celular
+
+Pedido do Marcelo: foto do produto atualizada (pacote kraft com rótulo oval branco), SEO
+e melhorar o design, principalmente no celular.
+
+- **Pacote novo:** veio com fundo PRETO opaco → recortado por script
+  (`site-fontes/pacote-kraft-recorte.png`) e montado com o saco de grão numa cena
+  **transparente** com sombra de chão: `assets/produtos-cena-2026.webp`. A máscara de merge
+  da foto antiga saiu. Foto antiga → `site-fontes/produtos-cena-antiga-2026-08.webp`.
+- **🔴 SEO, o achado grave:** canonical, og:url, sitemap, robots e JSON-LD apontavam para
+  `graodaserra.netlify.app` (404). Tudo trocado para `cafegraodaserra.netlify.app`. Título e
+  descrição novos, JSON-LD virou `@graph` (Store + WebSite, horário, CEP, áreas Salvador/Bahia,
+  CNPJ), `theme-color`, preload do hero + versão de 900px pro celular (`hero-home-900.webp`).
+  OG nova com o pacote novo: `assets/og-capa-2026.jpg` (fonte `site-fontes/og-capa-2026.html`).
+- **Cache:** `/assets/*` tem cache imutável de 1 ano. O CSS agora vai como
+  `site.css?v=2026-10-05`: **mudou o CSS, muda a data no link.**
+- **Celular:** cabeçalho numa linha (nome e botão sem quebra); foto dos produtos antes dos
+  atributos (`.cafe-txt{display:contents}` + `order`); atributos 3 lado a lado; perfis B2B em
+  linhas (ícone + nome), de ~1.700px para ~500px; xícara do "Como comprar" visível numa faixa no
+  topo; rodapé com navegação em 2 colunas. Desktop: texto do "Nosso café" com piso de 380px
+  ("Aroma intenso" não quebra mais), galho direito atrás da cena, linhas do rodapé num tamanho só,
+  eyebrow do formulário "Pedido" (repetia "Como comprar").
+- **Verificado:** detector exit 0; sem overflow em 1440 e 390; JSON-LD válido; todos os assets
+  HTTP 200. ⚠️ **NÃO publicado** no Netlify.
+- **Pendências:** (1) o hero ainda mostra o pacote ANTIGO (arte composta, precisa de arte nova);
+  (2) ✅ o Marcelo confirmou o perfil **@graodaserra__** (dois underscores): o site está certo e
+  o **rótulo novo do pacote está errado** (@graodaserra_, um só) — avisar o Nelson antes de imprimir; (3) depois de publicar, enviar o sitemap no Search Console.
+
+**✅ Mesma noite (05/10): o Marcelo escolheu a opção A** (layout do mockup 1, sem a copy dele). Feito:
+- **Pacote novo DENTRO da foto de abertura:** o pacote antigo da arte foi coberto pelo recorte do novo,
+  escurecido/aquecido pra luz da cena, sombra de contato e os grãos da frente devolvidos por máscara.
+  `assets/hero-home-2026.webp` (+ `-900`); fonte `site-fontes/hero-home-pacote-novo.png`. As fotos
+  antigas foram pra `site-fontes/hero-home-pacote-antigo*.webp`.
+- **Formulário em 2 colunas** (`.pedido-grid`): chamada + 3 fatos de apoio (horário, grão ou moído,
+  casa ou revenda) à esquerda, campos num cartão à direita. No celular empilha.
+- **Menu:** "Fornecimento" (apontava pra faixa de selos) virou **"Para o seu negócio"** → `#publico`.
+- Detector exit 0, sem overflow em 1440/390.
+- **Publicação BLOQUEADA pra mim:** o Chrome está logado na Netlify, mas subir em produção foi barrado
+  pela trava de segurança (precisa de aprovação do Marcelo). Zip pronto em
+  `E:/Users/hagge/Downloads/Site Grão da Serra (publicar).zip` → Netlify › cafegraodaserra › Deploys ›
+  arrastar o zip. O Search Console não abre pela extensão do Chrome: a verificação e o sitemap ficam com
+  o Marcelo.
+
+**🟡 Decisão pendente (05/10, tarefa no Hounder):** o Marcelo mandou 2 mockups de IA. (A) aproveitar
+do 1º só a estrutura: hero com mais ambiente (arte nova com o pacote novo), formulário em 2 colunas,
+"Para o seu negócio" no menu; (B) só publicar como está. A copy e os dados dos dois mockups NÃO entram:
+cultivo/altitude/"cafés especiais"/sabor equilibrado/sustentável/"direto do produtor", produtos
+Tradicional/Intenso/Especial e gramaturas 500 g/1 kg/5 kg (não confirmados), "Sul da Bahia", "Serra de
+Regiões", telefone 7389, CNPJ 45.814.671, e-mail @graodaserra.com.br (domínio do concorrente de SP),
+Seg a Sáb 7h-18h, "atendemos todo o Brasil", "nossa equipe", Facebook/YouTube.
+**SEO 05/10:** `site:cafegraodaserra.netlify.app` sem resultado (não indexado). A busca pelo nome ainda
+traz `horusagencia.com.br/portfolio/grao-da-serra` (404 desde 26/09, dizia "Mantiqueira").
+
 ## 🚀 Trigésima-quarta rodada (19/08) — site preparado para REPUBLICAR no Netlify
 
 O Marcelo pediu para preparar o site atualizado para postar no Netlify. Verificação

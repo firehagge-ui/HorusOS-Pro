@@ -1158,3 +1158,37 @@ toda foto é do próprio cliente.** Vestígio de template no `<head>` é tão de
 Poppins no título. E quando o cliente não tem foto boa, a saída é placeholder marcado
 (`[FALTA: foto real da oficina]`), nunca banco de imagem passando por real.
 → *Origem: teardown `referencias/performance-automotiva-cinco-sites.md`, 09/09/2026.*
+
+## Foto de produto que vira cenário inteiro (05/10/2026)
+
+No Grão da Serra, a seção "Nosso café" ganhou uma cena de ChatGPT como **fundo da seção**:
+parede bege-pêssego, mesa de madeira, colher, raminhos com frutos e os dois pacotes ocupando
+meia tela. O Marcelo reprovou: **"fundo muito cor de pele, visualmente poluído, os produtos
+ficaram gigantes."** O que ele queria era só os dois pacotes juntos e, no máximo, alguns grãos.
+
+Por que errou: a cena tinha cinco elementos competindo com o produto, e a cor de fundo veio da
+foto (bege quente, que na tela lê como pele), não da paleta da marca. E a foto como fundo da
+seção inteira faz o produto escalar com a largura da tela.
+
+Regra: **seção de produto = o produto, e pouco mais.** Recorte com fundo transparente sobre a
+cor da MARCA (aqui o marrom #3D2115, com um halo quente atrás), teto de tamanho (`max-width`
+~470px no computador), e decoração só se um elemento só, discreto. Cena com props fica para
+banner de público ou para post, não para a vitrine do produto.
+→ *Origem: Grão da Serra, 3ª rodada de 05/10/2026.*
+
+## Rótulo gerado por IA erra letra no zoom, mesmo com a foto real anexada (05/10/2026)
+
+Pedindo ao ChatGPT "copie o rótulo exatamente", duas de quatro imagens saíram com "CAEÉ" no
+lugar de "CAFÉ" e "ARÁBICA" torto. No tamanho do site não se lê, mas é letra errada na marca
+do cliente. Regra: **conferir todo rótulo no zoom; errou, colar o rótulo do pacote real por
+cima** (`clientes/grao-da-serra/site-fontes/trocar-rotulo.py`: acha o oval branco nas duas
+imagens, ajusta escala e brilho, cola com máscara elíptica). Não depende de regenerar.
+→ *Origem: Grão da Serra, 05/10/2026.*
+
+**Foto que "nasce do escuro" com esfumado curto e começando atrás do botão.** No celular do
+Grão da Serra a foto da abertura subia 40px por baixo dos botões com um esfumado de ~70px: o céu
+claro aparecia como uma faixa reta atrás deles, cara de recorte errado (o Marcelo mandou print).
+Regra: **foto que entra embaixo de texto começa depois do último botão e dissolve em pelo menos
+40% da altura dela**, mais devagar ainda quando o topo da foto é claro (céu). Texto sobre foto
+clara no celular vira foto em cima e texto embaixo sobre cor sólida (os cartões "Para quem é").
+→ *Origem: Grão da Serra, 07/10/2026.*

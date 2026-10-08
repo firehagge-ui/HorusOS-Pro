@@ -5,7 +5,22 @@
 
 ## Fase da agência
 
-⚠️ **Foto atual (27/09/2026):** a **esteira de prospecção rodou pela primeira vez no Hounder**
+⚠️ **Foto atual (01/10/2026):** a esteira de ligação do Antônio trouxe a **Paralela Film**, primeiro
+lead que pede **tráfego pago** (não site). R1 remarcada para segunda 05/10; proposta escolhida: R$ 990/mês
+por 3 meses como primeiro case + verba paga pelo cliente. Pra sustentar, a casa ganhou o **manual de
+tráfego** (`_memoria/trafego/`, pesquisa profunda de 01/10). Decisão: a parte técnica do tráfego fica
+com o Claude, o Marcelo aprova gasto e conduz o cliente; nada de gestor externo por enquanto.
+Prioridade de produção viva continua a **Amparo**.
+
+⚠️ **Foto anterior (30/09/2026):** primeira rodada da esteira enviada (passo 1 em LevSaúde, Talina,
+Bioclin, Cintya e Harmony, 28 e 29/09). Responderam como pessoa: Talina (a sócia Jéssica), Cintya
+(equipe, depois da assistente virtual) e LevSaúde (a secretária Fernanda, vai repassar). Land Car e
+Autobahn: 6 dias sem resposta ao corpo, com follow-up pronto. **Time de agentes, Fase 1 no ar** (8
+ativos, limite 10) e **follow-up programado** desde 30/09. Próxima fase: a Mesa de agentes (histórico:
+a Mesa entrou no ar no mesmo 30/09, ver CLAUDE.md).
+Prioridade de produção viva continua a **Amparo**.
+
+⚠️ **Foto anterior (27/09/2026):** a **esteira de prospecção rodou pela primeira vez no Hounder**
 (triagem → investigação profunda de seis camadas → briefing + rascunho no Disparos). Sete leads
 investigados: **Bioclin 85, Mônica Pita 84, Alessandra Araújo 80, Cintya Gualberto 80, Cavalcante 74,
 Revita 68** (manual; tem agência, entra como complemento) e **Marilúsia 58**, que o Marcelo pôs na

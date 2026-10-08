@@ -132,8 +132,8 @@ Os agentes alternam casa × curiosidade e medem quem responde mais (é o A/B abe
 1. **Fase 1:** memória + ciclo + crítico, toda saída no Disparos. Testar nos 6 leads vivos (LevSaúde,
    Talina, Bioclin, Cintya, Harmony, Cavalcante), comparando com o que o Claude do chat diria.
 2. **Fase 2:** a Mesa de agentes.
-3. **Fase 3:** provas + pacotes de segmento.
-4. **Fase 4:** agendador de follow-up/geladeira + teste casa × curiosidade.
+3. **Fase 3:** provas + pacotes de segmento. ✅ 30/09 (especialistas e cadernos; provas continuam só as reais).
+4. **Fase 4:** agendador de follow-up/geladeira + teste casa × curiosidade. ✅ 30/09.
 
 **Risco principal:** o Marcelo aprovar sem ler porque o agente "parece bom". A linha de porquê, o crítico e
 o verificador existem pra isso.
@@ -195,8 +195,87 @@ o verificador existem pra isso.
   que corrige no lugar ou tira; nada de "amanhã"/horário fixo (envelhece), nada de tese descartada.
 - **Datas:** o agente escreveu "01/10/2026" e o código leu 10 de janeiro. `dataPara` lê o formato brasileiro primeiro e
   descarta data no passado.
-- **Ficou pra depois:** a Mesa (Fase 2), provas e pacotes de segmento (Fase 3), o agendador que acorda o agente no
-  `proximo_ciclo_em` e o follow-up (Fase 4). A data já é gravada, ninguém acorda ainda.
+- **Ficou pra depois (atualizado 30/09):** o agendador que acorda o agente e o follow-up saíram em 30/09
+  (`farejador/followup.mjs`); a Mesa saiu em 30/09 (seção abaixo). Faltam provas e pacotes de segmento (Fase 3) e o teste
+  casa × curiosidade (Fase 4).
+
+## Fase 2: a Mesa de agentes (30/09/2026)
+
+Tela `app/js/telas/agentes.js`, terceira do menu ("Mesa de agentes", badge = pra aprovar + precisa de você).
+- **Grupos na ordem do que precisa do Marcelo:** pronto pra aprovar, precisa de você, trabalhando, esperando o lead,
+  pausados e encerrados. O grupo é calculado do estado real (rascunho no Disparos, job `agente_ciclo` na fila, trava do
+  passo 2), não só da `agentes.fase`. Filtros no topo (lembrados no navegador).
+- **Cartão pronto:** avatar com a cor da temperatura, etiquetas (estado, temperatura, "esperando você há X"), balão com a
+  leitura atual do agente (`whatsapp_conversas.analise.momento`, senão `plano.proxima_jogada`), a conversa à esquerda e a
+  proposta à direita (abas A/B, texto editável, porquê em 3 linhas, crítico, revisor recolhido quando só tem aviso).
+- **Aprovar e enviar:** resposta a lead que falou sai na hora pela conversa (`whatsapp_enviar`, igual à tela Conversas);
+  primeira mensagem e follow-up entram na fila do Disparos (`agendado`, janela de horário, limite de 10 por dia).
+  Passo 2 sem resposta humana fica travado e o cartão vai pra "esperando" com a mensagem guardada.
+- **Outra opção / Não mandar:** pedem o motivo. "Outra opção" cancela com motivo do sistema, grava o motivo como correção
+  na memória e pede ciclo `pedido`; "Não mandar" cancela com o motivo do Marcelo (o agente lê como descarte com motivo).
+- **"Agora no time":** o diário de todos os agentes (`agente_eventos`) em tempo real, na coluna da direita.
+- **"Responderam X de Y":** primeira mensagem enviada × resposta de gente depois dela (robô e aviso não contam).
+  Porcentagem só com 20 ou mais; o número vem sempre com a base.
+- **"[outro]" sem texto é aviso do WhatsApp** nos dois sentidos e não muda de quem é a vez (Cintya, 30/09).
+- **Tempo real sem apagar edição:** com texto editado na tela, a atualização de fora espera e aparece "Chegou novidade ·
+  Atualizar". O ponto do Farejador só atualiza a faixa de status.
+- **Ficha:** botão "Agente" abre plano, memória, diário e o campo pra contar algo ao agente (`abrirAgente`).
+- **Layout do ChatGPT (30/09):** avaliado com o Marcelo. Ficaram de fora a persona por segmento (o modelo aqui é um agente
+  por lead), a ilustração grande e os números sem base; entraram o feed, o balão, a etiqueta, os filtros e a taxa com base.
+
+## Fases 3 e 4: especialistas por segmento e o teste casa × curiosidade (30/09/2026)
+
+Pedido do Marcelo: a tela como a do ChatGPT (bonecos pixelados que se mexem) e "como todo o sistema vai se conectar".
+- **Especialista = dono do caderno de um nicho.** Clara (clínicas e estética), Lia (eventos), Rafa (oficinas). O agente
+  continua um por lead; o especialista junta o que vale pra todos os leads do nicho. Migração `014_especialistas.sql`:
+  `especialistas` (palavras que casam com a categoria da ficha, caminho do caderno, aparência do boneco),
+  `especialista_notas` (lição do nicho: `valida` ou `proposta`) e `agentes.especialista_id` (ligado sozinho no primeiro
+  ciclo ou ao designar, `garantirEspecialista` em `lib/agentes.mjs`). Lead de nicho sem caderno fica sem especialista.
+- **Cadernos** em `_memoria/prospeccao/segmentos/` (clinicas, eventos, oficinas), escritos só com o que tem fonte
+  (memória dos agentes, investigações, aprendizados, correções). O agente lê o caderno + as notas válidas antes de pensar
+  (`blocoNicho` em `prompts.mjs`), o crítico também (lição do nicho furada = veto), e o agente pode devolver
+  `aprendizado_nicho`, que entra como **proposta** pro Marcelo aceitar no caderno da Mesa.
+- **O Marcelo ensina o nicho** marcando "vale pro nicho todo" no "Não mandar", no "Outra opção" ou no "Contar ao agente",
+  ou escrevendo direto no caderno do especialista. MCP: `hd_agente_nota` com `nicho: true`.
+- **Teste casa × curiosidade (Fase 4):** até 30/09 as 5 aberturas foram "casa" (4 com resposta de gente) e nenhuma
+  "curiosidade". `placarFormatos` + `formatoDaVez` (lib) mandam a próxima abertura no formato com menos envios, no
+  nicho do lead; o crítico e a reescrita conhecem as regras do formato curiosidade (§11). O placar aparece na Mesa,
+  por especialista e no total.
+- **Tela:** o escritório em pixel art no topo da Mesa (`app/js/pixel.js`, tudo desenhado em código): cada especialista
+  numa mesa, com o estado do lead mais urgente (digita, levanta a mão com "!", acena, cochila com zZ e café, comemora
+  reunião), balão com o texto real e placa que filtra os leads dele. Abaixo, um cartão por especialista com números
+  reais (leads ativos, pra aprovar, responderam X de Y, reuniões, placar do teste) e o caderno. A animação para com a
+  aba escondida, fora da tela ou com "reduzir movimento".
+- **Resumo das 8h:** uma linha por especialista com mensagem pronta, pedido pra você e lição pra aceitar.
+- **Reorganização (30/09, noite, pedido do Marcelo: "achei desorganizadas as informações"):** "agente" deixou de nomear duas
+  coisas. Os bonecos são **especialistas** (3); os leads são **leads acompanhados** (até 10). A Mesa virou três colunas,
+  como a referência do ChatGPT: lista de leads à esquerda, o lead selecionado no centro (conversa, porquê, **todas as
+  opções de mensagem em abas A/B/C**, fatos conferidos, Aprovar e enviar), estado do time e atividade à direita;
+  especialistas e lições do nicho embaixo. Depois de aprovar, o centro pula pro próximo lead que espera você.
+  Bonecos redesenhados com o dobro de resolução (pixel de 2 px, olhos de anime, cabelo com mechas, monitor visto por trás).
+
+## Como tudo se conecta
+
+```
+ Spark → triagem → investigação (6 camadas) ─┐
+                                             ▼
+                               AGENTE DO LEAD (um por lead)
+         memória do lead + plano + diário ◄──┤──► CADERNO DO NICHO (especialista: Clara, Lia, Rafa)
+                                             │      arquivo em _memoria/prospeccao/segmentos/ + notas válidas
+ gatilhos: lead respondeu, silêncio 3 dias,  │
+ data marcada, pedido do Marcelo, investigação pronta
+                                             ▼
+                  ciclo: pensar (13 perguntas) → decidir → escrever (formato da vez no passo 1)
+                         → revisor mecânico → crítico (lê o nicho) → reescrita → crítico
+                                             ▼
+                          MESA DE AGENTES (Aprovar e enviar · Outra opção · Não mandar)
+                  ┌──────────────────────────┼───────────────────────────┐
+     resposta a quem falou:        primeira mensagem e follow-up:   correção com motivo:
+     sai na hora pela conversa     fila do Disparos (janela, 10/dia) memória do lead e, se marcar,
+                  └──────────────► WhatsApp (Farejador) ◄──────────┘ caderno do nicho
+                                             ▼
+                resposta do lead → novo ciclo; placar casa × curiosidade; lição proposta pro nicho
+```
 
 ## Pré-requisito do serviço (não dos agentes)
 

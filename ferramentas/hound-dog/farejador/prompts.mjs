@@ -36,6 +36,20 @@ export function doutrinaConversa() {
   return blocos.filter(([, t]) => t).map(([t, c]) => `=== ${t} ===\n${c.trim()}`).join('\n\n');
 }
 
+/**
+ * O nicho do lead (Fase 3, 30/09/2026): o caderno do especialista (arquivo versionado, lido na hora) e as notas
+ * válidas que o Marcelo e os outros agentes do nicho deixaram. Vale pra todos os leads do mesmo segmento.
+ */
+export function blocoNicho(esp) {
+  if (!esp) return '';
+  const caderno = ler(esp.caderno);
+  const notas = (esp.notas || []).map((n) => `- ${n.texto} (${[n.empresa, n.origem === 'marcelo' ? 'do Marcelo' : n.origem === 'agente' ? 'tirada por um agente, aceita pelo Marcelo' : null,
+    new Date(n.criado_em).toLocaleDateString('pt-BR', { timeZone: 'America/Bahia' })].filter(Boolean).join(', ')})`).join('\n');
+  return `=== CADERNO DO NICHO: ${esp.segmento} (especialista ${esp.nome}) ===
+${caderno.trim() || 'Caderno ainda vazio.'}
+${notas ? `\n=== LIÇÕES NOVAS DO NICHO (valem pra este lead também; ainda não subiram pro caderno) ===\n${notas}` : ''}`;
+}
+
 export const REGRAS_CASA = `Você é o copiloto comercial da Hórus, agência de marketing com IA em Salvador/BA, operando dentro do Hound Dog (o CRM da casa).
 Fale português do Brasil, direto e prático, como parceiro de operação. Sem jargão de agência, sem encher linguiça.
 
@@ -310,7 +324,7 @@ ${linhaDoTempo(atividades)}
 
 LEIA ANTES (doutrina, no repositório): _memoria/integridade.md, _conhecimento/network/abordagem-e-prospeccao.md (§8 a §11),
 _conhecimento/network/cold-message-processo.md, _conhecimento/network/objecao-ja-tem-alguem-fazendo.md e, se for saúde,
-_conselho/cargos/compliance.md. E a pasta _memoria/prospeccao/ (29/09): 10-sinais.md (a biblioteca de sinais S1 a S13 e o
+_conselho/cargos/compliance.md. E a pasta _memoria/prospeccao/ (29/09): 10-sinais.md (a biblioteca de sinais S1 a S15 e o
 "por que agora" do segmento), 20-escrita.md, exemplos.md (o padrão de voz: só mensagens do Marcelo), voz-marcelo.md,
 aprendizados.md (o que as respostas reais ensinaram) e 99-checklist.md (rode antes de devolver).
 
@@ -324,6 +338,11 @@ AS SEIS CAMADAS (faça todas; anote fonte e data de cada achado)
    Crítica só vira argumento depois de ler a resposta do dono e saber quem escreveu (Regra 2).
 3. Presença completa: Instagram (navegador logado): bio expandida, link da bio (abrir), destaques, seguidores, data dos últimos posts,
    legendas recentes e QUEM está marcado ou é coautor (agência, parceiros). Site (todas as páginas), Linktree, Facebook, Doctoralia.
+   SEGUIDORES E SEGUINDO (sinal S15, 02/10/2026): abra a lista de seguidores e use o campo Pesquisar DA LISTA (não role), uma palavra
+   por vez: agência, agencia, marketing, mkt, digital, social, design, creative, criativo, studio, estúdio, tráfego, ads, media, site,
+   web, ia, foto. Abra também a lista "seguindo" (com poucas contas, diz quem importa pro dono). Para cada agência ou fornecedor achado,
+   anote seguidores × seguindo dele e se o lead segue de volta: vínculo forte = segue de volta, collab, marcação, crédito no site,
+   portfólio; fraco = a agência segue centenas de contas (é prospecção em massa: outro fornecedor rondando o lead).
    Afirmação de ausência só com varredura completa (Regra 1). Domínio com o nome do lead não prova que é dele (homônimos).
 4. Dinheiro e momento: anúncios ativos (firecrawl_scrape em https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=BR&q=<@ ou nome>&search_type=keyword_unordered
    com waitFor 5000 e formato query pedindo "nome exato da página anunciante e data de início"; cuidado com homônimos).
@@ -333,7 +352,7 @@ AS SEIS CAMADAS (faça todas; anote fonte e data de cada achado)
 5. Concorrência: 2 ou 3 concorrentes diretos da mesma cidade/bairro e o que eles têm que o lead não tem. POSIÇÃO NA BUSCA NÃO SE AFIRMA
    (Regra 3: só com a busca do Marcelo no dia).
 6. Cruzamento: junte as camadas em hipóteses, cada uma marcada "fato" (fonte conferível) ou "hipotese" (entra com "se" na mensagem).
-   Classifique o que achou nos sinais S1 a S13 de 10-sinais.md, com a força (verde, amarelo, fraco). A FALA DO PRÓPRIO DONO (S1: resposta
+   Classifique o que achou nos sinais S1 a S15 de 10-sinais.md, com a força (verde, amarelo, fraco). A FALA DO PRÓPRIO DONO (S1: resposta
    a avaliação, legenda, bio) e o LINK QUEBRADO no caminho do cliente (S2) são os sinais mais fortes: procure os dois de propósito.
 
 FERRAMENTAS
@@ -444,7 +463,7 @@ Responda SÓ com \`\`\`json no formato:
  "briefing": {
   "veredito": "2 a 3 frases",
   "personalizacao": "forte" | "media" | "fraca",
-  "sinais": [{"id": "S1 a S13 de 10-sinais.md", "fato": "...", "forca": "verde" | "amarelo" | "fraco"}],
+  "sinais": [{"id": "S1 a S15 de 10-sinais.md", "fato": "...", "forca": "verde" | "amarelo" | "fraco"}],
   "por_que_agora": "a data real que torna a conversa oportuna, ou null",
   "autocritica": ["o que a checklist pegou e como você reescreveu"],
   "leitura": [{"texto": "...", "classe": "fato" | "hipotese"}],
@@ -497,17 +516,24 @@ TRAVAS
 - Tese que o Marcelo descartou com motivo está morta pra este lead, com outras palavras também. Se não sobrou tese
   boa, diga isso ("precisa_marcelo" ou "esperar"); não ressuscite a descartada.
 - [aviso automático do WhatsApp] na conversa (mensagens temporárias, enquete, item sem texto) não é fala de ninguém.
-- Onde o Marcelo acha cada coisa no Hounder (diga o lugar certo quando pedir algo): passo 1 na tela Disparos; passo 2 em
-  diante na conversa do lead, em "Mensagens preparadas" (botão Usar); follow-up em Disparos › "Follow-ups programados".
+- Onde o Marcelo acha cada coisa no Hounder (diga o lugar certo quando pedir algo): tudo que você prepara aparece na
+  tela "Mesa de agentes", no cartão deste lead, com "Aprovar e enviar" (desde 30/09). A conversa do lead e a tela
+  Disparos continuam mostrando as mesmas mensagens.
 - Resposta automática do WhatsApp Business não é resposta. Nunca responder ao robô fingindo ser cliente.
 - O que só o Marcelo faz (busca no celular, print, prévia montada, decisão entre dois leads do mesmo bairro) vira
   "precisa_marcelo", com o pedido exato em uma frase.
 - Investigação nova (decisao "investigar"): só quando falta um fato que muda a próxima mensagem e a investigação acha
   (não para confirmar o que já está na memória). No máximo uma por semana por lead; a fila roda uma por vez.
 
-QUANDO PARAR
+QUANDO PARAR (desistência controlada: você RECOMENDA, o Marcelo decide; nada é apagado)
+- Use a SAÚDE DA CONVERSA acima: ela conta as tentativas sem resposta, os dias de silêncio e se houve recusa.
 - Recusa clara: aceitar, agradecer em uma linha se couber, "encerrar" com resultado "perdido" ou "geladeira" com data de voltar.
 - Passo 1 sem resposta humana: um follow-up curto só, depois de 4 dias; sem resposta de novo, geladeira com data.
+- Estado "baixa_probabilidade" (2 tentativas sem resposta há 5+ dias, ou 14+ dias de silêncio): não escreva de novo.
+  "encerrar" com resultado "geladeira" e a data de voltar na próxima janela do segmento; em "motivo", os sinais em uma frase
+  ("abertura e follow-up sem resposta, 12 dias de silêncio, nunca falou como pessoa").
+- "encerrar" NÃO encerra: vira uma recomendação na Mesa e o lead continua seu até o Marcelo aprovar, mudar a data ou
+  mandar continuar. Se ele mandou continuar, não recomende de novo sem fato novo.
 - "Vou repassar", "vou ver com ela": é continuação, não avanço (Rackham). Facilitar o repasse, não empurrar a oferta de novo.
 - Interesse claro: o próximo passo é a conversa ao vivo (ligação de 10 minutos com dois horários, ou a R1). Converter
   cedo demais afasta; tarde demais esfria.`;
@@ -515,6 +541,7 @@ QUANDO PARAR
 export function promptAgente(ctx) {
   const {
     gatilho, detalhe, agora, empresa, agente, eventos, briefing, mensagens, disparos, marcelo, pendentes, outros, lote, playbook, passoSugerido, tipoSugerido,
+    especialista, formatoDaVez, placar, saude,
   } = ctx;
   const linhaDisp = (d) => `- passo ${d.passo}${d.variante || ''}${d.tipo ? ` (${d.tipo})` : ''} [${d.status}${d.enviado_em ? ` ${new Date(d.enviado_em).toLocaleString('pt-BR', { timeZone: 'America/Bahia', dateStyle: 'short', timeStyle: 'short' })}` : ''}${d.angulo ? ` · ${d.angulo}` : ''}${d.criado_por ? ` · por ${d.criado_por}` : ''}]: ${d.texto}${(() => {
     // Por que saiu (descarte do Marcelo com motivo, crítico): sem isso o agente vê o texto cancelado e não sabe o porquê
@@ -529,6 +556,8 @@ ${REGRAS_AGENTE}
 
 FICHA DO LEAD
 ${fichaResumida(empresa)}
+
+${saude || ''}
 
 SUA MEMÓRIA DESTE LEAD (o que você já sabe; atualize com o que este ciclo ensinou)
 ${JSON.stringify(agente.memoria || {}, null, 1).slice(0, 9000)}
@@ -553,7 +582,21 @@ ${marcelo.length ? marcelo.map((m) => `- ${m}`).join('\n') : 'Nada registrado.'}
 ${pendentes.length ? `MENSAGENS PENDENTES AGORA (esperando o Marcelo aprovar). Se continuam certas pro momento, decisao "manter". Se o momento
 mudou ou elas não passam na checklist, decisao "mensagem" com as novas (as pendentes do mesmo passo saem).\n${pendentes.map(linhaDisp).join('\n')}` : 'Não há mensagem pendente.'}
 
-PRÓXIMA MENSAGEM, SE HOUVER: passo ${passoSugerido}, tipo "${tipoSugerido}".${tipoSugerido === 'followup' ? `
+${especialista ? `SEU NICHO. Você trabalha com ${especialista.nome}, a especialista de ${especialista.segmento}: o caderno abaixo é o que a casa
+já aprendeu com TODOS os leads deste nicho. Lição do caderno vale como correção do Marcelo: não repita o erro que outro
+lead já ensinou. Se este ciclo ensinou algo NOVO que vale pra outros leads do nicho (não só pra este), escreva em
+"aprendizado_nicho" numa frase, com a origem ("Cintya, 30/09: ..."); o Marcelo aceita ou descarta. Sem lição nova, null.
+${blocoNicho(especialista)}` : 'NICHO SEM ESPECIALISTA: este lead não tem caderno de segmento ainda. "aprendizado_nicho" fica null.'}
+
+PRÓXIMA MENSAGEM, SE HOUVER: passo ${passoSugerido}, tipo "${tipoSugerido}".${passoSugerido === 1 && formatoDaVez ? `
+FORMATO DESTA ABERTURA (teste casa × curiosidade, _conhecimento/network/abordagem-e-prospeccao.md §11): use "${formatoDaVez}"
+e grave em plano.formato. O placar está casa ${placar.casa.responderam} de ${placar.casa.enviados}, curiosidade ${placar.curiosidade.responderam} de ${placar.curiosidade.enviados}
+(resposta de gente, robô não conta); a alternância existe pra o teste ter base. Só use o outro se este lead tornar o
+formato impossível (ex.: a recepção já perguntou quem é), e diga por quê em "porque".${formatoDaVez === 'curiosidade' ? `
+Curiosidade: mensagem 1 SEM se apresentar e SEM oferta. Um problema real e conferível + o prejuízo que o dono não vê
+(quem cai nele não avisa, vai pro concorrente) + uma pergunta sobre o NEGÓCIO dele (o que mais sai, a história), nunca
+sobre site ou marketing. Proibido "achei melhor avisar", "vocês sabiam?", "quem cuida do site?". A apresentação vem na
+mensagem 2, depois da resposta ("aliás, nem me apresentei: sou o Marcelo"). Nunca deixar acreditar que é cliente.` : ''}` : ''}${tipoSugerido === 'followup' ? `
 É FOLLOW-UP (o lead não respondeu a nossa última mensagem). Regra da casa (_memoria/prospeccao/20-escrita.md §10):
 - UM follow-up só. A variante A é o padrão calibrado, com o nome certo: "Oi, [Nome]! Passando só pra saber se chegou a
   ver. Se não fizer sentido agora, sem problema, fica pra outra hora." A B, só se houver fato NOVO conferido ou outro
@@ -588,7 +631,7 @@ ${regrasParaPrompt()}
 COMO PENSAR (obrigatório, por escrito, ANTES de qualquer mensagem; responda as 13 no campo "pensamento")
 1 quem_e: quem é a pessoa do outro lado (dono, sócia, recepção, robô) e o que ela quer
 2 contexto: o momento do negócio (o que a investigação e a conversa mostram)
-3 o_que_impede: o que impede o negócio de crescer, pelos sinais S1 a S14
+3 o_que_impede: o que impede o negócio de crescer, pelos sinais S1 a S15
 4 problema: a maior falha verificável, que o dono confere em segundos (a oferta sai daqui, Regra 5)
 5 abordagem: que abordagem tem mais chance com ESTA pessoa (presente antes do pedido, valor rápido, oferta nas palavras dela)
 6 como_seguir: como iniciar ou continuar daqui (dois passos, duas saídas, a regra da recepção)
@@ -608,7 +651,8 @@ DEPOIS DECIDA UMA:
 - "esperar": a bola está com o lead; diga até quando esperar em "proximo_passo_em".
 - "precisa_marcelo": algo que só ele faz ou decide; o pedido exato em "precisa_de_voce".
 - "investigar": falta um fato que muda a próxima mensagem e a investigação acha (diga qual em "porque").
-- "encerrar": recusa clara, negócio sem fit, ou ganho; resultado e data de voltar em "encerrar".
+- "encerrar": recusa clara, negócio sem fit, baixa chance de resposta, ou ganho; resultado, motivo e data de voltar em
+  "encerrar". É uma recomendação: o Marcelo aprova na Mesa.
 
 Antes de devolver, rode _memoria/prospeccao/99-checklist.md nas mensagens (vetos, os quatro testes, a nota) e reescreva o que não passar.
 Devolva no formato pedido (JSON). "analise" é o que aparece na tela da conversa: momento, resumo, temperatura, as respostas
@@ -619,7 +663,7 @@ pode usar daqui a três dias). Pra marcar conversa: "fica melhor de manhã ou de
 }
 
 /** O crítico: outro Claude, sem ver o raciocínio do estrategista. Lê como o dono leria. */
-export function promptCritico({ empresa, mensagens, candidatas, verificacao, lote, correcoes = [] }) {
+export function promptCritico({ empresa, mensagens, candidatas, verificacao, lote, correcoes = [], especialista = null }) {
   return `Você é o CRÍTICO das mensagens de prospecção da Hórus. Outro Claude escreveu as mensagens abaixo; você não sabe o
 raciocínio dele e nem deve adivinhar. Leia cada uma COMO O DONO DESTE NEGÓCIO LERIA no WhatsApp, vindo de um número
 desconhecido, e diga se sai ou não. Seja duro: o risco é o Marcelo aprovar sem ler porque "parece bom".
@@ -637,11 +681,15 @@ O QUE O MARCELO JÁ CORRIGIU OU DESCARTOU NESTE LEAD. Mensagem que volta a uma t
 outras palavras, é VETO: é o erro mais caro, porque mostra que ninguém ouviu o que ele disse.
 ${correcoes.length ? correcoes.map((c) => `- ${typeof c === 'string' ? c : c.texto}`).join('\n') : 'Nada registrado.'}
 
-MENSAGENS RECENTES DE OUTROS LEADS (esqueleto repetido é defeito; o fecho "quer que eu te explique?" pode repetir)
+${especialista ? `O QUE O NICHO JÁ ENSINOU (${especialista.segmento}). Mensagem que repete um erro deste caderno, ou fura a régua de compliance
+dele, é VETO do mesmo jeito que a correção do Marcelo.
+${blocoNicho(especialista)}
+
+` : ''}MENSAGENS RECENTES DE OUTROS LEADS (esqueleto repetido é defeito; o fecho "quer que eu te explique?" pode repetir)
 ${lote.length ? lote.map((t) => `· ${t.replace(/\s+/g, ' ').slice(0, 200)}`).join('\n') : 'Nenhuma.'}
 
 AS CANDIDATAS
-${candidatas.map((c, i) => `[${i}] passo ${c.passo}${c.tipo ? ` (${c.tipo})` : ''}${c.variante ? ` · ${c.variante}` : ''}${c.angulo ? ` · ${c.angulo}` : ''}: ${c.texto}\n    revisor mecânico: ${c.revisor?.length ? c.revisor.map((r) => `${r.nivel}: ${r.dica}`).join(' | ') : 'nada'}`).join('\n')}
+${candidatas.map((c, i) => `[${i}] passo ${c.passo}${c.tipo ? ` (${c.tipo})` : ''}${c.formato ? ` · formato ${c.formato}` : ''}${c.variante ? ` · ${c.variante}` : ''}${c.angulo ? ` · ${c.angulo}` : ''}: ${c.texto}\n    revisor mecânico: ${c.revisor?.length ? c.revisor.map((r) => `${r.nivel}: ${r.dica}`).join(' | ') : 'nada'}`).join('\n')}
 
 A RÉGUA (da casa; é ela que você aplica, não gosto próprio)
 === CHECKLIST ===
@@ -668,6 +716,12 @@ PERGUNTAS QUE VOCÊ FAZ A CADA UMA
 QUEM FALA (decisão do Marcelo, 29/09): o Marcelo aparece como pessoa, pelo nome. A Hórus entra na oferta, não na
 abertura. Não exija o nome da agência no passo 1; exija só que a mensagem não deixe acreditar em algo falso (parecer
 paciente, cliente, orçamento). Se alguém perguntou quem é, a verdade na hora, com a Hórus.
+
+FORMATO CURIOSIDADE (abertura marcada "formato curiosidade", teste aberto em 24/09, abordagem-e-prospeccao.md §11): é de
+propósito que a mensagem 1 venha SEM apresentação e SEM oferta. Não reprove por faltar oferta, "o que eu faço" ou o nome.
+Cobre o que o formato exige: problema real e conferível (com linha na verificação), o prejuízo que o dono não vê, e uma
+pergunta sobre o NEGÓCIO dele (nunca sobre site ou marketing). Veto: "achei melhor avisar", "vocês sabiam?", "quem cuida
+do site?", prova social que a casa não tem, ou qualquer coisa que faça parecer cliente.
 
 HORA: você não sabe quando o Marcelo vai aprovar e mandar. "Bom dia", "boa tarde" ou "boa noite" na mensagem é
 defeito que reprova (pode chegar na hora errada). "[aviso automático do WhatsApp]" na conversa não é fala de ninguém.
@@ -741,8 +795,10 @@ ${mensagens.length ? transcricaoWhats(mensagens, 30) : 'Nenhuma: é a primeira m
 FATOS CONFERIDOS QUE PODEM ENTRAR (nenhum outro)
 ${verificacao.length ? verificacao.map((v) => `- "${v.frase}" · ${v.fonte}`).join('\n') : 'Nenhum.'}
 
-A MENSAGEM (passo ${candidata.passo}${candidata.angulo ? `, ângulo "${candidata.angulo}"` : ''})
-${candidata.texto}
+A MENSAGEM (passo ${candidata.passo}${candidata.angulo ? `, ângulo "${candidata.angulo}"` : ''}${candidata.formato ? `, formato ${candidata.formato}` : ''})
+${candidata.texto}${candidata.formato === 'curiosidade' ? `
+Mantenha o formato curiosidade: SEM se apresentar e SEM oferta; problema real + prejuízo que o dono não vê + pergunta sobre
+o negócio dele (abordagem-e-prospeccao.md §11).` : ''}
 
 O QUE O CRÍTICO APONTOU
 ${(critica.problemas || []).map((p) => `- ${p}`).join('\n')}

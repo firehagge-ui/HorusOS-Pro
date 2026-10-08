@@ -68,6 +68,34 @@ Bioclin ficou com a nova, sem o pedido de horário. O que isso ensina:
 
 ## Correções do Marcelo
 
+- **05/10 · Land Car e Autobahn · "por que voltaríamos? Eles nem responderam".** A geladeira com data de voltar
+  veio do benchmark de cold e-mail B2B (`20-escrita.md` §10), não do network nem do Marcelo. Muda: quem nunca reagiu
+  ao corpo nem ao follow-up vai pra **perdido**; geladeira com data só pra quem mostrou interesse ("agora não", ou
+  respondeu bem e sumiu). Perdido só reabre com fato novo (caso Cavalcante, 05/10: começou a anunciar implante pra
+  paciente, que era o gatilho anotado).
+
+- **05/10 · LevSaúde · "ela poderia só dizer: Ah! Obrigada, vamos corrigir agora mesmo".** Se o problema da
+  mensagem se conserta sozinho em um minuto (link quebrado), o achado vira presente e a conversa acaba no
+  "obrigada". Muda: o fato que vai na mensagem é o que eles não resolvem sozinhos (domínio fora do ar, página que
+  não existe), e o pedido oferece algo concreto nosso (a demonstração), não a correção.
+  **06/10 · Cavalcante, mesma família:** "o anúncio leva pro perfil, não pro WhatsApp" a recepção só repassa pra
+  quem cuida dos anúncios, que troca o botão. Muda: o teste vale também pra terceiro ("alguém da equipe dela
+  resolve isso sozinho?"); se sim, o fato não segura a mensagem. Na Cavalcante, a página do implante também caiu
+  ("ela já tem site", 03/10) e a tese passou a ser o orçamento de implante decidido em casa (catálogo S2).
+
+- **05/10 · Bioclin · "facilmente respondida com um não precisamos de site".** O fato de ausência sozinho
+  (botão de site abre o Instagram, não há página do tratamento) deixa a resposta mais fácil ser a recusa.
+  Muda: o fato precisa vir preso a algo que ela quer e ainda não tem. Na Bioclin, o ângulo novo é a
+  mentoria (catálogo S6), não mais o site. Mesma família da Cavalcante (03/10): "site" não é dor pra
+  quem acha que o Instagram resolve.
+
+- **03/10 · Cavalcante · "ela já possui site".** Página de links (inforempresa, Linktree) é site aos olhos
+  da dona: abrir com "falta o site" ou "aparece sem site" soa como quem não olhou. Sem outra dor, o lead
+  vai pra geladeira em vez de ganhar uma terceira versão da mesma tese.
+- **03/10 · Cintya · "parecer cliente" quer dizer olhar de cliente, não fingir ser cliente.** "Vendo a
+  clínica com olho de cliente" baixa a guarda sem pretexto (e ela já sabia que não era agendamento). O
+  benefício do site sobre o Instagram entra pela experiência de quem está decidindo, não como argumento.
+
 - **29/09 · secretária: depende de quem o problema expõe.** Se é trabalho dela, pede o dono (mandar o
   corpo é mandar crítica a ela, e ela filtra); se não é culpa dela, dá as duas saídas ("falo com a
   responsável, ou te explico e você repassa?"). Corrige o que o teste cego tinha sugerido (mandar o corpo
