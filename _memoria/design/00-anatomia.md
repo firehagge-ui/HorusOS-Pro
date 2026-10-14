@@ -44,6 +44,13 @@ terracota, acolhedor" e a pergunta teria devolvido *"sim, eu faria isso pra
 qualquer psicóloga do Brasil"*. A correção saiu depois de quatro páginas prontas.
 Custava dez minutos antes.
 
+### A referência vale pra página inteira, não só pra capa
+
+Quando o Marcelo manda estudar referência (Awwwards, galeria, print), o que se tira dela é a lógica de cada seção:
+título, imagem, estrutura. Aplicar só na capa e deixar o resto da página como estava foi cobrado no esboço da
+Débora Reis (09/10/2026: "e o restante do site fez parecido com as referências também?"). Antes de entregar, cada
+seção tem que apontar de qual referência ou de qual fato do cliente ela veio.
+
 ### O elemento-assinatura
 
 Toda página tem direito a **uma** ousadia, e só uma. Todo o resto fica quieto e

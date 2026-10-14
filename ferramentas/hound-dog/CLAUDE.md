@@ -29,13 +29,20 @@ O que fica na pasta do cliente: briefing, marca, compliance, arquivos de entrega
   WhatsApp não entra. O Farejador só grava número que bate com uma ficha (`guardarMensagem`), a migração
   `013_so_conversa_de_cliente.sql` apaga o que estava solto, um gatilho apaga conversa que perde a ficha e o RLS
   só deixa o painel ler conversa ligada a ficha. Lead novo que escreve primeiro só aparece depois de virar ficha.
+- **Mensagem que não abre (09/10/2026, caso Débora Reis):** quando o WhatsApp entrega uma mensagem que o Farejador
+  não consegue decifrar (stub `CIPHERTEXT`), ela entra como `tipo = 'indecifrada'`, sem texto, com atividade "veja no
+  celular" e sem acionar o Claude; se o WhatsApp reenviar aberta (mesmo `wa_id`), o texto entra no lugar. Antes sumia
+  em silêncio. As chaves usam `makeCacheableSignalKeyStore`, o `getMessage` devolve as nossas mensagens pra reenvio e
+  o erro da biblioteca vai pra `farejador/logs/baileys.log` (o logger era `silent`).
 - **Disparo de prospecção (24/09/2026):** só sai o que o Marcelo aprovou, texto exato, na tela
   Disparos (`app/js/telas/disparos.js`). O Claude cria o rascunho com `hd_preparar_disparo`
   (tabela `disparos`, `supabase/006_disparos.sql`), sempre com a tabela de verificação. Quem
   envia é o Farejador (`farejador/disparos.mjs`): 10 por dia, 4 a 7 min aleatórios, avisa o
   Marcelo no WhatsApp a cada envio, para o lote no primeiro erro, marca follow-up em 4 dias.
   Resposta a lead que respondeu é do humano.
-- **Preço não se manda por mensagem.** Objeção de preço vira convite para conversa ao vivo.
+- **Preço não se manda por mensagem.** Objeção de preço vira convite para conversa ao vivo. **Exceção aprovada pelo
+  Marcelo em 09/10/2026 (proposta P3 da pesquisa):** a "quanto custa?" de site responde-se com a faixa da Fase 1
+  (R$ 1.200 a R$ 2.000, depende de quantas páginas) e dois horários; o valor fechado continua só na conversa ao vivo.
 - Benchmark de network é **referência**, nunca meta nem promessa ao cliente.
 
 ## Arquitetura (o mínimo para não quebrar nada)
@@ -87,9 +94,16 @@ o Marcelo aprova no Disparos → o Farejador envia. O Conselho só roda quando o
   marcado). A trava existe no painel (`telas/disparos.js`) e no Farejador (`farejador/disparos.mjs`).
 - **Variantes e agendamento (28 e 29/09/2026):** cada passo tem até três abordagens (`disparos.variante` A/B/C +
   `angulo`, migração `009_variantes.sql`); aprovar uma descarta as outras do mesmo passo. O passo 1 tem A (abertura
-  em dois passos) e B (variação simples, uma mensagem só). **A tela Disparos cuida só do passo 1** e agenda o lote
-  pra um horário (o Farejador manda quando `agendado_para` vence; o PC precisa estar ligado); o limite de 10 vale por
-  dia de envio. **O passo 2 fica na ficha (aba Geral) e na conversa do lead** (`telas/conversas.js`, "Mensagens
+  em dois passos) e B (variação simples, uma mensagem só). **A tela Disparos (reorganizada em 10/10/2026, pedido do
+  Marcelo) mostra tudo por dia:** "Responderam: mande agora" no topo (corpo pronto de lead que acabou de responder, com
+  "Enviar agora"), **Agendadas** (linha larga: quem, objetivo e mensagem, contexto, dia e hora, "Tirar da agenda"), e
+  dois painéis lado a lado no modelo das imagens dele: **Follow-ups programados** (follow-up e retomada) e **Prontas
+  para sair** (aberturas, com os fatos verificados), cada linha com Aprovar e Rejeitar e o painel com Aprovar todas e
+  Rejeitar todas. Aprovar com `sugerido_para` agenda pra essa hora; sem data, vai pra "Aprovadas sem horário". Depois,
+  "De prontidão" (corpo do passo 2 esperando a resposta) e o histórico recolhido. **Desde 10/10 dá pra aprovar daqui
+  também mensagem de lead com agente** (pedido do Marcelo); a Mesa segue sendo a tela da conversa e do raciocínio do
+  agente, e as duas telas mexem na mesma linha com trava de status, então nada sai duas vezes. O Farejador manda quando `agendado_para` vence (o PC precisa estar ligado); o limite de 10 vale por
+  dia de envio. **O passo 2 também fica na ficha (aba Geral) e na conversa do lead** (`telas/conversas.js`, "Mensagens
   preparadas"), e usar uma ali marca como enviada e descarta as outras. As mensagens moram só na aba Geral; o
   Briefing fica com a pesquisa. O Copiloto da Geral mostra a variação simples com "Assina Marcelo/Antônio".
 - Link wa.me sem o nono dígito **não é erro** (Bioclin, 25/09); o número gravado nunca é alterado.
@@ -175,6 +189,11 @@ Veio do benchmarking de repositórios de cold outreach (`_memoria/prospeccao/91-
   nos dois arquivos.
 - **Migração 010:** `disparos.texto_original` (gatilho guarda o texto do Claude na primeira edição) e `disparos.revisao`.
 - **Variação no lote:** a investigação recebe as mensagens dos últimos 14 dias de outros leads e não pode repetir o esqueleto.
+- **`node scripts/placar.mjs` (08/10/2026):** placar das abordagens de prospecção: contatos, respostas, reuniões
+  marcadas e feitas, clientes, por etiqueta `abordagem:<id>` da ficha. Plano em `_memoria/prospeccao/40-testes.md`.
+- **`scripts/conversa-auto/` (09/10/2026):** `enviar.mjs` manda balões pela fila do Farejador (mesmo caminho do botão
+  Enviar) e `vigiar.mjs` acorda o Claude quando o lead escreve (uma consulta por minuto ao banco, sem gastar token).
+  Só por pedido do Marcelo, só no lead nomeado (exceção registrada no `CLAUDE.md` da raiz).
 - **`node scripts/aprender.mjs [dias]`:** edições do Marcelo, variante escolhida, respostas humanas e o que o revisor
   mais acusou. A leitura vira linha em `_memoria/prospeccao/aprendizados.md`.
 

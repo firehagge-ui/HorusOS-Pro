@@ -379,3 +379,63 @@ print real); se a geração falhar, o post sai tipográfico e não atrasa.
 | **Aprendizados** | Experimentos em andamento e o que ele concluiu, com o número que sustenta cada conclusão |
 
 Botão **Falar com o Mídia** no topo, igual ao "Falar sobre este lead".
+
+---
+
+## 8. Pauta por tendência, com aprovação da ideia antes do post (08/10/2026)
+
+**Pedido do Marcelo:** antes de montar qualquer post, mostrar as ideias para ele aprovar. Os temas
+saem de pesquisa do que está em alta no nicho, com potencial de viralizar, na linha das
+referências de 07/10 (`identidade/social/referencias/2026-10-07-essencia.md`). Ele não gostou de
+tema de Google; aprovou os dois posts de 08/10 mesmo assim.
+
+### 8.1 Como o opensquad faz de verdade (lido no código, commit 454d73a, 10/04/2026)
+
+Não existe detector de tendência. O que existe é um pipeline de 13 passos com 6 paradas humanas:
+
+1. O usuário dá **tema + período** ("IA para empreendedores", "últimas 24 horas").
+2. A pesquisadora faz **3 buscas ou mais** com ângulos diferentes (notícia, estudo com dado,
+   lançamento), junta 10 a 15 candidatos e dá a cada um um `viral_potential_score` de 1 a 10:
+   **surpresa** (0 a 3), **relevância para o público** (0 a 3), **acionável** (0 a 2),
+   **atualidade** (0 a 2). Entrega 5 a 7, com fonte, URL conferida, data, `why_interesting` e o
+   `key_data` (o número que vira gancho). Nota honesta: mediana é 5 ou 6.
+3. **Parada:** o usuário escolhe a notícia ("busca mais" se nenhuma servir).
+4. O redator lê a fonte inteira, lista os fatos, acha a **tensão central** e escreve **5 ângulos**
+   da mesma notícia: Revelador, Comparativo, Pergunta Incômoda, Tendência + Oportunidade,
+   Passo a Passo, cada um com o gancho do slide 1, a estrutura e o risco.
+5. **Parada:** o usuário escolhe o ângulo. Depois vêm texto, visual e imagens, cada um com parada.
+
+Fora isso, o "Sherlock" estuda perfis de referência pelo navegador logado, mas só ao **criar** um
+squad, não a cada post. Não há Google Trends, não há leitura de métrica, não há memória do que
+deu certo. A "viralidade" é a nota que o modelo dá à notícia.
+
+### 8.2 O que muda no nosso processo
+
+Duas paradas em vez de seis: **aprovar a ideia** e **aprovar o post pronto**.
+
+1. **Radar (segunda de manhã).** Seis fontes:
+   - notícia da semana sobre o que o dono usa: WhatsApp, Instagram, Google/Maps, IA, Pix, consumo;
+   - estudo com dado brasileiro recente (Sebrae, Opinion Box, Octadesk, Google/Ipsos), com a
+     fonte original conferida;
+   - ferramenta grátis que o dono abre hoje (o tipo de post do Social Blade da referência);
+   - o que bombou nos perfis de referência na semana (lido pelo `/embed/`, sem login);
+   - as perguntas reais da Caixa (comentários e DMs) e das conversas de lead no Hounder, sem
+     nome, só o padrão;
+   - datas do calendário que mexem com comércio (Black Friday, Natal).
+2. **Nota.** A do opensquad (surpresa 3, relevância 3, acionável 2, atualidade 2) mais três travas
+   que reprovam sozinhas: **público errado** (serve a marqueteiro, não ao dono; ver perfil §2),
+   **sem fonte conferível**, **tema repetido** da semana anterior.
+3. **Pauta.** 5 a 7 ideias, cada uma com: gancho do slide 1, formato (print de tweet, antes/depois
+   de fala ou um dos sete), fonte com data e confiança, por que pode viralizar, risco. As 3
+   melhores marcadas como recomendadas. Vai para o Marcelo **antes** de qualquer slide.
+4. **Aprovação da ideia.** Ele aprova, troca ou pede "busca mais".
+5. **Produção** só das aprovadas: copy, render, ilustração do ChatGPT quando o Chrome estiver
+   aberto. O post entra em `revisao` e espera a segunda aprovação.
+
+### 8.3 Onde fica
+
+- Fase 1 (agora, manual): a pauta é feita no Claude Code e salva em
+  `marketing/conteudo/midia/pautas/<segunda>.md`, com tarefa no Hounder para aprovar.
+- Fase 2 (a construir): job `midia_pauta` no Farejador gravando as ideias numa tabela
+  `social_pautas`; aba Semana do Hounder com Aprovar/Trocar por ideia; a sessão de segunda passa
+  a escrever só as aprovadas. A rotina `semana` continua desligada até isso existir.

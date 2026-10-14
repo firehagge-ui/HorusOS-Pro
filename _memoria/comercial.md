@@ -228,6 +228,15 @@ reunião. Régua:
   distante e para manter volume.
 - **Não é reunião:** mandar proposta em grupo e esperar. É a *ausência* de fechamento.
 
+## Mostrar antes de vender: as demos (Marcelo, 13/10/2026)
+
+**Princípio:** não vender só o que a Hórus faz, mas mostrar o que o negócio do cliente pode se tornar.
+Depois que o lead mostra interesse, a casa monta demos personalizadas (protótipo de site, ferramenta
+interativa, documento) e mostra antes da próxima etapa da negociação. Amostra com limite de tempo, privada
+(fora do Google), mostrada de preferência ao vivo. Dado que o cliente ainda não deu pode entrar como
+**simulação marcada** na demo; o que não entra nem simulado: depoimento, prêmio, número de resultado e foto
+falsa do trabalho do cliente (`integridade.md`). Primeiro caso: Débora Reis, "sala de ideias".
+
 ---
 
 ## Antes da reunião: a abordagem (prospecção)

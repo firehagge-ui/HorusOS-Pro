@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Quanto custa e o cliente sumiu</title>
+<!--
+  Formato "antes/depois de fala" (_memoria/conteudo/00-formatos.md §9). Roteiro aprovado com as
+  correções do Marcelo em 10/10/2026 (marketing/conteudo/midia/2026-10-12/roteiros.md).
+  Lava-jato e doceria são EXEMPLOS escritos pela Horus, marcados como tal.
+-->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=JetBrains+Mono:wght@500;600;700&family=Noto+Color+Emoji&display=swap');
+:root {
+  --void: #0e0918; --painel: #1b1728; --osso: #d1cece; --osso-2: #a7a1b3; --branco: #ffffff;
+  --azul: #0077ff; --azul-claro: #4a9bff;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #444; font-family: 'DM Sans', 'Noto Color Emoji', system-ui, sans-serif; }
+.e { font-family: 'Noto Color Emoji'; font-weight: 400; }
+.slide {
+  width: 1080px; height: 1440px; position: relative; overflow: hidden; margin-bottom: 40px;
+  background: radial-gradient(620px 520px at 92% 6%, rgba(0,119,255,.20), transparent 70%), var(--void);
+  color: var(--osso); display: flex; flex-direction: column; padding: 112px 96px 84px;
+}
+.cont { display: flex; align-items: center; gap: 26px; font-family: 'JetBrains Mono', monospace; font-weight: 700;
+  font-size: 28px; letter-spacing: .22em; color: var(--azul-claro); }
+.cont::after { content: ''; flex: 1; height: 2px; background: linear-gradient(90deg, rgba(0,119,255,.55), rgba(0,119,255,.08)); }
+h1 { margin-top: 44px; font-size: 88px; font-weight: 700; line-height: 1.05; letter-spacing: -.028em; color: var(--branco); text-wrap: balance; }
+h2 { margin-top: 40px; font-size: 70px; font-weight: 700; line-height: 1.08; letter-spacing: -.025em; color: var(--branco); text-wrap: balance; }
+em { font-style: normal; color: var(--azul-claro); }
+p { font-size: 38px; font-weight: 500; line-height: 1.45; margin-top: 32px; }
+p b { color: var(--branco); font-weight: 700; }
+.rot { margin-top: 52px; font-size: 28px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--osso-2); display: flex; align-items: center; gap: 16px; }
+.rot .x { color: #ff5c5c; font-size: 34px; } .rot .v { color: var(--azul-claro); font-size: 34px; }
+.ruim { margin-top: 22px; background: var(--painel); border: 1.5px solid rgba(255,255,255,.07); border-radius: 22px;
+  padding: 38px 48px; font-size: 38px; font-weight: 500; line-height: 1.42; color: var(--osso-2); }
+.bom { margin-top: 22px; position: relative; background: rgba(0,119,255,.13); border: 1.5px solid rgba(74,155,255,.55);
+  border-radius: 22px; padding: 40px 48px; font-size: 38px; font-weight: 500; line-height: 1.42; color: var(--branco); }
+.bom .ex { position: absolute; top: -18px; right: 30px; font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase; background: var(--azul); color: #fff; padding: 6px 16px; border-radius: 8px; }
+.veredito { margin-top: 40px; text-align: center; font-size: 50px; font-weight: 800; letter-spacing: .03em; color: var(--azul-claro); }
+.setas { margin-top: 44px; list-style: none; }
+.setas li { font-size: 42px; font-weight: 500; line-height: 1.32; padding-left: 64px; position: relative; color: var(--osso); }
+.setas li + li { margin-top: 30px; }
+.setas li::before { content: '→'; position: absolute; left: 0; top: -2px; color: var(--azul-claro); font-weight: 700; }
+.setas b { color: var(--branco); font-weight: 700; }
+.fonte { margin-top: 30px; font-size: 26px; font-weight: 500; color: #8a8496; }
+.miolo { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.rodape { margin-top: auto; padding-top: 34px; border-top: 1.5px solid rgba(255,255,255,.10); display: flex; align-items: center; gap: 24px; }
+.avatar { width: 92px; height: 92px; border-radius: 50%; background: var(--void); border: 2px solid rgba(255,255,255,.16); display: grid; place-items: center; }
+.avatar img { width: 66px; }
+.rodape .nome { font-size: 34px; font-weight: 700; color: var(--branco); line-height: 1.1; }
+.rodape .arroba { font-size: 28px; font-weight: 500; color: var(--azul-claro); }
+/* capa */
+.capa { padding-top: 0; }
+.capa .ilus { margin: 0 -96px; height: 690px; background: url('img/capa.jpg') center 40% / cover no-repeat; position: relative; }
+.capa .ilus::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, var(--void) 100%); }
+.capa .cont { margin-top: 18px; }
+
+.rotulo { display: flex; align-items: center; gap: 18px; font-family: 'JetBrains Mono', monospace; font-weight: 600;
+  font-size: 26px; letter-spacing: .2em; text-transform: uppercase; color: rgba(226,232,240,.75); }
+.rotulo i { width: 14px; height: 14px; border-radius: 3px; background: var(--azul); flex-shrink: 0; }
+.bom { font-size: 40px; }
+.hp { background: rgba(0,119,255,.42); box-shadow: 0 0 0 5px rgba(0,119,255,.42); color: #fff; font-weight: 700; border-radius: 4px; }
+.hi { color: #e4dcff; border-bottom: 4px dotted #b69cff; }
+.hq { color: #fff; font-weight: 700; border-bottom: 4px solid var(--azul-claro); }
+.legenda { margin-top: 26px; display: flex; gap: 16px; flex-wrap: wrap; font-size: 26px; font-weight: 600; }
+.legenda span { padding: 8px 18px; border-radius: 999px; background: rgba(255,255,255,.06); color: var(--osso); }
+.legenda .lp { box-shadow: inset 0 0 0 2px rgba(0,119,255,.7); }
+.legenda .li { box-shadow: inset 0 0 0 2px #b69cff; }
+.legenda .lq { box-shadow: inset 0 0 0 2px var(--azul-claro); }
+.impacto { background: linear-gradient(141deg, #077ac7, #6b21ef); color: #fff; }
+.impacto .rotulo { color: rgba(255,255,255,.85); } .impacto .rotulo i { background: #fff; }
+.impacto .antes { font-size: 44px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,.88); }
+.impacto .forte { margin-top: 36px; font-size: 100px; font-weight: 800; line-height: 1.02; letter-spacing: -.03em; text-wrap: balance; }
+.impacto .rodape { border-top-color: rgba(255,255,255,.25); }
+.impacto .rodape .arroba { color: #fff; }
+.impacto .avatar { border-color: rgba(255,255,255,.35); }
+.capa h1 { font-size: 84px; }
+</style>
+</head>
+<body>
+
+<!-- 1 · capa -->
+<section class="slide capa">
+  <div class="ilus"></div>
+  <h1>O cliente perguntou <em>"quanto custa?"</em> e sumiu?</h1>
+  <p>Talvez o problema não seja o seu preço, mas a forma como você respondeu.</p>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+<!-- 2 · por quê -->
+<section class="slide">
+  <div class="rotulo"><i></i>Preço no WhatsApp</div>
+  <div class="miolo">
+    <h2>Preço sozinho vira <em>comparação</em></h2>
+    <p>Quando só chega o número, a pessoa só tem número pra comparar.</p>
+    <p><b>E sempre tem alguém mais barato a dois quarteirões.</b></p>
+  </div>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+<!-- 3 · exemplo 1 -->
+<section class="slide">
+  <div class="rotulo"><i></i>Preço no WhatsApp</div>
+  <div class="miolo">
+    <h2>Em vez do número seco</h2>
+    <div class="rot"><span class="x">✕</span> Em vez de</div>
+    <div class="ruim">“R$ 180.”</div>
+    <div class="rot"><span class="v">✓</span> Responda assim</div>
+    <div class="bom"><span class="ex">exemplo</span>“<span class="hp">Sai R$ 180</span>: <span class="hi">por dentro e por fora, com aspiração e cera</span>. <span class="hq">Pra qual dia você quer?</span>”</div>
+    <div class="legenda"><span class="lp">o preço</span><span class="li">o que inclui</span><span class="lq">a pergunta</span></div>
+  </div>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+<!-- 4 · exemplo 2 -->
+<section class="slide">
+  <div class="rotulo"><i></i>Preço no WhatsApp</div>
+  <div class="miolo">
+    <h2>Em vez de <em>"depende"</em></h2>
+    <div class="rot"><span class="x">✕</span> Em vez de</div>
+    <div class="ruim">“Depende. Me fala mais que eu te passo.”</div>
+    <div class="rot"><span class="v">✓</span> Responda assim</div>
+    <div class="bom"><span class="ex">exemplo</span>“<span class="hi">Bolo de 20 fatias</span>: <span class="hp">de R$ 120 a R$ 180</span>, conforme o recheio. <span class="hq">Pra quantas pessoas é a festa?</span>”</div>
+    <div class="legenda"><span class="lp">o preço</span><span class="li">o que inclui</span><span class="lq">a pergunta</span></div>
+  </div>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+<!-- 5 · o que têm em comum -->
+<section class="slide">
+  <div class="rotulo"><i></i>Preço no WhatsApp</div>
+  <div class="miolo">
+    <h2>O que as duas boas <em>têm em comum</em></h2>
+    <ul class="setas">
+      <li>O preço vem logo, <b>sem esconder</b></li>
+      <li>Junto vem <b>o que está incluso</b></li>
+      <li>Quando depende, vem <b>uma faixa</b>, nunca "depende" sozinho</li>
+      <li>Termina numa <b>pergunta fácil de responder</b></li>
+    </ul>
+  </div>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+<!-- 6 · opções -->
+<section class="slide">
+  <div class="rotulo"><i></i>Preço no WhatsApp</div>
+  <div class="miolo">
+    <h2>E quando o cliente pede <em>"os preços"</em>?</h2>
+    <div class="rot"><span class="x">✕</span> Em vez de</div>
+    <div class="ruim">Mandar a tabela inteira, com 30 itens.</div>
+    <p>Quando fizer sentido, <b>ofereça até três opções claras.</b> Facilite a escolha sem confundir o cliente.</p>
+  </div>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+<!-- 7 · impacto -->
+<section class="slide impacto">
+  <div class="rotulo"><i></i>Preço no WhatsApp</div>
+  <div class="miolo">
+    <div class="antes">Muita gente não some pelo preço.</div>
+    <div class="forte">Some porque a resposta não deixou nada pra ela responder.</div>
+  </div>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+<!-- 8 · conversa -->
+<section class="slide">
+  <div class="rotulo"><i></i>Preço no WhatsApp</div>
+  <div class="miolo">
+    <h2>Qual foi a pergunta de cliente que <em>mais te deixou sem resposta?</em></h2>
+    <p>Conta aqui nos comentários <span class="e">👇</span></p>
+    <p><b>E salva pra próxima vez que perguntarem quanto custa.</b></p>
+  </div>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+</body>
+</html>

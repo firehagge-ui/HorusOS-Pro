@@ -26,3 +26,5 @@ dele, observada), `PLANO.md` (passe duplo), `fotos/` (material baixado + `FONTES
 | Lead | Segmento | Aberto em | Estado |
 |---|---|---|---|
 | [Casa Verona](casa-verona/) | Espaço de eventos / mini wedding, Pituba | 23/09/2026 | **recusou em 24/09**; virou template em `templates/sites/espaco-eventos/` (sem fotos dela). Pasta com o material dela aguardando decisão do Marcelo (apagar ou guardar) |
+| [Débora Reis](debora-reis/) | Arquitetura de interiores, Barra | 09/10/2026 | conversando; esboço no ar (privado, fora do Google) em https://esboco-debora-reis.vercel.app; o porquê de cada parte em `JUSTIFICATIVA.md`. Link só depois que ela disser que quer ver |
+| [Spaço Saúde](spaco-saude/) | Odontologia, Graça (CFO) | 09/10/2026 | abertura agendada pra 10/10, 9h30; esboço de uma página começado (não publicado), dentro da régua do CFO |

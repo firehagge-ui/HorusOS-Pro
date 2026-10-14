@@ -126,7 +126,10 @@ o número, que é como ele acabou com três valores diferentes espalhados.
 | 28/07, depois da rodada de correção | 11 | 97 | — |
 | **10/08/2026, medido em auditoria** | **1** | **26** | **0** |
 
-Leitura da última linha (a que vale hoje):
+⚠️ **Sem medição nova desde 10/08/2026** (aviso do /atualizar de 14/10/2026). Os sites mudaram desde então; atualizar
+rodando `/verificar` em cada um, nunca estimando.
+
+Leitura da última linha (a que valia em 10/08):
 
 - **Aion = 1.** Sobrou o `transition: padding-left` em `assets/site.css`, a entrada
   `layout-transition` ainda aberta em `90-antipadroes.md`. Todo o resto da rodada de

@@ -255,6 +255,15 @@ A descrição de cada função da operação está em `equipe/`, com tipo de exe
   05/10/2026**. Proposta escolhida (01/10): **R$ 990/mês por 3 meses** como condição de primeiro case
   (com contrapartida) + verba de ~R$ 900 paga por eles direto à Meta. Risco: avaliações de 1★ de
   qualidade e agenda. Tudo em `clientes/paralela-film/` e no dossiê do Hounder.
+- **Leal Oral Clinic** (lead #10, ⚠️ **LEAD conversando, não é cliente fechado**) — odontologia estética, Caminho das
+  Árvores/Salvador, setor regulado (CFO). Indicação (é o dentista do Antônio). Quer IA que responda paciente no WhatsApp
+  de um jeito humano e perguntou de tráfego. Primeiro cliente do Icarus. A Clinicorp já é a agenda dele: integrar, nunca
+  vender CRM por cima. Tudo em `clientes/leal-oral-clinic/`. (Registrado pelo /atualizar em 14/10/2026, a partir do índice
+  do `CLAUDE.md` da raiz.)
+- **Sates Saúde** (lead #11, ⚠️ **LEAD, não é cliente fechado**) — odontologia domiciliar, Salvador, setor regulado (CFO).
+  Amigas de turma do Marcelo; abordagem em 06/10/2026 com a live na Band (08/10) como gancho; em 07 e 08/10 o Marcelo
+  montou o perfil do Google sem custo, como case. Oferta maior: piloto de 60 dias sem honorário, com contrapartida. Nada
+  se constrói antes do aceite. Tudo em `clientes/sates-saude/` (`playbook.md`). (Registrado pelo /atualizar em 14/10/2026.)
 
 ## Peças e produtos da própria Hórus
 

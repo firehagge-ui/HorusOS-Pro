@@ -29,8 +29,17 @@ do lead, como não repetir o lote, e o circuito de aprendizado.
 4. `voz-marcelo.md` — como o Marcelo escreve de verdade, tirado das mensagens que ele mandou.
 5. `aprendizados.md` — o que as respostas reais e as edições do Marcelo ensinaram. Lê inteiro:
    é curto de propósito.
-6. `segmentos/<nicho>.md` — o caderno do nicho do lead (clínicas, eventos, oficinas), desde 30/09. O que vale pra
+6. `30-ligacao.md` — se o primeiro contato for por telefone (desde 08/10, em teste): o roteiro de
+   ligação fria filtrado pela casa, a regra da prévia ("comecei a montar" só se existir) e o mapa de respostas.
+7. `40-testes.md` — o teste de canais aberto em 08/10: em que braço o lead está, as regras (corpo em até
+   1 hora, no máximo duas versões, todo toque no Hounder) e o ritual da sexta.
+   O plano de cada semana mora em `semana-AAAA-MM-DD.md` (o primeiro: `semana-2026-10-13.md`, com início, meio e fim).
+8. `segmentos/<nicho>.md` — o caderno do nicho do lead (clínicas, eventos, oficinas), desde 30/09. O que vale pra
    todos os leads daquele segmento: quem atende, onde vaza dinheiro, o que já deu errado, compliance, o que oferecer.
+
+**Consulta (não é leitura obrigatória):** `fontes/pesquisa-whatsapp-2026-10-09.md`, a pesquisa de evidência
+externa sobre prospecção fria por WhatsApp (cerca de 100 relatos de 2025 e 2026, Gong, Hunter, regras novas
+do WhatsApp), com força da evidência marcada. Abrir antes de propor mudança de método ou de abordagem.
 
 ## Antes de entregar
 
@@ -39,6 +48,8 @@ do lead, como não repetir o lote, e o circuito de aprendizado.
 - O revisor mecânico (`ferramentas/hound-dog/app/js/revisor.js`) roda sozinho no Disparos, no MCP
   e no Farejador. O que ele pega não precisa de julgamento; o resto da checklist precisa.
 - Skill `/revisar-mensagem` quando o Marcelo colar uma mensagem pra revisar.
+- Skill `/responder-lead` quando o lead responder: o Marcelo cola a resposta, a skill devolve o próximo
+  lance (mensagem, plano se ele disser sim, próximo lance previsto) e grava no Hounder (14/10/2026).
 
 ## O circuito de aprendizado
 

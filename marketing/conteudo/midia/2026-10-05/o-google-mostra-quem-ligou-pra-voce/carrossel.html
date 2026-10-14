@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>O Google mostra quem ligou pra você</title>
+<!--
+  Formato "print de tweet" (fio), direção nova de 07/10/2026:
+  identidade/social/referencias/2026-10-07-essencia.md. Assina o avatar da Horus.
+  Fonte de todos os fatos: Ajuda do Perfil da Empresa no Google,
+  support.google.com/business/answer/9918094 (lido em 08/10/2026).
+-->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=JetBrains+Mono:wght@500;600;700&family=Noto+Color+Emoji&display=swap');
+:root {
+  --tinta: #0f1419; --cinza: #536471; --fio: #cfd9de; --void: #0e0918;
+  --azul: #0077ff; --azul-tinta: #0057d9; --lavanda: #f2f0f6;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #444; font-family: 'DM Sans', 'Noto Color Emoji', system-ui, sans-serif; }
+.e { font-family: 'Noto Color Emoji'; font-weight: 400; }
+.slide {
+  width: 1080px; height: 1440px; position: relative; overflow: hidden; background: #fff;
+  display: flex; flex-direction: column; justify-content: center; padding: 0 72px; margin-bottom: 40px;
+}
+.slide.capa { justify-content: flex-start; padding-top: 150px; }
+.fio { width: 4px; height: 64px; margin: 0 0 18px 65px; background: var(--fio); border-radius: 2px; }
+.autor { display: flex; align-items: center; gap: 30px; }
+.avatar { width: 134px; height: 134px; border-radius: 50%; background: var(--void); display: grid; place-items: center; flex-shrink: 0; }
+.avatar img { width: 98px; }
+.nome { font-size: 48px; font-weight: 700; color: var(--tinta); letter-spacing: -.01em; line-height: 1.1; }
+.arroba { font-size: 42px; font-weight: 500; color: var(--cinza); line-height: 1.25; }
+.txt { margin-top: 56px; font-size: 57px; font-weight: 500; line-height: 1.3; color: var(--tinta); letter-spacing: -.012em; }
+.txt p + p { margin-top: 46px; }
+.txt b { font-weight: 700; }
+.lista { list-style: none; margin-top: 30px; }
+.lista li { position: relative; padding-left: 52px; }
+.lista li + li { margin-top: 10px; }
+.lista li::before { content: ''; position: absolute; left: 6px; top: 30px; width: 16px; height: 16px; border-radius: 50%; background: var(--azul); }
+.passos { list-style: none; counter-reset: p; margin-top: 34px; }
+.passos li { counter-increment: p; position: relative; padding-left: 78px; }
+.passos li + li { margin-top: 14px; }
+.passos li::before { content: counter(p); position: absolute; left: 0; top: 4px; width: 58px; height: 58px; border-radius: 50%;
+  background: var(--void); color: #fff; font-size: 34px; font-weight: 700; display: grid; place-items: center; }
+.card { margin-top: 54px; border-radius: 40px; overflow: hidden; border: 2px solid #e6e9ee; }
+.card img { display: block; width: 100%; }
+.fonte { margin-top: 44px; font-size: 27px; font-weight: 500; color: #6e767d; }
+/* cartão de exemplo: palavras de busca, desenhado em código */
+.buscas { background: var(--lavanda); padding: 54px 56px 60px; position: relative; }
+.buscas .rot { font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 600; letter-spacing: .16em; color: #5c5668; text-transform: uppercase; }
+.pilula { margin-top: 26px; background: #fff; border-radius: 999px; padding: 26px 36px; display: flex; align-items: center; gap: 24px;
+  font-size: 40px; font-weight: 500; color: var(--tinta); box-shadow: 0 2px 0 rgba(14,9,24,.06); }
+.pilula svg { width: 40px; height: 40px; flex-shrink: 0; }
+.alvo .pilula { margin-top: 40px; }
+.alvo { position: relative; }
+.card .circ { position: absolute; left: 100px; bottom: 2px; width: 430px; height: 34px; pointer-events: none; }
+.alvo .pilula { box-shadow: 0 0 0 4px var(--azul); }
+</style>
+</head>
+<body>
+
+<!-- 1 · capa -->
+<section class="slide capa">
+  <div class="autor"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+  <div class="txt">
+    <p><span class="e">👀</span> Sabia que o Google mostra, <b>de graça</b>, quantas pessoas ligaram pra sua empresa pela ficha do Google?</p>
+    <p>E quantas pediram a rota até a sua porta <span class="e">➡️</span></p>
+  </div>
+  <div class="card"><img src="img/capa.jpg" alt=""></div>
+</section>
+
+<!-- 2 · o que o painel mostra -->
+<section class="slide">
+  <div class="fio"></div>
+  <div class="autor"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+  <div class="txt">
+    <p>O painel se chama <b>Performance</b>. Ele mostra:</p>
+    <ul class="lista">
+      <li>quantas pessoas viram sua ficha na Pesquisa e no Maps</li>
+      <li>quantas tocaram em ligar</li>
+      <li>quantas pediram rota</li>
+      <li>quantas clicaram no seu site</li>
+      <li>quantas mandaram mensagem</li>
+    </ul>
+    <p>e TEM MAIS <span class="e">👉</span></p>
+  </div>
+  <div class="fonte">Fonte: Ajuda do Perfil da Empresa no Google</div>
+</section>
+
+<!-- 3 · as palavras de busca -->
+<section class="slide">
+  <div class="fio"></div>
+  <div class="autor"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+  <div class="txt">
+    <p>A melhor parte: ele mostra <b>as palavras que as pessoas digitaram</b> no Google pra chegar até você <span class="e">🔍</span></p>
+  </div>
+  <div class="card">
+    <div class="buscas">
+      <div class="rot">Exemplo · uma doceria</div>
+      <div class="alvo"><div class="pilula"><svg viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg>bolo de aniversário brotas</div><img class="circ" src="../../../../../identidade/social/elementos/sublinhado-onda.png" alt=""></div>
+      <div class="pilula"><svg viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg>doceria perto de mim</div>
+      <div class="pilula"><svg viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg>nome da doceria</div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · o que isso diz -->
+<section class="slide">
+  <div class="fio"></div>
+  <div class="autor"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+  <div class="txt">
+    <p>Se o que você <b>mais quer vender</b> não aparece nessa lista, a sua ficha não está falando a língua de quem procura.</p>
+    <p>É o sinal pra revisar categoria, serviços e descrição <span class="e">👀</span></p>
+  </div>
+</section>
+
+<!-- 5 · passo a passo -->
+<section class="slide">
+  <div class="fio"></div>
+  <div class="autor"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+  <div class="txt">
+    <p><span class="e">✅</span> PASSO A PASSO PRA ABRIR, NO CELULAR:</p>
+    <ol class="passos">
+      <li>abre o app Google Maps</li>
+      <li>toca em <b>Empresa</b>, no canto de baixo</li>
+      <li>ao lado de <b>Performance</b>, toca em <b>Ver mais</b></li>
+      <li>escolhe o período</li>
+      <li>pronto :)</li>
+    </ol>
+  </div>
+  <div class="fonte">Fonte: Ajuda do Perfil da Empresa no Google</div>
+</section>
+
+<!-- 6 · os detalhes -->
+<section class="slide">
+  <div class="fio"></div>
+  <div class="autor"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+  <div class="txt">
+    <p><span class="e">🚨</span> ANTES DE CORRER PRA OLHAR:</p>
+    <p>só aparece se a ficha for <b>verificada</b>, e logado na conta do Google que é dona dela.</p>
+    <p>As palavras de busca atualizam no começo de cada mês.</p>
+  </div>
+  <div class="fonte">Fonte: Ajuda do Perfil da Empresa no Google</div>
+</section>
+
+<!-- 7 · reflexão -->
+<section class="slide">
+  <div class="fio"></div>
+  <div class="autor"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+  <div class="txt">
+    <p>OU SEJA:</p>
+    <p>dá pra saber se a sua ficha está <b>trazendo cliente</b> ou só ocupando espaço no mapa.</p>
+    <p>Número que ninguém olha não ajuda ninguém.</p>
+  </div>
+</section>
+
+<!-- 8 · conversa -->
+<section class="slide">
+  <div class="fio"></div>
+  <div class="autor"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+  <div class="txt">
+    <p>Bora abrir uma conversa nos comentários:</p>
+    <p>você já tinha aberto esse painel? Se abriu, <b>qual palavra de busca te surpreendeu?</b> <span class="e">👇</span></p>
+  </div>
+</section>
+
+</body>
+</html>

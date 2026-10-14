@@ -7,7 +7,7 @@ import path from 'node:path';
 import fs from 'node:fs';
 import QR from 'qrcode';
 import pino from 'pino';
-import makeWASocket, { useMultiFileAuthState, DisconnectReason, fetchLatestBaileysVersion, Browsers, jidNormalizedUser, isJidGroup, isJidBroadcast, isJidStatusBroadcast, isJidNewsletter, isLidUser, getContentType, normalizeMessageContent } from 'baileys';
+import makeWASocket, { useMultiFileAuthState, makeCacheableSignalKeyStore, DisconnectReason, fetchLatestBaileysVersion, Browsers, jidNormalizedUser, isJidGroup, isJidBroadcast, isJidStatusBroadcast, isJidNewsletter, isLidUser, getContentType, normalizeMessageContent, WAMessageStubType } from 'baileys';
 import { RAIZ_HD } from '../lib/env.mjs';
 import { q, q1 } from '../lib/db.mjs';
 import { log, logErro } from './log.mjs';
@@ -33,9 +33,18 @@ export async function conectar({ aoMudar } = {}) {
   const { version } = await fetchLatestBaileysVersion().catch(() => ({ version: undefined }));
   wa.parando = false;
   wa.status = 'conectando'; wa.erro = null; avisar();
+  // 09/10/2026: as respostas da Débora Reis chegaram sem dar pra abrir (falha de criptografia) e sumiram
+  // sem rastro, porque o logger era 'silent'. Agora o erro da biblioteca vai pra logs/baileys.log, as
+  // chaves ficam em cache (recomendação do Baileys: evita disputa de arquivo e falha de abertura) e o
+  // getMessage devolve as nossas mensagens quando o outro lado pede reenvio.
+  const logger = pino({ level: 'error' }, pino.destination({ dest: path.join(RAIZ_HD, 'farejador', 'logs', 'baileys.log'), mkdir: true, sync: false }));
   const sock = makeWASocket({
-    version, auth: state, logger: pino({ level: 'silent' }), browser: Browsers.appropriate('Hound Dog'),
+    version, auth: { creds: state.creds, keys: makeCacheableSignalKeyStore(state.keys, logger) }, logger, browser: Browsers.appropriate('Hound Dog'),
     syncFullHistory: false, markOnlineOnConnect: false, generateHighQualityLinkPreview: false, printQRInTerminal: false,
+    getMessage: async (key) => {
+      const r = key?.id ? await q1("select texto from whatsapp_mensagens where wa_id = $1 and direcao = 'out'", [key.id]).catch(() => null) : null;
+      return r?.texto ? { conversation: r.texto } : undefined;
+    },
   });
   wa.sock = sock;
 
@@ -159,10 +168,18 @@ export async function guardarMensagem(m, doHistorico = false) {
   const key = m.key || {};
   const jidBruto = key.remoteJid || '';
   if (!jidBruto || isJidGroup(jidBruto) || isJidBroadcast(jidBruto) || isJidStatusBroadcast(jidBruto) || isJidNewsletter(jidBruto)) return false;
-  const { tipo, texto } = textoDaMensagem(m);
+  let { tipo, texto } = textoDaMensagem(m);
+  // Mensagem do lead que o Farejador não conseguiu abrir (falha de criptografia). Antes sumia em silêncio
+  // (Débora Reis, 09/10). Agora entra como "indecifrada": o Hounder sabe que o lead respondeu, avisa, e o
+  // texto entra no lugar quando o WhatsApp reenviar a mensagem já aberta (mesmo id).
+  const indecifrada = !tipo && !key.fromMe && m.messageStubType === WAMessageStubType.CIPHERTEXT;
+  if (indecifrada) {
+    tipo = 'indecifrada';
+    log('whatsapp', `mensagem de ${key.remoteJidAlt || jidBruto} chegou sem dar pra abrir (${m.messageStubParameters?.[0] || 'sem detalhe'})`);
+  }
   if (!tipo) return false; // protocolo, reação, recibo
   const telefone = await resolverTelefone(key.remoteJidAlt || jidBruto) || await resolverTelefone(jidBruto);
-  if (!telefone) return false;
+  if (!telefone) { if (!key.fromMe && !doHistorico) log('whatsapp', `mensagem recebida de ${jidBruto} descartada: não consegui resolver o número (LID sem mapeamento)`); return false; }
   const jid = `${telefone}@s.whatsapp.net`;
   const momento = new Date(Number(m.messageTimestamp || Date.now() / 1000) * 1000);
   if (doHistorico && momento < new Date(Date.now() - 45 * 86400000)) return false;
@@ -179,7 +196,7 @@ export async function guardarMensagem(m, doHistorico = false) {
       limit 1`, [telefone]).catch(() => null);
   // Só entra no banco conversa de quem é ficha do CRM (Marcelo, 30/09/2026): o Antônio também abre
   // o painel e a conversa pessoal não pode ficar ao alcance dele, nem escondida atrás de um filtro.
-  if (!empresa) return false;
+  if (!empresa) { if (!key.fromMe && !doHistorico) log('whatsapp', `mensagem recebida de ${telefone} descartada: nenhuma ficha com esse número`); return false; }
 
   // pushName numa mensagem QUE EU MANDEI é o meu próprio nome, não o do contato.
   // Sem esta trava, toda conversa iniciada por nós nascia chamada "Marcelo Hagge".
@@ -193,8 +210,17 @@ export async function guardarMensagem(m, doHistorico = false) {
   }
   if (empresa && !conversa.empresa_id) await q('update whatsapp_conversas set empresa_id = $2 where id = $1', [conversa.id, empresa.id]);
 
-  const existente = key.id ? await q1('select id from whatsapp_mensagens where wa_id = $1', [key.id]) : null;
-  if (existente) return false;
+  const existente = key.id ? await q1('select id, tipo from whatsapp_mensagens where wa_id = $1', [key.id]) : null;
+  if (existente) {
+    // Chegou aberta a mensagem que antes veio indecifrada: troca o aviso pelo texto real
+    if (existente.tipo === 'indecifrada' && !indecifrada) {
+      await q('update whatsapp_mensagens set tipo = $2, texto = $3 where id = $1', [existente.id, tipo, texto]);
+      await q("update whatsapp_conversas set ultima_mensagem = $2 where id = $1 and ultima_direcao = 'in'", [conversa.id, (texto || `[${tipo}]`).slice(0, 400)]).catch(() => {});
+      if (empresa) await q(`insert into atividades (empresa_id, tipo, titulo, descricao, autor) values ($1,'whatsapp','Mensagem que não abria agora pôde ser lida',$2,'whatsapp')`, [empresa.id, (texto || `[${tipo}]`).slice(0, 400)]).catch(() => {});
+      log('whatsapp', `mensagem indecifrada de ${telefone} agora foi lida`);
+    }
+    return false;
+  }
   await q(`insert into whatsapp_mensagens (conversa_id, wa_id, direcao, tipo, texto, status, momento, enviado_por)
            values ($1,$2,$3,$4,$5,$6,$7,$8) on conflict (wa_id) do nothing`,
   [conversa.id, key.id || null, direcao, tipo, texto, direcao === 'in' ? 'recebida' : 'enviada', momento.toISOString(), direcao === 'out' && !doHistorico ? 'celular' : null]);
@@ -202,8 +228,10 @@ export async function guardarMensagem(m, doHistorico = false) {
   if (!doHistorico) {
     await q(`update whatsapp_conversas set ultima_mensagem = $2, ultima_direcao = $3, ultima_em = $4, nome = coalesce(nome, $5),
              nao_lidas = case when $3 = 'in' then nao_lidas + 1 else 0 end where id = $1`,
-    [conversa.id, (texto || `[${tipo}]`).slice(0, 400), direcao, momento.toISOString(), nomeContato]);
-    if (empresa && direcao === 'in') {
+    [conversa.id, indecifrada ? '[mensagem que o Farejador não conseguiu abrir: veja no celular]' : (texto || `[${tipo}]`).slice(0, 400), direcao, momento.toISOString(), nomeContato]);
+    if (empresa && indecifrada) {
+      await q(`insert into atividades (empresa_id, tipo, titulo, descricao, autor) values ($1,'whatsapp','Respondeu no WhatsApp (o Farejador não conseguiu abrir: veja no celular)',null,'whatsapp')`, [empresa.id]).catch(() => {});
+    } else if (empresa && direcao === 'in') {
       // Resposta automática (boas-vindas, ausência, menu) não é o lead respondendo: registra, mas não muda o estágio (LevSaúde, 29/09)
       const robo = pareceRobo(texto);
       await q(`insert into atividades (empresa_id, tipo, titulo, descricao, autor) values ($1,'whatsapp',$2,$3,'whatsapp')`,

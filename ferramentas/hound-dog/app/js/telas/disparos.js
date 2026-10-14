@@ -5,7 +5,7 @@
    para no primeiro erro.
    ============================================================================= */
 import { sb, estado, ouvir, farejadorOnline, quem } from '../sb.js';
-import { $, $$, esc, toast, confirmar, erroAmigavel, botaoCarregando, telefoneBonito, relativo, dataHora, vazio, esqueleto, debounce } from '../ui.js';
+import { $, $$, esc, toast, confirmar, erroAmigavel, botaoCarregando, telefoneBonito, relativo, dataHora, vazio, esqueleto, debounce, iniciais, menu, modal } from '../ui.js';
 import { icone } from '../icones.js';
 import { revisar, pareceAutoResposta } from '../revisor.js';
 
@@ -29,15 +29,17 @@ const STATUS = { rascunho: ['cinza', 'Para aprovar'], aprovado: ['azul', 'Aprova
 
 export default async function disparos(v) {
   v.innerHTML = `
-    <div class="cab"><div class="tt"><h1>Disparos de prospecção</h1><p>A fila de envio: a primeira mensagem dos leads que ainda não têm agente, o que está agendado e o que já saiu. O Farejador envia pelo seu WhatsApp, no máximo ${LIMITE_DIA} por dia, com 4 a 7 minutos entre um e outro.</p></div>
+    <div class="cab"><div class="tt"><h1>Disparos de prospecção</h1><p>Tudo o que sai pelo seu WhatsApp, por dia. O Farejador envia no máximo ${LIMITE_DIA} por dia, com 4 a 7 minutos entre uma e outra. Dá pra aprovar daqui qualquer mensagem, inclusive de lead com agente; a Mesa continua sendo o lugar da conversa e do raciocínio dele.</p></div>
       <div class="acoes"><a class="btn" href="#/agentes">${icone('robo')}Mesa de agentes</a></div></div>
-    <div class="aviso azul mb-16">${icone('info')}<div><b>Lead com agente se decide na Mesa de agentes.</b> Aqui ele aparece só pra consulta, com o atalho pro cartão dele: aprovar, agendar, reagendar e responder ficam num lugar só, pra mesma mensagem nunca ter dois botões de aprovar.</div></div>
     <div data-aviso></div>
     <div data-corpo>${esqueleto(8, 26)}</div>`;
 
   let lista = [];
   let comAgente = new Map(); // empresa_id -> nome do especialista (lead com agente ativo: decide-se na Mesa)
   let entradas = new Map(); // empresa_id -> momento da última mensagem que o lead mandou
+  let conversaDe = new Map(); // empresa_id -> id da conversa do WhatsApp (atalho "Abrir a conversa")
+  const abertos = new Set(); // ids com a mensagem aberta pra editar
+  const editando = new Map(); // id -> texto que o Marcelo está digitando e ainda não salvou
   const hojeBahia = () => new Date().toLocaleDateString('en-CA', { timeZone: 'America/Bahia' });
   const diaBahia = (d) => new Date(d).toLocaleDateString('en-CA', { timeZone: 'America/Bahia' });
 
@@ -48,11 +50,13 @@ export default async function disparos(v) {
     lista = data || [];
     const [{ data: ags }, { data: esps }] = await Promise.all([sb.from('agentes').select('empresa_id,especialista_id').eq('status', 'ativo'), sb.from('especialistas').select('id,nome')]);
     comAgente = new Map((ags || []).map((a) => [a.empresa_id, (esps || []).find((e) => e.id === a.especialista_id)?.nome || 'o agente']));
-    // Quem tem passo 2 pendente: saber se o lead já respondeu no WhatsApp
-    const ids = [...new Set(lista.filter((d) => d.passo > 1 && ['rascunho', 'aprovado', 'agendado'].includes(d.status)).map((d) => d.empresa_id))];
+    // Lead com mensagem viva: saber se ele já respondeu no WhatsApp e ter o atalho pra conversa
+    const ids = [...new Set(lista.filter((d) => ['rascunho', 'aprovado', 'agendado'].includes(d.status)).map((d) => d.empresa_id))];
     entradas = new Map();
+    conversaDe = new Map();
     if (ids.length) {
       const { data: convs } = await sb.from('whatsapp_conversas').select('id,empresa_id').in('empresa_id', ids);
+      for (const c of convs || []) conversaDe.set(c.empresa_id, c.id);
       if (convs?.length) {
         const { data: msgs } = await sb.from('whatsapp_mensagens').select('conversa_id,momento,texto').in('conversa_id', convs.map((c) => c.id)).eq('direcao', 'in').order('momento', { ascending: false }).limit(500);
         // Resposta automática do WhatsApp Business não conta como resposta (29/09)
@@ -161,26 +165,11 @@ export default async function disparos(v) {
     </article>`;
   }
 
-  /* Follow-up: um cartão por cliente, com a data sugerida e "Programar" (30/09) */
-  function horaDoFollowup(d) {
+  /* Hora em que uma mensagem com data sugerida sai se for aprovada agora: a sugerida, ou daqui a 2 minutos se ela
+     já passou, empurrada pra dentro do horário comercial */
+  function horaDe(d) {
     const alvo = Math.max(d.sugerido_para ? new Date(d.sugerido_para).getTime() : 0, Date.now() + 2 * 60000);
     return naJanela(alvo) ? new Date(alvo) : proximaAbertura(alvo);
-  }
-  function cartaoFollowup(empresaId, opcoes) {
-    if (comAgente.has(empresaId)) return cartaoNaMesa(empresaId, opcoes);
-    const h = horaDoFollowup(opcoes[0]);
-    return `<article class="card mt-12 disparo" data-emp-card="${empresaId}">
-      <div class="card-cab"><div class="grow"><h3><a href="#" data-emp="${empresaId}">${esc(nomeEmp(empresaId))}</a></h3>
-        <div class="dim" style="font-size:12.5px">${icone('whatsapp')} ${esc(telefoneBonito(opcoes[0]?.telefone))} · sai ${h ? quando(h) : 'no próximo horário comercial'}</div></div>
-        <span class="selo violeta">follow-up</span><button class="btn xs fantasma" data-a="descartar-fup">${icone('x')}Não mandar</button></div>
-      ${opcoes.map((d) => `<div class="briefing-msg mt-12" data-id="${d.id}">
-          <b style="font-size:14px">Opção ${esc(d.variante || 'A')}${d.angulo ? ` · ${esc(d.angulo)}` : ''}</b>
-          <textarea class="txt mt-8" data-texto rows="3">${esc(d.texto)}</textarea>
-          ${blocoAgente(d)}
-          <div data-revisao>${blocoRevisao(d)}</div>
-          <div class="row mt-8"><button class="btn sm verde" data-a="programar">${icone('relogio')}Programar a opção ${esc(d.variante || 'A')}${h ? ` pra ${quando(h)}` : ''}</button></div>
-        </div>`).join('')}
-    </article>`;
   }
 
   /* Quantos já estão ocupados num dia (enviados + agendados), pro limite diário valer também no agendamento */
@@ -193,6 +182,17 @@ export default async function disparos(v) {
     const h = new Date(d).toLocaleTimeString('pt-BR', { timeZone: 'America/Bahia', hour: '2-digit', minute: '2-digit' });
     return diaBahia(d) === hojeBahia() ? `às ${h}` : `${new Date(d).toLocaleDateString('pt-BR', { timeZone: 'America/Bahia', day: '2-digit', month: '2-digit' })} às ${h}`;
   }
+  const soHora = (d) => new Date(d).toLocaleTimeString('pt-BR', { timeZone: 'America/Bahia', hour: '2-digit', minute: '2-digit' });
+  /* Cabeçalho do dia: "Hoje", "Amanhã" ou "Terça, 13/10" */
+  function nomeDoDia(dia) {
+    const amanha = new Date(Date.now() + 864e5).toLocaleDateString('en-CA', { timeZone: 'America/Bahia' });
+    const t = new Date(`${dia}T12:00:00-03:00`);
+    const dm = t.toLocaleDateString('pt-BR', { timeZone: 'America/Bahia', day: '2-digit', month: '2-digit' });
+    if (dia === hojeBahia()) return `Hoje, ${dm}`;
+    if (dia === amanha) return `Amanhã, ${dm}`;
+    const sem = t.toLocaleDateString('pt-BR', { timeZone: 'America/Bahia', weekday: 'long' }).replace('-feira', '');
+    return `${sem[0].toUpperCase()}${sem.slice(1)}, ${dm}`;
+  }
   /* Sugestão de horário: amanhã 8h30 se já passou das 18h, senão daqui a 1 hora (no formato do datetime-local) */
   function horarioSugerido() {
     const t = new Date();
@@ -201,70 +201,309 @@ export default async function disparos(v) {
     return `${t.getFullYear()}-${p(t.getMonth() + 1)}-${p(t.getDate())}T${p(t.getHours())}:${p(t.getMinutes())}`;
   }
 
-  function desenhar() {
-    // Esta tela cuida só da mensagem inicial (passo 1). O passo 2 fica na ficha e na conversa do lead (Marcelo, 29/09)
-    const ativos = lista.filter((d) => d.status !== 'cancelado' && (d.passo || 1) === 1 && d.tipo !== 'followup');
-    // Follow-up programado (30/09): o agente prepara quando o lead some há 3 dias, com a data do 4º dia
-    const fups = lista.filter((d) => d.tipo === 'followup' && d.status === 'rascunho');
-    const fupsPorCliente = [...new Set(fups.map((d) => d.empresa_id))].map((id) => [id, fups.filter((d) => d.empresa_id === id).sort((x, y) => String(x.variante || 'A').localeCompare(y.variante || 'A'))]);
-    const por = (s) => ativos.filter((d) => d.status === s);
-    const enviadosHoje = ativos.filter((d) => d.status === 'enviado' && diaBahia(d.enviado_em) === hojeBahia()).length;
-    const restam = Math.max(0, LIMITE_DIA - ocupadosNoDia(hojeBahia()));
-    const fila = lista.filter((d) => d.status === 'agendado' || d.status === 'enviando').sort((a, b) => new Date(a.agendado_para) - new Date(b.agendado_para));
-    const aprovadosTodos = por('aprovado');
-    const aprovados = aprovadosTodos;
-    // Cliente que já tem mensagem inicial agendada ou enviada não aparece pra escolher de novo
-    const jaSaiu = new Set(lista.filter((d) => (d.passo || 1) === 1 && ['agendado', 'enviando', 'enviado'].includes(d.status)).map((d) => d.empresa_id));
-    const porCliente = [...new Set(por('rascunho').map((d) => d.empresa_id))].filter((id) => !jaSaiu.has(id))
-      .map((id) => [id, por('rascunho').filter((d) => d.empresa_id === id).sort((x, y) => String(x.variante || 'A').localeCompare(y.variante || 'A'))]);
-    const futuro = fila.length && fila[0].status === 'agendado' && new Date(fila[0].agendado_para) - Date.now() > 10 * 60000;
-    const venceu = por('enviado').filter((d) => !d.respondeu && d.followup_em && new Date(d.followup_em) < new Date()).length;
+  const TIPO = { abertura: ['azul', 'Abertura'], corpo: ['laranja', 'Corpo'], resposta: ['verde', 'Retomada'], followup: ['violeta', 'Follow-up'] };
+  const tipoDe = (d) => d.tipo || ((d.passo || 1) > 1 ? 'corpo' : 'abertura');
+  const seloTipo = (d) => { const [c, r] = TIPO[tipoDe(d)]; return `<span class="selo ${c}">${r}</span>`; };
+  /* Mensagem com dia marcado: agendada (agendado_para) ou esperando aprovação com data sugerida (sugerido_para) */
+  const momentoDe = (d) => (['agendado', 'enviando'].includes(d.status) ? d.agendado_para : d.sugerido_para);
+  const emp = (id) => estado.empresas.find((e) => e.id === id) || {};
+  /* Avatar com as iniciais, numa cor fixa por lead */
+  function avatar(id) {
+    const nome = nomeEmp(id);
+    let h = 0; for (const c of id) h = (h * 31 + c.charCodeAt(0)) % 360;
+    return `<span class="avatar" style="background:hsl(${h} 70% 62%);color:#14110d">${esc(iniciais(nome))}</span>`;
+  }
+  /* "Ter, 13/10 · 10:00", vermelho se já passou, amarelo se é hoje */
+  function chipData(d) {
+    const t = momentoDe(d);
+    if (!t) return '';
+    const dia = diaBahia(t);
+    const sem = new Date(t).toLocaleDateString('pt-BR', { timeZone: 'America/Bahia', weekday: 'short' }).replace('.', '');
+    const dm = new Date(t).toLocaleDateString('pt-BR', { timeZone: 'America/Bahia', day: '2-digit', month: '2-digit' });
+    const cor = ['rascunho', 'aprovado'].includes(d.status) && new Date(t) < new Date() ? 'atrasada' : dia === hojeBahia() ? 'hoje' : '';
+    const muda = ['rascunho', 'aprovado', 'agendado'].includes(d.status);
+    const rot = `${sem[0].toUpperCase()}${sem.slice(1)}, ${dm} · ${soHora(t)}`;
+    return muda ? `<button class="dsp-data ${cor}" data-a="horario" title="Mudar o dia e a hora">${rot}${icone('editar')}</button>` : `<span class="dsp-data ${cor}">${rot}</span>`;
+  }
 
+  /* Mudar o dia e a hora: rascunho guarda como sugestão (o Aprovar usa ela), agendada muda o horário de saída */
+  async function mudarHorario(d) {
+    const t = await escolherHorario({ titulo: momentoDe(d) ? 'Mudar o dia e a hora' : 'Escolher o dia e a hora', subtitulo: nomeEmp(d.empresa_id), atual: momentoDe(d) });
+    if (!t) return;
+    const campos = d.status === 'agendado' ? { agendado_para: t.toISOString(), lote_id: crypto.randomUUID() } : { sugerido_para: t.toISOString() };
+    const { error } = await sb.from('disparos').update(campos).eq('id', d.id).eq('status', d.status);
+    if (error) toast(erroAmigavel(error), 'erro'); else toast(`${d.status === 'agendado' ? 'Agendada' : 'Marcada'} pra ${quando(t)}`, 'info');
+    return carregar();
+  }
+
+  /* Escolher dia e hora (o mesmo da Mesa de agentes): avisa fora da janela, no passado ou com o dia cheio */
+  function escolherHorario({ titulo, subtitulo, atual }) {
+    return new Promise((resolve) => {
+      let res = null;
+      const base = atual && new Date(atual) > new Date() ? new Date(atual) : (naJanela(Date.now() + 30 * 60000) ? new Date(Date.now() + 30 * 60000) : proximaAbertura(Date.now()));
+      const dia = diaBahia(base), hora = base.toLocaleTimeString('pt-BR', { timeZone: 'America/Bahia', hour: '2-digit', minute: '2-digit' });
+      const md = modal({ titulo, subtitulo, icone: 'agenda', corpo: `
+        <div class="row wrap gap-12"><label class="rotulo-campo">Dia<input class="inp" type="date" data-dia value="${dia}" min="${hojeBahia()}"></label>
+          <label class="rotulo-campo">Hora<input class="inp" type="time" data-hora value="${hora}" step="300"></label></div>
+        <p class="dim mt-12" style="font-size:12.5px" data-info></p>`,
+      pe: `<button class="btn" data-fechar>Cancelar</button><button class="btn prim" data-ok>${icone('agenda')}Salvar o horário</button>`, aoFechar: () => resolve(res) });
+      const info = () => {
+        const d = $('[data-dia]', md.el).value, h = $('[data-hora]', md.el).value;
+        const t = d && h ? new Date(`${d}T${h}:00-03:00`) : null;
+        const p = $('[data-info]', md.el);
+        if (!t) { p.textContent = ''; return null; }
+        const livres = LIMITE_DIA - ocupadosNoDia(d);
+        const erro = t < new Date() ? 'Esse horário já passou.' : !naJanela(t.getTime()) ? 'Fora da janela de envio (seg a sex 8h30 às 18h, sábado 9h às 12h).' : livres <= 0 ? `Esse dia já tem ${LIMITE_DIA} envios.` : '';
+        p.innerHTML = erro ? `<span style="color:#ff8a8a">${esc(erro)}</span>` : `Sai ${esc(quando(t))}. ${livres} vaga${livres === 1 ? '' : 's'} no dia (limite ${LIMITE_DIA}).`;
+        return erro ? null : t;
+      };
+      md.el.addEventListener('input', info); info();
+      $('[data-ok]', md.el).onclick = () => { const t = info(); if (!t) { toast('Escolha um dia e hora dentro da janela', 'erro'); return; } res = t; md.fechar(); };
+    });
+  }
+  /* Etiquetas da presença do lead (imagem do Marcelo, 10/10: "Site fraco", "Instagram") */
+  function etiquetas(e) {
+    const site = { sem: 'Sem site', ruim: 'Site fraco', fora_do_ar: 'Site fora do ar' }[e.site_status];
+    return [site ? `<span class="selo laranja mini">${site}</span>` : '', e.instagram ? '<span class="selo azul mini">Instagram</span>' : '',
+      e.regulado && e.conselho ? `<span class="selo cinza mini">${esc(String(e.conselho).split(/[ (,]/)[0])}</span>` : ''].join('');
+  }
+  const fatosComFalta = (d) => (Array.isArray(d.verificacao) ? d.verificacao : []).filter((x) => /FALTA/.test(`${x.como_conferiu || ''}${x.fonte || ''}`)).length;
+
+  function blocoVerificacao(d) {
+    const ver = Array.isArray(d.verificacao) ? d.verificacao : [];
+    if (!ver.length) return d.status === 'rascunho' ? `<div class="aviso vermelho mt-8">${icone('alerta')}<div>Sem tabela de verificação. Confira as frases antes de aprovar.</div></div>` : '';
+    const falta = fatosComFalta(d);
+    return `<details class="mt-8 dobra"><summary><span class="rotulo">Verificação · ${ver.length} fato${ver.length > 1 ? 's' : ''}${falta ? ` · ${falta} pra reconferir` : ''}</span></summary>
+      <div class="tabela-wrap mt-8"><table class="tabela"><thead><tr><th>Frase</th><th>Fonte</th><th>Como conferi</th></tr></thead><tbody>${ver.map((x) => `<tr><td>${esc(x.frase || '')}</td><td>${esc(x.fonte || '')}</td><td>${esc(x.como_conferiu || x.como || '')}</td></tr>`).join('')}</tbody></table></div></details>`;
+  }
+  /* Os fatos em lista curta (imagem do Marcelo: "Fatos verificados" com o check ao lado) */
+  function fatosCurtos(d) {
+    const ver = (Array.isArray(d.verificacao) ? d.verificacao : []).filter((x) => !/^Retomada/.test(x.frase || ''));
+    if (!ver.length) return '';
+    return `<div class="dsp-fatos"><small>Fatos verificados</small>${ver.slice(0, 3).map((x) => {
+      const falta = /FALTA/.test(`${x.como_conferiu || ''}${x.fonte || ''}`);
+      return `<div class="${falta ? 'falta' : 'ok'}" title="${esc(`${x.fonte || ''} · ${x.como_conferiu || ''}`)}">${icone(falta ? 'alerta' : 'check')}<span class="ellipsis">${esc(x.frase || '')}</span></div>`;
+    }).join('')}${ver.length > 3 ? `<small class="dim">+${ver.length - 3}</small>` : ''}</div>`;
+  }
+  /* O que se abre ao clicar na mensagem: texto editável, revisor e a tabela inteira */
+  function detalhe(d) {
+    const edita = ['rascunho', 'aprovado'].includes(d.status);
+    // O que está aberto e o que foi digitado sobrevivem ao redesenho da tela (10/10: a caixa fechava sozinha)
+    const texto = editando.get(d.id) ?? d.texto;
+    return `<div class="dsp-detalhe" ${abertos.has(d.id) ? '' : 'hidden'}>
+      ${edita ? `<textarea class="txt" data-texto rows="${texto.length > 160 ? 4 : 3}">${esc(texto)}</textarea>` : `<div class="msg-sugerida">${esc(d.texto)}</div>`}
+      ${edita ? `<div data-revisao>${blocoRevisao(d, texto)}</div>` : ''}${blocoVerificacao(d)}
+      ${edita ? `<div class="row mt-8 gap-6"><button class="btn xs" data-a="salvar-texto">${icone('check')}Salvar o texto</button><span class="dim" style="font-size:12px">O Aprovar também usa o texto daqui.</span></div>` : ''}
+    </div>`;
+  }
+  const botaoMais = (d) => `<button class="btn icone sm fantasma" data-a="mais" aria-label="Mais opções">${icone('pontos')}</button>`;
+
+  /* Linha larga (imagem 1 do Marcelo): quem é, o objetivo e a mensagem, o contexto, o estado e os botões */
+  function linhaLarga(d) {
+    const e = emp(d.empresa_id);
+    const agendada = ['agendado', 'enviando'].includes(d.status);
+    return `<div class="dsp-linha larga ${abertos.has(d.id) ? 'aberta' : ''}" data-id="${d.id}">
+      ${avatar(d.empresa_id)}
+      <div class="dsp-quem"><a href="#" data-emp="${d.empresa_id}" class="ellipsis"><b>${esc(nomeEmp(d.empresa_id))}</b></a>
+        <small>${esc(telefoneBonito(d.telefone))}</small><small class="ellipsis">${esc([e.bairro, e.cidade].filter(Boolean).join(', '))}</small>
+        <div class="row wrap gap-4 mt-4">${etiquetas(e)}</div></div>
+      <div class="dsp-obj"><small>${seloTipo(d)} ${esc(d.angulo || 'Mensagem')}</small>
+        <button class="dsp-msg" data-a="abrir"><span>${esc(d.texto)}</span>${icone('setab')}</button></div>
+      <div class="dsp-ctx"><small>Contexto</small><span>${esc((e.gancho || e.dor || '').slice(0, 110))}${(e.gancho || e.dor || '').length > 110 ? '…' : ''}</span>
+        ${chipData(d)}</div>
+      <div class="dsp-acoes">
+        <span class="selo ${agendada ? 'amarelo' : d.status === 'aprovado' ? 'azul' : 'laranja'}">${agendada ? (d.status === 'enviando' ? 'Enviando' : 'Agendada') : d.status === 'aprovado' ? 'Aprovada' : 'Para aprovar'}</span>
+        ${agendada ? `<button class="btn xs" data-a="horario">${icone('relogio')}Mudar horário</button><button class="btn xs fantasma" data-a="desagendar">${icone('x')}Tirar da agenda</button>` : `<button class="btn xs prim" data-a="aprovar-linha">${icone('enviar')}Aprovar</button>`}
+        ${botaoMais(d)}</div>
+      ${detalhe(d)}
+    </div>`;
+  }
+
+  /* Linha de painel (imagem 2 do Marcelo): compacta, com Aprovar e Rejeitar */
+  function linhaPainel(d, { fatos = false } = {}) {
+    const e = emp(d.empresa_id);
+    const sub = tipoDe(d) === 'abertura'
+      ? [e.categoria, e.cidade].filter(Boolean).map((x) => String(x).split(/[,(:]/)[0].trim()).join(' · ')
+      : e.ultimo_contato_em ? `Último contato ${relativo(e.ultimo_contato_em)}` : '';
+    const agente = comAgente.get(d.empresa_id);
+    const op = irmas(d).length ? `Opção ${esc(d.variante || 'A')}` : seloTipo(d);
+    return `<div class="dsp-linha ${abertos.has(d.id) ? 'aberta' : ''}" data-id="${d.id}">
+      ${avatar(d.empresa_id)}
+      <div class="dsp-meio">
+        <div class="row wrap gap-6"><a href="#" data-emp="${d.empresa_id}" class="ellipsis"><b>${esc(nomeEmp(d.empresa_id))}</b></a>${chipData(d)}</div>
+        <small class="dim ellipsis">${esc([sub, agente ? `agente: ${agente}` : ''].filter(Boolean).join(' · '))}</small>
+        <button class="dsp-msg mt-4" data-a="abrir"><b>${op}${d.angulo ? ` · ${esc(d.angulo)}` : ''}</b><span>${esc(d.texto)}</span>${icone('setab')}</button>
+        ${fatos ? fatosCurtos(d) : ''}
+      </div>
+      <div class="dsp-acoes col">
+        <button class="btn xs verde" data-a="aprovar-linha">${icone('check')}Aprovar</button>
+        <button class="btn xs perigo" data-a="rejeitar">${icone('x')}Rejeitar</button>
+        ${botaoMais(d)}</div>
+      ${detalhe(d)}
+    </div>`;
+  }
+
+  /* Painel com cabeçalho, contagem e as ações em lote */
+  function painel({ chave, icone: ic, titulo, sub, itens, linha, vazioTxt, lote = true }) {
+    const pendentes = itens.filter((d) => d.status === 'rascunho');
+    return `<section class="card dsp-painel" data-painel="${chave}">
+      <div class="dsp-cab"><span class="icone-caixa sm">${icone(ic)}</span>
+        <div class="grow" style="min-width:0"><h3>${titulo} <span class="dsp-conta">${itens.length}</span></h3><small class="dim">${sub}</small></div>
+        ${lote && pendentes.length > 1 ? `<button class="btn xs verde" data-lote-acao="aprovar" data-chave="${chave}">${icone('check')}Aprovar todas</button>
+          <button class="btn xs perigo" data-lote-acao="rejeitar" data-chave="${chave}">${icone('x')}Rejeitar todas</button>` : ''}</div>
+      ${itens.length ? itens.map(linha).join('') : `<p class="dim" style="font-size:13px;padding:8px 2px">${vazioTxt}</p>`}
+    </section>`;
+  }
+
+  /* Corpo que espera o lead responder e acendeu: ele respondeu, mande em até 1 hora (08/10) */
+  function cartaoProntidao(empresaId, opcoes) {
+    const conv = conversaDe.get(empresaId);
+    return `<section class="card dsp-painel destaque" data-emp-card="${empresaId}">
+      <div class="dsp-cab">${avatar(empresaId)}<div class="grow" style="min-width:0"><h3 class="ellipsis"><a href="#" data-emp="${empresaId}">${esc(nomeEmp(empresaId))}</a></h3>
+        <small class="dim">Respondeu ${entradas.get(empresaId) ? relativo(entradas.get(empresaId)) : ''}: mande em até 1 hora</small></div>
+        <span class="selo verde">Respondeu</span>${conv ? `<a class="btn xs" href="#/conversas/${conv}">${icone('conversa')}Conversa</a>` : ''}</div>
+      ${opcoes.map((d) => `<div class="briefing-msg mt-8" data-id="${d.id}">
+          <b style="font-size:13.5px">${opcoes.length > 1 ? `Opção ${esc(d.variante || 'A')}` : 'Mensagem'}${d.angulo ? ` · ${esc(d.angulo)}` : ''}</b>
+          <textarea class="txt mt-8" data-texto rows="4">${esc(d.texto)}</textarea><div data-revisao>${blocoRevisao(d)}</div>${blocoVerificacao(d)}
+          <div class="row mt-8"><button class="btn sm verde" data-a="enviar-agora">${icone('enviar')}Enviar agora</button></div></div>`).join('')}
+    </section>`;
+  }
+  /* Quem ainda não respondeu: uma linha, com a mensagem pronta escondida */
+  function linhaProntidao([empresaId, opcoes]) {
+    const p1 = lista.find((x) => x.empresa_id === empresaId && (x.passo || 1) === 1 && ['agendado', 'enviado', 'rascunho'].includes(x.status));
+    const situacao = !p1 ? '' : p1.status === 'enviado' ? `abertura enviada ${relativo(p1.enviado_em)}` : p1.status === 'agendado' ? `abertura agendada ${quando(p1.agendado_para)}` : 'abertura ainda pra aprovar';
+    return `<div class="dsp-linha" data-emp-card="${empresaId}">${avatar(empresaId)}
+      <div class="dsp-meio"><a href="#" data-emp="${empresaId}" class="ellipsis"><b>${esc(nomeEmp(empresaId))}</b></a><small class="dim">${esc(situacao)}</small>
+        <details class="mt-4 dobra"><summary><span class="rotulo">Ver ${opcoes.length > 1 ? `as ${opcoes.length} opções prontas` : 'a mensagem pronta'}</span></summary>
+          ${opcoes.map((d) => `<div class="msg-sugerida mt-8"><b>${opcoes.length > 1 ? `Opção ${esc(d.variante || 'A')}${d.angulo ? ` · ${esc(d.angulo)}` : ''}: ` : ''}</b>${esc(d.texto)}</div>`).join('')}</details></div>
+      <div class="dsp-acoes"><span class="selo cinza">De prontidão</span></div></div>`;
+  }
+  /* Histórico: uma linha por mensagem enviada, agrupada por dia, com o "Respondeu" à mão */
+  function linhaEnviada(d) {
+    return `<div class="item" data-id="${d.id}"><div class="grow" style="min-width:0">
+        <div class="tit"><a href="#" data-emp="${d.empresa_id}">${esc(nomeEmp(d.empresa_id))}</a> <span class="dim" style="font-weight:400;font-size:12.5px">${soHora(d.enviado_em)}</span></div>
+        <div class="sub ellipsis">${esc(d.texto || '')}</div></div>
+      ${seloTipo(d)}<label class="check nowrap"><input type="checkbox" data-a="respondeu" ${d.respondeu ? 'checked' : ''}> Respondeu</label></div>`;
+  }
+
+  /* Os grupos da tela (usados também pelo "Aprovar todas") */
+  function grupos() {
+    const vivos = lista.filter((d) => !['cancelado', 'enviado'].includes(d.status));
+    const porData = (a, b) => new Date(momentoDe(a) || a.criado_em) - new Date(momentoDe(b) || b.criado_em);
+    const agendadas = vivos.filter((d) => ['agendado', 'enviando'].includes(d.status)).sort(porData);
+    const pendentes = vivos.filter((d) => ['rascunho', 'aprovado'].includes(d.status));
+    // Retomada (follow-up e resposta a quem parou) x abertura (primeira mensagem)
+    const followups = pendentes.filter((d) => ['followup', 'resposta'].includes(tipoDe(d))).sort(porData);
+    const aberturas = pendentes.filter((d) => tipoDe(d) === 'abertura' && (d.sugerido_para || d.status === 'rascunho')).sort(porData);
+    const corpos = pendentes.filter((d) => tipoDe(d) === 'corpo' && !d.sugerido_para);
+    const corposComData = pendentes.filter((d) => tipoDe(d) === 'corpo' && d.sugerido_para).sort(porData);
+    const semHorario = pendentes.filter((d) => d.status === 'aprovado' && tipoDe(d) === 'abertura' && !d.sugerido_para);
+    return { vivos, agendadas, followups: [...followups, ...corposComData], aberturas: aberturas.filter((d) => !semHorario.includes(d)), corpos, semHorario };
+  }
+
+  function avisoWhats() {
     const wa = estado.farejador?.whatsapp_status === 'conectado' && farejadorOnline();
     $('[data-aviso]', v).innerHTML = wa ? '' : `<div class="aviso laranja mb-16">${icone('alerta')}<div><b>O WhatsApp não está conectado no Farejador.</b> Dá pra aprovar daqui, mas nada sai até ele ligar no seu PC.</div></div>`;
+  }
+
+  /* Redesenha guardando onde o Marcelo estava: a caixa com o cursor (10/10: a caixa fechava sozinha) */
+  function desenhar() {
+    const ativo = document.activeElement?.matches?.('[data-texto]') ? document.activeElement : null;
+    const foco = ativo && { id: ativo.closest('[data-id]')?.dataset.id, ini: ativo.selectionStart, fim: ativo.selectionEnd };
+    montar();
+    if (foco?.id) {
+      const ta = $(`[data-id="${foco.id}"] [data-texto]`, v);
+      if (ta) { ta.focus({ preventScroll: true }); ta.setSelectionRange(foco.ini, foco.fim); }
+    }
+  }
+
+  function montar() {
+    const g = grupos();
+    const hoje = hojeBahia();
+    const prontPorLead = [...new Set(g.corpos.map((d) => d.empresa_id))].map((id) => [id, g.corpos.filter((d) => d.empresa_id === id).sort((x, y) => String(x.variante || 'A').localeCompare(y.variante || 'A'))]);
+    const acesos = prontPorLead.filter(([, ops]) => ops.some((d) => !esperandoResposta(d)));
+    const quietos = prontPorLead.filter(([, ops]) => ops.every((d) => esperandoResposta(d)));
+    const erros = lista.filter((d) => d.status === 'erro');
+    const enviados = lista.filter((d) => d.status === 'enviado' && d.enviado_em).sort((a, b) => new Date(b.enviado_em) - new Date(a.enviado_em));
+    const enviadosHoje = enviados.filter((d) => diaBahia(d.enviado_em) === hoje).length;
+    const restam = Math.max(0, LIMITE_DIA - ocupadosNoDia(hoje));
+    const paraAprovar = [...g.followups, ...g.aberturas].filter((d) => d.status === 'rascunho').length;
+
+    avisoWhats();
+
+    const enviadosPorDia = new Map();
+    for (const d of enviados.slice(0, 120)) { const k = diaBahia(d.enviado_em); if (!enviadosPorDia.has(k)) enviadosPorDia.set(k, []); enviadosPorDia.get(k).push(d); }
 
     $('[data-corpo]', v).innerHTML = `
       <div class="kpis">
-        <div class="kpi"><div class="kl"><span class="ic">${icone('editar')}</span>Para aprovar</div><div class="kv">${por('rascunho').length}</div></div>
-        <div class="kpi azul"><div class="kl"><span class="ic">${icone('check')}</span>Aprovados</div><div class="kv">${aprovados.length}</div></div>
-        <div class="kpi verde"><div class="kl"><span class="ic">${icone('enviar')}</span>Enviados hoje</div><div class="kv">${enviadosHoje}/${LIMITE_DIA}</div></div>
-        <div class="kpi ${venceu ? 'vermelho' : ''}"><div class="kl"><span class="ic">${icone('relogio')}</span>Follow-up vencido</div><div class="kv">${venceu}</div></div>
+        <div class="kpi ${acesos.length ? 'verde' : ''}"><div class="kl"><span class="ic">${icone('conversa')}</span>Responderam</div><div class="kv">${acesos.length}</div></div>
+        <div class="kpi"><div class="kl"><span class="ic">${icone('editar')}</span>Para aprovar</div><div class="kv">${paraAprovar}</div></div>
+        <div class="kpi azul"><div class="kl"><span class="ic">${icone('relogio')}</span>Agendadas</div><div class="kv">${g.agendadas.length}</div></div>
+        <div class="kpi"><div class="kl"><span class="ic">${icone('enviar')}</span>Enviadas hoje</div><div class="kv">${enviadosHoje}/${LIMITE_DIA}</div></div>
       </div>
 
-      ${fila.length ? `<section class="card destaque mt-16"><div class="card-cab"><div class="icone-caixa sm amarelo">${icone('relogio')}</div><h3 class="grow">${futuro ? `Agendado · ${fila.length} mensage${fila.length > 1 ? 'ns saem' : 'm sai'} a partir de ${quando(fila[0].agendado_para)}` : `Lote em andamento · ${fila.length} na fila`}</h3>
-        <button class="btn sm perigo" data-parar>${icone('pausa')}${futuro ? 'Cancelar o agendamento' : 'Parar o lote'}</button></div>
-        ${futuro ? `<p class="dim" style="font-size:12.5px">Sai sozinho no horário, desde que o PC esteja ligado com o Farejador aberto e o WhatsApp conectado.</p>` : ''}
-        ${fila.map((d) => `<div class="item"><div class="grow"><div class="tit">${esc(nomeEmp(d.empresa_id))}</div><div class="sub">${d.status === 'enviando' ? 'enviando agora' : `sai ${quando(d.agendado_para)}`}</div></div>${d.tipo === 'followup' ? '<span class="selo violeta">follow-up</span>' : ''}${d.angulo ? `<span class="selo cinza">${esc(d.angulo)}</span>` : ''}</div>`).join('')}</section>` : ''}
+      ${acesos.length ? `<h2 class="mt-24 secao-tit">Responderam: mande agora · ${acesos.length}</h2>
+      <p class="dim" style="font-size:13px">O lead respondeu e a próxima mensagem já está pronta. A regra da casa é mandar em até 1 hora.</p>
+      ${acesos.map(([id, ops]) => cartaoProntidao(id, ops)).join('')}` : ''}
 
-      ${fupsPorCliente.length ? `<h2 class="mt-24 secao-tit">Follow-ups programados · ${fupsPorCliente.length}</h2>
-      <p class="dim" style="font-size:13px">Lead que não respondeu a nossa última mensagem. O agente preparou um follow-up só (regra da casa) com a data do 4º dia. Programar deixa ele na fila pra essa hora; nada sai sem você.</p>
-      ${fupsPorCliente.map(([id, ops]) => cartaoFollowup(id, ops)).join('')}` : ''}
+      <section class="card dsp-painel mt-16">
+        <div class="dsp-cab"><span class="icone-caixa sm amarelo">${icone('relogio')}</span>
+          <div class="grow" style="min-width:0"><h3>Agendadas <span class="dsp-conta">${g.agendadas.length}</span></h3>
+            <small class="dim">${g.agendadas.length ? `Saem sozinhas no horário, com o PC ligado, o Farejador aberto e o WhatsApp conectado. A próxima sai ${quando(g.agendadas[0].agendado_para)}.` : 'Nada agendado ainda. O que você aprovar abaixo entra aqui com dia e hora.'}</small></div>
+          ${g.agendadas.length ? `<button class="btn xs perigo" data-parar>${icone('pausa')}Cancelar todas</button>` : ''}</div>
+        ${g.agendadas.map(linhaLarga).join('')}
+      </section>
 
-      <h2 class="mt-24 secao-tit">Prontos pra sair${aprovados.length ? ` · ${aprovados.length}` : ''}</h2>
-      ${aprovados.length ? `<section class="card mt-12">
-        ${aprovados.map((d) => `<div class="item" data-id="${d.id}"><div class="grow" style="min-width:0"><div class="tit"><a href="#" data-emp="${d.empresa_id}">${esc(nomeEmp(d.empresa_id))}</a></div>
-          <div class="sub">Opção ${esc(d.variante || 'A')}${d.angulo ? ` · ${esc(d.angulo)}` : ''}</div><div class="msg-sugerida mt-8">${esc(d.texto)}</div></div>
-          <button class="btn xs fantasma" data-a="voltar">${icone('editar')}Trocar a opção</button></div>`).join('')}
-        <p class="dim mt-12" style="font-size:13px">No máximo ${LIMITE_DIA} por dia, com 4 a 7 minutos entre uma e outra. Se já houver mensagens agendadas no mesmo dia, estas entram na fila depois delas.${restam ? ` Hoje ainda cabem ${restam}.` : ' O limite de hoje já foi: agende pra outro dia.'}</p>
+      <div class="dsp-grade mt-16">
+        ${painel({ chave: 'followups', icone: 'atualizar', titulo: 'Follow-ups programados', sub: 'Leads que pararam ou pediram retorno.', itens: g.followups, linha: (d) => linhaPainel(d), vazioTxt: 'Nenhum follow-up esperando.' })}
+        ${painel({ chave: 'aberturas', icone: 'enviar', titulo: 'Prontas para sair', sub: 'Primeiras mensagens, com os fatos conferidos.', itens: g.aberturas, linha: (d) => linhaPainel(d, { fatos: true }), vazioTxt: 'Nenhuma abertura esperando.' })}
+      </div>
+
+      ${quietos.length ? `<section class="card dsp-painel mt-16">
+        <div class="dsp-cab"><span class="icone-caixa sm">${icone('conversa')}</span><div class="grow"><h3>De prontidão <span class="dsp-conta">${quietos.length}</span></h3>
+          <small class="dim">A segunda mensagem desses leads já está pronta e espera a resposta deles. Quando alguém responder, sobe pro topo em verde.</small></div></div>
+        ${quietos.map(linhaProntidao).join('')}</section>` : ''}
+
+      ${g.semHorario.length ? `<section class="card dsp-painel mt-16"><div class="dsp-cab"><span class="icone-caixa sm azul">${icone('check')}</span><div class="grow"><h3>Aprovadas sem horário <span class="dsp-conta">${g.semHorario.length}</span></h3>
+          <small class="dim">No máximo ${LIMITE_DIA} por dia.${restam ? ` Hoje ainda cabem ${restam}.` : ' O limite de hoje já foi: agende pra outro dia.'}</small></div></div>
+        ${g.semHorario.map((d) => `<div class="item" data-id="${d.id}"><div class="grow" style="min-width:0"><div class="tit"><a href="#" data-emp="${d.empresa_id}">${esc(nomeEmp(d.empresa_id))}</a></div><div class="msg-sugerida mt-8">${esc(d.texto)}</div></div>
+          <button class="btn xs fantasma" data-a="voltar">${icone('editar')}Voltar pra aprovar</button></div>`).join('')}
         <div class="row wrap mt-12 gap-6">
           <input class="inp" type="datetime-local" data-quando value="${horarioSugerido()}" style="max-width:220px" aria-label="Data e hora do envio">
-          <button class="btn prim" data-agendar>${icone('relogio')}Agendar ${aprovados.length > 1 ? `as ${aprovados.length}` : 'esta'}</button>
+          <button class="btn prim" data-agendar>${icone('relogio')}Agendar ${g.semHorario.length > 1 ? `as ${g.semHorario.length}` : 'esta'}</button>
           <span class="dim" style="font-size:13px">ou</span>
-          <button class="btn sm" data-lote ${restam ? '' : 'disabled'}>${icone('enviar')}Enviar agora</button>
-        </div></section>` : `<div class="card mt-12"><p class="dim">Nenhuma mensagem escolhida ainda. Escolha uma opção de cada cliente abaixo e ela aparece aqui pra agendar ou enviar.</p></div>`}
+          <button class="btn sm" data-lote ${restam ? '' : 'disabled'}>${icone('enviar')}Enviar agora</button></div></section>` : ''}
 
-      <h2 class="mt-24 secao-tit">Escolher a mensagem${porCliente.length ? ` · ${porCliente.length} cliente${porCliente.length > 1 ? 's' : ''}` : ''}</h2>
-      <p class="dim" style="font-size:13px">Um cartão por cliente com as opções da mensagem inicial. A que você escolher sobe pra "Prontos pra sair" e as outras somem. O passo 2 fica na ficha do lead e na conversa dele.</p>
-      ${porCliente.map(([id, ops]) => cartaoEscolha(id, ops)).join('') || `<div class="card mt-12">${vazio('editar', 'Nada pra escolher', 'Peça ao Claude: "prepara as mensagens dos qualificados". Elas aparecem aqui com a tabela de verificação.')}</div>`}
+      ${erros.length ? `<h2 class="mt-24 secao-tit">Com erro · ${erros.length}</h2>${erros.map((d) => cartao(d)).join('')}` : ''}
 
-      ${por('erro').length ? `<h2 class="mt-24 secao-tit">Com erro</h2>${por('erro').map((d) => cartao(d)).join('')}` : ''}
-      ${por('enviado').length ? `<h2 class="mt-24 secao-tit">Enviados</h2>${por('enviado').slice().reverse().map((d) => cartao(d)).join('')}` : ''}`;
+      ${enviados.length ? `<details class="mt-24 dobra"><summary><span class="secao-tit" style="font-size:18px">Histórico · ${enviados.length} enviada${enviados.length > 1 ? 's' : ''}</span></summary>
+        ${[...enviadosPorDia].map(([dia, its]) => `<h3 class="mt-16">${esc(nomeDoDia(dia))}</h3><section class="card mt-8">${its.map(linhaEnviada).join('')}</section>`).join('')}</details>` : ''}`;
+  }
+
+  /* Aprova uma mensagem: com data sugerida, agenda pra ela; sem data, vai pra "Aprovadas sem horário" */
+  async function aprovar(d, texto) {
+    const outras = lista.filter((x) => x.id !== d.id && x.empresa_id === d.empresa_id && (x.passo || 1) === (d.passo || 1) && x.status === 'rascunho').map((x) => x.id);
+    if (!d.sugerido_para) {
+      const { error } = await sb.from('disparos').update({ texto, status: 'aprovado', aprovado_por: quem(), aprovado_em: new Date().toISOString() }).eq('id', d.id).in('status', ['rascunho', 'aprovado']);
+      if (error) return erroAmigavel(error);
+    } else {
+      const h = horaDe(d);
+      if (!h) return 'Não achei horário comercial nos próximos dias';
+      if (LIMITE_DIA - ocupadosNoDia(diaBahia(h)) <= 0) return `O dia ${diaBahia(h).split('-').reverse().join('/')} já tem ${LIMITE_DIA} envios`;
+      const { error } = await sb.from('disparos').update({ texto, status: 'agendado', agendado_para: h.toISOString(), lote_id: crypto.randomUUID(), aprovado_por: quem(), aprovado_em: new Date().toISOString() })
+        .eq('id', d.id).in('status', ['rascunho', 'aprovado']);
+      if (error) return erroAmigavel(error);
+      d.status = 'agendado'; d.agendado_para = h.toISOString(); // pro limite do dia valer dentro do "Aprovar todas"
+    }
+    if (outras.length) await sb.from('disparos').update({ status: 'cancelado', erro: `Descartada: você aprovou a abordagem ${d.variante || 'A'}` }).in('id', outras);
+    return null;
   }
 
   // Revisor ao vivo: cada tecla no texto refaz o bloco de avisos daquele cartão
   v.addEventListener('input', debounce((ev) => {
     const ta = ev.target.closest?.('[data-texto]'); if (!ta) return;
     const card = ta.closest('[data-id]'); const d = card && lista.find((x) => x.id === card.dataset.id);
+    if (d) editando.set(d.id, ta.value);
     const alvo = card && $('[data-revisao]', card);
     if (d && alvo) alvo.innerHTML = blocoRevisao(d, ta.value);
   }, 250));
@@ -274,9 +513,13 @@ export default async function disparos(v) {
     if (emp) { ev.preventDefault(); (await import('../ficha.js')).abrirFicha(emp.dataset.emp); return; }
 
     if (ev.target.closest('[data-parar]')) {
-      if (!(await confirmar('Parar o lote?', 'O que ainda não saiu volta pra lista de aprovados.', { rotulo: 'Parar' }))) return;
-      const { error } = await sb.from('disparos').update({ status: 'aprovado', agendado_para: null }).eq('status', 'agendado');
-      if (error) toast(erroAmigavel(error), 'erro'); else toast('Lote parado');
+      if (!(await confirmar('Cancelar os agendamentos?', 'O que ainda não saiu volta pra "Para aprovar", no mesmo dia em que estava marcado.', { rotulo: 'Cancelar' }))) return;
+      // Uma por uma: cada mensagem guarda a hora em que estava marcada como sugestão
+      for (const d of lista.filter((x) => x.status === 'agendado')) {
+        const { error } = await sb.from('disparos').update({ status: 'rascunho', sugerido_para: d.agendado_para, agendado_para: null, lote_id: null, aprovado_por: null, aprovado_em: null }).eq('id', d.id).eq('status', 'agendado');
+        if (error) { toast(erroAmigavel(error), 'erro'); return carregar(); }
+      }
+      toast('Agendamentos cancelados');
       return carregar();
     }
 
@@ -318,6 +561,29 @@ export default async function disparos(v) {
       return carregar();
     }
 
+    // Aprovar todas / Rejeitar todas de um painel
+    const loteBtn = ev.target.closest('[data-lote-acao]');
+    if (loteBtn) {
+      const g = grupos();
+      const itens = (loteBtn.dataset.chave === 'followups' ? g.followups : g.aberturas).filter((x) => x.status === 'rascunho');
+      if (!itens.length) return;
+      const aprovar_ = loteBtn.dataset.loteAcao === 'aprovar';
+      const comVeto = itens.filter((x) => revisar(x.texto, { passo: x.passo || 1, tipo: x.tipo, empresa: nomeEmp(x.empresa_id) }).vetos);
+      const comFalta = itens.filter((x) => fatosComFalta(x));
+      const lista_ = itens.map((x) => `${nomeEmp(x.empresa_id)} (${x.sugerido_para ? quando(horaDe(x) || x.sugerido_para) : 'sem horário'})`).join(', ');
+      const avisos = aprovar_ ? [comVeto.length ? `Com veto do revisor: ${comVeto.map((x) => nomeEmp(x.empresa_id)).join(', ')}.` : '', comFalta.length ? `Com fato pra reconferir: ${comFalta.map((x) => nomeEmp(x.empresa_id)).join(', ')}.` : ''].filter(Boolean).join(' ') : '';
+      if (!(await confirmar(`${aprovar_ ? 'Aprovar' : 'Rejeitar'} ${itens.length} mensagens?`, `${lista_}.${avisos ? ` ${avisos}` : ''}${aprovar_ ? ' Cada uma entra na agenda no dia e na hora dela.' : ' Elas saem da tela.'}`, { rotulo: aprovar_ ? 'Aprovar todas' : 'Rejeitar todas' }))) return;
+      botaoCarregando(loteBtn, true, aprovar_ ? 'Aprovando…' : 'Rejeitando…');
+      if (aprovar_) {
+        for (const x of itens) { const erro = await aprovar(x, x.texto); if (erro) { toast(`${nomeEmp(x.empresa_id)}: ${erro}`, 'erro'); break; } }
+        toast('Aprovadas: estão na agenda', 'info');
+      } else {
+        await sb.from('disparos').update({ status: 'cancelado', erro: 'Rejeitada pelo Marcelo' }).in('id', itens.map((x) => x.id)).eq('status', 'rascunho');
+        toast('Rejeitadas');
+      }
+      return carregar();
+    }
+
     const b = ev.target.closest('[data-a]'); if (!b) return;
     if (b.dataset.a === 'descartar-lead') {
       const id = b.closest('[data-emp-card]').dataset.empCard;
@@ -325,25 +591,71 @@ export default async function disparos(v) {
       await sb.from('disparos').update({ status: 'cancelado', erro: 'Tirado do Disparos pelo Marcelo' }).eq('empresa_id', id).eq('passo', 1).eq('status', 'rascunho');
       toast('Lead tirado do Disparos'); return carregar();
     }
-    if (b.dataset.a === 'descartar-fup') {
-      const id = b.closest('[data-emp-card]').dataset.empCard;
-      if (!(await confirmar('Não mandar este follow-up?', `As opções de follow-up de ${nomeEmp(id)} são descartadas. O agente não prepara outro pra esta mesma mensagem.`, { rotulo: 'Não mandar' }))) return;
-      await sb.from('disparos').update({ status: 'cancelado', erro: 'Follow-up dispensado pelo Marcelo' }).eq('empresa_id', id).eq('tipo', 'followup').eq('status', 'rascunho');
-      toast('Follow-up dispensado'); return carregar();
-    }
-    const card = b.closest('[data-id]'); const d = lista.find((x) => x.id === card.dataset.id);
+    const card = b.closest('[data-id]'); const d = card && lista.find((x) => x.id === card.dataset.id);
+    if (!d) return;
     const a = b.dataset.a;
-    if (a === 'programar') {
+    const det = $('.dsp-detalhe', card);
+    // Clicar na mensagem abre o texto inteiro, editável, com o revisor e os fatos
+    if (a === 'abrir') { if (det) { det.hidden = !det.hidden; card.classList.toggle('aberta', !det.hidden); if (det.hidden) abertos.delete(d.id); else abertos.add(d.id); } return; }
+    // Mudar o dia e a hora: rascunho guarda como sugestão, agendada muda o horário de saída
+    if (a === 'horario') return mudarHorario(d);
+    if (a === 'salvar-texto') {
       const texto = $('[data-texto]', card).value.trim().replace(/\s*\n+\s*/g, ' ');
       if (!texto) { toast('Texto vazio', 'erro'); return; }
-      const h = horaDoFollowup(d);
+      const { error } = await sb.from('disparos').update({ texto }).eq('id', d.id);
+      if (error) toast(erroAmigavel(error), 'erro'); else { toast('Texto salvo'); editando.delete(d.id); }
+      return carregar();
+    }
+    if (a === 'aprovar-linha') {
+      const caixa = $('[data-texto]', card);
+      const texto = (caixa ? caixa.value : d.texto).trim().replace(/\s*\n+\s*/g, ' ');
+      if (!texto) { toast('Texto vazio', 'erro'); return; }
+      botaoCarregando(b, true, 'Aprovando…');
+      const erro = await aprovar(d, texto);
+      if (erro) { toast(erro, 'erro'); botaoCarregando(b, false); return; }
+      editando.delete(d.id); abertos.delete(d.id);
+      toast(d.sugerido_para ? `Aprovada: sai ${quando(d.agendado_para || horaDe(d))}` : 'Aprovada: escolha o horário em "Aprovadas sem horário"', 'info');
+      return carregar();
+    }
+    if (a === 'rejeitar') {
+      await sb.from('disparos').update({ status: 'cancelado', erro: 'Rejeitada pelo Marcelo' }).eq('id', d.id);
+      toast('Rejeitada'); return carregar();
+    }
+    if (a === 'mais') {
+      const conv = conversaDe.get(d.empresa_id);
+      menu(b, [
+        { rotulo: det?.hidden === false ? 'Fechar o texto' : 'Editar o texto', icone: 'editar', fn: () => { det.hidden = !det.hidden; card.classList.toggle('aberta', !det.hidden); if (!det.hidden) $('[data-texto]', card)?.focus(); } },
+        ...(['rascunho', 'aprovado', 'agendado'].includes(d.status) ? [{ rotulo: momentoDe(d) ? 'Mudar o dia e a hora' : 'Escolher o dia e a hora', icone: 'relogio', fn: () => mudarHorario(d) }] : []),
+        { rotulo: 'Ver a ficha', icone: 'predio', fn: async () => (await import('../ficha.js')).abrirFicha(d.empresa_id) },
+        ...(conv ? [{ rotulo: 'Abrir a conversa', icone: 'conversa', fn: () => { location.hash = `#/conversas/${conv}`; } }] : []),
+        ...(comAgente.has(d.empresa_id) ? [{ rotulo: 'Ver na Mesa de agentes', icone: 'robo', fn: () => { location.hash = `#/agentes?lead=${d.empresa_id}&revisar=1`; } }] : []),
+        ...(d.status === 'agendado' ? [{ rotulo: 'Tirar da agenda', icone: 'relogio', fn: () => $('[data-a="desagendar"]', card)?.click() }] : []),
+        ...(['rascunho', 'aprovado'].includes(d.status) ? ['-', { rotulo: 'Rejeitar', icone: 'x', perigo: true, fn: async () => { await sb.from('disparos').update({ status: 'cancelado', erro: 'Rejeitada pelo Marcelo' }).eq('id', d.id); toast('Rejeitada'); carregar(); } }] : []),
+      ]);
+      return;
+    }
+    // Aprovar e agendar pra hora sugerida (agenda), ou enviar já (corpo de quem acabou de responder)
+    if (a === 'agendar-um' || a === 'enviar-agora') {
+      const caixa = $('[data-texto]', card);
+      const texto = (caixa ? caixa.value : d.texto).trim().replace(/\s*\n+\s*/g, ' ');
+      if (!texto) { toast('Texto vazio', 'erro'); return; }
+      const h = a === 'enviar-agora' ? new Date(Date.now() + 20000) : horaDe(d);
       if (!h) { toast('Não achei horário comercial nos próximos dias', 'erro'); return; }
-      if (LIMITE_DIA - ocupadosNoDia(diaBahia(h)) <= 0) { toast(`O dia ${diaBahia(h).split('-').reverse().join('/')} já tem ${LIMITE_DIA} envios. Mande pela conversa ou programe outro dia.`, 'erro'); return; }
-      const { error } = await sb.from('disparos').update({ texto, status: 'agendado', agendado_para: h.toISOString(), lote_id: crypto.randomUUID(), aprovado_por: quem(), aprovado_em: new Date().toISOString() }).eq('id', d.id).eq('status', 'rascunho');
+      if (LIMITE_DIA - ocupadosNoDia(diaBahia(h)) <= 0) { toast(`O dia ${diaBahia(h).split('-').reverse().join('/')} já tem ${LIMITE_DIA} envios. Mande pela conversa ou escolha outro dia.`, 'erro'); return; }
+      const { error } = await sb.from('disparos').update({ texto, status: 'agendado', agendado_para: h.toISOString(), lote_id: crypto.randomUUID(), aprovado_por: quem(), aprovado_em: new Date().toISOString() })
+        .eq('id', d.id).in('status', ['rascunho', 'aprovado']);
       if (error) { toast(erroAmigavel(error), 'erro'); return; }
-      const outras = lista.filter((x) => x.id !== d.id && x.empresa_id === d.empresa_id && x.tipo === 'followup' && x.status === 'rascunho').map((x) => x.id);
+      // Só uma opção por passo sai: as outras do mesmo lead e do mesmo passo são descartadas
+      const outras = lista.filter((x) => x.id !== d.id && x.empresa_id === d.empresa_id && (x.passo || 1) === (d.passo || 1) && x.status === 'rascunho').map((x) => x.id);
       if (outras.length) await sb.from('disparos').update({ status: 'cancelado', erro: `Descartada: você aprovou a abordagem ${d.variante || 'A'}` }).in('id', outras);
-      toast(`Follow-up programado: sai ${quando(h)}`, 'info');
+      toast(a === 'enviar-agora' ? (naJanela(h) ? 'Na fila: sai em instantes' : 'Fora do horário comercial: sai quando abrir a janela') : `Agendada: sai ${quando(h)}`, 'info');
+      return carregar();
+    }
+    // Volta pra "Para aprovar" no mesmo dia em que estava marcada
+    if (a === 'desagendar') {
+      const { error } = await sb.from('disparos').update({ status: 'rascunho', sugerido_para: d.agendado_para, agendado_para: null, lote_id: null, aprovado_por: null, aprovado_em: null })
+        .eq('id', d.id).eq('status', 'agendado');
+      if (error) toast(erroAmigavel(error), 'erro'); else toast('Tirada da agenda: voltou pra aprovar');
       return carregar();
     }
     if (a === 'aprovar') {
@@ -369,6 +681,6 @@ export default async function disparos(v) {
   });
 
   await carregar();
-  const tiras = [ouvir('disparos', debounce(carregar, 400)), ouvir('farejador_status', debounce(desenhar, 800))];
+  const tiras = [ouvir('disparos', debounce(carregar, 400)), ouvir('farejador_status', debounce(avisoWhats, 800))];
   return () => tiras.forEach((f) => f());
 }

@@ -116,13 +116,20 @@ abrir o editor.
 **Referência que o Marcelo mandar (link, print, Pinterest, galeria) é material de estudo:**
 passar cada uma pela `/estudar-site` (aceita imagem colada) antes do HTML. **Print NUMERADO
 é especificação, não inspiração** — seguir estrutura, proporção e comportamento à risca. O
-que se reaproveita é a **estrutura e o raciocínio**, não a aparência.
+que se reaproveita é a **estrutura e o raciocínio**, não a aparência. Se a referência foi feita em IA (mockup do
+ChatGPT), a estrutura é especificação, mas **dado, foto e fala passam pela integridade**: registro profissional, número,
+foto do lugar ou do produto e frase na boca do profissional vêm do cliente ou viram `[FALTA]` (caso Spaço Saúde, 14/10/2026).
+
+**Site ou esboço montado vai pra Vercel no fim, com o link na resposta**, sem esperar pedido (Marcelo, 14/10/2026). Mandar
+o link pro lead continua sendo decisão dele. E antes de deixar um `[FALTA]` na página, procurar o dado no Hounder e nas
+fontes do próprio cliente (ficha do Google, site antigo, Instagram).
 
 Antes de **entregar**, rodar checklist, varredura de antipadrões e o detector:
 ```
-node .claude/skills/impeccable/scripts/detect.mjs "clientes/<nome>/site"
+npx --yes impeccable@4.0.4 detect "clientes/<nome>/site"
 ```
-(sem a skill no clone: `npx --yes impeccable@4.0.4 detect "clientes/<nome>/site"`). Saída
+(o `node .claude/skills/impeccable/scripts/detect.mjs` local já deu "limpo" num arquivo sabidamente ruim em 09/09 e
+14/10: só usar depois de validar contra um arquivo ruim; ver `90-antipadroes.md`). Saída
 `0` limpo, `2` achou coisa. Regra de acessibilidade se corrige, não se dispensa (dispensa
 exige `--reason` em `.impeccable/config.json`). Se o comando não rodar, o item é **não
 verificado**, nunca ok.
@@ -141,7 +148,8 @@ Número de benchmark nunca vira promessa; o dado real de cada campanha substitui
 
 Antes de escrever abordagem ou resposta a objeção, ler `_conhecimento/network/abordagem-e-prospeccao.md`
 (§8 a §10) e `cold-message-processo.md`, e a pasta `_memoria/prospeccao/` (sinais, escrita, exemplos só do
-Marcelo, aprendizados; desde 29/09). Antes de mostrar, `_memoria/prospeccao/99-checklist.md` ou `/revisar-mensagem`. Em resumo: o problema é do Google, não do dono; a
+Marcelo, aprendizados; desde 29/09). Evidência externa (pesquisa de 09/10/2026) em
+`_memoria/prospeccao/fontes/`, pra consulta antes de mudar o método. Antes de mostrar, `_memoria/prospeccao/99-checklist.md` ou `/revisar-mensagem`. Em resumo: o problema é do Google, não do dono; a
 pergunta pede licença pra dar, nunca pede que ele se explique; aceitar o "obrigado"; perguntas de
 volume e ticket só na reunião. Todo fato da mensagem precisa ter sido visto, e **posição na busca
 só com a busca feita pelo Marcelo no dia**. Lead do Spark passa pela triagem de 5 minutos antes de
@@ -193,8 +201,9 @@ referência, e site de marca paga por tipo). `kit-montar` não substitui a `/cri
 
 ## Geração de mídia (imagem e vídeo)
 
-- **O Horus OS não gera imagem sozinho.** Imagem = ChatGPT, manual, feita pelo Marcelo; ele
-  gera e traz o arquivo, o Horus OS monta em volta. Não há API de imagem conectada.
+- **Imagem = ChatGPT.** Posts da Hórus: o Claude gera pelo Chrome do Marcelo (perfil social §8).
+  Clientes: o Marcelo gera e traz, ou o Claude gera pelo Chrome com o ok dele. Não há API de
+  imagem conectada. (Marcelo, 10/10/2026)
 - Para animação/3D, o caminho é **WebGL/canvas/SVG na mão**.
 - ⚠️ **IA nunca no objeto que o cliente vende** (carro/dyno de oficina, rosto de profissional
   de saúde) — destrói credibilidade. IA só em elemento abstrato (fundo, textura). Em cliente
@@ -207,7 +216,8 @@ referência, e site de marca paga por tipo). `kit-montar` não substitui a `/cri
 MCP em `.mcp.json` (fora do git — chave só local). Busca, scrape, crawl, extração
 estruturada, parsing e monitoramento. Útil para `seo`, `analisar-dados`, `relatorio-ads`,
 `responder-avaliacoes` e para auditar concorrente/anúncio. Pergunta pontual, a busca nativa
-resolve sem gastar crédito.
+resolve sem gastar crédito. ⚠️ **Créditos esgotados em 14/10/2026** (erro 402 em busca e leitura de página): enquanto não
+recarregar, o Playwright faz o trabalho (Awwwards, ficha do Google com fotos, horário e avaliações, site antigo do cliente).
 
 ## Fluxo com o Mega Brain (estratégia → produção)
 
@@ -247,7 +257,9 @@ mensagem, sem disparo em massa e sem bot respondendo sozinho. **Disparo de prosp
 nova de 24/09/2026):** o Claude pesquisa, confere cada frase por dois caminhos e prepara o
 rascunho (`hd_preparar_disparo`); o Marcelo aprova o texto exato na tela **Disparos**; o
 Farejador envia pelo WhatsApp conectado, no máximo 10 por dia, 4 a 7 min entre um e outro, e
-para o lote no primeiro erro. Resposta de lead continua sendo do humano. O **Farejador** (`ferramentas/hound-dog/farejador/`) roda no PC e liga
+para o lote no primeiro erro. Resposta de lead continua sendo do humano. **Exceção (09/10/2026):** conversa
+automática só quando o Marcelo pede, só no lead nomeado, com roteiro e regra estreita escritos na pasta dele (caso
+Débora Reis: o Claude manda sozinho só o que o Marcelo já aprovou; o resto vira aviso pra ele). O **Farejador** (`ferramentas/hound-dog/farejador/`) roda no PC e liga
 Claude+WhatsApp+Instagram ao painel; "Farejador offline" = ligar (`npm run farejador`).
 
 **Tarefas da Hórus (desde 27/09/2026):** o plano de negócio (`_gestao/plano-de-negocio.md`, v2)
@@ -342,8 +354,8 @@ produzir PARA um cliente, ler os dois; a marca das peças é a do cliente, não 
   R$ 2.000). 🔴 gancho verdadeiro ("vi vocês no Bon Odori"), nunca pretexto falsificável; nada
   de bot no número deles.
 - **#9 — Paralela Film** (película/insulfilm, estética e som automotivo, Av. Paralela/Salvador) —
-  LEAD, R1 remarcada para **segunda 05/10/2026** (horário a confirmar), com Daniel e Danilo (Danilo é
-  o sócio no CNPJ). Pediu **tráfego pago, não site**; primeiro cliente de tráfego da Hórus. Tudo em
+  LEAD, R1 que estava remarcada para segunda 05/10/2026 (histórico) `[FALTA: aconteceu? resultado não registrado no
+  Hounder em 09/10]`, com Daniel e Danilo (Danilo é o sócio no CNPJ). Pediu **tráfego pago, não site**; primeiro cliente de tráfego da Hórus. Tudo em
   `clientes/paralela-film/` (comece pelo `CLAUDE.md` de lá) e no dossiê do Hounder. 🔴 Avaliações de
   1★ de qualidade e agenda: processo de entrega antes de subir verba; anúncio só com película dentro
   da lei e sem percentual de calor sem ficha.
@@ -354,6 +366,7 @@ produzir PARA um cliente, ler os dois; a marca das peças é a do cliente, não 
   Clinicorp já é a agenda dele: integrar, nunca vender CRM por cima; IA não fala nada clínico nem preço de
   tratamento; homônimo `@lealconsultorios` não é ele.
 - **#11 — Sates Saúde** (odontologia domiciliar, Salvador · CFO) — LEAD, amigas de turma do Marcelo, abordagem
-  em 06/10/2026 com a live na Band (08/10) como gancho. Oferta: piloto de 60 dias sem honorário, com
-  contrapartida e cobrança combinada no dia 1. Tudo em `clientes/sates-saude/` (`playbook.md`). 🔴 Nada se
+  em 06/10/2026 com a live na Band (08/10) como gancho. Em 07 e 08/10 a Lua deu acesso ao perfil do Google e o
+  Marcelo montou o perfil sem custo, como case (descrição com RT e CRO, serviços, fotos com TCLE, post da live).
+  Oferta maior: piloto de 60 dias sem honorário, com contrapartida e cobrança combinada no dia 1. Tudo em `clientes/sates-saude/` (`playbook.md`). 🔴 Nada se
   constrói antes do aceite; parceria B2B sem comissão por paciente; quem compra é a família do paciente.

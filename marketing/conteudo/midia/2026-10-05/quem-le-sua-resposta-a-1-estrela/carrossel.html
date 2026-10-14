@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Quem lê sua resposta à 1 estrela</title>
+<!--
+  Formato "antes/depois de fala" (✗ / ✓ com a frase literal), direção nova de 07/10/2026:
+  identidade/social/referencias/2026-10-07-essencia.md. Assina o avatar da Horus.
+  Fontes: Ajuda do Perfil da Empresa no Google, "Gerenciar avaliações de clientes"
+  (support.google.com/business/answer/3474050) e "Dicas para receber mais avaliações"
+  (support.google.com/business/answer/3474122), lidas em 08/10/2026.
+  As respostas com nome (Carla, Rafael, Seu João, Ana) são EXEMPLOS escritos pela Horus, marcados como tal.
+-->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=JetBrains+Mono:wght@500;600;700&family=Noto+Color+Emoji&display=swap');
+:root {
+  --void: #0e0918; --painel: #1b1728; --osso: #d1cece; --osso-2: #a7a1b3; --branco: #ffffff;
+  --azul: #0077ff; --azul-claro: #4a9bff;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #444; font-family: 'DM Sans', 'Noto Color Emoji', system-ui, sans-serif; }
+.e { font-family: 'Noto Color Emoji'; font-weight: 400; }
+.slide {
+  width: 1080px; height: 1440px; position: relative; overflow: hidden; margin-bottom: 40px;
+  background: radial-gradient(620px 520px at 92% 6%, rgba(0,119,255,.20), transparent 70%), var(--void);
+  color: var(--osso); display: flex; flex-direction: column; padding: 112px 96px 84px;
+}
+.cont { display: flex; align-items: center; gap: 26px; font-family: 'JetBrains Mono', monospace; font-weight: 700;
+  font-size: 28px; letter-spacing: .22em; color: var(--azul-claro); }
+.cont::after { content: ''; flex: 1; height: 2px; background: linear-gradient(90deg, rgba(0,119,255,.55), rgba(0,119,255,.08)); }
+h1 { margin-top: 44px; font-size: 88px; font-weight: 700; line-height: 1.05; letter-spacing: -.028em; color: var(--branco); text-wrap: balance; }
+h2 { margin-top: 40px; font-size: 70px; font-weight: 700; line-height: 1.08; letter-spacing: -.025em; color: var(--branco); text-wrap: balance; }
+em { font-style: normal; color: var(--azul-claro); }
+p { font-size: 38px; font-weight: 500; line-height: 1.45; margin-top: 32px; }
+p b { color: var(--branco); font-weight: 700; }
+.rot { margin-top: 52px; font-size: 28px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--osso-2); display: flex; align-items: center; gap: 16px; }
+.rot .x { color: #ff5c5c; font-size: 34px; } .rot .v { color: var(--azul-claro); font-size: 34px; }
+.ruim { margin-top: 22px; background: var(--painel); border: 1.5px solid rgba(255,255,255,.07); border-radius: 22px;
+  padding: 38px 48px; font-size: 38px; font-weight: 500; line-height: 1.42; color: var(--osso-2); }
+.bom { margin-top: 22px; position: relative; background: rgba(0,119,255,.13); border: 1.5px solid rgba(74,155,255,.55);
+  border-radius: 22px; padding: 40px 48px; font-size: 38px; font-weight: 500; line-height: 1.42; color: var(--branco); }
+.bom .ex { position: absolute; top: -18px; right: 30px; font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase; background: var(--azul); color: #fff; padding: 6px 16px; border-radius: 8px; }
+.veredito { margin-top: 40px; text-align: center; font-size: 50px; font-weight: 800; letter-spacing: .03em; color: var(--azul-claro); }
+.setas { margin-top: 44px; list-style: none; }
+.setas li { font-size: 42px; font-weight: 500; line-height: 1.32; padding-left: 64px; position: relative; color: var(--osso); }
+.setas li + li { margin-top: 30px; }
+.setas li::before { content: '→'; position: absolute; left: 0; top: -2px; color: var(--azul-claro); font-weight: 700; }
+.setas b { color: var(--branco); font-weight: 700; }
+.fonte { margin-top: 30px; font-size: 26px; font-weight: 500; color: #8a8496; }
+.miolo { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.rodape { margin-top: auto; padding-top: 34px; border-top: 1.5px solid rgba(255,255,255,.10); display: flex; align-items: center; gap: 24px; }
+.avatar { width: 92px; height: 92px; border-radius: 50%; background: var(--void); border: 2px solid rgba(255,255,255,.16); display: grid; place-items: center; }
+.avatar img { width: 66px; }
+.rodape .nome { font-size: 34px; font-weight: 700; color: var(--branco); line-height: 1.1; }
+.rodape .arroba { font-size: 28px; font-weight: 500; color: var(--azul-claro); }
+/* capa */
+.estrelas { width: 100%; height: 470px; object-fit: cover; object-position: center 55%; border-radius: 28px; display: block; }
+.capa { padding-top: 0; }
+.capa .ilus { margin: 0 -96px; height: 690px; background: url('img/capa.jpg') center 40% / cover no-repeat; position: relative; }
+.capa .ilus::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, var(--void) 100%); }
+.capa .cont { margin-top: 18px; }
+</style>
+</head>
+<body>
+
+<!-- 1 · capa -->
+<section class="slide capa">
+  <div class="ilus"></div>
+  <div class="cont">01 / 08</div>
+  <h1>Recebeu 1 estrela no Google? Quem vai ler a sua resposta <em>não é quem reclamou.</em></h1>
+  <p>É o próximo cliente, escolhendo entre você e o vizinho.</p>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+<!-- 2 · a resposta é pública -->
+<section class="slide">
+  <div class="cont">02 / 08</div>
+  <div class="miolo">
+    <h2>A sua resposta é <em>pública</em></h2>
+    <p>Ela aparece embaixo da avaliação, em nome da empresa, pra qualquer pessoa que abrir a sua ficha.</p>
+    <p>Quem reclamou lê uma vez. <b>Quem ainda vai comprar lê antes de decidir.</b></p>
+    <div class="fonte">Fonte: Ajuda do Perfil da Empresa no Google</div>
+  </div>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+<!-- 3 · exemplo 1 -->
+<section class="slide">
+  <div class="cont">03 / 08</div>
+  <div class="miolo">
+    <h2>A resposta que parece <em>educada</em></h2>
+    <div class="rot"><span class="x">✕</span> Em vez de</div>
+    <div class="ruim">“Lamentamos o ocorrido. Entre em contato conosco para mais informações.”</div>
+    <div class="veredito">SOA COMO ROBÔ.</div>
+    <div class="rot"><span class="v">✓</span> Responda assim</div>
+    <div class="bom"><span class="ex">exemplo</span>“Oi, Carla. Você tem razão: sábado a espera passou de 40 minutos e ninguém te avisou. Já pusemos um aviso na porta. Me chama no WhatsApp que eu resolvo. Rafael, dono.”</div>
+  </div>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+<!-- 4 · exemplo 2 -->
+<section class="slide">
+  <div class="cont">04 / 08</div>
+  <div class="miolo">
+    <h2>E quando <em>a culpa não é sua?</em></h2>
+    <div class="rot"><span class="x">✕</span> Em vez de</div>
+    <div class="ruim">“Isso não aconteceu aqui. O senhor está enganado.”</div>
+    <div class="rot"><span class="v">✓</span> Responda assim</div>
+    <div class="bom"><span class="ex">exemplo</span>“Seu João, conferimos o dia 12 e não achamos esse atendimento no nosso registro. Pode ter sido em outra unidade? Me manda uma mensagem que a gente descobre junto. Ana, gerente.”</div>
+  </div>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+<!-- 5 · o que as boas têm -->
+<section class="slide">
+  <div class="cont">05 / 08</div>
+  <div class="miolo">
+    <h2>O que as duas boas <em>têm em comum</em></h2>
+    <ul class="setas">
+      <li>Chama pelo nome e cita <b>o que aconteceu</b></li>
+      <li>Admite o erro, <b>sem assumir o que não foi</b></li>
+      <li>Leva a conversa <b>pro privado</b></li>
+      <li>Assina com <b>um nome de gente</b></li>
+    </ul>
+    <div class="fonte">Baseado nas dicas da Ajuda do Perfil da Empresa no Google</div>
+  </div>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+<!-- 6 · o que nunca fazer -->
+<section class="slide">
+  <div class="cont">06 / 08</div>
+  <div class="miolo">
+    <h2>O que <em>nunca</em> fazer</h2>
+    <div class="rot"><span class="x">✕</span> Nunca</div>
+    <div class="ruim" style="color:var(--osso)">Oferecer desconto pra pessoa apagar a avaliação. Nem brinde em troca de avaliação boa.</div>
+    <p>O Google proíbe as duas coisas e trata como <b>engajamento falso</b>.</p>
+    <div class="fonte">Fonte: Ajuda do Perfil da Empresa no Google</div>
+  </div>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+<!-- 7 · reflexão -->
+<section class="slide">
+  <div class="cont">07 / 08</div>
+  <div class="miolo">
+    <img class="estrelas" src="img/capa.jpg" alt="">
+    <h2>A 1 estrela <em>não é o problema.</em></h2>
+    <p>O próprio Google diz que uma mistura de avaliações boas e ruins costuma parecer mais confiável.</p>
+    <p><b>O problema é o silêncio embaixo dela.</b></p>
+    <div class="fonte">Fonte: Ajuda do Perfil da Empresa no Google</div>
+  </div>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+<!-- 8 · conversa -->
+<section class="slide">
+  <div class="cont">08 / 08</div>
+  <div class="miolo">
+    <h2>Salva pra quando <em>a próxima chegar.</em></h2>
+    <p>E conta aqui embaixo: qual foi a avaliação mais injusta que você já recebeu? <span class="e">👇</span></p>
+  </div>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+</body>
+</html>

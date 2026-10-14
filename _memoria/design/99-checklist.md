@@ -100,10 +100,24 @@ A regra que fica:
 - `loading="lazy"` e `decoding="async"` em tudo que está abaixo da dobra.
 - `width` e `height` em toda `<img>`, para não pular o layout ao carregar.
 
+## 3.5. Material real do cliente (antes de marcar foto ou logo como falta)
+
+- **Ficha do Google:** fotos do lugar (recepção, consultório, fachada, placa com o logo), horário atual e
+  avaliações. O Playwright lê a ficha sem gastar Firecrawl; as fotos baixam em alta trocando o fim da URL
+  `googleusercontent` por `=w1600`.
+- **Site antigo do cliente:** o logo do cabeçalho costuma estar lá. No Wix, a imagem sai em resolução cheia
+  tirando o trecho `/v1/fill/...` da URL `static.wixstatic.com/media/...`. Recortar e remover o fundo serve
+  pro esboço; o arquivo original (vetor) se pede ao cliente.
+- **Instagram:** pela página `/embed/` (ver a memória de referência do Instagram).
+- Fotos desiguais de celular ficam coesas com uma lavagem de cor única por cima (lição do For Living em
+  `referencias/for-living.md`).
+→ *Origem: Spaço Saúde, 14/10/2026. Logo do Wix de 2019, 10 fotos e o horário da ficha do Google; nenhuma foto
+de IA precisou entrar.*
+
 ## 4. Antes de dizer que está pronto
 
 - [ ] **Detector rodado e zerado ou justificado:**
-      `npx --yes impeccable@3.5.0 detect "clientes/<nome>/site"`
+      `npx --yes impeccable@4.0.4 detect "clientes/<nome>/site"`
       (saída `0` = limpo, `2` = achou coisa. Regra de acessibilidade se corrige,
       não se dispensa. Detalhe em `.claude/skills/verificar/SKILL.md`)
       **A justificativa vai por escrito no `CLAUDE.md` do cliente**, não no chat:
@@ -129,6 +143,10 @@ A regra que fica:
 - [ ] Política de privacidade linkada no rodapé, se existir qualquer formulário
 - [ ] `noindex` retirado no dia da publicação, e não antes
 - [ ] Uma checagem em 390px de largura, não só no desktop
+- [ ] **`JUSTIFICATIVA.md` na pasta do cliente:** uma tabela com cada elemento (título, texto, foto, seção, cor, fonte),
+  de onde veio (post, site, ficha, conversa, referência) e por quê. O que é texto nosso fica marcado como nosso.
+  Pedido do Marcelo em 09/10/2026: "cada coisa tem que ser escrita e feita por um motivo". Modelo:
+  `clientes/_prototipos/debora-reis/JUSTIFICATIVA.md`
 - [ ] Peso da página conferido
 - [ ] **Vídeo testado tocando de verdade.** O Chromium que vem com o Playwright **não tem H.264**:
       o `.mp4` falha calado e parece bug do site. Testar com `chromium.launch({ channel: 'chrome' })`

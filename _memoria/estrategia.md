@@ -5,7 +5,21 @@
 
 ## Fase da agência
 
-⚠️ **Foto atual (01/10/2026):** a esteira de ligação do Antônio trouxe a **Paralela Film**, primeiro
+⚠️ **Atualização (14/10/2026):** a abertura da **Spaço Saúde** saiu em 14/10 (não em 10/10); a recepção respondeu "não"
+(a Dra. não atende por esse número) e os três caminhos esperam decisão do Marcelo (`clientes/_prototipos/spaco-saude/CLAUDE.md`).
+O esboço dela está no ar na rodada 4 (https://esboco-spaco-saude.vercel.app). Paralela: resultado da R1 de 05/10 ainda não
+registrado.
+
+⚠️ **Foto anterior (09/10/2026):** a análise de todas as conversas mostrou **zero reunião em 10 leads frios por texto**;
+as reuniões vieram de voz ou relação (Paralela, Leal, Sates). Em 08/10 abriu o **teste de abordagens** com placar
+(`_memoria/prospeccao/40-testes.md`, `scripts/placar.mjs`): tudo por WhatsApp, prévia só como abordagem de teste. Em
+09/10 chegou a **pesquisa de evidência** (`_memoria/prospeccao/fontes/`), que aprovou a faixa de preço por mensagem
+(P3). **Recebido da Hórus: R$ 0** (R$ 600 previstos e R$ 600 a receber, os dois da Amparo); o Conselho de 09/10
+fixou "nenhum trabalho grátis novo até a primeira entrada cair". Conversas vivas: Débora Reis (esboço no ar, caixa
+zerado, baixa prioridade) e Spaço Saúde (abertura em 10/10). As portas de caixa mais perto: CRM do Grão da Serra,
+entrada da Amparo, Paralela (R1 de 05/10 `[FALTA: resultado]`) e R1 do Leal. Prioridade de produção viva: **Amparo**.
+
+⚠️ **Foto anterior (01/10/2026):** a esteira de ligação do Antônio trouxe a **Paralela Film**, primeiro
 lead que pede **tráfego pago** (não site). R1 remarcada para segunda 05/10; proposta escolhida: R$ 990/mês
 por 3 meses como primeiro case + verba paga pelo cliente. Pra sustentar, a casa ganhou o **manual de
 tráfego** (`_memoria/trafego/`, pesquisa profunda de 01/10). Decisão: a parte técnica do tráfego fica

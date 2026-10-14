@@ -9,6 +9,11 @@
 
 ## Tipografia
 
+**Newsreader e Public Sans lidas como "tipografia de IA".** No site da Débora Reis o Marcelo pediu "tire as
+tipografias de IA" e as duas saíram (entraram Cormorant Garamond no título e Jost no texto, o par das referências
+de interiores). Não estão na lista clássica, mas o olho dele as lê como gastas.
+→ *Origem: esboço da Débora Reis, 09/10/2026. Se vale pra identidade da Hórus está em aberto (`identidade/design-guide.md`).*
+
 **Poppins, Montserrat e DM Sans em título.** São as três fontes mais usadas em
 site gerado por IA. Não são feias, são gastas. Quem vê muito site reconhece na
 hora.
@@ -343,6 +348,10 @@ cliente não confirmou vira prova real (o que ele tem) ou `[FALTA: ...]`, nunca 
 mockup. O que se reaproveita da referência é a **estrutura e a hierarquia**, não os dados.
 → *Origem: Mullsanni Performance, rodada 4, 12/09/2026. A referência dizia "+8 anos" numa
 empresa aberta há 1 ano; virou o ganho de dyno real, o 5,0★ do Google e a credencial ACF.*
+→ *Segundo caso: Spaço Saúde, rodada 4, 14/10/2026. As 5 imagens do Marcelo traziam CRO-BA 17600 (o real é 12600),
+"diretora clínica" não confirmado, "mais de 124 avaliações" (são 124), uma frase assinada e um parágrafo inventados na boca
+da Dra., e recepção e dentes gerados por IA. A estrutura foi seguida à risca; dado, foto e fala vieram da clínica (ficha do
+Google, site antigo, posts), e a tabela de trocas ficou no `PLANO.md` dela.*
 
 **Acento por reflexo de segmento (o "preto + vermelho" da performance).** O modelo,
 pedido um site de oficina/tuning, vai sozinho para fundo preto e acento vermelho, porque
@@ -470,6 +479,43 @@ parte do design, não conferência de última hora: a primeira palavra errada cu
 confiança das próximas mil certas.
 → *Origem: teardown do lessestudio.com, 26/08/2026, um estúdio de branding com dois
 typos no próprio hero. Lição pela avessa.*
+
+**Todo título na fórmula "X *Y.*", com a segunda metade em itálico colorido.** "Nunca a mesma casa *duas vezes.*",
+"O que tem por trás *de um projeto.*", "Conte a *sua casa.*": oito títulos seguidos no mesmo molde viram assinatura de
+template. Na Stanzza o título é simples, termina em ponto, e a ênfase vem da escala e do espaço em volta.
+→ *Origem: Marcelo, 13/10/2026, "o resultado visual não me agradou" no site da Débora (rodada 3 → 4).*
+
+**Tudo em tamanho médio.** Fotos todas em colunas de 600px, títulos todos de 56px, seções todas de texto num lado e
+foto no outro. A sofisticação dos premiados vem do **contraste de escala**: a foto que ocupa a tela inteira ao lado da
+miniatura de 150px, o título grande sozinho numa coluna vazia. Sem o enorme e o minúsculo, a página lê como
+portfólio preenchido.
+→ *Origem: mesma correção (Débora, 13/10/2026); diagnóstico completo em `clientes/_prototipos/debora-reis/PLANO.md`, rodada 4.*
+
+**Fonte da referência copiada junto com a lógica.** Cormorant Garamond + Jost entraram no esboço da Débora porque a Loam House (Awwwards) usa Cormorant, e a Cormorant está na lista de fontes-reflexo da skill impeccable (com Fraunces, Playfair, Lora, Newsreader, DM Sans, Space Grotesk...). Da referência se tira a estrutura e o papel de cada fonte (serifa editorial com itálico + grotesca), não a fonte. Antes de escolher, conferir a lista em `.claude/skills/impeccable/reference/new-work.md` e a licença (`kit-tipo`).
+→ *Origem: Marcelo, 13/10/2026, "use a skill que tira elementos de IA e fontes". Virou Zodiak + Switzer (Fontshare, pela API deles), e o estudo dos premiados em `referencias/arquitetura-awwwards-2026-10.md`.*
+
+**Faixa inteira de roxo escuro e marca em texto no lugar do logo: "cara de Wix 2014".** Na rodada 3 da Spaço Saúde, uma faixa
+vinho de ponta a ponta (avaliações) e a marca escrita em serifa no cabeçalho fizeram o Marcelo pedir "tire essa cor roxa feia" e
+"use a logo verdadeira dela". Em clínica de marca clara e feminina, o roxo da marca entra no botão, no título e no ícone, sobre
+fundo rosado; faixa escura grande pesa e envelhece a página. E o logo real vai no cabeçalho, à esquerda, sempre: se não houver
+arquivo, recortar de uma fonte da própria clínica (site antigo, placa, post) e pedir o vetor.
+→ *Origem: Marcelo, 14/10/2026, rodada 3 → 4 da Spaço Saúde, com 5 imagens de referência. Cores medidas nelas: fundo #FBF2EE,
+botão #5B173C.*
+
+**Interação inventada que nenhuma referência tem, vendida como "assinatura".** No esboço da Spaço Saúde a assinatura
+foi um checklist de sintomas marcáveis que montava a mensagem do WhatsApp. Era coerente com a doutrina (bloco "quando
+procurar" virando encaminhamento), mas não vinha de nenhum site estudado, e o Marcelo leu como estranho: "checklist do
+nada no site, eu não tenho o costume de ver". Em site de clínica, o visitante espera os componentes que já conhece
+(tratamentos, quem atende, avaliações, contato). A ousadia vai na execução desses blocos (escala, moldura, cor), não em
+um componente que ele precisa aprender a usar. Se a peça não aparece em nenhuma referência, dizer isso ao mostrar.
+→ *Origem: Marcelo, 14/10/2026, rodada 2 → 3 da Spaço Saúde. Na rodada 3 saiu o checklist e a estrutura seguiu a
+Debski Clinic seção por seção; ele também pediu a faixa de avaliações do Google.*
+
+**Título de capa como frase de efeito abstrata inventada por nós.** "Casas que contam alguma coisa" foi recusado
+como "cara de IA": aforismo em dois tempos que serve pra qualquer escritório. O título sai das palavras do cliente
+(legenda, site, fala dele) ou de um fato concreto dele, e a frase de apoio, de preferência, é citação literal dele.
+→ *Origem: esboço da Débora Reis, 09/10/2026. O que ficou: "Casas com história. Interiores com identidade.", com
+as palavras dela, mais a frase literal dela embaixo.*
 
 **Título de hero construído sobre uma negação.** "A gente não planta. A gente
 escolhe." A frase é boa numa reunião, porque responde a uma dúvida que já foi
@@ -1192,3 +1238,32 @@ Regra: **foto que entra embaixo de texto começa depois do último botão e diss
 40% da altura dela**, mais devagar ainda quando o topo da foto é claro (céu). Texto sobre foto
 clara no celular vira foto em cima e texto embaixo sobre cor sólida (os cartões "Para quem é").
 → *Origem: Grão da Serra, 07/10/2026.*
+
+**Referência obrigatória copiada na estrutura da primeira dobra.** No redesign da Débora Reis a
+capa e a cena do projeto repetiam a Stanzza posição por posição (foto de ponta a ponta, título
+centrado embaixo, linha à mão em cima; foto que cresce até a tela com ficha à direita e 01/05). O
+Marcelo gostou do sistema, mas disse que parecia cópia. Regra: **da referência vem o sistema (tipo,
+escala, ritmo, fio de grade, movimento); a primeira dobra e a seção de projeto saem de um objeto do
+ofício do cliente** (Débora: a prancha com carimbo e cota, porque ela desenha planta técnica). Teste
+antes de entregar: pôr a capa nossa ao lado da capa da referência; se a distribuição dos elementos
+for a mesma, refazer a composição.
+→ *Origem: Débora Reis, 14/10/2026 (rodada 5).*
+
+**Jargão da agência na tela do cliente final, e a ação principal escondida no fim.** No questionário
+da Débora o resultado dizia "O seu pré-briefing", palavra nossa que quem chega de fora não entende, e o
+botão de mandar a mensagem só aparecia depois de rolar a página toda. O Marcelo achou o botão "depois de
+um tempinho". Regra: **título e rótulo pra visitante usam palavra de leigo** (o que acontece, não o
+nome técnico: "O que a Débora vai receber"); **a ação que fecha a experiência fica à vista o tempo
+todo** (barra fixa no resultado e botão colado na prévia da mensagem). Prévia de mensagem imita o
+aplicativo de verdade: balão de quem envia é verde e encostado à direita.
+→ *Origem: Débora Reis, 14/10/2026 (quiz "Conte a sua casa").*
+
+**Pedido numerado do cliente lido como "a primeira dobra".** Na rodada 5 da Débora, "1. Primeira seção" virou a capa
+inteira refeita, junto com o cabeçalho. Para o Marcelo, a capa é a "Home" e a "seção 1" é a primeira seção depois dela.
+Resultado: mexemos no que ele gostava e não mexemos no que ele queria. Regras:
+- **quando o pedido nomeia uma seção por número ou posição, confirmar qual antes de alterar a primeira dobra;**
+- **mudar só o escopo pedido** (o cabeçalho não entra num pedido sobre a capa);
+- **na entrega, separar três coisas:** o que foi corrigido, o que foi implementado conforme o pedido e o que ainda é
+  decisão de design;
+- **"parece cópia" não pede outra estrutura**, pede outro objeto dentro da mesma estrutura, se o cliente gosta dela.
+→ *Origem: Débora Reis, 14/10/2026 (rodada 6).*

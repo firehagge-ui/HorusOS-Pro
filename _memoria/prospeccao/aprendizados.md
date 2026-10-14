@@ -5,6 +5,39 @@
 > Fonte de dados: `node ferramentas/hound-dog/scripts/aprender.mjs` (edições do Marcelo no Disparos,
 > variante escolhida, quem respondeu). Padrão que aparece duas vezes vira regra na doutrina.
 
+## Análise geral de 08/10 (todas as conversas até aqui; o plano de teste está em `40-testes.md`)
+
+- **A abertura funciona, o corpo não.** 8 das 9 aberturas que chegaram tiveram resposta de gente. Ao
+  corpo, uma resposta com interesse (Talina, "Teria custo?"), uma recusa com motivo (Casa Verona), uma
+  recusa da recepção (Cavalcante) e o resto silêncio. A perda está entre o "oi" e o corpo.
+- **Em clínica, o WhatsApp é da recepção.** Em 6 clínicas, nenhuma dona leu o corpo: a recepção recusou
+  em 1min30 (Cavalcante), segurou e sumiu (LevSaúde), não respondeu (Harmony), ou o robô mandou pra
+  equipe e ninguém voltou (Cintya, Bioclin). A abertura "falo com a Dra. ou com a recepção?" convida a
+  recepção a se apresentar. Muda: o corpo não vai pela recepção. Com quem decide fora do WhatsApp,
+  trocar de canal (ligação pedindo pelo nome, visita, DM no perfil pessoal).
+- **A demora mata o dois passos.** A Jéssica (sócia do Talina) e a Cintya responderam em 29/09 e o corpo
+  saiu em 06/10, cerca de 7 dias depois. Na Autobahn foram 3 dias. A LevSaúde, a única em que respondemos
+  em minutos do começo ao fim, foi a conversa que mais andou dentro de uma recepção. Muda: corpo aprovado
+  junto com o passo 1 e enviado em até 1 hora depois da resposta humana.
+- **Revisão demais, envio de menos.** 105 rascunhos cancelados pra 15 mensagens enviadas (Harmony 21 pra 2,
+  Bioclin 19 pra 2). O teste cego e a régua deixaram o texto melhor e a conversa mais lenta. Muda: no
+  máximo duas versões por mensagem.
+- **Quem chegou a reunião chegou por voz ou por relação.** Paralela Film (ligação fria do Antônio), Leal,
+  Sates, Amparo e Grão (relação). Dos 10 leads frios de WhatsApp, nenhum marcou reunião.
+- **Na voz, o lead diz o que quer. No texto, a gente chuta.** Paralela pediu tráfego e não site, e o Leal
+  pediu IA que pareça gente. No texto, metade das teses morreu na revisão do Marcelo antes de sair
+  (confirmação que a Bioclin já faz, posição no Google, "Google sem foto" no Talina).
+- **As edições do Marcelo puxam pra mostrar.** Cintya, Cavalcante, Talina e LevSaúde foram editadas pra
+  oferecer "demonstração" ou "ver como ficaria". A única resposta com interesse veio da oferta mais
+  visual (o orçamento numa página com as fotos do salão).
+- **Sinal de compra respondido com pergunta aberta esfria.** Talina: "Teria custo?" → "pra ver, não...
+  Pode ser?" → silêncio desde 06/10. Muda: depois de sinal de compra vai horário fechado ou a própria
+  demonstração.
+- **Relação: dar primeiro andou rápido.** Na Sates, o Marcelo ofereceu montar o Google de graça e ganhou
+  acesso ao perfil em menos de 24 horas. Falta testar se isso funciona com quem não conhece a gente.
+- **Buraco de medição.** A mensagem simples do Antônio pra lista de 28/09 e o resultado da R1 da Paralela
+  (05/10) não estão no Hounder. Sem isso o placar mente. Muda: todo toque vira atividade no mesmo dia.
+
 ## Respostas reais
 
 - **29/09 · Talina e Bioclin · o passo 1 foi respondido pelo robô do WhatsApp Business em segundos.**
@@ -67,6 +100,26 @@ Bioclin ficou com a nova, sem o pedido de horário. O que isso ensina:
 - **Voz:** "Fui pelo link do Instagram de vocês" (olhar de cliente) ganhou de "Abri o Linktree de vocês".
 
 ## Correções do Marcelo
+
+- **09/10 · Spaço Saúde · "queria outro 2B, já testamos assim e não funcionou".** A versão que mandava a oferta pra
+  recepção repassar repetia Cavalcante (recusou em 1min30), LevSaúde (segurou) e Harmony (não repassou). Muda: **pra
+  recepção de clínica, só se pede horário ou o contato de quem decide, sem oferta e sem o nome da agência.** A oferta
+  vai direto pra quem decide.
+- **09/10 · Débora Reis · "marcar reunião presencial pra tomar um café com quem eu nem conheço é estranho".** O
+  Conselho tinha sugerido café no escritório dela. Muda: com quem não te conhece, o próximo passo é mensagem ou
+  ligação curta; presencial só depois de existir conversa.
+
+- **09/10 · Débora Reis · "o 1 já mostra que a gente vai oferecer algo; o 2 é muito invasivo, a gente já chega
+  oferecendo".** Ela se abriu (já tem site sem ligar ao Google, irmã de marketing prometeu ajudar, um projeto só
+  no ano, caixa zerado) e as duas sugestões falharam: pedir o link do site sinalizava oferta, e a outra oferecia o
+  esboço na hora. Muda: **quando o lead se abre, a resposta não oferece nem sinaliza oferta.** Uma reação de gente
+  e uma pergunta só, sobre o negócio dele e o que ele já fez ("esse projeto que segurou o ano, veio por
+  indicação?"), que ele gosta de responder e cuja resposta diz o que oferecer. Base: pesquisa de 09/10 (Parte 3,
+  pergunta sobre o negócio; Parte 6, oferta depois da resposta), Mom Test (passado, não hipótese) e o tom das
+  transcrições. Toda sugestão de mensagem se apoia na pesquisa e na doutrina e passa pelo revisor.
+- **09/10 · Débora e Spaço Saúde · conversa automática.** As três respostas da Débora não chegaram ao Hounder
+  (provável LID sem mapeamento no Farejador): automação e placar dependem de a mensagem entrar no banco.
+  Conferir pelo celular quando um lead "não responde" há horas.
 
 - **05/10 · Land Car e Autobahn · "por que voltaríamos? Eles nem responderam".** A geladeira com data de voltar
   veio do benchmark de cold e-mail B2B (`20-escrita.md` §10), não do network nem do Marcelo. Muda: quem nunca reagiu

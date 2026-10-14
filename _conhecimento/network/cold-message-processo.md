@@ -52,7 +52,8 @@ com a porta aberta.
 - **Duas opções de horário fechadas:** "fica melhor hoje às 16h ou amanhã às 10h?"
 - **Trava do sócio (nova e boa):** antes de confirmar, perguntar se mais alguém participa da
   decisão, pra essa pessoa estar na reunião. Evita o "vou ver com meu sócio" no fim.
-- **Preço nunca por texto.** Resposta modelo, calibrada pela casa: *"Isso depende do que
+- **Preço nunca por texto.** ⚠️ *Revisto em 09/10/2026 (Marcelo, proposta P3 da pesquisa de evidência): a faixa da
+  Fase 1 pode ir por mensagem, o valor fechado não. Ver `_memoria/prospeccao/40-testes.md`.* Resposta modelo, calibrada pela casa: *"Isso depende do que
   fizer sentido pro caso de vocês, e eu prefiro te mostrar as opções do que chutar por aqui.
   Em 15 minutos te explico. Fica melhor hoje às 16h ou amanhã às 10h?"*
 

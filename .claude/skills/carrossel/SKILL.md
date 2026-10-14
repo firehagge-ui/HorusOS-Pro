@@ -1,420 +1,207 @@
 ---
 name: carrossel
 description: >
-  Cria carrosséis e posts visuais pra Instagram, TikTok, LinkedIn com a identidade visual da marca.
-  Gera HTML estilizado + renderiza em PNG 1080x1350 via Playwright, com legenda pronta no final.
-  Suporta carrossel texto puro, carrossel com foto (gerada manualmente no ChatGPT e trazida pelo Marcelo) e post único.
-  Use quando o usuário pedir "carrossel", "post", "conteúdo pro instagram", "criar imagem",
-  "gerar foto", "post educativo", ou /carrossel.
+  Central de post e carrossel do Instagram (e TikTok/LinkedIn): da pauta à peça pronta. Monta a
+  pauta de ideias por tendência pra aprovação, escolhe formato e gancho, escreve com fala humana,
+  gera elementos visuais no ChatGPT pelo Chrome, renderiza HTML em PNG via Playwright, roda o
+  checklist e o detector, e entrega a legenda. Também estuda post ou reel de referência
+  (engenharia reversa de gancho e estrutura). Use quando o Marcelo pedir "carrossel", "post",
+  "conteúdo pro instagram", "ideia de post", "pauta da semana", "o que postar", "estuda esse
+  post/reel", "gancho", "legenda", "post educativo", ou /carrossel.
 ---
 
-# /carrossel — Carrossel e posts visuais
+# /carrossel: da pauta ao post pronto
 
-Skill central de criação de conteúdo visual. Pega um tema → entrega HTMLs estilizados + PNGs prontos pra postar + legenda no padrão da marca.
+Tema aprovado → formato → gancho → texto com fala humana → imagem → sistema de design → HTML →
+PNG → checklist → legenda. Atualizada em 10/10/2026 juntando o que a casa já tinha com
+`sergebulaev/instagram-skills`, `coreyhaines31/marketingskills` (social, marketing-psychology),
+`bradautomates/head-of-content` e `petrogurcak/skills`. Do que é de fora, veio o raciocínio;
+**as travas da casa vencem** (compliance > integridade > marca > conteúdo > terceiro).
 
 ## Leitura obrigatória antes da primeira linha de copy
 
-1. `_memoria/conteudo/00-formatos.md` — os sete formatos narrativos. **Escolher UM antes de escrever**
-2. `_memoria/conteudo/10-legibilidade.md` — os pisos de fonte, contraste e densidade
-3. `_memoria/conteudo/90-antipadroes.md` — o que denuncia carrossel feito por IA
-4. `_memoria/integridade.md` — se a peça é de cliente. Dado que falta vira `[FALTA: ...]`, nunca texto plausível
+1. `_memoria/conteudo/00-formatos.md`: os nove formatos narrativos. **Escolher UM antes de escrever**
+2. `_memoria/conteudo/10-legibilidade.md`: pisos de fonte, contraste e densidade
+3. `_memoria/conteudo/90-antipadroes.md`: o que denuncia post feito por IA (correções do Marcelo)
+4. `_memoria/integridade.md`: dado que falta vira `[FALTA: ...]`, nunca texto plausível
+5. **Peça da Horus:** `identidade/social/perfil.md` (público, pilares, voz, o que nunca vai ao ar)
+   e `identidade/social/referencias/2026-10-07-essencia.md` (a direção que o Marcelo quer)
+6. **Peça de cliente:** `clientes/<nome>/briefing.md` e `marca.md`; compliance trava
 
-Antes de **entregar**, rodar `_memoria/conteudo/99-checklist.md`: as condições de
-veto primeiro, a rubrica depois. Se a conferência não rodou nesta mensagem, não
-dá pra dizer que passou.
+## Referências desta skill (abrir no passo que pede)
 
-## Dependências
+| Arquivo | Quando |
+|---|---|
+| `references/pauta.md` | Passo 0: de onde sai o tema e como a ideia é aprovada |
+| `references/algoritmo.md` | Passo 1: objetivo do post (enviar, salvar, comentar, seguir) e limites técnicos |
+| `references/ganchos-e-estruturas.md` | Passos 2 e 3: fórmulas de gancho, espinha dos slides, estruturas prontas, legenda, séries |
+| `references/gatilhos.md` | Passo 3: gatilho mental com trava ética |
+| `references/fala-humana.md` | Passo 3: vícios de IA específicos de post (junto com `_memoria/prospeccao/90-cara-de-ia.md`) |
+| `references/estudar-referencia.md` | Quando chegar link de post/reel ou a pauta pedir "o que está funcionando" |
 
-- **Identidade visual:** `identidade/design-guide.md` — LER ANTES de criar qualquer visual
-- **Contexto do negócio:** `_memoria/empresa.md`
-- **Tom de voz:** `_memoria/preferencias.md`
-- **Playwright:** pra renderizar HTML em PNG (`npx playwright screenshot` ou via `render.js`)
-- **OpenAI API (opcional):** pra gerar fotos realistas — só se o cliente tiver chave configurada
-- **Outputs vão em:** `marketing/conteudo/<tipo>-<tema>-<YYYY-MM-DD>/`
-
----
-
-## Tipos de conteúdo
-
-Ao receber um pedido, identificar qual tipo se encaixa:
-
-### 1. CARROSSEL TEXTO PURO
-- **Quando usar:** posts educacionais, dicas, listas, explicações
-- **Formato:** 1080x1350 (4:5) — sempre
-- **Estilo:** tipografia clean, cores da marca alternadas, sem fotos
-
-### 2. CARROSSEL COM FOTO
-- **Quando usar:** apresentação visual, conteúdo aspiracional, capa com personagem
-- **Formato:** 1080x1350 (4:5)
-- **Estilo:** foto como capa com gradient overlay + slides internos no padrão alternado
-- **Foto:** pode ser IA (gerada por OpenAI) ou real (passada pelo usuário)
-
-### 3. POST ÚNICO
-- **Quando usar:** frase de impacto, dado/estatística, depoimento, bastidores
-- **Formato:** 1080x1350
-- **Estilo:** varia conforme o conteúdo (citação, número grande, foto com overlay)
-
-Se o tipo não estiver claro, perguntar:
-> "Que tipo de conteúdo? (1) carrossel texto, (2) carrossel com foto, (3) post único"
+Mentes pra profundidade, sem rito: Cialdini (gatilho), Hormozi (oferta), Voss (frase de objeção)
+via `/consultar`. Personas de copy (Ogilvy, Schwartz, Halbert) na prateleira
+`_biblioteca/squads/copy-master/`, consulta sob demanda.
 
 ---
 
-## Estilo visual base
+## Passo 0: Pauta (nada se monta sem ideia aprovada)
 
-O Horus OS tem um estilo próprio — editorial, calmo, premium. Sem clip-art, sem emoji decorativo, sem gradiente arco-íris, sem template genérico de IA. `identidade/design-guide.md` sobrescreve esses padrões; quando o design-guide for vago ou estiver em branco, usar o que tá aqui (não parar pra pedir `/instalar` — o `/carrossel` funciona com defaults bons).
+Regra do Marcelo (08/10/2026). Se o pedido chega sem tema aprovado, montar a pauta por
+`references/pauta.md`: radar, nota, travas, 5 a 7 ideias com gancho, formato, objetivo, fonte e
+risco, as 3 melhores recomendadas. Salvar em `marketing/conteudo/midia/pautas/<segunda>.md`,
+criar ou atualizar a tarefa no Hounder e mostrar a tabela curta no chat.
 
-### Tipografia padrão
+**CHECKPOINT:** o Marcelo aprova, troca ou pede mais. Produzir só as aprovadas. Se ele
+apontar um tipo que gostou, puxar a próxima pauta pra esse lado e anotar.
 
-Piso e faixa vêm de `_memoria/conteudo/10-legibilidade.md`. A peça é renderizada a
-1080px e lida num celular de ~390px: o fator é 0,36, então **22px viram 8px na mão
-da pessoa**. Os números abaixo já estão corrigidos por causa disso.
+## Passo 1: Entender
 
-- **Fonte:** Inter (Google Fonts), pesos 500/600/700/800/900
-- **Título de capa:** 90-110px, weight 900, line-height 0.98, letter-spacing **-0.04em**
-- **H2 (slides internos):** 60-76px, weight 800, line-height 1.04, letter-spacing **-0.035em**
-- **Corpo:** **34-42px**, weight 500, line-height 1.5 — piso absoluto 34px
-- **Eyebrow/kicker:** **26-30px**, weight 700-800, **UPPERCASE**, letter-spacing **0.22-0.32em**, cor de destaque
-- **Meta/handle/crédito (@):** **24-28px**, weight 500-600
+1. Marca e estilo: Horus parte de `identidade/social/carrossel-referencia.html` e do perfil §8;
+   cliente com `marca.md` usa a dele; sem estilo definido, `identidade/catalogo-estilos.md`
+   (sugerir 1 ou 2 e perguntar). Sempre UM estilo; a marca vence o estilo.
+2. **Formato narrativo** (um dos nove). Se dois servem, o que a marca menos usou nas últimas semanas.
+3. **Objetivo único** do post (`references/algoritmo.md`): enviar, salvar, comentar ou seguir.
+   Pergunta-filtro: alguém mandaria pra um amigo específico, ou salvaria pra usar depois?
+4. Tipo: carrossel (2 a 10), post único (ideia de menos de 4 pontos) ou story.
 
-Regra do tipo: títulos grandes com kerning **apertado** (-0.035em), eyebrows pequenos com kerning **aberto** (0.22em+). Esse contraste é o coração do estilo — o que mudou foi a escala, não a relação.
+## Passo 2: Ângulo e gancho
 
-**Nada de texto de leitura abaixo de 24px.** O que estiver abaixo disso é decoração e não pode carregar informação.
+Propor **3 ângulos** (três leituras do tema, não três títulos) e, pro escolhido, **3 ganchos**
+de tipos diferentes (`references/ganchos-e-estruturas.md` §2). Slide 1 é promessa com ponta
+solta, funciona sozinho como post, e qualquer número dele é real e conferível.
 
-Consequência direta: com corpo em 36px cabem ~5 palavras por linha. **20 a 45 palavras por slide, no máximo 4 linhas de corpo.** Isso é o efeito desejado, não um problema — slide denso é slide pulado.
+**CHECKPOINT:** Marcelo escolhe ângulo e gancho (ou pede outros).
 
-### Cores padrão (quando design-guide for vago)
+## Passo 3: Texto
 
-Paleta sóbria: fundo dark + off-white + **UMA** cor de destaque. Nunca quatro cores brigando.
+1. Montar pela espinha (`ganchos-e-estruturas.md` §3): melhor ponto no slide 2 ou 3, um ponto
+   por slide lido em 2 segundos, reflexão no penúltimo de conteúdo, resumo salvável + **um**
+   pedido no último. Contagem pelo conteúdo, nunca enchimento.
+2. **20 a 45 palavras por slide**, no máximo 4 linhas de corpo (sai da escala de legibilidade).
+3. Gatilho só se for verdade (`references/gatilhos.md`).
+4. Todo fato com fonte no próprio slide ("Fonte: ..."); exemplo inventado marcado "exemplo".
+5. **Passe de fala humana:** `references/fala-humana.md` + `_memoria/prospeccao/90-cara-de-ia.md`.
+   Teste de trocar o nome da marca pelo do concorrente.
+6. Passar pelo `90-antipadroes.md`.
 
-- Fundo escuro: `#0E1116` ou `#1A1A1A`
-- Fundo claro alternativo: `#F5ECD7` (cream) ou `#FAFAF7`
-- Texto sobre escuro: `#FAFAF7`
-- Texto sobre claro: `#1A1A1A` (h2) e `#444` (corpo)
-- Destaque: cor da marca (uma só)
+**CHECKPOINT:** texto completo aprovado antes do visual.
 
-### Elementos visuais recorrentes
+## Passo 4: Imagem e elementos visuais
 
-- **Régua fina** (3-4px de altura, 60-80px de largura, cor de destaque) entre kicker e h2 ou como divisor
-- **Logo top-left** em todos os slides
-- **Contador de slide ("1/8"):** ⚠️ **desligado por padrão no Instagram.** O app já desenha os pontinhos de navegação, e contador dentro da arte é ruído redundante e tell de template automático. Ligar só quando a peça vira PDF ou vai pro LinkedIn. *Decisão pendente do Marcelo — ver `_memoria/conteudo/91-o-que-veio-do-opensquad.md`*
-- **Border-top 1px** `rgba(255,255,255,0.12)` separando rodapé do conteúdo (em slides escuros)
-- **Stamps circulares** (200x200, border 3px translúcida, rotate -10deg) pra selos/datas/dados
-- **Tags/pills** uppercase, padding generoso, kerning 0.2em, pra rotular categoria do slide
-- Padding base: 70-100px nas laterais
+- **Horus:** ChatGPT liberado em todo post para ilustração, objeto, textura, cena (perfil §8,
+  Marcelo, 07/10/2026), **pelo Chrome do Marcelo** (método em `reference_chatgpt-imagem-pelo-chrome` na
+  memória: abrir chatgpt.com, "Gere uma imagem:", baixar pelo `fetch` da imagem, cai em
+  `E:\Users\hagge\Downloads`). Pedir na mesma conversa as imagens da série ("mesmo estilo e
+  paleta"), sem texto, sem número, nas cores da marca.
+- **Cliente:** imagem vem do Marcelo (ele gera e traz) ou do Chrome dele com o ok dele.
+- **Nunca IA:** gráfico com número (número é desenhado em código a partir da fonte), print de
+  ferramenta ou de conversa (print é print de verdade), rosto, o produto ou o lugar que o cliente
+  vende. Elementos já aprovados ficam em `identidade/social/elementos/` e se reaproveitam.
 
-### Layouts nomeados
+### Consistência entre slides (a trava irmã da trava de CSS)
 
-Vocabulário de layout — cada slide tem um nome. Variar entre eles pra criar ritmo:
+Objeto que precisa aparecer **igual** em vários slides **não se gera N vezes**: gera uma vez e
+reposiciona o mesmo arquivo (recorte, `object-position`, escala). Série de cenas diferentes:
+1. **Cena-mestra** aprovada primeiro; as outras derivam dela (edição a partir da imagem).
+2. **Style lock** idêntico colado em todo prompt (paleta em hex, luz, lente, acabamento, clima).
+3. **Objetos nomeados** com a mesma descrição literal em todo prompt.
+4. **Conferir lado a lado** antes do lote; objeto que derivou volta pra geração.
 
-- **CAPA** — eyebrow + título grande + subtítulo + @handle. Fundo: foto com gradient overlay (`rgba(12,10,9,0.55)` → `rgba(12,10,9,0.85)`) OU sólido (escuro/claro/destaque)
-- **SOLO** — split horizontal: foto à esquerda 50% + texto à direita 50% (kicker + h2 + régua + parágrafo)
-- **DUO** — texto em cima (kicker + h2 + régua + p) + 2 fotos lado a lado embaixo (ou 1 foto larga)
-- **NÚMERO** — numeral gigante (200-320px, weight 800, cor de destaque) como elemento gráfico + h2 + parágrafo de apoio
-- **CITAÇÃO** — aspas grandes em watermark + frase em h2 + atribuição
-- **CTA FINAL** — fundo na cor de destaque, logo centralizado, headline curta, botão/CTA, telefone/@handle
+Prompt em inglês: conteúdo do slide + objetos nomeados + style lock.
 
-**Ritmo de slide a slide:** alternar fundo escuro ↔ claro ↔ destaque. Nunca dois slides seguidos com o mesmo fundo.
+## Passo 5: Sistema de design (antes do primeiro HTML)
 
----
+Escrever antes de abrir o editor: até 5 cores (primária, secundária, destaque, fundo, texto),
+fonte e escala, espaçamento, raio, o elemento gráfico recorrente. Cliente sem identidade de
+carrossel travada: **3 identidades distintas**, slide 1 de cada em PNG lado a lado; a escolhida
+vira `clientes/<nome>/carrossel-referencia.html` e entra no `marca.md`. Com identidade travada,
+pular.
 
-## Padrão do carrossel
+### Estilo base (quando nada está definido)
 
-Duas coisas diferentes, e as duas precisam ser escolhidas:
+- Tipo (piso de `10-legibilidade.md`): capa 90 a 110px peso 800-900 kerning -0.035em; H2 60 a
+  76px; corpo **34 a 42px** peso 500; rótulo 26 a 30px caixa alta kerning aberto; rodapé e @ 24
+  a 28px. **Nada de leitura abaixo de 24px.**
+- Cor: fundo escuro + claro + **uma** cor de destaque. Alternar fundos; nunca dois slides
+  seguidos iguais.
+- Layouts: CAPA, SOLO (foto + texto), DUO, NÚMERO, CITAÇÃO, CTA FINAL, e os dos formatos novos:
+  **TWEET** (avatar, nome, @, texto grande, cartão de imagem, fio cinza entre slides) e
+  **PAR ✕/✓** (cartão apagado da frase comum, cartão de destaque da frase pronta, etiqueta
+  "exemplo"). No mínimo 2 layouts por carrossel (o print de tweet é exceção: o padrão nativo é a
+  graça, a variação vem do cartão de imagem).
+- **Contador "01 / 08":** desligado por padrão (o Instagram já mostra os pontinhos). O Marcelo
+  aprovou com contador o post da 1 estrela (08/10), que imitava o Finch: decisão pendente, usar só
+  quando o formato copiar essa referência.
+- Destaque de cartão: fundo tingido com borda fina em volta. **Sem barra grossa num lado só
+  (side-tab) e sem brilho colorido (dark-glow)**: o detector pega e o Marcelo aprovou trocar (10/10).
+- Sequência de capas na grade: não repetir o tipo de capa do post anterior.
 
-- **Formato narrativo** = por que o slide 4 existe e por que vem depois do 3.
-  Vem de `_memoria/conteudo/00-formatos.md`. São sete: Tese, Lista, Tutorial,
-  Mito vs Realidade, Problema → Solução, História, Transformação
-- **Layout** = como o slide parece. É o vocabulário visual logo abaixo
+## Passo 6: HTML e PNG
 
-Escolher o formato **primeiro**, e a partir dele a contagem e o papel de cada
-slide. Só então distribuir os layouts.
+1. **Um único `carrossel.html`** com todos os slides como `<section class="slide">`, CSS inline,
+   Google Fonts (incluir `Noto Color Emoji` quando houver emoji) como única dependência. Caminho
+   de imagem relativo à pasta.
+2. **Dimensão:** Horus **1080 × 1440** (3:4, aprovado 27/09); cliente **1080 × 1350** (4:5).
+   TikTok/Reels 1080 × 1920 só quando pedido.
+3. Render por Playwright (o do repositório, `node_modules` da raiz): screenshot de cada `.slide`
+   em PNG (conferência) e JPEG qualidade 92 (publicação), mais miniatura a 0,25 pro painel.
+   Conferir fonte carregada, imagem quebrada e texto encostando na borda. Modelo pronto:
+   `ferramentas/social/lib/carrossel.mjs` (`renderizar`).
+4. **Renderizar e olhar o slide 1 (o PNG, não o HTML) antes do lote.** Depois montar uma folha
+   com todos (`ffmpeg ... tile=4x2`) e olhar a série inteira.
 
-⚠️ **Transformação (antes/depois) é proibido no Dr. Giovanni e na Aion.**
-Sem versão leve: naqueles dois clientes, é não usar.
+## Passo 7: Porta de qualidade
 
-**Estrutura base (5 a 10 slides):**
-- **Slide 1:** layout `CAPA` — para o scroll, não anuncia o conteúdo
-- **Slides internos:** usar 2-3 layouts diferentes entre `SOLO` / `DUO` / `NÚMERO` / `CITAÇÃO`
-- **Penúltimo de conteúdo:** o slide de **reflexão**, não de informação. É o que decide entre curtida e salvamento
-- **Slide final:** layout `CTA FINAL`, com CTA que cita o conteúdo
+1. `_memoria/conteudo/99-checklist.md`: vetos primeiro (qualquer um reprova), rubrica depois
+   (média ≥ 7, nenhum critério < 4, "para o scroll" ≤ 3 reprova sozinho).
+2. **Detector:** `node .claude/skills/impeccable/scripts/detect.mjs "<pasta>/carrossel.html"`.
+   Saída 0 limpo, 2 achou. Achado real se corrige; o que for intencional se explica ao Marcelo,
+   nunca se silencia sem o ok dele.
+3. Compliance do cliente trava mesmo com tudo nota 10.
 
-Antes de criar HTML: ler `identidade/design-guide.md`. Se estiver em branco, usar o "Estilo visual base" acima como default.
+Reportar com número e pendência, nunca "está pronto":
+> Formato: Antes/depois de fala, 8 slides. Rubrica 7,8, menor nota 6 (C5). Vetos: nenhum.
+> Detector: limpo. Pendente: `[FALTA: ...]` no slide 8.
 
-### Sequência de capas no feed (planejamento de grade)
+## Passo 8: Legenda (sempre, em `legenda.md`)
 
-Antes de definir a capa, considerar a **última capa publicada** pra alternar:
-- claro → próxima é foto/escuro
-- foto/escuro → próxima é cor da marca
-- cor da marca → próxima é claro
-- nunca duas capas iguais em sequência
+Primeiros 125 caracteres funcionam sozinhos e repetem o gancho com a palavra que a pessoa
+buscaria; contexto curto; o valor; **um** CTA que cita o conteúdo; **até 5 hashtags**
+específicas no fim (limite do Instagram desde dez/2025). Carrossel aceita legenda curta; teto
+2.200 caracteres. Sem link, sem travessão, sem isca ("comenta SIM").
 
-Se o usuário não souber qual foi a última, perguntar.
-
-### Linguagem (regra crítica)
-
-Seguir `_memoria/preferencias.md`. Em geral: frases naturais, sem jargão de marketing, sem corporativês. O público real raramente fala "ticket médio", "performance", "B2B". Falar como ele fala.
-
-### Legenda — sempre gerar junto
-
-Ao terminar de renderizar os PNGs, gerar **automaticamente** a legenda do post e salvar em `legenda.md` na mesma pasta. **Não esperar o usuário pedir.** Estrutura padrão:
-
-1. Hook (pergunta ou afirmação)
-2. Contexto (1-2 frases sobre o conteúdo)
-3. CTA pra arrastar ("Arraste pro lado e confere")
-4. Bloco de oferta (diferenciais da empresa, contato)
-5. Hashtags (5-15, misturando nicho, médio alcance e amplo; local se aplicável)
-
-Piso e teto: primeiros 125 caracteres funcionam sozinhos como gancho (é o que
-aparece antes do "mais"), legenda inteira entre 1.500 e 1.800 caracteres, nunca
-acima de 2.200. Sem URL na legenda: o Instagram não deixa link clicável ali.
-
----
-
-## Workflow
-
-### Passo 1 — Entender e planejar
-
-1. Ler `_memoria/preferencias.md` e `_memoria/empresa.md`
-2. Ao produzir PARA um cliente, ler `clientes/<nome>/marca.md` (a marca
-   dele manda). Pra peça institucional da agência, ler `identidade/design-guide.md`
-3. **Definir o estilo visual** seguindo `identidade/catalogo-estilos.md`:
-   - marca do cliente já define estilo → usa esse
-   - usuário nomeou um estilo → invocar a skill do estilo (Skill tool) e
-     aplicar os tokens dela por cima do "Estilo visual base" abaixo
-   - ninguém definiu → sugerir 1-2 estilos do grupo certo do catálogo e
-     perguntar antes de seguir
-   Sempre UM estilo. A marca do cliente sempre vence sobre o estilo.
-4. Identificar o tipo de conteúdo (1, 2 ou 3)
-5. **Escolher o formato narrativo** em `_memoria/conteudo/00-formatos.md`. Se dois
-   servem, escolher o que a marca menos usou nas últimas semanas — variedade de
-   formato mantém o perfil vivo muito mais que variedade de cor
-
-### Passo 2 — Três ângulos
-
-Antes de escrever o carrossel, propor **3 ângulos diferentes** pro mesmo tema.
-Não três títulos: três leituras do assunto, cada uma levando a um carrossel
-diferente. Um parágrafo cada, dizendo o formato narrativo e a promessa.
-
-Serve pra forçar divergência antes de comprometer. O primeiro ângulo que o modelo
-produz é quase sempre o mais óbvio do segmento.
-
-**CHECKPOINT:** Marcelo escolhe um ângulo (ou pede outros).
-
-### Passo 3 — Texto
-
-Escrever o conteúdo seguindo o formato escolhido e as regras de tom:
-
-**Pra carrossel (5-10 slides):**
-- Slide 1 (Capa): título que para o scroll, máx 8 palavras. Oferecer 3 opções
-- Slides internos: uma ideia por slide. Se precisa de "e também", são dois slides
-- **20 a 45 palavras por slide**, no máximo 4 linhas de corpo
-- Penúltimo de conteúdo: reflexão
-- Slide final: CTA que cita o conteúdo
-
-**Pra post único:**
-- Frase principal em destaque
-- Contexto de apoio (se necessário)
-- CTA sutil
-
-Passar a copy pelo `90-antipadroes.md` antes de mostrar. O teste mais rápido:
-trocar o nome do cliente pelo do concorrente. Se o texto continua fazendo
-sentido, ele não diz nada — reescrever.
-
-**CHECKPOINT:** Mostrar o texto completo. Esperar aprovação antes do visual.
-
-### Passo 4 — Gerar fotos (se tipo 2)
-
-Só se o usuário pediu carrossel com foto IA.
-
-> **A trava de imagem é irmã da trava de CSS.** O Passo 5 fixa cor e fonte pra
-> não escorregar entre slides. Este passo faz o mesmo pro **pixel gerado**: sem
-> ele, o objeto do slide 1 vira outra coisa no slide 8 (o grão muda de cor, a
-> planta vira árvore, a xícara troca de formato). Cada geração solta é um sorteio
-> independente; consistência exige âncora. É o antipadrão "objeto que muda entre
-> slides" em `_memoria/conteudo/90-antipadroes.md`.
-
-#### A regra que vem antes de tudo: às vezes não se gera 8 vezes
-
-Modelo generativo **não garante** identidade perfeita de objeto entre gerações,
-por mais travado que seja o prompt. Então, antes de gerar:
-
-> **Se o mesmo objeto precisa aparecer idêntico em vários slides, o certo quase
-> sempre é NÃO gerar N vezes.** Gerar uma vez (ou usar foto/asset real) e
-> **reposicionar o mesmo arquivo** via CSS/composição nos outros slides. Regerar o
-> que tem que ser idêntico é convidar a variação.
-
-Geração slide a slide só se justifica quando **cada slide mostra uma cena
-diferente** (não o mesmo objeto repetido). E mesmo aí, valem as travas abaixo.
-
-#### As quatro travas de consistência
-
-**1. Cena-mestra, não N sorteios.** Gerar primeiro UMA imagem-âncora (o objeto ou
-a cena que dá o tom da série), aprovar, e derivar as demais **por edição/variação
-a partir dela** (image edit, passando a âncora como imagem de entrada), não por
-prompt novo do zero. É o que trava o mesmo objeto entre gerações.
-
-**2. Bloco de "style lock" fixo.** Um trecho de prompt **idêntico**, colado em
-toda geração da série. O que muda entre slides é só o conteúdo; o estilo, nunca.
-Montar uma vez, no início, e repetir literal:
+## Passo 9: Salvar, entregar e publicar
 
 ```
-STYLE LOCK (colar igual em todos os prompts da série):
-palette: [os mesmos 2-4 hex do sistema de design], nothing else
-lighting: [ex: soft directional window light, warm]
-lens/angle: [ex: 50mm, eye-level, shallow depth of field]
-render: [ex: editorial photography, matte finish, subtle film grain]
-mood: [ex: calm, artisanal, unhurried]
+marketing/conteudo/<pasta>/            Horus: marketing/conteudo/midia/<semana>/<slug>/
+  carrossel.html   legenda.md   img/ (imagens e elementos)
+  instagram/slide-NN.png + .jpg   previa.json (miniaturas)
 ```
+- **Horus:** gravar em `social_posts` (marca `horus`, status `revisao`, pasta, slides, prévia,
+  legenda, data) pra aparecer na tela Semana do Hounder; o Marcelo aprova e a rotina `publicar`
+  do Farejador posta. Nunca marcar `aprovado` sem o Marcelo.
+- **Cliente:** entregar a pasta e a folha de prévia; publicação conforme o combinado com ele.
+- Mandar a folha de prévia pro Marcelo (`SendUserFile`).
+- Opcional: oferecer a versão blog (`/publicar-tema`).
 
-**3. Objetos nomeados e travados.** Listar os objetos recorrentes com descrição
-**literal e específica**, e repetir a mesma frase exata em cada prompt. Vago =
-deriva.
-- ❌ "coffee beans" → cada geração inventa um grão diferente
-- ✅ "medium-roast arabica coffee beans, whole, matte dark brown, no oil sheen"
+## Passo 10: Depois de publicar
 
-**4. Seed fixa quando a ferramenta expõe.** Onde houver parâmetro de seed, fixar
-o mesmo valor pra série inteira.
-
-#### Como montar cada prompt
-
-1. Prompt em inglês (a API funciona melhor em inglês).
-2. Estrutura: **conteúdo do slide** + **objetos nomeados (trava 3)** + **STYLE
-   LOCK literal (trava 2)**. O style lock vai igual em todos; o começo é o que
-   muda.
-
-```
-[conteúdo específico deste slide],
-[objetos nomeados, descrição literal repetida da série],
-STYLE LOCK: [bloco fixo, idêntico em todos]
-```
-
-3. Gerar via script (se `scripts/gerar-imagem.js` existir):
-```bash
-node --env-file=.env scripts/gerar-imagem.js "PROMPT" "marketing/conteudo/<pasta>/foto-<nome>.png"
-```
-
-Não há API de imagem na operação (correção de 20/08/2026): a imagem vem **de fora,
-manualmente**. O Marcelo gera no ChatGPT (imagem) ou no Gemini (vídeo) e traz o
-arquivo, e a skill monta o carrossel em volta dele. Passar pro Marcelo o prompt e o
-STYLE LOCK acima como briefing da geração; usar a âncora aprovada como referência das
-peças seguintes (trava 1). Ver "Geração de mídia" no `CLAUDE.md`.
-
-4. **Conferência lado a lado antes do lote.** Colocar as imagens da série lado a
-   lado e checar: mesma forma, mesma cor, mesmo número de objetos, mesma luz. É o
-   análogo visual do "renderizar e olhar o slide 1" que a skill já exige pro texto.
-   Objeto que derivou volta pra geração antes de virar PNG do carrossel.
-
-**CHECKPOINT:** Série aprovada como conjunto (não foto por foto isolada) → seguir.
-Se um objeto derivou, ajustar a trava que falhou e regerar aquele slide a partir da
-âncora.
-
-### Passo 5 — Sistema de design (antes do primeiro HTML)
-
-Escrever o sistema **antes** de abrir o editor: cores (máximo 5: primária,
-secundária, destaque, fundo, texto), fonte e escala, unidade de espaçamento,
-raio, e o elemento gráfico recorrente. É o contrato visual entre os slides — sem
-ele a cor escorrega no slide 5 e a fonte muda no 7.
-
-**Se o cliente ainda não tem identidade de carrossel travada:** propor **3
-identidades visuais distintas** (não três variações da mesma paleta), renderizar
-o **slide 1 de cada uma** em PNG e mostrar as três lado a lado.
-
-**CHECKPOINT:** Marcelo escolhe uma. A escolhida vira
-`clientes/<nome>/carrossel-referencia.html` e as regras entram no `marca.md`
-dele. A partir daí todo carrossel daquele cliente parte desse arquivo, e esse
-passo é pulado.
-
-Se o cliente já tem `marca.md` com estilo definido, a marca vence e não há
-proposta a fazer.
-
-### Passo 6 — Criar visuais (HTML + PNG)
-
-1. Criar **um único `carrossel.html`** com TODOS os slides como `<div class="slide">` dentro do mesmo arquivo. Inline CSS, Google Fonts como única dependência externa. Aplicar:
-   - Cores e tipografia do sistema de design do Passo 5
-   - Mínimo 2 layouts diferentes (não repetir o mesmo em todos os slides)
-   - Logo top-left em todos os slides (contador: ver regra acima, desligado por padrão)
-   - Slide final: logo + CTA, fundo na cor principal
-   - Nenhum texto de leitura abaixo dos pisos de `10-legibilidade.md`
-
-   **Pra incluir foto IA no HTML:**
-   ```html
-   <div class="slide" style="
-     background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.7)), url('foto-xxx.png');
-     background-size: cover;
-     background-position: center;
-   ">
-     <div class="content">
-       <h2>Texto sobre a foto</h2>
-     </div>
-   </div>
-   ```
-
-2. Criar `render.js` na mesma pasta — script Node com Playwright que abre o HTML e tira screenshot de cada `.slide` em 1080x1350. Pode reutilizar `node_modules` de uma pasta anterior (não precisa rodar `npm install` toda vez):
-```bash
-NODE_PATH="<pasta-com-node_modules>/node_modules" node render.js
-```
-
-3. **Renderizar o slide 1 sozinho e olhar o PNG antes do lote.** Não o HTML — o
-   PNG. O HTML pode estar perfeito e a fonte ter caído no fallback, o texto ter
-   estourado ou um bloco ter sido cortado, sem erro nenhum aparecer. Um defeito
-   no slide 1 se repete nos outros dez se não for pego agora.
-
-4. Renderizar o lote. Mostrar slide 1, 2 e o CTA final. Se aprovado, mostrar os intermediários.
-
-### Passo 7 — Porta de qualidade (antes de mostrar como pronto)
-
-Rodar `_memoria/conteudo/99-checklist.md`:
-
-1. **Condições de veto** — qualquer uma sozinha reprova. Não se compensa com nota alta em outro lugar
-2. **Rubrica** — aprova com média ≥ 7 e nenhum critério abaixo de 4. O "para o scroll" tem peso 1,5 e reprova sozinho com nota ≤ 3
-3. **Compliance do cliente** — em cliente regulado, trava a entrega mesmo com tudo mais em ordem
-
-Reportar o resultado com número e pendência, nunca "está pronto":
-
-> Formato: Lista, 8 slides. Rubrica: média 7,8, menor nota 6 (C5, CTA).
-> Vetos: nenhum. Pendente: `[FALTA: telefone ativo]` no slide 8.
-
-### Passo 8 — Salvar e organizar
-
-```
-marketing/conteudo/<tipo>-<tema>-<YYYY-MM-DD>/
-  texto.md              ← texto aprovado + legenda
-  foto-<nome>.png       ← fotos geradas por IA (se houver)
-  carrossel.html
-  render.js
-  instagram/
-    slide-01.png → slide-NN.png
-  tiktok/ (se pedido — formato 9:16)
-    slide-01.png → ...
-  legenda.md            ← legenda Insta+FB
-  legenda-linkedin.md   ← (se pedido, mais formal)
-```
-
-### Passo 9 — Conexão com blog (opcional)
-
-Depois de criar o conteúdo visual, perguntar:
-
-> "Esse conteúdo dá pra virar artigo no blog também. Quer que eu crie a versão blog pra SEO?"
-
-Se sim, chamar `/publicar-tema` com o mesmo tema.
+O Mídia coleta as métricas. O que conta é **envio e salvamento**, não curtida. Post que fugiu da
+média vira aprendizado (`ferramentas/social` → Aprendizados) e pauta da próxima semana. Formato
+que funcionou fica de 7 a 10 posts antes de trocar.
 
 ---
 
 ## Regras
 
-- Ler `_memoria/conteudo/` antes da primeira linha de copy, e rodar o `99-checklist.md` antes de entregar
-- Escolher o **formato narrativo** antes de escrever. Layout vem depois
-- Sempre ler `identidade/design-guide.md` antes de criar qualquer visual
-- Carrossel: 1080x1350 (4:5 retrato) — sempre. A primeira imagem define a proporção do carrossel inteiro, então todos os slides saem na mesma dimensão. TikTok/Reels: 1080x1920 (9:16) — só quando pedido explicitamente
-- Nenhum texto de leitura abaixo de 24px; corpo com piso de 34px
-- Renderizar e **olhar** o slide 1 antes de renderizar o lote
-- Linguagem segue `_memoria/preferencias.md` estritamente
-- Sempre considerar a sequência de capa no feed antes de definir capa nova
-- Sempre gerar legenda automaticamente ao final, salvando em `legenda.md`
-- Fotos IA: sempre pedir aprovação antes de usar no carrossel, **e aprovar a série como conjunto**, não foto por foto isolada
-- Fotos IA: prompts em inglês
-- Fotos IA: nunca gerar fotos de pessoas/rostos identificáveis
-- Fotos IA: consistência entre slides é obrigatória (ver Passo 4). Objeto que tem que ser idêntico em vários slides **não** se gera N vezes: gera uma e reposiciona o mesmo arquivo. Quando gera séries, usar cena-mestra + style lock fixo + objetos nomeados + seed fixa, e conferir lado a lado antes do lote
-- HTMLs: um único arquivo `carrossel.html` com todos os slides + `render.js` na mesma pasta. Inline CSS
-- Render: reutilizar `node_modules` quando possível (não rodar `npm install` em cada pasta)
-- Não repetir layout entre slides — usar variação visual
+- Nada se monta sem ideia aprovada (Passo 0)
+- Um formato, um objetivo, um estilo, um CTA por post
+- Todo número com fonte conferível no slide; exemplo marcado "exemplo"; nada inventado
+- Slide 1 é promessa com ponta solta; melhor ponto cedo; nunca encher slide
+- Piso de 34px no corpo, nada de leitura abaixo de 24px
+- Imagem de IA só em ilustração e elemento; nunca gráfico com número, print, rosto ou o que o cliente vende
+- Renderizar e olhar o slide 1 antes do lote; folha da série antes de mostrar
+- Checklist + detector antes de dizer que está pronto
+- Até 5 hashtags; legenda sem link e sem travessão
+- Correção do Marcelo vira linha em `_memoria/conteudo/90-antipadroes.md` com o porquê

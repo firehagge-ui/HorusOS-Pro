@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>A bio do Instagram</title>
+<!--
+  Formato antes/depois (de texto). Roteiro aprovado pelo Marcelo em 10/10/2026. Bios são EXEMPLOS
+  inventados (Doce da Ana, Auto Center Pituba), marcados. Limite de 150 caracteres conferido no contador
+  da tela Editar perfil do Instagram em 10/10/2026. O slide do campo Nome saiu (sem fonte oficial).
+-->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=JetBrains+Mono:wght@500;600;700&family=Noto+Color+Emoji&display=swap');
+:root {
+  --void: #0e0918; --painel: #1b1728; --osso: #d1cece; --osso-2: #a7a1b3; --branco: #ffffff;
+  --azul: #0077ff; --azul-claro: #4a9bff;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #444; font-family: 'DM Sans', 'Noto Color Emoji', system-ui, sans-serif; }
+.e { font-family: 'Noto Color Emoji'; font-weight: 400; }
+.slide {
+  width: 1080px; height: 1440px; position: relative; overflow: hidden; margin-bottom: 40px;
+  background: radial-gradient(620px 520px at 92% 6%, rgba(0,119,255,.20), transparent 70%), var(--void);
+  color: var(--osso); display: flex; flex-direction: column; padding: 112px 96px 84px;
+}
+.cont { display: flex; align-items: center; gap: 26px; font-family: 'JetBrains Mono', monospace; font-weight: 700;
+  font-size: 28px; letter-spacing: .22em; color: var(--azul-claro); }
+.cont::after { content: ''; flex: 1; height: 2px; background: linear-gradient(90deg, rgba(0,119,255,.55), rgba(0,119,255,.08)); }
+h1 { margin-top: 44px; font-size: 88px; font-weight: 700; line-height: 1.05; letter-spacing: -.028em; color: var(--branco); text-wrap: balance; }
+h2 { margin-top: 40px; font-size: 70px; font-weight: 700; line-height: 1.08; letter-spacing: -.025em; color: var(--branco); text-wrap: balance; }
+em { font-style: normal; color: var(--azul-claro); }
+p { font-size: 38px; font-weight: 500; line-height: 1.45; margin-top: 32px; }
+p b { color: var(--branco); font-weight: 700; }
+.rot { margin-top: 52px; font-size: 28px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--osso-2); display: flex; align-items: center; gap: 16px; }
+.rot .x { color: #ff5c5c; font-size: 34px; } .rot .v { color: var(--azul-claro); font-size: 34px; }
+.ruim { margin-top: 22px; background: var(--painel); border: 1.5px solid rgba(255,255,255,.07); border-radius: 22px;
+  padding: 38px 48px; font-size: 38px; font-weight: 500; line-height: 1.42; color: var(--osso-2); }
+.bom { margin-top: 22px; position: relative; background: rgba(0,119,255,.13); border: 1.5px solid rgba(74,155,255,.55);
+  border-radius: 22px; padding: 40px 48px; font-size: 38px; font-weight: 500; line-height: 1.42; color: var(--branco); }
+.bom .ex { position: absolute; top: -18px; right: 30px; font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase; background: var(--azul); color: #fff; padding: 6px 16px; border-radius: 8px; }
+.veredito { margin-top: 40px; text-align: center; font-size: 50px; font-weight: 800; letter-spacing: .03em; color: var(--azul-claro); }
+.setas { margin-top: 44px; list-style: none; }
+.setas li { font-size: 42px; font-weight: 500; line-height: 1.32; padding-left: 64px; position: relative; color: var(--osso); }
+.setas li + li { margin-top: 30px; }
+.setas li::before { content: '→'; position: absolute; left: 0; top: -2px; color: var(--azul-claro); font-weight: 700; }
+.setas b { color: var(--branco); font-weight: 700; }
+.fonte { margin-top: 30px; font-size: 26px; font-weight: 500; color: #8a8496; }
+.miolo { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.rodape { margin-top: auto; padding-top: 34px; border-top: 1.5px solid rgba(255,255,255,.10); display: flex; align-items: center; gap: 24px; }
+.avatar { width: 92px; height: 92px; border-radius: 50%; background: var(--void); border: 2px solid rgba(255,255,255,.16); display: grid; place-items: center; }
+.avatar img { width: 66px; }
+.rodape .nome { font-size: 34px; font-weight: 700; color: var(--branco); line-height: 1.1; }
+.rodape .arroba { font-size: 28px; font-weight: 500; color: var(--azul-claro); }
+/* capa */
+.capa { padding-top: 112px; }
+.capa .cont { margin-top: 18px; }
+
+.rotulo { display: flex; align-items: center; gap: 18px; font-family: 'JetBrains Mono', monospace; font-weight: 600;
+  font-size: 26px; letter-spacing: .2em; text-transform: uppercase; color: rgba(226,232,240,.75); }
+.rotulo i { width: 14px; height: 14px; border-radius: 3px; background: var(--azul); flex-shrink: 0; }
+.bom { font-size: 40px; }
+.hp { background: rgba(0,119,255,.42); box-shadow: 0 0 0 5px rgba(0,119,255,.42); color: #fff; font-weight: 700; border-radius: 4px; }
+.hi { color: #e4dcff; border-bottom: 4px dotted #b69cff; }
+.hq { color: #fff; font-weight: 700; border-bottom: 4px solid var(--azul-claro); }
+.legenda { margin-top: 26px; display: flex; gap: 16px; flex-wrap: wrap; font-size: 26px; font-weight: 600; }
+.legenda span { padding: 8px 18px; border-radius: 999px; background: rgba(255,255,255,.06); color: var(--osso); }
+.legenda .lp { box-shadow: inset 0 0 0 2px rgba(0,119,255,.7); }
+.legenda .li { box-shadow: inset 0 0 0 2px #b69cff; }
+.legenda .lq { box-shadow: inset 0 0 0 2px var(--azul-claro); }
+.impacto { background: linear-gradient(141deg, #077ac7, #6b21ef); color: #fff; }
+.impacto .rotulo { color: rgba(255,255,255,.85); } .impacto .rotulo i { background: #fff; }
+.impacto .antes { font-size: 44px; font-weight: 500; line-height: 1.3; color: rgba(255,255,255,.88); }
+.impacto .forte { margin-top: 36px; font-size: 100px; font-weight: 800; line-height: 1.02; letter-spacing: -.03em; text-wrap: balance; }
+.impacto .rodape { border-top-color: rgba(255,255,255,.25); }
+.impacto .rodape .arroba { color: #fff; }
+.impacto .avatar { border-color: rgba(255,255,255,.35); }
+.capa h1 { font-size: 84px; }
+
+.bio { margin-top: 22px; border-radius: 26px; padding: 34px 38px; display: flex; gap: 28px; align-items: flex-start; position: relative; }
+.bio.ruim2 { background: var(--painel); border: 1.5px solid rgba(255,255,255,.07); color: var(--osso-2); }
+.bio.bom2 { background: rgba(0,119,255,.13); border: 1.5px solid rgba(74,155,255,.55); color: var(--branco); }
+.bio .foto { width: 96px; height: 96px; border-radius: 50%; flex-shrink: 0; background: linear-gradient(141deg,#3a3446,#1b1728); border: 3px solid rgba(255,255,255,.18); }
+.bio.bom2 .foto { background: linear-gradient(141deg,#077ac7,#6b21ef); }
+.bio .nm { font-size: 34px; font-weight: 800; color: inherit; }
+.bio .tx { margin-top: 10px; font-size: 36px; font-weight: 500; line-height: 1.38; }
+.bio .ex { position: absolute; top: -18px; right: 30px; font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase; background: var(--azul); color: #fff; padding: 6px 16px; border-radius: 8px; }
+.bio.ruim2 .ex { background: #4a4458; }
+.tres { margin-top: 44px; display: flex; flex-direction: column; gap: 22px; }
+.tres div { display: flex; align-items: center; gap: 26px; font-size: 46px; font-weight: 700; color: var(--branco); }
+.tres span { width: 78px; height: 78px; border-radius: 20px; background: rgba(0,119,255,.2); border: 1.5px solid rgba(74,155,255,.55);
+  display: grid; place-items: center; font-size: 40px; font-weight: 800; color: var(--azul-claro); flex-shrink: 0; }
+.check { margin-top: 44px; list-style: none; }
+.check li { font-size: 44px; font-weight: 600; color: var(--branco); padding: 22px 0 22px 80px; position: relative; border-bottom: 1.5px solid rgba(255,255,255,.1); }
+.check li::before { content: '✓'; position: absolute; left: 0; top: 16px; width: 56px; height: 56px; border-radius: 14px; background: var(--azul);
+  color: #fff; display: grid; place-items: center; font-size: 34px; font-weight: 800; }
+.mini { margin-top: 14px; font-size: 26px; font-weight: 600; color: #8a8496; }
+</style>
+</head>
+<body>
+
+<!-- 1 · capa -->
+<section class="slide capa">
+  <div class="rotulo"><i></i>Bio do Instagram</div>
+  <div class="miolo">
+    <h1>Sua bio diz <em>"bem-vindos"</em>.</h1>
+    <p>A do concorrente diz o que vende, onde e como pedir.</p>
+    <div class="bio ruim2"><span class="ex">exemplo</span><div class="foto"></div><div><div class="nm">Doce da Ana</div><div class="tx">Bem-vindos! ✨ Qualidade e carinho em cada detalhe 💕</div></div></div>
+    <div class="bio bom2"><span class="ex">exemplo</span><div class="foto"></div><div><div class="nm">Doce da Ana</div><div class="tx">Bolos de festa e de pote em Brotas 🎂 Encomenda com 2 dias · entrega no bairro · peça pelo link ⬇️</div></div></div>
+  </div>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+<!-- 2 · as três perguntas -->
+<section class="slide">
+  <div class="rotulo"><i></i>Bio do Instagram</div>
+  <div class="miolo">
+    <h2>A bio responde <em>3 perguntas</em> em até 150 caracteres</h2>
+    <div class="tres">
+      <div><span>1</span>O que você vende</div>
+      <div><span>2</span>Onde</div>
+      <div><span>3</span>Como a pessoa pede</div>
+    </div>
+    <p>Quem chega no perfil lê a bio antes de qualquer post.</p>
+  </div>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+<!-- 3 · par doceria -->
+<section class="slide">
+  <div class="rotulo"><i></i>Bio do Instagram</div>
+  <div class="miolo">
+    <h2>Numa <em>doceria</em></h2>
+    <div class="rot"><span class="x">✕</span> Em vez de</div>
+    <div class="bio ruim2"><span class="ex">exemplo</span><div class="foto"></div><div><div class="nm">Doce da Ana</div><div class="tx">Bem-vindos! ✨ Qualidade e carinho em cada detalhe 💕</div></div></div>
+    <div class="rot"><span class="v">✓</span> Escreva assim</div>
+    <div class="bio bom2"><span class="ex">exemplo</span><div class="foto"></div><div><div class="nm">Doce da Ana</div><div class="tx">Bolos de festa e de pote em Brotas 🎂 Encomenda com 2 dias · entrega no bairro · peça pelo link ⬇️</div></div></div>
+  </div>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+<!-- 4 · par oficina -->
+<section class="slide">
+  <div class="rotulo"><i></i>Bio do Instagram</div>
+  <div class="miolo">
+    <h2>Numa <em>oficina</em></h2>
+    <div class="rot"><span class="x">✕</span> Em vez de</div>
+    <div class="bio ruim2"><span class="ex">exemplo</span><div class="foto"></div><div><div class="nm">Auto Center Pituba</div><div class="tx">Paixão por carros desde 2010 🔧</div></div></div>
+    <div class="rot"><span class="v">✓</span> Escreva assim</div>
+    <div class="bio bom2"><span class="ex">exemplo</span><div class="foto"></div><div><div class="nm">Auto Center Pituba</div><div class="tx">Mecânica e revisão na Pituba 🔧 Orçamento pelo WhatsApp ⬇️</div></div></div>
+  </div>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+<!-- 5 · checklist -->
+<section class="slide">
+  <div class="rotulo"><i></i>Bio do Instagram</div>
+  <div class="miolo">
+    <h2>Antes de salvar a bio nova, <em>confere</em></h2>
+    <ul class="check">
+      <li>Diz o que você vende</li>
+      <li>Diz onde</li>
+      <li>Diz como pedir</li>
+      <li>O link funciona</li>
+    </ul>
+  </div>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+<!-- 6 · envio -->
+<section class="slide impacto">
+  <div class="rotulo"><i></i>Bio do Instagram</div>
+  <div class="miolo">
+    <div class="antes">Conhece alguém assim?</div>
+    <div class="forte">Manda pra aquele amigo que tem loja e a bio ainda diz "bem-vindos" 😅</div>
+  </div>
+  <div class="rodape"><div class="avatar"><img src="../../../../../site/assets/simbolo-grande.png" alt=""></div>
+    <div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div>
+</section>
+
+</body>
+</html>

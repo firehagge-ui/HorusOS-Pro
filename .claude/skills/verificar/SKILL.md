@@ -50,12 +50,12 @@ Pular passo é mentir, não é economizar tempo.
 Antes de dizer que um site está pronto, rodar:
 
 ```
-node .claude/skills/impeccable/scripts/detect.mjs "clientes/<nome>/site"
+npx --yes impeccable@4.0.4 detect "clientes/<nome>/site"
 ```
 
-Se a skill não estiver instalada nesse clone (a pasta é gitignored — ver
-`CLAUDE.md`, seção "Impeccable"), o mesmo detector roda via
-`npx --yes impeccable@3.5.0 detect "clientes/<nome>/site"`.
+O `node .claude/skills/impeccable/scripts/detect.mjs` local deu "limpo" num arquivo sabidamente
+ruim em 09/09 e de novo em 14/10/2026: só vale depois de validado contra um arquivo ruim
+(ver `_memoria/design/90-antipadroes.md`).
 
 É um programa, não uma leitura. Roda tenha o Claude lido `_memoria/design/` ou
 não, e é por isso que ele existe: a memória de design depende de o modelo lembrar
@@ -84,7 +84,7 @@ só três:
 2. **Dispensar com motivo registrado**, quando a regra briga com uma decisão
    deliberada e documentada:
    ```
-   npx --yes impeccable@3.5.0 ignores add-value <regra> "*" --file "clientes/<nome>/**" --reason "<por que, e onde a decisão está escrita>"
+   npx --yes impeccable@4.0.4 ignores add-value <regra> "*" --file "clientes/<nome>/**" --reason "<por que, e onde a decisão está escrita>"
    ```
    Dispensa sem `--reason` não é dispensa, é varrer pra debaixo do tapete.
 3. **Escalar pro Marcelo**, quando não está claro se é erro ou escolha.
@@ -96,7 +96,7 @@ mecânica, não pega mentira nem estratégia.
 
 **Exceções ativas** ficam em `.impeccable/config.json`, versionado de propósito
 pra que o motivo de cada uma fique visível. Ver com
-`npx --yes impeccable@3.5.0 ignores list`.
+`npx --yes impeccable@4.0.4 ignores list`.
 
 ## Sinais de que você está prestes a violar
 

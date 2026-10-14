@@ -236,7 +236,7 @@ export function criarCliente({
     if (!Array.isArray(urls) || urls.length < min || urls.length > max) throw new ErroMeta(`Quantidade de mídias fora do limite (${min} a ${max}).`, { tipo: 'parametro' });
     for (const u of urls) if (!/^https:\/\//.test(u)) throw new ErroMeta(`A Meta exige URL pública em https: ${u}`, { tipo: 'parametro' });
     if (legenda.length > 2200) throw new ErroMeta(`Legenda com ${legenda.length} caracteres (máximo 2.200).`, { tipo: 'parametro' });
-    if ((legenda.match(/#[\p{L}\p{N}_]+/gu) || []).length > 30) throw new ErroMeta('Mais de 30 hashtags.', { tipo: 'parametro' });
+    if ((legenda.match(/#[\p{L}\p{N}_]+/gu) || []).length > 5) throw new ErroMeta('Mais de 5 hashtags (limite do Instagram desde dez/2025).', { tipo: 'parametro' });
   }
 
   async function publicarImagem({ url, legenda = '', simular = false }) {

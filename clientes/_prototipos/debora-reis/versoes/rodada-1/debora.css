@@ -1,0 +1,87 @@
+/* Débora Reis: esboço da Hórus (09/10/2026).
+   Estrutura da Soleira (site.css); por cima, a casa clara e quente das fotos dela:
+   cal, madeira, o vermelho do aparador e o azul do nicho. Young Serif no título,
+   Public Sans no texto. */
+
+:root{
+  --noite:#F4EEE4;    /* fundo: cal quente */
+  --pedra:#EBE2D4;    /* faixa alternada */
+  --pedra-2:#E2D6C4;  /* faixa do contato */
+  --cal:#2A211B;      /* tinta */
+  --cal-2:#5C5047;    /* texto secundário (7,1:1 sobre o fundo) */
+  --anil:#8A5A35;     /* madeira: fios e detalhes */
+  --anil-cl:#9E3426;  /* vermelho do aparador: links e destaque */
+  --azul:#2F5E8C;     /* azul do nicho */
+  --linha:#D6C9B6;
+}
+
+h1,h2,h3,.marca,.rodape-marca{font-family:"Young Serif",Georgia,serif;font-weight:400;letter-spacing:-.01em}
+h1{line-height:1.08}
+
+.topo{background:rgba(244,238,228,.92)}
+.marca{font-size:22px;display:flex;align-items:baseline;gap:10px}
+.marca span{font-family:"Public Sans",sans-serif;font-size:14px;color:var(--cal-2);letter-spacing:0}
+.btn:hover{background:var(--anil-cl);border-color:var(--anil-cl);color:#fff}
+a:hover{color:var(--cal)}
+
+.selo-esboco{
+  position:fixed;right:16px;bottom:16px;z-index:60;margin:0;
+  background:var(--cal);color:var(--noite);font-size:13px;font-weight:600;
+  padding:8px 12px;border-radius:2px;
+}
+
+.hero-foto img{height:520px;object-position:center 55%}
+
+/* projetos: foto em pé, como ela fotografa */
+.proj img{aspect-ratio:4/5}
+.proj h3{margin:18px 0 10px}
+.proj-nota{color:var(--cal-2);font-size:var(--t-corpo);margin:0 0 12px}
+.proj-pagina{font-size:var(--t-min);font-weight:600;color:var(--anil-cl);border-bottom:1px dashed var(--anil-cl)}
+
+/* a assinatura: os bichanos */
+.bichanos{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.bichanos h2{margin-bottom:20px;max-width:12em}
+.bichanos-lead{font-size:var(--t-lead);color:var(--cal)}
+.bichanos-texto p{color:var(--cal-2);max-width:34em}
+.bichanos-fotos{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.bichanos-fotos img{width:100%;aspect-ratio:9/14;object-fit:cover;border-radius:2px}
+.bichanos-fotos img:last-child{margin-top:64px}
+
+/* sobre */
+.sobre{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:.75fr 1.25fr;gap:64px;align-items:center}
+.sobre-foto{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px}
+.sobre blockquote{margin:0 0 18px}
+.sobre blockquote p{font-family:"Young Serif",Georgia,serif;font-size:var(--t-h2p);line-height:1.25;margin:0;max-width:20em}
+.sobre-assina{color:var(--cal-2);margin-bottom:40px}
+.avaliacao{border-top:1px solid var(--linha);padding-top:24px;max-width:30em}
+.avaliacao-nota{font-family:"Young Serif",Georgia,serif;font-size:var(--t-h3);margin-bottom:6px;color:var(--azul)}
+.avaliacao-texto{color:var(--cal);margin:0}
+.avaliacao-texto span{display:block;color:var(--cal-2);font-size:var(--t-min);margin-top:4px}
+
+/* a parte que ainda é dela */
+.nota-esboco{
+  max-width:1280px;margin:0 auto;padding:28px 32px;
+  border:2px dashed var(--anil);border-radius:2px;color:var(--cal-2);font-size:var(--t-lead);
+}
+
+/* contato */
+.contato-dados{margin:0;display:grid;gap:0}
+.contato-dados>div{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:16px 0;border-top:1px solid var(--linha)}
+.contato-dados>div:last-child{border-bottom:1px solid var(--linha)}
+.contato-dados dt{font-size:var(--t-min);font-weight:600;color:var(--cal-2)}
+.contato-dados dd{margin:0}
+
+.rodape{background:var(--cal);color:var(--noite)}
+.rodape-nota{color:#C9BCAA}
+
+@media (max-width:1080px){
+  .hero-foto img{height:420px}
+  .bichanos,.sobre{grid-template-columns:1fr;gap:40px}
+  .sobre-foto{max-width:420px}
+}
+@media (max-width:560px){
+  .hero-foto img{height:320px}
+  .bichanos-fotos img:last-child{margin-top:32px}
+  .contato-dados>div{grid-template-columns:1fr;gap:4px}
+  .selo-esboco{right:12px;bottom:12px;font-size:12px}
+}

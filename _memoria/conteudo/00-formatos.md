@@ -1,4 +1,4 @@
-# Os sete formatos narrativos de carrossel
+# Os formatos narrativos de carrossel (sete + dois de 07/10/2026)
 
 > **Escolher UM antes de escrever a primeira linha de copy.** O formato define
 > quantos slides, o que vai em cada um e para onde a coisa caminha. Sem formato
@@ -23,6 +23,8 @@ depois**. Cada formato serve um objetivo diferente:
 | Sinta que eu entendo a dor dela | Problema → Solução |
 | Se conecte com a pessoa por trás | História |
 | Veja que funciona | Transformação ⚠️ |
+| Mande pra alguém (notícia, ferramenta, alerta) | Print de tweet |
+| Saia com a frase pronta | Antes/depois de fala |
 
 Se dois formatos servem, escolher o que a marca **menos** usou nas últimas
 semanas. Variedade de formato é o que mantém um perfil vivo — muito mais que
@@ -124,6 +126,42 @@ formato pra esses dois clientes: é não usar.
 Onde cabe (Grão da Serra, Permita-se, peça institucional da Horus), a
 transformação é **do processo ou do produto**, nunca de pessoa: grão cru → grão
 torrado, sala vazia → estúdio montado, site velho → site novo.
+
+## 8. Print de tweet (6 a 9 slides)
+
+Parece post nativo, não peça de agência. Veio das referências da Luíza Cureau
+(07/10/2026, `identidade/social/referencias/2026-10-07-essencia.md`). Gera envio e
+comentário, porque lê como alguém contando uma novidade.
+
+Serve pra: notícia do que o dono usa, ferramenta grátis, estudo com dado, alerta.
+
+1. **Capa** — avatar + nome + @, texto grande (2 a 4 linhas), gancho de notícia
+   ("🚨 ALERTA:", "Sabia que...") e um cartão de imagem (ilustração, print real, gráfico)
+2. **Fio** (4 a 7 slides) — um trecho por slide, com o fio cinza ligando os tweets.
+   Cada slide fecha puxando o próximo ("e tem mais 👉")
+3. **"Ou seja"** — a reflexão em uma frase
+4. **Conversa** — pergunta real pros comentários
+
+Prova: todo número com fonte no slide; print é print de verdade; gráfico com número
+é desenhado em código a partir da fonte, nunca gerado por IA.
+
+## 9. Antes/depois de fala (6 a 8 slides)
+
+A pessoa sai com a frase pronta. Veio da referência do Thiago Finch (07/10/2026) e
+foi o formato que o Marcelo mais aprovou (10/10/2026). Gera salvamento.
+
+Serve pra: responder cliente, avaliação, objeção, abordagem; qualquer cena em que
+o que se diz muda o resultado.
+
+1. **Capa** — a cena que todo dono viveu, dita na primeira linha
+2. **Por que importa** (1 slide) — quem vê, o que se perde
+3. **Pares** (2 a 3 slides) — "✕ Em vez de" (cartão apagado, a frase comum) e
+   "✓ Responda assim" (cartão de destaque, a frase pronta, marcada como exemplo)
+4. **O que as boas têm em comum** — 3 ou 4 setas
+5. **Reflexão** e **CTA** ("salva pra próxima vez")
+
+Exemplo com nome é sempre marcado "exemplo". Longe de saúde: preço e promessa em
+clínica têm regra própria.
 
 ---
 

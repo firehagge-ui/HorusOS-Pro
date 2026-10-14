@@ -158,6 +158,8 @@ disso; texto corrido sofre.
   `site/assets/site.css`. É **só o site** por ora — as peças/carrossel continuam em
   Sora + Archivo. Se o Marcelo quiser padronizar a casa toda no par do site, esta
   linha vira a decisão.
+- ⚠️ **Em aberto (09/10/2026):** no site da Débora Reis o Marcelo tirou Newsreader e Public Sans como "tipografias de
+  IA". O site da Hórus usa Newsreader no acento. Falta ele dizer se a correção vale também pra identidade da casa.
   Nota: o detector do impeccable reprovou **Inter** e **Instrument Serif** (as
   duas já estavam na lista de queimadas acima), o que confirmou a escolha final.
 

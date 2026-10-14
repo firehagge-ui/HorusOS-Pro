@@ -162,7 +162,9 @@ export function similaridade(a, b) {
 // sai de AUTO_RESPOSTA_SQL.
 const AUTO = ['agradece(mos)? (o |a )?(seu |sua )?(contato|mensagem)', 'nao estamos disponiveis', 'no momento nao (estamos|podemos)',
   'seja (muito )?bem[- ]?vind', 'retornaremos', 'responderemos (assim que|em breve)', 'em breve (retornamos|responderemos|entraremos)',
-  'horario de atendimento', 'funcionamos de', 'mensagem automatica', 'como posso te chamar', 'fora do horario'];
+  'horario de atendimento', 'funcionamos de', 'mensagem automatica', 'como posso te chamar', 'fora do horario',
+  // 08/10: a assistente de IA da Cintya ("sou a assistente virtual", "já conectei você com a nossa equipe")
+  'assistente virtual', 'conectei voce com a nossa equipe', 'vou conectar voce com a nossa equipe'];
 export const AUTO_RESPOSTA_SQL = AUTO.join('|');
 const AUTO_RE = new RegExp(AUTO.join('|'));
 export function pareceAutoResposta(texto) { return AUTO_RE.test(sem(texto)); }

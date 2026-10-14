@@ -52,13 +52,14 @@ roteamento de estilo e precedência das `kit-*` no `CLAUDE.md`.
 ## Conteúdo e atendimento
 | Skill | Pra quê |
 |---|---|
-| `carrossel` | carrossel/post visual (HTML→PNG) |
+| `carrossel` | central de post: pauta por tendência → formato e gancho → fala humana → ChatGPT pelo Chrome → HTML→PNG → checklist; estuda post/reel de referência (10/10/2026) |
 | `publicar-tema` | fluxo de criação de conteúdo por tema |
 | `aprovar-post` | aprova e publica post da fila (blog + Instagram/Facebook) |
 | `email-profissional` | rascunho de email calibrado |
 | `responder-avaliacoes` | resposta a avaliações |
 | `midia` | agente de social media (Mídia): planeja, escreve e publica o Instagram aprovado |
 | `revisar-mensagem` | revisão de mensagem de prospecção antes de mostrar (checklist de `_memoria/prospeccao/`) |
+| `responder-lead` | conduz a conversa com lead que respondeu, lance a lance até a reunião: lê o momento, devolve a próxima mensagem com o plano e grava no Hounder (14/10/2026) |
 | `ingerir-network` | transforma export de grupo de WhatsApp do network em card de `_conhecimento/network/` |
 
 ## Marketing e dados

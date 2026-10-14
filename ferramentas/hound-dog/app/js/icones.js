@@ -27,6 +27,7 @@ const P = {
   editar: 'M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z',
   setad: 'M5 12h14M13 5l7 7-7 7',
   setae: 'M19 12H5M11 19l-7-7 7-7',
+  setab: 'M6 9l6 6 6-6',
   chevd: 'm9 18 6-6-6-6',
   cheve: 'm15 18-6-6 6-6',
   chevb: 'm6 9 6 6 6-6',

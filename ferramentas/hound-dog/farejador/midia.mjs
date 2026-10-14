@@ -326,7 +326,7 @@ export async function midiaSemana(job, progresso, cancelado) {
   const prompt = `Sessão da semana de ${semana}. Faça, nesta ordem:
 1. ANALISE a semana que passou com os dados abaixo. Diga o que a amostra permite concluir e o que ainda é ruído (conta pequena: nada muda por um post só).
 2. PLANEJE ${cfg.posts_semana || 3} posts de feed (carrossel) para esta semana, um por dia de publicação (dia 1 = segunda, 3 = quarta, 5 = sexta), seguindo os pilares e pesos do perfil.md. No máximo 1 experimento.
-3. ESCREVA cada post por completo (slides + legenda de 1.200 a 1.800 caracteres, primeira frase com palavra-chave de busca, 5 a 15 hashtags, sem link).
+3. ESCREVA cada post por completo (slides + legenda de 1.200 a 1.800 caracteres, primeira frase com palavra-chave de busca, até 5 hashtags (limite do Instagram), sem link).
 ${semanaPar ? '4. Esta semana inclui PESQUISA DE TENDÊNCIAS: use o Firecrawl/WebSearch para ver o que está funcionando em conteúdo para negócio local no Instagram agora, e traga só o que serve à Horus.\n' : ''}${primeiraDoMes ? '5. Primeira semana do mês: inclua na análise uma REVISÃO DA ESTRATÉGIA (pilares, cadência) e proponha ajustes como aprendizados do tipo "hipotese".\n' : ''}
 Dados:
 - Posts recentes: ${JSON.stringify(recentes)}

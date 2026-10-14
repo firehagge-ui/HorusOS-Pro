@@ -342,6 +342,7 @@ async function inicio() {
     try {
       // Claude automático desligado (05/10/2026): resposta de lead não dispara ciclo nem análise; o Marcelo pede no painel
       if (!(await claudeAutomatico())) return;
+      if (tipo === 'indecifrada') return; // sem texto pra ler: o Claude espera a mensagem chegar aberta
       if (empresa && !conversa.silenciada && (await agenteDa(empresa.id))?.status === 'ativo') {
         // Resposta automática do WhatsApp Business não é o lead respondendo: não gasta ciclo
         // nem aviso do WhatsApp sem texto (mensagens temporárias etc., Cintya 30/09)

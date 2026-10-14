@@ -256,7 +256,7 @@ export default async function conversas(v, { args }) {
 
   function bolha(m) {
     const st = { fila: 'relogio', enviando: 'relogio', enviada: 'check', entregue: 'check', lida: 'checkc', erro: 'alerta' }[m.status];
-    return `<div class="bolha ${m.direcao}" data-msg="${m.id}"><span>${esc(m.texto || `[${m.tipo}]`)}</span><small>${dataHora(m.momento)}${m.direcao === 'out' && st ? ` ${icone(st)}` : ''}${m.status === 'erro' ? ` <b class="erro">${esc(m.erro || 'falhou')}</b>` : ''}</small></div>`;
+    return `<div class="bolha ${m.direcao}" data-msg="${m.id}"><span>${esc(m.texto || (m.tipo === 'indecifrada' ? '[mensagem que o Farejador não conseguiu abrir: veja no celular]' : `[${m.tipo}]`))}</span><small>${dataHora(m.momento)}${m.direcao === 'out' && st ? ` ${icone(st)}` : ''}${m.status === 'erro' ? ` <b class="erro">${esc(m.erro || 'falhou')}</b>` : ''}</small></div>`;
   }
 
   $('[data-busca]', v).oninput = debounce((e) => { busca = e.target.value; desenharLista(); }, 200);

@@ -68,14 +68,14 @@ Tem energia e identidade, ou é template morno?
 
 ## Parte 3 — Técnico
 
-- [ ] Todos os slides na mesma dimensão, 1080 × 1350
+- [ ] Todos os slides na mesma dimensão: 1080 × 1350 (cliente) ou 1080 × 1440 (Horus)
 - [ ] Entre 2 e 10 imagens (limite da API do Instagram)
 - [ ] PNG ou JPEG, abaixo de 30MB por arquivo
 - [ ] Slide 1 foi renderizado e **olhado** antes do lote
 - [ ] HTML autocontido, sem dependência externa além de Google Fonts
 - [ ] Nenhum tracinho como separador na copy nem na legenda
 - [ ] Primeiros 125 caracteres da legenda funcionam sozinhos como gancho
-- [ ] 5 a 15 hashtags, misturando nicho, médio alcance e amplo
+- [ ] Até 5 hashtags, específicas (limite do Instagram desde dez/2025; o Mosseri diz que ajudam na busca, não no alcance)
 - [ ] `legenda.md` gerada e salva na pasta da peça
 
 ---

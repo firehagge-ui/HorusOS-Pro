@@ -55,6 +55,31 @@ pergunta certa pra fazer."*
 "solução", "jornada", "experiência". Nenhum paciente, nenhuma aluna de
 hidroginástica e nenhum dono de padaria fala assim. Segue `_memoria/preferencias.md`.
 
+**Tema só informativo.** Post que explica um recurso ou uma regra sem novidade que o dono não
+sabe, sem prova nossa e sem polêmica que puxe comentário. Fica correto e ninguém compartilha.
+A pauta tem que passar por pelo menos um dos três.
+→ *Origem: o Marcelo achou fraca a 1ª pauta por tendência ("queria algo melhor") e não gostou dos
+temas de Google, 08/10/2026. Processo em `ferramentas/social/ARQUITETURA.md` §8.*
+
+**Gancho que afirma causa única.** "Talvez tenha sido a resposta" no fim é fraco; afirmar que
+toda perda vem da resposta é falso. O gancho bom pergunta a cena e abre a hipótese: "O cliente
+perguntou 'quanto custa?' e sumiu? Talvez o problema não seja o seu preço, mas a forma como você
+respondeu." Cria curiosidade sem prometer o que não dá pra provar.
+
+**Regra rígida onde cabe orientação.** "Três opções, no máximo" soa lei universal e não é.
+Escrever como orientação com condição: "Quando fizer sentido, ofereça até três opções claras."
+
+**Exemplo comprido no par ✕/✓.** No celular o exemplo é lido em 2 segundos. Enxugar e destacar
+no visual só os elementos que ensinam (no caso do preço: o valor, o que está incluso e a pergunta
+que mantém a conversa).
+
+**Frase mais forte afogada no meio.** A ideia que resume o carrossel ganha slide próprio, pouco
+texto e contraste alto, não um parágrafo igual aos outros.
+
+**CTA que pede opinião genérica.** "Qual pergunta você não sabe responder?" rende menos que pedir
+uma situação vivida: "Qual foi a pergunta de cliente que mais te deixou sem resposta? Conta aqui."
+→ *Origem das cinco: revisão do Marcelo no roteiro "Quanto custa?", 10/10/2026.*
+
 **Tracinho como separador.** Nunca `—`, `–` ou ` - ` em copy de peça. Vírgula,
 ponto ou quebra de linha. Vale pra legenda também.
 → *Origem: preferência antiga do Marcelo, registrada na memória.*
@@ -80,6 +105,12 @@ mais visíveis de template automático.
 canto superior direito de todos os slides. **Decisão pendente do Marcelo** —
 enquanto não decidir, a skill mantém o contador como opcional e desligado por
 padrão no Instagram.*
+
+**Barra lateral grossa no cartão.** Borda colorida de 6px ou mais num lado só do cartão, o
+"side-tab". É o sinal de interface de IA que o detector do impeccable mais pega. Cartão de destaque
+usa fundo tingido com borda fina em volta, sem brilho colorido (`dark-glow` também é tell).
+→ *Origem: post "Quem lê sua resposta à 1 estrela", 08/10/2026; a barra vinha da referência do
+Thiago Finch e o Marcelo aprovou trocar.*
 
 **Texto sem proteção sobre foto.** Ver `10-legibilidade.md`. Sombra de texto não
 é proteção.

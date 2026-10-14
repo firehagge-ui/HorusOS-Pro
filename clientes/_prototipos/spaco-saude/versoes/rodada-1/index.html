@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spaço Saúde | Odontologia na Graça, Salvador</title>
+<meta name="description" content="Clínica odontológica no Centro Médico Centenário, na Graça. Ortodontia, implante, tratamento para DTM e ATM.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Public+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/spaco.css">
+</head>
+<body>
+
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<p class="selo-esboco">Esboço da Hórus para a Spaço Saúde</p>
+
+<header class="topo">
+  <div class="topo-in">
+    <a class="marca" href="#conteudo">Spaço Saúde <span>odontologia</span></a>
+    <nav class="menu" aria-label="Seções">
+      <a href="#tratamentos">Tratamentos</a>
+      <a href="#dra">A clínica</a>
+      <a href="#agendar">Agendar</a>
+    </nav>
+    <a class="btn btn-topo" href="#agendar">Agendar avaliação</a>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<section class="hero">
+  <div class="hero-texto">
+    <p class="sobretitulo">Centro Médico Centenário, Graça</p>
+    <h1>Odontologia na Graça, do aparelho ao implante.</h1>
+    <p class="lead">Ortodontia, implante dentário e tratamento para DTM e ATM, com avaliação marcada direto pelo WhatsApp.</p>
+    <div class="hero-acoes">
+      <a class="btn" href="#agendar">Agendar avaliação</a>
+      <a class="link-forte" href="#tratamentos">Ver os tratamentos</a>
+    </div>
+    <p class="selo-google">4,9 no Google, com 124 avaliações</p>
+  </div>
+  <figure class="hero-foto">
+    <img src="assets/fotos/recepcao.jpg" alt="Recepção da Spaço Saúde, com cadeiras pretas, balcão claro e quadros na parede" width="1440" height="1920" fetchpriority="high">
+    <figcaption>Nosso espaço, projetado com muito carinho.</figcaption>
+  </figure>
+</section>
+
+<section class="faixa faixa-clara" id="tratamentos">
+  <div class="secao-cab">
+    <h2>Tratamentos</h2>
+    <p>No site, cada tratamento ganha a própria página, com o que é, como funciona a avaliação e o botão de agendar.</p>
+  </div>
+
+  <div class="destaques">
+    <article class="trat">
+      <h3>Ortodontia</h3>
+      <p>Aparelho fixo e alinhador transparente. Quando a mordida está em equilíbrio, todo o sistema pode funcionar de forma mais harmoniosa.</p>
+      <span class="trat-pagina">Página do tratamento</span>
+    </article>
+    <article class="trat">
+      <h3>Implante dentário</h3>
+      <p>A cirurgia é feita com anestesia e planejamento, e a primeira etapa é sempre a avaliação.</p>
+      <span class="trat-pagina">Página do tratamento</span>
+    </article>
+    <article class="trat">
+      <h3>DTM, ATM e bruxismo</h3>
+      <p>O bruxismo nem sempre começa com uma dor intensa. Muitas vezes, ele deixa pequenos sinais.</p>
+      <span class="trat-pagina">Página do tratamento</span>
+    </article>
+  </div>
+
+  <ul class="outros" aria-label="Outros tratamentos">
+    <li>Prótese dentária</li>
+    <li>Remoção de sisos</li>
+    <li>Clareamento dental</li>
+    <li>Lentes de contato dental</li>
+    <li>Gengivoplastia</li>
+    <li>Recobrimento radicular</li>
+    <li>Enxerto ósseo</li>
+    <li>Tratamento de canal</li>
+    <li>Restauração</li>
+    <li>Prevenção</li>
+  </ul>
+</section>
+
+<section class="faixa" id="dra">
+  <div class="dra">
+    <figure class="dra-foto"><img src="assets/fotos/dra-angela.jpg" alt="Dra. Ângela Noronha, de jaleco branco, sorrindo" width="640" height="1136" loading="lazy"></figure>
+    <div class="dra-texto">
+      <h2>Dra. Ângela Noronha</h2>
+      <p class="dra-cargo">Ortodontista, CRO-BA 12600, à frente da clínica</p>
+      <p>“Dra., implante dói?” é uma das perguntas que ela mais recebe. Aqui entra a apresentação da doutora e da equipe, com a formação de cada um.</p>
+      <p class="nota-esboco">Esta parte a gente escreve junto com a Dra.: formação, equipe e o jeito de atender.</p>
+    </div>
+  </div>
+</section>
+
+<!-- O Agendar que funciona: abre o WhatsApp com o tratamento escolhido -->
+<section class="faixa faixa-roxa" id="agendar">
+  <div class="agendar">
+    <div>
+      <h2>Agende sua avaliação</h2>
+      <p class="lead">Escolha o tratamento e a conversa já abre no WhatsApp da clínica, com a mensagem pronta.</p>
+    </div>
+    <form class="agendar-form" id="form-agendar">
+      <label for="trat">Qual tratamento?</label>
+      <select id="trat" name="trat">
+        <option>Ortodontia</option>
+        <option>Implante dentário</option>
+        <option>DTM, ATM ou bruxismo</option>
+        <option>Clareamento ou lentes</option>
+        <option>Outro tratamento</option>
+      </select>
+      <label for="nome">Seu nome</label>
+      <input id="nome" name="nome" autocomplete="name">
+      <button class="btn btn-claro" type="submit">Abrir no WhatsApp</button>
+      <p class="form-nota">Seus dados vão só na mensagem do WhatsApp, nada fica guardado no site.</p>
+    </form>
+  </div>
+</section>
+
+<section class="faixa faixa-clara" id="contato">
+  <dl class="contato">
+    <div><dt>Endereço</dt><dd>Centro Médico Centenário, sala 205<br>Rua Eng. Celso Torres, 654, Graça, Salvador</dd></div>
+    <div><dt>Telefones</dt><dd>WhatsApp (71) 99265-5288<br>Fixo (71) 3235-3247</dd></div>
+    <div><dt>Horário</dt><dd class="nota-inline">a gente confirma com a clínica</dd></div>
+  </dl>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <p class="rodape-marca">Spaço Saúde</p>
+  <p>Dra. Angela Carolina Ramos Noronha, CRO-BA 12600. Responsável técnica: <span class="nota-inline">a confirmar com a clínica</span>.</p>
+  <p class="rodape-nota">Esboço feito pela Hórus para a Spaço Saúde, com as fotos e os textos do Instagram da clínica. Página privada, fora do Google.</p>
+</footer>
+
+<script>
+  document.getElementById('form-agendar').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var t = document.getElementById('trat').value;
+    var n = document.getElementById('nome').value.trim();
+    var msg = 'Olá! ' + (n ? 'Sou ' + n + '. ' : '') + 'Gostaria de agendar uma avaliação de ' + t.toLowerCase() + '.';
+    window.open('https://wa.me/5571992655288?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+  });
+</script>
+</body>
+</html>

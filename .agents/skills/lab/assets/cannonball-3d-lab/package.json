@@ -1,0 +1,54 @@
+{
+  "name": "cannonball-3d-lab",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "catalog": "node scripts/generate-catalog.mjs",
+    "predev": "npm run catalog",
+    "dev": "concurrently -k -n WEB,GEN -c cyan,green \"npm:dev:web\" \"npm:dev:generator\"",
+    "dev:web": "vinext dev --host 127.0.0.1 --port 5555 --strictPort",
+    "dev:generator": "node --env-file-if-exists=.env.local scripts/generation-bridge.mjs",
+    "setup:sf3d": "bash scripts/setup-sf3d.sh",
+    "setup:sf3d:weights": "bash scripts/download-sf3d-weights.sh",
+    "setup:ktx": "python3 scripts/setup-ktx.py",
+    "prebuild": "npm run catalog",
+    "build": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build",
+    "start": "vinext start",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next"
+  },
+  "dependencies": {
+    "lucide-react": "0.468.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "three": "0.180.0"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "1.37.1",
+    "@eslint/js": "9.39.4",
+    "@gltf-transform/cli": "^4.5.0",
+    "@next/eslint-plugin-next": "16.2.6",
+    "@openai/sites-vite-plugin": "0.1.0",
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@types/three": "0.180.0",
+    "@vitejs/plugin-react": "6.0.2",
+    "@vitejs/plugin-rsc": "0.5.26",
+    "concurrently": "9.2.1",
+    "eslint": "9.39.4",
+    "eslint-plugin-jsx-a11y": "6.10.2",
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "7.0.1",
+    "globals": "16.4.0",
+    "react-server-dom-webpack": "19.2.6",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.59.3",
+    "vinext": "1.0.0-beta.2",
+    "vite": "8.0.13",
+    "wrangler": "4.92.0"
+  },
+  "type": "module"
+}
