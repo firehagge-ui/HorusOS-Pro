@@ -138,3 +138,31 @@ retrato da Dra. em moldura arredondada com assinatura à mão.
 | CRO-BA 17600, "Diretora clínica" | CRO-BA 12600, "À frente da Spaço Saúde" | Número errado; cargo não confirmado |
 | "Conheça minha história" | "Acompanhe no Instagram" | Não existe a página da história |
 | Logo de rosto em linha (inventado) | Logo real da clínica (dente em filigrana) | Pedido do Marcelo |
+
+---
+
+## Rodada 5 (14/10/2026, noite): a página inteira do Marcelo como especificação
+
+**Pedido:** refazer o site completo, "recriação visual o mais fiel possível" de uma página que ele mandou (mockup feito em IA),
+mantendo logo, foto real da clínica e dados verdadeiros; todos os botões de agendar levando ao WhatsApp. Rodada 4 em `versoes/rodada-4/`.
+
+**Medido na imagem (668 px → 1440 px, fator 2,156):** cabeçalho 100 px; título da capa ~72-76 px em quatro linhas; foto da capa
+767×610 encostada na borda direita; faixa "Seu corpo" ~510 px; cards de 259 px com foto 259×198; retrato da Dra. 472×554;
+círculos das áreas 126-134 px; cards de avaliação 282×280; cartão do formulário 597 px. Cores: fundo #F9F0EC, cabeçalho e
+rodapé #F6EEEA, faixas #F2E3E1, botão #5B173C, faixa do WhatsApp #561C3D, estrela dourada. Gambarino continua: estreita como
+a serifa da imagem e já com licença conferida.
+
+**Trocado (integridade e CFO), e por quê:**
+| Na imagem | No site | Motivo |
+|---|---|---|
+| Recepção luxuosa gerada por IA | Foto real da placa do logo na recepção (a que já estava, pedido dele) | Foto falsa do lugar |
+| Modelo sorrindo com a mão no rosto | A Dra. no mesmo gesto, do post "Implante dói?" dela | Modelo não é paciente nem equipe |
+| Dentes e implante nos cards | Fotos reais do consultório (ficha do Google) + `[FALTA]` | IA nunca no objeto que o cliente vende |
+| "Tratamentos modernos e seguros", "Resultados naturais e funcionais", "Localização privilegiada" | Particular e plano, Aberto sábado de manhã, Na Graça desde 2018 | Promessa e superlativo (CFO) |
+| "Soluções completas", "procedimentos mais avançados", "evidências científicas" | "Cuidado para o seu sorriso e o seu bem-estar" + avaliação como primeiro passo | Superlativo e alegação sem fonte |
+| "Mais de 124 avaliações" | 124 avaliações | São 124 |
+| Parágrafo e frase assinada na boca da Dra.; CRO 17600; "Diretora clínica"; "Conheça minha história" | Palavras do post dela; CRO-BA 12600; "À frente da Spaço Saúde"; só o nome à mão; "Acompanhe no Instagram" | Fala inventada, número errado, cargo não confirmado, página que não existe |
+| Seis áreas (com clareamento, lentes, DTM) | As sete da equipe (site antigo): orto, implanto, perio, endo, prótese, bucomaxilo, estética oral e facial | O título diz sete; a lista é a da clínica |
+| Mariana S., Lucas N., Cláudia M. com foto | Maria D., Lilian N., Cleidson M., trechos reais, inicial no lugar da foto, aviso do CFO | Avaliação inventada |
+| "Sobre o seu sorriso?"; "Informações claras e seguras" | "Sobre o seu caso?" (post deles); "Mensagem pronta", "Nada fica guardado no site", "Sem compromisso" | Frase da clínica; só o que o formulário faz de verdade |
+| Telefones (71) 3285-5188 e 3223-3247, "© 2024" | WhatsApp (71) 99265-5288, fixo (71) 3235-3247, e-mail, CRO e RT `[FALTA]`, © 2026 | Números inventados |
