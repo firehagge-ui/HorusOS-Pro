@@ -81,6 +81,15 @@ R$ 200 agora e R$ 600 quando ela fechar o próximo projeto, com data limite `[FA
 só se o Marcelo tiver uso real. Onda 1 = site + formulário + domínio + ficha ligada + kit de indicação; guia e quiz
 ficam pra Fase 2. Pendente do Marcelo antes da chamada: prazo do plano B e se há uso pra permuta.
 
+**Ideias pra caixa zero (14/10, depois do Conselho; nada aprovado, o Marcelo escolhe):** (1) montar com ela uma oferta
+pequena que gere caixa rápido pra ela (ex.: consultoria de um ambiente), vendida pelo formulário, e o site se paga com
+as primeiras vendas; preço só a quem pede (regra do CAU); (2) cartão de crédito parcelado em até 10x com a Hórus
+recebendo antecipado `[conferir taxa da maquininha]`; (3) "paga quando o primeiro projeto entrar" pelo site, com data
+limite; (4) indicação que vira cliente abate parcela; (5) o serviço dela revendido a clientes da Hórus com ponto físico
+(hipótese, ninguém pediu); (6) o guia do cliente como produto pra outros arquitetos, com ela de coautora (hipótese);
+(7) bate-papo dela + Marcelo pra arquitetos sobre mostrar valor online. Patrocínio de fornecedor no site dela: não
+(reserva técnica é infração ética no CAU `[conferir]`).
+
 ## Rodada 4 (13/10/2026, noite): redesign com a Stanzza como referência obrigatória
 
 - A home foi refeita no sistema da Stanzza (diagnóstico e plano em `PLANO.md`, rodada 4; cada elemento em
