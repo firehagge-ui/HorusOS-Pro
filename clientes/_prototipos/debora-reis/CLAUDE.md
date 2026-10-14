@@ -74,6 +74,13 @@ Marcelo (tarefa no Hounder), antes da chamada:** (a) R$ 800 em 2x ou 4x; (b) par
 contrapartida (portfólio, depoimento, 3 indicações de fornecedores e clientes dela); (c) permuta total, só se a Hórus
 usar o serviço dela. Nada se promete por mensagem: a condição se fecha na chamada.
 
+**Conselho de 14/10 (`_conselho/logs/2026-10-14-debora-reis-permuta-e-plano.md`, confiança 68%):** grátis sai (ela
+recusou). Plano A = (b): R$ 800 em 4 de R$ 200, a primeira antes de publicar, com contrapartida escrita (portfólio,
+depoimento depois de 30 dias no ar, 2 ou 3 fornecedores dela apresentados, 1 h dela revisando guia e quiz). Plano B:
+R$ 200 agora e R$ 600 quando ela fechar o próximo projeto, com data limite `[FALTA: Marcelo define]`. Plano C (permuta)
+só se o Marcelo tiver uso real. Onda 1 = site + formulário + domínio + ficha ligada + kit de indicação; guia e quiz
+ficam pra Fase 2. Pendente do Marcelo antes da chamada: prazo do plano B e se há uso pra permuta.
+
 ## Rodada 4 (13/10/2026, noite): redesign com a Stanzza como referência obrigatória
 
 - A home foi refeita no sistema da Stanzza (diagnóstico e plano em `PLANO.md`, rodada 4; cada elemento em
