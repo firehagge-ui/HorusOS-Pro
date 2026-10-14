@@ -10,6 +10,35 @@ Todo material que a Débora vê é escrito como se o Marcelo tivesse preparado. 
 pessoa. Não entra nota de bastidor ("texto de simulação", "na versão final..."). O que não é definitivo leva só a
 etiqueta **"Demonstração"**. O texto passa pela régua de `_memoria/prospeccao/90-cara-de-ia.md`.
 
+## 15/10/2026: projetos reorganizados pelo que as fotos provam (pedido do Marcelo)
+
+- **O que as fotos e legendas provam:**
+  - **Rio Vermelho:** o corredor e o aparador vermelho são do mesmo apartamento (o aparador aparece no fundo da foto do
+    corredor).
+  - **Aconchego é outro apartamento:** piso de madeira escura, enquanto no Rio Vermelho o piso foi trocado por um claro.
+  - **"Colorir"** (post C4RJy_Dp10S, a sala com a mesa vermelha e vista) é outro apartamento, mais antigo.
+  - **Livros, Artesanato e Frio e quente:** não dá pra provar de qual apartamento são. Há indícios de que Livros e a
+    estante dos CDs sejam do Rio Vermelho (mesma marcenaria branca, "as proprietárias" no plural, como "as moradoras"),
+    mas indício não é prova. `[FALTA: a Débora confirmar na chamada]`.
+- **Organização (caminho C do `PLANO.md`):**
+  - o carrossel da home passa só pelos **3 apartamentos**, cada um na composição que a foto pede: Rio Vermelho em tela
+    cheia, Colorir deitado com o texto à direita, Aconchego em pé num painel sobre o vinho;
+  - logo abaixo, a faixa **"Detalhes que contam"** (Livros, Artesanato, Frio e quente);
+  - `projetos.html` segue a mesma divisão, com 3 apartamentos e os detalhes à parte;
+  - página nova: `projeto-colorir.html`.
+- **Rio Vermelho em capítulos:** o que mudou, as cores (paleta tirada das fotos), a luz e os objetos (recortes
+  `rv-*.jpg`, só das duas fotos deste apartamento). No fim, "Próximo apartamento". Se a Débora confirmar que os detalhes
+  são dele, entram como capítulos.
+- **Rodapé:** número, e-mail completo e o ícone do Instagram, nessa ordem; o botão do WhatsApp saiu.
+- **Versão anterior:** `versoes/antes-organizacao-projetos/`.
+- **Verificado em 15/10:**
+  - Playwright em 1440 e 390, nas 8 páginas: sem erro, sem imagem quebrada, sem rolagem lateral;
+  - carrossel: setas, arrasto, arrasto curto que volta, `?p=2` e `?p=3`;
+  - foto e link de cada apartamento conferidos.
+- **Detector:** sai 2, igual ao commit anterior (o "limpo" de 14/10 não se reproduz).
+- **Não publicado:** este container não tem credencial da Vercel. Publicar do PC: copiar `site/` para uma pasta
+  `esboco-debora-reis` e rodar `npx -y vercel@60.0.0 deploy --prod --yes`.
+
 ## Depois da rodada 6 (14/10/2026, noite): guia, números da foto, páginas de projeto
 
 - **Guia do cliente (o PDF):**

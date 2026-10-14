@@ -32,7 +32,7 @@
 <main id="conteudo">
 
 <section class="caso-capa">
-  <p class="rot">01</p>
+  <p class="rot">Apartamento 01</p>
   <h1>Rio Vermelho, <em>do piso à luz.</em></h1>
   <p class="lead">Um apartamento refeito para as moradoras: piso novo, cores novas, uma marcenaria feita para a rotina delas e uma luz pensada para valorizar o que elas têm.</p>
 </section>
@@ -76,49 +76,69 @@
   <p class="explorar-dica">Toque nos números da foto.</p>
 </section>
 
-<section class="caso-detalhes" aria-label="Detalhes do apartamento">
-  <figure>
-    <img src="assets/fotos/vermelho.jpg" alt="O aparador vermelho do fundo do corredor, com a macramê de folhas, um Buda e cristais" width="810" height="1080" loading="lazy">
-    <figcaption><b>O aparador do fundo do corredor</b>“Personalidade não precisa pedir licença. O vermelho aparece, mas o conjunto continua elegante.”</figcaption>
-  </figure>
-  <figure>
-    <img src="assets/fotos/rv-ripas.jpg" alt="Detalhe: ripas verdes, palmeira em vaso de barro e o tampo de madeira da marcenaria" width="520" height="760" loading="lazy">
-    <figcaption><b>A marcenaria</b>O painel de ripas no verde das paredes e o tampo de madeira, feitos para as moradoras.</figcaption>
-  </figure>
+<!-- a história do apartamento, em capítulos: o que mudou, as cores, a luz e os objetos. Tudo sai das três fotos
+     publicadas deste apartamento (o corredor, o aparador e o recorte das ripas); a paleta é amostra tirada das fotos. -->
+<section class="cap cap-materia" aria-labelledby="c1-t">
+  <div class="cap-txt">
+    <p class="rot">[ I ] O que mudou</p>
+    <h2 id="c1-t">Do chão <em>ao forro.</em></h2>
+    <p>O piso antigo saiu e entrou um claro, contínuo, da sala ao corredor. A marcenaria foi desenhada para as moradoras: a estante embutida, o painel de ripas no verde das paredes e o tampo de madeira.</p>
+    <blockquote class="cap-cita">“Trocamos o piso existente, as cores do apartamento e fizemos uma marcenaria personalizada para atender as necessidades das moradoras.”</blockquote>
+  </div>
+  <figure class="cap-alta"><img src="assets/fotos/rv-ripas.jpg" alt="Painel de ripas verdes, palmeira em vaso de barro e o tampo de madeira da marcenaria" width="520" height="760" loading="lazy"><figcaption class="mao">ripas no verde da parede</figcaption></figure>
+  <figure class="cap-baixa"><img src="assets/fotos/rv-piso.jpg" alt="O piso claro e contínuo do corredor" width="640" height="300" loading="lazy"><figcaption class="mao">o piso novo, contínuo</figcaption></figure>
 </section>
 
-<section class="outros" aria-labelledby="ou-t">
-  <div class="outros-in">
-    <div class="outros-topo">
-      <h2 id="ou-t">Outros <em>projetos.</em></h2>
-      <a class="btn btn-linha" href="projetos.html">Ver todos os projetos</a>
-    </div>
-    <div class="outros-grade">
-      <a class="outro" href="projeto-livros.html">
-        <span class="outro-foto"><img src="assets/fotos/livros.jpg" alt="Estante branca cheia de livros, do chão ao teto" width="1080" height="1427" loading="lazy"></span>
-        <span class="rot">02</span>
-        <h3>Livros</h3>
-        <span class="outro-linha">A estante planejada para os livros</span>
-      </a>
-      <a class="outro" href="projeto-artesanato.html">
-        <span class="outro-foto"><img src="assets/fotos/artesanato.jpg" alt="Pendente de vidro aceso diante de prateleiras com cerâmica" width="1080" height="1434" loading="lazy"></span>
-        <span class="rot">03</span>
-        <h3>Artesanato</h3>
-        <span class="outro-linha">Madeira, cerâmica, feito à mão</span>
-      </a>
-      <a class="outro" href="projeto-azul-e-madeira.html">
-        <span class="outro-foto"><img src="assets/fotos/azul-madeira.jpg" alt="Marcenaria de madeira com nicho azul e quadro de cavalo-marinho" width="1080" height="1350" loading="lazy"></span>
-        <span class="rot">04</span>
-        <h3>Frio e quente</h3>
-        <span class="outro-linha">Azul e madeira</span>
-      </a>
-      <a class="outro" href="projeto-aconchego.html">
-        <span class="outro-foto"><img src="assets/fotos/aconchego.jpg" alt="Sofá de linho com almofadas, banco de madeira e planta" width="1080" height="1440" loading="lazy"></span>
-        <span class="rot">05</span>
-        <h3>Aconchego</h3>
-        <span class="outro-linha">Linho, madeira e verde</span>
-      </a>
-    </div>
+<section class="cap cap-cor" aria-labelledby="c2-t">
+  <figure class="cap-grande"><img src="assets/fotos/vermelho.jpg" alt="O aparador vermelho do fundo do corredor, com a macramê de folhas, um Buda e cristais" width="810" height="1080" loading="lazy"></figure>
+  <div class="cap-txt">
+    <p class="rot">[ II ] As cores</p>
+    <h2 id="c2-t">O verde segura, <em>o vermelho fala.</em></h2>
+    <blockquote class="cap-cita">“Personalidade não precisa pedir licença. O vermelho aparece, mas o conjunto continua elegante.”</blockquote>
+    <ul class="cores-rv" aria-label="As cores tiradas das fotos do apartamento">
+      <li><i style="background:#9BA292"></i><span>as paredes</span></li>
+      <li><i style="background:#A20F11"></i><span>o aparador</span></li>
+      <li><i style="background:#8C673D"></i><span>a madeira</span></li>
+      <li><i style="background:#B3926E"></i><span>o piso, na luz quente</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="cap cap-luz" aria-labelledby="c3-t">
+  <figure class="cap-luz-foto"><img src="assets/fotos/rv-luz.jpg" alt="Os pontos de luz embutidos no forro do corredor" width="320" height="300" loading="lazy"></figure>
+  <div class="cap-txt">
+    <p class="rot">[ III ] A luz</p>
+    <h2 id="c3-t">Uma luz <em>que mostra as coisas.</em></h2>
+    <blockquote class="cap-cita">“Usamos lâmpadas com temperatura de cor mais baixa para criar uma atmosfera mais intimista e valorizar os itens de decoração.”</blockquote>
+  </div>
+</section>
+
+<section class="cap cap-objetos" aria-labelledby="c4-t">
+  <div class="cap-topo">
+    <p class="rot">[ IV ] Os objetos</p>
+    <h2 id="c4-t">O que diz <em>quem mora ali.</em></h2>
+    <blockquote class="cap-cita">“O espaço da casa se revela através das escolhas, dos contrastes e dos detalhes.”</blockquote>
+  </div>
+  <ul class="objetos">
+    <li class="ob-a"><img src="assets/fotos/rv-macrame.jpg" alt="Macramê de três folhas, em cru, caramelo e terracota" width="280" height="450" loading="lazy"><span class="mao">as folhas de macramê</span></li>
+    <li class="ob-b"><img src="assets/fotos/rv-painel.jpg" alt="Painel estreito com bichos bordados em laranja e vermelho" width="108" height="280" loading="lazy"><span class="mao">o painel com os bichos</span></li>
+    <li class="ob-c"><img src="assets/fotos/rv-buda.jpg" alt="Buda branco e um elefantinho de madeira sobre o aparador" width="180" height="180" loading="lazy"><span class="mao">o Buda e o elefante</span></li>
+    <li class="ob-d"><img src="assets/fotos/rv-vaso.jpg" alt="Planta num vaso de cerâmica listrado" width="165" height="140" loading="lazy"><span class="mao">a cerâmica listrada</span></li>
+    <li class="ob-e"><img src="assets/fotos/rv-cristal.jpg" alt="Um cristal grande e branco" width="180" height="120" loading="lazy"><span class="mao">o cristal</span></li>
+    <li class="ob-f"><img src="assets/fotos/rv-pedra.jpg" alt="Pedra lilás e vasos de barro sobre o tampo de madeira" width="360" height="140" loading="lazy"><span class="mao">a pedra e o barro no tampo</span></li>
+  </ul>
+</section>
+
+<section class="seguir" aria-labelledby="sg-t">
+  <div class="seguir-in">
+    <h2 id="sg-t" class="vh">Continuar</h2>
+    <a class="seguir-prox" href="projeto-colorir.html">
+      <span class="rot">Próximo apartamento</span>
+      <span class="seguir-nome">Colorir</span>
+      <span class="seguir-foto"><img src="assets/fotos/sala-vermelha.jpg" alt="" width="1080" height="717" loading="lazy"></span>
+      <svg viewBox="0 0 40 16" aria-hidden="true"><path d="M1 8 H38 M31 1 L38 8 L31 15"/></svg>
+    </a>
+    <p class="seguir-todos"><a class="link" href="projetos.html">Ver todos os projetos</a></p>
   </div>
 </section>
 
@@ -134,11 +154,11 @@
 </main>
 
 <footer class="rodape">
-  <nav class="rodape-redes" aria-label="Redes e contato">
-  <a class="rede" href="https://www.instagram.com/deborareisarquitetura/" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></svg>Instagram</a>
-  <a class="rede" href="https://wa.me/5571999775453" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.2-4.2A8 8 0 1 1 8.3 19z"/><path d="M9 8.8c.3 2.6 2.4 4.9 5.2 5.6l1.3-1.3-2-1-.9.7c-.9-.4-1.7-1.2-2.1-2.1l.7-.9-1-2z"/></svg>WhatsApp</a>
-  <a class="rede" href="mailto:deboraa_reis@yahoo.com.br"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13"/><path d="M4 7l8 6 8-6"/></svg>E-mail</a>
-  </nav>
+  <div class="rodape-contato">
+    <a href="https://wa.me/5571999775453">(71) 99977-5453</a>
+    <a href="mailto:deboraa_reis@yahoo.com.br">deboraa_reis@yahoo.com.br</a>
+    <a class="rede-icone" href="https://www.instagram.com/deborareisarquitetura/" rel="noopener" aria-label="Instagram da Débora Reis"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></svg></a>
+  </div>
   <p>Fotos: Roberto Moreira Rego.</p>
 </footer>
 
