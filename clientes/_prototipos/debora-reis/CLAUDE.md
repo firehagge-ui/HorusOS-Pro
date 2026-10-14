@@ -90,6 +90,14 @@ limite; (4) indicação que vira cliente abate parcela; (5) o serviço dela reve
 (7) bate-papo dela + Marcelo pra arquitetos sobre mostrar valor online. Patrocínio de fornecedor no site dela: não
 (reserva técnica é infração ética no CAU `[conferir]`).
 
+**Decisão do Marcelo (14/10, noite): o site sai sem cobrança.** A troca é dita com clareza (portfólio antes de
+publicar, depoimento depois de uns 30 dias no ar, indicação na entrega). Domínio no nome dela, pago por ela. Manutenção
+(projeto novo, textos) = valor fixo mensal `[FALTA: Marcelo define antes da conversa]`. Guia, quiz e as outras
+ferramentas = trabalho à parte, mais pra frente. A conversa de 15 min é pra explicar e colocar no ar, não pra vender.
+Sequência: (1) hoje, aviso curto de que o link vai amanhã; (2) 15/10 cedo, aviso de que muita coisa é demonstração +
+"o site eu faço sem custo, o resto seria trabalho à parte" + link; (3) gostou → "me diz tudo que quiser mudar" + 15 min
+com dois horários; (4) na conversa, como funciona, domínio, manutenção e quiz; (5) na entrega, indicação e os serviços.
+
 ## Rodada 4 (13/10/2026, noite): redesign com a Stanzza como referência obrigatória
 
 - A home foi refeita no sistema da Stanzza (diagnóstico e plano em `PLANO.md`, rodada 4; cada elemento em
