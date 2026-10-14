@@ -36,8 +36,8 @@ etiqueta **"Demonstração"**. O texto passa pela régua de `_memoria/prospeccao
   - carrossel: setas, arrasto, arrasto curto que volta, `?p=2` e `?p=3`;
   - foto e link de cada apartamento conferidos.
 - **Detector:** sai 2, igual ao commit anterior (o "limpo" de 14/10 não se reproduz).
-- **Não publicado:** este container não tem credencial da Vercel. Publicar do PC: copiar `site/` para uma pasta
-  `esboco-debora-reis` e rodar `npx -y vercel@60.0.0 deploy --prod --yes`.
+- **Publicado em 15/10** no mesmo projeto (https://esboco-debora-reis.vercel.app). Conferido no ar: as 8 páginas
+  respondem 200, as fontes carregam e o carrossel passa no desktop e no celular, sem erro.
 
 ## Depois da rodada 6 (14/10/2026, noite): guia, números da foto, páginas de projeto
 
