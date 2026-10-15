@@ -208,7 +208,8 @@ A descrição de cada função da operação está em `equipe/`, com tipo de exe
   Falta só o **e-Psi** para o CTA de atendimento online. Setor regulado pelo **CFP**,
   igual à Aion.
 
-- **Amparo Flores** (cliente #6, ✅ **FECHADO em 03/09/2026**) — floricultura tradicional
+- **Amparo Flores** (cliente #6, fechou de boca em 03/09/2026, **entrada nunca caiu**; ⚠️ 15/10: o Varo nunca mais
+  respondeu, geladeira. *Histórico: aqui dizia "✅ FECHADO em 03/09/2026".*) — floricultura tradicional
   no Largo da Graça, Salvador/BA, **desde 1972**, B2C. Pasta criada em 27/08/2026 em
   `clientes/amparo-flores/`. Chegou por relação (sócio do Marcelo). A **reunião presencial
   na loja em 03/09 fechou o cliente**: o site especulativo cumpriu o papel de peça de venda.
@@ -259,11 +260,12 @@ A descrição de cada função da operação está em `equipe/`, com tipo de exe
   Árvores/Salvador, setor regulado (CFO). Indicação (é o dentista do Antônio). Quer IA que responda paciente no WhatsApp
   de um jeito humano e perguntou de tráfego. Primeiro cliente do Icarus. A Clinicorp já é a agenda dele: integrar, nunca
   vender CRM por cima. Tudo em `clientes/leal-oral-clinic/`. (Registrado pelo /atualizar em 14/10/2026, a partir do índice
-  do `CLAUDE.md` da raiz.)
+  do `CLAUDE.md` da raiz.) ⚠️ 15/10: disse que não vai começar agora; geladeira.
 - **Sates Saúde** (lead #11, ⚠️ **LEAD, não é cliente fechado**) — odontologia domiciliar, Salvador, setor regulado (CFO).
   Amigas de turma do Marcelo; abordagem em 06/10/2026 com a live na Band (08/10) como gancho; em 07 e 08/10 o Marcelo
   montou o perfil do Google sem custo, como case. Oferta maior: piloto de 60 dias sem honorário, com contrapartida. Nada
   se constrói antes do aceite. Tudo em `clientes/sates-saude/` (`playbook.md`). (Registrado pelo /atualizar em 14/10/2026.)
+  ⚠️ 15/10: depois do perfil do Google entregue, sem retorno nem resposta.
 
 ## Peças e produtos da própria Hórus
 

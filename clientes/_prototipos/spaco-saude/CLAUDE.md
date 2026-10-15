@@ -130,3 +130,13 @@ qualquer sinal de interesse, toda resposta termina em dois horários, com a opç
   "a confirmar com a clínica". Horário de atendimento: falta.
 - Os posts do Instagram trazem modelos que podem não ser pacientes nem da equipe: no esboço só entram a
   recepção e a Dra. (a mesma do post que diz "Dra. Ângela").
+
+## Falta gravar no Hounder (sessão na nuvem de 14/10, sem acesso ao CRM)
+
+Ficha `dfac495f-15c4-4773-8221-b2220900d0d2`. Gravar na próxima sessão local e apagar esta seção:
+- Atividade (whatsapp, 14/10 15h35): a recepção respondeu "Olá não" à 1A (a Dra. não atende por esse número).
+- Rascunho (2B, caminho 1): "Ah, beleza! Aqui é o Marcelo, queria falar com ela sobre o site da clínica, coisa rápida.
+  Tem um número direto dela, ou um horário em que ela fica mais livre?" Sem resposta até 15/10 meio-dia: caminho 2;
+  sem reação até sexta 16/10: caminho 3 (fixo ou visita).
+- **15/10, decisão:** não refazer o site (aprendizado de 15/10: o esboço vai como está, o polimento depois de ela
+  pedir); o próximo passo é ligar pro fixo (71) 3235-3247 pedindo a Dra. Ângela pelo nome.

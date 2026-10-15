@@ -26,5 +26,5 @@ dele, observada), `PLANO.md` (passe duplo), `fotos/` (material baixado + `FONTES
 | Lead | Segmento | Aberto em | Estado |
 |---|---|---|---|
 | [Casa Verona](casa-verona/) | Espaço de eventos / mini wedding, Pituba | 23/09/2026 | **recusou em 24/09**; virou template em `templates/sites/espaco-eventos/` (sem fotos dela). Pasta com o material dela aguardando decisão do Marcelo (apagar ou guardar) |
-| [Débora Reis](debora-reis/) | Arquitetura de interiores, Barra | 09/10/2026 | conversando; esboço no ar (privado, fora do Google) em https://esboco-debora-reis.vercel.app; o porquê de cada parte em `JUSTIFICATIVA.md`. Link só depois que ela disser que quer ver |
-| [Spaço Saúde](spaco-saude/) | Odontologia, Graça (CFO) | 09/10/2026 | abertura agendada pra 10/10, 9h30; esboço de uma página começado (não publicado), dentro da régua do CFO |
+| [Débora Reis](debora-reis/) | Arquitetura de interiores, Barra | 09/10/2026 | conversando; esboço no ar (privado, fora do Google) em https://esboco-debora-reis.vercel.app; o porquê de cada parte em `JUSTIFICATIVA.md`. **15/10: ela mandou o site novo feito por um amigo.** Só uma mensagem curta de parabéns; o esboço vira template de arquitetura (sem as fotos dela). *Histórico: em 14/10 a decisão era entregar sem cobrança, com troca.* |
+| [Spaço Saúde](spaco-saude/) | Odontologia, Graça (CFO) | 09/10/2026 | abertura saiu em 14/10 e a recepção respondeu "não" (a Dra. não atende por esse número); esboço no ar na rodada 4 (https://esboco-spaco-saude.vercel.app, privado); próximo passo no `CLAUDE.md` da pasta |

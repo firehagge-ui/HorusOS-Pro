@@ -1,5 +1,11 @@
 # Débora Reis Arquitetura: esboço (lead, interiores, Barra/Salvador)
 
+> 🛑 **ESTADO ATUAL (15/10/2026): ENCERRADA, geladeira.** Ela mandou o site novo, feito por um amigo
+> (https://deborareisarquitetura.netlify.app). O Marcelo mandou a mensagem de parabéns (a versão curta, em "Falta gravar
+> no Hounder") e **decidiu não mandar mais nada**: só responde se ela escrever; se ela pedir as ideias, aí manda o link.
+> Tudo abaixo (sequência de mensagens, plano de pagamento, ideias pra caixa zero) é **histórico**. O esboço vira template
+> de arquitetura, sem as fotos dela (`../README.md`). Aprendizado em `_memoria/prospeccao/aprendizados.md` (15/10).
+
 > ⚠️ **LEAD, não cliente.** Esboço privado (`noindex`) pra mostrar na conversa. Estado comercial no
 > Hounder (ficha `95fc7889-3564-4d15-beca-dc9a042dcf13`). Não vendeu: apagar as fotos dela e
 > reaproveitar só a estrutura (`../README.md`).
@@ -73,6 +79,30 @@ receber ajuda sem pagar ou fazer permuta, e às 16h27 ofereceu trocar pelos serv
 Marcelo (tarefa no Hounder), antes da chamada:** (a) R$ 800 em 2x ou 4x; (b) parte em dinheiro e parte em
 contrapartida (portfólio, depoimento, 3 indicações de fornecedores e clientes dela); (c) permuta total, só se a Hórus
 usar o serviço dela. Nada se promete por mensagem: a condição se fecha na chamada.
+
+**Conselho de 14/10 (`_conselho/logs/2026-10-14-debora-reis-permuta-e-plano.md`, confiança 68%):** grátis sai (ela
+recusou). Plano A = (b): R$ 800 em 4 de R$ 200, a primeira antes de publicar, com contrapartida escrita (portfólio,
+depoimento depois de 30 dias no ar, 2 ou 3 fornecedores dela apresentados, 1 h dela revisando guia e quiz). Plano B:
+R$ 200 agora e R$ 600 quando ela fechar o próximo projeto, com data limite `[FALTA: Marcelo define]`. Plano C (permuta)
+só se o Marcelo tiver uso real. Onda 1 = site + formulário + domínio + ficha ligada + kit de indicação; guia e quiz
+ficam pra Fase 2. Pendente do Marcelo antes da chamada: prazo do plano B e se há uso pra permuta.
+
+**Ideias pra caixa zero (14/10, depois do Conselho; nada aprovado, o Marcelo escolhe):** (1) montar com ela uma oferta
+pequena que gere caixa rápido pra ela (ex.: consultoria de um ambiente), vendida pelo formulário, e o site se paga com
+as primeiras vendas; preço só a quem pede (regra do CAU); (2) cartão de crédito parcelado em até 10x com a Hórus
+recebendo antecipado `[conferir taxa da maquininha]`; (3) "paga quando o primeiro projeto entrar" pelo site, com data
+limite; (4) indicação que vira cliente abate parcela; (5) o serviço dela revendido a clientes da Hórus com ponto físico
+(hipótese, ninguém pediu); (6) o guia do cliente como produto pra outros arquitetos, com ela de coautora (hipótese);
+(7) bate-papo dela + Marcelo pra arquitetos sobre mostrar valor online. Patrocínio de fornecedor no site dela: não
+(reserva técnica é infração ética no CAU `[conferir]`).
+
+**Decisão do Marcelo (14/10, noite): o site sai sem cobrança.** A troca é dita com clareza (portfólio antes de
+publicar, depoimento depois de uns 30 dias no ar, indicação na entrega). Domínio no nome dela, pago por ela. Manutenção
+(projeto novo, textos) = valor fixo mensal `[FALTA: Marcelo define antes da conversa]`. Guia, quiz e as outras
+ferramentas = trabalho à parte, mais pra frente. A conversa de 15 min é pra explicar e colocar no ar, não pra vender.
+Sequência: (1) hoje, aviso curto de que o link vai amanhã; (2) 15/10 cedo, aviso de que muita coisa é demonstração +
+"o site eu faço sem custo, o resto seria trabalho à parte" + link; (3) gostou → "me diz tudo que quiser mudar" + 15 min
+com dois horários; (4) na conversa, como funciona, domínio, manutenção e quiz; (5) na entrega, indicação e os serviços.
 
 ## Rodada 4 (13/10/2026, noite): redesign com a Stanzza como referência obrigatória
 
@@ -186,3 +216,40 @@ responde é ele.
 
 **Travas que não mudam:** nada inventado (nem cliente, nem número, nem prazo além das 24 h que o
 Marcelo prometeu), nada de urgência falsa, preço por mensagem só os R$ 800 em duas vezes (13/10), envio só entre 8h e 20h.
+
+## Falta gravar no Hounder (sessão na nuvem de 14 e 15/10, sem acesso ao CRM)
+
+Ficha `95fc7889-3564-4d15-beca-dc9a042dcf13`. Gravar na próxima sessão local e apagar esta seção:
+- Atividade (whatsapp, 14/10 16h26 e 16h27): "tô realmente quebrada esse ano", não acha justo receber sem pagar ou
+  permuta; a irmã prometeu ajudar e não teve tempo; "permuta é algo q pode acontecer, se vc precisar dos meus serviços".
+- Decisão (14/10): site sem cobrança, com troca (portfólio antes de publicar, depoimento ~30 dias, indicação na entrega).
+- Tarefa: definir o valor da manutenção mensal antes da conversa de 15 min.
+- Rascunhos (versão atual de cada um):
+  1. 14/10, noite: "Oi Débora! Perdão pela demora. Pode ficar tranquila com isso... Tô montando meus primeiros casos, e
+     se você gostar, já me ajuda muito. Amanhã te mando o link, e se o site te for útil, ele é seu, sem custo. Aí a gente
+     conversa sobre isso!" (o Marcelo pode ter mandado a versão dele; conferir no WhatsApp)
+  2. 15/10, 8h30, balão 1: "Bom dia, Débora! Antes do link, só um aviso. Muito do que tem lá é demonstração. Montei com
+     o que achei do seu trabalho, pra mostrar o que pode vir a ser, então alguns textos e números são simulação."
+     Balão 2: "Também montei umas outras ferramentas que podem te ser úteis, essas seriam um trabalho à parte, pra mais
+     pra frente, se você achar interessante. Tá aqui o link, esboco-debora-reis.vercel.app/ideias.html. Olha com calma e
+     me fala o que achou!"
+  3. Gostou: "Que bom que gostou! Me diz tudo que você quiser mudar, que eu ajusto pra ficar do seu jeito. Com tudo
+     pronto, já dá pra colocar no ar. Antes, queria uma conversa de 15 min pra te explicar umas coisas e você não ficar
+     com nenhuma dúvida. Amanhã 10h ou 11h?"
+  4. Na conversa ("como funciona?"): "Funciona assim: eu publico o site pra você sem custo, e em troca você me deixa
+     mostrar ele no meu portfólio. Se quiser um endereço próprio, ele tem um custo por ano, e fica no seu nome. E se mais
+     pra frente você quiser que eu cuide do site, colocando os projetos novos e textos, aí seria um valor fixo por mês,
+     porque dá trabalho. Fora isso, fica tranquila." Quiz e guia: "precisam de coisa sua (prazos, como você cobra), ficam
+     pra quando fizer sentido". Na entrega: "E se você ou alguém precisar de site, tráfego pago ou post pra Instagram,
+     pode contar comigo!"
+- **15/10, ela respondeu:** "Olha, eu tenho um site q acabou de ser feito por um amigo...vou te mandar p vc dar uma
+  olhada... https://deborareisarquitetura.netlify.app". Visto em 15/10 (curl): fotos com crédito do Roberto Moreira Rego,
+  seções sobre, serviços, 12 projetos, processo em 4 passos, formulário (planta, projeto anterior), WhatsApp
+  (71) 99977-5453 e e-mail Yahoo; endereço ainda no netlify.app. Muda a tese: o site dela está resolvido; entrar como
+  complemento, nunca criticando o trabalho do amigo (caso Revita). Rascunho que substitui as mensagens 2 a 4 acima:
+  "Ficou muito bonito, Débora! As fotos do Roberto ficaram ótimas grandes assim, e gostei da parte que explica o
+  processo. Parabéns pro seu amigo! Tem umas coisas nas ideias que funcionam junto com esse site, tipo um guia pro
+  cliente entender o seu trabalho antes de chegar. Quer que eu te mande mesmo assim?"
+- **15/10, mensagem final (substitui todas as anteriores):** "Ficou muito bonito, Débora! As fotos do Roberto ficaram
+  ótimas grandes assim. Parabéns pro seu amigo, e sucesso com os projetos!" Depois, nada mais, salvo se ela puxar
+  assunto. Estágio: geladeira. O esboço vira template de arquitetura (sem as fotos dela, README de protótipos).

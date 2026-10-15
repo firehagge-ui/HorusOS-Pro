@@ -35,3 +35,8 @@ Perguntou também se a Hórus faz **tráfego pago**. Topou conversar sem comprom
 - 🔴 **Homônimo:** `@lealconsultorios` ("LEAL Clínica Odontológica") e o Dr. Gabriel Lima Andrade **não são
   ele**. Conferir sempre que um dado aparecer em busca.
 - 🔴 **Nunca criticar o site nem o robô atual** como trabalho ruim de alguém. Entrar pelo que ele mesmo disse.
+
+## Falta gravar no Hounder (sessão na nuvem de 15/10, sem acesso ao CRM)
+
+- 15/10, contado pelo Marcelo: disse que não vai começar agora. Mover pra **geladeira**, sem data marcada. Gravar na
+  próxima sessão local e apagar esta seção.

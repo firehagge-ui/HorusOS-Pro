@@ -5,7 +5,13 @@
 
 ## Fase da agência
 
-⚠️ **Atualização (14/10/2026):** a abertura da **Spaço Saúde** saiu em 14/10 (não em 10/10); a recepção respondeu "não"
+⚠️ **Atualização (15/10/2026), contada pelo Marcelo:** nenhuma porta de caixa quente. **Amparo:** o Varo nunca mais
+respondeu (geladeira). **Leal:** não vai começar agora (geladeira). **Sates:** sem retorno depois do perfil do Google.
+**Débora:** mandou o site novo feito por um amigo; o esboço vira template de arquitetura. **Spaço:** esperando falar com
+a Dra.; decisão de 15/10: não refazer o site, ligar pro fixo. Paralela: resultado da R1 de 05/10 segue sem registro. O
+padrão de entregar antes do compromisso virou regra em `_memoria/comercial.md` (15/10).
+
+⚠️ **Foto anterior (14/10/2026):** a abertura da **Spaço Saúde** saiu em 14/10 (não em 10/10); a recepção respondeu "não"
 (a Dra. não atende por esse número) e os três caminhos esperam decisão do Marcelo (`clientes/_prototipos/spaco-saude/CLAUDE.md`).
 O esboço dela está no ar na rodada 4 (https://esboco-spaco-saude.vercel.app). Paralela: resultado da R1 de 05/10 ainda não
 registrado.
@@ -15,9 +21,13 @@ as reuniões vieram de voz ou relação (Paralela, Leal, Sates). Em 08/10 abriu 
 (`_memoria/prospeccao/40-testes.md`, `scripts/placar.mjs`): tudo por WhatsApp, prévia só como abordagem de teste. Em
 09/10 chegou a **pesquisa de evidência** (`_memoria/prospeccao/fontes/`), que aprovou a faixa de preço por mensagem
 (P3). **Recebido da Hórus: R$ 0** (R$ 600 previstos e R$ 600 a receber, os dois da Amparo); o Conselho de 09/10
-fixou "nenhum trabalho grátis novo até a primeira entrada cair". Conversas vivas: Débora Reis (esboço no ar, caixa
-zerado, baixa prioridade) e Spaço Saúde (abertura em 10/10). As portas de caixa mais perto: CRM do Grão da Serra,
+fixou "nenhum trabalho grátis novo até a primeira entrada cair". **Exceção aprovada pelo Marcelo em 14/10:** o site
+da Débora Reis sai sem cobrança (já estava feito, não é trabalho novo), com troca combinada (portfólio, depoimento,
+indicação); a regra continua valendo pros próximos. Conversas vivas: Débora Reis (link e conversa de 15 min pra colocar o
+site no ar, 15/10) e Spaço Saúde (recepção disse "não" em 14/10, ver linha 8). *Histórico: até 14/10 aqui dizia "Débora
+(esboço no ar, caixa zerado, baixa prioridade) e Spaço (abertura em 10/10)".* As portas de caixa mais perto: CRM do Grão da Serra,
 entrada da Amparo, Paralela (R1 de 05/10 `[FALTA: resultado]`) e R1 do Leal. Prioridade de produção viva: **Amparo**.
+*(Histórico desde 15/10: Amparo, Leal e Débora fecharam a porta; ver a atualização de 15/10 no topo.)*
 
 ⚠️ **Foto anterior (01/10/2026):** a esteira de ligação do Antônio trouxe a **Paralela Film**, primeiro
 lead que pede **tráfego pago** (não site). R1 remarcada para segunda 05/10; proposta escolhida: R$ 990/mês

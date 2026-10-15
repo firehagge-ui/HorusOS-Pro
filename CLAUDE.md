@@ -178,6 +178,9 @@ completa quando houver dúvida.
 - **Apagar só o que foi pedido.** Pedido de apagar uma parte apaga só aquela parte; na dúvida sobre o
   escopo, perguntar. Arquivo fora do Git (`_gestao/`) não tem volta. Origem: 01/10/2026, o arquivo de
   perguntas do oráculo foi apagado inteiro quando o pedido era só as perguntas novas (reconstruído).
+- **Opinião, inclusive quando discorda.** Quando o Marcelo decidir algo, o Claude dá a opinião dele com os
+  motivos, mesmo discordando. "A decisão é sua" sozinho não vale como resposta. Origem: 14/10/2026, Débora
+  Reis ("eu também falho; se discordar e tiver motivos, quero que me diga").
 
 ## Edição concorrente: não presumir regressão
 
@@ -348,6 +351,10 @@ longo; o Hound Dog é o **estado atual** — os dois têm que bater.
 Chegou algo na conversa (print de WhatsApp, resposta do lead, envio feito, dado conferido)? Gravar
 no CRM sem esperar pedido (`hd_mover_estagio`, `hd_salvar_empresa`, `hd_registrar_atividade`...)
 e dizer em uma linha o que foi gravado. Reverte a regra de 18/09 ("não gravar sozinho").
+🔴 **Mensagem pra cliente ou lead → gravada na ficha do Hounder (Marcelo, 15/10/2026).** Toda mensagem que o Claude
+escreve pro Marcelo enviar, e toda versão atualizada dela, vai na hora pra ficha do cliente (`hd_registrar_atividade`,
+tipo nota, "Rascunho: <texto>"; primeiro contato de prospecção continua pelo `hd_preparar_disparo`), dizendo qual
+versão substitui. Sessão sem acesso ao Hounder (nuvem): avisar e deixar a lista do que falta gravar na pasta do cliente.
 
 As travas da casa valem no CRM: nada inventado, nunca presumir dígito, compliance trava a
 mensagem, sem disparo em massa e sem bot respondendo sozinho. **Disparo de prospecção (regra
@@ -439,7 +446,8 @@ produzir PARA um cliente, ler os dois; a marca das peças é a do cliente, não 
   Fase 2 = checkout + CRM, valor não comunicado. Site virou **e-commerce** (7 páginas,
   carrinho, checkout via WhatsApp). 🔴 **WhatsApp (71) 9118-8740** (8 dígitos, nunca presumir
   o nono). 🔴 Roxo chapado + laranja + creme; foto real, nunca banco; luto sóbrio e separado.
-  Irmã do Varo = **segundo lead**.
+  Irmã do Varo = **segundo lead**. ⚠️ **15/10/2026 (contado pelo Marcelo): o Varo nunca mais respondeu.**
+  Geladeira (mostrou interesse e sumiu); a entrada nunca caiu.
 - **#7 — Washington / "Delano"** (mentoria de massagem tântrica, Salvador) — proposta faseada
   enviada (Fase 1 R$1.200 / Fase 2 R$1.500); ⚠️ **NÃO fechou (06/09), follow-up frio** — não
   pressionar. Trava = **plataforma reprova conteúdo sensual**: reposicionar para o
@@ -461,9 +469,11 @@ produzir PARA um cliente, ler os dois; a marca das peças é a do cliente, não 
   responda paciente no WhatsApp de um jeito humano** (a "Fini" atual soa robô) e perguntou de tráfego.
   **Primeiro cliente do Icarus** (`Icarus/PLANO-V2.md`). Tudo em `clientes/leal-oral-clinic/`. 🔴 A
   Clinicorp já é a agenda dele: integrar, nunca vender CRM por cima; IA não fala nada clínico nem preço de
-  tratamento; homônimo `@lealconsultorios` não é ele.
+  tratamento; homônimo `@lealconsultorios` não é ele. ⚠️ **15/10/2026: disse que não vai começar agora**
+  (contado pelo Marcelo). Geladeira, sem data marcada.
 - **#11 — Sates Saúde** (odontologia domiciliar, Salvador · CFO) — LEAD, amigas de turma do Marcelo, abordagem
   em 06/10/2026 com a live na Band (08/10) como gancho. Em 07 e 08/10 a Lua deu acesso ao perfil do Google e o
   Marcelo montou o perfil sem custo, como case (descrição com RT e CRO, serviços, fotos com TCLE, post da live).
   Oferta maior: piloto de 60 dias sem honorário, com contrapartida e cobrança combinada no dia 1. Tudo em `clientes/sates-saude/` (`playbook.md`). 🔴 Nada se
   constrói antes do aceite; parceria B2B sem comissão por paciente; quem compra é a família do paciente.
+  ⚠️ **15/10/2026 (contado pelo Marcelo): depois do perfil do Google entregue, ela não deu retorno nem respondeu mais.**

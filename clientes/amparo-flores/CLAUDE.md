@@ -104,3 +104,8 @@ Tom de voz, marca da agência e contexto do negócio vêm de `_memoria/` e `iden
 - 🔴 **Plataforma pronta, não sistema custom** (decisão do Marcelo, 03/09).
 - 🔴 **Valor da Fase 2 não vai por WhatsApp.** Projeto acima de R$ 2.000 se apresenta
   presencialmente. Referência de mercado em `_conhecimento/network/`.
+
+## Falta gravar no Hounder (sessão na nuvem de 15/10, sem acesso ao CRM)
+
+- 15/10, contado pelo Marcelo: o Varo nunca mais respondeu; a entrada de R$ 600 nunca caiu. Mover pra **geladeira**
+  (mostrou interesse e sumiu; regra de 05/10). Gravar na próxima sessão local e apagar esta seção.
