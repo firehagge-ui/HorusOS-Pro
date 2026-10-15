@@ -236,3 +236,11 @@ Ficha `95fc7889-3564-4d15-beca-dc9a042dcf13`. Gravar na próxima sessão local e
      porque dá trabalho. Fora isso, fica tranquila." Quiz e guia: "precisam de coisa sua (prazos, como você cobra), ficam
      pra quando fizer sentido". Na entrega: "E se você ou alguém precisar de site, tráfego pago ou post pra Instagram,
      pode contar comigo!"
+- **15/10, ela respondeu:** "Olha, eu tenho um site q acabou de ser feito por um amigo...vou te mandar p vc dar uma
+  olhada... https://deborareisarquitetura.netlify.app". Visto em 15/10 (curl): fotos com crédito do Roberto Moreira Rego,
+  seções sobre, serviços, 12 projetos, processo em 4 passos, formulário (planta, projeto anterior), WhatsApp
+  (71) 99977-5453 e e-mail Yahoo; endereço ainda no netlify.app. Muda a tese: o site dela está resolvido; entrar como
+  complemento, nunca criticando o trabalho do amigo (caso Revita). Rascunho que substitui as mensagens 2 a 4 acima:
+  "Ficou muito bonito, Débora! As fotos do Roberto ficaram ótimas grandes assim, e gostei da parte que explica o
+  processo. Parabéns pro seu amigo! Tem umas coisas nas ideias que funcionam junto com esse site, tipo um guia pro
+  cliente entender o seu trabalho antes de chegar. Quer que eu te mande mesmo assim?"
