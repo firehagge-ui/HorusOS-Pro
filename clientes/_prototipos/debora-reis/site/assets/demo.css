@@ -3,7 +3,7 @@
 
 /* ---------- marca de simulação (o que é exemplo até a Débora definir) ---------- */
 /* a etiqueta "Demonstração": discreta, sem explicação */
-.sim{display:inline-block;vertical-align:middle;font:500 10px/1 var(--f-texto);font-stretch:100%;letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2);border:1px solid currentColor;padding:4px 6px 3px;margin-left:6px;opacity:.8}
+.sim{display:inline-block;vertical-align:middle;font:500 11px/1 var(--f-texto);font-stretch:100%;letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2);border:1px solid currentColor;padding:4px 6px 3px;margin-left:6px;opacity:.8}
 .sim-bloco{display:block;margin:14px 0 0;width:auto}
 .escuro .sim,.sim.claro{color:#E7DDD0;border-color:#E7DDD0}
 
@@ -408,3 +408,115 @@ button.btn{cursor:pointer;font-family:var(--f-texto)}
   .barras .b-trilho i,.msg,.progresso-trilho i{transition:none}
 }
 
+
+/* ---------- Rio Vermelho em capítulos (15/10): o que mudou, as cores, a luz, os objetos ---------- */
+.cap{max-width:1320px;margin:0 auto;padding:112px var(--lateral);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:start}
+.cap figure{margin:0}
+.cap img{width:100%}
+.cap .rot{margin-bottom:18px}
+.cap h2{font-size:var(--t-h2);line-height:.95;margin-bottom:28px}
+.cap h2 em{display:block}
+.cap-txt > p:not(.rot){color:var(--tinta-2);max-width:32em}
+.cap-cita{margin:0 0 24px;font:400 26px/1.35 var(--f-display);color:var(--tinta);max-width:22em}
+.cap figcaption.mao{font-size:26px;line-height:1;color:var(--vermelho);margin:12px 0 0 4px;transform:rotate(-2deg);transform-origin:left}
+.cap-materia .cap-txt{grid-column:1/6;grid-row:1;padding-top:24px}
+.cap-materia .cap-alta{grid-column:7/12;grid-row:1/3}
+.cap-materia .cap-baixa{grid-column:1/6;grid-row:2;align-self:end}
+.cap-cor{max-width:none;padding-left:max(var(--lateral),calc((100% - 1320px) / 2 + var(--lateral)));padding-right:max(var(--lateral),calc((100% - 1320px) / 2 + var(--lateral)));background:#DCDFD5;align-items:center}
+.cap-cor .cap-grande{grid-column:1/7}
+.cap-cor .cap-txt{grid-column:8/13}
+.cores-rv{list-style:none;margin:8px 0 10px;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.cores-rv i{display:block;aspect-ratio:3/4;margin-bottom:10px}
+.cores-rv span{display:block;font:500 var(--t-rotulo)/1.3 var(--f-texto);font-stretch:100%;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta-2)}
+.cap-nota{font-size:var(--t-min);margin:0}
+.cap-luz{max-width:none;padding-left:max(var(--lateral),calc((100% - 1320px) / 2 + var(--lateral)));padding-right:max(var(--lateral),calc((100% - 1320px) / 2 + var(--lateral)));background:var(--tinta);color:var(--cal);align-items:center}
+.cap-luz .rot{color:#D9D0C3}
+.cap-luz .cap-cita{color:var(--cal)}
+.cap-luz-foto{grid-column:2/6;position:relative}
+.cap-luz-foto::after{content:"";position:absolute;inset:-12%;background:radial-gradient(closest-side,rgba(227,169,92,.22),rgba(227,169,92,0));z-index:-1}
+.cap-luz-foto{z-index:0}
+.cap-luz .cap-txt{grid-column:7/12}
+.cap-objetos .cap-topo{grid-column:1/-1;max-width:760px;margin-bottom:24px}
+.objetos{grid-column:1/-1;list-style:none;margin:0;padding:0 0 0;display:flex;flex-wrap:wrap;align-items:flex-end;gap:56px 48px;border-bottom:0}
+.objetos li{display:flex;flex-direction:column;align-items:flex-start}
+.objetos img{width:auto;height:var(--h);box-shadow:0 1px 0 var(--tinta)}
+.objetos li::after{content:"";display:block;align-self:stretch;height:1px;background:var(--tinta);margin:-1px -24px 0}
+.objetos .mao{order:2;font-size:24px;line-height:1;color:var(--vermelho);margin-top:14px;transform:rotate(-2deg);transform-origin:left;white-space:nowrap}
+.ob-a{--h:420px}.ob-b{--h:330px}.ob-c{--h:230px}.ob-d{--h:190px}.ob-e{--h:150px}.ob-f{--h:170px}
+.seguir{background:var(--cal-2);padding:96px var(--lateral)}
+.seguir-in{max-width:1320px;margin:0 auto}
+.seguir-prox{display:grid;grid-template-columns:1fr auto auto;align-items:end;gap:12px 40px;text-decoration:none;color:var(--tinta);border-bottom:1px solid var(--tinta);padding-bottom:32px}
+.seguir-prox .rot{grid-column:1/-1}
+.seguir-nome{font:400 var(--t-h1)/.9 var(--f-display);transition:color .3s ease}
+.seguir-foto{width:300px;overflow:hidden}
+.seguir-foto img{width:100%;aspect-ratio:3/2;object-fit:cover;transition:transform .9s var(--facil)}
+.seguir-prox svg{width:56px;fill:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .45s var(--facil);margin-bottom:12px}
+.seguir-prox:hover .seguir-nome{color:var(--vermelho)}
+.seguir-prox:hover img{transform:scale(1.05)}
+.seguir-prox:hover svg{transform:translateX(8px)}
+.seguir-todos{margin:24px 0 0;text-align:right}
+@media (max-width:1080px){
+  .cap{grid-template-columns:1fr;gap:28px}
+  .cap > *{grid-column:1/-1!important;grid-row:auto!important}
+  .cap-materia .cap-alta{max-width:520px}
+  .cap-luz-foto{max-width:420px}
+  .seguir-prox{grid-template-columns:1fr auto}
+  .seguir-foto{grid-column:1/-1;grid-row:3;width:100%;max-width:520px}
+}
+@media (max-width:600px){
+  .cap{padding:72px var(--lateral)}
+  .cap-cita{font-size:22px}
+  .cores-rv{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cores-rv i{aspect-ratio:2/1}
+  .objetos{gap:40px 28px}
+  .ob-a{--h:300px}.ob-b{--h:240px}.ob-c{--h:170px}.ob-d{--h:140px}.ob-e{--h:110px}.ob-f{--h:120px}
+  .objetos .mao{font-size:20px;white-space:normal;max-width:9em}
+  .seguir{padding:72px var(--lateral)}
+  .seguir-nome{font-size:56px}
+  .seguir-todos{text-align:left}
+}
+
+/* "Os apartamentos" e "Outros detalhes" nas páginas de detalhe; foto deitada no Colorir */
+.outros-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.outros-sub{font-size:var(--t-h3);margin:72px 0 32px}
+.outros-3 + .outros-sub + .outros-3{grid-template-columns:repeat(4,minmax(0,1fr))}
+.caso-foto-larga{max-width:1320px}
+.caso-foto-larga img{max-height:none;aspect-ratio:1080/717}
+@media (max-width:600px){
+  .outros-3,.outros-3 + .outros-sub + .outros-3{grid-template-columns:1fr 1fr}
+  .outros-3 .outro:first-child:nth-last-child(3){grid-column:1/-1}
+  .outros-sub{margin:56px 0 24px}
+}
+.cap-objetos{overflow:hidden}
+.cap-luz{overflow:hidden}
+@media (max-width:600px){
+  .objetos{display:grid;grid-template-columns:1fr 1fr;gap:40px 16px;align-items:end}
+  .objetos img{width:auto;max-width:100%;height:auto;max-height:var(--h)}
+  .objetos li::after{margin:-1px -8px 0}
+  .objetos .ob-f{grid-column:1/-1}
+  .ob-a{--h:280px}.ob-b{--h:280px}
+}
+
+/* 15/10: luz e objetos num capítulo só; cada recorte no tamanho do arquivo, sem ampliar */
+.cap-luzobj{align-items:end}
+.cap-luzobj .cap-topo{grid-column:1/8;margin-bottom:24px}
+.cap-luzobj .cap-topo > p:not(.rot){color:var(--tinta-2);max-width:32em}
+.cap-luz-mini{grid-column:9/13;justify-self:end;max-width:320px;margin-bottom:24px}
+.cap-luzobj .objetos{margin-top:40px}
+.ob-a{--h:420px}.ob-b{--h:280px}.ob-c{--h:180px}.ob-f{--h:140px}
+.cap-nota{color:var(--tinta-2);font-size:var(--t-min);margin:6px 0 0}
+/* topo das páginas internas: voltar e conversar */
+.topo-acoes{display:flex;align-items:center;gap:20px}
+.topo-conversar{font:500 var(--t-rotulo)/1 var(--f-texto);font-stretch:100%;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:1px solid var(--tinta);padding:11px 14px;transition:background .3s ease,color .3s ease}
+.topo-conversar:hover{background:var(--tinta);color:var(--cal)}
+@media (max-width:1080px){
+  .cap-luz-mini{justify-self:start}
+}
+@media (max-width:600px){
+  .ob-a{--h:280px}.ob-b{--h:240px}.ob-c{--h:150px}.ob-f{--h:140px}
+  .topo-acoes{gap:12px}
+  .topo-conversar{padding:10px 11px}
+}
+/* foto menor que a tela (o recorte do Colorir): no tamanho do arquivo, sem ampliar */
+.caso-foto-nativa{max-width:calc(628px + 2 * var(--lateral))}
+.pag-capa img{object-position:50% 58%}

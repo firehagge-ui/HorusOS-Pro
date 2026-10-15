@@ -596,6 +596,12 @@ em todos os breakpoints de uma vez.
 
 ## Técnico
 
+**Detector rodado fora da raiz conta outra coisa.** O `npx impeccable@4.0.4 detect` só aplica as exceções do
+`.impeccable/config.json` quando roda da raiz do repositório. Numa cópia em outra pasta, o mesmo site da Débora
+ganhou avisos que a raiz não dá (`all-caps-body`, `kicker-above-heading`), e um "limpo (0)" registrado em 14/10 não se
+reproduziu. Regra: **rodar sempre da raiz e guardar a contagem por regra junto do "verificado"**, para dar para comparar.
+→ *Origem: Débora Reis, 15/10/2026.*
+
 **Card empilhado que escurece o de trás ao ser coberto.** Numa pilha de cards
 `sticky` (o próximo sobe na frente do anterior), dar `filter: brightness(<1)` no
 card coberto para "dar profundidade" fez o Marcelo apontar como **bug**: a imagem
@@ -1267,3 +1273,18 @@ Resultado: mexemos no que ele gostava e não mexemos no que ele queria. Regras:
   decisão de design;
 - **"parece cópia" não pede outra estrutura**, pede outro objeto dentro da mesma estrutura, se o cliente gosta dela.
 → *Origem: Débora Reis, 14/10/2026 (rodada 6).*
+
+**Foto sem legenda que não leva a lugar nenhum, e foto de Instagram em tela cheia.** No estudo de 15/10 (dez sites de
+arquitetura e interiores), foto solta, sobreposta e sem legenda só funcionou em dois casos:
+- o texto vizinho já tinha dado o contexto (Paula Müller, Natália Salla e Telha Clarke, nas páginas de projeto; Simone
+  Katherine);
+- cada foto levava ao projeto em que é explicada (Stanzza).
+
+Ela falhou quando era a única prova e não levava a lugar nenhum (Telha Clarke, a galeria da Tecnoarreda) e quando o
+nome só aparecia com o mouse (no celular, some). Regras:
+- **foto sem legenda vira índice clicável do projeto**, ou fica ao lado de um texto que já explicou;
+- **não repetir a mesma foto em duas seções seguidas** (no site da Débora, 4 das 5 miniaturas voltavam logo abaixo:
+  é a repetição, mais do que a ordem, que dá a sensação de "emaranhado");
+- **foto de 1080 px (Instagram) não vai até a borda da tela:** num notebook de 1440 px ela é esticada 1,3 vez e
+  amolece. Emoldurar com margem de papel até chegarem os originais do fotógrafo.
+→ *Origem: Débora Reis, 15/10/2026 (`clientes/_prototipos/debora-reis/PROPOSITO-DAS-SECOES.md`, seção 6).*

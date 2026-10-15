@@ -10,11 +10,102 @@
 > Hounder (ficha `95fc7889-3564-4d15-beca-dc9a042dcf13`). Não vendeu: apagar as fotos dela e
 > reaproveitar só a estrutura (`../README.md`).
 
+## ⛔ Encerrado em 15/10/2026
+
+O Marcelo decidiu que a Hórus não vai mais trabalhar para a Débora (o motivo foi
+registrado pelo Marcelo fora deste repositório; aqui ele não aparece). Feito em 15/10, com o ok do Marcelo:
+- **fora do ar:** o endereço mostra uma página neutra ("Esta página não está mais no ar") e as 18 publicações antigas
+  foram apagadas. O projeto `esboco-debora-reis` continua na Vercel, como o Marcelo pediu, para reaproveitar;
+- **fotos apagadas desta pasta:** 67 imagens, entre `fotos/`, `site/` e `versoes/`. Continuam no histórico do Git;
+- **template:** `templates/sites/arquitetura-interiores/`, sem nada dela (fotos viraram marcadores). Fica o aprendizado: `PROPOSITO-DAS-SECOES.md` e os teardowns em `referencias/`.
+**O Marcelo quer guardar tudo o que foi construído (15/10):** o código do site e as versões (`site/`, `versoes/`), os
+documentos desta pasta, o template e o projeto na Vercel ficam. Só as fotos dela saíram, e elas continuam no histórico do
+Git (último commit com elas: `14395e0`).
+A conversa automática do 09/10 (seção "Estado anterior") está encerrada junto.
+
 ## Regra de escrita deste projeto (Marcelo, 14/10/2026)
 
 Todo material que a Débora vê é escrito como se o Marcelo tivesse preparado. O guia fica na voz dela, em primeira
 pessoa. Não entra nota de bastidor ("texto de simulação", "na versão final..."). O que não é definitivo leva só a
 etiqueta **"Demonstração"**. O texto passa pela régua de `_memoria/prospeccao/90-cara-de-ia.md`.
+
+## 15/10/2026, noite: versão nova a partir do `PROPOSITO-DAS-SECOES.md` (pedido do Marcelo)
+
+- **Backup antes de mexer:** `versoes/antes-proposito-15-10/`, uma cópia completa e funcional do site.
+- **Aplicado o que não depende de dado da Débora**, as mudanças marcadas "antes da chamada" no documento:
+  - **Capa:**
+    - a foto emoldurada pelo papel, com teto de 1180 px, porque o arquivo de 1080 px amolecia de ponta a ponta;
+    - o serviço na linha de apoio, a formação como prova e um botão;
+    - saiu o "desde 2004" junto de Salvador (também na descrição e na prévia do link) e a legenda solta "O retrato da
+      alma brasileira".
+  - **Seção 2:**
+    - virou "como ela pensa", com a pergunta dela ("Você não enjoa?") e a resposta literal do post;
+    - o serviço é a leitura principal;
+    - as fotos viraram índice clicável dos detalhes e do aparador, sem repetir as de Projetos;
+    - a faixa "Detalhes que contam" saiu da home.
+  - **Carrossel:**
+    - sem troca sozinha e sem zoom lento;
+    - no computador, a foto emoldurada no escuro, com o texto ao lado;
+    - o Colorir com um recorte sem a TV (`sala-vermelha-sem-tv.jpg`);
+    - as notas com as palavras da legenda dela.
+  - **Como trabalho:** o retrato foi para "A arquiteta"; a coluna presa virou "Como começa"; a etapa 01 (texto nosso)
+    leva "Demonstração"; o texto do link do guia foi corrigido.
+  - **A arquiteta:** retrato, nome e formação juntos; a frase dela em letra de leitura; o cartão com um botão só.
+    "Escritório de uma pessoa só" saiu até ela autorizar.
+  - **Perguntas:** as que travam a decisão. Duas respostas são dela; quatro repetem o guia, com "Demonstração".
+  - **Contato:** o título diz a ação. O WhatsApp abre com mensagem pronta em todas as páginas.
+  - **Páginas internas:** "Conversar" no topo; o mesmo caminho de contato da home; o selo de prévia no lugar de
+    "Esconder marcações".
+  - **Rio Vermelho:** cada fato contado uma vez; "A luz e os objetos" num capítulo só; os recortes no tamanho do arquivo;
+    a página diz que a paleta saiu das fotos.
+  - **Rodapé, questionário e cortes:**
+    - o rodapé ficou sem a nota de bastidor e sem o "Diário no Instagram", com os links que faltavam;
+    - o questionário ficou sem as porcentagens e sem o "Salvador" atribuído às fotos;
+    - saiu o "do chão ao teto";
+    - saíram as bordas pretas das fotos.
+- **Ficou de fora (de propósito):**
+  - a animação do rodapé, que o Marcelo pediu para manter;
+  - os objetos de parede da seção 2;
+  - o que depende da Débora: CAU, prazos reais, bairros, de qual apartamento é cada foto, faixa de investimento, o
+    bloco "é pra mim?".
+- **Decisões que eram do Marcelo, tomadas pela recomendação do documento:**
+  - WhatsApp como botão principal (Fase 1);
+  - Colorir e Aconchego mantidos no carrossel (o Colorir recortado) até ela responder.
+- **Verificado em 15/10:**
+  - Playwright em 1440 e 390, nas 11 páginas: sem erro, sem imagem quebrada, sem rolagem lateral;
+  - carrossel: setas, arrasto, e fica parado depois de 9 s sem ninguém mexer;
+  - todos os links de WhatsApp com mensagem.
+- **Detector:** sai 2, com os mesmos avisos do commit anterior (texto claro sobre foto lido como sobre o papel, e o
+  fundo creme). As duas falhas de entrelinha sumiram e o "Demonstração" de 10 px foi para 11 px.
+
+## 15/10/2026: projetos reorganizados pelo que as fotos provam (pedido do Marcelo)
+
+- **O que as fotos e legendas provam:**
+  - **Rio Vermelho:** o corredor e o aparador vermelho são do mesmo apartamento (o aparador aparece no fundo da foto do
+    corredor).
+  - **Aconchego é outro apartamento:** piso de madeira escura, enquanto no Rio Vermelho o piso foi trocado por um claro.
+  - **"Colorir"** (post C4RJy_Dp10S, a sala com a mesa vermelha e vista) é outro apartamento, mais antigo.
+  - **Livros, Artesanato e Frio e quente:** não dá pra provar de qual apartamento são. Há indícios de que Livros e a
+    estante dos CDs sejam do Rio Vermelho (mesma marcenaria branca, "as proprietárias" no plural, como "as moradoras"),
+    mas indício não é prova. `[FALTA: a Débora confirmar na chamada]`.
+- **Organização (caminho C do `PLANO.md`):**
+  - o carrossel da home passa só pelos **3 apartamentos**, cada um na composição que a foto pede: Rio Vermelho em tela
+    cheia, Colorir deitado com o texto à direita, Aconchego em pé num painel sobre o vinho;
+  - logo abaixo, a faixa **"Detalhes que contam"** (Livros, Artesanato, Frio e quente);
+  - `projetos.html` segue a mesma divisão, com 3 apartamentos e os detalhes à parte;
+  - página nova: `projeto-colorir.html`.
+- **Rio Vermelho em capítulos:** o que mudou, as cores (paleta tirada das fotos), a luz e os objetos (recortes
+  `rv-*.jpg`, só das duas fotos deste apartamento). No fim, "Próximo apartamento". Se a Débora confirmar que os detalhes
+  são dele, entram como capítulos.
+- **Rodapé:** número, e-mail completo e o ícone do Instagram, nessa ordem; o botão do WhatsApp saiu.
+- **Versão anterior:** `versoes/antes-organizacao-projetos/`.
+- **Verificado em 15/10:**
+  - Playwright em 1440 e 390, nas 8 páginas: sem erro, sem imagem quebrada, sem rolagem lateral;
+  - carrossel: setas, arrasto, arrasto curto que volta, `?p=2` e `?p=3`;
+  - foto e link de cada apartamento conferidos.
+- **Detector:** sai 2, igual ao commit anterior (o "limpo" de 14/10 não se reproduz).
+- **Publicado em 15/10** no mesmo projeto (https://esboco-debora-reis.vercel.app). Conferido no ar: as 8 páginas
+  respondem 200, as fontes carregam e o carrossel passa no desktop e no celular, sem erro.
 
 ## Depois da rodada 6 (14/10/2026, noite): guia, números da foto, páginas de projeto
 
@@ -46,10 +137,10 @@ etiqueta **"Demonstração"**. O texto passa pela régua de `_memoria/prospeccao
 - **Projetos em tela cheia** com passagem da direita para a esquerda (arrasto, setas, nomes, sozinho a cada 7 s com pausa)
   e a página nova `projetos.html` ("Ver todos os projetos"). Detalhe e porquê em `PLANO.md`, rodada 6. Rodada 5 em
   `versoes/rodada-5/`.
-- **Decisão pendente do Marcelo (tarefa no Hounder):** organização do portfólio, com os caminhos A, B e C em `PLANO.md`. A
-  recomendação é C, dois níveis (apartamentos em tela cheia; detalhes dentro de cada projeto e numa faixa própria).
+- **~~Decisão pendente~~ decidida em 15/10:** caminho C aplicado (ver a seção de 15/10). Era a organização do portfólio, com os caminhos A, B e C em `PLANO.md`. A
+  recomendação era C, dois níveis (apartamentos em tela cheia; detalhes dentro de cada projeto e numa faixa própria).
 - **Verificado em 14/10:**
-  - detector limpo (0);
+  - detector limpo (0) *(não reproduzido em 15/10: a mesma versão deu saída 2; provável que tenha rodado fora da raiz)*;
   - Playwright em 1440, 1024 e 390 (e 360 nos projetos): clique, arrasto, arrasto curto que volta, passagem automática,
     pausa, `?p=3`, faixa de fotos da página nova;
   - sem erro e sem rolagem lateral; subpáginas sem erro; publicado e conferido no ar.
@@ -61,7 +152,7 @@ etiqueta **"Demonstração"**. O texto passa pela régua de `_memoria/prospeccao
   fotos grandes e gato redesenhado; rodapé redesenhado como vista de parede com cota "sob medida". Plano em `PLANO.md`,
   cada elemento em `JUSTIFICATIVA.md`, rodada 4 guardada em `versoes/rodada-4/`.
 - Sala de ideias sem a apresentação ("Débora, separei..."): o Marcelo manda isso por texto.
-- **Verificado em 14/10:** detector limpo (0); Playwright em 1440, 1024 e 390 com as animações, carrossel passado de
+- **Verificado em 14/10:** detector limpo (0) *(não reproduzido em 15/10: a mesma versão deu saída 2; provável que tenha rodado fora da raiz)*; Playwright em 1440, 1024 e 390 com as animações, carrossel passado de
   ponta a ponta por clique e por arrasto, sem erro e sem rolagem lateral; subpáginas sem erro; publicado e conferido
   no ar (URLs 200, fontes carregando).
 - `[FALTA: confirmar com a Débora se Livros, Artesanato, Azul e madeira e Aconchego são apartamentos diferentes]`.
@@ -134,7 +225,7 @@ com dois horários; (4) na conversa, como funciona, domínio, manutenção e qui
   umas prévias pra você ver, olhar não custa nada rs. Posso te mandar o link?" Sim: o link da sala +
   "Se quiser, te mostro cada uma em 10 min por vídeo, hoje 17h30 ou amanhã 10h?". Silêncio até sexta 16/10:
   geladeira de 60 dias.
-- **Verificado em 13/10:** detector da impeccable limpo; Playwright em 1440 e 390 nas cinco páginas, questionário
+- **Verificado em 13/10:** detector da impeccable limpo *(não reproduzido em 15/10)*; Playwright em 1440 e 390 nas cinco páginas, questionário
   respondido até o fim, sem erro de console nem rolagem lateral; as cinco URLs publicadas respondendo 200.
 
 ## Estado anterior (09/10/2026)

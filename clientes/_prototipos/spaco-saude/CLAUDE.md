@@ -3,6 +3,15 @@
 > ⚠️ **LEAD, não cliente.** Esboço privado (`noindex`) pra mostrar na conversa. Estado comercial no
 > Hounder (ficha `dfac495f-15c4-4773-8221-b2220900d0d2`). Não vendeu: apagar as fotos da clínica.
 
+## 15/10/2026: "não" também ao caminho 1
+
+A recepção respondeu "não" à pergunta se havia outro meio de falar com a Dra. (o caminho 1 da decisão de 14/10, abaixo;
+relatado pelo Marcelo em 15/10, `[FALTA: hora da resposta]`). O Marcelo está desanimado e sem esperança de fechar.
+- **O que sobra:** o caminho 3 (ligar no fixo (71) 3235-3247 pedindo a Dra. Ângela pelo nome, ou ir à clínica com o
+  esboço no celular). Mais nada por WhatsApp: duas negativas da recepção, insistir ali queima a Hórus.
+- **Se o Marcelo não quiser o caminho 3:** geladeira de 60 dias e ficha no Hounder em Perdido ou Geladeira, com o motivo.
+- **O esboço continua no ar** (privado, `noindex`); tirar do ar só com o ok dele. Tudo o que foi feito fica guardado.
+
 ## Rodada 4 do esboço (14/10/2026, noite): as 5 imagens do Marcelo
 
 No ar no mesmo link (https://esboco-spaco-saude.vercel.app). As imagens dele são a especificação; o que foi trocado por
@@ -47,7 +56,7 @@ duplo em `PLANO.md`; a rodada 1 está em `versoes/rodada-1/`. **Publicada em 14/
   tratamento e particular/plano).
 - Ainda falta: formação da Dra., nome e CRO da equipe, responsável técnica, CRO-BA 12600 conferido no CFO.
 
-## Decisão pendente (14/10/2026): a recepção disse "não"
+## Decisão de 14/10/2026 (histórico: o caminho 1 recebeu "não" em 15/10)
 
 **Esboço no ar (14/10, privado, `noindex`): https://esboco-spaco-saude.vercel.app** (projeto Vercel
 `esboco-spaco-saude`; publicar de novo: copiar `site/` pra uma pasta com esse nome e rodar

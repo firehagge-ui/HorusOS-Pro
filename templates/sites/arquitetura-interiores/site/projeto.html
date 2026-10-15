@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Projeto 01] | [Nome da arquiteta] Arquitetura</title>
+<meta name="description" content="[FALTA: descrição da página]">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="[FALTA]">
+<meta property="og:image" content="assets/fotos/rio-vermelho.jpg">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=boska@400,401&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400;62..125,500&family=La+Belle+Aurore&display=swap">
+<link rel="stylesheet" href="assets/estudio.css">
+<link rel="stylesheet" href="assets/demo.css">
+</head>
+<body>
+
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topo-fixo">
+  <div class="topo-in">
+    <a class="marca" href="index.html">[Nome da arquiteta]</a>
+    <div class="topo-acoes"><a class="voltar" href="index.html"><span class="so-largo">Voltar ao site</span><span class="so-celular">Início</span></a><a class="topo-conversar" href="https://wa.me/55DDDNUMERO?text=Ol%C3%A1!%20Vim%20pelo%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto.">Conversar</a></div>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<section class="caso-capa">
+  <p class="rot">Apartamento 01</p>
+  <h1>[Projeto 01], <em>[subtítulo].</em></h1>
+  <p class="lead">[FALTA: o projeto numa frase]</p>
+</section>
+
+<dl class="caso-ficha">
+  <div><dt>Bairro</dt><dd>[Projeto 01], [cidade]</dd></div>
+  <div><dt>O que mudou</dt><dd>[FALTA: ficha]</dd></div>
+  <div><dt>Fotos</dt><dd>[fotógrafo]</dd></div>
+</dl>
+
+<!-- a foto com o que tem por trás de cada escolha: o número abre a caixa ao lado dele -->
+<section class="explorar" aria-labelledby="ex-t">
+  <h2 id="ex-t">O que tem por trás <em>desta foto.</em></h2>
+  <figure class="foto-pontos">
+    <img src="assets/fotos/rio-vermelho.jpg" alt="[descrição da foto]" width="1080" height="1080">
+    <button class="ponto" type="button" data-ponto="luz" style="left:47.7%;top:19%" aria-expanded="false" aria-controls="cx-luz" aria-label="1, [ponto]">1</button>
+    <button class="ponto" type="button" data-ponto="cores" style="left:18%;top:40%" aria-expanded="false" aria-controls="cx-cores" aria-label="2, [ponto]">2</button>
+    <button class="ponto" type="button" data-ponto="marcenaria" style="left:58.5%;top:52%" aria-expanded="false" aria-controls="cx-marcenaria" aria-label="3, [ponto]">3</button>
+    <button class="ponto" type="button" data-ponto="piso" style="left:30%;top:86%" aria-expanded="false" aria-controls="cx-piso" aria-label="4, [ponto]">4</button>
+    <div class="caixa" id="cx-luz" data-ponto="luz" tabindex="-1">
+      <p class="caixa-num">1</p><h3>[Ponto]</h3>
+      <p>[FALTA: o que foi feito aqui]</p>
+      <blockquote>“[FALTA: frase da arquiteta]”</blockquote>
+    </div>
+    <div class="caixa" id="cx-cores" data-ponto="cores" tabindex="-1">
+      <p class="caixa-num">2</p><h3>[Ponto]</h3>
+      <p>[FALTA: o que foi feito aqui]</p>
+      <blockquote>“[FALTA: frase da arquiteta]”</blockquote>
+    </div>
+    <div class="caixa" id="cx-marcenaria" data-ponto="marcenaria" tabindex="-1">
+      <p class="caixa-num">3</p><h3>[Ponto]</h3>
+      <p>[FALTA: o que foi feito aqui]</p>
+      <blockquote>“[FALTA: frase da arquiteta]”</blockquote>
+    </div>
+    <div class="caixa" id="cx-piso" data-ponto="piso" tabindex="-1">
+      <p class="caixa-num">4</p><h3>[Ponto]</h3>
+      <p>[FALTA: o que foi feito aqui]</p>
+      <blockquote>“[FALTA: frase da arquiteta]”</blockquote>
+    </div>
+  </figure>
+  <p class="explorar-dica">Toque nos números da foto.</p>
+</section>
+
+<!-- a história do apartamento, em capítulos (15/10: cada fato contado uma vez; a foto com os números já diz o que mudou).
+     Tudo sai das duas fotos publicadas deste apartamento (o corredor e o aparador); os recortes aparecem no tamanho do
+     arquivo, sem ampliar; a paleta é amostra tirada das fotos e a página diz isso. -->
+<section class="cap cap-materia" aria-labelledby="c1-t">
+  <div class="cap-txt">
+    <p class="rot">[ I ] [Capítulo]</p>
+    <h2 id="c1-t">[Título do capítulo] <em>[em itálico].</em></h2>
+    <p>[FALTA: texto do capítulo]</p>
+  </div>
+  <figure class="cap-alta"><img src="assets/fotos/rv-ripas.jpg" alt="[descrição da foto]" width="520" height="760" loading="lazy"><figcaption class="mao">[nota à mão]</figcaption></figure>
+  <figure class="cap-baixa"><img src="assets/fotos/rv-piso.jpg" alt="[descrição da foto]" width="640" height="300" loading="lazy"><figcaption class="mao">[nota à mão]</figcaption></figure>
+</section>
+
+<section class="cap cap-cor" aria-labelledby="c2-t">
+  <figure class="cap-grande"><img src="assets/fotos/vermelho.jpg" alt="[descrição da foto]" width="810" height="1080" loading="lazy"></figure>
+  <div class="cap-txt">
+    <p class="rot">[ II ] [Capítulo]</p>
+    <h2 id="c2-t">[Título do capítulo] <em>[em itálico].</em></h2>
+    <blockquote class="cap-cita">“[FALTA: frase da arquiteta]”</blockquote>
+    <ul class="cores-rv" aria-label="Cores tiradas das fotos do apartamento">
+      <li><i style="background:#C9C2B6"></i><span>[cor tirada da foto]</span></li>
+      <li><i style="background:#C9C2B6"></i><span>[cor tirada da foto]</span></li>
+      <li><i style="background:#C9C2B6"></i><span>[cor tirada da foto]</span></li>
+      <li><i style="background:#C9C2B6"></i><span>[cor tirada da foto]</span></li>
+    </ul>
+    <p class="cap-nota">Cores tiradas das fotos do apartamento.</p>
+  </div>
+</section>
+
+<section class="cap cap-luzobj" aria-labelledby="c3-t">
+  <div class="cap-topo">
+    <p class="rot">[ III ] [Capítulo]</p>
+    <h2 id="c3-t">[Título do capítulo] <em>[em itálico].</em></h2>
+    <p>[FALTA: texto do capítulo]</p>
+    <blockquote class="cap-cita">“[FALTA: frase da arquiteta]”</blockquote>
+  </div>
+  <figure class="cap-luz-mini"><img src="assets/fotos/rv-luz.jpg" alt="[descrição da foto]" width="320" height="300" loading="lazy"><figcaption class="mao">[nota à mão]</figcaption></figure>
+  <ul class="objetos">
+    <li class="ob-a"><img src="assets/fotos/rv-macrame.jpg" alt="[descrição da foto]" width="280" height="450" loading="lazy"><span class="mao">[objeto]</span></li>
+    <li class="ob-b"><img src="assets/fotos/rv-painel.jpg" alt="[descrição da foto]" width="108" height="280" loading="lazy"><span class="mao">[objeto]</span></li>
+    <li class="ob-c"><img src="assets/fotos/rv-buda.jpg" alt="[descrição da foto]" width="180" height="180" loading="lazy"><span class="mao">[objeto]</span></li>
+    <li class="ob-f"><img src="assets/fotos/rv-pedra.jpg" alt="[descrição da foto]" width="360" height="140" loading="lazy"><span class="mao">[objeto]</span></li>
+  </ul>
+</section>
+
+<section class="seguir" aria-labelledby="sg-t">
+  <div class="seguir-in">
+    <h2 id="sg-t" class="vh">Continuar</h2>
+    <a class="seguir-prox" href="projeto.html">
+      <span class="rot">Próximo apartamento</span>
+      <span class="seguir-nome">[Projeto 02]</span>
+      <span class="seguir-foto"><img src="assets/fotos/sala-vermelha-sem-tv.jpg" alt="" width="628" height="715" loading="lazy"></span>
+      <svg viewBox="0 0 40 16" aria-hidden="true"><path d="M1 8 H38 M31 1 L38 8 L31 15"/></svg>
+    </a>
+    <p class="seguir-todos"><a class="link" href="projetos.html">Ver todos os projetos</a></p>
+  </div>
+</section>
+
+<section class="caso-fim" aria-labelledby="cf-t">
+  <h2 id="cf-t">Quer um apartamento <em>pensado assim?</em></h2>
+  <p>A conversa é pelo WhatsApp, com a própria [Nome]. Se preferir, conte a sua casa antes, em seis perguntas: o resumo vai para o WhatsApp dela.</p>
+  <div class="acoes" style="justify-content:center">
+    <a class="btn btn-grande" href="https://wa.me/55DDDNUMERO?text=Ol%C3%A1!%20Vim%20pelo%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto.">Chamar no WhatsApp</a>
+    <a class="link" href="conte-sua-casa.html">Ou conte a sua casa antes</a>
+  </div>
+</section>
+
+</main>
+
+<a class="previa" href="index.html"><span>Prévia</span><b class="so-largo"> feita pela Hórus para a [Nome]</b><b class="so-celular"> · Hórus</b></a>
+
+<footer class="rodape">
+  <div class="rodape-contato">
+    <a href="https://wa.me/55DDDNUMERO?text=Ol%C3%A1!%20Vim%20pelo%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto.">[(DDD) telefone]</a>
+    <a href="mailto:[e-mail]">[e-mail]</a>
+    <a class="rede-icone" href="https://www.instagram.com/[instagram]/" rel="noopener" aria-label="Instagram da [Nome da arquiteta]"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></svg></a>
+  </div>
+  <p>Fotos: [fotógrafo].</p>
+</footer>
+
+<script src="assets/demo.js" defer></script>
+</body>
+</html>
