@@ -3,7 +3,7 @@
 
 /* ---------- marca de simulação (o que é exemplo até a Débora definir) ---------- */
 /* a etiqueta "Demonstração": discreta, sem explicação */
-.sim{display:inline-block;vertical-align:middle;font:500 10px/1 var(--f-texto);font-stretch:100%;letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2);border:1px solid currentColor;padding:4px 6px 3px;margin-left:6px;opacity:.8}
+.sim{display:inline-block;vertical-align:middle;font:500 11px/1 var(--f-texto);font-stretch:100%;letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2);border:1px solid currentColor;padding:4px 6px 3px;margin-left:6px;opacity:.8}
 .sim-bloco{display:block;margin:14px 0 0;width:auto}
 .escuro .sim,.sim.claro{color:#E7DDD0;border-color:#E7DDD0}
 
@@ -496,3 +496,27 @@ button.btn{cursor:pointer;font-family:var(--f-texto)}
   .objetos .ob-f{grid-column:1/-1}
   .ob-a{--h:280px}.ob-b{--h:280px}
 }
+
+/* 15/10: luz e objetos num capítulo só; cada recorte no tamanho do arquivo, sem ampliar */
+.cap-luzobj{align-items:end}
+.cap-luzobj .cap-topo{grid-column:1/8;margin-bottom:24px}
+.cap-luzobj .cap-topo > p:not(.rot){color:var(--tinta-2);max-width:32em}
+.cap-luz-mini{grid-column:9/13;justify-self:end;max-width:320px;margin-bottom:24px}
+.cap-luzobj .objetos{margin-top:40px}
+.ob-a{--h:420px}.ob-b{--h:280px}.ob-c{--h:180px}.ob-f{--h:140px}
+.cap-nota{color:var(--tinta-2);font-size:var(--t-min);margin:6px 0 0}
+/* topo das páginas internas: voltar e conversar */
+.topo-acoes{display:flex;align-items:center;gap:20px}
+.topo-conversar{font:500 var(--t-rotulo)/1 var(--f-texto);font-stretch:100%;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:1px solid var(--tinta);padding:11px 14px;transition:background .3s ease,color .3s ease}
+.topo-conversar:hover{background:var(--tinta);color:var(--cal)}
+@media (max-width:1080px){
+  .cap-luz-mini{justify-self:start}
+}
+@media (max-width:600px){
+  .ob-a{--h:280px}.ob-b{--h:240px}.ob-c{--h:150px}.ob-f{--h:140px}
+  .topo-acoes{gap:12px}
+  .topo-conversar{padding:10px 11px}
+}
+/* foto menor que a tela (o recorte do Colorir): no tamanho do arquivo, sem ampliar */
+.caso-foto-nativa{max-width:calc(628px + 2 * var(--lateral))}
+.pag-capa img{object-position:50% 58%}

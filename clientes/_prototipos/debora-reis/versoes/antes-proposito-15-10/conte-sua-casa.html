@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conte a sua casa | Débora Reis Arquitetura</title>
+<meta name="description" content="Seis perguntas sobre a sua casa. No fim, o retrato dela, pra levar à primeira conversa com a Débora Reis.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Conte a sua casa | Débora Reis">
+<meta property="og:description" content="Seis perguntas, uns dois minutos. No fim, o retrato da sua casa.">
+<meta property="og:image" content="assets/fotos/alma-brasileira.jpg">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=boska@400,401&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400;62..125,500&family=La+Belle+Aurore&display=swap">
+<link rel="stylesheet" href="assets/estudio.css">
+<link rel="stylesheet" href="assets/demo.css">
+</head>
+<body class="casa-corpo">
+
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topo-fixo">
+  <div class="topo-in">
+    <a class="marca" href="index.html">Débora Reis</a>
+    <nav class="acoes" style="gap:24px" aria-label="Demonstração"><a class="voltar" href="ideias.html">Todas as ideias</a><a class="voltar" href="index.html">Voltar ao site</a></nav>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<noscript><p style="padding:40px">Este questionário precisa de JavaScript. A conversa também pode começar direto pelo <a href="https://wa.me/5571999775453">WhatsApp da Débora</a>.</p></noscript>
+
+<!-- ABERTURA (Havenly / Wildfire: sem cadastro, resultado na hora) -->
+<section class="passo passo-intro ativo" data-passo="0" aria-labelledby="t0">
+  <div class="intro-txt">
+    <h1 id="t0">Conte a <em>sua casa.</em></h1>
+    <p class="lead">“Projetar interiores é criar espaços que acolhem a vida real, seus afetos e sua identidade.”</p>
+    <p class="sala-nota">Débora Reis, arquiteta</p>
+    <div class="intro-meta"><span>6 perguntas</span><span>uns 2 minutos</span><span>sem cadastro</span></div>
+    <div class="acoes"><button class="btn btn-grande" type="button" data-ir="1">Começar</button></div>
+  </div>
+  <div class="intro-fotos" aria-hidden="true">
+    <img src="assets/fotos/alma-brasileira.jpg" alt="" width="1080" height="1439">
+    <img src="assets/fotos/aconchego.jpg" alt="" width="1080" height="1440">
+    <img src="assets/fotos/azul-madeira.jpg" alt="" width="1080" height="1350">
+    <img src="assets/fotos/vermelho.jpg" alt="" width="810" height="1080">
+  </div>
+</section>
+
+<!-- 1. FOTOS (Havenly: "Select the rooms that make you swoon"), com os apartamentos dela -->
+<section class="passo pergunta" data-passo="1" aria-labelledby="t1">
+  <div class="pergunta-txt">
+    <p class="rotulo">Pergunta 1 de 6</p>
+    <h2 id="t1" tabindex="-1">Quais destas casas te encantam?</h2>
+    <p>Escolha quantas quiser. Todas são apartamentos que a Débora projetou.</p>
+  </div>
+  <div class="mosaico" id="op-fotos"></div>
+</section>
+
+<!-- 2. O QUE MORA COM VOCÊ -->
+<section class="passo pergunta" data-passo="2" aria-labelledby="t2">
+  <div class="pergunta-txt">
+    <p class="rotulo">Pergunta 2 de 6</p>
+    <h2 id="t2" tabindex="-1">O que mora com você?</h2>
+    <p>Livros, discos, bichos, plantas. É o que faz a casa ser sua.</p>
+  </div>
+  <div class="grade-op" id="op-vive"></div>
+</section>
+
+<!-- 3. CORES -->
+<section class="passo pergunta" data-passo="3" aria-labelledby="t3">
+  <div class="pergunta-txt">
+    <p class="rotulo">Pergunta 3 de 6</p>
+    <h2 id="t3" tabindex="-1">Que cores te fazem sentir em casa?</h2>
+    <p>Escolha uma. As cores saíram dos apartamentos dela.</p>
+  </div>
+  <div class="grade-op duas" id="op-cores"></div>
+</section>
+
+<!-- 4. SENTIR -->
+<section class="passo pergunta" data-passo="4" aria-labelledby="t4">
+  <div class="pergunta-txt">
+    <p class="rotulo">Pergunta 4 de 6</p>
+    <h2 id="t4" tabindex="-1">O que você quer sentir quando abre a porta?</h2>
+    <p>Escolha uma.</p>
+  </div>
+  <div class="grade-op duas" id="op-sentir"></div>
+</section>
+
+<!-- 5. CÔMODOS (Havenly: "It needs a little something") + METRAGEM -->
+<section class="passo pergunta" data-passo="5" aria-labelledby="t5">
+  <div class="pergunta-txt">
+    <p class="rotulo">Pergunta 5 de 6</p>
+    <h2 id="t5" tabindex="-1">O que está pedindo uma mudança?</h2>
+    <p>Escolha quantos quiser.</p>
+  </div>
+  <div>
+    <div class="grade-op" id="op-comodos"></div>
+    <div class="campo">
+      <label for="metros">Quantos metros quadrados, mais ou menos?</label>
+      <div class="metros"><input type="range" id="metros" min="30" max="300" step="5" value="80"><output for="metros" id="metros-v">80 m²</output></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. QUANDO + ONDE + NOME -->
+<section class="passo pergunta" data-passo="6" aria-labelledby="t6">
+  <div class="pergunta-txt">
+    <p class="rotulo">Pergunta 6 de 6</p>
+    <h2 id="t6" tabindex="-1">Pra quando é esse sonho?</h2>
+    <p>Sem resposta errada. Só ajuda a Débora a entender o seu tempo.</p>
+  </div>
+  <div>
+    <div class="grade-op duas" id="op-quando"></div>
+    <div class="campo"><label for="bairro">Em que bairro fica a casa? (opcional)</label><input type="text" id="bairro" autocomplete="address-level3"></div>
+    <div class="campo"><label for="nome">Como você se chama? (opcional)</label><input type="text" id="nome" autocomplete="given-name"></div>
+  </div>
+</section>
+
+<!-- RESULTADO -->
+<div class="resultado" id="resultado">
+  <section class="res-capa escuro">
+    <img id="r-foto" src="assets/fotos/alma-brasileira.jpg" alt="" width="1080" height="1439">
+    <div class="res-capa-txt">
+      <h1 id="r-titulo" tabindex="-1">Alma <em>brasileira.</em></h1>
+      <p class="res-de" id="r-rotulo">O retrato da sua casa</p>
+      <blockquote><p id="r-frase"></p><cite>Débora Reis, sobre um apartamento que ela projetou</cite></blockquote>
+    </div>
+  </section>
+
+  <section class="res-mistura">
+    <div>
+      <h2>Ninguém mora num <em>jeito só.</em></h2>
+      <p>A sua casa mistura jeitos que a Débora já desenhou em apartamentos de Salvador. Ela mesma diz que nunca projetou a mesma casa duas vezes.</p>
+    </div>
+    <ol class="barras" id="r-barras"></ol>
+  </section>
+
+  <section class="res-vive" id="r-vive-sec">
+    <div class="res-vive-in">
+      <h2>O que mora com você, e como ela <em>já desenhou isso.</em></h2>
+      <div class="cartoes-vive" id="r-vive"></div>
+    </div>
+  </section>
+
+  <section class="res-briefing">
+    <div>
+      <h2>O que a Débora <em>vai receber.</em></h2>
+      <p class="lead">Um resumo das suas respostas. Ela lê antes de conversar com você, então você não precisa explicar tudo de novo.</p>
+      <div class="ficha-briefing"><dl id="r-ficha"></dl></div>
+      <div class="aviso-prazo" id="r-prazo" hidden>
+        <h3>Sobre o “o quanto antes”</h3>
+        <p>Um projeto bem feito tem etapas, e cada uma tem um tempo: a conversa, as plantas técnicas, a obra e a decoração. Vale ver quanto leva cada uma antes de marcar a data da mudança.</p>
+        <a class="link" href="guia.html#etapas">Ver as etapas no guia do cliente</a>
+      </div>
+    </div>
+    <div>
+      <div class="celular" aria-label="Simulação: a mensagem chegando no WhatsApp da Débora">
+        <div class="celular-tela">
+          <div class="celular-topo"><i></i><span>Débora Reis<small>WhatsApp</small></span></div>
+          <div class="celular-conversa"><div class="msg" id="r-msg"></div></div>
+        </div>
+      </div>
+      <p class="celular-legenda">Assim a mensagem chega no WhatsApp dela. Nada sai sem você tocar no botão.</p>
+      <div class="enviar-perto"><a class="btn btn-grande btn-enviar" id="r-enviar-2" href="https://wa.me/5571999775453">Mandar pra Débora no WhatsApp</a></div>
+    </div>
+  </section>
+
+  <section class="res-fim">
+    <h2>Gostou do retrato <em>da sua casa?</em></h2>
+    <p>Manda pra Débora. A conversa começa com ela mesma, pelo WhatsApp.</p>
+    <div class="acoes">
+      <a class="btn btn-grande" id="r-enviar" href="https://wa.me/5571999775453">Mandar meu retrato pra Débora</a>
+      <button class="btn-sec" type="button" id="r-refazer" style="color:#CDBFB2">Refazer o questionário</button>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<nav class="barra-quiz barra-enviar" id="barra-enviar" aria-label="Mandar o resultado">
+  <div class="barra-quiz-in">
+    <p class="barra-enviar-txt">O retrato da sua casa está pronto.</p>
+    <a class="btn btn-enviar" id="r-enviar-3" href="https://wa.me/5571999775453">Mandar pra Débora</a>
+  </div>
+</nav>
+
+<nav class="barra-quiz" id="barra" aria-label="Avançar no questionário">
+  <div class="barra-quiz-in">
+    <div class="progresso"><span id="prog-txt">1 de 6</span><span class="progresso-trilho"><i id="prog-bar" style="transform:scaleX(.16)"></i></span></div>
+    <button class="btn-sec" type="button" id="voltar">Voltar</button>
+    <button class="btn-sec" type="button" id="pular">Nenhuma dessas, pular</button>
+    <button class="btn" type="button" id="proximo" disabled>Próximo</button>
+  </div>
+</nav>
+
+<script src="assets/casa.js" defer></script>
+</body>
+</html>

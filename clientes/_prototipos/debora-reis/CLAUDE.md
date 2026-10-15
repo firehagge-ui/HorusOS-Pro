@@ -10,6 +10,55 @@ Todo material que a Débora vê é escrito como se o Marcelo tivesse preparado. 
 pessoa. Não entra nota de bastidor ("texto de simulação", "na versão final..."). O que não é definitivo leva só a
 etiqueta **"Demonstração"**. O texto passa pela régua de `_memoria/prospeccao/90-cara-de-ia.md`.
 
+## 15/10/2026, noite: versão nova a partir do `PROPOSITO-DAS-SECOES.md` (pedido do Marcelo)
+
+- **Backup antes de mexer:** `versoes/antes-proposito-15-10/`, uma cópia completa e funcional do site.
+- **Aplicado o que não depende de dado da Débora**, as mudanças marcadas "antes da chamada" no documento:
+  - **Capa:**
+    - a foto emoldurada pelo papel, com teto de 1180 px, porque o arquivo de 1080 px amolecia de ponta a ponta;
+    - o serviço na linha de apoio, a formação como prova e um botão;
+    - saiu o "desde 2004" junto de Salvador (também na descrição e na prévia do link) e a legenda solta "O retrato da
+      alma brasileira".
+  - **Seção 2:**
+    - virou "como ela pensa", com a pergunta dela ("Você não enjoa?") e a resposta literal do post;
+    - o serviço é a leitura principal;
+    - as fotos viraram índice clicável dos detalhes e do aparador, sem repetir as de Projetos;
+    - a faixa "Detalhes que contam" saiu da home.
+  - **Carrossel:**
+    - sem troca sozinha e sem zoom lento;
+    - no computador, a foto emoldurada no escuro, com o texto ao lado;
+    - o Colorir com um recorte sem a TV (`sala-vermelha-sem-tv.jpg`);
+    - as notas com as palavras da legenda dela.
+  - **Como trabalho:** o retrato foi para "A arquiteta"; a coluna presa virou "Como começa"; a etapa 01 (texto nosso)
+    leva "Demonstração"; o texto do link do guia foi corrigido.
+  - **A arquiteta:** retrato, nome e formação juntos; a frase dela em letra de leitura; o cartão com um botão só.
+    "Escritório de uma pessoa só" saiu até ela autorizar.
+  - **Perguntas:** as que travam a decisão. Duas respostas são dela; quatro repetem o guia, com "Demonstração".
+  - **Contato:** o título diz a ação. O WhatsApp abre com mensagem pronta em todas as páginas.
+  - **Páginas internas:** "Conversar" no topo; o mesmo caminho de contato da home; o selo de prévia no lugar de
+    "Esconder marcações".
+  - **Rio Vermelho:** cada fato contado uma vez; "A luz e os objetos" num capítulo só; os recortes no tamanho do arquivo;
+    a página diz que a paleta saiu das fotos.
+  - **Rodapé, questionário e cortes:**
+    - o rodapé ficou sem a nota de bastidor e sem o "Diário no Instagram", com os links que faltavam;
+    - o questionário ficou sem as porcentagens e sem o "Salvador" atribuído às fotos;
+    - saiu o "do chão ao teto";
+    - saíram as bordas pretas das fotos.
+- **Ficou de fora (de propósito):**
+  - a animação do rodapé, que o Marcelo pediu para manter;
+  - os objetos de parede da seção 2;
+  - o que depende da Débora: CAU, prazos reais, bairros, de qual apartamento é cada foto, faixa de investimento, o
+    bloco "é pra mim?".
+- **Decisões que eram do Marcelo, tomadas pela recomendação do documento:**
+  - WhatsApp como botão principal (Fase 1);
+  - Colorir e Aconchego mantidos no carrossel (o Colorir recortado) até ela responder.
+- **Verificado em 15/10:**
+  - Playwright em 1440 e 390, nas 11 páginas: sem erro, sem imagem quebrada, sem rolagem lateral;
+  - carrossel: setas, arrasto, e fica parado depois de 9 s sem ninguém mexer;
+  - todos os links de WhatsApp com mensagem.
+- **Detector:** sai 2, com os mesmos avisos do commit anterior (texto claro sobre foto lido como sobre o papel, e o
+  fundo creme). As duas falhas de entrelinha sumiram e o "Demonstração" de 10 px foi para 11 px.
+
 ## 15/10/2026: projetos reorganizados pelo que as fotos provam (pedido do Marcelo)
 
 - **O que as fotos e legendas provam:**

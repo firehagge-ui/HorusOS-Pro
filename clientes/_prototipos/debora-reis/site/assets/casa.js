@@ -183,7 +183,7 @@
     $('#r-frase').textContent = '“' + J.frase + '”';
 
     $('#r-barras').innerHTML = tres.map(function (k, i) {
-      return '<li><div class="b-topo"><span>' + JEITOS[k].nome + '</span><b>' + pct[i] + '%</b></div><div class="b-trilho"><i data-w="' + pct[i] + '"></i></div></li>';
+      return '<li><div class="b-topo"><span>' + JEITOS[k].nome + '</span></div><div class="b-trilho"><i data-w="' + pct[i] + '"></i></div></li>';
     }).join('');
 
     var cards = resp.vive.map(function (id) { return achar(VIVE, id); }).filter(function (o) { return o.card; }).slice(0, 6);
@@ -194,7 +194,7 @@
 
     var quando = resp.quando ? achar(QUANDO, resp.quando).nome : '';
     var linhas = [
-      ['Jeito da casa', tres.map(function (k, i) { return JEITOS[k].nome + ' (' + pct[i] + '%)'; }).join(', ')],
+      ['Jeito da casa', tres.map(function (k, i) { return JEITOS[k].nome; }).join(', ')],
       ['O que mora junto', nomes(VIVE, resp.vive).join(', ') || 'não marcado'],
       ['Cômodos', nomes(COMODOS, resp.comodos).join(', ')],
       ['Metragem', 'uns ' + metros.value + ' m²'],
@@ -206,7 +206,7 @@
 
     // no WhatsApp, *assim* vira negrito: o jeito da casa chega em lista, o resto um item por linha
     var abertura = 'Oi, Débora! Fiz o "Conte a sua casa" no seu site.' + (nome ? ' Sou ' + nome + '.' : '');
-    var jeitos = tres.map(function (k, i) { return JEITOS[k].nome + ', ' + pct[i] + '%'; });
+    var jeitos = tres.map(function (k, i) { return JEITOS[k].nome; });
     var resto = linhas.slice(1);
     var texto = abertura + '\n\n*Jeito da casa*\n' + jeitos.map(function (j) { return '• ' + j; }).join('\n') + '\n\n' +
       resto.map(function (l) { return '*' + l[0] + ':* ' + l[1]; }).join('\n');

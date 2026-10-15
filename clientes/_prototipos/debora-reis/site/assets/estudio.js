@@ -63,11 +63,11 @@
     var palco = pj.querySelector('.pj-palco');
     var slides = [].slice.call(pj.querySelectorAll('.pj')), nomes = [].slice.call(pj.querySelectorAll('.pj-indice button'));
     var cont = pj.querySelector('.pj-cont b'), aviso = document.getElementById('pj-aviso');
-    var pausa = pj.querySelector('.pj-pausa'), batente = pj.querySelector('.pj-batente');
-    var n = slides.length, atual = 0, TEMPO = 7;
+    var batente = pj.querySelector('.pj-batente');
+    var n = slides.length, atual = 0;
     var anim = !!window.gsap && !reduz;
-    var tl = null, dirAtual = 0, alvo = -1, kb = null, relogio = null;
-    var tocando = !reduz && !!window.gsap, visivel = false, arrastando = false;
+    var tl = null, dirAtual = 0, alvo = -1, kb = null;
+    var arrastando = false;
     pj.classList.add('js-pj');
 
     function wrap(j) { return (j % n + n) % n; }
@@ -89,26 +89,13 @@
       cont.textContent = ('0' + (j + 1)).slice(-2);
     }
 
-    // enquanto o ambiente está na tela, a câmera entra devagar
-    function respirar() {
-      if (kb) kb.kill();
-      if (!anim) return;
-      kb = gsap.to(cam(atual), { scale: 1.07, duration: TEMPO + 4, ease: 'none' });
-    }
-    // o relógio da passagem automática corre no fio embaixo do nome
+    // 15/10: sem zoom lento (a foto de 1080 px amolece) e sem troca sozinha (mudava o slide de quem ainda lia).
+    // Quem passa é a pessoa; o fio embaixo do nome só marca onde ela está.
+    function respirar() { if (kb) kb.kill(); kb = null; }
     function relogioNovo() {
-      if (relogio) relogio.kill();
-      nomes.forEach(function (b) { b.querySelector('i').style.transform = 'scaleX(0)'; });
-      relogio = null;
-      if (!window.gsap) return;
-      relogio = gsap.fromTo(nomes[atual].querySelector('i'), { scaleX: 0 }, { scaleX: 1, duration: TEMPO, ease: 'none', paused: true,
-        onComplete: function () { passar(atual + 1, 1); } });
-      atualizarRelogio();
+      nomes.forEach(function (b, k) { b.querySelector('i').style.transform = k === atual ? 'scaleX(1)' : 'scaleX(0)'; });
     }
-    function atualizarRelogio() {
-      if (!relogio) return;
-      if (tocando && visivel && !document.hidden && !arrastando && !tl) relogio.play(); else relogio.pause();
-    }
+    function atualizarRelogio() {}
 
     // a passagem: a câmera atravessa o ambiente que sai; o próximo entra pela porta (o fio claro), da direita
     function preparar(para, dir) {
@@ -155,7 +142,6 @@
       if (tl || arrastando) return;
       j = wrap(j); if (j === atual) return;
       if (!anim) { atual = j; marcar(j, true); notas(); relogioNovo(); return; }
-      if (relogio) relogio.pause();
       indicar(j); tl = preparar(j, dir); tl.play();
     }
 
@@ -166,15 +152,6 @@
       if (e.key === 'ArrowRight') { passar(atual + 1, 1); e.preventDefault(); }
       if (e.key === 'ArrowLeft') { passar(atual - 1, -1); e.preventDefault(); }
     });
-    if (pausa) {
-      if (!tocando) { pausa.setAttribute('aria-pressed', 'true'); pausa.setAttribute('aria-label', 'Ligar a passagem automática'); }
-      pausa.addEventListener('click', function () {
-        tocando = !tocando;
-        pausa.setAttribute('aria-pressed', tocando ? 'false' : 'true');
-        pausa.setAttribute('aria-label', tocando ? 'Pausar a passagem automática' : 'Ligar a passagem automática');
-        atualizarRelogio();
-      });
-    }
 
     // arrastar (dedo ou mouse): o próximo ambiente entra junto com o gesto; solta e decide pela distância ou velocidade
     var x0 = 0, y0 = 0, dx = 0, t0 = 0, pid = null, decidido = false, segurarClique = false;
@@ -231,11 +208,6 @@
       }
     }, { passive: false });
 
-    // a passagem automática só corre com a seção na tela e a aba aberta
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (its) { visivel = its[0].isIntersecting; atualizarRelogio(); }, { threshold: 0.55 }).observe(palco);
-    }
-    document.addEventListener('visibilitychange', atualizarRelogio);
     window.addEventListener('resize', notas);
     window.addEventListener('load', function () {
       pj.querySelectorAll('img[loading="lazy"]').forEach(function (im) { im.loading = 'eager'; });
@@ -298,7 +270,7 @@
 
     // capa (rodada 4): a foto assenta, as linhas sobem
     if (capa) {
-      gsap.from('.capa-foto', { scale: 1.12, duration: 2.2, ease: ease });
+      gsap.from('.capa-foto', { opacity: 0, duration: 1.6, ease: ease });
       gsap.from('.capa .mao, .capa .linha, .capa-sub', { y: 40, opacity: 0, duration: 1.4, ease: ease, stagger: 0.12, delay: 0.2 });
     }
 
