@@ -237,6 +237,11 @@ interativa, documento) e mostra antes da próxima etapa da negociação. Amostra
 **simulação marcada** na demo; o que não entra nem simulado: depoimento, prêmio, número de resultado e foto
 falsa do trabalho do cliente (`integridade.md`). Primeiro caso: Débora Reis, "sala de ideias".
 
+**Primeiro o compromisso, depois o trabalho (15/10/2026, aprovado pelo Marcelo).** Sates (perfil do Google feito antes
+do aceite, sem retorno), Débora (seis rodadas de site antes de ela pedir; um amigo entregou antes), Spaço (site pronto
+sem ninguém pedir) e Aion (dez páginas engavetadas): quem recebe de graça antes de se comprometer não tem motivo pra
+voltar. Compromisso = reunião marcada, entrada paga ou um "quero" claro. Antes disso, no máximo uma amostra de uma hora.
+
 **Entrega sem cobrança: a troca se diz (Débora Reis, 14/10/2026).** Desconhecido que dá de graça sem dizer por quê
 gera desconfiança ("qual a pegadinha?"), e quem recebe se sente em dívida. Dizer a troca com clareza: autorização de
 portfólio antes de publicar, depoimento depois de uns 30 dias no ar, indicação na entrega. Dizer de saída, numa frase

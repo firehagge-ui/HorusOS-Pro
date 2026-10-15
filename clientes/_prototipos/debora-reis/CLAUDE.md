@@ -244,3 +244,6 @@ Ficha `95fc7889-3564-4d15-beca-dc9a042dcf13`. Gravar na próxima sessão local e
   "Ficou muito bonito, Débora! As fotos do Roberto ficaram ótimas grandes assim, e gostei da parte que explica o
   processo. Parabéns pro seu amigo! Tem umas coisas nas ideias que funcionam junto com esse site, tipo um guia pro
   cliente entender o seu trabalho antes de chegar. Quer que eu te mande mesmo assim?"
+- **15/10, mensagem final (substitui todas as anteriores):** "Ficou muito bonito, Débora! As fotos do Roberto ficaram
+  ótimas grandes assim. Parabéns pro seu amigo, e sucesso com os projetos!" Depois, nada mais, salvo se ela puxar
+  assunto. Estágio: geladeira. O esboço vira template de arquitetura (sem as fotos dela, README de protótipos).

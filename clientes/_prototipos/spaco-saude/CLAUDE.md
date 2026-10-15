@@ -138,3 +138,5 @@ Ficha `dfac495f-15c4-4773-8221-b2220900d0d2`. Gravar na próxima sessão local e
 - Rascunho (2B, caminho 1): "Ah, beleza! Aqui é o Marcelo, queria falar com ela sobre o site da clínica, coisa rápida.
   Tem um número direto dela, ou um horário em que ela fica mais livre?" Sem resposta até 15/10 meio-dia: caminho 2;
   sem reação até sexta 16/10: caminho 3 (fixo ou visita).
+- **15/10, decisão:** não refazer o site (aprendizado de 15/10: o esboço vai como está, o polimento depois de ela
+  pedir); o próximo passo é ligar pro fixo (71) 3235-3247 pedindo a Dra. Ângela pelo nome.

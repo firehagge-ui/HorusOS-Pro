@@ -29,3 +29,8 @@
 - 🔴 **A Hórus monta e mede; a Sates atende, responde família e faz as visitas B2B.** Marcelo nunca responde paciente.
 - Modelo comercial recomendado: **piloto de 60 dias sem honorário, com contrapartida e gatilho de cobrança
   combinados no dia 1** (`playbook.md` §13b). Valor do dia 61: decisão do Marcelo.
+
+## Falta gravar no Hounder (sessão na nuvem de 15/10, sem acesso ao CRM)
+
+- 15/10, contado pelo Marcelo: depois do perfil do Google entregue, ela não deu retorno nem respondeu mais. Registrar a
+  atividade; estágio a decidir pelo Marcelo. Gravar na próxima sessão local e apagar esta seção.
