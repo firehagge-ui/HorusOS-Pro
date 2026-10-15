@@ -6,12 +6,15 @@
 
 ## ⛔ Encerrado em 15/10/2026
 
-O Marcelo decidiu que a Hórus não vai mais trabalhar para a Débora `[FALTA: o motivo, para a ficha do Hounder ir para
-Perdido]`. Feito em 15/10, com o ok do Marcelo:
+O Marcelo decidiu que a Hórus não vai mais trabalhar para a Débora (o motivo foi
+registrado pelo Marcelo fora deste repositório; aqui ele não aparece). Feito em 15/10, com o ok do Marcelo:
 - **fora do ar:** o endereço mostra uma página neutra ("Esta página não está mais no ar") e as 18 publicações antigas
   foram apagadas. O projeto `esboco-debora-reis` continua na Vercel, como o Marcelo pediu, para reaproveitar;
 - **fotos apagadas desta pasta:** 67 imagens, entre `fotos/`, `site/` e `versoes/`. Continuam no histórico do Git;
 - **template:** `templates/sites/arquitetura-interiores/`, sem nada dela (fotos viraram marcadores). Fica o aprendizado: `PROPOSITO-DAS-SECOES.md` e os teardowns em `referencias/`.
+**O Marcelo quer guardar tudo o que foi construído (15/10):** o código do site e as versões (`site/`, `versoes/`), os
+documentos desta pasta, o template e o projeto na Vercel ficam. Só as fotos dela saíram, e elas continuam no histórico do
+Git (último commit com elas: `14395e0`).
 A conversa automática do 09/10 (seção "Estado anterior") está encerrada junto.
 
 ## Regra de escrita deste projeto (Marcelo, 14/10/2026)

@@ -6,10 +6,17 @@
 ## Fase da agência
 
 ⚠️ **Atualização (15/10/2026):** a **Débora Reis está encerrada**: o Marcelo decidiu que a Hórus não vai mais trabalhar para
-ela `[FALTA: o motivo]`. Antes disso, ela tinha visto as prévias (14/10) e oferecido permuta, e o esboço foi refeito em 15/10.
+ela (o motivo foi registrado pelo Marcelo fora do repositório). Antes disso, ela tinha visto as prévias (14/10) e oferecido permuta, e o esboço foi refeito em 15/10.
 O que fica é o aprendizado: o estudo de dez sites de arquitetura e interiores (`referencias/`) e o diagnóstico seção por
 seção (`clientes/_prototipos/debora-reis/PROPOSITO-DAS-SECOES.md`). Em 15/10 o esboço saiu do ar, as fotos dela foram apagadas e a
-estrutura virou o template `templates/sites/arquitetura-interiores/`.
+estrutura virou o template `templates/sites/arquitetura-interiores/`. Tudo o que foi construído fica guardado.
+
+**Spaço Saúde (15/10):** a recepção respondeu "não" também à pergunta sobre outro meio de falar com a Dra. (caminho 1).
+O Marcelo está desanimado e sem esperança de fechar. Sobra só o caminho 3 (ligar no fixo pedindo a Dra. Ângela pelo
+nome, ou ir à clínica), sem prazo; se ele não quiser, geladeira.
+
+**A regra do Conselho de 09/10 continua valendo (confirmada pelo Marcelo em 15/10):** nenhum trabalho grátis novo até a
+primeira entrada cair.
 
 ⚠️ **Atualização (14/10/2026):** a abertura da **Spaço Saúde** saiu em 14/10 (não em 10/10); a recepção respondeu "não"
 (a Dra. não atende por esse número) e os três caminhos esperam decisão do Marcelo (`clientes/_prototipos/spaco-saude/CLAUDE.md`).
