@@ -101,6 +101,11 @@ Bioclin ficou com a nova, sem o pedido de horário. O que isso ensina:
 
 ## Correções do Marcelo
 
+- **15/10 · Débora Reis · "meu problema foi demorar demais para enviar mensagem pra ela".** Ela se abriu em 09/10, o
+  esboço foi prometido em 24h e passou por seis rodadas de ajuste antes de ela ver; em 15/10 ela mandou o site novo
+  feito por um amigo. Muda: **o esboço vai quando cumpre a promessa, imperfeito e marcado "Demonstração"; o polimento
+  vem depois de ela dizer que quer ver.** Mesma família de "a demora mata o dois passos" (08/10).
+
 - **09/10 · Spaço Saúde · "queria outro 2B, já testamos assim e não funcionou".** A versão que mandava a oferta pra
   recepção repassar repetia Cavalcante (recusou em 1min30), LevSaúde (segurou) e Harmony (não repassou). Muda: **pra
   recepção de clínica, só se pede horário ou o contato de quem decide, sem oferta e sem o nome da agência.** A oferta
