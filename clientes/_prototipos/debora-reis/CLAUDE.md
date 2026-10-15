@@ -1,5 +1,11 @@
 # Débora Reis Arquitetura: esboço (lead, interiores, Barra/Salvador)
 
+> 🛑 **ESTADO ATUAL (15/10/2026): ENCERRADA, geladeira.** Ela mandou o site novo, feito por um amigo
+> (https://deborareisarquitetura.netlify.app). O Marcelo mandou a mensagem de parabéns (a versão curta, em "Falta gravar
+> no Hounder") e **decidiu não mandar mais nada**: só responde se ela escrever; se ela pedir as ideias, aí manda o link.
+> Tudo abaixo (sequência de mensagens, plano de pagamento, ideias pra caixa zero) é **histórico**. O esboço vira template
+> de arquitetura, sem as fotos dela (`../README.md`). Aprendizado em `_memoria/prospeccao/aprendizados.md` (15/10).
+
 > ⚠️ **LEAD, não cliente.** Esboço privado (`noindex`) pra mostrar na conversa. Estado comercial no
 > Hounder (ficha `95fc7889-3564-4d15-beca-dc9a042dcf13`). Não vendeu: apagar as fotos dela e
 > reaproveitar só a estrutura (`../README.md`).
