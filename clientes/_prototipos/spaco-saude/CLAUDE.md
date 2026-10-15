@@ -12,6 +12,27 @@ relatado pelo Marcelo em 15/10, `[FALTA: hora da resposta]`). O Marcelo está de
 - **Se o Marcelo não quiser o caminho 3:** geladeira de 60 dias e ficha no Hounder em Perdido ou Geladeira, com o motivo.
 - **O esboço continua no ar** (privado, `noindex`); tirar do ar só com o ok dele. Tudo o que foi feito fica guardado.
 
+## Rodada 5 do esboço (14/10/2026, noite): a página inteira do Marcelo como especificação
+
+Pedido: refazer o site "o mais fiel possível" a uma página completa que ele mandou (mockup feito em IA), mantendo logo, foto
+real da clínica e dados verdadeiros. Seguido seção por seção: cabeçalho, capa com foto em forma orgânica e selo de endereço,
+quatro selos, "Seu corpo é um sistema" com retrato em círculo e letra à mão, cinco cards, a Dra., "Sete áreas" com ícones em
+círculo, avaliações (título à esquerda, três cards), faixa ameixa do WhatsApp com formulário em cartão, rodapé em quatro
+colunas. Tabela de trocas no `PLANO.md`; rodada 4 em `versoes/rodada-4/`.
+- **Faixa escura de volta, só no agendamento:** a referência nova traz a faixa ameixa no fim. Contraria a correção da rodada 3
+  ("tire essa cor roxa feia"), mas o pedido agora é fidelidade à imagem dele. Se ele estranhar, é a primeira coisa a rever.
+- Todo botão de agendar abre o WhatsApp (71) 99265-5288 com a mensagem pronta (pedido dele); "Saiba mais" abre uma janela
+  com o texto das legendas e o agendamento daquele tratamento; o formulário leva nome, tratamento, melhor horário e
+  particular/plano. Botão "Ocultar pendências" na etiqueta do esboço (checklist §6).
+- No círculo do "Seu corpo é um sistema" entrou a Dra. do post "Implante dói?" (DawKtc5MHKm, o mesmo rosto do `dra.webp`), com a
+  marca do post apagada do fundo, no lugar da modelo da referência.
+- Detector (`npx impeccable@4.0.4`): sobra só `cream-palette` (fundo medido na imagem dele e nos posts). `dark-glow` e
+  `clipped-overflow-container` corrigidos (sombras neutras, `overflow-x` fora do body).
+- Conferido em Playwright (1440, 1024, 768, 390): sem rolagem lateral, sem erro de script; botões, janela, lista, formulário,
+  menu do celular e ocultar pendências testados.
+- **Não publicado:** o Vercel não está logado neste ambiente. Publicar do PC: copiar `site/` pra uma pasta `esboco-spaco-saude`
+  e rodar `npx -y vercel@60.0.0 deploy --prod --yes --name esboco-spaco-saude`.
+
 ## Rodada 4 do esboço (14/10/2026, noite): as 5 imagens do Marcelo
 
 No ar no mesmo link (https://esboco-spaco-saude.vercel.app). As imagens dele são a especificação; o que foi trocado por
