@@ -4,6 +4,13 @@
 > Hounder (ficha `95fc7889-3564-4d15-beca-dc9a042dcf13`). Não vendeu: apagar as fotos dela e
 > reaproveitar só a estrutura (`../README.md`).
 
+## ⛔ Encerrado em 15/10/2026
+
+O Marcelo decidiu que a Hórus não vai mais trabalhar para a Débora `[FALTA: o motivo, para a ficha do Hounder ir para
+Perdido]`. Pelo `../README.md`, quem não vendeu tem as fotos apagadas e a estrutura vira template. Apagar e tirar o
+esboço do ar esperam o ok do Marcelo. Fica o aprendizado: `PROPOSITO-DAS-SECOES.md` e os teardowns em `referencias/`.
+A conversa automática do 09/10 (seção "Estado anterior") está encerrada junto.
+
 ## Regra de escrita deste projeto (Marcelo, 14/10/2026)
 
 Todo material que a Débora vê é escrito como se o Marcelo tivesse preparado. O guia fica na voz dela, em primeira
@@ -118,10 +125,10 @@ etiqueta **"Demonstração"**. O texto passa pela régua de `_memoria/prospeccao
 - **Projetos em tela cheia** com passagem da direita para a esquerda (arrasto, setas, nomes, sozinho a cada 7 s com pausa)
   e a página nova `projetos.html` ("Ver todos os projetos"). Detalhe e porquê em `PLANO.md`, rodada 6. Rodada 5 em
   `versoes/rodada-5/`.
-- **Decisão pendente do Marcelo (tarefa no Hounder):** organização do portfólio, com os caminhos A, B e C em `PLANO.md`. A
-  recomendação é C, dois níveis (apartamentos em tela cheia; detalhes dentro de cada projeto e numa faixa própria).
+- **~~Decisão pendente~~ decidida em 15/10:** caminho C aplicado (ver a seção de 15/10). Era a organização do portfólio, com os caminhos A, B e C em `PLANO.md`. A
+  recomendação era C, dois níveis (apartamentos em tela cheia; detalhes dentro de cada projeto e numa faixa própria).
 - **Verificado em 14/10:**
-  - detector limpo (0);
+  - detector limpo (0) *(não reproduzido em 15/10: a mesma versão deu saída 2; provável que tenha rodado fora da raiz)*;
   - Playwright em 1440, 1024 e 390 (e 360 nos projetos): clique, arrasto, arrasto curto que volta, passagem automática,
     pausa, `?p=3`, faixa de fotos da página nova;
   - sem erro e sem rolagem lateral; subpáginas sem erro; publicado e conferido no ar.
@@ -133,7 +140,7 @@ etiqueta **"Demonstração"**. O texto passa pela régua de `_memoria/prospeccao
   fotos grandes e gato redesenhado; rodapé redesenhado como vista de parede com cota "sob medida". Plano em `PLANO.md`,
   cada elemento em `JUSTIFICATIVA.md`, rodada 4 guardada em `versoes/rodada-4/`.
 - Sala de ideias sem a apresentação ("Débora, separei..."): o Marcelo manda isso por texto.
-- **Verificado em 14/10:** detector limpo (0); Playwright em 1440, 1024 e 390 com as animações, carrossel passado de
+- **Verificado em 14/10:** detector limpo (0) *(não reproduzido em 15/10: a mesma versão deu saída 2; provável que tenha rodado fora da raiz)*; Playwright em 1440, 1024 e 390 com as animações, carrossel passado de
   ponta a ponta por clique e por arrasto, sem erro e sem rolagem lateral; subpáginas sem erro; publicado e conferido
   no ar (URLs 200, fontes carregando).
 - `[FALTA: confirmar com a Débora se Livros, Artesanato, Azul e madeira e Aconchego são apartamentos diferentes]`.
@@ -182,7 +189,7 @@ usar o serviço dela. Nada se promete por mensagem: a condição se fecha na cha
   umas prévias pra você ver, olhar não custa nada rs. Posso te mandar o link?" Sim: o link da sala +
   "Se quiser, te mostro cada uma em 10 min por vídeo, hoje 17h30 ou amanhã 10h?". Silêncio até sexta 16/10:
   geladeira de 60 dias.
-- **Verificado em 13/10:** detector da impeccable limpo; Playwright em 1440 e 390 nas cinco páginas, questionário
+- **Verificado em 13/10:** detector da impeccable limpo *(não reproduzido em 15/10)*; Playwright em 1440 e 390 nas cinco páginas, questionário
   respondido até o fim, sem erro de console nem rolagem lateral; as cinco URLs publicadas respondendo 200.
 
 ## Estado anterior (09/10/2026)

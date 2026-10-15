@@ -121,7 +121,8 @@ ChatGPT), a estrutura é especificação, mas **dado, foto e fala passam pela in
 foto do lugar ou do produto e frase na boca do profissional vêm do cliente ou viram `[FALTA]` (caso Spaço Saúde, 14/10/2026).
 
 **Site ou esboço montado vai pra Vercel no fim, com o link na resposta**, sem esperar pedido (Marcelo, 14/10/2026). Mandar
-o link pro lead continua sendo decisão dele. E antes de deixar um `[FALTA]` na página, procurar o dado no Hounder e nas
+o link pro lead continua sendo decisão dele. Na sessão na nuvem não há credencial da Vercel: `vercel login` gera um link de
+autorização para o Marcelo, a credencial vale só naquela sessão, e token nunca se pede no chat (15/10/2026). E antes de deixar um `[FALTA]` na página, procurar o dado no Hounder e nas
 fontes do próprio cliente (ficha do Google, site antigo, Instagram).
 
 Antes de **entregar**, rodar checklist, varredura de antipadrões e o detector:
@@ -259,7 +260,7 @@ rascunho (`hd_preparar_disparo`); o Marcelo aprova o texto exato na tela **Dispa
 Farejador envia pelo WhatsApp conectado, no máximo 10 por dia, 4 a 7 min entre um e outro, e
 para o lote no primeiro erro. Resposta de lead continua sendo do humano. **Exceção (09/10/2026):** conversa
 automática só quando o Marcelo pede, só no lead nomeado, com roteiro e regra estreita escritos na pasta dele (caso
-Débora Reis: o Claude manda sozinho só o que o Marcelo já aprovou; o resto vira aviso pra ele). O **Farejador** (`ferramentas/hound-dog/farejador/`) roda no PC e liga
+Débora Reis, encerrado em 15/10 com o lead: o Claude mandava sozinho só o que o Marcelo já tinha aprovado; o resto virava aviso pra ele). O **Farejador** (`ferramentas/hound-dog/farejador/`) roda no PC e liga
 Claude+WhatsApp+Instagram ao painel; "Farejador offline" = ligar (`npm run farejador`).
 
 **Tarefas da Hórus (desde 27/09/2026):** o plano de negócio (`_gestao/plano-de-negocio.md`, v2)

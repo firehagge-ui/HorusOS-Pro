@@ -89,6 +89,10 @@ O caso mais comum é o **placeholder virando rótulo**: o campo mostra "Seu nome
 por dentro, a pessoa começa a digitar, o rótulo some, e ela não sabe mais o que
 aquele campo era. Rótulo fica **acima** do campo, sempre, e permanece visível.
 
+**Link de WhatsApp sai com mensagem pronta** (`https://wa.me/55...?text=...`, texto curto como "Olá! Vim pelo seu
+site e quero conversar sobre um projeto."). A pessoa não trava diante da caixa vazia, e o cliente sabe de onde ela
+veio. Vimos em duas das três arquitetas brasileiras estudadas em 15/10/2026 (Paula Müller e Duda Senna).
+
 ## 7. Registro conversacional, sem enfeite
 
 Verbo simples, frase em caixa normal (não caixa alta), zero enchimento, tom

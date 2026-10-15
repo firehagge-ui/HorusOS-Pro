@@ -596,6 +596,12 @@ em todos os breakpoints de uma vez.
 
 ## Técnico
 
+**Detector rodado fora da raiz conta outra coisa.** O `npx impeccable@4.0.4 detect` só aplica as exceções do
+`.impeccable/config.json` quando roda da raiz do repositório. Numa cópia em outra pasta, o mesmo site da Débora
+ganhou avisos que a raiz não dá (`all-caps-body`, `kicker-above-heading`), e um "limpo (0)" registrado em 14/10 não se
+reproduziu. Regra: **rodar sempre da raiz e guardar a contagem por regra junto do "verificado"**, para dar para comparar.
+→ *Origem: Débora Reis, 15/10/2026.*
+
 **Card empilhado que escurece o de trás ao ser coberto.** Numa pilha de cards
 `sticky` (o próximo sobe na frente do anterior), dar `filter: brightness(<1)` no
 card coberto para "dar profundidade" fez o Marcelo apontar como **bug**: a imagem

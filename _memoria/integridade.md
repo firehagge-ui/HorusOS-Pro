@@ -39,6 +39,8 @@ A distinção que resolve 90% dos casos:
 | Inventar diferencial | ❌ | "tecnologia exclusiva", quando ninguém disse isso |
 | Inventar depoimento ou nome | ❌ | Qualquer um. Em psicologia é vedado até depoimento **real** |
 | Criar frase institucional bonita sem lastro | ❌ | "referência em Salvador desde 2004" |
+| Juntar dois fatos verdadeiros num terceiro que o cliente não disse | ❌ | "formada em 2004" + "escritório em Salvador" virou "em Salvador, desde 2004" (Débora Reis, 15/10/2026) |
+| Dizer de qual projeto é uma foto sem prova | ❌ | Só com prova visual (o mesmo móvel em duas fotos) ou a palavra do cliente. Indício (piso parecido, plural na legenda) vira `[FALTA]` e pergunta (Débora Reis, 15/10/2026) |
 
 **Teste:** o texto expandido pode ser rastreado a uma linha do briefing, da marca
 ou de algo que o cliente mandou? Se sim, é fortificação. Se não, é invenção,

@@ -5,6 +5,12 @@
 
 ## Fase da agência
 
+⚠️ **Atualização (15/10/2026):** a **Débora Reis está encerrada**: o Marcelo decidiu que a Hórus não vai mais trabalhar para
+ela `[FALTA: o motivo]`. Antes disso, ela tinha visto as prévias (14/10) e oferecido permuta, e o esboço foi refeito em 15/10.
+O que fica é o aprendizado: o estudo de dez sites de arquitetura e interiores (`referencias/`) e o diagnóstico seção por
+seção (`clientes/_prototipos/debora-reis/PROPOSITO-DAS-SECOES.md`). O destino das fotos dela e do esboço no ar espera
+decisão do Marcelo.
+
 ⚠️ **Atualização (14/10/2026):** a abertura da **Spaço Saúde** saiu em 14/10 (não em 10/10); a recepção respondeu "não"
 (a Dra. não atende por esse número) e os três caminhos esperam decisão do Marcelo (`clientes/_prototipos/spaco-saude/CLAUDE.md`).
 O esboço dela está no ar na rodada 4 (https://esboco-spaco-saude.vercel.app). Paralela: resultado da R1 de 05/10 ainda não
