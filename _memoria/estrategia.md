@@ -15,8 +15,11 @@ as reuniões vieram de voz ou relação (Paralela, Leal, Sates). Em 08/10 abriu 
 (`_memoria/prospeccao/40-testes.md`, `scripts/placar.mjs`): tudo por WhatsApp, prévia só como abordagem de teste. Em
 09/10 chegou a **pesquisa de evidência** (`_memoria/prospeccao/fontes/`), que aprovou a faixa de preço por mensagem
 (P3). **Recebido da Hórus: R$ 0** (R$ 600 previstos e R$ 600 a receber, os dois da Amparo); o Conselho de 09/10
-fixou "nenhum trabalho grátis novo até a primeira entrada cair". Conversas vivas: Débora Reis (esboço no ar, caixa
-zerado, baixa prioridade) e Spaço Saúde (abertura em 10/10). As portas de caixa mais perto: CRM do Grão da Serra,
+fixou "nenhum trabalho grátis novo até a primeira entrada cair". **Exceção aprovada pelo Marcelo em 14/10:** o site
+da Débora Reis sai sem cobrança (já estava feito, não é trabalho novo), com troca combinada (portfólio, depoimento,
+indicação); a regra continua valendo pros próximos. Conversas vivas: Débora Reis (link e conversa de 15 min pra colocar o
+site no ar, 15/10) e Spaço Saúde (recepção disse "não" em 14/10, ver linha 8). *Histórico: até 14/10 aqui dizia "Débora
+(esboço no ar, caixa zerado, baixa prioridade) e Spaço (abertura em 10/10)".* As portas de caixa mais perto: CRM do Grão da Serra,
 entrada da Amparo, Paralela (R1 de 05/10 `[FALTA: resultado]`) e R1 do Leal. Prioridade de produção viva: **Amparo**.
 
 ⚠️ **Foto anterior (01/10/2026):** a esteira de ligação do Antônio trouxe a **Paralela Film**, primeiro

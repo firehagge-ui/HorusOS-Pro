@@ -81,6 +81,9 @@ completa quando houver dúvida.
 - **Apagar só o que foi pedido.** Pedido de apagar uma parte apaga só aquela parte; na dúvida sobre o
   escopo, perguntar. Arquivo fora do Git (`_gestao/`) não tem volta. Origem: 01/10/2026, o arquivo de
   perguntas do oráculo foi apagado inteiro quando o pedido era só as perguntas novas (reconstruído).
+- **Opinião, inclusive quando discorda.** Quando o Marcelo decidir algo, o Claude dá a opinião dele com os
+  motivos, mesmo discordando. "A decisão é sua" sozinho não vale como resposta. Origem: 14/10/2026, Débora
+  Reis ("eu também falho; se discordar e tiver motivos, quero que me diga").
 
 ## Edição concorrente: não presumir regressão
 
@@ -251,6 +254,10 @@ longo; o Hound Dog é o **estado atual** — os dois têm que bater.
 Chegou algo na conversa (print de WhatsApp, resposta do lead, envio feito, dado conferido)? Gravar
 no CRM sem esperar pedido (`hd_mover_estagio`, `hd_salvar_empresa`, `hd_registrar_atividade`...)
 e dizer em uma linha o que foi gravado. Reverte a regra de 18/09 ("não gravar sozinho").
+🔴 **Mensagem pra cliente ou lead → gravada na ficha do Hounder (Marcelo, 15/10/2026).** Toda mensagem que o Claude
+escreve pro Marcelo enviar, e toda versão atualizada dela, vai na hora pra ficha do cliente (`hd_registrar_atividade`,
+tipo nota, "Rascunho: <texto>"; primeiro contato de prospecção continua pelo `hd_preparar_disparo`), dizendo qual
+versão substitui. Sessão sem acesso ao Hounder (nuvem): avisar e deixar a lista do que falta gravar na pasta do cliente.
 
 As travas da casa valem no CRM: nada inventado, nunca presumir dígito, compliance trava a
 mensagem, sem disparo em massa e sem bot respondendo sozinho. **Disparo de prospecção (regra

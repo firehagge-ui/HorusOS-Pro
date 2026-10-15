@@ -237,6 +237,13 @@ interativa, documento) e mostra antes da próxima etapa da negociação. Amostra
 **simulação marcada** na demo; o que não entra nem simulado: depoimento, prêmio, número de resultado e foto
 falsa do trabalho do cliente (`integridade.md`). Primeiro caso: Débora Reis, "sala de ideias".
 
+**Entrega sem cobrança: a troca se diz (Débora Reis, 14/10/2026).** Desconhecido que dá de graça sem dizer por quê
+gera desconfiança ("qual a pegadinha?"), e quem recebe se sente em dívida. Dizer a troca com clareza: autorização de
+portfólio antes de publicar, depoimento depois de uns 30 dias no ar, indicação na entrega. Dizer de saída, numa frase
+e sem preço, que o resto (ferramentas, manutenção) é trabalho à parte. Domínio no nome do cliente, pago por ele. Só
+vale como exceção aprovada pelo Marcelo: a regra de 09/10 ("nenhum trabalho grátis novo até a primeira entrada cair")
+continua (`_memoria/estrategia.md`).
+
 ---
 
 ## Antes da reunião: a abordagem (prospecção)

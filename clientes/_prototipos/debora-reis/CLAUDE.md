@@ -210,3 +210,29 @@ responde é ele.
 
 **Travas que não mudam:** nada inventado (nem cliente, nem número, nem prazo além das 24 h que o
 Marcelo prometeu), nada de urgência falsa, preço por mensagem só os R$ 800 em duas vezes (13/10), envio só entre 8h e 20h.
+
+## Falta gravar no Hounder (sessão na nuvem de 14 e 15/10, sem acesso ao CRM)
+
+Ficha `95fc7889-3564-4d15-beca-dc9a042dcf13`. Gravar na próxima sessão local e apagar esta seção:
+- Atividade (whatsapp, 14/10 16h26 e 16h27): "tô realmente quebrada esse ano", não acha justo receber sem pagar ou
+  permuta; a irmã prometeu ajudar e não teve tempo; "permuta é algo q pode acontecer, se vc precisar dos meus serviços".
+- Decisão (14/10): site sem cobrança, com troca (portfólio antes de publicar, depoimento ~30 dias, indicação na entrega).
+- Tarefa: definir o valor da manutenção mensal antes da conversa de 15 min.
+- Rascunhos (versão atual de cada um):
+  1. 14/10, noite: "Oi Débora! Perdão pela demora. Pode ficar tranquila com isso... Tô montando meus primeiros casos, e
+     se você gostar, já me ajuda muito. Amanhã te mando o link, e se o site te for útil, ele é seu, sem custo. Aí a gente
+     conversa sobre isso!" (o Marcelo pode ter mandado a versão dele; conferir no WhatsApp)
+  2. 15/10, 8h30, balão 1: "Bom dia, Débora! Antes do link, só um aviso. Muito do que tem lá é demonstração. Montei com
+     o que achei do seu trabalho, pra mostrar o que pode vir a ser, então alguns textos e números são simulação."
+     Balão 2: "Também montei umas outras ferramentas que podem te ser úteis, essas seriam um trabalho à parte, pra mais
+     pra frente, se você achar interessante. Tá aqui o link, esboco-debora-reis.vercel.app/ideias.html. Olha com calma e
+     me fala o que achou!"
+  3. Gostou: "Que bom que gostou! Me diz tudo que você quiser mudar, que eu ajusto pra ficar do seu jeito. Com tudo
+     pronto, já dá pra colocar no ar. Antes, queria uma conversa de 15 min pra te explicar umas coisas e você não ficar
+     com nenhuma dúvida. Amanhã 10h ou 11h?"
+  4. Na conversa ("como funciona?"): "Funciona assim: eu publico o site pra você sem custo, e em troca você me deixa
+     mostrar ele no meu portfólio. Se quiser um endereço próprio, ele tem um custo por ano, e fica no seu nome. E se mais
+     pra frente você quiser que eu cuide do site, colocando os projetos novos e textos, aí seria um valor fixo por mês,
+     porque dá trabalho. Fora isso, fica tranquila." Quiz e guia: "precisam de coisa sua (prazos, como você cobra), ficam
+     pra quando fizer sentido". Na entrega: "E se você ou alguém precisar de site, tráfego pago ou post pra Instagram,
+     pode contar comigo!"

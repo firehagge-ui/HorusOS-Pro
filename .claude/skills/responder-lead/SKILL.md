@@ -140,6 +140,11 @@ Regra de 24/09: informação nova vira registro no mesmo momento, e se diz em um
 
 ## Nas rodadas seguintes
 
+- **Antes de mudar uma mensagem já recomendada, reler a última que saiu e o que ela prometeu** (link, print,
+  horário). Promessa feita se cumpre; se for mudar a recomendação, dizer que é mudança e por quê. Origem:
+  14/10/2026, Débora (o Marcelo tinha oferecido o link e a sugestão nova tirava o link).
+- Toda mensagem entregue nesta skill, e cada versão nova, vai pra ficha no Hounder (regra de 15/10 do
+  `CLAUDE.md`, seção do Hounder).
 - Antes de responder, conferir se o Marcelo mandou a mensagem sugerida como estava. Se ele editou ou
   escolheu outra coisa, notar a diferença: é a correção mais valiosa que existe. Perguntar se vira linha
   em `_memoria/prospeccao/aprendizados.md` com o porquê (regra do CLAUDE.md).
