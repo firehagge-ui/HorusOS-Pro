@@ -35,5 +35,8 @@ Tráfego pago para trazer cliente. Não pediu site.
 - 19/10/2026: **preço opção A**: R$ 690/mês por 3 meses (primeiro case: números, depoimento se der resultado, 3
   indicações), implantação de graça, depois R$ 890/mês; verba de R$ 600/mês paga por ele à Meta. Contrato de 3 meses,
   revisão no dia 45.
+- 19/10/2026 (à noite): o usuário disse "Cancelei. Acho que não estou preparado e sinto que não ficou claro." Entendido como
+  R1 de 20/10 cancelada `[FALTA: confirmar que foi a R1, e se já avisou o dono]`. **Revisar em 20/10/2026**; nada apagado,
+  nada movido pra Perdido. **Falta gravar no Hounder** (sessão na nuvem sem acesso): estado da ficha e nota do cancelamento.
 - 19/10/2026: a página de diagnóstico é **interna** (preparação da R1); na reunião mostra-se o Google e o Instagram
   dele, ao vivo.
