@@ -1,16 +1,83 @@
 # Débora Reis Arquitetura: esboço (lead, interiores, Barra/Salvador)
 
-> 🛑 **ESTADO ATUAL (15/10/2026): ENCERRADA, geladeira.** Ela mandou o site novo, feito por um amigo
-> (https://deborareisarquitetura.netlify.app). O Marcelo mandou a mensagem de parabéns (a versão curta, em "Falta gravar
-> no Hounder") e **decidiu não mandar mais nada**: só responde se ela escrever; se ela pedir as ideias, aí manda o link.
-> Tudo abaixo (sequência de mensagens, plano de pagamento, ideias pra caixa zero) é **histórico**. O esboço vira template
-> de arquitetura, sem as fotos dela (`../README.md`). Aprendizado em `_memoria/prospeccao/aprendizados.md` (15/10).
+> 🎯 **O PLANO COM ELA (16/10/2026, recomendação; decisão do Marcelo).** Ela não é caixa: não tem dinheiro, e percentual
+> sem verba de anúncio é lento. Ela é **prova e porta** para o Marco 1 (26/12: 3 cases, 5 avaliações reais). Tirar, nesta
+> ordem: (1) o site dela no ar, no domínio dela, primeiro site de cliente real da Horus; (2) avaliação no Google da Horus,
+> depoimento e autorização de portfólio (ela fica sabendo da agência na conversa franca); (3) 2 ou 3 indicações com nome
+> (corretores e fornecedores dela); (4) a vitrine do nicho: com o site dela no ar, o template de arquitetura se vende a
+> outras arquitetas pela Fase 1. Investimento máximo: ~3 h. O resto só com acordo escrito ou plano pago. Nota no Hounder.
+>
+> 📅 **Reunião de 19/10 (15h) adiada a pedido dela:** Débora mandou mensagem avisando que a semana ficou muito puxada com atividades extras e pediu para combinar na próxima semana a partir de quinta (29/10). Reunião remarcada no Hounder; alinhando horário (quinta 29/10 às 10h ou 15h). Plano de conversa mantido em `reuniao-2026-10-19.md`.
+
+> 🟡 **ESTADO ATUAL (15/10/2026, 17h58): ELA VOLTOU, conversando.** Por áudio, preferiu o nosso site ao do amigo
+> ("infinitamente melhor"), vai ler as ideias em 16/10 e propôs parceria: o Marcelo capta e ela paga um percentual do
+> projeto que entrar (sem dinheiro agora). Sugeriu o site do amigo para corretores e o nosso no Google. Rascunho de
+> resposta e recomendação para a ligação na ficha do Hounder (nota de 15/10). Base da recomendação: a promessa de 14/10
+> ("se o site lhe vir a ser útil é todo seu e de graça") se cumpre; o grátis termina em site no domínio dela + ficha do
+> Google; captação contínua só pela parceria escrita. O plano de 22/10 (Perdido, esboço fora do ar) está suspenso.
+> **20h43:** mais carinho ("ameiiii", "salva o meu número") e "vc é profissional de marketing? da área de criação?". Ela
+> ainda não respondeu ao "Fica melhor uma ligação?" das 20h04. Combinado: sem pedir agenda de novo hoje; resposta curta
+> dizendo quem ele é (agência pequena com um sócio, criação com ele). Se ela não voltar até 16/10 às 18h, uma linha só.
+>
+> **15/10, noite (pedido do Marcelo): sala de ideias clara pra ela entender sem explicação, e sem o nome Hórus.**
+> - `ideias.html` reorganizada pelo caminho do cliente, com um mapa no topo dos cinco momentos: 01 o site, 02 um apartamento por
+>   dentro, 03 o questionário, 04 o guia, 05 a avaliação no Google. Cada ideia diz "O que é", "Como o cliente usa" e "O que
+>   muda pra você". Saíram a nota "montei antes de ver o seu site novo" e o botão "Esconder marcações" desta página.
+> - **Nome Hórus fora de tudo:** o selo "Prévia feita pela Hórus" virou "Prévia feita para a Débora" (9 páginas), o selo do guia
+>   virou "Demonstração", a assinatura ficou só "Marcelo", e as 4 miniaturas foram refeitas (mostravam o selo antigo).
+> - ~~Achado e consertado: o "Baixar em PDF" do guia dava 404 no ar.~~ **Corrigido em 16/10:** não era defeito. A outra
+>   sessão estava no meio da revisão do guia (seção "20h" abaixo): trocou o botão de imprimir por um link para o PDF e gerou
+>   o arquivo às 20h13, por cima do que esta sessão tinha gerado às 20h09. O PDF no ar é o dela.
+> - **Simulação também na sala de ideias (16/10, "pode aplicar tudo"):** a legenda e as duas etiquetas da `ideias.html`
+>   viraram "Simulação", como no guia. Publicado e conferido no ar. As páginas do site seguem com "Demonstração".
+> - **Nome da agência fora (16/10):** vale só para a Débora, por decisão do Marcelo.
+>
+> **Follow-up (16/10):** ela disse no áudio que leria as ideias hoje e chamaria. Se não falar até as **18h de hoje (sexta)**,
+> sai uma linha só (rascunho na ficha do Hounder, nota de 16/10). Respondeu com dúvida → ligação com dois horários na
+> segunda. Sem resposta no fim de semana → nada até terça 21/10, quando o Marcelo decide o próximo passo.
+> - Backup em `versoes/antes-ideias-claras/`. Publicado e conferido no ar: 11 páginas, 0 problemas no `conferencia-no-ar.cjs`,
+>   0 ocorrências do nome em páginas, scripts e estilos, PDF respondendo 200.
+>
+> *Antes, 15/10, 14h13: ENTREGUE, porta aberta.* O Marcelo mandou os dois links
+> (https://esboco-debora-reis.vercel.app/ e `/ideias.html`) com o texto dele: "sem compromisso", "quis cumprir o que
+> tinha te falado" e "se precisar de algo relacionado a marketing pode chamar". Não há pedido pendente. Se ela
+> responder, quem responde é ele. Sem resposta até 22/10, o caso vai para Perdido (com a promessa cumprida), o esboço sai
+> do ar e as fotos saem da pasta. Antes disso, nada se apaga (regra "decisão no calor", `CLAUDE.md` da raiz).
+> O que se aprendeu com o caso está em `_memoria/prospeccao/aprendizados.md` (09 a 15/10).
+>
+> *Histórico, 15/10 de manhã: o "encerrada" da madrugada foi forte demais. Ela nunca tinha visto o trabalho, e o caso
+> foi reaberto para um último envio, com as fotos restauradas do Git (`14395e0`) e a sala de ideias reescrita como
+> complemento ao site novo dela (https://deborareisarquitetura.netlify.app, feito por um amigo).*
 
 > ⚠️ **LEAD, não cliente.** Esboço privado (`noindex`) pra mostrar na conversa. Estado comercial no
 > Hounder (ficha `95fc7889-3564-4d15-beca-dc9a042dcf13`). Não vendeu: apagar as fotos dela e
 > reaproveitar só a estrutura (`../README.md`).
 
-## ⛔ Encerrado em 15/10/2026
+## 15/10/2026, 20h: guia do cliente revisado (pedido do Marcelo), publicado às 20h15
+
+- **Arquivos:** `site/guia.html` + regras do guia em `site/assets/demo.css`. PDF pronto em
+  `site/guia-do-cliente-debora-reis.pdf` (o botão "Baixar em PDF" agora baixa esse arquivo em vez de abrir a impressão) e
+  cópia em `Downloads/Guia do cliente - Débora Reis.pdf`. Backup: `versoes/guia-antes-revisao-15-10/`.
+- **Mudou guia.html? Gere o PDF de novo** (Playwright, `emulateMedia print` + `page.pdf({preferCSSPageSize:true,
+  printBackground:true})`) e confira que nenhuma página passa da folha: a 3 é a mais cheia.
+- **Fonte nova:** o site atual dela (deborareisarquitetura.netlify.app, lido em 15/10) deu a primeira conversa sem
+  compromisso (presencial ou vídeo), Salvador e região metropolitana, resposta em até 2 dias úteis, projeto e
+  acompanhamento de obra como serviços separados, "nada segue sem o seu aval" e quantitativos e custos por apresentação.
+- **Saiu:** a forma de pagamento inventada e as "visitas semanais". **Entrou:** subtítulo da capa, o que cada etapa entrega,
+  nota de prazo estimado, "o que a proposta traz", honorários x custos da obra, "você não precisa ter nada pronto", três
+  perguntas novas, WhatsApp/Instagram clicáveis e QR com mensagem própria ("Li o seu guia do cliente"), lido e conferido.
+- **Texto do PDF maior que o da tela** (corpo 21px na folha de 794px) porque o PDF abre num celular pela metade do tamanho.
+- **A confirmar com a Débora:** lista na nota do Hounder de 15/10, 20h (prazos, m² e ambiente, etapas avulsas, visitas,
+  texto da Decoração, endereço, CAU, link do questionário).
+- **SIMULAÇÃO (Marcelo, 15/10, 20h13: "deixe claro que o documento é uma SIMULAÇÃO"):** aviso fixo na capa ("Simulação. Este
+  guia é um exemplo, montado a partir do Instagram e do site da Débora..."), etiqueta "Simulação" nas 7 páginas (não some com
+  "Esconder marcações", que saiu desta página) e "(simulação)" no título. Neste guia vence a regra de 14/10 de usar só
+  "Demonstração". A legenda da sala de ideias ainda fala em "Demonstração" (arquivo da outra sessão, não mexido).
+- **Publicado em 15/10, 20h15** (https://esboco-debora-reis.vercel.app/guia.html e o PDF), depois que a outra sessão fechou a
+  sala de ideias. Conferido no ar: guia, ideias e home em 390 e 1440, sem erro, sem imagem quebrada, sem rolagem lateral;
+  PDF no ar igual ao local; QR lido e igual ao link do número.
+
+## ⛔ Encerrado em 15/10/2026, de madrugada (HISTÓRICO: reaberto no mesmo dia, ver o estado atual no topo)
 
 O Marcelo decidiu que a Hórus não vai mais trabalhar para a Débora (o motivo foi
 registrado pelo Marcelo fora deste repositório; aqui ele não aparece). Feito em 15/10, com o ok do Marcelo:
@@ -308,39 +375,65 @@ responde é ele.
 **Travas que não mudam:** nada inventado (nem cliente, nem número, nem prazo além das 24 h que o
 Marcelo prometeu), nada de urgência falsa, preço por mensagem só os R$ 800 em duas vezes (13/10), envio só entre 8h e 20h.
 
-## Falta gravar no Hounder (sessão na nuvem de 14 e 15/10, sem acesso ao CRM)
+## Gravado no Hounder (15/10/2026)
 
-Ficha `95fc7889-3564-4d15-beca-dc9a042dcf13`. Gravar na próxima sessão local e apagar esta seção:
-- Atividade (whatsapp, 14/10 16h26 e 16h27): "tô realmente quebrada esse ano", não acha justo receber sem pagar ou
-  permuta; a irmã prometeu ajudar e não teve tempo; "permuta é algo q pode acontecer, se vc precisar dos meus serviços".
-- Decisão (14/10): site sem cobrança, com troca (portfólio antes de publicar, depoimento ~30 dias, indicação na entrega).
-- Tarefa: definir o valor da manutenção mensal antes da conversa de 15 min.
-- Rascunhos (versão atual de cada um):
-  1. 14/10, noite: "Oi Débora! Perdão pela demora. Pode ficar tranquila com isso... Tô montando meus primeiros casos, e
-     se você gostar, já me ajuda muito. Amanhã te mando o link, e se o site te for útil, ele é seu, sem custo. Aí a gente
-     conversa sobre isso!" (o Marcelo pode ter mandado a versão dele; conferir no WhatsApp)
-  2. 15/10, 8h30, balão 1: "Bom dia, Débora! Antes do link, só um aviso. Muito do que tem lá é demonstração. Montei com
-     o que achei do seu trabalho, pra mostrar o que pode vir a ser, então alguns textos e números são simulação."
-     Balão 2: "Também montei umas outras ferramentas que podem te ser úteis, essas seriam um trabalho à parte, pra mais
-     pra frente, se você achar interessante. Tá aqui o link, esboco-debora-reis.vercel.app/ideias.html. Olha com calma e
-     me fala o que achou!"
-  3. Gostou: "Que bom que gostou! Me diz tudo que você quiser mudar, que eu ajusto pra ficar do seu jeito. Com tudo
-     pronto, já dá pra colocar no ar. Antes, queria uma conversa de 15 min pra te explicar umas coisas e você não ficar
-     com nenhuma dúvida. Amanhã 10h ou 11h?"
-  4. Na conversa ("como funciona?"): "Funciona assim: eu publico o site pra você sem custo, e em troca você me deixa
-     mostrar ele no meu portfólio. Se quiser um endereço próprio, ele tem um custo por ano, e fica no seu nome. E se mais
-     pra frente você quiser que eu cuide do site, colocando os projetos novos e textos, aí seria um valor fixo por mês,
-     porque dá trabalho. Fora isso, fica tranquila." Quiz e guia: "precisam de coisa sua (prazos, como você cobra), ficam
-     pra quando fizer sentido". Na entrega: "E se você ou alguém precisar de site, tráfego pago ou post pra Instagram,
-     pode contar comigo!"
-- **15/10, ela respondeu:** "Olha, eu tenho um site q acabou de ser feito por um amigo...vou te mandar p vc dar uma
-  olhada... https://deborareisarquitetura.netlify.app". Visto em 15/10 (curl): fotos com crédito do Roberto Moreira Rego,
-  seções sobre, serviços, 12 projetos, processo em 4 passos, formulário (planta, projeto anterior), WhatsApp
-  (71) 99977-5453 e e-mail Yahoo; endereço ainda no netlify.app. Muda a tese: o site dela está resolvido; entrar como
-  complemento, nunca criticando o trabalho do amigo (caso Revita). Rascunho que substitui as mensagens 2 a 4 acima:
-  "Ficou muito bonito, Débora! As fotos do Roberto ficaram ótimas grandes assim, e gostei da parte que explica o
-  processo. Parabéns pro seu amigo! Tem umas coisas nas ideias que funcionam junto com esse site, tipo um guia pro
-  cliente entender o seu trabalho antes de chegar. Quer que eu te mande mesmo assim?"
-- **15/10, mensagem final (substitui todas as anteriores):** "Ficou muito bonito, Débora! As fotos do Roberto ficaram
-  ótimas grandes assim. Parabéns pro seu amigo, e sucesso com os projetos!" Depois, nada mais, salvo se ela puxar
-  assunto. Estágio: geladeira. O esboço vira template de arquitetura (sem as fotos dela, README de protótipos).
+O que estava pendente das sessões na nuvem de 14 e 15/10 foi gravado na ficha `95fc7889-3564-4d15-beca-dc9a042dcf13`
+(nota "14 e 15/10: o que ficou só na pasta"). As três tarefas dela foram canceladas. A ficha foi para Perdido de
+madrugada e voltou para **Follow-up** no mesmo dia, para o último envio, com prazo em 22/10.
+
+## 15/10/2026, noite: o último envio (pedido do Marcelo: "vamos mandar pra ela e dar um fim nisso")
+
+- **Mensagem (rascunho, o Marcelo envia):** "Débora, o site ficou lindo! Te devia aquelas ideias que eu tinha montado. O
+  site você já resolveu, mas tem duas coisas ali que dá pra usar junto com ele: um questionário pro cliente contar a casa
+  dele antes da primeira conversa, e um guia explicando como funciona o seu trabalho. Quer que eu te mande o link?"
+- **Sim:** o link https://esboco-debora-reis.vercel.app/ideias.html e, depois que ela olhar, "se quiser, te mostro em 10
+  min por vídeo", com dois horários. Preço não se fala por mensagem (ela está sem caixa; condição só na conversa).
+- **Não ou silêncio até 22/10:** fecha de vez, esboço sai do ar e as fotos saem da pasta de novo.
+- **O site novo dela (lido em 15/10):** sem questionário e sem guia; contato por formulário e WhatsApp. Nomeia projetos
+  que o nosso não tem (Paralela, Alto do Parque, Green Ville, Graça, Itaigara). Nunca criticar o trabalho do amigo.
+- **Verificado em 15/10, no ar:** 5 páginas principais em 390 e 1440, sem imagem quebrada, sem erro de console, sem
+  rolagem lateral; sala de ideias conferida por print.
+- **Ajustes do Marcelo (15/10, noite):** na sala de ideias as imagens não abrem mais nada (só os botões levam às
+  páginas, pra ela não se perder); "Os clientes que você já tem" ganhou a frase dizendo que a parte é pra quem já reformou
+  com ela deixar avaliação no Google, e o cartão explica o QR. O backup `versoes/antes-proposito-15-10/` foi publicado
+  junto, em https://esboco-debora-reis.vercel.app/versao-anterior/, só pro Marcelo comparar (tirar antes de ela
+  receber o link, se ele não quiser que ela ache). Conferido no ar em 390 e 1440, sem erro e sem imagem quebrada.
+- **Ajustes do Marcelo na home (15/10, noite), a partir da comparação com o backup:**
+  - seção 1 com 6 fotos (voltaram "os objetos que contam alguma coisa", sem link porque não se sabe o apartamento, e "a
+    mesa vermelha", que leva ao Colorir); o aparador não passa mais por cima do texto: posições refeitas e sobreposição
+    medida em 1024, 1100, 1180, 1280, 1440 e 1680, em toda a rolagem, sem nenhum encontro;
+  - capa do celular no modelo que o Marcelo trouxe (feito no ChatGPT; só a estrutura, a foto é a dela): foto de ponta a
+    ponta sob o cabeçalho, texto à esquerda, "Conheça meus projetos" e "Fale com a Débora"; o computador ficou igual;
+  - saíram o "Como começa" (Como trabalho) e a caixa preta (A arquiteta); o contato voltou aos dois botões lado a lado,
+    sem o "Prefere contar antes?";
+  - celular: as duas fotos dos gatos juntas, depois do botão; retrato da Débora na largura toda; rodapé com os links à
+    direita.
+  - versão de antes destes ajustes: `versoes/antes-ajustes-mobile-15-10/`. Detector: 7 avisos, nenhum novo (a anterior
+    tinha 9).
+- **Mais dois ajustes do Marcelo (15/10, noite):**
+  - seção 1: o "Você não enjoa?" (post `DZ0TJl3Rkch`) aparecia sem a moldura e não se entendia quem perguntava. Ganhou
+    a linha "A pergunta que sempre me fazem" e o título virou "Não. Nunca projetei a mesma casa duas vezes.", que é a
+    resposta dela no post; o bloco subiu 2% e a sobreposição foi medida de novo (1024 a 1680, nenhum encontro);
+  - "Como trabalho" no modelo do "About us" da Stanzza (stanzza.design/awards): título "Do estudo à decoração, em quatro
+    etapas.", quatro cartões grandes que acendem um de cada vez com a foto, com a seção presa no computador de tela
+    alta (sem prender em tela baixa, sem nada preso no celular, onde ficam empilhados e acesos); a descrição de cada etapa
+    fica embaixo do cartão, sempre visível; o link do guia virou botão. As fotos dos cartões são detalhes dos projetos
+    dela (livros, corredor do Rio Vermelho, ripas, aparador), não fotos da etapa. Os prazos continuam `[FALTA]`.
+  - versão de antes: `versoes/antes-como-trabalho-15-10/`. Detector na home: os mesmos 7 avisos (os 4 de texto branco
+    no cartão foram corrigidos com fundo escuro por baixo da foto). Conferido no ar em 390, 900, 1280x720, 1366x640 e
+    1440, sem erro, sem imagem quebrada e sem rolagem lateral.
+- **Pronto para mostrar (15/10, noite, conferência final):**
+  - seção 1 decidida com o Marcelo: "Mais de duas décadas depois, sempre me perguntam" / "Você não enjoa?" / "Não. Nunca
+    projetei a mesma casa duas vezes." (o tempo explica por que alguém perguntaria se ela enjoa; palavras do post dela);
+  - miniaturas da sala de ideias refeitas a partir das páginas atuais (site, Rio Vermelho, guia); a do site ainda
+    mostrava "desde 2004", que tinha saído;
+  - `/versao-anterior/` fora do ar (404); o backup segue só na pasta `versoes/`;
+  - conferido no ar: 11 páginas em 360, 390, 768 e 1440, sem erro de console, sem imagem quebrada, sem rolagem lateral;
+    nenhum link interno quebrado nem âncora sem alvo; os 32 links de WhatsApp com (71) 99977-5453 (bate com o Hounder);
+    questionário percorrido até o resultado e a mensagem pronta; sobreposição da seção 1 medida em 1024 a 1680;
+    detector com os mesmos avisos da versão anterior, nenhum novo;
+  - rascunho v2 da mensagem gravado no Hounder (sem o elogio ao site, que o Marcelo já fez em 15/10, 00h59).
+- **Enviado (15/10, 14h13), com o texto do Marcelo, não com o v2:** os dois links direto, sem perguntar antes, e uma
+  despedida ("Torço para que você atraia clientes que valorizem seu processo e seu trabalho"). A escolha dele estava
+  certa: a licença já tinha vindo com o "amanhã te mando o link". Virou regra em `_memoria/prospeccao/aprendizados.md`
+  ("promessa feita é licença dada").

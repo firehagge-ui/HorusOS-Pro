@@ -1,0 +1,1007 @@
+<title>Preparação MB Barbearia</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: documento interno de leitura, coluna de 1080px com sumário no topo; seções numeradas na ordem em que se usa (entender, decidir, conduzir a reunião). Peças visuais: Google e Instagram hoje x ajustado, a semana da agenda horário por horário, a conta interativa. Identidade Horus, escuro por escolha: fundo void, azul elétrico como único acento, camada técnica em mono. */
+:root {
+  --bg: #0b0c12;
+  --surface: #14161f;
+  --surface-2: #1b1e29;
+  --line: #2a2e3b;
+  --ink: #d6d8df;
+  --ink-soft: #9a9eab;
+  --ink-strong: #ffffff;
+  --accent: #2f8cff;
+  --accent-ink: #7fb6ff;
+  --accent-wash: rgba(47, 140, 255, .12);
+  --warn: #ffb547;
+  --warn-wash: rgba(255, 181, 71, .12);
+  --ok: #3fcf9f;
+  --ok-wash: rgba(63, 207, 159, .12);
+  --bad: #ff7a7a;
+  --star: #f4c430;
+  --font-display: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1080px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 72px;
+  display: grid; gap: 72px;
+}
+@media (min-width: 700px) { .wrap { padding-left: max(40px, env(safe-area-inset-left, 0px)); padding-right: max(40px, env(safe-area-inset-right, 0px)); } }
+h1, h2, h3 { font-family: var(--font-display); color: var(--ink-strong); text-wrap: balance; margin: 0; }
+h1 { font-weight: 300; font-size: clamp(2.2rem, 5.4vw, 3.4rem); line-height: 1.02; letter-spacing: -0.02em; }
+h2 { font-weight: 400; font-size: clamp(1.55rem, 3.2vw, 2.15rem); line-height: 1.12; letter-spacing: -0.01em; }
+h3 { font-weight: 500; font-size: 1.12rem; line-height: 1.3; }
+p { margin: 0; max-width: 68ch; }
+ul, ol { margin: 0; }
+strong { color: var(--ink-strong); font-weight: 500; }
+.eyebrow { font-family: var(--font-mono); font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.soft { color: var(--ink-soft); }
+.section { display: grid; gap: 24px; scroll-margin-top: 16px; }
+.section-head { display: grid; gap: 10px; }
+.sub { display: grid; gap: 14px; }
+.src { font-family: var(--font-mono); font-size: .75rem; color: var(--ink-soft); }
+a { color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.prose { display: grid; gap: 12px; }
+.prose ul, .prose ol { padding-left: 20px; display: grid; gap: 6px; }
+
+/* Topo */
+header.top { display: grid; gap: 18px; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+.brandrow { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: baseline; }
+.brand { font-family: var(--font-mono); letter-spacing: .3em; font-size: .85rem; color: var(--ink-strong); }
+.brand span { color: var(--ink-soft); letter-spacing: .2em; }
+.interno { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; background: var(--warn-wash); color: var(--warn); border: 1px solid rgba(255,181,71,.4); }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 24px; font-family: var(--font-mono); font-size: .8rem; color: var(--ink-soft); }
+.lede { font-size: 1.15rem; color: var(--ink); max-width: 62ch; }
+.toc { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px 20px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; list-style: none; margin: 0; counter-reset: t; }
+.toc li { counter-increment: t; min-width: 0; }
+.toc a { color: var(--ink); text-decoration: none; font-size: .95rem; display: flex; gap: 10px; }
+.toc a::before { content: counter(t, decimal-leading-zero); font-family: var(--font-mono); font-size: .78rem; color: var(--accent-ink); padding-top: 3px; }
+.toc a:hover { color: var(--ink-strong); }
+
+/* Resumo */
+.resumo { display: grid; gap: 10px; counter-reset: r; list-style: none; padding: 0; }
+.resumo li { counter-increment: r; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.resumo li::before { content: counter(r); font-family: var(--font-mono); color: var(--accent-ink); }
+.reco { background: linear-gradient(180deg, var(--accent-wash), transparent 80%), var(--surface); border: 1px solid var(--accent); border-radius: 14px; padding: 20px; display: grid; gap: 10px; }
+
+/* Tabelas */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; }
+table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+table.wide { min-width: 560px; }
+th, td { text-align: left; padding: 11px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+thead th { border-top: 0; font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); font-weight: 400; background: var(--surface); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.mono { white-space: nowrap; }
+tr.destaque td { background: var(--accent-wash); }
+td strong { color: var(--ink-strong); }
+
+/* Cards */
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.cell { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.cell .big { font-family: var(--font-display); font-weight: 300; font-size: 2.1rem; line-height: 1; color: var(--ink-strong); font-variant-numeric: tabular-nums; }
+.cell .big .s { color: var(--star); font-size: 1.05rem; letter-spacing: 2px; vertical-align: middle; }
+.quote { border-left: 2px solid var(--accent); padding-left: 16px; color: var(--ink-strong); font-size: 1.05rem; }
+
+/* Hoje x ajustado */
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px; display: grid; gap: 16px; align-content: start; min-width: 0; }
+.card.nova { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent-wash), 0 20px 60px -30px rgba(47,140,255,.45); }
+.tag { justify-self: start; font-family: var(--font-mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--surface-2); color: var(--ink-soft); }
+.card.nova .tag { background: var(--accent-wash); color: var(--accent-ink); }
+.card-nome { font-size: 1.35rem; font-weight: 500; color: var(--ink-strong); }
+.stars { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-variant-numeric: tabular-nums; }
+.stars b { color: var(--ink-strong); font-weight: 500; }
+.stars .s { color: var(--star); letter-spacing: 2px; }
+.rows { display: grid; gap: 10px; }
+.row { display: grid; grid-template-columns: 1.6rem minmax(0, 1fr); gap: 10px; align-items: start; font-size: .96rem; }
+.row .ic { font-family: var(--font-mono); font-size: .9rem; text-align: center; border-radius: 6px; padding: 1px 0; }
+.row.bad .ic { background: var(--warn-wash); color: var(--warn); }
+.row.ok .ic { background: var(--ok-wash); color: var(--ok); }
+.row.neutral .ic { background: var(--surface-2); color: var(--ink-soft); }
+.row small { display: block; color: var(--ink-soft); font-size: .82rem; }
+.bio { font-size: .95rem; line-height: 1.5; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; white-space: pre-line; }
+.bio .handle { font-family: var(--font-mono); font-size: .85rem; color: var(--ink-strong); display: block; margin-bottom: 6px; white-space: normal; }
+.bio .lnk { color: var(--accent-ink); }
+.note { font-size: .9rem; color: var(--ink-soft); }
+
+/* Agenda */
+.agenda { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: clamp(16px, 3vw, 28px); display: grid; gap: 14px; overflow-x: auto; }
+.dia, .eixo { display: grid; grid-template-columns: 4.6rem minmax(0, 1fr); gap: 10px; align-items: center; }
+.dia-nome { font-family: var(--font-mono); font-size: .82rem; color: var(--ink-strong); }
+.dia-nome small { color: var(--ink-soft); font-size: .72rem; }
+.slots, .eixo-t { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)) 6px repeat(15, minmax(0, 1fr)); gap: 3px; }
+.slot { aspect-ratio: 1; max-width: 100%; border-radius: 3px; }
+.slot.free { border: 1.5px solid var(--accent); background: var(--accent-wash); }
+.slot.busy { background: var(--warn); }
+.slot.off { background: transparent; border: 1px dashed var(--line); opacity: .5; }
+.eixo { font-family: var(--font-mono); font-size: .7rem; color: var(--ink-soft); }
+.eixo-t span { grid-row: 1; white-space: nowrap; }
+.eixo-t .t1 { grid-column: 1; } .eixo-t .t3 { grid-column: 8; } .eixo-t .t4 { grid-column: 18; } .eixo-t .t5 { grid-column: 22; justify-self: end; }
+.legenda { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: .85rem; color: var(--ink-soft); }
+.legenda span { display: inline-flex; gap: 8px; align-items: center; }
+.legenda i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.legenda .free { border: 1.5px solid var(--accent); background: var(--accent-wash); }
+.legenda .busy { background: var(--warn); }
+.legenda .off { border: 1px dashed var(--line); }
+.callout { display: grid; gap: 6px; background: var(--accent-wash); border: 1px solid rgba(47,140,255,.35); border-radius: 12px; padding: 16px 18px; color: var(--ink); }
+.callout.warn { background: var(--warn-wash); border-color: rgba(255,181,71,.35); }
+.callout.warn strong { color: var(--warn); }
+
+/* Barras */
+.bars { display: grid; gap: 10px; }
+.bar { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) 4.5rem; gap: 14px; align-items: center; }
+.bar .nome { font-size: .95rem; color: var(--ink); overflow-wrap: anywhere; }
+.bar .nome small { display: block; color: var(--ink-soft); font-size: .78rem; }
+.track { height: 14px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+.fill { height: 100%; background: #4a5266; border-radius: 999px; }
+.bar.us .fill { background: var(--accent); }
+.bar.us .nome { color: var(--ink-strong); font-weight: 500; }
+.bar .num { font-family: var(--font-mono); font-size: .88rem; text-align: right; color: var(--ink-strong); font-variant-numeric: tabular-nums; }
+
+/* Plano */
+.opp { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.opp ul { padding-left: 18px; display: grid; gap: 6px; font-size: .95rem; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; counter-reset: s; }
+.steps li { counter-increment: s; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--font-mono); font-size: .8rem; color: var(--accent-ink); }
+.steps li span { font-size: .9rem; color: var(--ink-soft); }
+.steps li.volta { border-color: var(--accent); background: linear-gradient(180deg, var(--accent-wash), transparent 70%), var(--surface); }
+.ideias { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.ideia { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.ideia .gancho { font-size: 1.12rem; color: var(--ink-strong); line-height: 1.35; }
+.roteiro { display: grid; gap: 6px; font-size: .9rem; }
+.roteiro div { display: grid; grid-template-columns: 4.6rem minmax(0, 1fr); gap: 8px; }
+.roteiro b { white-space: nowrap; font-family: var(--font-mono); font-weight: 400; font-size: .75rem; color: var(--accent-ink); padding-top: 2px; }
+
+/* Calculadora */
+.calc { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: clamp(18px, 3vw, 28px); display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+.fields { display: grid; gap: 16px; }
+.field { display: grid; gap: 6px; }
+.field label { font-size: .92rem; color: var(--ink); }
+.field input { width: 100%; font-family: var(--font-mono); font-size: 1.15rem; color: var(--ink-strong); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+.field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+.field small { color: var(--ink-soft); font-size: .8rem; }
+.result { display: grid; gap: 8px; justify-items: start; }
+.result .n { font-family: var(--font-display); font-weight: 300; font-size: clamp(3.4rem, 9vw, 5.5rem); line-height: .95; color: var(--accent-ink); font-variant-numeric: tabular-nums; }
+.result .dia-n { font-family: var(--font-mono); font-size: 1rem; color: var(--ink-strong); }
+.example { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--warn); }
+
+/* Decisão de preço */
+.opcoes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.opcao { border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: grid; gap: 12px; align-content: start; background: var(--surface); min-width: 0; }
+.opcao.rec { border-color: var(--accent); background: linear-gradient(180deg, var(--accent-wash), transparent 60%), var(--surface); }
+.opcao .price { font-family: var(--font-display); font-weight: 300; font-size: 2.1rem; line-height: 1; color: var(--ink-strong); font-variant-numeric: tabular-nums; }
+.opcao .price small { font-size: .9rem; color: var(--ink-soft); }
+.opcao dl { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 16px; font-size: .95rem; }
+.opcao dt { color: var(--ink-soft); }
+.opcao dd { margin: 0; text-align: right; color: var(--ink-strong); font-variant-numeric: tabular-nums; }
+
+/* Roteiro da reunião */
+.etapas { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: e; }
+.etapa { counter-increment: e; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; display: grid; gap: 10px; min-width: 0; }
+.etapa-head { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+.etapa-head::before { content: counter(e); font-family: var(--font-mono); font-size: .85rem; color: var(--bg); background: var(--accent-ink); border-radius: 6px; padding: 0 7px; }
+.etapa-head h3 { font-size: 1.08rem; }
+.tempo { font-family: var(--font-mono); font-size: .75rem; color: var(--ink-soft); }
+.fala { border-left: 2px solid var(--accent); padding: 2px 0 2px 14px; color: var(--ink-strong); font-size: 1rem; }
+.qs { list-style: none; padding: 0; display: grid; gap: 6px; font-size: .97rem; }
+.qs li { position: relative; padding-left: 1.5rem; }
+.qs li::before { content: "?"; position: absolute; left: 0; top: 0; font-family: var(--font-mono); color: var(--ink-soft); }
+.qs li.chave::before { content: "★"; color: var(--star); }
+.qs small { color: var(--ink-soft); display: block; font-size: .85rem; }
+.frases { list-style: none; padding: 0; display: grid; gap: 8px; counter-reset: f; }
+.frases li { counter-increment: f; display: grid; grid-template-columns: 1.6rem minmax(0, 1fr); gap: 8px; color: var(--ink-strong); font-size: 1.05rem; }
+.frases li::before { content: counter(f) "."; font-family: var(--font-mono); color: var(--accent-ink); }
+.sinais { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.sinais .cell ul { padding-left: 18px; display: grid; gap: 6px; font-size: .95rem; }
+.sinais .cell.verde { border-color: rgba(63,207,159,.4); }
+.sinais .cell.verde h3 { color: var(--ok); }
+.sinais .cell.amarelo { border-color: rgba(255,181,71,.4); }
+.sinais .cell.amarelo h3 { color: var(--warn); }
+
+footer { border-top: 1px solid var(--line); padding-top: 24px; display: grid; gap: 10px; font-size: .85rem; color: var(--ink-soft); }
+footer p { max-width: 90ch; }
+
+@media (max-width: 860px) {
+  .grid-3, .opp, .pair, .calc, .ideias, .opcoes, .sinais { grid-template-columns: minmax(0, 1fr); }
+  .toc { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bar { grid-template-columns: minmax(0, 1fr) 4rem; }
+  .bar .track { grid-column: 1 / -1; grid-row: 2; }
+}
+@media (max-width: 520px) {
+  .toc, .steps { grid-template-columns: minmax(0, 1fr); }
+  .dia, .eixo { grid-template-columns: 3.4rem minmax(0, 1fr); gap: 6px; }
+  .slots, .eixo-t { gap: 2px; }
+  .eixo-t .t5 { display: none; }
+  .opcao dl { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .opcao dt { font-size: .85rem; }
+  .opcao dd { text-align: left; margin-bottom: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="brandrow">
+      <div class="brand">HORUS <span>AGÊNCIA</span></div>
+      <span class="interno">Uso interno · não mostrar ao cliente</span>
+    </div>
+    <div class="eyebrow">Preparação da primeira reunião · tráfego pago</div>
+    <h1>MB Barbearia</h1>
+    <p class="lede">Tudo o que a gente precisa saber antes de sentar com o Marcelo Bispo, dono da MB: o que achamos, o que propor, quanto cobrar e como conduzir a conversa.</p>
+    <div class="meta"><span>Reunião online por vídeo: terça, 20/10/2026, às 10h</span><span>Pesquisa feita em 19/10/2026</span><span>O "salão" da R1 de tráfego é esta mesma barbearia</span></div>
+    <ol class="toc">
+      <li><a href="#resumo">Resumo em um minuto</a></li>
+      <li><a href="#quem">Quem é a MB</a></li>
+      <li><a href="#achados">O que achamos</a></li>
+      <li><a href="#domagenda">A agenda que ele usa</a></li>
+      <li><a href="#estrategia">O que propor</a></li>
+      <li><a href="#conta">A conta</a></li>
+      <li><a href="#preco">Preço: opção A</a></li>
+      <li><a href="#roteiro">Roteiro da reunião</a></li>
+      <li><a href="#cola">Cola e objeções</a></li>
+      <li><a href="#depois">Depois da reunião</a></li>
+      <li><a href="#preparo">Para chegar seguro</a></li>
+    </ol>
+  </header>
+
+  <!-- 1. Resumo -->
+  <section class="section" id="resumo">
+    <div class="section-head">
+      <div class="eyebrow">01 · Resumo em um minuto</div>
+      <h2>O que levar na cabeça</h2>
+    </div>
+    <ol class="resumo">
+      <li><p><strong>Barbearia de bairro, corte barato.</strong> Corte a R$&nbsp;30, corte com barba a R$&nbsp;45, no Calabar, entre a Barra e Ondina. Na agenda online só aparece um profissional: o próprio dono.</p></li>
+      <li><p><strong>Ele está se mexendo agora.</strong> Contratou uma agenda online (Dom Agenda) e ganhou 22 das 24 avaliações do Google nas últimas três semanas. Bom momento para conversar.</p></li>
+      <li><p><strong>O caminho até marcar está quebrado em pontos que custam zero para consertar.</strong> O Google não tem o link da agenda, a bio do Instagram não tem link nenhum, e o horário e o endereço não batem entre o Google e a agenda.</p></li>
+      <li><p><strong>A agenda online da semana estava quase toda livre.</strong> Ou falta cliente, ou ele marca quase tudo pelo WhatsApp. Precisamos descobrir qual dos dois.</p></li>
+      <li><p><strong>Com corte de R$&nbsp;30, o anúncio não se paga no primeiro corte.</strong> Se paga quando o cliente volta. Por isso o plano junta anúncio com "fazer voltar" e cobra uma mensalidade menor que a do salão.</p></li>
+    </ol>
+    <div class="reco">
+      <strong>A recomendação</strong>
+      <p>Vender tráfego pequeno e honesto: na primeira semana, arrumar Google, Instagram e agenda; depois, um anúncio no Instagram e no Facebook para quem mora ou trabalha perto, levando à agenda dele; e ligar as funções de lembrete e retorno que a agenda já tem. <strong>Não vender site, sistema nem robô</strong>: a agenda que ele usa já faz isso por R$&nbsp;15 a 70 por mês.</p>
+    </div>
+  </section>
+
+  <!-- 2. Quem é -->
+  <section class="section" id="quem">
+    <div class="section-head">
+      <div class="eyebrow">02 · Quem é a MB</div>
+      <h2>Os fatos, como estão publicados</h2>
+    </div>
+    <div class="grid-3">
+      <div class="cell">
+        <div class="big">5,0 <span class="s" aria-hidden="true">★★★★★</span></div>
+        <p>24 avaliações no Google. 22 chegaram nas últimas três semanas; as outras duas têm 3 e 5 anos. Ele respondeu todas.</p>
+        <div class="src">Google Maps, 19/10/2026</div>
+      </div>
+      <div class="cell">
+        <p class="quote">"Meu barbeiro há mais de 20 anos."</p>
+        <p>A frase mais forte das avaliações. A bio do Instagram diz "desde 2008" (confirmar com ele).</p>
+        <div class="src">Avaliação pública no Google; bio do Instagram</div>
+      </div>
+      <div class="cell">
+        <div class="big">1</div>
+        <p>profissional cadastrado na agenda online: "Marcelo". Em dezembro de 2024, o Instagram falava em "3 barbeiros". Quantos são hoje é a pergunta número um.</p>
+        <div class="src">Agenda online e Instagram</div>
+      </div>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Serviço</th><th>Duração</th><th class="num">Preço</th></tr></thead>
+        <tbody>
+          <tr><td>Corte</td><td>30 min</td><td class="num">R$&nbsp;30</td></tr>
+          <tr><td>Corte + Barba</td><td>50 min</td><td class="num">R$&nbsp;45</td></tr>
+          <tr><td>Corte + Barba + Pigmentação</td><td>60 min</td><td class="num">R$&nbsp;55</td></tr>
+          <tr><td>Nevou / luzes (o mais caro)</td><td>30 min</td><td class="num">R$&nbsp;100</td></tr>
+          <tr><td>Barba</td><td>20 min</td><td class="num">R$&nbsp;20</td></tr>
+          <tr><td>Navalha + Barba desenhada</td><td>30 min</td><td class="num">R$&nbsp;30</td></tr>
+          <tr><td>Pezinho, pigmentação, sobrancelha</td><td>10 a 30 min</td><td class="num">R$&nbsp;10 cada</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <ul>
+        <li><strong>Onde:</strong> Calabar, Salvador, entre a Barra e Ondina (vizinho do campus da UFBA em Ondina). Comunidade grande cercada de bairros de renda alta.</li>
+        <li><strong>Dono:</strong> Marcelo Bispo, perfil pessoal @marcelost10 com 1.705 seguidores (o da barbearia tem 118). Na bio: "Bacharel em Fisioterapia / Barbeiro".</li>
+        <li><strong>Declara na agenda:</strong> ar-condicionado, Wi-Fi, estacionamento, atende criança; paga em dinheiro, cartão ou PIX.</li>
+        <li><strong>WhatsApp público:</strong> (71) 99333-0774, o mesmo no Google e na agenda.</li>
+        <li><strong>Anúncios:</strong> nenhum encontrado na Biblioteca de Anúncios da Meta.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3. Achados -->
+  <section class="section" id="achados">
+    <div class="section-head">
+      <div class="eyebrow">03 · O que achamos</div>
+      <h2>Onde o cliente novo trava antes de marcar</h2>
+      <p>Essa é a parte para mostrar a ele <strong>compartilhando a tela, ao vivo</strong>: a ficha do Google e o Instagram dele abertos no navegador. Não compartilhar esta página.</p>
+    </div>
+
+    <div class="sub">
+      <h3>A ficha no Google, hoje e como deveria ficar</h3>
+      <div class="pair">
+        <div class="card">
+          <span class="tag">Hoje</span>
+          <div class="card-nome">MB barbearia</div>
+          <div class="stars"><b>5,0</b><span class="s" aria-hidden="true">★★★★★</span><span class="soft">(24)</span></div>
+          <div class="rows">
+            <div class="row bad"><span class="ic">!</span><div>Sem link de agendamento nem site<small>A ficha mostra "Adicionar website"</small></div></div>
+            <div class="row bad"><span class="ic">!</span><div>Segunda aparece aberta, das 14h às 18h30<small>Na agenda online, segunda não tem horário</small></div></div>
+            <div class="row bad"><span class="ic">!</span><div>Fecha às 18h30 de terça a quarta e às 20h na sexta e no sábado<small>Na agenda, o último horário é 18h30 (ter a qui) e 20h30 (sex e sáb)</small></div></div>
+            <div class="row bad"><span class="ic">!</span><div>R. Nova do Calabar, CEP 40070-440<small>Na agenda: Vila Nova do Calabar, CEP 40226-580</small></div></div>
+          </div>
+        </div>
+        <div class="card nova">
+          <span class="tag">Ajustada</span>
+          <div class="card-nome">MB barbearia</div>
+          <div class="stars"><b>5,0</b><span class="s" aria-hidden="true">★★★★★</span><span class="soft">e avaliação chegando todo mês</span></div>
+          <div class="rows">
+            <div class="row ok"><span class="ic">✓</span><div>Link de agendamento levando à agenda dele<small>A agenda dele não tem o botão integrado do Google, mas o link próprio funciona; colocamos uma marcação para saber quem veio pelo Google</small></div></div>
+            <div class="row ok"><span class="ic">✓</span><div>O mesmo horário no Google e na agenda</div></div>
+            <div class="row ok"><span class="ic">✓</span><div>Um endereço só, conferido com ele</div></div>
+            <div class="row ok"><span class="ic">✓</span><div>Fotos reais: fachada, cadeira, cortes prontos</div></div>
+            <div class="row ok"><span class="ic">✓</span><div>QR code no espelho para todo cliente avaliar, sem brinde<small>O Google valoriza avaliação constante; as 22 de uma vez são ótimas, mas parar de novo derruba</small></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>O Instagram, hoje e como deveria ficar</h3>
+      <p>Quem vê um anúncio quase sempre abre o perfil antes de decidir. Hoje o perfil não leva a lugar nenhum.</p>
+      <div class="pair">
+        <div class="card">
+          <span class="tag">Hoje</span>
+          <div class="bio"><span class="handle">@mbbarbearia1__ · 118 seguidores · 15 posts</span>SINCE 2008
+FIQUE ATENTOS AOS STORYS
+Cuidando da sua estética
+Qualidade &amp; Conforto
+"Sua estética não é gasto"
+CEO: @marcelost10</div>
+          <div class="rows">
+            <div class="row bad"><span class="ic">!</span><div>Nenhum link na bio: nem agenda, nem WhatsApp</div></div>
+            <div class="row bad"><span class="ic">!</span><div>Sem destaques; último post da barbearia em abril de 2026</div></div>
+            <div class="row bad"><span class="ic">!</span><div>O post mais curtido (25/04, 100 curtidas) tem cara de imagem gerada por IA<small>Um salão escuro com letreiro iluminado que não é o salão dos vídeos dele (parede cinza, quadro de leão). Não acusar; ver como falar no roteiro</small></div></div>
+          </div>
+        </div>
+        <div class="card nova">
+          <span class="tag">Ajustado</span>
+          <div class="bio"><span class="handle">@mbbarbearia1__</span>Barbearia no Calabar, entre a Barra e Ondina
+Corte, barba, pigmentação e luzes
+Ter a sáb · climatizado · atende criança
+<span class="lnk">Marque seu horário em 3 toques ↓</span></div>
+          <div class="rows">
+            <div class="row ok"><span class="ic">✓</span><div>Link da agenda e botão de WhatsApp</div></div>
+            <div class="row ok"><span class="ic">✓</span><div>Destaques: Preços, Como chegar (vídeo da rua até a porta), Agende</div></div>
+            <div class="row ok"><span class="ic">✓</span><div>Três posts fixados: como marcar, antes e depois, por que aqui</div></div>
+            <div class="row neutral"><span class="ic">i</span><div>O rosto que vende é o dele: o perfil pessoal tem 14 vezes mais seguidores</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="note">A bio ajustada é sugestão nossa; o texto final é com as palavras dele.</p>
+    </div>
+
+    <div class="sub">
+      <h3>A agenda online da semana de 20 a 24 de outubro</h3>
+      <p>Assim aparecia para quem abriu o link em 19/10. Cada quadrado é um horário de 30 minutos.</p>
+      <div class="agenda">
+        <div class="eixo"><span></span><div class="eixo-t"><span class="t1">9h</span><span class="t3">13h30</span><span class="t4">18h30</span><span class="t5">20h30</span></div></div>
+        <div class="dia"><span class="dia-nome">Ter <small>20/10</small></span><div class="slots" role="img" aria-label="Ter 20/10: todos os horários livres"><span class="slot free" title="Ter 09:00: livre"></span><span class="slot free" title="Ter 09:30: livre"></span><span class="slot free" title="Ter 10:00: livre"></span><span class="slot free" title="Ter 10:30: livre"></span><span class="slot free" title="Ter 11:00: livre"></span><span class="slot free" title="Ter 11:30: livre"></span><span class="almoco" aria-hidden="true"></span><span class="slot free" title="Ter 13:30: livre"></span><span class="slot free" title="Ter 14:00: livre"></span><span class="slot free" title="Ter 14:30: livre"></span><span class="slot free" title="Ter 15:00: livre"></span><span class="slot free" title="Ter 15:30: livre"></span><span class="slot free" title="Ter 16:00: livre"></span><span class="slot free" title="Ter 16:30: livre"></span><span class="slot free" title="Ter 17:00: livre"></span><span class="slot free" title="Ter 17:30: livre"></span><span class="slot free" title="Ter 18:00: livre"></span><span class="slot free" title="Ter 18:30: livre"></span><span class="slot off" title="Ter 19:00: fora do horário"></span><span class="slot off" title="Ter 19:30: fora do horário"></span><span class="slot off" title="Ter 20:00: fora do horário"></span><span class="slot off" title="Ter 20:30: fora do horário"></span></div></div>
+        <div class="dia"><span class="dia-nome">Qua <small>21/10</small></span><div class="slots" role="img" aria-label="Qua 21/10: 1 horário ocupado, os demais livres"><span class="slot free" title="Qua 09:00: livre"></span><span class="slot free" title="Qua 09:30: livre"></span><span class="slot free" title="Qua 10:00: livre"></span><span class="slot free" title="Qua 10:30: livre"></span><span class="slot free" title="Qua 11:00: livre"></span><span class="slot free" title="Qua 11:30: livre"></span><span class="almoco" aria-hidden="true"></span><span class="slot free" title="Qua 13:30: livre"></span><span class="slot free" title="Qua 14:00: livre"></span><span class="slot free" title="Qua 14:30: livre"></span><span class="slot free" title="Qua 15:00: livre"></span><span class="slot free" title="Qua 15:30: livre"></span><span class="slot free" title="Qua 16:00: livre"></span><span class="slot free" title="Qua 16:30: livre"></span><span class="slot free" title="Qua 17:00: livre"></span><span class="slot busy" title="Qua 17:30: ocupado"></span><span class="slot free" title="Qua 18:00: livre"></span><span class="slot free" title="Qua 18:30: livre"></span><span class="slot off" title="Qua 19:00: fora do horário"></span><span class="slot off" title="Qua 19:30: fora do horário"></span><span class="slot off" title="Qua 20:00: fora do horário"></span><span class="slot off" title="Qua 20:30: fora do horário"></span></div></div>
+        <div class="dia"><span class="dia-nome">Qui <small>22/10</small></span><div class="slots" role="img" aria-label="Qui 22/10: todos os horários livres"><span class="slot free" title="Qui 09:00: livre"></span><span class="slot free" title="Qui 09:30: livre"></span><span class="slot free" title="Qui 10:00: livre"></span><span class="slot free" title="Qui 10:30: livre"></span><span class="slot free" title="Qui 11:00: livre"></span><span class="slot free" title="Qui 11:30: livre"></span><span class="almoco" aria-hidden="true"></span><span class="slot free" title="Qui 13:30: livre"></span><span class="slot free" title="Qui 14:00: livre"></span><span class="slot free" title="Qui 14:30: livre"></span><span class="slot free" title="Qui 15:00: livre"></span><span class="slot free" title="Qui 15:30: livre"></span><span class="slot free" title="Qui 16:00: livre"></span><span class="slot free" title="Qui 16:30: livre"></span><span class="slot free" title="Qui 17:00: livre"></span><span class="slot free" title="Qui 17:30: livre"></span><span class="slot free" title="Qui 18:00: livre"></span><span class="slot free" title="Qui 18:30: livre"></span><span class="slot off" title="Qui 19:00: fora do horário"></span><span class="slot off" title="Qui 19:30: fora do horário"></span><span class="slot off" title="Qui 20:00: fora do horário"></span><span class="slot off" title="Qui 20:30: fora do horário"></span></div></div>
+        <div class="dia"><span class="dia-nome">Sex <small>23/10</small></span><div class="slots" role="img" aria-label="Sex 23/10: todos os horários livres"><span class="slot free" title="Sex 09:00: livre"></span><span class="slot free" title="Sex 09:30: livre"></span><span class="slot free" title="Sex 10:00: livre"></span><span class="slot free" title="Sex 10:30: livre"></span><span class="slot free" title="Sex 11:00: livre"></span><span class="slot free" title="Sex 11:30: livre"></span><span class="almoco" aria-hidden="true"></span><span class="slot free" title="Sex 13:30: livre"></span><span class="slot free" title="Sex 14:00: livre"></span><span class="slot free" title="Sex 14:30: livre"></span><span class="slot free" title="Sex 15:00: livre"></span><span class="slot free" title="Sex 15:30: livre"></span><span class="slot free" title="Sex 16:00: livre"></span><span class="slot free" title="Sex 16:30: livre"></span><span class="slot free" title="Sex 17:00: livre"></span><span class="slot free" title="Sex 17:30: livre"></span><span class="slot free" title="Sex 18:00: livre"></span><span class="slot free" title="Sex 18:30: livre"></span><span class="slot free" title="Sex 19:00: livre"></span><span class="slot free" title="Sex 19:30: livre"></span><span class="slot free" title="Sex 20:00: livre"></span><span class="slot free" title="Sex 20:30: livre"></span></div></div>
+        <div class="dia"><span class="dia-nome">Sáb <small>24/10</small></span><div class="slots" role="img" aria-label="Sáb 24/10: todos os horários livres"><span class="slot free" title="Sáb 09:00: livre"></span><span class="slot free" title="Sáb 09:30: livre"></span><span class="slot free" title="Sáb 10:00: livre"></span><span class="slot free" title="Sáb 10:30: livre"></span><span class="slot free" title="Sáb 11:00: livre"></span><span class="slot free" title="Sáb 11:30: livre"></span><span class="almoco" aria-hidden="true"></span><span class="slot free" title="Sáb 13:30: livre"></span><span class="slot free" title="Sáb 14:00: livre"></span><span class="slot free" title="Sáb 14:30: livre"></span><span class="slot free" title="Sáb 15:00: livre"></span><span class="slot free" title="Sáb 15:30: livre"></span><span class="slot free" title="Sáb 16:00: livre"></span><span class="slot free" title="Sáb 16:30: livre"></span><span class="slot free" title="Sáb 17:00: livre"></span><span class="slot free" title="Sáb 17:30: livre"></span><span class="slot free" title="Sáb 18:00: livre"></span><span class="slot free" title="Sáb 18:30: livre"></span><span class="slot free" title="Sáb 19:00: livre"></span><span class="slot free" title="Sáb 19:30: livre"></span><span class="slot free" title="Sáb 20:00: livre"></span><span class="slot free" title="Sáb 20:30: livre"></span></div></div>
+        <div class="legenda"><span><i class="free"></i>livre</span><span><i class="busy"></i>ocupado</span><span><i class="off"></i>fora do horário</span></div>
+      </div>
+      <div class="callout">
+        <strong>O que isso quer dizer</strong>
+        <p>Ou a semana dele tem espaço de verdade (ótimo para o anúncio), ou quase ninguém marca pelo link e tudo acontece no WhatsApp e no balcão (aí o anúncio precisa ensinar a usar o link, ou levar ao WhatsApp). Perguntar sem acusar.</p>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>A concorrência no entorno</h3>
+      <div class="bars" role="list">
+        <div class="bar" role="listitem"><span class="nome">Barbearia Salve Jorge<small>Graça · paga anúncio no Google Maps em outra unidade</small></span><div class="track"><div class="fill" style="width:100%"></div></div><span class="num">792</span></div>
+        <div class="bar" role="listitem"><span class="nome">Farol Beach BarberShop<small>Barra</small></span><div class="track"><div class="fill" style="width:74.7%"></div></div><span class="num">592</span></div>
+        <div class="bar" role="listitem"><span class="nome">Barbearia Realeza Visagismo<small>paga anúncio no Google Maps</small></span><div class="track"><div class="fill" style="width:56.8%"></div></div><span class="num">450</span></div>
+        <div class="bar" role="listitem"><span class="nome">Navalha<small>tem o botão "Agendar on-line" no Google</small></span><div class="track"><div class="fill" style="width:32.3%"></div></div><span class="num">256</span></div>
+        <div class="bar" role="listitem"><span class="nome">Maestro Barbershop<small>Barra</small></span><div class="track"><div class="fill" style="width:32.1%"></div></div><span class="num">254</span></div>
+        <div class="bar" role="listitem"><span class="nome">Barbearia Medeiroz<small>Federação</small></span><div class="track"><div class="fill" style="width:15.8%"></div></div><span class="num">125</span></div>
+        <div class="bar us" role="listitem"><span class="nome">MB Barbearia<small>Calabar · 22 nas últimas três semanas</small></span><div class="track"><div class="fill" style="width:3%"></div></div><span class="num">24</span></div>
+      </div>
+      <p class="src">Avaliações no Google, busca "barbearia" com o mapa no Calabar, 19/10/2026. Preço dos concorrentes: não conferido.</p>
+      <div class="prose">
+        <p><strong>Quem anuncia em Salvador hoje</strong> (Biblioteca de Anúncios da Meta, 19/10): Barbearia Alphaville (vídeo curto e WhatsApp), Barber da Mara na Pituba ("1º corte masculino R$&nbsp;34,99", desde julho), G9 Barbearia (assinatura a R$&nbsp;129 por mês).</p>
+        <p><strong>Leitura:</strong> a MB não ganha por tamanho. Ganha por estar perto, ter preço claro e o barbeiro que as pessoas conhecem há anos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Dom Agenda -->
+  <section class="section" id="domagenda">
+    <div class="section-head">
+      <div class="eyebrow">04 · A agenda que ele usa</div>
+      <h2>Dom Agenda: aliado, não concorrente</h2>
+    </div>
+    <div class="prose">
+      <p>É um sistema de agendamento para barbearia (empresa Zs Technologia, do Paraná, pelo que tudo indica). O cliente marca em três passos, sem cadastro e sem pagar antes. Tem "repetir agendamento", que já é uma ferramenta de retorno.</p>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Plano</th><th class="num">Preço/mês</th><th>O que interessa para nós</th></tr></thead>
+        <tbody>
+          <tr><td>Iniciante</td><td class="num">R$&nbsp;14,90</td><td>Agenda, clientes, assinaturas</td></tr>
+          <tr><td>Profissional</td><td class="num">R$&nbsp;39,90</td><td>Fidelidade, indique e ganhe, pedido de avaliação no Google em um toque, atendente de IA no WhatsApp</td></tr>
+          <tr><td>Mestre</td><td class="num">R$&nbsp;69,90</td><td>Mensagem em massa, recuperação de cliente sumido, <strong>pixel da Meta</strong> (para medir quem agendou pelo anúncio)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <ul>
+        <li><strong>Não sabemos qual plano ele usa.</strong> O pico de avaliações sugere o Profissional ou mais. Perguntar.</li>
+        <li><strong>Hoje não há pixel da Meta na página dele</strong>, então ninguém consegue medir quem agendou por anúncio. No plano Mestre isso existe, mas ainda não testamos se funciona de verdade.</li>
+        <li><strong>Onde a Horus entra:</strong> trazer gente nova (anúncio), arrumar Google e Instagram, escrever as mensagens de retorno e medir. O Dom Agenda não faz nada disso.</li>
+        <li><strong>O que não vender:</strong> site, sistema de agenda, robô de WhatsApp. Seria competir com uma ferramenta de R$&nbsp;15 a 70 que ele já tem.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. Estratégia -->
+  <section class="section" id="estrategia">
+    <div class="section-head">
+      <div class="eyebrow">05 · O que propor</div>
+      <h2>Arrumar o caminho, trazer gente perto, fazer voltar, medir</h2>
+    </div>
+    <div class="opp">
+      <div class="cell">
+        <h3>1. Arrumar o que é de graça (semana 1)</h3>
+        <ul>
+          <li>Google com link da agenda, horário e endereço certos, fotos reais</li>
+          <li>Instagram com link, destaques e fixados</li>
+          <li>QR code de avaliação para todo cliente</li>
+        </ul>
+      </div>
+      <div class="cell">
+        <h3>2. Trazer gente perto (semana 2 em diante)</h3>
+        <ul>
+          <li>Um anúncio só, para quem está a 2 ou 3 km (Calabar, Ondina, Federação, Barra, Garcia)</li>
+          <li>Vídeo real do corte dele, com preço na tela</li>
+          <li>Rodando só no horário em que ele atende</li>
+        </ul>
+      </div>
+      <div class="cell">
+        <h3>3. Fazer voltar</h3>
+        <ul>
+          <li>Confirmação do horário que pede resposta (é o que mais reduz falta)</li>
+          <li>Mensagem para quem passou de 30 a 35 dias sem marcar</li>
+          <li>"Repetir agendamento" oferecido na cadeira</li>
+        </ul>
+      </div>
+      <div class="cell">
+        <h3>4. Medir até a cadeira</h3>
+        <ul>
+          <li>De onde veio cada cliente novo (pergunta "como conheceu?")</li>
+          <li>Quanto custou trazer cada um</li>
+          <li>Quantos voltaram em 45 dias: <strong>esse é o número que decide</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>Para onde o anúncio leva: decidir na reunião</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Se ele...</th><th>O anúncio leva para</th><th>Por quê</th></tr></thead>
+          <tbody>
+            <tr><td>Responde o WhatsApp em minutos, mesmo cortando</td><td><strong>WhatsApp</strong>, com mensagem pronta diferente em cada anúncio</td><td>Conversa converte bem e a mensagem pronta mostra de qual anúncio veio</td></tr>
+            <tr><td>Não consegue responder com a máquina na mão</td><td><strong>A agenda online</strong></td><td>O cliente marca sozinho; ninguém fica esperando resposta</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>O caminho de um cliente novo</h3>
+      <ol class="steps">
+        <li><strong>Vê o vídeo</strong><span>No Instagram, perto de casa ou do trabalho</span></li>
+        <li><strong>Confere a MB</strong><span>Perfil arrumado e nota 5,0 no Google</span></li>
+        <li><strong>Marca em 3 toques</strong><span>Na agenda, no horário livre</span></li>
+        <li><strong>Senta na cadeira</strong><span>Com confirmação na véspera</span></li>
+        <li class="volta"><strong>Volta</strong><span>É aqui que o anúncio se paga</span></li>
+      </ol>
+    </div>
+
+    <div class="sub">
+      <h3>Quem queremos atrair</h3>
+      <div class="prose">
+        <ul>
+          <li><strong>Prioridade:</strong> homens de 18 a 40 do Calabar, Federação e Ondina que fazem degradê ou pigmentação (voltam a cada 2 ou 3 semanas, pelo que as barbearias contam).</li>
+          <li><strong>Também:</strong> quem trabalha ou mora na Barra, Ondina e Garcia e quer marcar horário sem esperar (leva corte e barba, ticket maior); pai e filho na mesma visita.</li>
+          <li><strong>Evitar:</strong> caçador de desconto e gente longe. Nada de "primeiro corte grátis".</li>
+          <li><strong>Detalhe técnico:</strong> a Meta não deixa travar o anúncio só para homens nesse tipo de campanha; quem filtra é o próprio vídeo (rosto masculino, "corte masculino", preço na tela).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>Três ideias de vídeo para levar (só em texto; nada produzido antes de fechar)</h3>
+      <div class="ideias">
+        <div class="ideia">
+          <span class="tag">O barbeiro conhecido</span>
+          <p class="gancho">"Desde 2008 cuidando do corte de quem mora aqui."</p>
+          <div class="roteiro">
+            <div><b>0 a 3s</b><span>Ele na cadeira, olhando para a câmera</span></div>
+            <div><b>3 a 10s</b><span>O corte acontecendo; na tela, "meu barbeiro há mais de 20 anos"</span></div>
+            <div><b>10 a 15s</b><span>"Marca pelo link, chega e senta."</span></div>
+          </div>
+        </div>
+        <div class="ideia">
+          <span class="tag">Marca em 3 toques</span>
+          <p class="gancho">"Sem esperar resposta no WhatsApp."</p>
+          <div class="roteiro">
+            <div><b>0 a 3s</b><span>A tela do celular escolhendo o horário</span></div>
+            <div><b>3 a 10s</b><span>Serviço, horário, confirmar</span></div>
+            <div><b>10 a 15s</b><span>O cliente chegando e o corte pronto</span></div>
+          </div>
+        </div>
+        <div class="ideia">
+          <span class="tag">Do jeito que você pediu</span>
+          <p class="gancho">"Corte R$&nbsp;30. Corte e barba R$&nbsp;45."</p>
+          <div class="roteiro">
+            <div><b>0 a 3s</b><span>Antes: o cabelo crescido</span></div>
+            <div><b>3 a 10s</b><span>Degradê ou pigmentação sendo feito</span></div>
+            <div><b>10 a 15s</b><span>Depois, com o preço na tela</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="note"><strong>Oferta (decisão dele):</strong> dar um extra em vez de desconto. Exemplo: "primeira visita, sobrancelha ou pezinho por nossa conta" e "voltou em até 30 dias, pezinho incluso". A segunda puxa a volta, que é o que decide a conta.</p>
+    </div>
+  </section>
+
+  <!-- 6. A conta -->
+  <section class="section" id="conta">
+    <div class="section-head">
+      <div class="eyebrow">06 · A conta</div>
+      <h2>Quantos atendimentos a mais pagam o investimento dele</h2>
+      <p>Na reunião, fazer esta conta <strong>numa calculadora ou planilha em branco, com a tela compartilhada</strong>, usando os números dele. Esta aqui é para a gente treinar.</p>
+    </div>
+    <div class="calc">
+      <div class="fields">
+        <span class="example">Valores de exemplo. Troque pelos dele</span>
+        <div class="field">
+          <label for="ticket">Valor médio de um atendimento (R$)</label>
+          <input id="ticket" type="number" inputmode="decimal" min="0" step="1" value="38">
+          <small>R$&nbsp;38 fica entre o corte (R$&nbsp;30) e o corte com barba (R$&nbsp;45).</small>
+        </div>
+        <div class="field">
+          <label for="custo">O que sai do bolso em cada atendimento (R$)</label>
+          <input id="custo" type="number" inputmode="decimal" min="0" step="1" value="4">
+          <small>Produto e taxa do cartão. Se for um barbeiro comissionado cortando, somar a comissão (a conta piora muito).</small>
+        </div>
+        <div class="field">
+          <label for="invest">Quanto ele gasta por mês com a gente e o anúncio (R$)</label>
+          <input id="invest" type="number" inputmode="decimal" min="0" step="1" value="1373">
+          <small>Exemplo da opção A: R$&nbsp;690 da Horus + R$&nbsp;600 de anúncio + cerca de 14% de imposto da Meta sobre o anúncio.</small>
+        </div>
+        <div class="field">
+          <label for="dias">Dias de trabalho no mês</label>
+          <input id="dias" type="number" inputmode="numeric" min="1" max="31" step="1" value="22">
+          <small>Terça a sábado dão cerca de 22 dias.</small>
+        </div>
+      </div>
+      <div class="result" aria-live="polite">
+        <div class="n" id="atend">41</div>
+        <p id="frase">atendimentos a mais por mês pagam o investimento.</p>
+        <p class="dia-n" id="pordia">Cerca de 1,9 por dia de trabalho.</p>
+        <p class="soft" id="detalhe">Cada atendimento deixa R$ 34. O que passar disso é ganho dele.</p>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>Por que "o anúncio se paga na volta"</h3>
+      <div class="prose">
+        <p>Imagine que cada cliente novo trazido pelo anúncio custe R$&nbsp;25 de anúncio. No primeiro corte ele deixa R$&nbsp;34 e mal paga a si mesmo; a mensalidade da Horus fica descoberta. Se esse cliente volta todo mês, cada volta deixa mais R$&nbsp;34 sem custo novo de anúncio. É isso que fecha a conta a partir do segundo ou terceiro mês.</p>
+        <p>Três cenários de três meses, todos <strong>hipotéticos</strong>, com R$&nbsp;600 de anúncio por mês. Ninguém sabe o número real antes de medir; o primeiro mês serve para isso.</p>
+      </div>
+      <div class="tbl-wrap">
+        <table class="wide">
+          <thead><tr><th></th><th class="num">Pessimista</th><th class="num">Base</th><th class="num">Otimista</th></tr></thead>
+          <tbody>
+            <tr><td>Custo de anúncio por cliente novo que apareceu</td><td class="num">R$&nbsp;45</td><td class="num">R$&nbsp;25</td><td class="num">R$&nbsp;12</td></tr>
+            <tr><td>Clientes novos por mês</td><td class="num">15</td><td class="num">27</td><td class="num">57</td></tr>
+            <tr><td>Desses, quantos passam a voltar todo mês</td><td class="num">20%</td><td class="num">35%</td><td class="num">50%</td></tr>
+            <tr><td>Atendimentos vindos do anúncio no mês 1, 2 e 3</td><td class="num">15 · 18 · 21</td><td class="num">27 · 36 · 45</td><td class="num">57 · 85 · 113</td></tr>
+            <tr><td>Resultado em 3 meses com a <strong>opção A</strong> (R$&nbsp;1.373 por mês)</td><td class="num">−R$&nbsp;2.283</td><td class="num">−R$&nbsp;447</td><td class="num">+R$&nbsp;4.551</td></tr>
+            <tr><td>Resultado em 3 meses com a <strong>opção B</strong> (R$&nbsp;1.673 por mês)</td><td class="num">−R$&nbsp;3.183</td><td class="num">−R$&nbsp;1.347</td><td class="num">+R$&nbsp;3.651</td></tr>
+            <tr><td>Clientes fiéis novos ao fim dos 3 meses</td><td class="num">~9</td><td class="num">~27</td><td class="num">~85</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">No cenário base, ao fim de três meses ele ainda está um pouco no negativo, mas ganhou cerca de 27 clientes que voltam todo mês (perto de R$&nbsp;900 por mês de ganho que continua). No otimista, o mês 3 provavelmente esbarra no limite de um barbeiro sozinho. Por isso a regra de parada no dia 45.</p>
+    </div>
+  </section>
+
+  <!-- 7. Preço -->
+  <section class="section" id="preco">
+    <div class="section-head">
+      <div class="eyebrow">07 · Preço: decidido em 19/10/2026</div>
+      <h2>Vamos com a opção A</h2>
+      <p>As duas são "condição de primeiro cliente" por três meses, com a mesma troca: ele autoriza usar os números como caso de sucesso, grava um depoimento se der resultado e indica três barbeiros ou comerciantes. O trabalho entregue é o mesmo nas duas. <strong>Muda só quanto ele paga para a Horus.</strong></p>
+    </div>
+    <div class="opcoes">
+      <div class="opcao rec">
+        <span class="tag">Opção A · escolhida</span>
+        <div class="price">R$&nbsp;690 <small>/mês nos 3 primeiros meses</small></div>
+        <dl>
+          <dt>Implantação (semana 1)</dt><dd>de graça</dd>
+          <dt>Do 4º mês em diante</dt><dd>R$&nbsp;890/mês</dd>
+          <dt>Anúncio pago por ele à Meta</dt><dd>R$&nbsp;600 + imposto ≈ R$&nbsp;683</dd>
+          <dt>Total que sai do bolso dele</dt><dd>≈ R$&nbsp;1.373/mês</dd>
+          <dt>Para empatar, ele precisa de</dt><dd>41 atendimentos/mês (≈ 1,9/dia)</dd>
+          <dt>A Horus recebe em 3 meses</dt><dd>R$&nbsp;2.070</dd>
+        </dl>
+      </div>
+      <div class="opcao">
+        <span class="tag">Opção B · condição da Paralela, descartada</span>
+        <div class="price">R$&nbsp;990 <small>/mês nos 3 primeiros meses</small></div>
+        <dl>
+          <dt>Implantação (semana 1)</dt><dd>sem cobrança à parte</dd>
+          <dt>Do 4º mês em diante</dt><dd>a definir</dd>
+          <dt>Anúncio pago por ele à Meta</dt><dd>R$&nbsp;600 + imposto ≈ R$&nbsp;683</dd>
+          <dt>Total que sai do bolso dele</dt><dd>≈ R$&nbsp;1.673/mês</dd>
+          <dt>Para empatar, ele precisa de</dt><dd>50 atendimentos/mês (≈ 2,3/dia)</dd>
+          <dt>A Horus recebe em 3 meses</dt><dd>R$&nbsp;2.970</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="reco">
+      <strong>Por que a A</strong>
+      <p>A B dá R$&nbsp;900 a mais para a Horus em três meses. Mas os R$&nbsp;990 nasceram na Paralela, uma loja de película com serviço de R$&nbsp;500; aqui o corte é R$&nbsp;30. Com a B, ele precisa de nove atendimentos a mais por mês só para empatar, e no cenário base termina os três meses R$&nbsp;1.347 no negativo, contra R$&nbsp;447 na A. Cliente que se sente no prejuízo cancela no segundo mês, e a Horus perde o primeiro caso de barbearia, que vale mais que esses R$&nbsp;900: barbearia é um nicho com muitos negócios, e o caso abre a porta para os outros. A mensalidade de R$&nbsp;690 a 890 está dentro do que o mercado cobra (o Pedro Sobral usa R$&nbsp;750 como exemplo de mensalidade de gestão).</p>
+    </div>
+    <div class="sub">
+      <h3>Os três planos que aparecem na conversa (a opção A é o plano do meio)</h3>
+      <div class="tbl-wrap">
+        <table class="wide">
+          <thead><tr><th></th><th>Inicial</th><th>Recomendado</th><th>Ampliado</th></tr></thead>
+          <tbody>
+            <tr><td>Para quem</td><td>Barbeiro sozinho, conta apertada</td><td>Dono com horário vazio na semana</td><td>2 ou mais barbeiros, ou depois do 3º mês com número bom</td></tr>
+            <tr><td>Implantação</td><td>R$&nbsp;390</td><td>R$&nbsp;490 (de graça na opção A)</td><td>R$&nbsp;690</td></tr>
+            <tr class="destaque"><td>Mensalidade Horus</td><td>R$&nbsp;590</td><td><strong>R$&nbsp;890</strong> (R$&nbsp;690 nos 3 primeiros meses)</td><td>R$&nbsp;1.390</td></tr>
+            <tr><td>Anúncio (pago por ele à Meta)</td><td>R$&nbsp;450</td><td>R$&nbsp;600 a 900</td><td>R$&nbsp;1.200 ou mais</td></tr>
+            <tr><td>Vídeos</td><td>Roteiro; ele grava; 3 edições simples</td><td>Roteiro mensal e 4 edições por mês</td><td>Mais uma gravação presencial por mês</td></tr>
+            <tr><td>Google</td><td>Arrumar uma vez</td><td>Cuidar todo mês e acompanhar avaliações</td><td>Igual, mais posts</td></tr>
+            <tr><td>Fazer voltar</td><td>Lembrete ligado</td><td>Mensagem de volta e fidelidade na agenda</td><td>Mais clube de assinatura</td></tr>
+            <tr><td>Relatório</td><td>A cada 15 dias</td><td>Semanal curto e reunião mensal</td><td>Semanal e reunião a cada 15 dias</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Contrato de três meses, revisão no dia 45 com regra de parada por escrito, conta de anúncio e cartão no nome dele. Se ele atende sozinho e a semana está cheia de manhã, oferecer o Inicial.</p>
+    </div>
+  </section>
+
+  <!-- 8. Roteiro -->
+  <section class="section" id="roteiro">
+    <div class="section-head">
+      <div class="eyebrow">08 · Roteiro da reunião</div>
+      <h2>45 a 60 minutos, online por vídeo</h2>
+      <p>Câmera ligada dos dois lados: online fecha igual ao presencial, desde que o compromisso saia dentro da chamada. Como não dá para ver a cadeira, a gente pede para ele mostrar a agenda. As perguntas com <span style="color:var(--star)">★</span> mudam o plano; as outras, se der tempo. Conversa, não interrogatório.</p>
+      <div class="callout"><strong>Antes de entrar (15 minutos antes)</strong>
+        <ul class="qs">
+          <li>Link da chamada de vídeo enviado e confirmado com ele (vídeo, não ligação de WhatsApp)</li>
+          <li>Três abas abertas para compartilhar: a ficha da MB no Google, o Instagram @mbbarbearia1__ e a agenda online dele. Esta página fora da tela compartilhada</li>
+          <li>Uma calculadora ou planilha em branco para fazer a conta com ele</li>
+          <li>Chave Pix da Horus e o contrato (<span class="mono">templates/contrato-padrao.md</span>) prontos para mandar no WhatsApp durante a chamada</li>
+          <li>Câmera, luz e áudio testados; roteiro aberto em outra tela ou impresso</li>
+        </ul>
+      </div>
+    </div>
+    <ol class="etapas">
+      <li class="etapa">
+        <div class="etapa-head"><h3>Abertura</h3><span class="tempo">5 min</span></div>
+        <p>Começar por um elogio verdadeiro e específico.</p>
+        <p class="fala">"Vi que você ganhou 22 avaliações cinco estrelas no Google em três semanas. E tem cliente escrevendo 'meu barbeiro há mais de 20 anos'. Isso é raro."</p>
+        <ul class="qs"><li>Desde quando a MB está aí no Calabar? Sempre foi você na cadeira?</li></ul>
+      </li>
+      <li class="etapa">
+        <div class="etapa-head"><h3>O que ele quer</h3><span class="tempo">5 min</span></div>
+        <ul class="qs"><li class="chave">Se der certo, como fica a MB daqui a um ano? Agenda cheia, mais um barbeiro, subir o preço?<small>Diz o tamanho do sonho e se faz sentido falar de equipe e clube depois</small></li></ul>
+      </li>
+      <li class="etapa">
+        <div class="etapa-head"><h3>Como funciona hoje</h3><span class="tempo">10 min</span></div>
+        <ul class="qs">
+          <li class="chave">Quantas cadeiras e quantos barbeiros hoje?<small>Muda tudo: barbeiro comissionado deixa bem menos por corte</small></li>
+          <li class="chave">Numa semana normal, quantos atendimentos? Que dias e horários ficam vazios?<small>Sem horário vazio, não há o que o anúncio encher</small></li>
+          <li class="chave">Como o pessoal marca: pelo link, pelo WhatsApp ou chegando?<small>Explica a agenda online vazia</small></li>
+          <li>Quantas faltas numa semana?</li>
+          <li>Pode abrir o painel do Dom Agenda e me dizer quantos atendimentos teve na semana passada?<small>Substitui o "ver a agenda" que a reunião presencial daria</small></li>
+        </ul>
+      </li>
+      <li class="etapa">
+        <div class="etapa-head"><h3>Os números</h3><span class="tempo">10 min</span></div>
+        <p>Fazer a conta junto, na calculadora com a tela compartilhada. Os números são dele.</p>
+        <ul class="qs">
+          <li class="chave">Em média, quanto deixa cada cliente?</li>
+          <li class="chave">O que sai do bolso por corte (produto, comissão)?</li>
+          <li>De quanto em quanto tempo o cliente fiel volta? Muitos fazem degradê?</li>
+        </ul>
+      </li>
+      <li class="etapa">
+        <div class="etapa-head"><h3>De onde vem o cliente</h3><span class="tempo">5 min</span></div>
+        <ul class="qs">
+          <li class="chave">Enquanto você corta, quem responde o WhatsApp, e em quanto tempo?<small>Decide se o anúncio leva ao WhatsApp ou à agenda</small></li>
+          <li class="chave">Já impulsionou ou anunciou? Quanto colocou e o que trouxe?</li>
+          <li>De onde vieram os últimos clientes novos? Qual plano do Dom Agenda você usa?</li>
+        </ul>
+      </li>
+      <li class="etapa">
+        <div class="etapa-head"><h3>Mostrar o que achamos</h3><span class="tempo">5 min</span></div>
+        <p>Pedir licença e <strong>compartilhar a tela</strong> com a ficha do Google e o Instagram dele.</p>
+        <p class="fala">"Posso te mostrar quatro coisas que achei estudando a MB?"</p>
+        <ul class="qs">
+          <li>"Quem te acha no Google não tem botão para marcar: falta o link da sua agenda."</li>
+          <li>"No Google você aparece aberto segunda à tarde; na agenda, segunda está fechado. E o CEP é diferente nos dois."</li>
+          <li>"A bio do Instagram não leva a lugar nenhum, e todo anúncio manda a pessoa para lá."</li>
+          <li>"Seu perfil pessoal tem 1.705 seguidores; o da barbearia, 118. O rosto que vende é o seu."</li>
+        </ul>
+        <div class="callout warn"><strong>Sobre a foto com cara de IA</strong><p>Não dizer que é falsa. Dizer: "Nos anúncios a gente usa o seu salão e o seu corte de verdade; é o que faz a pessoa chegar e reconhecer o lugar."</p></div>
+      </li>
+      <li class="etapa">
+        <div class="etapa-head"><h3>A proposta</h3><span class="tempo">5 min</span></div>
+        <p class="fala">"Primeiro a gente conserta o que é de graça: Google, Instagram e agenda. Depois põe um anúncio pequeno, só para quem está perto, com vídeo do seu corte. E liga as funções da sua agenda que fazem o cliente voltar, porque num corte de R$&nbsp;30 o anúncio se paga quando o cliente volta."</p>
+        <p class="fala">"Impulsionar é o modo automático do celular. O que a gente monta mostra vários vídeos ao mesmo tempo, só perto daqui, só no seu horário, e no fim do mês você vê quantos clientes novos vieram, quanto custou cada um e quantos voltaram."</p>
+      </li>
+      <li class="etapa">
+        <div class="etapa-head"><h3>Preço e objeções</h3><span class="tempo">5 min</span></div>
+        <p>Falar o preço olhando para ele, na reunião, nunca mandar depois por mensagem. Mostrar os três planos e defender o do meio, na condição de primeiro cliente: R$&nbsp;690 por mês nos três primeiros meses, implantação de graça, depois R$&nbsp;890 (seção 07). Objeções na seção 09.</p>
+        <ul class="qs"><li class="chave">"Somando o nosso trabalho e o anúncio, quanto cabe por mês sem apertar?"</li></ul>
+      </li>
+      <li class="etapa">
+        <div class="etapa-head"><h3>Fechamento</h3><span class="tempo">5 min</span></div>
+        <p class="fala">"Pelo que você me contou, o que faz sentido é o plano do meio, na condição de primeiro cliente. Fechando hoje, amanhã eu começo a arrumar seu Google, o Instagram e a agenda; você grava os vídeos com o roteiro, e o anúncio vai ao ar assim que a Meta aprovar. O primeiro mês é por Pix, e o contrato é de três meses com revisão no dia 45. Fechamos?"</p>
+        <p class="note">Se ele disser sim: mandar a chave Pix e o contrato no WhatsApp ali mesmo, com a chamada aberta, e combinar a data da gravação dos vídeos antes de desligar.</p>
+        <p class="note">Se ele disser "vou pensar": "Claro. O que precisaria ficar claro para você decidir?" e marcar o retorno com dia e hora.</p>
+      </li>
+    </ol>
+
+    <div class="sinais">
+      <div class="cell verde">
+        <h3>Sinais de que vai fechar</h3>
+        <ul>
+          <li>Pergunta "quando começa?" ou "como pago?"</li>
+          <li>Fala de horário vazio sem a gente puxar</li>
+          <li>Acha que dois cortes a mais por dia é possível</li>
+          <li>Já pensou em pôr mais um barbeiro</li>
+        </ul>
+      </div>
+      <div class="cell amarelo">
+        <h3>Sinais para ir com calma</h3>
+        <ul>
+          <li>A agenda real está cheia (aí o caminho é retenção e preço, não anúncio)</li>
+          <li>Quer resultado em uma semana</li>
+          <li>Quer anunciar desconto pesado</li>
+          <li>Ninguém responde o WhatsApp e ele não quer usar o link</li>
+          <li>Verba menor que R$&nbsp;15 por dia</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Cola -->
+  <section class="section" id="cola">
+    <div class="section-head">
+      <div class="eyebrow">09 · Cola e objeções</div>
+      <h2>O que ele pode perguntar, e a resposta curta</h2>
+      <p>Responder curto, sem jargão, e voltar para a pergunta dele. Nenhum número aqui é promessa.</p>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Se ele disser</th><th>Resposta</th></tr></thead>
+        <tbody>
+          <tr><td>"Tá caro"</td><td>Fazer a conta com os números dele: "Precisa de uns dois cortes a mais por dia para empatar. Sua semana tem esse espaço?" Se ainda pesar, o plano Inicial. Saber: o Sebrae sugere R$&nbsp;100 a 500 por mês de marketing para barbearia pequena; essa pode ser a referência dele. Não discutir "mercado", discutir a conta.</td></tr>
+          <tr><td>"Já impulsionei e não deu"</td><td>"Quanto colocava e o que media? O impulsionar costuma medir curtida. A gente mede cliente que sentou na cadeira e voltou."</td></tr>
+          <tr><td>"O Dom Agenda já promete agenda cheia"</td><td>"Ele é a sua agenda, e é boa. Mas ele não traz gente nova; quem traz é o anúncio. A gente usa a sua agenda como destino e liga as funções de volta que você já paga."</td></tr>
+          <tr><td>"Não tenho tempo de gravar"</td><td>"Cinco vídeos de 15 segundos numa tarde, com o roteiro na mão. O resto é com a gente."</td></tr>
+          <tr><td>"E se não der resultado?"</td><td>"Por isso tem revisão no dia 45 com regra escrita: se o custo de cada cliente que voltou passar do combinado, o anúncio para e fica só o trabalho de graça."</td></tr>
+          <tr><td>"Todo mundo do bairro já me conhece"</td><td>"Os do bairro, sim. O anúncio mira o vizinho de Ondina, Barra e Federação que passa perto e nunca entrou."</td></tr>
+          <tr><td>"Só pago se der resultado"</td><td>"Hoje não dá para medir de onde vem cada cliente com segurança. Em dois meses, com o número na mão, a gente conversa um bônus por resultado."</td></tr>
+          <tr><td>"Vocês já fizeram isso? Têm caso?"</td><td>"Em barbearia, você seria o primeiro. Por isso a condição é especial e eu acompanho de perto, com número toda semana."</td></tr>
+          <tr><td>"Quantos clientes vou ter?"</td><td>"Ninguém sério promete número. Nas primeiras semanas a gente mede quanto custa cada cliente novo e quantos voltam."</td></tr>
+          <tr><td>"Começa no dia seguinte?"</td><td>"A gente começa a montar no dia seguinte ao pagamento. Para o anúncio ir ao ar faltam quatro coisas: o acesso à sua conta de anúncio, os vídeos reais do salão, alguém para responder (ou o link da agenda) e a aprovação da Meta, que pode levar um dia." Não prometer data do anúncio no ar: depende dele, e virar o primeiro atrito é o pior começo.</td></tr>
+          <tr><td>"Preciso de site?"</td><td>"Não. Sua agenda online já é o site. A gente só leva gente até ela."</td></tr>
+          <tr><td>"A conta fica no nome de quem?"</td><td>"No seu, com o seu cartão. A gente entra como parceiro. Se um dia parar, a gente sai e fica tudo com você."</td></tr>
+          <tr><td>"Quanto de imposto?"</td><td>"A Meta cobra uns 14% por cima do valor do anúncio, na fatura do cartão. Já te falo agora para não ter surpresa."</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sub">
+      <h3>Cinco frases para saber de cor</h3>
+      <ol class="frases">
+        <li>"Num corte de R$&nbsp;30, o anúncio se paga quando o cliente volta."</li>
+        <li>"Primeiro a gente conserta o que é de graça: Google, Instagram e agenda."</li>
+        <li>"A conta e o cartão ficam no seu nome."</li>
+        <li>"A gente mede até a cadeira e a volta, não até a curtida."</li>
+        <li>"No dia 45, se não estiver se pagando, a gente pausa e ajusta."</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 10. Depois -->
+  <section class="section" id="depois">
+    <div class="section-head">
+      <div class="eyebrow">10 · Depois da reunião</div>
+      <h2>Se fechar, os primeiros 45 dias</h2>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Quando</th><th>O quê</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">Dias 1 a 3</td><td>Acessos: conta de anúncio no nome dele com o cartão dele, Google, Instagram, Dom Agenda</td></tr>
+          <tr><td class="mono">Dias 1 a 5</td><td>Google e Instagram arrumados; lembrete, confirmação e mensagem de volta ligados na agenda; jeito de medir a origem combinado</td></tr>
+          <tr><td class="mono">Dias 3 a 7</td><td>Roteiro, gravação e edição de 4 a 5 vídeos</td></tr>
+          <tr><td class="mono">Dia 8</td><td>Anúncio no ar, só no horário de atendimento; 48 horas sem mexer</td></tr>
+          <tr><td class="mono">Semanas 2 a 4</td><td>Relatório semanal curto; troca do vídeo mais fraco a cada 2 semanas</td></tr>
+          <tr><td class="mono">Dia 30</td><td>Clientes novos, custo de cada um, comparecimento, primeiras voltas</td></tr>
+          <tr><td class="mono">Dia 45</td><td>Revisão com a regra de parada: manter, ajustar ou pausar o anúncio</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p><strong>Se não fechar na mesa:</strong> anotar o motivo real no Hounder e marcar o retorno com data.</p>
+      <p><strong>O que ainda não sabemos:</strong> número de cadeiras e barbeiros, ocupação real, plano do Dom Agenda, endereço e horário certos, se a foto de abril é de IA, preço dos concorrentes, CNPJ e como o contato chegou até a Horus.</p>
+    </div>
+  </section>
+
+  <!-- 11. Preparo pessoal -->
+  <section class="section" id="preparo">
+    <div class="section-head">
+      <div class="eyebrow">11 · Para você chegar seguro</div>
+      <h2>Ninguém precisa saber tudo. Precisa saber o negócio dele</h2>
+      <p>O que faz parecer profissional amanhã não é falar termo técnico. É mostrar que estudou a MB, fazer boas perguntas, fazer a conta com os números dele e ser honesto sobre o que é promessa e o que é medição. Isso a gente já tem pronto.</p>
+    </div>
+
+    <div class="sub">
+      <h3>Hoje à noite: 1h15, e depois descansar</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Tempo</th><th>O quê</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">20 min</td><td>Esta página: seções 01 (resumo), 08 (roteiro) e 09 (cola). Leia a cola em voz alta.</td></tr>
+            <tr><td class="mono">20 min</td><td>Um texto do Pedro Sobral, para pegar o jeito de falar de tráfego local: <a href="https://pedrosobral.com.br/blog/c/trafego-pago-para-negocios-locais/trafego-para-empresas-e-negocios-locais-um-guia-atualizado-para-2025" target="_blank" rel="noopener">tráfego para negócios locais</a> ou <a href="https://pedrosobral.com.br/blog/c/estrategias-de-trafego-pago/como-eu-faria-trafego-para-uma-hamburgueria" target="_blank" rel="noopener">como ele faria tráfego para uma hamburgueria</a> (negócio de bairro, igual à MB).</td></tr>
+            <tr><td class="mono">15 min</td><td>Abrir o Gerenciador de Anúncios (business.facebook.com) e clicar até o fim de uma campanha de rascunho: objetivo, local, raio, orçamento, anúncio. <strong>Não publicar.</strong> Ver a tela uma vez tira metade do medo.</td></tr>
+            <tr><td class="mono">20 min</td><td>Ensaio com o Antônio fazendo o papel do Marcelo Bispo: abertura, a pergunta do sonho, o preço e três objeções ("tá caro", "já impulsionei", "e se não der resultado?").</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Depois da reunião, para ir mais fundo: o manual da casa em <span class="mono">_memoria/trafego/</span> (cerca de 2 horas), o blog e o canal do Sobral, e o relatório de 19/10 em <span class="mono">_memoria/trafego/fontes/reports/</span>.</p>
+    </div>
+
+    <div class="sub">
+      <h3>As palavras que podem aparecer, e como dizer para ele</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Palavra</th><th>O que é, em uma frase que ele entende</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Gerenciador de Anúncios</strong></td><td>O painel completo da Meta para anunciar no Instagram e no Facebook. O "impulsionar" é a versão rápida, dentro do app.</td></tr>
+            <tr><td><strong>Campanha</strong></td><td>O anúncio inteiro: o objetivo (conversa no WhatsApp ou agendamento), quem vê e quanto gasta por dia.</td></tr>
+            <tr><td><strong>Raio</strong></td><td>A distância da barbearia em que o anúncio aparece. Para a MB, 2 a 3 km.</td></tr>
+            <tr><td><strong>Verba</strong></td><td>O dinheiro que vai para a Meta, no cartão dele. Separado do que a Horus cobra. A Meta soma uns 14% de imposto na fatura.</td></tr>
+            <tr><td><strong>Criativo</strong></td><td>O vídeo ou a imagem do anúncio. Hoje é o criativo que escolhe quem vê: vídeo de corte masculino acha homem que corta cabelo.</td></tr>
+            <tr><td><strong>Fase de aprendizado</strong></td><td>As primeiras uma ou duas semanas, quando a Meta testa para quem mostrar. Por isso não se julga o anúncio no primeiro dia.</td></tr>
+            <tr><td><strong>Custo por cliente novo</strong></td><td>Quanto de anúncio foi gasto para cada pessoa nova que sentou na cadeira. É o número que importa, não curtida.</td></tr>
+            <tr><td><strong>Pixel</strong></td><td>Um código na página de agendamento que conta para a Meta quem marcou horário depois de ver o anúncio. O plano Mestre do Dom Agenda tem.</td></tr>
+            <tr><td><strong>Remarketing</strong></td><td>Mostrar de novo o anúncio para quem já viu ou visitou o perfil. Com verba pequena, fica para depois.</td></tr>
+            <tr><td><strong>Regra de parada</strong></td><td>O combinado por escrito: no dia 45, se o custo por cliente que voltou passar do limite, o anúncio pausa.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>Como falar</h3>
+      <div class="prose">
+        <ul>
+          <li><strong>Pergunte mais do que fala.</strong> Deixe ele falar a maior parte do tempo. Cada resposta dele vira argumento seu depois.</li>
+          <li><strong>Use as palavras dele.</strong> Se ele diz "cadeira vazia", você diz "cadeira vazia", não "capacidade ociosa".</li>
+          <li><strong>Frase curta, devagar.</strong> Pausa depois de uma pergunta importante. Depois de dizer o preço, silêncio: deixe ele reagir primeiro.</li>
+          <li><strong>Número só com origem.</strong> "Na sua ficha do Google hoje...", "com os seus números...". Nunca "a gente vai trazer X clientes".</li>
+          <li><strong>Quando não souber:</strong> "Boa pergunta. Não quero te responder no chute: confiro e te mando até amanhã à tarde." Isso soa mais profissional que inventar.</li>
+          <li><strong>Se ele perguntar se a Horus já fez tráfego:</strong> a verdade, com firmeza. "Em barbearia, você seria o primeiro. Por isso a condição é especial e eu acompanho de perto, com número toda semana. O que a gente já faz bem é o que mais pesa no resultado: entender o negócio, o atendimento e a medição."</li>
+          <li><strong>Não peça desculpa pelo preço</strong> nem explique demais. Diga o valor, diga o que está incluso, e pare.</li>
+          <li><strong>Venda o sonho, com fato.</strong> Volte à resposta dele sobre "daqui a um ano" na hora da proposta: "você falou em ... ; é para isso que serve o plano."</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>Câmera, roupa e ambiente</h3>
+      <div class="grid-3">
+        <div class="cell">
+          <h3>Roupa</h3>
+          <p>Camisa de botão ou polo lisa, cor sólida (azul, cinza ou branco), sem estampa e sem logo grande. Arrumado, sem terno: ele é dono de barbearia de bairro, e terno cria distância.</p>
+          <p><strong>Cabelo e barba feitos.</strong> Ele é barbeiro e vai reparar.</p>
+        </div>
+        <div class="cell">
+          <h3>Câmera e luz</h3>
+          <p>Câmera na altura dos olhos (notebook sobre livros). Luz de frente, de preferência janela. Fundo neutro e arrumado. Olhe para a câmera, não para a tela, nas frases importantes e na hora do preço.</p>
+        </div>
+        <div class="cell">
+          <h3>Antes de clicar em "entrar"</h3>
+          <p>Fone com microfone, notificações desligadas, celular no silencioso, água por perto. Entre 2 minutos antes. Abra a chamada com um sorriso e o nome dele: "Bom dia, Marcelo!".</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Se der um branco</strong>
+      <p>Volte para uma pergunta. "Me conta uma coisa: numa semana normal, quais horários ficam mais vazios?" Pergunta boa sempre devolve o controle da conversa, e o roteiro está na seção 08.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>Fontes:</strong> agenda online mb-barbearia-2.domagenda.com (testada até a confirmação, sem marcar), ficha da MB e de barbearias do entorno no Google Maps, perfis @mbbarbearia1__ e @marcelost10 no Instagram, Biblioteca de Anúncios da Meta e site do Dom Agenda, todos em 19/10/2026. Pesquisa de mercado em <span class="mono">_memoria/trafego/fontes/reports/</span>.</p>
+    <p>Estudo completo, com cada fonte: <span class="mono">clientes/mb-barbearia/estudo-2026-10-19.md</span>. Os cenários são hipóteses; nenhum vai para o cliente como previsão.</p>
+    <p class="mono">HORUS AGÊNCIA · uso interno</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var t = document.getElementById('ticket');
+  var c = document.getElementById('custo');
+  var i = document.getElementById('invest');
+  var d = document.getElementById('dias');
+  var out = document.getElementById('atend');
+  var frase = document.getElementById('frase');
+  var pordia = document.getElementById('pordia');
+  var det = document.getElementById('detalhe');
+  var brl = function (v) { return 'R$ ' + Math.round(v).toLocaleString('pt-BR'); };
+  function calc() {
+    var ticket = parseFloat(t.value) || 0;
+    var custo = parseFloat(c.value) || 0;
+    var invest = parseFloat(i.value) || 0;
+    var dias = parseFloat(d.value) || 0;
+    var sobra = ticket - custo;
+    if (sobra <= 0 || invest <= 0 || dias <= 0) {
+      out.textContent = '?';
+      frase.textContent = 'Preencha os campos para ver a conta.';
+      pordia.textContent = '';
+      det.textContent = sobra <= 0 && ticket > 0 ? 'O custo por atendimento está maior que o valor do atendimento.' : '';
+      return;
+    }
+    var n = Math.ceil(invest / sobra);
+    var pd = n / dias;
+    out.textContent = n;
+    frase.textContent = (n === 1 ? 'atendimento a mais por mês paga' : 'atendimentos a mais por mês pagam') + ' o investimento.';
+    pordia.textContent = 'Cerca de ' + (pd < 10 ? pd.toLocaleString('pt-BR', { maximumFractionDigits: 1 }) : Math.round(pd)) + ' por dia de trabalho.';
+    det.textContent = 'Cada atendimento deixa ' + brl(sobra) + '. O que passar disso é ganho dele.';
+  }
+  [t, c, i, d].forEach(function (el) { el.addEventListener('input', calc); });
+  calc();
+})();
+</script>

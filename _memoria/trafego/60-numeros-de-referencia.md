@@ -31,6 +31,26 @@ Kanal). O primeiro mês de cada cliente mede o número real, e ele entra aqui.
 | Fechamento na ligação, serviços residenciais (EUA) | 45% (busca paga 48%) | Invoca, 70 mi de chamadas, 2026 | Boa, mas é telefone |
 | Lead → agendamento em loja de película (EUA) | 25% → 52% com resposta rápida | Caso de agência, sem cliente nomeado | Anedota |
 
+### Beleza e barbearia (somado em 19/10/2026)
+
+| Métrica | Valor | Base | Confiança |
+|---|---|---|---|
+| Ticket do corte masculino | R$ 36,60 | Sebrae-SP, 980 entrevistas, set/2020, sem correção | Boa, antiga |
+| Peso da revenda de produto | ~25% do faturamento de quem vende (só 39% vendem) | Sebrae 2020, amostra pequena | Média |
+| Verba de marketing prevista para pequena barbearia | R$ 100 a 500/mês | Ficha de ideia de negócio do Sebrae | Âncora que o dono pode ter |
+| Volta do cliente | ~30 dias (corte social, barba); 15 a 21 dias (degradê) | Blogs de fornecedor e barbearias, sem método | Fraca |
+| Falta (no-show) | 15 a 30% | Fornecedores, sem método | Muito fraca |
+| Comissão do barbeiro | 30 a 60% | Anabel 2016; a Lei 13.352/2016 não fixa percentual | Média, antiga |
+| Clube de assinatura (anúncios ativos) | R$ 79,90 a 129 corte ilimitado; R$ 159,90 a 189,90 com barba | Biblioteca da Meta, 19/10/2026 | Observado. Churn não publicado por ninguém |
+
+### Preço de gestão (somado em 19/10/2026)
+
+| Referência | Valor | Base |
+|---|---|---|
+| Pedro Sobral, mensalidade | R$ 750 (modelo escala) e R$ 1.500 (boutique); contra cobrar só percentual | Blog dele, 06/10/2026 |
+| Pedro Sobral, produto de entrada Google | R$ 500 de setup + R$ 300/mês, ou R$ 2.300 por 6 meses | Blog dele, 20/08/2026 |
+| Trafius, freelancer júnior com verba até R$ 3.000 | R$ 500 a 1.200/mês; setup R$ 500 a 3.000 | Blog, mai/2026, sem método |
+
 ## 3. Como derivar o custo por conversa (enquanto não há dado próprio)
 
 **Custo por conversa = CPM ÷ (1.000 × CTR no link × fração de cliques que vira conversa)**

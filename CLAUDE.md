@@ -109,7 +109,9 @@ explicita em uma linha e segue. Pergunta só quando a resposta muda o que vou fa
 **Do Marcelo, sempre:** gasto e verba; o que sai pra fora (mensagem ou link pro lead, post,
 anúncio no ar); preço e escopo do cliente; gosto e estilo; o irreversível ou o que expõe
 dado. Nesses, chegar com a recomendação pronta e o porquê, não com cardápio aberto, e a
-opção segue a regra de decisão pendente abaixo.
+opção segue a regra de decisão pendente abaixo. **Várias decisões pequenas juntas vão numa mensagem só**, numeradas,
+cada uma com a recomendação e o porquê, fechando com "tudo como recomendado, ou o número que muda" (16/10/2026,
+contrato: "um por vez" ficou lento, ele pediu "de uma vez e em poucas mensagens", e os seis pontos fecharam numa resposta).
 
 **4. Discordar com argumento.** Ideia fraca, decisão contraproducente ou caminho claramente
 pior: dizer, com a consequência concreta e a alternativa melhor. Sem elogio vazio, sem
@@ -168,7 +170,8 @@ salvar, e onde:
 
 Salvar/editar só a linha relevante, sem reformatar o arquivo inteiro; confirmar mostrando a
 linha. Não perguntar para correção óbvia de contexto imediato. `/atualizar` faz a varredura
-completa quando houver dúvida.
+completa quando houver dúvida e, ao fechar um caso, a retrospectiva: lê nas conversas o que o Marcelo corrigiu, escolheu
+diferente e elogiou, e transforma isso em regra, checklist ou script.
 
 ## Decisão pendente e pedido de apagar
 
@@ -181,6 +184,11 @@ completa quando houver dúvida.
 - **Opinião, inclusive quando discorda.** Quando o Marcelo decidir algo, o Claude dá a opinião dele com os
   motivos, mesmo discordando. "A decisão é sua" sozinho não vale como resposta. Origem: 14/10/2026, Débora
   Reis ("eu também falho; se discordar e tiver motivos, quero que me diga").
+- **Decisão no calor não se executa na mesma noite.** Quando o Marcelo decide abalado ("não vou dizer mais nada",
+  "descontinua"), gravar com as palavras dele e uma data de revisão (o dia seguinte). Nada irreversível na mesma noite:
+  não apagar foto, não tirar do ar, não mover pra Perdido. Origem: Débora Reis, 15/10/2026. De madrugada, o "só os
+  parabéns, sem oferecer mais nada" foi registrado como "ENCERRADA": 67 fotos foram apagadas e o esboço saiu do ar.
+  Onze horas depois ele reabriu o caso, e foi preciso restaurar tudo pelo Git.
 
 ## Edição concorrente: não presumir regressão
 
@@ -189,6 +197,11 @@ editando ao vivo** em outra janela, ou um `/loop` autônomo. Antes de reverter, 
 ou confirmar** — nunca sobrescrever presumindo regressão de outra sessão. E **não rodar
 `/loop` autônomo num arquivo que outra sessão está editando** (gera guerra de edição).
 Origem: 15/09/2026, site da Mullsanni. Detalhe no `PLANO.md` daquele cliente (Passe 6).
+**Duas sessões no mesmo cliente:** antes de publicar, ler o topo do dossiê e as notas do Hounder das últimas horas, e
+publicar a pasta atual inteira, nunca uma cópia antiga (senão um deploy desfaz o do outro). Defeito num arquivo que eu não
+mexi pode ser trabalho em andamento da outra sessão: conferir antes de dizer "achei e consertei". Origem: Débora Reis,
+15/10/2026 (uma sessão revisava o guia e criava o PDF enquanto esta reorganizava a sala de ideias; o "PDF dando 404" que
+eu anunciei como achado era o meio do trabalho dela).
 
 ---
 
@@ -274,7 +287,8 @@ responde sozinha; aprovar mensagem por mensagem é só o jeito da nossa prospec�
 ## Trabalho de carrossel e post: leitura obrigatória
 
 Antes da primeira linha de copy:
-1. `_memoria/conteudo/00-formatos.md` — os sete formatos narrativos. **Escolher UM antes de escrever.**
+0. **Nenhum post da Hórus é montado sem a ideia aprovada pelo Marcelo** (08/10/2026). A `/carrossel` é a central: pauta, gancho, fala humana, imagem, checklist.
+1. `_memoria/conteudo/00-formatos.md` — os nove formatos narrativos (os sete + print de tweet e antes/depois de fala, 07/10). **Escolher UM antes de escrever.**
 2. `_memoria/conteudo/10-legibilidade.md` — pisos de fonte/contraste/densidade (corpo ≥ 34px, nada de leitura < 24px; renderiza a 1080px, lido num celular de 390px)
 3. `_memoria/conteudo/90-antipadroes.md` — o que denuncia carrossel feito por IA
 4. `_memoria/integridade.md` — dado que falta vira `[FALTA: ...]`
@@ -372,7 +386,9 @@ diz para onde e por quê; **o quê, quem e até quando mora na tela Tarefas do H
 `tarefas`, `hd_tarefas` / `hd_salvar_tarefa`). Uma lista só. O Marcelo contou que fez algo? Dar o
 check na hora (`status: feita` + o que foi feito). Pendência nova com prazo vira tarefa. O Antônio
 aparece como responsável, mas quem marca é o Marcelo. O resumo das 8h do Farejador traz as atrasadas
-e as do dia, e o `/abrir` começa por elas.
+e as do dia, e o `/abrir` começa por elas. **Tarefa em que o Marcelo responde se escreve na língua dele:** a pergunta
+exata e o formato da resposta ("quanto a Horus gasta por mês, somando as assinaturas"), nunca o jargão do plano
+(16/10/2026: "passar os 3 números do caixa" ficou 15 dias atrasada e precisou de explicação; respondida em minutos depois).
 
 **Time de agentes de prospecção (Fase 1 no ar em 29/09/2026, até 10 ativos):** `ferramentas/hound-dog/PLANO-AGENTES.md`.
 **Mesa de agentes (30/09):** tela do Hounder onde o Marcelo aprova e envia o que cada agente propõe, com a conversa ao lado.
@@ -431,10 +447,11 @@ produzir PARA um cliente, ler os dois; a marca das peças é a do cliente, não 
 - **#2 — Permita-se Fitness / Jaqueline** (estúdio multi-modalidade, Boca do Rio/Salvador) —
   presença digital zero. Máquina: **Google Meu Negócio** → Instagram → site. Sem regulação
   pesada; evitar promessa de resultado físico.
-- **#3 — Aion Psicologia** (clínica, Itaigara/Salvador · CFP) — ⚠️ **engavetada desde
-  01/09/2026**. Site especulativo de 10 páginas pronto; falta dado que só a cliente tem —
-  próximo passo é apresentar, não construir. **Compliance CFP trava** (sem depoimento em
-  nenhum formato; CRP visível). Peso igual entre os 6 serviços.
+- **#3 — Aion Psicologia** (clínica, Itaigara/Salvador · CFP) — **reaberta em 15/10/2026** pelo Antônio:
+  reunião presencial de 16/10 **remarcada para a semana de 19/10** `[FALTA: dia e hora]`. Site sai sem cobrança (promessa do Antônio); a venda é o plano mensal (posts + Google +
+  manutenção). Reestudo em `ESTUDO-2026-10.md`, site novo de uma página em `site-v2/` (protegido na Vercel), plano da
+  reunião em `reuniao-2026-10-16.md`. **Compliance CFP trava** (sem depoimento em nenhum formato; CRP visível; site
+  abre ao público só com CRP da PJ + responsável técnica). Peso igual entre os serviços.
 - **#4 — Café Grão da Serra / Nelson** (café torrado, Brejões/BA · B2B+B2C) — site **no ar**
   (https://cafegraodaserra.netlify.app/). Próximo: CRM (pago). 🔴 **A família não planta:**
   compra o grão e beneficia — proibido "nossa lavoura/fazenda/do pé à xícara". Origem da
@@ -478,3 +495,8 @@ produzir PARA um cliente, ler os dois; a marca das peças é a do cliente, não 
   Oferta maior: piloto de 60 dias sem honorário, com contrapartida e cobrança combinada no dia 1. Tudo em `clientes/sates-saude/` (`playbook.md`). 🔴 Nada se
   constrói antes do aceite; parceria B2B sem comissão por paciente; quem compra é a família do paciente.
   ⚠️ **15/10/2026 (contado pelo Marcelo): depois do perfil do Google entregue, ela não deu retorno nem respondeu mais.**
+- **#12 · MB Barbearia** (barbearia no Calabar, entre Barra e Ondina, Salvador) · LEAD que pediu **tráfego pago**, dono
+  Marcelo Bispo. Estudo de 19/10/2026 em `clientes/mb-barbearia/estudo-2026-10-19.md`. 🔴 Usa o **Dom Agenda** (agenda,
+  página e retenção): não vender site, CRM nem robô. Corte a R$ 30: o anúncio se paga na volta do cliente, então a conta
+  e a regra de parada do dia 45 vêm antes da verba. É o "salão" da R1 de tráfego (mesmo lead). **R1 em 20/10/2026, 10h;
+  preço decidido em 19/10:** R$ 690/mês por 3 meses (primeiro case), implantação de graça, depois R$ 890; verba paga por ele.

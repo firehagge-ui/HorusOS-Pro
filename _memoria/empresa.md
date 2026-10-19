@@ -252,8 +252,8 @@ A descrição de cada função da operação está em `equipe/`, com tipo de exe
 - **Paralela Film** (lead #9, ⚠️ **LEAD com R1 marcada — não é cliente fechado**) — loja de
   película automotiva (insulfilm), estética e som na Av. Paralela, Salvador; PARALELA FILM LTDA, sócio
   Danilo, o irmão Daniel opera junto. Chegou por **ligação fria do Antônio** (30/09/2026). Pediu
-  **tráfego pago, não site**: primeiro cliente de tráfego da Hórus. R1 remarcada para **segunda
-  05/10/2026**. Proposta escolhida (01/10): **R$ 990/mês por 3 meses** como condição de primeiro case
+  **tráfego pago, não site**: primeiro cliente de tráfego da Hórus. R1 que estava marcada para **segunda
+  05/10/2026** (histórico) `[FALTA: aconteceu? resultado não registrado no Hounder]`. Proposta escolhida (01/10): **R$ 990/mês por 3 meses** como condição de primeiro case
   (com contrapartida) + verba de ~R$ 900 paga por eles direto à Meta. Risco: avaliações de 1★ de
   qualidade e agenda. Tudo em `clientes/paralela-film/` e no dossiê do Hounder.
 - **Leal Oral Clinic** (lead #10, ⚠️ **LEAD conversando, não é cliente fechado**) — odontologia estética, Caminho das

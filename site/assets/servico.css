@@ -1,0 +1,183 @@
+/* ==========================================================================
+   Horus Agência: páginas de serviço (16/10/2026)
+   Página CLARA de leitura, com a noite da home só onde é marca: a faixa dos
+   projetos e a chamada final (modelo Instrument, ver
+   referencias/agencias-paginas-de-servico-2026-10.md). Plano em site/PLANO-SERVICOS.md.
+   Folha própria de propósito: não depende do site.css.
+   Escala de tipo: 15, 17, 20, 26, 36, 56. Raio: 14 em superfície, pílula em botão.
+   ========================================================================== */
+
+:root {
+  --papel:  #f5f6f8;  /* fundo da página                                   */
+  --cartao: #ffffff;  /* superfície dos planos e das perguntas             */
+  --tinta:  #0b0d12;  /* texto e títulos (18:1 sobre o papel)              */
+  --apoio:  #565d6b;  /* texto secundário (6,4:1 sobre o papel)            */
+  --fio:    #dfe2e8;  /* borda de baixo contraste                          */
+  --azul:   #0062d6;  /* botão, link e acento de texto (5,6:1 com branco)  */
+  --azul-h: #004fae;  /* hover do azul                                     */
+  --marca:  #0077ff;  /* o azul da marca: só em detalhe grande             */
+  --noite:  #000206;  /* a noite da home                                   */
+  --osso:   #d1d4da;  /* texto sobre a noite (13:1)                        */
+  --osso-2: #a2a8b3;  /* texto secundário sobre a noite (8:1)              */
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--papel); color: var(--tinta);
+  font-family: "DM Sans", system-ui, sans-serif; font-size: 17px; line-height: 1.6;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--azul); }
+a:hover { color: var(--azul-h); }
+h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: -0.02em; line-height: 1.12; }
+p { margin: 0; }
+
+.sv-env { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+.sv-estreito { max-width: 820px; }
+
+/* ---------- botões ---------- */
+.sv-btn {
+  display: inline-block; padding: 16px 28px; border-radius: 999px;
+  background: var(--azul); color: #fff; font-size: 17px; font-weight: 600; text-decoration: none;
+  transition: background-color .2s ease;
+}
+.sv-btn:hover { background: var(--azul-h); color: #fff; }
+.sv-btn:focus-visible, .sv-menu a:focus-visible, summary:focus-visible { outline: 3px solid var(--marca); outline-offset: 3px; }
+.sv-btn-pequeno { padding: 11px 20px; font-size: 15px; }
+.sv-btn-claro { background: #fff; color: var(--tinta); }
+.sv-btn-claro:hover { background: #e6e9ef; color: var(--tinta); }
+
+/* ---------- cabeçalho ---------- */
+.sv-topo { position: sticky; top: 0; z-index: 10; background: rgba(245,246,248,.94); border-bottom: 1px solid var(--fio); }
+.sv-topo-linha { display: flex; align-items: center; gap: 40px; height: 72px; }
+.sv-marca { display: flex; align-items: center; gap: 10px; color: var(--tinta); text-decoration: none; font-weight: 600; letter-spacing: .14em; font-size: 15px; }
+.sv-marca:hover { color: var(--tinta); }
+.sv-menu { display: flex; gap: 28px; margin-right: auto; }
+.sv-menu a { color: var(--apoio); text-decoration: none; font-size: 15px; }
+.sv-menu a:hover { color: var(--tinta); }
+
+/* ---------- 1. hero ---------- */
+.sv-hero { padding: 64px 0 96px; }
+.sv-trilha { display: flex; gap: 10px; font-size: 15px; color: var(--apoio); margin-bottom: 40px; }
+.sv-trilha a { color: var(--apoio); text-decoration: none; }
+.sv-trilha a:hover { color: var(--tinta); text-decoration: underline; }
+.sv-hero-grade { display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: center; }
+.sv-hero h1 { font-size: 56px; max-width: 12ch; }
+.sv-hero-pj img { border-radius: 14px; }
+.sv-hero .sv-hero-pj figcaption { color: var(--apoio); }
+.sv-hero .sv-hero-pj figcaption b { color: var(--tinta); }
+.sv-lead { font-size: 20px; color: var(--apoio); max-width: 58ch; margin: 24px 0 36px; }
+.sv-provas { list-style: none; display: flex; flex-direction: column; gap: 10px; padding: 0; margin: 40px 0 0; font-size: 15px; color: var(--apoio); }
+.sv-provas li { display: flex; align-items: center; gap: 10px; }
+.sv-provas li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--marca); }
+
+/* ---------- 2. faixa escura dos projetos ---------- */
+.sv-noite { background: var(--noite); color: var(--osso); }
+.sv-projetos { padding: 96px 0; }
+.sv-projetos h2 { font-size: 36px; color: #fff; margin-bottom: 40px; }
+.sv-pj { margin: 0; }
+.sv-pj img { border-radius: 14px; }
+.sv-pj figcaption { margin-top: 14px; font-size: 15px; color: var(--osso-2); }
+.sv-pj figcaption b { color: #fff; font-weight: 600; }
+.sv-sub-noite { font-size: 17px; color: var(--osso-2); max-width: 62ch; margin: -24px 0 0; }
+.sv-pj-par { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; }
+
+/* ---------- seções claras ---------- */
+.sv-secao { padding: 96px 0; }
+.sv-secao h2 { font-size: 36px; }
+.sv-sub { font-size: 17px; color: var(--apoio); margin-top: 14px; max-width: 62ch; }
+
+/* 3. para quem é: coluna única, termo-chave no acento, mesmo peso */
+.sv-situacoes { list-style: none; padding: 0; margin: 32px 0 0; }
+.sv-situacoes li { font-size: 20px; line-height: 1.5; padding: 20px 0; border-bottom: 1px solid var(--fio); }
+.sv-situacoes em { font-style: normal; color: var(--azul); }
+
+/* 4. a régua (assinatura) */
+.sv-regua-secao { background: var(--cartao); }
+.sv-regua { list-style: none; padding: 0; margin: 48px 0 0; display: grid; grid-template-columns: 1fr 1fr auto 1fr 1fr; gap: 0; align-items: stretch; }
+.sv-etapa { padding: 28px 24px 0 0; border-top: 3px solid var(--tinta); }
+.sv-etapa.sv-gratis { border-top-color: var(--marca); }
+.sv-etapa h3 { font-size: 20px; margin: 14px 0 10px; }
+.sv-etapa p { font-size: 15px; color: var(--apoio); }
+.sv-n { display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--papel); font-weight: 600; font-size: 15px; }
+.sv-gratis .sv-n { background: var(--azul); color: #fff; }
+.sv-marco {
+  display: flex; flex-direction: column; justify-content: flex-start; gap: 8px;
+  padding: 22px 24px 0 24px; margin: 0 24px 0 0; border-left: 2px dashed var(--azul);
+  font-size: 15px; color: var(--apoio); min-width: 200px;
+}
+.sv-marco b { color: var(--azul); font-size: 26px; display: block; letter-spacing: -0.02em; }
+
+/* 5. planos */
+.sv-planos { display: grid; grid-template-columns: 1fr 1.08fr 1fr; gap: 24px; margin-top: 48px; align-items: start; }
+.sv-plano { background: var(--cartao); border: 1px solid var(--fio); border-radius: 14px; padding: 32px 28px; }
+.sv-plano h3 { font-size: 20px; }
+.sv-preco { font-size: 36px; font-weight: 600; letter-spacing: -0.02em; margin: 10px 0 8px; }
+.sv-para { font-size: 15px; color: var(--apoio); }
+.sv-plano ul { list-style: none; padding: 0; margin: 24px 0 0; border-top: 1px solid var(--fio); }
+.sv-plano li { font-size: 15px; padding: 12px 0 0 26px; position: relative; }
+.sv-plano li::before { content: ""; position: absolute; left: 2px; top: 19px; width: 10px; height: 6px; border-left: 2px solid var(--azul); border-bottom: 2px solid var(--azul); transform: rotate(-45deg); }
+.sv-plano-meio { border: 2px solid var(--azul); padding: 40px 32px; }
+.sv-selo { display: inline-block; font-size: 15px; font-weight: 600; color: var(--azul); margin-bottom: 10px; }
+
+/* 6. o que fica com você */
+.sv-fica { margin: 32px 0 0; }
+.sv-fica div { display: grid; grid-template-columns: 200px 1fr; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--fio); }
+.sv-fica dt { font-weight: 600; }
+.sv-fica dd { margin: 0; color: var(--apoio); }
+
+/* 7. perguntas */
+.sv-faq { margin-top: 32px; }
+.sv-faq details { border-bottom: 1px solid var(--fio); }
+.sv-faq summary { cursor: pointer; list-style: none; padding: 22px 40px 22px 0; font-size: 20px; font-weight: 500; position: relative; }
+.sv-faq summary::-webkit-details-marker { display: none; }
+.sv-faq summary::after { content: "+"; position: absolute; right: 4px; top: 18px; font-size: 26px; color: var(--azul); }
+.sv-faq details[open] summary::after { content: "−"; }
+.sv-faq details p { padding: 0 0 24px; color: var(--apoio); max-width: 64ch; }
+
+/* 8. chamada final */
+.sv-chamada { padding: 120px 0; text-align: center; }
+.sv-chamada h2 { font-size: 56px; color: #fff; }
+.sv-chamada p { font-size: 20px; color: var(--osso-2); margin: 20px 0 40px; }
+
+/* rodapé */
+.sv-rodape { background: var(--noite); color: var(--osso-2); border-top: 1px solid #1b1f27; padding: 56px 0 40px; }
+.sv-rodape .sv-marca, .sv-rodape .sv-marca:hover { color: #fff; }
+.sv-rd-topo { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; flex-wrap: wrap; }
+.sv-rd-contato { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.sv-rd-contato a { color: #fff; text-decoration: none; font-size: 20px; }
+.sv-rd-contato a:hover { color: var(--osso); text-decoration: underline; }
+.sv-rd-pe { display: flex; justify-content: space-between; gap: 16px; margin-top: 40px; padding-top: 24px; border-top: 1px solid #1b1f27; font-size: 15px; }
+.sv-rd-pe a { color: var(--osso); }
+
+/* ---------- celular e tablet ---------- */
+@media (max-width: 960px) {
+  .sv-regua { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
+  .sv-marco { grid-column: 1 / -1; border-left: 0; margin: 0; padding: 18px 20px; border-radius: 14px; background: #eaf2fd; }
+  .sv-planos { grid-template-columns: 1fr; }
+  .sv-hero-grade { grid-template-columns: 1fr; gap: 40px; }
+  .sv-plano-meio { order: -1; }
+}
+@media (max-width: 760px) {
+  .sv-env { padding: 0 20px; }
+  .sv-menu { display: none; }
+  .sv-topo-linha { justify-content: space-between; height: 64px; }
+  .sv-hero { padding: 40px 0 64px; }
+  .sv-trilha { margin-bottom: 28px; }
+  .sv-hero h1 { font-size: 36px; }
+  .sv-lead { font-size: 17px; }
+  .sv-btn { display: block; text-align: center; }
+  .sv-btn-pequeno { display: inline-block; }
+  .sv-projetos, .sv-secao { padding: 64px 0; }
+  .sv-projetos h2, .sv-secao h2 { font-size: 26px; }
+  .sv-pj-par { grid-template-columns: 1fr; gap: 32px; margin-top: 32px; }
+  .sv-situacoes li { font-size: 17px; }
+  .sv-regua { grid-template-columns: 1fr; }
+  .sv-fica div { grid-template-columns: 1fr; gap: 4px; }
+  .sv-faq summary { font-size: 17px; }
+  .sv-chamada { padding: 80px 0; }
+  .sv-chamada h2 { font-size: 36px; }
+  .sv-rd-contato { align-items: flex-start; }
+  .sv-rd-pe { flex-direction: column; }
+}

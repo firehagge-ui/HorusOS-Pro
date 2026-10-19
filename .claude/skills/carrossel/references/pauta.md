@@ -13,7 +13,8 @@ Processo completo e o porquê em `ferramentas/social/ARQUITETURA.md` §8.
 4. O que bombou nos perfis de referência, **inclusive os gringos** (ideia do Marcelo, 10/10:
    "nada se cria, tudo se transforma"): achar o post que fugiu da média, estudar e refazer no
    nosso jeito, pro dono daqui (ver `estudar-referencia.md`; primeiro estudo em
-   `identidade/social/referencias/2026-10-10-valerio.md`).
+   `identidade/social/referencias/2026-10-10-valerio.md`). **A lista de perfis do Marcelo está em
+   `identidade/social/referencias/perfis.md`: abrir ela toda vez que montar pauta.**
 5. Perguntas reais dos comentários, das DMs e das conversas de lead no Hounder, só o padrão,
    sem nome.
 6. Datas que mexem com comércio (Black Friday, Natal, verão).

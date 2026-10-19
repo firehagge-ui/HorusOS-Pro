@@ -56,7 +56,7 @@ Na segmentação, os americanos convergem em público aberto com só as travas d
 
 | Regra do manual | Valor de partida | Origem | Força da evidência |
 |---|---|---|---|
-| Estrutura | 1 campanha, 1 conjunto, público Advantage+ com localização | Meta (combinar conjuntos), Loomer, Foxwell, Sobral | Consenso forte |
+| Estrutura | 1 campanha, 1 conjunto, público Advantage+ com localização | Meta (combinar conjuntos), Loomer, Foxwell. ⚠️ **Corrigido em 19/10/2026:** o Sobral só defende uma campanha abaixo de R$ 500/mês; acima disso divide em 4 frentes com público manual (ver `reports/Sobral tráfego comercial e captação.md`) | Consenso forte para verba pequena |
 | Conceitos vivos | 3 a 6, cada um com 3 a 5 textos e títulos | Loomer, Sobral, Foxwell ajustada à verba | Divergência resolvida pela escala |
 | Evento otimizado | Conversa; lead via mensagem após 10 leads etiquetados em 30 dias | Meta | Oficial |
 | Nada se mexe | Primeiras 48 h | Spark UGC | Praticante |

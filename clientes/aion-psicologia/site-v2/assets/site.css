@@ -1,0 +1,252 @@
+/* Aion Psicologia, versão 2 (15/10/2026). Plano e porquê em ../PLANO.md e ../PROPOSITO-DAS-SECOES.md */
+:root{
+  --creme:#FAF2EA;      /* fundo principal (marca.md) */
+  --areia:#F2E3D5;      /* fundo alternado (marca.md) */
+  --pessego:#F1C6A3;    /* disco do logo, faixa de crise, rótulo sobre escuro (8,3:1 na tinta) */
+  --terra:#D65F45;      /* marca: desenho e título grande, nunca texto pequeno (3,4:1 no creme) */
+  --terra-txt:#9E3F2B;  /* texto pequeno, link e botão (5,9:1 no creme, 5,2:1 na areia) */
+  --terra-hov:#87351F;
+  --tinta:#3A2E28;      /* texto (11,8:1 no creme) e fundo da faixa final */
+  --tinta-2:#2E2420;
+  --sec:#6B5A50;        /* texto de apoio (5,9:1 no creme, 5,2:1 na areia) */
+  --fio:#E3CDB9;
+  --serif:"EB Garamond",Georgia,serif;
+  --sans:"Karla",system-ui,sans-serif;
+  /* escala: 15 · 18 · 23 · 30 · 40 · 58 · 76 (px), sete degraus */
+  --t1:15px;--t2:18px;--t3:23px;--t4:30px;--t5:40px;--t6:58px;--t7:76px;
+  --lado:48px;
+  --largura:1240px;
+  --conteudo:1144px; /* largura útil: --largura menos as duas calhas de 48px */
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--creme);color:var(--tinta);font:400 var(--t2)/1.6 var(--sans)}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3,h4{margin:0;font-weight:400}
+p{margin:0}
+a{color:var(--terra-txt);text-underline-offset:3px}
+a:hover{color:var(--terra-hov)}
+:focus-visible{outline:2px solid var(--terra-txt);outline-offset:3px;border-radius:4px}
+main section[id]{scroll-margin-top:92px}
+.pula{position:absolute;left:12px;top:-60px;background:var(--tinta);color:var(--creme);padding:10px 16px;border-radius:8px;z-index:100}
+.pula:focus,.pula:hover{top:12px;color:var(--creme)}
+
+/* marcação de pendência (integridade.md): visível por padrão, some no modo de apresentação */
+.pend{background:rgba(214,95,69,.10);border-bottom:1.5px dashed var(--terra-txt);padding:0 3px;font-size:var(--t1);color:var(--terra-txt)}
+.limpo .pend{display:none}
+.limpo .so-pend{display:none}
+.aviso-demo{background:var(--tinta);color:var(--creme);display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;padding:10px var(--lado);font-size:var(--t1)}
+.pend-btn{font:600 var(--t1) var(--sans);background:var(--creme);color:var(--tinta);border:0;border-radius:999px;padding:6px 14px;cursor:pointer}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 24px;border-radius:999px;font:600 var(--t2) var(--sans);text-decoration:none;transition:background-color .2s,color .2s,border-color .2s}
+.btn-cheio{background:var(--terra-txt);color:var(--creme)}
+.btn-cheio:hover{background:var(--terra-hov);color:var(--creme)}
+.btn-linha{border:1.5px solid var(--terra-txt);color:var(--terra-txt)}
+.btn-linha:hover{background:var(--terra-txt);color:var(--creme)}
+.btn-claro{background:var(--creme);color:var(--tinta)}
+.btn-claro:hover{background:var(--pessego);color:var(--tinta)}
+
+/* cabeçalho */
+.topo{position:sticky;top:0;z-index:50;background:var(--creme);border-bottom:1px solid var(--fio)}
+.topo-in{max-width:var(--largura);margin:0 auto;padding:0 var(--lado);height:76px;display:flex;align-items:center;gap:24px}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--tinta);flex:none}
+.marca img{width:40px;height:auto}
+.marca-nome{font:500 var(--t2)/1 "Jost",var(--sans);letter-spacing:.32em;display:flex;flex-direction:column;gap:5px}
+.marca-nome small{font-size:11px;letter-spacing:.38em;color:var(--terra-txt)}
+.menu{display:flex;align-items:center;gap:28px;flex:1}
+.menu a{font-size:var(--t1);font-weight:500;color:var(--tinta);text-decoration:none}
+.menu a:not(.btn):hover{color:var(--terra-txt)}
+.menu .menu-cta{margin-left:auto;color:var(--creme);min-height:44px;font-size:var(--t1)}
+.menu a.menu-cta:hover{color:var(--creme)}
+.menu-abre{display:none}
+
+/* abertura */
+.abertura{max-width:var(--largura);margin:0 auto;padding:64px var(--lado) 88px;display:grid;grid-template-columns:1.7fr .75fr;gap:56px;align-items:center;min-height:calc(100svh - 120px)}
+.abertura h1{font:400 var(--t7)/1.02 var(--serif);max-width:19ch}
+.abertura-lead{margin-top:28px;font-size:var(--t3);line-height:1.5;color:var(--sec);max-width:42ch}
+.acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.credenciais{display:flex;flex-wrap:wrap;gap:12px 40px;margin:44px 0 0;padding-top:24px;border-top:1px solid var(--fio)}
+.credenciais dt{font-size:var(--t1);color:var(--sec)}
+.credenciais dd{margin:2px 0 0;font-weight:600}
+.abertura-marca{margin:0;justify-self:center;width:100%;max-width:470px}
+.labirinto{width:100%;height:auto;overflow:visible}
+.disco{fill:var(--pessego)}
+.lab{fill:var(--terra)}
+.js-motion .disco{transform-origin:307px 320px;transform:scale(.86);opacity:0;transition:transform 1.4s cubic-bezier(.2,.7,.2,1),opacity 1s ease}
+.js-motion .lab{stroke:var(--terra);stroke-width:2.5;fill-opacity:0;stroke-dasharray:var(--len);stroke-dashoffset:var(--len);transition:stroke-dashoffset 3.2s cubic-bezier(.55,.05,.25,1) .3s,fill-opacity 1s ease 2.9s,stroke-opacity 1s ease 2.9s}
+.js-motion .desenhado .disco{transform:scale(1);opacity:1}
+.js-motion .desenhado .lab{stroke-dashoffset:0;fill-opacity:1;stroke-opacity:0}
+
+/* por onde começar */
+.caminho{background:var(--areia);padding:120px var(--lado) 104px}
+.caminho-cab,.trilho,.caminho-nota{max-width:var(--conteudo);margin-left:auto;margin-right:auto}
+.caminho-cab{margin-bottom:80px}
+.caminho-cab h2,.comeca-cab h2,.equipe-cab h2,.perguntas-cab h2,.onde h2{font:400 var(--t6)/1.04 var(--serif)}
+.caminho-cab p,.comeca-cab p,.equipe-cab p{margin-top:20px;font-size:var(--t3);line-height:1.5}
+.caminho-cab p{color:var(--sec);max-width:52ch}
+.trilho{position:relative;padding-left:64px}
+.fio{position:absolute;left:15px;top:8px;bottom:8px;width:2px;background:var(--fio)}
+.fio-traco{position:absolute;inset:0;background:var(--terra-txt);transform-origin:top;transform:scaleY(1)}
+.js-motion .fio-traco{transform:scaleY(0)}
+.trecho{display:grid;grid-template-columns:260px 1fr;gap:32px;position:relative;padding-bottom:56px}
+.trecho:last-child{padding-bottom:0}
+.trecho::before{content:"";position:absolute;left:-56px;top:10px;width:16px;height:16px;border-radius:50%;background:var(--terra-txt);border:2px solid var(--terra-txt);transition:background-color .4s}
+.js-motion .trecho:not(.passou)::before{background:var(--areia)}
+.trecho-nome{position:sticky;top:112px;align-self:start}
+.trecho-nome .num{display:block;font-size:var(--t1);font-weight:600;letter-spacing:.12em;color:var(--terra-txt)}
+.trecho-nome h3{font:400 var(--t5)/1.08 var(--serif);margin-top:6px}
+.situacoes{list-style:none;margin:0;padding:0}
+.sit{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;padding:0 0 36px;margin-bottom:36px;border-bottom:1px solid var(--fio)}
+.sit:last-child{margin-bottom:0}
+.sit-frase{font:400 var(--t4)/1.25 var(--serif)}
+.sit-frase em{font-style:italic;color:var(--terra-txt)}
+.sit-servico h4{font:600 var(--t2)/1.3 var(--sans);letter-spacing:.01em}
+.sit-servico p{margin-top:8px;color:var(--sec)}
+.sit-link{display:inline-block;margin-top:14px;font-weight:600;text-decoration:none;border-bottom:1.5px solid currentColor;padding-bottom:2px}
+.sit-link::after{content:" →"}
+.caminho-nota{margin-top:56px;padding-left:64px;color:var(--sec)}
+
+/* como começa */
+.comeca{max-width:var(--largura);margin:0 auto;padding:120px var(--lado)}
+.comeca-cab{margin-bottom:64px}
+.comeca-cab p{color:var(--sec);max-width:52ch}
+.passos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:48px}
+.passo-n{display:block;font:400 var(--t6)/1 var(--serif);color:var(--terra)}
+.passos h3{font:400 var(--t3)/1.25 var(--serif);margin-top:16px}
+.passos p{margin-top:10px;color:var(--sec)}
+.comeca-nota{margin-top:32px}
+.avaliacao{margin-top:96px;background:var(--areia);border-radius:16px;padding:56px;display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+.avaliacao-cab h3{font:400 var(--t4)/1.2 var(--serif)}
+.avaliacao-cab p{margin-top:16px;color:var(--sec)}
+.etapas{list-style:none;margin:0;padding:0;counter-reset:etapa}
+.etapas li{counter-increment:etapa;display:grid;grid-template-columns:48px 1fr;column-gap:16px;padding:20px 0;border-bottom:1px solid var(--fio)}
+.etapas li:first-child{padding-top:0}
+.etapas li::before{content:counter(etapa);grid-row:span 2;font:400 var(--t4)/1 var(--serif);color:var(--terra-txt)}
+.etapas h4{font:600 var(--t2)/1.4 var(--sans)}
+.etapas p{color:var(--sec)}
+.avaliacao-nota{grid-column:2;margin-top:-24px}
+
+/* quem atende */
+.equipe{background:var(--areia);padding:120px var(--lado)}
+.equipe-cab,.coord,.pessoas{max-width:var(--conteudo);margin-left:auto;margin-right:auto}
+.equipe-cab{margin-bottom:72px}
+.equipe-cab p{color:var(--sec);max-width:56ch}
+.polaroid,.coord-foto,.pessoa img{background:var(--creme);padding:12px 12px 44px;box-shadow:0 10px 30px -18px rgba(58,46,40,.45)}
+.coord{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:center}
+.coord-foto{transform:rotate(-1.6deg);max-width:440px}
+.coord-foto img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 20%}
+.papel{font-size:var(--t1);font-weight:600;color:var(--terra-txt)}
+.coord h3{font:400 var(--t5)/1.1 var(--serif);margin-top:12px}
+.crp{font-weight:600;margin-top:8px}
+.coord-texto p:not(.papel):not(.crp){margin-top:16px;color:var(--sec);max-width:58ch}
+.pessoas{display:grid;grid-template-columns:repeat(2,minmax(0,330px));gap:48px;margin-top:96px;justify-content:end}
+.pessoa img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 22%}
+.pessoa:nth-child(1) img{transform:rotate(1.2deg)}
+.pessoa:nth-child(2) img{transform:rotate(-1deg)}
+.pessoa h3{font:400 var(--t3)/1.2 var(--serif);margin-top:20px}
+.pessoa p:not(.crp){margin-top:8px;color:var(--sec)}
+.pessoas-nota{grid-column:1/-1}
+
+/* perguntas */
+.perguntas{max-width:var(--largura);margin:0 auto;padding:120px var(--lado);display:grid;grid-template-columns:.85fr 1.15fr;gap:48px}
+.perguntas-cab{position:sticky;top:112px;align-self:start}
+.perguntas-cab p{margin-top:16px;color:var(--sec);max-width:36ch}
+.faq details{border-bottom:1px solid var(--fio)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:24px;padding:22px 0;font:400 var(--t3)/1.3 var(--serif)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:400 var(--t4)/1 var(--sans);color:var(--terra-txt);transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 24px;color:var(--sec);max-width:62ch}
+
+/* onde fica */
+.onde{background:var(--tinta);color:var(--creme);padding:112px max(var(--lado),calc((100% - var(--conteudo))/2));display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:start}
+.onde h2{color:var(--creme)}
+.dados{margin:40px 0;display:grid;gap:22px}
+.dados div{display:grid;grid-template-columns:130px 1fr;gap:16px}
+.dados dt{font-size:var(--t1);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--pessego);padding-top:3px}
+.dados dd{margin:0}
+.onde a:not(.btn){color:var(--pessego)}
+.onde a:not(.btn):hover,.rodape a:hover,.crise a:hover{color:var(--creme)}
+.crise a:hover{color:var(--terra-txt)}
+.onde .pend{color:var(--pessego);border-color:var(--pessego);background:rgba(241,198,163,.12)}
+.onde-mapa iframe{width:100%;height:440px;border:0;border-radius:16px;display:block;filter:saturate(.75)}
+.mapa-link{display:inline-block;margin-top:14px;font-weight:600}
+
+/* rodapé */
+.rodape{background:var(--tinta-2);color:var(--creme)}
+.rodape-in{max-width:var(--largura);margin:0 auto;padding:56px var(--lado) 40px;display:grid;grid-template-columns:1.2fr 1fr;gap:24px 64px}
+.rodape-marca{display:flex;gap:16px;align-items:flex-start}
+.rodape-marca img{width:40px;flex:none}
+.rodape-marca p{max-width:46ch}
+.legal{font-size:var(--t1);line-height:1.6}
+.rodape .pend{color:var(--pessego);border-color:var(--pessego);background:rgba(241,198,163,.12)}
+.assina{grid-column:1/-1;font-size:var(--t1);color:#E8D6C6}
+.crise{margin:0;background:var(--pessego);color:var(--tinta);text-align:center;padding:16px var(--lado);font-size:var(--t2)}
+.crise a{color:var(--tinta);font-weight:600}
+
+/* WhatsApp flutuante: o único lugar do verde (marca.md) */
+.zap{position:fixed;right:20px;bottom:20px;z-index:40;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 8px 20px -8px rgba(0,0,0,.35)}
+.zap:hover{color:#fff;background:#1EBE5A}
+
+/* entrada suave (60-motion.md: sutil, com trava de duas camadas no JS) */
+.js-motion .rev{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.js-motion .rev.dentro{opacity:1;transform:none}
+
+/* tablet */
+@media (max-width:1080px){
+  :root{--lado:32px}
+  .menu{gap:20px}
+  .abertura{grid-template-columns:1fr .8fr;gap:40px}
+  .trecho{grid-template-columns:180px 1fr}
+  .sit{grid-template-columns:1fr;gap:16px}
+  .avaliacao{grid-template-columns:1fr;gap:32px;padding:44px}
+  .avaliacao-nota{grid-column:1;margin-top:0}
+}
+@media (max-width:900px){
+  .topo-in{height:68px}
+  .menu-abre{display:grid;place-items:center;gap:6px;margin-left:auto;width:46px;height:46px;border:1.5px solid var(--fio);border-radius:12px;background:transparent;cursor:pointer}
+  .menu-abre span{display:block;width:20px;height:2px;background:var(--tinta);transition:transform .25s}
+  .menu-aberto .menu-abre span:first-child{transform:translateY(4px) rotate(45deg)}
+  .menu-aberto .menu-abre span:last-child{transform:translateY(-4px) rotate(-45deg)}
+  .menu{position:fixed;inset:68px 0 auto 0;background:var(--creme);flex-direction:column;align-items:stretch;gap:0;padding:8px var(--lado) 24px;border-bottom:1px solid var(--fio);display:none}
+  .menu-aberto .menu{display:flex}
+  .menu a{font-size:var(--t2);padding:14px 0;border-bottom:1px solid var(--fio)}
+  .menu .menu-cta{margin:16px 0 0;border:0;font-size:var(--t2)}
+  .abertura{grid-template-columns:1fr;min-height:0;padding-top:48px}
+  .abertura-marca{max-width:300px;justify-self:start}
+  .perguntas{grid-template-columns:1fr;gap:20px}
+  .abertura h1{font-size:var(--t6)}
+  .perguntas-cab{position:static}
+  .passos{grid-template-columns:1fr;gap:36px}
+  .coord{grid-template-columns:1fr;gap:40px}
+  .pessoas{grid-template-columns:repeat(2,minmax(0,1fr));justify-content:stretch}
+  .onde{grid-template-columns:1fr;gap:40px}
+  .rodape-in{grid-template-columns:1fr}
+}
+/* celular */
+@media (max-width:640px){
+  :root{--lado:20px;--t7:40px;--t6:40px;--t5:30px;--t4:23px;--t3:21px}
+  .abertura{padding:36px var(--lado) 64px;gap:28px}
+  .abertura-marca{max-width:220px;justify-self:center}
+  .abertura-lead{font-size:var(--t2)}
+  .acoes .btn{flex:1 1 100%}
+  .credenciais{gap:12px 28px}
+  .caminho,.equipe{padding:80px var(--lado) 72px}
+  .comeca,.perguntas{padding:80px var(--lado)}
+  .caminho-cab,.comeca-cab,.equipe-cab{margin-bottom:44px}
+  .trilho{padding-left:36px}
+  .fio{left:7px}
+  .trecho{grid-template-columns:1fr;gap:16px;padding-bottom:44px}
+  .trecho::before{left:-36px;top:6px}
+  .trecho-nome{position:static}
+  .caminho-nota{padding-left:0}
+  .avaliacao{padding:32px 24px;margin-top:64px}
+  .pessoas{grid-template-columns:1fr;gap:40px;margin-top:64px}
+  .pessoa{max-width:340px}
+  .dados div{grid-template-columns:1fr;gap:4px}
+  .onde{padding:72px var(--lado)}
+  .onde-mapa iframe{height:320px}
+  .zap{right:14px;bottom:14px}
+}

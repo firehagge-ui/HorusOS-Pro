@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Mockup do perfil do Google</title>
+<!-- Fonte das imagens do Perfil da Empresa no Google da Horus (16/10/2026).
+     A tela de cada aparelho é o print REAL do site (pasta prints/), nunca redesenho por IA.
+     Uso: mockup.html?p=grao  (ver PROJETOS abaixo). Render 1200x900 pelo render.js. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet">
+<style>
+  :root { --fundo: #000206; --azul: #0077ff; --texto: #eef1f7; --apoio: #8b93a7; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 900px; overflow: hidden; background: var(--fundo); font-family: "DM Sans", system-ui, sans-serif; }
+  .palco { position: relative; width: 1200px; height: 900px; overflow: hidden; }
+  /* luz: um foco azul baixo atrás dos aparelhos, sem brilho solto no vazio */
+  .palco::before { content: ""; position: absolute; left: 50%; top: 58%; width: 1100px; height: 560px;
+    transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgba(0,119,255,.30), rgba(0,119,255,.08) 55%, transparent); }
+  .chao { position: absolute; left: 0; right: 0; bottom: 0; height: 200px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,.025)); }
+
+  .tela { position: absolute; inset: 0; overflow: hidden; background: #111; }
+  .tela img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+
+  /* notebook */
+  .note { position: absolute; }
+  .note .moldura { position: relative; width: 100%; aspect-ratio: 16 / 10; background: #0b0c10; border-radius: 18px 18px 6px 6px;
+    padding: 14px 14px 18px; box-shadow: 0 0 0 1.5px #2a2d35, 0 40px 80px rgba(0,0,0,.55); }
+  .note .moldura .tela { position: absolute; inset: 14px 14px 18px; border-radius: 4px; }
+  .note .base { position: relative; height: 18px; margin: 0 -7%; border-radius: 2px 2px 14px 14px;
+    background: linear-gradient(to bottom, #c9ccd3, #8d9099 55%, #5b5e66); box-shadow: 0 24px 40px rgba(0,0,0,.6); }
+  .note .base::before { content: ""; position: absolute; left: 50%; top: 0; width: 16%; height: 7px; transform: translateX(-50%);
+    border-radius: 0 0 8px 8px; background: #6e717a; }
+
+  /* tablet e celular */
+  .tab, .cel { position: absolute; background: #0b0c10; box-shadow: 0 0 0 1.5px #2a2d35, 0 36px 70px rgba(0,0,0,.6); }
+  .tab { aspect-ratio: 834 / 1112; border-radius: 30px; padding: 14px; }
+  .tab .tela { inset: 14px; border-radius: 16px; }
+  .cel { aspect-ratio: 390 / 844; border-radius: 38px; padding: 9px; }
+  .cel .tela { inset: 9px; border-radius: 30px; }
+  /* câmera como ponto na moldura: um recorte grande cobriria o logo do site no print */
+  .cel::after { content: ""; position: absolute; top: 3px; left: 50%; width: 4px; height: 4px; transform: translateX(-50%);
+    border-radius: 50%; background: #2a2d35; }
+
+  /* composição com os três aparelhos */
+  .trio .note { width: 700px; left: 70px; top: 200px; }
+  .trio .tab  { width: 290px; right: 70px; top: 170px; }
+  .trio .cel  { width: 168px; right: 270px; top: 420px; }
+
+  /* clientes que só têm a captura antiga de computador (proporção ~2,2:1): janela de navegador
+     na proporção exata da captura, porque a tela 16:10 do notebook cortava o título */
+  .janela { position: absolute; left: 110px; right: 110px; top: 50%; transform: translateY(-58%);
+    border-radius: 14px; overflow: hidden; background: #15171c; box-shadow: 0 0 0 1.5px #2a2d35, 0 40px 80px rgba(0,0,0,.55); }
+  .janela .barra { height: 38px; display: flex; align-items: center; gap: 8px; padding: 0 16px; background: #1b1e24; }
+  .janela .barra i { width: 11px; height: 11px; border-radius: 50%; background: #3a3e47; }
+  .janela .barra s { margin-left: 18px; width: 300px; height: 20px; border-radius: 10px; background: #2a2e36; }
+  .janela img { display: block; width: 100%; height: auto; }
+  .solo .note, .trio .janela { display: none; }
+
+  .rotulo { position: absolute; left: 64px; bottom: 50px; }
+  .rotulo b { display: block; color: var(--texto); font-size: 30px; font-weight: 600; letter-spacing: -.01em; }
+  .rotulo span { display: block; margin-top: 6px; color: var(--apoio); font-size: 19px; }
+  .rotulo span i { font-style: normal; color: var(--azul); }
+  .solo .rotulo { left: 110px; bottom: 64px; }
+</style>
+</head>
+<body>
+<div class="palco" id="palco">
+  <div class="chao"></div>
+  <div class="note"><div class="moldura"><div class="tela"><img id="i-desk" alt=""></div></div><div class="base"></div></div>
+  <div class="tab"><div class="tela"><img id="i-tab" alt=""></div></div>
+  <div class="cel"><div class="tela"><img id="i-cel" alt=""></div></div>
+  <div class="janela"><div class="barra"><i></i><i></i><i></i><s></s></div><img id="i-janela" alt=""></div>
+  <div class="rotulo"><b id="nome"></b><span id="linha"></span></div>
+</div>
+<script>
+  // Rótulo: nome e segmento, nada de número, depoimento ou promessa.
+  // Projeto conceitual se apresenta como "projeto nosso", nunca como cliente.
+  const PROJETOS = {
+    grao:    { nome: 'Café Grão da Serra', linha: 'Site <i>·</i> Brejões, BA', trio: 'grao' },
+    soleira: { nome: 'Soleira', linha: 'Projeto conceitual da Horus <i>·</i> interiores', trio: 'soleira' },
+    amendoa: { nome: 'Amêndoa Preta', linha: 'Projeto conceitual da Horus <i>·</i> doceria', trio: 'amendoa' },
+    novare:  { nome: 'Novare Psicologia', linha: 'Site <i>·</i> Salvador', solo: 'novare-desk.webp' },
+    irs:     { nome: 'IRS Performance', linha: 'Site <i>·</i> Salvador', solo: 'irs-performance-desk.webp' },
+    verdi:   { nome: 'VerdiServ', linha: 'Site <i>·</i> Salvador e Feira de Santana', solo: 'verdiserv-desk.webp' },
+  };
+  const p = PROJETOS[new URLSearchParams(location.search).get('p') || 'grao'];
+  const palco = document.getElementById('palco');
+  document.getElementById('nome').textContent = p.nome;
+  document.getElementById('linha').innerHTML = p.linha;
+  // ?sem=1 tira o rótulo (a página de serviço põe a legenda em HTML, embaixo da imagem)
+  if (new URLSearchParams(location.search).get('sem')) document.querySelector('.rotulo').remove();
+  if (p.trio) {
+    palco.classList.add('trio');
+    for (const k of ['desk', 'tab', 'cel']) document.getElementById('i-' + k).src = `prints/${p.trio}-${k}.jpg`;
+  } else {
+    palco.classList.add('solo');
+    document.getElementById('i-janela').src = 'prints/' + p.solo;
+    document.querySelector('.note').remove();
+    document.querySelector('.tab').remove(); document.querySelector('.cel').remove();
+  }
+</script>
+</body>
+</html>

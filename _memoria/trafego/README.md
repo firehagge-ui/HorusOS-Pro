@@ -8,6 +8,9 @@
 >
 > **Fonte completa, com link de cada afirmação:** `_memoria/trafego/fontes/relatorio.md` e as
 > notas em `_memoria/trafego/fontes/notas/`.
+> **Atualização de 19/10/2026** (Sobral 2026, estrutura comercial, captação de agência, barbearia e salão, Meta
+> 2025-2026): `fontes/reports/Sobral tráfego comercial e captação.md`, notas em `fontes/research_notes/`. Aula de
+> 19/10 (funil conteúdo primeiro) destilada em `50-funil-instagram-conteudo-primeiro.md`.
 
 ---
 
@@ -30,6 +33,7 @@
 | `20-google-local.md` | Perfil da Empresa, avaliações (régua brasileira), Google Ads em 2026 |
 | `30-criativo-e-oferta.md` | Formatos que vendem, oferta, alegações proibidas, lei da película |
 | `40-medicao-e-atendimento.md` | Funil de três degraus, escada de medição, fórmulas, resposta e acompanhamento |
+| `50-funil-instagram-conteudo-primeiro.md` | Perfil como página de pouso, 3 fixados, palavra-chave no Direct, prospecção morna, níveis de consciência; quando usar e onde contradiz o manual (aula de 19/10/2026) |
 | `60-numeros-de-referencia.md` | O que existe de número, quanto vale cada um, imposto da Meta, cenários |
 | `90-antipadroes.md` | Os erros mais caros (a maioria fora do Gerenciador) |
 | `99-checklist.md` | Antes de vender, antes de subir, semana 1, dia 30 |

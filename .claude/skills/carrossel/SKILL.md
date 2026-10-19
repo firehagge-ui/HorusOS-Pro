@@ -28,6 +28,47 @@ PNG → checklist → legenda. Atualizada em 10/10/2026 juntando o que a casa j�
    e `identidade/social/referencias/2026-10-07-essencia.md` (a direção que o Marcelo quer)
 6. **Peça de cliente:** `clientes/<nome>/briefing.md` e `marca.md`; compliance trava
 
+## O padrão da casa (o que o Marcelo ensinou de 07 a 15/10/2026)
+
+Ler antes de tudo. É o que separa o post que ele aprova do que ele reprova. Origem e porquê de cada item em
+`_memoria/conteudo/90-antipadroes.md`.
+
+**Tema**
+- **O teste é: o Marcelo, como dono de negócio, salvaria isso?** "Eu já sabia" ou "isso eu resolvo sozinho" =
+  genérico, não vai (o "5 coisas pra pedir pro ChatGPT" foi reprovado por isso, 15/10).
+- O que ele aprovou: a frase pronta pra uma cena de cliente ("Quanto custa?"), o recurso que quase ninguém usa (a bio
+  com 5 links e botão de WhatsApp), o achado de um perfil que bombou refeito pro dono daqui.
+- O que ele não quer: tema de Google repetido, post sobre o método da Horus, isca "comenta PALAVRA" (sem bot de DM).
+- **Fonte de ideia nova:** os perfis em `identidade/social/referencias/perfis.md` (aqui e na gringa). Antes de propor
+  pauta, olhar o que fugiu da média neles.
+
+**Escrita**
+- Frase inteira, com o verbo que diz o que fazer, como ele fala: "A bio **deve** responder três perguntas", nunca
+  manchete comprimida. Um dado por frase.
+- Gancho pergunta a cena e abre a hipótese, sem afirmar causa única ("...e sumiu? Talvez o problema não seja o preço").
+- Regra vira orientação com condição ("quando fizer sentido, até três opções").
+- A frase mais forte do post ganha slide próprio, pouco texto, contraste alto.
+- Exemplo do par ✕/✓ enxuto, com só os elementos que ensinam destacados (no preço: valor, o que inclui, a pergunta).
+- CTA pede uma situação vivida ("qual pergunta de cliente mais te deixou sem resposta?") ou o envio ("manda pro amigo
+  que..."). Fala humana: `references/fala-humana.md`.
+
+**Conteúdo**
+- Cada slide do miolo traz algo que o dono não sabia ou uma frase que ele vai copiar. Slide que só repete é cortado.
+- Todo fato com fonte conferida no dia, na linha do slide; exemplo inventado leva a etiqueta "exemplo".
+
+**Visual (Horus)**
+- Assina o avatar da Horus, nunca rosto. 1080 × 1440. Formatos que funcionaram: antes/depois de fala (escuro), print
+  de tweet (branco), lista de cartões (claro, borda e sombra deslocada azul).
+- Capa com ilustração do ChatGPT pelo Chrome, sempre na mesma conversa pra manter o estilo (balão, estrela, etiqueta).
+- Print de verdade quando o post fala de ferramenta.
+- Fundo chapado: **sem brilho azul no canto, sem barra grossa de um lado só, sem brilho colorido**. Destaque é fundo
+  tingido com borda fina.
+
+**Antes de mostrar**
+- Render com `ferramentas/social/bin/render-carrossel.mjs`, folha da série olhada, detector `npx impeccable@4.0.4`
+  (três regras dele não valem pra carrossel, ver `90-antipadroes.md`), checklist, até 5 hashtags.
+- Gravar em `social_posts` como `revisao` e mandar a folha pro Marcelo. Ele aprova na tela Semana.
+
 ## Referências desta skill (abrir no passo que pede)
 
 | Arquivo | Quando |
@@ -144,7 +185,7 @@ pular.
    de imagem relativo à pasta.
 2. **Dimensão:** Horus **1080 × 1440** (3:4, aprovado 27/09); cliente **1080 × 1350** (4:5).
    TikTok/Reels 1080 × 1920 só quando pedido.
-3. Render por Playwright (o do repositório, `node_modules` da raiz): screenshot de cada `.slide`
+3. Render: `node ferramentas/social/bin/render-carrossel.mjs <pasta-absoluta>` (Playwright do repositório, screenshot de cada `.slide`
    em PNG (conferência) e JPEG qualidade 92 (publicação), mais miniatura a 0,25 pro painel.
    Conferir fonte carregada, imagem quebrada e texto encostando na borda. Modelo pronto:
    `ferramentas/social/lib/carrossel.mjs` (`renderizar`).
@@ -155,7 +196,9 @@ pular.
 
 1. `_memoria/conteudo/99-checklist.md`: vetos primeiro (qualquer um reprova), rubrica depois
    (média ≥ 7, nenhum critério < 4, "para o scroll" ≤ 3 reprova sozinho).
-2. **Detector:** `node .claude/skills/impeccable/scripts/detect.mjs "<pasta>/carrossel.html"`.
+2. **Detector:** `npx --yes impeccable@4.0.4 detect "<pasta>/carrossel.html"`. O detector local
+   (`.claude/skills/impeccable/scripts/detect.mjs`) já deu "limpo" em arquivo sabidamente ruim; só vale depois de
+   validado contra um arquivo ruim (`CLAUDE.md`, seção de site).
    Saída 0 limpo, 2 achou. Achado real se corrige; o que for intencional se explica ao Marcelo,
    nunca se silencia sem o ok dele.
 3. Compliance do cliente trava mesmo com tudo nota 10.

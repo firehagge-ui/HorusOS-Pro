@@ -42,6 +42,7 @@
 .por-tras{background:var(--tinta);color:var(--cal);padding:96px var(--lateral)}
 .por-tras-in{max-width:1180px;margin:0 auto}
 .por-tras h2{margin-bottom:40px;max-width:14em}
+.por-tras .kit-intro{margin:-24px 0 40px;max-width:38em;color:var(--cal)}
 .por-tras em{color:#E9A79A}
 .por-tras ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
 .por-tras li{border-top:1px solid #4A3D35;padding-top:18px}
@@ -148,7 +149,7 @@
 .pagina{max-width:860px;margin:32px auto;background:var(--cal);padding:72px 80px;position:relative;box-shadow:0 1px 0 var(--linha),0 18px 40px -24px rgba(35,26,21,.35);min-height:560px}
 .pagina-num{position:absolute;right:32px;bottom:24px;font-size:var(--t-rotulo);letter-spacing:.12em;color:var(--tinta-2)}
 .pagina h2{margin-bottom:24px}
-.pagina p{color:var(--tinta-2)}
+.pagina p{color:var(--tinta-2);text-wrap:pretty}
 .pagina .rotulo{margin-bottom:14px}
 .pag-capa{padding:0;display:grid;grid-template-rows:1fr auto;overflow:hidden;min-height:720px;background:var(--tinta);color:var(--cal)}
 .pag-capa img{width:100%;height:100%;object-fit:cover;max-height:460px}
@@ -156,29 +157,59 @@
 .pag-capa h1{font-size:var(--t-h2);margin-bottom:12px}
 .pag-capa h1 em{color:#E9A79A}
 .pag-capa p{color:#CDBFB2;margin:0}
+.pag-capa .capa-sub{font-family:var(--f-display);font-style:italic;font-size:30px;line-height:1.2;color:var(--cal);margin:0 0 14px}
+.pag-capa .capa-quem{font-size:var(--t-corpo)}
 .pag-capa .pagina-num{color:#A99A8D}
 .carta p{font-family:var(--f-display);font-size:24px;line-height:1.45;color:var(--tinta)}
-.carta .assina{font-family:var(--f-texto);font-size:var(--t-min)}
+.carta .assina{font-family:var(--f-texto);font-size:16px}
+/* revisão de 15/10, noite: o texto do guia não desce de 16px na tela (o 15px das etapas era o menor do guia) */
+.pagina .abre{color:var(--tinta);font-size:var(--t-corpo)}
+.sub-guia{font-size:26px;margin:30px 0 10px}
 .etapas-guia{list-style:none;margin:0;padding:0}
-.etapas-guia li{display:grid;grid-template-columns:56px 1fr auto;gap:20px;padding:20px 0;border-top:1px solid var(--linha);align-items:baseline}
+.etapas-guia li{display:grid;grid-template-columns:48px 1fr;gap:16px;padding:20px 0;border-top:1px solid var(--linha);align-items:baseline}
 .etapas-guia .n{font-family:var(--f-display);font-size:var(--t-h3);color:var(--vermelho);line-height:1}
-.etapas-guia h3{font-size:24px;margin-bottom:6px}
-.etapas-guia p{margin:0;font-size:var(--t-min)}
-.etapas-guia .prazo{font-weight:600;font-size:var(--t-min);color:var(--tinta);white-space:nowrap;text-align:right}
+.etapa-topo{display:flex;justify-content:space-between;align-items:baseline;gap:8px 20px;flex-wrap:wrap;margin-bottom:8px}
+.etapas-guia h3{font-size:26px}
+.etapas-guia p{margin:0;font-size:17px;line-height:1.45}
+.etapas-guia .recebe{margin-top:8px;color:var(--tinta)}
+.etapas-guia .recebe b{font-weight:500;font-stretch:100%;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-right:4px}
+.etapas-guia .prazo{font-weight:600;font-size:16px;color:var(--tinta);white-space:nowrap}
+.guia-nota{font-size:16px;font-style:italic;margin:4px 0 0;padding-top:14px;border-top:1px solid var(--linha)}
 .lista-guia{margin:0;padding:0 0 0 20px}
 .lista-guia li{margin-bottom:10px;color:var(--tinta-2)}
 .lista-guia strong{color:var(--tinta)}
 .faq-guia dt{font-family:var(--f-display);font-size:24px;margin:22px 0 6px}
 .faq-guia dd{margin:0;color:var(--tinta-2)}
+.faq-guia a{color:var(--tinta);text-decoration-color:var(--vermelho);text-underline-offset:4px}
 .investimento{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:24px 0}
 .investimento div{border:1px solid var(--linha);padding:20px}
 .investimento strong{display:block;font-family:var(--f-display);font-size:var(--t-h3);font-weight:500;color:var(--tinta);margin-bottom:6px}
-.aviso-cau{font-size:var(--t-min);border-top:1px solid var(--linha);padding-top:14px}
+.aviso-cau{font-size:16px;border-top:1px solid var(--linha);padding-top:14px;margin-top:28px}
+/* contato: os dados à esquerda, o QR pequeno à direita */
+.contato-guia{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end}
+.contato-guia dd{font-size:var(--t-lead);color:var(--tinta)}
+.contato-obs{display:block;font-size:16px;color:var(--tinta-2);margin-top:4px}
+.qr-guia{margin:0;width:150px}
+.qr-guia img{display:block;width:150px;height:150px}
+.qr-guia figcaption{font-size:14px;line-height:1.35;color:var(--tinta-2);margin-top:12px}
+/* no celular quem lê já está no aparelho do WhatsApp: o número clicável basta, o QR sai da tela (no PDF ele fica) */
+@media screen and (max-width:600px){
+  .contato-guia{grid-template-columns:1fr}
+  .qr-guia{display:none}
+  .sub-guia{font-size:24px}
+}
 /* etiqueta discreta da página que ainda não tem o conteúdo dela */
-.demo{position:absolute;top:28px;right:32px;font:500 11px/1 var(--f-texto);font-stretch:100%;letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2);border:1px solid var(--linha);padding:6px 9px 5px}
+.demo{position:absolute;top:28px;right:32px;font:500 12px/1 var(--f-texto);font-stretch:100%;letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2);border:1px solid var(--linha);padding:6px 9px 5px}
 .sem-sim .demo{display:none}
+/* guia (Marcelo, 15/10, 20h): o documento inteiro é simulação, e essa etiqueta não some com "Esconder marcações" */
+.sem-sim .demo.demo-fixo{display:block}
+.pagina > .demo-fixo ~ h2{padding-right:150px}
+@media screen and (max-width:600px){.pagina > .demo-fixo ~ h2{padding-right:0;padding-top:30px}}
+.pag-capa .demo{color:var(--cal);border-color:rgba(243,240,232,.55);background:rgba(30,26,23,.72);z-index:1}
+.pag-capa .capa-aviso{font-size:15px;line-height:1.45;color:#CDBFB2;margin-top:18px;padding-top:14px;border-top:1px solid rgba(243,240,232,.25);max-width:40em}
+.pag-capa .capa-aviso b{color:var(--cal);font-weight:600}
 .guia-tempo{margin-top:28px;padding-top:22px;border-top:1px solid var(--tinta)}
-.guia-tempo h3{font-size:24px;margin-bottom:8px}
+.guia-tempo h3{font-size:26px;margin-bottom:8px}
 .guia-tempo p{margin:0;color:var(--tinta-2)}
 
 /* no PDF cada página preenche a folha A4 inteira, sem faixa branca embaixo */
@@ -193,6 +224,33 @@
   .pag-capa{padding:0;grid-template-rows:minmax(0,1fr) auto}
   .pag-capa img{height:100%;max-height:none}
   .pag-capa-txt{padding:18mm 20mm 26mm}
+  /* o PDF vai pelo WhatsApp e abre num celular de ~390px: a folha A4 (794px) aparece na metade do tamanho.
+     Por isso o texto do PDF é maior que o da tela: corpo em 21px vira ~10px no celular, sem precisar de zoom pra ler. */
+  .pagina p,.lista-guia li,.faq-guia dd{font-size:21px;line-height:1.45}
+  .pagina .abre{font-size:21px}
+  .carta p{font-size:28px;line-height:1.42}
+  .carta .assina{font-size:19px}
+  .pagina-num{font-size:15px}
+  .demo{font-size:13px}
+  .pag-capa h1{font-size:64px}
+  .pag-capa .capa-sub{font-size:36px}
+  .pag-capa .capa-quem{font-size:21px}
+  .pag-capa .capa-aviso{font-size:18px}
+  .etapas-guia li{padding:13px 0}
+  .etapas-guia h3{font-size:30px}
+  .etapas-guia p{font-size:19px;line-height:1.4}
+  .etapas-guia .recebe{margin-top:6px}
+  .etapas-guia .recebe b{font-size:14px}
+  .etapas-guia .prazo{font-size:19px}
+  .pagina .guia-nota,.pagina .aviso-cau,.contato-obs{font-size:18px}
+  .pag-etapas{padding-top:18mm}
+  .pag-etapas h2{margin-bottom:16px}
+  .guia-tempo{margin-top:22px;padding-top:18px}
+  .guia-tempo h3,.sub-guia{font-size:30px}
+  .faq-guia dt{font-size:29px;margin-top:26px}
+  .contato-guia dd{font-size:26px}
+  .qr-guia,.qr-guia img{width:36mm;height:auto}
+  .qr-guia figcaption{font-size:16px}
 }
 
 /* ---------- conte a sua casa (o questionário) ---------- */
@@ -353,6 +411,28 @@ button.btn{cursor:pointer;font-family:var(--f-texto)}
 .guia-cta{max-width:calc(1320px - 2 * var(--lateral));margin:56px auto 0;display:flex;align-items:center;gap:24px;flex-wrap:wrap;border-top:1px solid var(--linha);padding-top:28px}
 .guia-cta p{margin:0;color:var(--tinta);font-size:var(--t-lead);flex:1;min-width:16em}
 
+/* ---------- sala de ideias: a capa com o mapa dos cinco momentos (15/10, noite) ---------- */
+.ideias-capa{max-width:1320px;margin:0 auto;padding:88px var(--lateral) 24px}
+.ideias-capa h1{font-size:var(--t-h1);line-height:1;margin-bottom:24px}
+.ideias-capa .lead{max-width:36em;margin:0 0 48px}
+.mapa{list-style:none;margin:0 0 28px;padding:0;max-width:440px;border-top:1px solid var(--tinta)}
+.mapa a{display:grid;grid-template-columns:34px 1fr;column-gap:10px;row-gap:2px;align-items:center;padding:10px 8px 10px 0;border-bottom:1px solid var(--linha);text-decoration:none;color:var(--tinta);transition:background .3s ease}
+.mapa a:hover{background:var(--cal-2)}
+.mapa-n{grid-row:1 / span 2;font-family:var(--f-display);font-size:22px;line-height:1;color:var(--vermelho)}
+.mapa-o{grid-column:2;grid-row:1;font-size:var(--t-min);line-height:1.3}
+.mapa-quando{grid-column:2;grid-row:2;font:500 var(--t-rotulo)/1.3 var(--f-texto);letter-spacing:.1em;text-transform:uppercase;color:var(--tinta-2)}
+.ideia,.por-tras{scroll-margin-top:72px}
+.ideia-quando{display:flex;align-items:baseline;gap:12px;margin:0 0 14px;font:500 var(--t-rotulo)/1.3 var(--f-texto);letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-2)!important}
+.ideia-n{font-family:var(--f-display);font-size:var(--t-h3);letter-spacing:0;line-height:1;color:var(--vermelho)}
+.ideia-txt strong,.kit-txt strong{font-weight:600;color:var(--tinta)}
+.por-tras .ideia-quando{color:#CDBFB2!important}
+.por-tras .ideia-n{color:#E9A79A}
+.por-tras h2{margin-bottom:24px}
+.kit-txt{max-width:44em;margin:0 0 40px}
+.kit-txt p{color:#CDBFB2;font-size:var(--t-corpo);margin:0 0 12px}
+.kit-txt strong{color:var(--cal)}
+.kit-legenda{color:#CDBFB2;margin-top:16px}
+
 /* ---------- telas médias e celular ---------- */
 @media (max-width:1080px){
   .sala-capa,.explorar,.res-mistura,.res-briefing,.kit,.convite-casa{grid-template-columns:1fr;gap:40px}
@@ -369,6 +449,8 @@ button.btn{cursor:pointer;font-family:var(--f-texto)}
 }
 @media (max-width:600px){
   .sala-capa{padding-top:56px}
+  .ideias-capa{padding-top:48px}
+  .ideias-capa .lead{margin-bottom:32px}
   .ideia{grid-template-columns:1fr;gap:16px;padding:40px 0}
   .por-tras ul,.cartoes-vive,.caso-ficha,.investimento{grid-template-columns:1fr}
   .cartao{grid-template-columns:1fr}

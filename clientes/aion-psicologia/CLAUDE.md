@@ -4,6 +4,26 @@
 > instruções aqui complementam as da raiz. Herda tom, contexto e regras de
 > `_memoria/` e `CLAUDE.md` da raiz.
 
+## ONDE PARAMOS (15/10/2026): reaberta, reunião presencial em 16/10
+
+- **O Antônio reabriu o contato** e a dona marcou reunião presencial na **quinta 16/10, por volta das 15h**
+  (`[FALTA: confirmar local e hora]`). O site sai **sem cobrança** (o Antônio já tinha dito isso a ela); ela achou
+  interessante ter posts no Instagram. Estado e próxima ação vivos no Hounder.
+- **Reestudo completo:** `ESTUDO-2026-10.md`. Achados novos: ficha do Google **não reivindicada**, com nome "AION
+  Serviços de Psicologia e Consultoria", CEP errado e link para o domínio que mostra "Domínio não encontrado"; domínio
+  registrado desde 2009 e **pago até 20/09/2027**; **e-mail roda no Google** (MX), então apontar o site na Locaweb não
+  derruba o e-mail; Instagram parado (2 posts em 3 meses); **psicopedagogia** está na bio e faltava no site.
+- **Site v2 (uma página):** `site-v2/`, com `PLANO.md` e `PROPOSITO-DAS-SECOES.md`. A v1 (`site/`, dez páginas) fica
+  intacta como upgrade (páginas por serviço). Logo vetorizado em `site-fontes/labirinto-vetor.svg`.
+  **No ar, protegido:** https://esboco-aion-psicologia-haggecelo-yahoocoms-projects.vercel.app (login da Vercel).
+  ⚠️ **Armadilha:** todo `vercel deploy --prod` recoloca o endereço público `esboco-aion-psicologia.vercel.app`. Depois
+  de publicar, rodar `npx vercel alias rm esboco-aion-psicologia.vercel.app --yes` e conferir que ele dá 404 (veto de
+  compliance de 26/07: aberto só com o "sim" + CRP da PJ + responsável técnica). Publicar: copiar `site-v2/index.html`
+  e `site-v2/assets/` para uma pasta chamada `esboco-aion-psicologia` e rodar o deploy de lá.
+- **Plano da reunião:** `reuniao-2026-10-16.md`. **Decisão pendente do Marcelo:** preço do plano mensal (recomendação
+  R$ 1.200/mês, R$ 990 nos 3 primeiros meses como primeiro caso; detalhe em `ESTUDO-2026-10.md` §6.3).
+- O que está abaixo desta seção é o histórico de julho e agosto, ainda válido para a v1.
+
 ## Sobre
 
 Clínica de psicologia com mais de 20 anos em Salvador, no Itaigara. Equipe de

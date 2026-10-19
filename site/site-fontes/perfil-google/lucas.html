@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Lucas Almeida 4:3</title>
+<!-- A imagem do Lucas Almeida (mandada pelo Marcelo em 16/10) vem em 2:1; aqui ela vai para 4:3.
+     Em cima: a primeira linha de pixels esticada (parede lisa, sem emenda).
+     Embaixo: a última linha tem reflexos e esticada vira listra, então a faixa sai borrada e se funde na foto. -->
+<style>* { margin: 0; } html, body { width: 1774px; height: 1330px; overflow: hidden; } canvas { display: block; }</style></head>
+<body><canvas id="c" width="1774" height="1330"></canvas>
+<script>
+  const img = new Image(); img.src = 'lucas-almeida-dispositivos.png';
+  img.onload = () => {
+    const W = 1774, H = 1330, topo = 221, h = 887, base = topo + h;
+    const x = document.getElementById('c').getContext('2d');
+    x.drawImage(img, 0, 0, W, 2, 0, 0, W, topo + 1);
+    x.drawImage(img, 0, topo);
+    // faixa da mesa num canvas à parte: esticada, borrada e com a borda de cima transparente
+    const m = document.createElement('canvas'); m.width = W; m.height = H - base + 60;
+    const mx = m.getContext('2d');
+    mx.filter = 'blur(40px)';
+    mx.drawImage(img, 0, h - 2, W, 2, -100, -60, W + 200, m.height + 160);
+    mx.filter = 'none';
+    mx.globalCompositeOperation = 'destination-in';
+    const g = mx.createLinearGradient(0, 0, 0, 60); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,1)');
+    mx.fillStyle = g; mx.fillRect(0, 0, W, m.height);
+    x.drawImage(m, 0, base - 60);
+  };
+</script></body></html>

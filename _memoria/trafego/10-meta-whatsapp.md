@@ -18,11 +18,11 @@ otimização por lead via mensagem**. (Central de Ajuda.)
 |---|---|---|
 | Conta | No nome/CNPJ do cliente, cartão do cliente; Hórus como parceira no Gerenciador de Negócios | Contrato da casa e do network |
 | Campanha | Objetivo **Leads**, local da conversão **WhatsApp**, meta "maximizar conversas" | Padrão oficial; dentro da mesma campanha dá pra trocar depois pra "maximizar leads" |
-| Conjunto | **Um só.** 18+, público Advantage+ só com localização, posicionamentos Advantage+ | Consolidação (Meta, Loomer, Sobral) |
-| Raio | Pela origem real dos clientes (perguntar os bairros), não número fixo | A Meta não publica raio mínimo pro Brasil; raio pequeno encarece |
+| Conjunto | **Um só.** 18+, público Advantage+ só com localização, posicionamentos Advantage+. Gênero e idade máxima são só sugestão no Advantage+: o público mora no criativo | Consolidação (Meta, Loomer). Sobral usa 4 a 8 conjuntos e público manual só acima de R$ 1.000/mês (set/2026) |
+| Raio | Pela origem real dos clientes (perguntar os bairros), não número fixo. Negócio de visita (barbearia, salão, lanchonete): partir de 1 a 2 km e, com frequência em 1,7 e custo subindo, avaliar abrir 1 km | A Meta não publica raio mínimo pro Brasil; raio pequeno encarece. Regra de bolso do Sobral (17/09/2026) |
 | Anúncios | **3 a 6 conceitos diferentes**, cada um com 3 a 5 textos e títulos (formato flexível) | Diversidade real com verba curta |
 | Mensagem do anúncio | Cumprimento + perguntas sugeridas que pedem o modelo do carro/serviço | Qualifica e diz de onde veio a conversa |
-| Horário | Só veicular quando houver quem responda | Sobral; ⚠️ programar horário com orçamento diário não foi verificado |
+| Horário | Só veicular quando houver quem responda. **Programar horário exige orçamento total (vitalício) com programação**; o diário roda o dia todo | Sobral (02/10/2026). Conferir no Gerenciador ao montar |
 | Pagamento | Cartão (pós-pago). No pré-pago (PIX/boleto), R$ 1.000 depositados viram ~R$ 878 de mídia | Comunicado da Meta |
 
 **Fase de aprendizado (oficial):** o conjunto sai com ~50 resultados na semana seguinte à última
@@ -59,8 +59,12 @@ em que a Hórus entregar CRM + WhatsApp sobre a API.
 - **Política:** película e estética não são categoria especial. Antes e depois de carro **pode** (a
   restrição oficial é de saúde, cosmético e emagrecimento). O anúncio de WhatsApp também segue a
   Política Comercial do WhatsApp.
-- **Exclusão de posicionamento** no conjunto está sendo retirada desde ago/2026 (fica a "regra de
-  valor" e o controle na conta). Data de vigência incerta.
+- **Exclusão de posicionamento:** já saiu de Engajamento, Leads, Vendas e App (Social Media Today,
+  12/10/2026). Ficam a exclusão na conta e a regra de valor (lance reduzido em no máximo 90%). Com verba
+  pequena e posicionamentos Advantage+, nada muda na montagem.
+- **Divergência registrada:** o Sobral monta mensagem com objetivo **Engajamento manual** e usa o turbinar
+  para ganhar seguidores (set e out/2026). A casa fica com **Leads + WhatsApp**, que é o caminho para
+  "maximizar leads via mensagem" (otimiza pelo degrau de baixo).
 
 ## 5. Rotina: cadência, corte e escala
 
@@ -74,8 +78,8 @@ em que a Hórus entregar CRM + WhatsApp sobre a API.
 | Julgar um criativo por custo | Depois de gastar 2 a 3 vezes o custo-alvo nele | Spark UGC (proporção de e-commerce) |
 | Cortar cedo por atenção | Retenção do gancho < 20% depois de ~2.000 impressões | Spark UGC |
 | Julgar taxa de fechamento | Depois de 20 a 30 conversas | Aritmética (sem fonte com método) |
-| Conceito novo | 1 a 2 por semana ou por quinzena | Foxwell |
-| Frequência | Só é sinal **junto** com custo subindo (semanal > 2,5 a 3) | Larrossa, Foxwell |
+| Conceito novo | 1 a 2 por semana ou por quinzena; na prática da casa, **um conceito novo a cada ~15 dias** | Foxwell; Sobral (17/09/2026) |
+| Frequência | Só é sinal **junto** com custo subindo (semanal > 2,5 a 3 = cansaço de criativo). Em raio minúsculo, 1,7 é gatilho para revisar o raio | Larrossa, Foxwell; Sobral |
 
 - **Corte:** anúncio que gastou 2 a 3 vezes o custo máximo por orçamento qualificado sem gerar
   nenhum é candidato a sair. Decidir pelo degrau de baixo (orçamento, venda), não pela conversa.
@@ -83,8 +87,12 @@ em que a Hórus entregar CRM + WhatsApp sobre a API.
   abandonou. Em R$ 40/dia, 20% é ruído. **A pergunta que decide é se o WhatsApp do cliente aguenta
   mais conversas sem piorar o tempo de resposta.** A Meta diz que o que atrapalha é salto grande.
 - **Teste A/B com verba pequena:** "praticamente sem sentido" (Loomer). Conceitos no mesmo conjunto.
-- **Remarketing:** Loomer acha "praticamente morto" com Advantage+; Sobral usa raio de 1 km + engajados
-  + horário comercial ("WAR") pra negócio local. Com um conjunto aberto no raio certo, os engajados já
-  estão dentro. Lista de clientes < 1.000 serve mais pra **exclusão**.
+- **Remarketing:** Loomer acha "praticamente morto" com Advantage+. O Sobral separa o quente (engajados
+  em 365 dias, 50% do vídeo, visita ao perfil em 30 dias) com 27% de uma verba de R$ 1.000 (17/09/2026).
+  O "WAR" que este manual atribuía a ele **não é definido em nenhum texto dele**: era leitura nossa. Com
+  verba pequena e um conjunto aberto no raio certo, os engajados já estão dentro. Lista de clientes
+  < 1.000 serve mais pra **exclusão**. **Plano de escala** (cliente acima de R$ 1.000/mês com volume de
+  engajados): partir da divisão do Sobral 40% frio geolocalizado / 27% remarketing / 16% vídeo / 16%
+  engajamento.
 - **Sazonalidade (película):** procura por "insulfilm" no Brasil tem pico em dez/jan, vale em mai/jun
   (variação de ~17%). Mais verba de dezembro a março e em julho; o vale serve pra testar criativo.

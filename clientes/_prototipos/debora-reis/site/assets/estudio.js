@@ -237,6 +237,36 @@
     faixa.addEventListener('scroll', medir, { passive: true }); window.addEventListener('resize', medir); medir();
   });
 
+  // ---------- Como trabalho: um cartão aceso de cada vez (computador, com movimento); em tela alta a seção fica presa ----------
+  (function () {
+    var sec = document.querySelector('.processo'); if (!sec || reduz) return;
+    var itens = sec.querySelectorAll('.etapa'), palco = sec.querySelector('.processo-palco');
+    var pc = window.matchMedia('(min-width: 1081px)'), alta = window.matchMedia('(min-height: 700px)');
+    var atual = -1;
+    function acende(i) {
+      if (i === atual) return; atual = i;
+      itens.forEach(function (li, k) { li.classList.toggle('on', k === i); });
+    }
+    function medir() {
+      if (!sec.classList.contains('js-etapas')) return;
+      var r = palco.getBoundingClientRect(), vh = window.innerHeight, p;
+      if (sec.classList.contains('etapas-presas')) p = -r.top / Math.max(1, r.height - vh);
+      else p = (vh * 0.7 - r.top) / Math.max(1, r.height * 0.9);
+      acende(Math.max(0, Math.min(itens.length - 1, Math.floor(p * itens.length))));
+    }
+    function ligar() {
+      var ok = pc.matches;
+      sec.classList.toggle('js-etapas', ok);
+      sec.classList.toggle('etapas-presas', ok && alta.matches);
+      if (!ok) { atual = -1; itens.forEach(function (li) { li.classList.remove('on'); }); }
+      medir();
+      if (window.ScrollTrigger) ScrollTrigger.refresh();
+    }
+    pc.addEventListener('change', ligar); alta.addEventListener('change', ligar);
+    window.addEventListener('scroll', medir, { passive: true }); window.addEventListener('resize', medir);
+    ligar();
+  })();
+
   // ---------- desenhos que se traçam uma vez, em ordem (estrutura, móveis, detalhes, o gato, a cota) ----------
   function tracar(svg) {
     if (!svg || reduz || !window.gsap) return;
@@ -290,8 +320,8 @@
       gsap.from(c, { opacity: 0, x: -10, duration: 1, ease: ease, scrollTrigger: { trigger: c, start: 'top 90%' } });
     });
 
-    // as etapas e as perguntas entram uma a uma
-    gsap.utils.toArray('.etapas li, .perguntas details').forEach(function (li) {
+    // as perguntas entram uma a uma
+    gsap.utils.toArray('.perguntas details').forEach(function (li) {
       gsap.from(li, { y: 40, opacity: 0, duration: 1.1, ease: ease, scrollTrigger: { trigger: li, start: 'top 88%' } });
     });
 

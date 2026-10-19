@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- 05/10/2026 — SEO. 🔴 O canonical, o og:url, o sitemap e o JSON-LD apontavam
      para https://graodaserra.netlify.app/, que dá 404: o site diz ao Google que a
@@ -35,7 +35,7 @@
 
 <!-- A foto do hero é o maior elemento da primeira dobra (LCP). Pré-carregada,
      e no celular vem a versão de 900px (39 KB) em vez da de 1812px (157 KB). -->
-<link rel="preload" as="image" href="assets/hero-home-v3-mob.webp" media="(max-width:900px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/hero-mob-2026-10-15c.webp" media="(max-width:900px)" fetchpriority="high">
 <link rel="preload" as="image" href="assets/hero-home-v3.webp" media="(min-width:901px)" fetchpriority="high">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,7 +43,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 <!-- ?v= obrigatório: o netlify.toml guarda /assets/* em cache imutável de 1 ano.
      Mudou o CSS, muda a data aqui, senão quem já visitou continua vendo o antigo. -->
-<link rel="stylesheet" href="assets/site.css?v=2026-10-07b">
+<link rel="stylesheet" href="assets/site.css?v=2026-10-15f">
 
 <script type="application/ld+json">
 {
@@ -98,7 +98,7 @@
      botão de fio no fim, igual à referência. -->
 <header class="topo" id="topo-barra">
   <div class="wrap">
-    <button class="menu-btn" id="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">☰</button>
+    <button class="menu-btn" id="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
 
     <a class="marca" href="#topo">
       <img src="assets/logo-topo.png" width="78" height="78" alt="">
@@ -114,6 +114,7 @@
       <a href="#origem">Origem</a>
       <a href="#publico">Para o seu negócio</a>
       <a href="#contato">Contato</a>
+      <a class="nav-cta" href="#pedido">Solicitar orçamento</a>
     </nav>
 
     <!-- Botão dourado "Solicitar Orçamento" do print, no lugar da pílula do
@@ -149,26 +150,35 @@
            sobre a serra ao pôr do sol). No celular entra um recorte dela (saco +
            pacote) ABAIXO do texto, para o pacote aparecer inteiro, sem texto por cima. -->
       <picture>
-        <source media="(max-width:900px)" srcset="assets/hero-home-v3-mob.webp" width="900" height="562">
+        <source media="(max-width:900px)" srcset="assets/hero-mob-2026-10-15c.webp" width="900" height="1078">
         <img src="assets/hero-home-v3.webp" width="1808" height="870" alt="" fetchpriority="high">
       </picture>
     </div>
 
     <div class="wrap">
       <div class="hero-txt">
-        <p class="hero-eyebrow revela">Café arábico da Serra de Brejões / BA</p>
-        <h1 class="revela">Do Distrito Serrana para a sua xícara ou para o seu negócio.
-        </h1>
+        <p class="hero-eyebrow revela"><span class="t-desk">Café arábico da Serra de Brejões / BA</span><span class="t-mob">Café arábico <span class="ponto" aria-hidden="true">•</span> Brejões, BA</span></p>
+        <!-- 15/10/2026: no celular o título é o do layout que o Marcelo mandou
+             (mockup do GPT): curto, última linha em dourado. Computador igual. -->
+        <h1 class="revela t-desk">Do Distrito Serrana para a sua xícara ou para o seu negócio.</h1>
+        <h1 class="revela t-mob">Da serra de<br class="br-620"> Brejões para <span class="h1-ouro">a sua xícara.</span></h1>
 
         <p class="hero-sub revela">
-          Café 100% arábica, grãos selecionados e torra cuidadosa. Uma
+          <span class="t-desk">Café 100% arábica, grãos selecionados e torra cuidadosa. Uma
           experiência de qualidade para quem aprecia um bom café, seja em
-          casa, no trabalho ou no seu negócio.
+          casa, no trabalho ou no seu negócio.</span><span class="t-mob">Café 100% arábica, grãos selecionados e torra
+          cuidadosa. Para quem valoriza sabor de verdade, em casa ou no seu negócio.</span>
         </p>
 
         <div class="hero-acao revela">
-          <a class="btn btn-ouro" href="#pedido">Solicitar Orçamento</a>
-          <a class="btn btn-claro" href="#cafe">Nossos Cafés</a>
+          <a class="btn btn-ouro so-desk" href="#pedido">Solicitar Orçamento</a>
+          <a class="btn btn-claro so-desk" href="#cafe">Nossos Cafés</a>
+          <!-- 15/10/2026, celular: um botão principal e um link de texto, em vez
+               de dois botões do mesmo peso (sugestão de layout do Marcelo). O
+               orçamento já está no botão do topo; o link leva ao formulário com
+               o "Você é" pedindo o tipo do negócio. -->
+          <a class="btn btn-ouro so-mob" href="#cafe">Conheça nossos cafés</a>
+          <a class="link-seta so-mob" href="#pedido" data-foco="p-tipo">Peça um orçamento para sua empresa</a>
         </div>
 
         <!-- 12/08: SÓ no celular. Os 4 diferenciais entram aqui dentro do hero,
@@ -257,7 +267,7 @@
             <ellipse cx="15.1" cy="15" rx="5.2" ry="6.6" mask="url(#mk-grao-b2)"/>
           </g>
         </svg>
-        <p class="faixa-nome">Grãos 100% arábica</p>
+        <p class="faixa-nome"><span class="t-desk">Grãos 100% arábica</span><span class="t-mob">100% arábica</span></p>
         <p class="faixa-sub">Grãos selecionados, café puro</p>
       </li>
       <li class="faixa-item revela">
@@ -266,18 +276,25 @@
             M8.6 9.4 6.4 12.8C7 13.5 7.4 12.6 8 13.1 8.6 13.6 9.1 12.7 9.7 13.2 10.2 13.6 10.6 13.3 10.9 12.9Z
             M15.3 6.4 13.9 10.7C14.5 11.4 15.1 10.5 15.7 11 16.3 11.5 16.9 10.9 17.5 10.7Z"/>
         </svg>
-        <p class="faixa-nome">Do interior da Bahia</p>
+        <p class="faixa-nome"><span class="t-desk">Do interior da Bahia</span><span class="t-mob">Origem serrana</span></p>
         <p class="faixa-sub">Beneficiado no Distrito Serrana, em Brejões</p>
       </li>
       <li class="faixa-item revela">
-        <svg class="ic ic-fio" viewBox="0 0 24 24" aria-hidden="true">
+        <svg class="ic ic-fio ic-desk" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 2.8A2.35 2.35 0 0 1 15.45 3.72A2.35 2.35 0 0 1 17.98 6.25A2.35 2.35 0 0 1 18.9 9.7A2.35 2.35 0 0 1 17.98 13.15A2.35 2.35 0 0 1 15.45 15.68A2.35 2.35 0 0 1 12 16.6A2.35 2.35 0 0 1 8.55 15.68A2.35 2.35 0 0 1 6.02 13.15A2.35 2.35 0 0 1 5.1 9.7A2.35 2.35 0 0 1 6.02 6.25A2.35 2.35 0 0 1 8.55 3.72A2.35 2.35 0 0 1 12 2.8Z"/>
           <circle cx="12" cy="9.7" r="4.5"/>
           <path d="M9.8 9.9 11.3 11.4 14.3 8"/>
           <path d="M9.3 15.7 6.2 21.5 9 21.1 9.9 23.6 12.5 18.7"/>
           <path d="M14.7 15.7 17.8 21.5 15 21.1 14.1 23.6 11.5 18.7"/>
         </svg>
-        <p class="faixa-nome">Torra artesanal</p>
+        <!-- 15/10: no celular entra a xícara com vapor do mockup do Marcelo -->
+        <svg class="ic ic-fio ic-mob" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4.8 12.2h11.4v3.3a4.6 4.6 0 0 1-4.6 4.6H9.4a4.6 4.6 0 0 1-4.6-4.6Z"/>
+          <path d="M16.2 13.4h1.2a2.1 2.1 0 0 1 0 4.2h-1.5"/>
+          <path d="M3.4 22h14.4"/>
+          <path d="M7.6 3.2c-.9 1.1.9 2.1 0 3.3s.9 2.1 0 3.2M10.5 2.4c-.9 1.2.9 2.3 0 3.6s.9 2.3 0 3.6M13.4 3.2c-.9 1.1.9 2.1 0 3.3s.9 2.1 0 3.2"/>
+        </svg>
+        <p class="faixa-nome"><span class="t-desk">Torra artesanal</span><span class="t-mob">Torra cuidadosa</span></p>
         <p class="faixa-sub">Mais aroma e sabor na xícara</p>
       </li>
       <li class="faixa-item revela">
@@ -334,7 +351,7 @@
       <div class="wrap origem-grid">
         <div class="origem-txt revela">
           <p class="eyebrow">Nossa origem</p>
-          <h2>Do interior da Bahia para a sua xícara.</h2>
+          <h2>Do interior da<br class="br-620"> Bahia para a <span class="h2-ouro">sua xícara.</span></h2>
           <p>
             A Serra de Brejões, no coração da Bahia, oferece o terreno
             perfeito para cafés: altitude, clima e solo fértil que resultam em
@@ -345,7 +362,12 @@
         </div>
 
         <figure class="origem-foto revela d1">
-          <img src="assets/vista-brejoes.webp" width="1040" height="693" loading="lazy" decoding="async" alt="Vista da Serra de Brejões, na Bahia, com a cidade no vale e o café em primeiro plano">
+          <!-- 15/10/2026: no celular, a MESMA foto real com luz de fim de tarde (só a cor muda:
+               céu dourado, tom quente), como no mockup do Marcelo. Script em site-fontes/. -->
+          <picture>
+            <source media="(max-width:900px)" srcset="assets/vista-brejoes-quente-mob.webp" width="1040" height="693">
+            <img src="assets/vista-brejoes.webp" width="1040" height="693" loading="lazy" decoding="async" alt="Vista da Serra de Brejões, na Bahia, com a cidade no vale e o café em primeiro plano">
+          </picture>
           <div class="selo-lugar" aria-hidden="true">
             <img src="assets/selo-bahia.webp" width="340" height="340" decoding="async" alt="">
           </div>
@@ -382,7 +404,7 @@
     <div class="wrap cafe-grid">
       <div class="cafe-txt revela">
         <p class="eyebrow">Nosso café</p>
-        <h2>Qualidade que você sente em cada xícara.</h2>
+        <h2>Qualidade que você sente em <span class="h2-ouro">cada xícara.</span></h2>
         <p>
           Grãos selecionados, torra artesanal e um cuidado que vai da escolha
           do grão à entrega. Tudo para um café marcante no seu dia a dia e no
@@ -416,6 +438,9 @@
            gerado tinha erro de letra no zoom ("CAEÉ"); o rótulo do pacote REAL foi
            colado por cima. Fonte: site-fontes/dois-pacotes-rotulo-real.png. -->
       <figure class="cafe-produto">
+        <!-- 15/10/2026: a cena com a mesa, o saco de juta e o pé de café (o mesmo fundo da
+             abertura) saiu a pedido do Marcelo; no celular ficam só os dois pacotes, como no
+             computador. A montagem antiga está em site-fontes/. -->
         <img class="cafe-dois" src="assets/dois-pacotes.webp" width="720" height="697" loading="lazy" decoding="async" alt="Café Grão da Serra 100% arábica nos dois formatos: o saco de café em grão e o pacote kraft de café moído">
       </figure>
     </div>
@@ -435,8 +460,11 @@
          presentes em..." (mockup): é público-alvo, não lista de clientes. -->
     <div class="wrap">
       <div class="sec-head">
-        <h2>Feito para o seu negócio e para a sua casa.</h2>
+        <h2>Feito para a sua casa<br class="br-620"> e para o seu negócio.</h2>
         <div class="divisor" aria-hidden="true"><i></i></div>
+        <!-- 15/10/2026: subtítulo do mockup do Marcelo, só no celular ("café de origem" virou
+             "café da serra": a marca evita jargão de café especial) -->
+        <p class="pq-sub t-mob">O mesmo café da serra, com o formato ideal para cada momento.</p>
       </div>
 
       <!-- 05/10/2026 (3ª rodada): o Marcelo não curtiu os dois cartões. Virou o
@@ -450,7 +478,7 @@
           <img src="assets/publico-casa.webp" width="1000" height="1000" loading="lazy" decoding="async" alt="Mesa de café da manhã com uma xícara de café e o pacote do Café Grão da Serra">
           <div class="pqb-txt">
             <p class="pqb-eyebrow">Para a sua casa</p>
-            <h3>O café do seu dia a dia.</h3>
+            <h3>O café do seu<br class="br-620"> dia a dia.</h3>
             <p>100% arábica, em grão ou moído. Você pede pelo WhatsApp e combina a entrega com a gente.</p>
             <span class="btn btn-ouro">Quero para minha casa</span>
           </div>
@@ -459,7 +487,7 @@
           <img src="assets/publico-negocio.webp" width="1000" height="1000" loading="lazy" decoding="async" alt="Balcão de cafeteria com xícaras de café servidas">
           <div class="pqb-txt">
             <p class="pqb-eyebrow">Para o seu negócio</p>
-            <h3>Café para servir ou revender.</h3>
+            <h3>Café para servir<br class="br-620"> ou revender.</h3>
             <p>Cafeterias, padarias, restaurantes, hotéis, mercados, escritórios e revendedores. A quantidade e o formato você combina com a gente.</p>
             <span class="btn btn-ouro">Pedir orçamento</span>
           </div>
@@ -540,12 +568,12 @@
     <div class="wrap pedido-grid">
       <div class="pedido-txt">
         <p class="eyebrow">Pedido</p>
-        <h2>Peça o seu café</h2>
-        <p>Preencha os dados e o pedido abre no WhatsApp, já montado, direto com a gente.</p>
+        <h2>Peça o seu <span class="h2-ouro">café<span class="m-only"> agora</span>.</span></h2>
+        <p>Preencha os dados e o pedido já abre no WhatsApp, com o texto pronto, direto com a gente.</p>
         <ul class="pedido-apoio">
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Todos os dias, das 7h às 20h</li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>Em grão ou moído</li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.6V19a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V9.6"/></svg>Para a sua casa ou para revender</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span><b>Todos os dias,</b><br class="br-620"> das 7h às 20h</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="6.5" ry="9" transform="rotate(20 12 12)"/><path d="M14.2 3.4c-3 2.7.6 5.6-1.7 8.5s1.1 5.6-1.7 8.6"/></svg><span><b>Em grão</b><br class="br-620"> ou moído</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.6V19a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V9.6"/></svg><span><b>Para a sua casa</b><br class="br-620"> ou para revender</span></li>
         </ul>
       </div>
 
@@ -553,50 +581,63 @@
         <form id="form-pedido" novalidate>
           <div class="form-campo">
             <label for="p-nome">Nome completo</label>
-            <input type="text" id="p-nome" name="nome" placeholder="Seu nome" autocomplete="name" required>
+            <div class="campo-ic"><svg class="ic-campo" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+              <input type="text" id="p-nome" name="nome" placeholder="Seu nome" autocomplete="name" required>
+            </div>
           </div>
 
           <div class="form-duplo">
             <div class="form-campo">
               <label for="p-tipo">Você é</label>
-              <select id="p-tipo" name="tipo">
-                <option>Consumidor, para tomar em casa</option>
-                <option>Padaria ou mercadinho</option>
-                <option>Cafeteria ou lanchonete</option>
-                <option>Mercearia ou empório</option>
-                <option>Escritório ou consultório</option>
-                <option>Restaurante, bar ou hotel</option>
-                <option>Revendedor ou distribuidor</option>
-                <option>Outro</option>
-              </select>
+              <div class="campo-ic"><svg class="ic-campo" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"/><path d="M18.5 14.2a6.5 6.5 0 0 1 3 5.8"/></svg>
+                <select id="p-tipo" name="tipo">
+                  <option value="" disabled hidden>Escolha o tipo do seu negócio</option>
+                  <option>Consumidor, para tomar em casa</option>
+                  <option>Padaria ou mercadinho</option>
+                  <option>Cafeteria ou lanchonete</option>
+                  <option>Mercearia ou empório</option>
+                  <option>Escritório ou consultório</option>
+                  <option>Restaurante, bar ou hotel</option>
+                  <option>Revendedor ou distribuidor</option>
+                  <option>Outro</option>
+                </select>
+              </div>
             </div>
             <div class="form-campo">
               <label for="p-cidade">Sua cidade</label>
-              <input type="text" id="p-cidade" name="cidade" autocomplete="address-level2">
+              <div class="campo-ic"><svg class="ic-campo" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+                <input type="text" id="p-cidade" name="cidade" autocomplete="address-level2" placeholder="Ex.: Salvador">
+              </div>
             </div>
           </div>
 
           <div class="form-duplo">
             <div class="form-campo">
               <label for="p-qtd">Quantidade de café</label>
-              <input type="text" id="p-qtd" name="qtd" placeholder="Quantas gramas? ex: 500 g, 1 kg, 5 kg">
+              <div class="campo-ic"><svg class="ic-campo" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 3h7l-1.2 3H9.7z"/><path d="M9.7 6C6.6 8 5.5 11 5.5 14c0 4 2.4 7 6.5 7s6.5-3 6.5-7c0-3-1.1-6-4.2-8"/><path d="M10 14h4"/></svg>
+                <input type="text" id="p-qtd" name="qtd" placeholder="Quantas gramas? ex: 500 g, 1 kg, 5 kg">
+              </div>
             </div>
             <div class="form-campo">
               <label for="p-moagem">Em grão ou moído</label>
-              <select id="p-moagem" name="moagem">
-                <option>Moído</option>
-                <option>Em grão</option>
-                <option>Ainda não sei</option>
-              </select>
+              <div class="campo-ic"><svg class="ic-campo" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="9" cy="10" rx="4" ry="5.6" transform="rotate(-25 9 10)"/><path d="M10.6 5.2c-2 2.1.5 3.4-.9 5.3s.6 3.2-.8 5"/><ellipse cx="15.6" cy="14.6" rx="3.6" ry="5" transform="rotate(-25 15.6 14.6)"/><path d="M17 10.4c-1.8 1.9.4 3-.8 4.7s.5 2.9-.7 4.5"/></svg>
+                <select id="p-moagem" name="moagem">
+                  <option>Moído</option>
+                  <option>Em grão</option>
+                  <option>Ainda não sei</option>
+                </select>
+              </div>
             </div>
           </div>
 
           <div class="form-campo">
             <label for="p-obs">Observações (opcional)</label>
-            <textarea id="p-obs" name="obs" placeholder="Alguma observação sobre seu pedido?"></textarea>
+            <div class="campo-ic campo-ic-alto"><svg class="ic-campo" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg>
+              <textarea id="p-obs" name="obs" placeholder="Alguma observação sobre seu pedido?"></textarea>
+            </div>
           </div>
 
-          <p class="form-ajuda">
+          <p class="form-ajuda"><svg class="ic-info" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5M12 7.6v.1"/></svg>
             Nada é enviado por aqui. O botão abre a conversa no WhatsApp com o
             texto já montado, e você confere antes de mandar.
           </p>
@@ -692,7 +733,7 @@
   var topo = document.getElementById('topo-barra');
 
   /* ---- cabeçalho: transparente sobre o hero, sólido depois ---- */
-  var marcaSolido = function(){ topo.classList.toggle('solido', window.scrollY > 70); };
+  var marcaSolido = function(){ topo.classList.toggle('solido', window.scrollY > 8); };
   window.addEventListener('scroll', marcaSolido, { passive:true });
   marcaSolido();
 
@@ -714,6 +755,10 @@
     el.addEventListener('click', function(){
       var sel = document.getElementById('p-tipo');
       if (el.dataset.tipo) sel.value = el.dataset.tipo;
+      /* 15/10/2026: o cartão do negócio não escolhe o tipo (são seis), mas o
+         campo continuava em "Consumidor" e quem não mexia mandava "Sou:
+         Consumidor". Agora ele esvazia o campo e o envio pede o tipo. */
+      if (el.dataset.foco && sel.value.indexOf('Consumidor') === 0) sel.value = '';
       if (el.dataset.foco) setTimeout(function(){ sel.focus({ preventScroll:true }); }, 650);
     });
   });
@@ -730,7 +775,9 @@
     L.push('');
     L.push('Nome: ' + nome.value.trim());
 
-    L.push('Sou: ' + document.getElementById('p-tipo').value);
+    var tipo = document.getElementById('p-tipo');
+    if (!tipo.value) { tipo.focus(); return; }
+    L.push('Sou: ' + tipo.value);
 
     var cidade = document.getElementById('p-cidade').value.trim();
     if (cidade) L.push('Cidade: ' + cidade);

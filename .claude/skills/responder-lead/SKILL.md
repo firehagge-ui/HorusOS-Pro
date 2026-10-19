@@ -65,6 +65,9 @@ leitura se aproveita; a frase obedece às regras de agora.
   substantivos do negócio dele + "Posso te mostrar?" (fecho aprovado em 09/10). Horário só depois do sim.
 - **Sinal de compra:** horário fechado na hora, dois horários, hoje ou amanhã ("amanhã às 10h ou às
   16h?"), 10 minutos por vídeo ou ligação. Pergunta aberta depois de sinal de compra esfria (Talina, 06/10).
+- **Modo de conexão** (elogio, carinho, pergunta sobre a gente) **depois de já ter dito o próximo passo:** retribuir com
+  uma frase dele mesmo e terminar sem pergunta. Pedido de agenda não se repete no mesmo dia; se ele não voltar no prazo que
+  deu, uma linha só no dia seguinte. Elogio não é sinal de compra (Débora, 15/10: "medo de parecer um vendedor nervoso").
 - **"Quanto custa?":** tem resposta (P3, 09/10). Site: a faixa da Fase 1, **R$ 1.200 a R$ 2.000**, e do
   que depende, emendando dois horários. Outro serviço: sem faixa aprovada, `[FALTA: faixa aprovada pelo
   Marcelo pra <serviço>]` e o pedido de mostrar ao vivo. Projeto acima de R$ 2.000 não fecha por mensagem.

@@ -196,6 +196,16 @@ receita recorrente vem depois, não na largada. Vender CRM ou tráfego antes do 
 telhado antes da parede. E **não concentrar receita numa fase que depende de evento incerto**
 (ex.: Washington, cuja Fase 2 dependia de ele gravar vídeos — receita presa a um "se").
 
+**Contrato padrão (aprovado em 16/10/2026, falta o advogado):** `templates/contrato-padrao.md`. Aceite leve de um
+parágrafo para comércio pequeno; contrato completo para ticket maior, mensalidade, tráfego e cliente regulado. Assinar
+no CNPJ do cliente sempre que existir (no CPF vale o arrependimento de 7 dias do CDC). Base de mercado no card
+`_conhecimento/network/contrato-e-garantia.md`.
+
+**Gestão de mídias (conteúdo mensal): proposta de 15/10/2026, ainda não aprovada.** Pacotes, preços, regras e contrato
+em `_gestao/servico-gestao-de-midias.md` (Feed, Presença e Presença completa; piso; Pacote Fim de Ano; teto de 5 clientes
+até medir as horas). Decisão do Marcelo e do Antônio, tarefa no Hounder até 20/10. Até lá não é tabela: o único preço já
+dito a cliente é o da Aion (Presença R$ 1.200, primeiro caso R$ 990).
+
 **Ressalva (01/10/2026, Paralela Film):** quando o cliente **recusa site** e o anúncio leva **direto ao
 WhatsApp**, o tráfego pode ser a entrada. O "destino pronto" passa a ser o atendimento (quem responde,
 em quanto tempo, com roteiro) e a ficha do Google arrumada, não um site. Antes de vender, fazer a conta
@@ -236,6 +246,14 @@ interativa, documento) e mostra antes da próxima etapa da negociação. Amostra
 (fora do Google), mostrada de preferência ao vivo. Dado que o cliente ainda não deu pode entrar como
 **simulação marcada** na demo; o que não entra nem simulado: depoimento, prêmio, número de resultado e foto
 falsa do trabalho do cliente (`integridade.md`). Primeiro caso: Débora Reis, "sala de ideias".
+
+**A Hórus vende sonhos e realiza (Marcelo, 15/10/2026).** "Nós vendemos ideias, vendemos sonhos para as pessoas e a
+gente realiza eles." Em toda reunião, trazer uma emoção e um sonho, não só a razão: a imagem concreta do que o negócio
+do cliente pode virar, dita com as palavras e a história dele (na Aion: a mãe que pesquisa às dez da noite e encontra a
+clínica, do tamanho que ela é). Duas travas: o sonho se ancora em fato verdadeiro (nada de número, case ou promessa
+inventados, `integridade.md`), e em cliente regulado a emoção vive na conversa com o dono, nunca na peça publicada, que
+o conselho quer sóbria. A agência pode parecer maior do que é mostrando processo, material caprichado e a equipe real
+(dois sócios mais agentes de IA), nunca inventando tamanho. Estudo de persuasão e neuromarketing: tarefa no Hounder.
 
 **Primeiro o compromisso, depois o trabalho (15/10/2026, aprovado pelo Marcelo).** Sates (perfil do Google feito antes
 do aceite, sem retorno), Débora (seis rodadas de site antes de ela pedir; um amigo entregou antes), Spaço (site pronto

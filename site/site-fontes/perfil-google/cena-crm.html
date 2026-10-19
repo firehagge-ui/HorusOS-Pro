@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Cena do CRM</title>
+<!-- Cena gerada no ChatGPT (16/10/2026) com a tela em verde chapado; a tela recebe o print REAL do Hounder
+     com dados de demonstração (prints/hounder-esteira.png, gerado por hounder-demo.js, sem lead de verdade).
+     A cena veio em 4 partes de 724x543 (cena/t00, t10, t01, t11) e é remontada aqui em 1448x1086. -->
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  html, body { width: 1448px; height: 1086px; overflow: hidden; background: #000; }
+  .cena { position: relative; width: 1448px; height: 1086px; }
+  .cena > img.t { position: absolute; width: 724px; height: 543px; }
+  #moldura, #tela { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+  #moldura { background: #16181c; }
+  #tela { width: 2880px; height: 1800px; filter: brightness(.86) saturate(.95); }
+  /* reflexo leve, para a tela não parecer colada por cima da foto */
+  #brilho { position: absolute; left: 0; top: 0; width: 2880px; height: 1800px; transform-origin: 0 0;
+    background: linear-gradient(115deg, rgba(255,255,255,.07), rgba(255,255,255,0) 45%); pointer-events: none; }
+</style>
+</head>
+<body>
+<div class="cena">
+  <img class="t" src="cena/t00.png" style="left:0;top:0" alt="">
+  <img class="t" src="cena/t10.png" style="left:724px;top:0" alt="">
+  <img class="t" src="cena/t01.png" style="left:0;top:543px" alt="">
+  <img class="t" src="cena/t11.png" style="left:724px;top:543px" alt="">
+  <div id="moldura"></div>
+  <img id="tela" src="prints/hounder-esteira.png" alt="">
+  <div id="brilho"></div>
+</div>
+<script>
+  // Cantos da tela verde medidos na imagem do ChatGPT (sup. esq., sup. dir., inf. dir., inf. esq.).
+  const CANTOS = [[367, 258], [950, 213], [1001, 585], [433, 679]];
+  // Homografia retângulo (w x h) -> quadrilátero, como matrix3d do CSS.
+  function homografia(w, h, q) {
+    const [[x0, y0], [x1, y1], [x2, y2], [x3, y3]] = q;
+    const dx1 = x1 - x2, dx2 = x3 - x2, dy1 = y1 - y2, dy2 = y3 - y2;
+    const sx = x0 - x1 + x2 - x3, sy = y0 - y1 + y2 - y3;
+    const den = dx1 * dy2 - dx2 * dy1;
+    const g = (sx * dy2 - dx2 * sy) / den, k = (dx1 * sy - sx * dy1) / den;
+    const a = x1 - x0 + g * x1, b = x3 - x0 + k * x3, c = x0;
+    const d = y1 - y0 + g * y1, e = y3 - y0 + k * y3, f = y0;
+    return `matrix3d(${a / w},${d / w},0,${g / w},${b / h},${e / h},0,${k / h},0,0,1,0,${c},${f},0,1)`;
+  }
+  // Abre o quadrilátero alguns pixels a partir do centro (cobre a franja verde da borda).
+  function abrir(q, px) {
+    const cx = q.reduce((s, p) => s + p[0], 0) / 4, cy = q.reduce((s, p) => s + p[1], 0) / 4;
+    return q.map(([x, y]) => { const vx = x - cx, vy = y - cy, n = Math.hypot(vx, vy); return [x + vx / n * px, y + vy / n * px]; });
+  }
+  const m = document.getElementById('moldura'); m.style.width = '100px'; m.style.height = '100px';
+  m.style.transform = homografia(100, 100, abrir(CANTOS, 5));
+  document.getElementById('tela').style.transform = homografia(2880, 1800, abrir(CANTOS, 1.5));
+  document.getElementById('brilho').style.transform = homografia(2880, 1800, abrir(CANTOS, 1.5));
+</script>
+</body>
+</html>

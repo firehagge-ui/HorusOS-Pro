@@ -104,3 +104,22 @@ for forte. Isso desloca o esforço de "achar público" pra "fazer criativo bom".
 O vocabulário de comunidade (Padawan, Jedi, Subido, Baby Bosta), os números de
 faturamento como benchmark, e a cultura de lançamento de info-produto — a maioria dos
 nossos clientes é comércio/serviço local, não lançamento.
+
+## Atualização 19/10/2026 (blog dele, ago a out/2026)
+
+Pesquisa em `_memoria/trafego/fontes/reports/Sobral tráfego comercial e captação.md`. Lido por ferramenta que
+resume a página: conferir a frase exata antes de citar entre aspas.
+
+- **Verba decide a estrutura:** abaixo de R$ 500/mês, "uma única campanha com um criativo forte"; com R$ 1.000
+  (caso hamburgueria, 17/09/2026), 40% frio só por localização, 27% remarketing, 16% visualização de vídeo, 16%
+  engajamento, com público manual e Advantage+ desligado. Isso contradiz o guia dele de 13/03/2026.
+- **Raio:** 1 a 2 km, abrir 1 km quando a frequência chega a 1,7. **Horário:** só com orçamento total programado.
+- **Criativo:** gancho, corpo, CTA; 5 textos, 5 títulos, 5 descrições; Reels; pessoa real, preço visível, combo;
+  conceito novo a cada ~15 dias.
+- **Cobrança:** mensalidade fixa (R$ 750 escala, R$ 1.500 boutique); contra cobrar só percentual. Produto de
+  entrada: Google por R$ 500 + R$ 300/mês.
+- **Captação do gestor:** parcerias com designer e social media, grupos de nicho, o "aquário" (seguidores de perfis
+  de referência); mensagem nunca igual trocando só o nome; pedir indicação.
+- 🔴 **Vetado pela casa:** rodar verba do cliente numa campanha "secreta" e revelar depois (20/08/2026). A versão
+  honesta é o teste combinado por escrito (`_memoria/trafego/90-antipadroes.md`).
+- Sem texto dele sobre barbearia, salão, oficina ou película; "WAR" não é definido em nenhum texto aberto.

@@ -11,6 +11,11 @@ respondeu (geladeira). **Leal:** não vai começar agora (geladeira). **Sates:**
 a Dra.; decisão de 15/10: não refazer o site, ligar pro fixo. Paralela: resultado da R1 de 05/10 segue sem registro. O
 padrão de entregar antes do compromisso virou regra em `_memoria/comercial.md` (15/10).
 
+**Caixa (16/10/2026, contado pelo Marcelo):** custo fixo da Horus ≈ R$ 153/mês (Claude + ChatGPT Go + domínio). Os dois
+sócios moram com os pais: pró-labore necessário R$ 0, sem prazo apertado. Um cliente de mensalidade já paga a Horus; o
+gargalo é crescer, não sobreviver. O pró-labore *desejado* vira meta na recalibração de 11/11 (seção 5 do plano).
+**Contrato padrão aprovado em 16/10** (`templates/contrato-padrao.md`), falta o advogado.
+
 ⚠️ **Atualização (15/10/2026):** a **Débora Reis está encerrada**: o Marcelo decidiu que a Hórus não vai mais trabalhar para
 ela (o motivo foi registrado pelo Marcelo fora do repositório). Antes disso, ela tinha visto as prévias (14/10) e oferecido permuta, e o esboço foi refeito em 15/10.
 O que fica é o aprendizado: o estudo de dez sites de arquitetura e interiores (`referencias/`) e o diagnóstico seção por

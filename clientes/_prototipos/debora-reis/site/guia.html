@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Guia do cliente | Débora Reis Arquitetura</title>
+<title>Guia do cliente (simulação) | Débora Reis Arquitetura</title>
 <meta name="description" content="Como um projeto de interiores acontece com a Débora Reis: etapas, prazos, o que você recebe e o que trazer na primeira conversa.">
 <meta name="robots" content="noindex, nofollow">
-<meta property="og:title" content="Guia do cliente | Débora Reis">
+<meta property="og:title" content="Guia do cliente (simulação) | Débora Reis">
 <meta property="og:image" content="assets/fotos/rio-vermelho.jpg">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://api.fontshare.com">
@@ -20,7 +20,7 @@
 <body class="guia-corpo">
 
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
-<div class="selo-esboco"><a href="ideias.html"><span class="so-desk">Demonstração da Hórus · </span>Todas as ideias</a><button type="button" data-sim>Esconder marcações</button></div>
+<div class="selo-esboco"><a href="ideias.html"><span class="so-desk">Simulação · </span>Todas as ideias</a></div>
 
 <header class="topo-fixo">
   <div class="topo-in">
@@ -32,106 +32,155 @@
 <main id="conteudo">
 
 <div class="guia-barra">
-  <button class="btn" type="button" id="imprimir">Baixar em PDF</button>
+  <a class="btn" href="guia-do-cliente-debora-reis.pdf" download>Baixar em PDF</a>
 </div>
 
 <!-- Guia do cliente, na voz da Débora (é dela que o guia é). Ordem do "investment guide" dos estúdios de interiores:
      carta, processo e prazo, investimento, o que trazer, perguntas, contato.
-     Prazo, valor, pagamento e respostas ainda não são dela: a página leva a etiqueta "Demonstração". -->
+     De onde vem cada coisa (revisão de 15/10/2026, noite):
+     - legendas do Instagram dela (fotos/FONTES.md): 2004, "feita de encontros", "aprendendo sobre pessoas", "nunca projetei
+       a mesma casa duas vezes", "acolhem a vida real, seus afetos e sua identidade", "não parecer comprado inteiro de uma vez";
+     - site antigo (Serviços): as etapas 2 a 4 e a lista das plantas;
+     - site atual dela (deborareisarquitetura.netlify.app, lido em 15/10): estudo preliminar ao executivo (layout, iluminação,
+       marcenaria, materiais), visitas técnicas, "nada segue sem o seu aval", quantitativos e custos em cada apresentação,
+       primeira conversa sem compromisso presencial ou por vídeo, Salvador e região metropolitana, resposta em até 2 dias úteis;
+     - nosso, ainda sem o ok dela: prazos, forma de cálculo, o que a proposta traz e as respostas.
+     Marcelo, 15/10, 20h: o documento inteiro se declara SIMULAÇÃO (aviso na capa + etiqueta fixa em todas as páginas, que o
+     "Esconder marcações" não esconde). Vence, só neste guia, a regra de 14/10 de usar apenas "Demonstração".
+     O PDF do botão é gerado a partir desta página: mudou aqui, gera de novo (ver ../CLAUDE.md). -->
 
 <!-- capa -->
 <section class="pagina pag-capa" aria-labelledby="g1">
+  <span class="demo demo-fixo">Simulação</span>
   <img src="assets/fotos/rio-vermelho.jpg" alt="Corredor do apartamento no Rio Vermelho, com paredes verdes, estante embutida e luz baixa" width="1080" height="1080">
   <div class="pag-capa-txt">
     <h1 id="g1">Guia <em>do cliente.</em></h1>
-    <p>Débora Reis, arquitetura de interiores. Barra, Salvador.</p>
+    <p class="capa-sub">Da primeira conversa à casa pronta.</p>
+    <p class="capa-quem">Débora Reis, arquitetura de interiores. Barra, Salvador.</p>
+    <p class="capa-aviso"><b>Simulação.</b> Este guia é um exemplo, montado a partir do Instagram e do site da Débora. Os prazos, a forma de cobrança e as respostas ainda não foram confirmados por ela.</p>
   </div>
   <span class="pagina-num">1</span>
 </section>
 
-<!-- carta: os dois primeiros parágrafos são da legenda dela no Instagram -->
+<!-- carta: os dois primeiros parágrafos e a frase do terceiro são de legendas dela no Instagram -->
 <section class="pagina carta" aria-labelledby="g2">
+  <span class="demo demo-fixo">Simulação</span>
   <h2 id="g2">Antes de começar</h2>
   <p>Quando me formei, em 2004, eu imaginava que minha profissão seria feita de projetos. Com o tempo descobri que ela é feita de encontros.</p>
-  <p>Depois de mais de duas décadas, continuo desenhando casas, mas, principalmente, continuo aprendendo sobre pessoas.</p>
-  <p>Aqui eu conto como um projeto acontece comigo, quanto tempo leva e o que você recebe em cada etapa. Assim a gente começa a conversa do mesmo ponto.</p>
+  <p>Depois de mais de duas décadas, continuo desenhando casas, mas, principalmente, continuo aprendendo sobre pessoas. Nunca projetei a mesma casa duas vezes.</p>
+  <p>Por isso o trabalho começa ouvindo como você vive: quem mora, a rotina, o que vem com você e precisa ficar, o que você imagina para os próximos anos. Projetar interiores, para mim, é criar espaços que acolhem a vida real, seus afetos e sua identidade.</p>
+  <p>Nas próximas páginas eu conto como um projeto acontece comigo, o que você recebe em cada etapa e como chegar à nossa primeira conversa. Assim a gente começa do mesmo ponto.</p>
   <p class="assina">Débora Reis, arquiteta e urbanista</p>
   <span class="pagina-num">2</span>
 </section>
 
-<!-- etapas e o tempo de cada uma -->
-<section class="pagina" id="etapas" aria-labelledby="g3">
-  <span class="demo">Demonstração</span>
+<!-- etapas: o que acontece, para que serve, o que você recebe e o tempo de cada uma -->
+<section class="pagina pag-etapas" id="etapas" aria-labelledby="g3">
+  <span class="demo demo-fixo">Simulação</span>
   <h2 id="g3">Como um projeto <em>acontece.</em></h2>
   <ol class="etapas-guia">
-    <li><span class="n">1</span><div><h3>A conversa e o estudo</h3><p>Visito o apartamento, tiro as medidas e entendo o que fica e o que muda. Você recebe o estudo com o layout e as primeiras ideias.</p></div><span class="prazo">2 a 3 semanas</span></li>
-    <li><span class="n">2</span><div><h3>Plantas técnicas</h3><p>O caderno que a obra segue: plantas construtivas, de gesso, de paginação de revestimentos e com os pontos elétricos e luminotécnicos.</p></div><span class="prazo">4 a 6 semanas</span></li>
-    <li><span class="n">3</span><div><h3>Acompanhamento de obra</h3><p>Vou à obra conferir se tudo segue o projeto e tirar as dúvidas da equipe.</p></div><span class="prazo">visitas semanais</span></li>
-    <li><span class="n">4</span><div><h3>Decoração</h3><p>Depois da reforma, quadros, almofadas e flores entram no lugar para deixar o ambiente aconchegante.</p></div><span class="prazo">2 a 4 semanas</span></li>
+    <li><span class="n">1</span><div>
+      <div class="etapa-topo"><h3>A conversa e o estudo</h3><span class="prazo">2 a 3 semanas</span></div>
+      <p>Começo ouvindo o que incomoda hoje e o que precisa funcionar melhor. Visito o imóvel, tiro as medidas, vejo o que fica e o que muda, e a gente define a direção do projeto.</p>
+      <p class="recebe"><b>Você recebe</b> o estudo preliminar, com o layout e as primeiras ideias.</p>
+    </div></li>
+    <li><span class="n">2</span><div>
+      <div class="etapa-topo"><h3>Plantas técnicas</h3><span class="prazo">4 a 6 semanas</span></div>
+      <p>Com o estudo aprovado, detalho tudo o que a obra vai executar: layout, iluminação, marcenaria e especificação de materiais, com os quantitativos. Com isso você pede orçamento à obra e aos fornecedores sabendo exatamente o quê.</p>
+      <p class="recebe"><b>Você recebe</b> o caderno que a obra segue: plantas construtivas, de gesso, de paginação de revestimentos, elétricas e luminotécnicas.</p>
+    </div></li>
+    <li><span class="n">3</span><div>
+      <div class="etapa-topo"><h3>Acompanhamento de obra</h3><span class="prazo">durante a reforma</span></div>
+      <p>Faço visitas técnicas para que a obra siga o que foi projetado e para tirar as dúvidas da equipe. O número de visitas fica definido na proposta.</p>
+    </div></li>
+    <li><span class="n">4</span><div>
+      <div class="etapa-topo"><h3>Decoração</h3><span class="prazo">2 a 4 semanas</span></div>
+      <p>Depois da reforma entram quadros, objetos, tecidos e plantas. Gosto da decoração que não parece montada: começo pelo que você já tem e conta alguma coisa.</p>
+    </div></li>
   </ol>
+  <p class="guia-nota">Prazos estimados: mudam com o tamanho do imóvel, a complexidade do projeto e o tempo de cada decisão. Nem todo projeto passa pelas quatro etapas, e a proposta diz quais fazem parte do seu.</p>
   <div class="guia-tempo">
-    <h3>Por que leva esse tempo</h3>
-    <p>Tudo o que fica decidido no desenho deixa de ser decidido no meio da obra, com o pedreiro parado esperando resposta. Se a sua data é apertada, me conte logo na primeira conversa. Dá para organizar as etapas pelo que precisa ficar pronto primeiro, sem pular nenhuma.</p>
+    <h3>Por que respeitar cada etapa</h3>
+    <p>Cada etapa só começa com a anterior aprovada por você. O que se decide no desenho não fica para o meio da obra, com o pedreiro parado esperando resposta, e isso evita retrabalho. Se a sua data é apertada, me conte na primeira conversa: dá para organizar as etapas pelo que precisa ficar pronto primeiro, sem pular nenhuma.</p>
   </div>
   <span class="pagina-num">3</span>
 </section>
 
-<!-- investimento -->
+<!-- investimento: sem valor (CAU), sem forma de pagamento inventada -->
 <section class="pagina" aria-labelledby="g5">
-  <span class="demo">Demonstração</span>
+  <span class="demo demo-fixo">Simulação</span>
   <h2 id="g5">Como o valor <em>é calculado.</em></h2>
-  <p>O valor depende do tamanho do apartamento e das etapas que você quiser contratar. Você recebe tudo por escrito antes de começar.</p>
+  <p class="abre">Cada proposta é feita para um projeto. Ela pode considerar a área e as características do imóvel, a complexidade do que vai ser feito e as etapas que você contratar.</p>
   <div class="investimento">
     <div><strong>Por metro quadrado</strong><p>O apartamento inteiro, do estudo à decoração.</p></div>
     <div><strong>Por ambiente</strong><p>Para começar pela sala, pela cozinha ou por um quarto.</p></div>
   </div>
-  <p>O pagamento é uma parte na assinatura do contrato e o restante ao longo das etapas, conforme cada uma é entregue.</p>
+  <h3 class="sub-guia">O que a proposta traz</h3>
+  <p>Antes de começar, você recebe por escrito o escopo, as etapas incluídas, os honorários e as condições de pagamento. O trabalho começa quando você aprova.</p>
+  <h3 class="sub-guia">Honorários e custos da obra</h3>
+  <p>Os honorários são do trabalho de arquitetura. Materiais, móveis, mão de obra e outros serviços da obra são contratados e pagos à parte. Ao longo do projeto, cada apresentação traz os quantitativos e os custos previstos, para você decidir sabendo quanto cada escolha pesa.</p>
   <p class="aviso-cau">Por orientação do Conselho de Arquitetura e Urbanismo, os valores vão direto na proposta.</p>
   <span class="pagina-num">4</span>
 </section>
 
-<!-- o que trazer -->
+<!-- o que trazer: primeiro o recado de que não precisa ter nada pronto -->
 <section class="pagina" aria-labelledby="g6">
+  <span class="demo demo-fixo">Simulação</span>
   <h2 id="g6">O que trazer na <em>primeira conversa.</em></h2>
+  <p class="abre">Você não precisa ter nada disso pronto para me chamar. A primeira conversa é sem compromisso, presencial ou por videochamada, e serve justamente para organizar as ideias. O que você tiver em mãos já ajuda.</p>
+  <h3 class="sub-guia">Sobre você</h3>
   <ul class="lista-guia">
-    <li><strong>A planta do apartamento.</strong> Se não tiver, a medição entra no estudo.</li>
-    <li><strong>Fotos de como está hoje,</strong> de cada cômodo que vai mudar.</li>
-    <li><strong>O que fica:</strong> móveis de família, a estante, os quadros, os discos.</li>
+    <li><strong>O que você precisa:</strong> o que incomoda hoje, o que precisa funcionar melhor e o que você imagina para a casa.</li>
     <li><strong>Quem mora,</strong> inclusive os bichos, e como é a rotina da casa.</li>
-    <li><strong>Imagens de casas</strong> que te encantam.</li>
+    <li><strong>O que fica:</strong> móveis de família, a estante, os quadros, os discos.</li>
     <li><strong>A sua data,</strong> se existir uma.</li>
   </ul>
-  <p>Se preferir, responda antes o <a href="conte-sua-casa.html">Conte a sua casa</a>, no meu site. Eu recebo as suas respostas e já chego sabendo boa parte disso.</p>
+  <h3 class="sub-guia">Sobre o imóvel</h3>
+  <ul class="lista-guia">
+    <li><strong>A planta,</strong> se tiver. Se não tiver, a medição entra no estudo.</li>
+    <li><strong>Fotos de como está hoje,</strong> de cada cômodo que vai mudar.</li>
+    <li><strong>Imagens de casas</strong> que te encantam.</li>
+  </ul>
+  <p>Se preferir, responda antes o <a href="https://esboco-debora-reis.vercel.app/conte-sua-casa.html">Conte a sua casa</a>, no meu site. Eu recebo as suas respostas e já chego sabendo boa parte disso.</p>
   <span class="pagina-num">5</span>
 </section>
 
-<!-- perguntas -->
+<!-- perguntas: as que travam a contratação primeiro -->
 <section class="pagina" aria-labelledby="g7">
-  <span class="demo">Demonstração</span>
+  <span class="demo demo-fixo">Simulação</span>
   <h2 id="g7">Perguntas <em>frequentes.</em></h2>
   <dl class="faq-guia">
+    <dt>Como funciona a contratação?</dt><dd>Depois da primeira conversa, você recebe a proposta por escrito, com o escopo, as etapas, os honorários e as condições de pagamento. Com a proposta aprovada, o projeto começa.</dd>
+    <dt>Preciso contratar todas as etapas?</dt><dd>Não necessariamente. Projeto e acompanhamento de obra são serviços diferentes, e a proposta diz quais etapas entram no seu caso.</dd>
     <dt>O que não está incluído?</dt><dd>A obra em si e a compra dos materiais e móveis. Eu indico, especifico e acompanho.</dd>
     <dt>Quem contrata a obra?</dt><dd>Você, com a equipe da sua confiança ou com uma que eu indicar. O caderno de plantas serve para qualquer equipe.</dd>
+    <dt>Como funciona o acompanhamento da obra?</dt><dd>Faço visitas técnicas durante a reforma para conferir se tudo segue o projeto e responder às dúvidas da equipe. A execução é da equipe que você contratar, e o número de visitas fica definido na proposta.</dd>
     <dt>E se eu mudar de ideia no meio?</dt><dd>No estudo, mudar faz parte. Depois que as plantas técnicas ficam prontas, a gente conversa e registra a mudança antes de ela chegar à obra.</dd>
   </dl>
   <span class="pagina-num">6</span>
 </section>
 
-<!-- contato -->
-<section class="pagina" aria-labelledby="g8">
+<!-- contato: WhatsApp primeiro, clicável e com QR (mensagem pronta que diz que veio do guia) -->
+<section class="pagina pag-contato" aria-labelledby="g8">
+  <span class="demo demo-fixo">Simulação</span>
   <h2 id="g8">Vamos <em>conversar?</em></h2>
-  <p>É só me chamar no WhatsApp.</p>
-  <dl class="faq-guia">
-    <dt>WhatsApp</dt><dd>(71) 99977-5453</dd>
-    <dt>Escritório</dt><dd>Rua Aracaju, 34, Barra, Salvador</dd>
-    <dt>Instagram</dt><dd>@deborareisarquitetura</dd>
-  </dl>
+  <p class="abre">Me conte sobre o seu espaço, o que você precisa e o que imagina para ele. Na primeira conversa a gente vê junto por onde começar, sem compromisso.</p>
+  <div class="contato-guia">
+    <dl class="faq-guia">
+      <dt>WhatsApp</dt><dd><a href="https://wa.me/5571999775453?text=Ol%C3%A1%2C%20D%C3%A9bora!%20Li%20o%20seu%20guia%20do%20cliente%20e%20quero%20conversar%20sobre%20um%20projeto.">(71) 99977-5453</a><span class="contato-obs">Respondo em até dois dias úteis.</span></dd>
+      <dt>Instagram</dt><dd><a href="https://www.instagram.com/deborareisarquitetura/">@deborareisarquitetura</a></dd>
+      <dt>Escritório</dt><dd>Rua Aracaju, 34, Barra, Salvador<span class="contato-obs">Atendo em Salvador e região metropolitana.</span></dd>
+    </dl>
+    <figure class="qr-guia">
+      <img src="assets/qr-whatsapp-guia.svg" alt="QR code que abre uma conversa com a Débora no WhatsApp" width="49" height="49">
+      <figcaption>Aponte a câmera do celular para abrir a conversa.</figcaption>
+    </figure>
+  </div>
   <span class="pagina-num">7</span>
 </section>
 
 </main>
 
-<script>document.getElementById('imprimir').addEventListener('click', function () { window.print(); });</script>
 <script src="assets/demo.js" defer></script>
 </body>
 </html>

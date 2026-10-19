@@ -37,6 +37,7 @@ Pular passo é mentir, não é economizar tempo.
 |---|---|---|
 | "O site está pronto" | Detector rodado (abaixo) + checklist de `_memoria/design/99-checklist.md` + varredura de antipadrões | "Ficou bom" |
 | "Está no ar" | URL aberta e carregando, não só deploy disparado | "Fiz o push" |
+| **"Pronto para mandar o link"** | `node .claude/skills/verificar/scripts/conferencia-no-ar.cjs <url> --fora <backup>/` com saída `0`, prints olhados seção por seção, e as miniaturas, a `og:image` e as capas refeitas depois da última mudança. O script foi validado contra uma página com 11 defeitos plantados (15/10/2026) | "Abri a home no 1440" |
 | "Passa no compliance" | Varredura de `_conselho/cargos/compliance.md`, item por item | "Não tem nada demais" |
 | "As imagens estão ok" | Peso conferido e formato WebP no tamanho de exibição | "Converti" |
 | "Não tem dado inventado" | Cada número e afirmação com fonte, placeholder marcado onde falta | "Usei o briefing" |

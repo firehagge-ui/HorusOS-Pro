@@ -26,3 +26,5 @@
 | Subir verba sem olhar avaliação ruim e processo de entrega | Mais carros com o mesmo defeito = mais 1★, nota cai | Responder as 1★, checklist de entrega, confirmação de horário, verba no piso até firmar | Paralela Film, 01/10/2026 |
 | Usar benchmark como meta pro cliente | Promessa que a casa não cumpre | Cenário interno + 4 semanas de medição | Integridade da casa |
 | Segmentar por renda ou prometer anúncio "só pra quem vai comprar" | Restrição da Meta + promessa falsa | Público aberto com localização; criativo filtra | Card do network, seção 11 |
+| Rodar verba do cliente numa campanha "secreta" para revelar depois que foi tráfego (tática ensinada pelo Sobral, 20/08/2026) | Fere a regra de tráfego com honestidade; se o cliente descobre, a confiança acaba | Propor o teste por escrito, com prazo, verba e a medição antes e depois | Integridade da casa |
+| Citar o Sobral (ou qualquer praticante) sem data e sem faixa de verba | Ele mudou de posição entre mar e set/2026; a casa citou o texto velho como consenso | Toda regra apoiada em praticante leva data e faixa de verba ao lado | Relatório de 19/10/2026 |

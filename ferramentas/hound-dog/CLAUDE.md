@@ -222,6 +222,10 @@ a coleta antiga do Instagram (leitura pública) fica parada e o botão "Atualiza
 O motor e o porquê moram em `ferramentas/social/` (ARQUITETURA.md §7). **Nunca rodar `npm run migrar` inteiro
 sem conferir a 002** (tem o @ antigo como padrão); aplicar só a migração nova.
 
+**Estado das rotinas (18/10/2026, Marcelo):** só `semana` (planejamento semanal de posts, segunda 8h), `publicar` e `token`
+ficam ligadas em `social_rotinas`. `caixa` (comentários e DMs) e `triagem` estão desligadas por gastar token e engavetadas;
+sem a caixa, DM nova não avisa no WhatsApp. `metricas` também desligada (05/10). Religar = `ativo = true` na linha.
+
 ## Dívidas conhecidas (27/09/2026)
 
 - **Git:** o trabalho de 24 a 27/09 não foi commitado (falta o /salvar). Em 27/09 o repositório já

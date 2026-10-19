@@ -99,8 +99,80 @@ Bioclin ficou com a nova, sem o pedido de horário. O que isso ensina:
   tem isso?".
 - **Voz:** "Fui pelo link do Instagram de vocês" (olhar de cliente) ganhou de "Abri o Linktree de vocês".
 
+## Revisão dos leads parados (15/10, pedido do Marcelo: "aprenda com nossos erros")
+
+- **Débora: o erro de fundo foi de qualificação, não só de demora.** No primeiro dia ela contou que estava com o caixa
+  zerado, que já tinha site e que a irmã ia ajudar. Pela régua do `comercial.md` ("tem vítima, tem data, tem valor?"),
+  isso já dizia que ela não ia pagar. Mesmo assim foram seis dias de produção e quatro demos. Se tivesse saído em 24h,
+  o provável era um site grátis sem receita, o que a regra do Conselho de 09/10 proíbe. Muda: **caixa zero dito pelo lead
+  limita o investimento a uma amostra de uma hora** até existir compromisso (`comercial.md`, 15/10).
+- **Cintya: pergunta de cliente pelo número da prospecção queimou o lead.** Em 14/10 saíram "Voces atendem homens
+  tambem?" e "Quais procedimentos?" para o robô dela. A pessoa que assumiu a conversa recusou meia hora depois. Muda: **testar
+  o robô ou o atendimento de um lead nunca pelo número que prospecta.** Pelo mesmo número, isso vira pretexto (proibido,
+  `comercial.md` §1).
+- **Recepção de clínica, de novo: 0 reunião em 6 clínicas por WhatsApp** (Cavalcante, LevSaúde, Harmony, Cintya,
+  Bioclin, Spaço). Todas as reuniões vieram de voz ou de relação. A pesquisa de 09/10 diz o mesmo
+  (Parte 1, itens 8 e 1). Muda: em clínica, o WhatsApp fica só pra pedir horário; o contato com a dona é por ligação ou
+  visita.
+- **Entregar antes do compromisso caiu quatro vezes em 15 dias** (Sates, Débora, Spaço, Aion) e já é regra (`comercial.md`,
+  15/10). A pesquisa chama isso de "a estratégia com mais relatos de fracasso em 2026" (Parte 1, item 6; T1 e T2).
+
 ## Correções do Marcelo
 
+- **15/10 · Débora Reis · "Será que a gente deixa mesmo pra marcar reunião agora? Ela parece querer se conectar e tenho medo
+  de parecer um vendedor nervoso".** Às 20h04 ele perguntou "Fica melhor uma ligação?" (tirou os dois horários do meu
+  rascunho). Ela respondeu com afeto ("ameiiii", "salva o meu número", "vc ama seu trabalho") e uma pergunta sobre ele, sem
+  tocar na agenda. Eu devolvi a ligação com dois horários; ele segurou. Ele estava certo: ela já tinha dito no áudio qual era
+  o próximo passo (ler as ideias no dia seguinte e chamar para tirar dúvidas), e repetir o pedido 40 minutos depois troca
+  conexão por pressão. Muda: **lead em modo de conexão que já disse o próximo passo não recebe pedido de agenda de novo no
+  mesmo dia; a resposta retribui (de preferência com uma frase dele mesmo) e termina sem pergunta. Se ele não voltar no prazo
+  que deu, uma linha só no dia seguinte.** Não revoga o "horário fechado depois de sinal de compra" (Talina, 06/10): elogio e
+  carinho não são sinal de compra. Mesma família de "aceitar o obrigado".
+- **15/10 · Débora Reis · "Suas mensagens para os clientes estão cada vez melhores... gostei" (acerto, repetir).** As que ele
+  elogiou eram curtas, respondiam o que ela perguntou e devolviam uma frase dela ("nenhuma casa sua é igual à outra", do "nunca
+  projetei a mesma casa duas vezes" do site). Muda: **o elogio que aproxima usa as palavras do próprio lead, não adjetivo nosso.**
+- **15/10 · Débora Reis · "Deixe o site de ideias bem claro e organizado para ela não ter dúvida e a gente não precise
+  explicar".** Ela disse que leu rápido e não entendeu, e eu tinha montado um balão de 81 palavras explicando a página. O
+  defeito estava na página, não na mensagem. Muda: **material de demonstração se explica sozinho (mapa no topo e, em cada
+  peça, "o que é", "como o cliente usa", "o que muda pra você"); explicação longa por WhatsApp é sinal de página mal
+  organizada.** Item no `design/99-checklist.md`.
+- **15/10 · Débora Reis · a escolha dele sobre o amigo: "não precisa resolver isso tudo agora e nem se sentir constrangida".**
+  Ela contou, sem graça, que preferiu o nosso site ao do amigo. Meu rascunho dizia "a gente acha um jeito que fique bom pra
+  todo mundo", e ele trocou por tirar o peso. Ele estava certo: o meu texto deixava o problema na mesa e punha a gente como
+  parte da disputa; o dele dá permissão pra não decidir. Muda: **quando o lead está constrangido, nomear o sentimento e tirar
+  o prazo ("não precisa resolver agora"), sem prometer solução nem falar do concorrente.** Mesma família de "aceitar o obrigado".
+- **15/10 · Débora Reis · "Tire tudo o que tiver com o nome Horus" e a escolha do "Sou sim! Trabalho com marketing, mais na
+  parte de criação"** (ele mandou a versão sem "agência pequena com um sócio"). Com ela, o Marcelo se apresenta como pessoa:
+  o selo "Prévia feita pela Horus" saiu das 9 páginas e a assinatura ficou só "Marcelo". Leitura: lead em modo de conexão,
+  com parceria pessoal na mesa, ouve "agência" como vendedor. Muda: **material e mensagem para a Débora sem o nome da
+  agência; se ela perguntar se ele tem empresa, a resposta é a verdade. Vale só para a Débora** (Marcelo, 16/10: "tirar o
+  nome da agência vale só para a Débora"); nos outros leads o nome segue normal. Mesma família de "soar de gente, não de
+  agência" (22/09).
+
+- **15/10 · Débora Reis · a escolha dele no último envio: o link direto, sem a pergunta.** Recomendei um rascunho que
+  terminava em "Quer que eu te mande o link?". O Marcelo mandou os dois links direto e escreveu o resto do jeito dele:
+  "Como eu tinha te prometido, aqui estão as prévias", "fica à vontade para olhar apenas como algumas ideias extras, sem
+  compromisso. Quis cumprir o que tinha te falado", "Torço para que você atraia clientes que valorizem seu processo... se
+  precisar de algo relacionado a marketing pode chamar". Ele estava certo. A licença já tinha sido dada em 14/10, quando
+  ele escreveu "amanhã te mando o link". Perguntar de novo atrasaria em mais uma volta uma entrega que já estava atrasada,
+  e o objetivo era fechar com a promessa cumprida, não abrir outra conversa. Muda:
+  - **promessa feita é licença dada.** A mensagem que cumpre uma promessa entrega a coisa, curta, sem pedido;
+  - "a pergunta pede licença pra dar" vale para a primeira oferta, não para o que já foi prometido;
+  - o encerramento leva três coisas: a promessa cumprida, um desejo verdadeiro e a porta aberta, sem pedir nada.
+  O mesmo caminho estava no conselho que ele trouxe às 12h32 ("mande uma última mensagem curta, com o link, sem tentar
+  vender outra coisa"). Eu respondi com uma pergunta a mais.
+- **15/10 · Débora Reis · antes da mensagem final, ler a conversa real.** O rascunho v1 abria com "o site ficou lindo!",
+  e o Marcelo já tinha dito "Ficou muito bonito" 13 horas antes, com o "Obrigada" dela em seguida. A conferência pegou o
+  erro porque leu o `whatsapp_ultimas` da ficha. Muda: a mensagem se escreve depois de ler as últimas trocas, nunca só o
+  dossiê.
+- **14/10 · Débora Reis · "Oxe, mas em um chat você tinha recomendado isso... por que você errou?"** Duas sessões
+  recomendaram passos diferentes para a mesma resposta dela: numa, o link com 10 minutos de vídeo; na outra, só a
+  promessa do link. Muda: antes de sugerir, ler o último rascunho na ficha do Hounder (lá desde a regra de 15/10). Se a
+  recomendação mudar, dizer qual versão ela substitui e por quê.
+- **09/10 · Débora Reis · "a gente já fez milhões de versões dessa. Me diga a definitiva. Passamos o dia inteiro e nem
+  mandei nada".** Com o lead esperando, cada versão nova é mais uma hora sem resposta. Muda: entregar **uma** mensagem
+  recomendada, pronta para copiar, e no máximo uma alternativa, só se houver motivo diferente. O refino vem depois que a
+  mensagem saiu.
 - **15/10 · Débora Reis · "meu problema foi demorar demais para enviar mensagem pra ela".** Ela se abriu em 09/10, o
   esboço foi prometido em 24h e passou por seis rodadas de ajuste antes de ela ver; em 15/10 ela mandou o site novo
   feito por um amigo. Muda: **o esboço vai quando cumpre a promessa, imperfeito e marcado "Demonstração"; o polimento

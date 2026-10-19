@@ -53,6 +53,10 @@ no app.
 - **Brasil (Opinion Box, jun/2025, 1.126 pessoas):** 82% falam com empresa pelo WhatsApp, 60% já
   compraram por ele, **59% não gostam de resposta automática**, 18% bloqueiam quem manda mensagem sem
   ter sido chamado.
+- **Expectativa (Opinion Box com CX Brain, mai/2025, amostra não publicada):** 52% aceitam esperar no
+  máximo 1 minuto no WhatsApp; 64% já largaram um atendimento por IA para buscar outro canal. Proporção de
+  fora (Workato, mar/2026, 114 empresas B2B dos EUA): quase ninguém responde em 5 minutos. Não existe
+  estudo brasileiro com método ligando velocidade no WhatsApp a venda. O multiplicador continua proibido.
 - **Regra:** responder com algo útil (faixa de preço + pergunta do modelo) em minutos no horário de
   atendimento; mensagem de ausência fora dele. Saudação automática segura, não substitui a pessoa.
 - **Acompanhamento:** o único dado é de ligação (Velocify, ~3,5 milhões de registros): até a 6ª
@@ -62,3 +66,36 @@ no app.
   follow-up programado do Hounder.
 - **Áudio x texto:** o brasileiro manda 4x mais áudio que qualquer país, mas >80% preferem texto como
   meio principal. **Áudio explica, o preço vai sempre por escrito.**
+
+## 5. Confirmação e falta (agendamento)
+
+- **Evidência sólida, efeito modesto:** lembrete por SMS aumenta o comparecimento em ~14% relativos e empata
+  com ligação, a custo menor (revisão Cochrane, 2013, saúde). Ensaios brasileiros se contradizem (Curitiba,
+  78 crianças: falta de ~33% para ~10%; outro, 998 pacientes: sem efeito).
+- **Melhor desenho prático:** **confirmação que pede resposta** (ao marcar, com saída fácil para cancelar, e
+  um lembrete final), como o assistente de WhatsApp da Secretaria de Saúde do RJ (falta de 43% para 32%, sem
+  grupo de comparação).
+- **Salão, barbearia, estética:** não há percentual de falta com método no Brasil (15 a 30% é número de
+  fornecedor). **Sinal/depósito:** nenhum estudo; a Booksy (fornecedor) fala em 20% menos cancelamentos.
+  Decisão do cliente.
+
+## 6. Corresponsabilidade no contrato e no relatório
+
+Os contratos de tráfego do mercado não tratam do atendimento do lead (ex.: modelo da Trafius, abr/2026). A
+Horus põe por escrito: **tempo máximo de primeira resposta no horário de atendimento, etiqueta de origem e
+etapa no mesmo dia, e informe de venda** (semanal). O relatório mostra o **tempo de primeira resposta**
+(amostra) ao lado do custo por conversa. Sem isso, o custo por cliente não é só da campanha.
+
+## 7. IA de atendimento oficial (2026)
+
+- **IA para Empresas no app WhatsApp Business:** chegou ao Brasil em 24/02/2026 (exige o app em português e
+  ao menos um item no catálogo; serviço precisa virar item). **Meta Business Agent** (03/06/2026): atende
+  WhatsApp, Messenger e Instagram, agenda e qualifica; grátis por enquanto, assinatura anunciada.
+- **Na API:** o agente custa US$ 2 por milhão de tokens desde 01/07/2026, **inclusive dentro da janela grátis
+  aberta pelo anúncio**.
+- **Chatbot de IA de terceiros no WhatsApp:** proibido desde 15/01/2026, **com exceção para números +55**
+  (após inquérito do Cade). Interessa ao Icarus; a exceção pode cair.
+- **Atribuição:** desde 03/03/2026, conversão de site/loja por clique conta só **clique no link**. Queda de
+  "conversões" numa página de agendamento pode não ser piora real.
+
+Fonte das seções 5 a 7 e do item de expectativa: `fontes/reports/Sobral tráfego comercial e captação.md` (19/10/2026).

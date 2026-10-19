@@ -24,6 +24,12 @@ Duas regras que vencem as outras:
 | Travessão como cola | "um site — ligado ao Google — com agenda" | Vírgula, ponto ou quebra (a casa proíbe travessão) |
 | Frase de efeito no fim do slide | "E isso muda tudo." | Corta |
 
+## Escrever como o Marcelo fala (15/10/2026)
+
+Frase inteira, com o verbo que diz o que fazer: "A bio deve responder três perguntas", não "A bio responde 3
+perguntas em até 150 caracteres". Manchete de jornal economiza palavra e perde clareza. Um dado por frase; número por
+extenso quando é pequeno; o detalhe técnico (os 150 caracteres) vai numa frase própria embaixo.
+
 ## Teste final
 
 Ler o slide em voz alta como o Marcelo leria pra um dono de loja no balcão. Travou, soou

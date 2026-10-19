@@ -27,6 +27,15 @@ vermelho no Disparos.
 - [ ] **Compliance do cliente regulado violado** (CFO, CFP, CFM: sem promessa, sem superlativo,
       sem antes e depois). Trava, não é nota
 
+## Parte 2.5 — Lead que já respondeu (antes de qualquer resposta ou fechamento)
+
+- [ ] As últimas trocas da ficha (`whatsapp_ultimas`) foram lidas agora. A mensagem não repete o que o Marcelo já disse
+      (elogio, promessa, pedido)
+- [ ] O último rascunho da ficha foi lido. Se a recomendação mudou, está dito qual versão ela substitui e por quê
+- [ ] Se a mensagem cumpre algo prometido ("amanhã te mando"), ela entrega direto, sem perguntar "quer que eu mande?"
+- [ ] Vai **uma** versão recomendada, pronta para copiar (no máximo uma alternativa, com motivo)
+*(Débora Reis, 09 a 15/10/2026: `aprendizados.md`, "Correções do Marcelo")*
+
 ## Parte 3 — Os quatro testes rápidos
 
 1. **Troca de nome:** trocando o nome do lead por outro do mesmo segmento, a mensagem continua

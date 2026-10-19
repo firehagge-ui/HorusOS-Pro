@@ -12,6 +12,11 @@ Eles usam Apify e a API do Gemini; aqui é tudo com o que já temos, sem chave n
 - **Reel:** o mesmo embed costuma entregar o `.mp4`. Se o perfil bloquear o embed, abrir no
   Chrome logado do Marcelo; **baixar arquivo pelo Chrome pede o ok dele antes** (nome, origem,
   tamanho). Nunca desligar verificação de certificado pra forçar download.
+- **Perfil com embed bloqueado** (aconteceu com @brun0gpt e com um reel da @lucureau, 10/10/2026): no Chrome logado,
+  `fetch('/p/<código>/')` da própria página do post e regex em "curtidas" e "comentários" dá os números (nem todo post
+  responde). Simular mouse por cima da grade com JavaScript travou a aba; a API `/api/v1/...` devolve HTML. Os códigos
+  dos posts saem bloqueados pelo filtro da ferramenta se vierem inteiros: separar as letras com espaço. O yt-dlp deu
+  erro de certificado na máquina: não se desliga a verificação pra forçar.
 - **Áudio:** `ffmpeg -i reel.mp4 -vn audio.wav` e transcrever com o whisper local
   (`python -m whisper audio.wav --language pt --model small`).
 - **Quadros:** `ffmpeg -i reel.mp4 -vf fps=1,scale=360:-1,tile=6x5 quadros.jpg` pra ver o

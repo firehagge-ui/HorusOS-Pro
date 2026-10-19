@@ -48,7 +48,8 @@ nicho), sempre dentro de um pilar, marcado como experimento e com a mesma régua
 
 ## 5. Caminho da conversão
 
-Conteúdo → perfil (bio + 3 fixados) → link do WhatsApp com "Vim pelo Instagram da Horus" →
+Conteúdo → perfil (bio + 3 fixados) → link da bio no **site** (horusagencia.com.br; decisão do Marcelo em
+10/10/2026, antes era o WhatsApp com "Vim pelo Instagram da Horus") → WhatsApp pelo site →
 conversa marcada no Hounder com origem Instagram → resposta **do Marcelo** (nunca do agente).
 
 CTA por objetivo: educativo pede **salvar**; prova pede **ver o site / o projeto**; conversão pede

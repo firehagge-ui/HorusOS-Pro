@@ -23,19 +23,19 @@
         "rule": "kicker-above-heading",
         "value": "*",
         "files": [
-          "site/**"
+          "HorusOS/site/**"
         ],
         "createdAt": "2026-08-05T13:10:02.884Z",
-        "reason": "Rotulo de secao em pilula, com ponto e caixa alta curta. Escolha do Marcelo em 05/08/2026, a partir de dez referencias que ele mandou (Vexuno, LucrOS, GMX, Helloup, Ellis, Prxmo, Navbar, Menzzo, Remak, Synthai): nove das dez usam esse rotulo, e ele e parte da linguagem visual pedida. Vale SO para site/, que e o site da propria Horus, e nao libera eyebrow em site de cliente, onde o teto de 1 a cada 3 secoes de _memoria/design/90-antipadroes.md continua valendo. O texto do rotulo fica abaixo de 30 caracteres, senao a regra all-caps-body pega, e essa NAO esta dispensada."
+        "reason": "Rotulo de secao em pilula, com ponto e caixa alta curta. Escolha do Marcelo em 05/08/2026, a partir de dez referencias que ele mandou (Vexuno, LucrOS, GMX, Helloup, Ellis, Prxmo, Navbar, Menzzo, Remak, Synthai): nove das dez usam esse rotulo, e ele e parte da linguagem visual pedida. Vale SO para site/, que e o site da propria Horus, e nao libera eyebrow em site de cliente, onde o teto de 1 a cada 3 secoes de _memoria/design/90-antipadroes.md continua valendo. O texto do rotulo fica abaixo de 30 caracteres, senao a regra all-caps-body pega, e essa NAO esta dispensada. Caminho corrigido em 15/10/2026: \"site/**\" casava com QUALQUER pasta site/ (inclusive clientes/<nome>/site), e a dispensa vazava para os sites de cliente. \"HorusOS/site/**\" pega so a raiz."
       },
       {
         "rule": "all-caps-body",
         "value": "*",
         "files": [
-          "site/**"
+          "HorusOS/site/**"
         ],
         "createdAt": "2026-08-05T15:26:27.349Z",
-        "reason": "Faixa de palavras do site da propria Horus (INOVACAO IMPACTO INSPIRACAO), tipografia de cartaz a 64px em texto vazado, com marquee. Sao tres palavras isoladas e decorativas (aria-hidden), nao passagem de leitura: o motivo da regra e que a caixa alta apaga o desenho da palavra em texto corrido, e aqui nao ha texto corrido. Pedido do Marcelo em 05/08/2026 a partir de tres referencias. Vale SO para site/, que e o site da agencia, e nao libera caixa alta em site de cliente."
+        "reason": "Faixa de palavras do site da propria Horus (INOVACAO IMPACTO INSPIRACAO), tipografia de cartaz a 64px em texto vazado, com marquee. Sao tres palavras isoladas e decorativas (aria-hidden), nao passagem de leitura: o motivo da regra e que a caixa alta apaga o desenho da palavra em texto corrido, e aqui nao ha texto corrido. Pedido do Marcelo em 05/08/2026 a partir de tres referencias. Vale SO para site/, que e o site da agencia, e nao libera caixa alta em site de cliente. Caminho corrigido em 15/10/2026: \"site/**\" casava com QUALQUER pasta site/ (inclusive clientes/<nome>/site), e a dispensa vazava para os sites de cliente. \"HorusOS/site/**\" pega so a raiz."
       },
       {
         "rule": "side-tab",
@@ -99,6 +99,33 @@
         ],
         "createdAt": "2026-09-28T01:52:18.985Z",
         "reason": "Marcelo confirmou em 27/09/2026: o quadradinho azul com brilho é o elemento-assinatura do site (.stk-quadrado)"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "clientes/grao-da-serra/site/**"
+        ],
+        "createdAt": "2026-10-15T12:52:12.970Z",
+        "reason": "Falso positivo conferido no navegador em 15/10/2026: hero e origem tem foto que sangra ate a borda de proposito (abertura e Serra de Brejoes). O texto dessas secoes fica dentro do .wrap, com 20px de respiro no celular e 24px+ acima. Nenhum texto encosta na borda. Vale so para o site do Grao da Serra."
+      },
+      {
+        "rule": "kicker-above-heading",
+        "value": "*",
+        "files": [
+          "clientes/grao-da-serra/site/**"
+        ],
+        "createdAt": "2026-10-15T19:00:00.000Z",
+        "reason": "Rotulo de secao com fio dourado (NOSSA ORIGEM, NOSSO CAFE, COMO COMPRAR, PEDIDO) e parte dos mockups que o Marcelo mandou como especificacao para o celular em 15/10/2026 (abertura, Nosso cafe, Nossa origem, Pedido), e ele declarou o site pronto. Vale so para o Grao da Serra."
+      },
+      {
+        "rule": "all-caps-body",
+        "value": "*",
+        "files": [
+          "clientes/grao-da-serra/site/**"
+        ],
+        "createdAt": "2026-10-15T19:00:00.000Z",
+        "reason": "Os 37 caracteres em caixa alta sao os rotulos curtos de secao (2 a 3 palavras cada), nao texto corrido; vem dos mockups do Marcelo de 15/10/2026. Vale so para o Grao da Serra."
       }
     ]
   }

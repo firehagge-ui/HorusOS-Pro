@@ -36,7 +36,7 @@ reescrito pro contexto daqui, não copiado.
 
 | Arquivo | O que tem |
 |---|---|
-| `00-formatos.md` | Os sete formatos narrativos de carrossel. Escolher UM antes de escrever a primeira linha de copy |
+| `00-formatos.md` | Os nove formatos narrativos de carrossel (os sete + print de tweet e antes/depois de fala, 07/10/2026). Escolher UM antes de escrever a primeira linha de copy |
 | `10-legibilidade.md` | Os pisos duros: tamanho de fonte, contraste, dimensão, densidade de texto por slide |
 | `90-antipadroes.md` | O que denuncia carrossel feito por IA. Cresce a cada correção do Marcelo |
 | `91-o-que-veio-do-opensquad.md` | O que foi trazido, o que foi recusado e por quê. Pra não reabrir a discussão daqui a três meses |

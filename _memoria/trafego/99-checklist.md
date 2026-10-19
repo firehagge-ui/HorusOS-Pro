@@ -22,6 +22,8 @@
 - [ ] No app do cliente: permissão de eventos ligada; etiquetas **padrão** conferidas no aparelho
 - [ ] Ficha do Google arrumada (categoria, horário, endereço visível, descrição) e rotina de avaliação
       começando (o anúncio faz a pessoa pesquisar o nome)
+- [ ] **Perfil do Instagram como página de pouso:** bio com link (agenda ou WhatsApp), 3 fixados com papel e
+      destaques de prova; horário e endereço iguais aos do Google (`50-funil-instagram-conteudo-primeiro.md`)
 - [ ] Campanha: objetivo Leads, destino WhatsApp, maximizar conversas; **um conjunto**; Advantage+ com
       localização pelo raio real dos clientes
 - [ ] 3 a 6 conceitos **diferentes** (ângulo, formato, pessoa), vídeo real, 9:16, gancho no início

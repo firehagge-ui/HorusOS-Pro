@@ -1188,6 +1188,14 @@ Regra: **validar o verificador antes de confiar nele.** Rodar contra um arquivo 
 ruim; se não acusar, o verificador está quebrado e o item é **"não verificado"**, nunca
 "ok". Verificação que sempre passa não é verificação.
 
+**Dispensa de detector vaza por caminho (15/10/2026).** No `.impeccable/config.json`, `"files": ["site/**"]` casa
+com QUALQUER pasta `site/`, inclusive `clientes/<nome>/site/`: as dispensas de rótulo acima do título e de caixa alta,
+feitas para o site da Hórus, valiam calado em todo site de cliente (o Grão da Serra dava "saída 0" com quatro rótulos;
+a mesma cópia fora da pasta dava 7 apontamentos). `./site/**` e `/site/**` não pegam nada; o que prende à raiz é
+`HorusOS/site/**`. Regra: dispensa sempre com o caminho do cliente inteiro (`clientes/<nome>/site/**`), e conferir
+rodando o detector numa cópia do site em outra pasta. Ao reabrir Mullsanni ou Giovanni, os apontamentos que
+apareceram agora entram na passada.
+
 ## Template reciclado que vaza a marca de origem (09/09/2026)
 
 No estudo dos concorrentes de performance automotiva (Lead #8 Mullsanni), três dos cinco
@@ -1288,3 +1296,43 @@ nome só aparecia com o mouse (no celular, some). Regras:
 - **foto de 1080 px (Instagram) não vai até a borda da tela:** num notebook de 1440 px ela é esticada 1,3 vez e
   amolece. Emoldurar com margem de papel até chegarem os originais do fotógrafo.
 → *Origem: Débora Reis, 15/10/2026 (`clientes/_prototipos/debora-reis/PROPOSITO-DAS-SECOES.md`, seção 6).*
+
+## Cabeçalho transparente com margem negativa fixa (15/10/2026)
+
+Abertura que sobe por baixo de um cabeçalho transparente com `margin-top:-64px` (número fixo) quebra no
+celular: se a altura real do cabeçalho muda (aparelho, fonte, logo), sobra uma faixa vazia entre o topo e a
+abertura; e enquanto o cabeçalho segue transparente na rolagem, o texto da abertura passa por baixo da logo.
+**No celular, cabeçalho com fundo próprio (da mesma cor da abertura, pra ler como peça só) e abertura começando
+abaixo dele, sem margem negativa.** Se o cabeçalho transparente for mesmo a ideia, ele vira sólido nos
+primeiros pixels de rolagem, não em 70. Conferir medindo `header.bottom` contra `hero.top` em 320 a 900.
+→ *Origem: Grão da Serra, 15/10/2026 ("perto da header aparece um espaço vazio", Marcelo).*
+
+**Mockup com foto atrás do texto reduzido a "escuro em cima, foto embaixo".** Quando a referência põe o céu da foto
+subindo por trás do texto e dos botões, um véu escuro "pra garantir o contraste" ou a foto começando abaixo dos botões
+vira uma tela meio preta, e o cliente lê como outra peça. Medir no print, lado a lado na mesma largura: onde começa a
+cor quente, onde fica o sol, onde termina a tela. O contraste do texto se resolve escolhendo onde o texto cai na foto
+(e medindo o pior pixel), não apagando a foto.
+
+**A mesma cena de fundo em duas seções.** Reaproveitar o "cenário" da abertura (mesa, saco de juta, planta) atrás
+do produto numa seção mais abaixo faz a página parecer repetida: o cliente reconhece o wallpaper da Home e pede
+para tirar. Cada foto de ambiente aparece uma vez; nas outras seções o produto fica sozinho sobre a cor da marca.
+→ *Origem: Grão da Serra, 15/10/2026 ("o background atrás dos dois produtos, que você usou o mesmo wallpaper da
+Home", Marcelo).*
+→ *Origem: Grão da Serra, 15/10/2026 ("a versão que você fez tem muito preto ali. Siga essa imagem", Marcelo).*
+
+**Foto em paralaxe passando por cima do texto.** Objeto solto que se move com a rolagem (`data-vel`, GSAP scrub) pode
+não encostar no texto no print parado e mesmo assim passar por cima dele no meio da rolagem, ou numa largura entre
+1024 e 1300. Conferir medindo: o retângulo de cada foto (com legenda) contra a área real do texto (`Range`, não a caixa
+do parágrafo, que ocupa a largura toda), em 1024 a 1680 e a cada 60 px de rolagem. Foto perto da coluna do texto tem
+velocidade baixa ou fica acima ou abaixo dele.
+→ *Origem: Débora Reis, 15/10/2026 (print do Marcelo: "o aparador do Rio Vermelho está na frente do subtítulo").*
+
+**Frase do cliente tirada do contexto.** Pergunta ou resposta copiada de um post ("Você não enjoa?") vira enigma no
+site se a moldura fica no post: quem leu não sabe quem pergunta nem do quê. Leva junto a linha que dá o contexto ("A
+pergunta que sempre me fazem") e a resposta começa respondendo ("Não. Nunca projetei...").
+→ *Origem: Débora Reis, 15/10/2026 ("É de qual contexto? Faz sentido?", Marcelo).*
+
+**Sumário que vira faixa de cartões.** Índice de uma página de apoio (sala de ideias, guia) montado em cinco colunas com
+número grande, rótulo e nome compete com o título e parece uma segunda capa. Sumário é lista vertical compacta: número
+pequeno, nome e uma linha de rótulo, até uns 440 px de largura, igual no computador e no celular.
+→ *Origem: Débora Reis, 15/10/2026 ("Deixe o sumário menorzinho na vertical", Marcelo, sobre o mapa da sala de ideias).*

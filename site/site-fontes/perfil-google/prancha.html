@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Prancha de projeto</title>
+<!-- Prancha de apresentação de projeto (estilo de case de portfólio), para o perfil do Google da Horus.
+     As telas são os prints REAIS do site (prints/). Soleira é projeto conceitual: a prancha diz isso. -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet">
+<style>
+  :root { --fundo: #1b1b1d; --anel: #222225; --texto: #f1f0ec; --apoio: #9a9aa0; --azul: #0077ff; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 900px; overflow: hidden; background: var(--fundo); font-family: "DM Sans", system-ui, sans-serif; color: var(--texto); }
+  .palco { position: relative; width: 1200px; height: 900px; overflow: hidden; }
+  /* os dois anéis grandes do fundo, como na referência */
+  .anel { position: absolute; border-radius: 50%; background: var(--anel); }
+  .anel.a { width: 1500px; height: 1500px; left: 50%; top: 120px; transform: translateX(-50%); }
+  .anel.b { width: 1140px; height: 1140px; left: 50%; top: 300px; transform: translateX(-50%); background: #1f1f22; }
+
+  .topo { position: absolute; left: 80px; right: 80px; top: 64px; display: flex; justify-content: space-between; font-size: 15px; line-height: 1.35; color: var(--apoio); }
+  .topo div:nth-child(2) { text-align: center; } .topo div:nth-child(3) { text-align: right; }
+  .topo b { color: var(--texto); font-weight: 600; display: block; }
+
+  .note { position: absolute; left: 80px; top: 170px; width: 780px; aspect-ratio: 16 / 10; border-radius: 16px; padding: 10px;
+    background: #0d0d0f; box-shadow: 0 0 0 2px #34343a, 0 30px 70px rgba(0,0,0,.5); }
+  .cel { position: absolute; right: 120px; top: 205px; width: 200px; aspect-ratio: 390 / 844; border-radius: 30px; padding: 8px;
+    background: #0d0d0f; box-shadow: 0 0 0 2px #34343a, 0 30px 70px rgba(0,0,0,.5); }
+  .tela { width: 100%; height: 100%; overflow: hidden; border-radius: 8px; background: #111; }
+  .cel .tela { border-radius: 23px; }
+  .tela img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+  /* faixa diagonal com o nome, a marca registrada da referência, no azul da Horus */
+  .faixa { position: absolute; left: 80px; top: 640px; width: 1040px; height: 34px; overflow: hidden; transform: rotate(-2.2deg);
+    background: var(--azul); color: #fff; font-size: 15px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; display: flex; align-items: center; }
+  .faixa span { padding-left: 20px; }
+
+  .colunas { position: absolute; left: 80px; right: 80px; top: 728px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; }
+  .colunas h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
+  .colunas p { font-size: 15px; line-height: 1.5; color: var(--apoio); }
+</style>
+</head>
+<body>
+<div class="palco">
+  <div class="anel a"></div><div class="anel b"></div>
+  <div class="topo">
+    <div><b>Soleira</b>Arquitetura de interiores</div>
+    <div><b>Site</b>Salvador, 2026</div>
+    <div><b>Horus</b>Projeto conceitual</div>
+  </div>
+  <div class="note"><div class="tela"><img src="prints/soleira-desk.jpg" alt=""></div></div>
+  <div class="cel"><div class="tela"><img src="prints/soleira-cel.jpg" alt=""></div></div>
+  <div class="faixa"><span>SOLEIRA · ARQUITETURA DE INTERIORES · SOLEIRA · ARQUITETURA DE INTERIORES · SOLEIRA · ARQUITETURA DE INTERIORES · SOLEIRA · ARQUITETURA DE INTERIORES</span></div>
+  <div class="colunas">
+    <div><h3>O estúdio</h3><p>Estúdio de interiores em Salvador, com projeto residencial e comercial.</p></div>
+    <div><h3>O desafio</h3><p>Responder antes da primeira conversa o que trava a contratação: prazo, escopo e o que o cliente recebe.</p></div>
+    <div><h3>O objetivo</h3><p>Levar quem chega decidido direto para uma conversa, no celular ou no computador.</p></div>
+  </div>
+</div>
+</body>
+</html>

@@ -3,6 +3,93 @@
 > Projeto criado em 29/07/2026. Pasta dedicada — instruções aqui sobrescrevem as
 > da raiz quando relevantes.
 
+## 📱 Trigésima-nona rodada (15/10/2026) — celular "100% pronto pra entregar"
+
+- **Espaço vazio perto do cabeçalho:** o cabeçalho era transparente e a abertura subia por baixo com
+  margem negativa FIXA (-64px); se a altura real não batia, sobrava faixa, e até 70px de rolagem o
+  texto passava por baixo da logo. No celular o cabeçalho agora tem fundo (#0d0906, some na abertura)
+  e a abertura começa abaixo dele, sem margem negativa. Medido em 320 a 900, Chrome e WebKit: encosta
+  exato. Computador: só o limiar do fundo sólido caiu de 70 para 8px.
+- **Tablet (768):** o texto da abertura ficava 80px para dentro da logo (`.wrap` com margin:auto num
+  flex em coluna). `width:100%`.
+- **Abertura do celular IGUAL ao mockup do GPT que o Marcelo mandou** (a 1ª passada só pegou peças e
+  ele cobrou: "pedi pra organizar como a imagem"). Lição: **mockup que o Marcelo manda pra "organizar
+  como" é especificação de estrutura**, não cardápio; a integridade filtra só dado/foto/fala.
+  Feito: foto como FUNDO da abertura com o céu do pôr do sol subindo por trás dos botões
+  (`hero-mob-2026-10-15.webp` = recorte da foto real com o céu estendido e dissolvido no escuro; fonte
+  de prévia em `site-fontes/`), título "Da serra de Brejões para / a sua xícara." (última linha
+  dourada), eyebrow "Café arábico • Brejões, BA", texto curto, botão serifado com seta, link "Peça um
+  orçamento para sua empresa →", menu de três traços dourados (volta o hambúrguer, revertendo 12/08 por
+  pedido dele; "Solicitar orçamento" fica dentro do menu), selos 100% arábica / Origem serrana / Torra
+  cuidadosa. Véu na foto + foto 0,90vw abaixo do texto: link branco a 11:1 no pior pixel. Computador
+  NÃO mudou (textos duplicados em `.t-desk`/`.t-mob`; o título são dois `h1`, um por tela, porque
+  duas versões no mesmo `h1` disparam `tight-leading` no detector). NÃO entraram: pacote inventado com
+  "café especial" e o travessão.
+- **3ª passada, "tem muito preto" (Marcelo, de novo com o mockup):** no mockup o escuro é só o topo (cor
+  #110A04, marrom quase preto) e o céu do pôr do sol já aparece atrás do texto, com o sol na altura do link;
+  a tela fecha nos selos. Foto nova `hero-mob-2026-10-15c.webp` (900x1078): céu de nuvens com sol da arte
+  vertical (`site-fontes/hero-vertical-chatgpt-2026-10-05.png`) sobre a cena REAL do Marcelo recortada mais
+  aberta (pacote em ~1/3 da largura, máscara no pacote pra o céu não passar por cima); script de montagem
+  descrito no bloco "3ª passada" do CSS, prévia em `site-fontes/hero-mob-2026-10-15c-preview.png`. Sem véu
+  escuro. Textos menores nas medidas do mockup (título 44px, texto 15px, botão 45px de altura), foto a
+  0,68vw abaixo do link (0,78 em ≤380, onde o link quebra e a 2ª linha caía no sol), quebra "Da serra de /
+  Brejões para" travada até 620px, menu de traços menor, ícone da torra virou xícara com vapor (só no
+  celular). Link branco ≥4,5:1 no pior pixel de 320 a 768. `?v=2026-10-15c`. Comparado lado a lado com o
+  mockup em 390x845. A foto da 2ª passada (`hero-mob-2026-10-15.webp`) foi apagada, nunca foi ao ar.
+- **"Nosso café" e "Nossa origem" no celular, pelos mockups do Marcelo ("faça o mesmo para as seções
+  correspondentes"):** textos e selos iguais aos do site (já vetados); muda a organização. Café: título com
+  "cada xícara." dourado, eyebrow com fio, texto compacto, CENA nova `cafe-cena-mob-2026-10-15.webp` (os dois
+  pacotes de rótulo real colocados no lugar exato do pacote da foto real da abertura, com o saco de juta, a
+  mesa e o pé de café dela, fundo escurecido no marrom; topo em transparência), selos centrados com nome na
+  serifa e divisórias, botão com seta. Origem: título em 3 linhas ("Do interior da / Bahia para a / sua
+  xícara." dourado), texto em 64% da largura, galho grande na borda direita, foto real de Brejões com luz de
+  fim de tarde (`vista-brejoes-quente-mob.webp`: só a cor; céu recortado pela linha do horizonte, a serra e a
+  cidade intactas), selo sobre a foto. Do mockup NÃO entrou o rótulo "café especial" do pacote desenhado.
+  Tablet (621-900): cena do café centrada com laterais dissolvidas. Computador intacto. Scripts das três
+  artes em `site-fontes/scripts-celular-2026-10-15/`. CSS `?v=2026-10-15d`.
+- **"Para quem é" e "Pedido" no celular, pelos mockups do Marcelo:** ele pediu o pedido SEM a imagem de
+  fundo do mockup (galho e saco atrás do formulário; leitura minha de "seção produto", registrada aqui) e
+  gostou dos ícones nos campos. Pedido: "Peça o seu / café agora." (o "agora" só no celular), três apoios em
+  linha com ícone em círculo (o da moagem virou grão), cartão claro, ícone em cada campo (vale em qualquer
+  tela), seta de lista desenhada, (i) na nota, seta no botão do WhatsApp. Para caber "Consumidor, para tomar
+  em casa" sem cortar: calha menor no celular, coluna do "Você é" e da quantidade em 1.4fr no computador e
+  campos empilhados em 901-1180 (o exemplo da quantidade já cortava em 1024 antes). Para quem é: cartões
+  com a foto ao lado do texto, subtítulo só no celular "O mesmo café da serra, com o formato ideal para cada
+  momento." ("café de origem" do mockup trocado: jargão de café especial), quebras do mockup travadas.
+  Fotos dos cartões continuam as do site: as do mockup mostram xícaras com a marca impressa, que o Nelson não
+  tem. Detector exit 0 (rótulo 11px, texto 12px, sombra neutra). CSS `?v=2026-10-15e`.
+- **Correção do Marcelo sobre "seção produto":** era o fundo atrás dos dois pacotes do "Nosso café" no
+  celular (a cena com mesa, saco de juta e pé de café, o mesmo "wallpaper" da abertura), não o pedido. A cena
+  saiu: no celular ficam só os dois pacotes (`dois-pacotes.webp`, 300px, 380px no tablet) sobre o marrom, como
+  no computador. Arte antiga guardada em `site-fontes/cafe-cena-mob-2026-10-15.webp`. O formulário fica como
+  está (o fundo do mockup nunca existiu no site). CSS `?v=2026-10-15f`, prévia e zip (35 arquivos) atualizados.
+- **Site declarado pronto pelo Marcelo (15/10) e zip para o Nelson:** `Downloads/Site Café Grão da Serra.zip`
+  (36 arquivos, 1,7 MB), montado por `site-fontes/scripts-entrega/montar_entrega.py`: sem os comentários de
+  bastidor do HTML/CSS/JS (falavam de pedidos, ChatGPT, decisões), sem a foto que não é usada, com `netlify.toml`
+  e `vercel.json` (o mesmo pacote serve nos dois) e um LEIA-ME. Conferido: página idêntica pixel a pixel à fonte
+  em 390 e 1440, formulário e botões ok, grãos animados ok, abre direto do arquivo extraído. A prévia está com
+  essa versão. O zip antigo "(publicar)" foi substituído por este.
+- **Detector:** o "saída 0" escondia 4 rótulos acima do título e caixa alta, porque a dispensa `site/**` do site
+  da Hórus vazava para todo `clientes/*/site`. Caminho corrigido para `HorusOS/site/**`; os rótulos do Grão
+  vêm dos mockups do Marcelo e ganharam dispensa própria com motivo. Detalhe em `_memoria/design/90-antipadroes.md`.
+- **Prévia da Vercel apagada (15/10, pedido do Marcelo):** o projeto `grao-da-serra-previa` foi removido da
+  Vercel e o endereço dá 404. O Grão da Serra não tem mais nada na Vercel; a prévia de agora em diante é abrir
+  o zip no navegador. Para ver o site, extrair `Downloads/Site Café Grão da Serra.zip` e abrir o `index.html`.
+- ⏳ **Decisão pendente do Marcelo: hospedagem.** Ele prefere Vercel. Recomendação: continuar no Netlify, porque
+  o plano grátis da Vercel (Hobby) proíbe uso comercial (site de empresa exige o Pro, US$ 20/mês) e trocar
+  de endereço perde o link que já circula. O passo que vale mais é o domínio próprio: `cafegraodaserra.com.br`
+  estava livre no registro.br em 15/10 (`graodaserra.com.br` é de outra empresa); com ele a hospedagem vira
+  detalhe trocável. Se mudar de endereço, trocar canonical, og:url, JSON-LD, sitemap.xml e robots.txt juntos.
+- **Formulário:** o cartão "Para o seu negócio" deixava "Consumidor" marcado e quem não mexia mandava
+  "Sou: Consumidor". Agora esvazia o campo e o envio pede o tipo. "Sua cidade" ganhou exemplo.
+- **Zoom liberado** (tirado `user-scalable=no`). Título do "Para quem é" na ordem dos cartões.
+- **Detector:** a versão no ar dava 9 apontamentos (o "exit 0" das rodadas anteriores não se sustenta
+  hoje). Cor morta #EFBE8C do `.cafe` trocada pelo marrom real, sombra neutra, `cramped-padding`
+  dispensado com motivo em `.impeccable/config.json` (foto sangrando de propósito). Agora exit 0.
+- **CSS `?v=2026-10-15f`.** Zip em `Downloads/Site Grão da Serra (publicar).zip`. Prévia (noindex):
+  (apagada em 15/10, ver abaixo). ⚠️ **Falta publicar no Netlify** (CLI sem login: arrastar o
+  zip em app.netlify.com, no site cafegraodaserra).
+
 ## 📱 Trigésima-oitava rodada (07/10/2026) — celular, depois do layout quebrado no ar
 
 - **Causa do "saiu bugado":** o CSS da 37ª mudou sem trocar o `?v=` (cache imutável de 1 ano).

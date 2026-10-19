@@ -114,12 +114,16 @@ main,.rodape{position:relative;z-index:1}
 .capa h1{color:var(--cal);font-size:var(--t-h1)}
 .capa .linha{display:block}
 .capa-sub{font-size:var(--t-lead);color:#F1E8DC;margin:22px 0 0}
+.capa-mob{display:none}
+.capa-link{font:400 22px/1 var(--f-display);color:var(--cal);text-decoration:none;border-bottom:1px solid rgba(243,240,232,.7);padding-bottom:8px;align-self:flex-start}
+.capa-link span,.capa-mob .btn span{margin-left:10px}
 .capa-prova{font:500 var(--t-rotulo)/1.5 var(--f-texto);font-stretch:100%;letter-spacing:.14em;text-transform:uppercase;color:#E6DACB;margin:14px 0 26px}
 
 /* ---------- 2. nunca a mesma casa: a estrutura da rodada 4, as fotos como objetos de parede ---------- */
-.composicao{position:relative;height:1320px;margin:0 var(--lateral)}
-.comp-centro{position:absolute;left:0;right:0;top:35%;text-align:center}
-.comp-centro h2{max-width:8.5em;margin:0 auto}
+.composicao{position:relative;height:1560px;margin:0 var(--lateral)}
+.comp-centro{position:absolute;left:0;right:0;top:31%;text-align:center}
+.comp-centro h2{max-width:9.5em;margin:0 auto}
+.comp-antes{margin:0 0 18px}
 .comp-perg{font-size:34px;line-height:1;color:var(--vermelho);margin:0 0 16px;transform:rotate(-3deg)}
 .comp-serv{font-size:var(--t-lead);line-height:1.35;color:var(--tinta);max-width:21em;margin:30px auto 0}
 .flut a{display:block;text-decoration:none;color:inherit}
@@ -140,21 +144,24 @@ main,.rodape{position:relative;z-index:1}
 .quadro .flut-q{padding:14px;background:#FBF8F2;border:1px solid var(--tinta)}
 /* bastidor: o aro duplo */
 .bastidor .flut-q{border-radius:50%;box-shadow:0 0 0 8px var(--cal),0 0 0 9.5px var(--madeira)}
-.f1{left:7%;top:7%;width:210px}
+.f1{left:4%;top:5%;width:210px}
 .f1 .flut-q{aspect-ratio:3/4}
 .f1 img{object-position:50% 38%}
-.f2{left:44%;top:6%;width:240px}
+.f2{left:calc(50% - 115px);top:2%;width:230px}
 .f2 .flut-q{aspect-ratio:4/5}
-.f3{right:5%;top:50%;width:300px}
+.f3{right:3%;top:66%;width:270px}
 .f3 .flut-q{aspect-ratio:1/1}
 .f3 img{object-position:50% 52%}
 .f3 figcaption{margin-top:22px}
-.f4{left:16%;top:66%;width:230px}
+.f4{left:6%;top:67%;width:220px}
 .f4 .flut-q{aspect-ratio:1/1}
 .f4 img{object-position:50% 30%}
-.f5{left:58%;top:80%;width:170px}
+.f5{right:5%;top:9%;width:200px}
 .f5 .flut-q{aspect-ratio:3/4}
-.f5 img{object-position:50% 30%}
+.f5 img{object-position:50% 40%}
+.f6{left:calc(50% - 90px);top:79%;width:180px}
+.f6 .flut-q{aspect-ratio:3/4}
+.f6 img{object-position:40% 60%}
 
 /* ---------- 3. projetos: um ambiente por vez, em tela cheia ---------- */
 .projetos{position:relative;background:#14100D;color:var(--cal);scroll-margin-top:-90px}
@@ -229,23 +236,36 @@ main,.rodape{position:relative;z-index:1}
 .notas-escuras .nota[data-tom="claro"] b{text-shadow:0 1px 12px rgba(0,0,0,.5)}
 
 /* ---------- 5. como trabalho ---------- */
-.processo{padding:160px var(--lateral) 160px}
-.processo-topo{display:grid;grid-template-columns:repeat(6,1fr);gap:0 24px;align-items:end;margin-bottom:96px}
-.processo-lead{grid-column:1/3;color:var(--tinta-2);max-width:20em;margin:0}
-.processo-topo > div{grid-column:3/7}
-.processo-topo h2{max-width:10em}
-.processo-corpo{display:grid;grid-template-columns:repeat(6,1fr);gap:0 24px;align-items:start}
-.processo-comeca{grid-column:1/3;position:sticky;top:110px;border-top:1px solid var(--linha);padding:24px 24px 0 0}
-.processo-comeca .rot{margin-bottom:14px}
-.comeca-txt{font:400 var(--t-h4)/1.15 var(--f-display);color:var(--tinta);margin:0 0 14px}
-.processo-comeca p:not(.rot):not(.comeca-txt){color:var(--tinta-2);margin:0 0 24px;max-width:22em}
-.comeca-acoes{display:flex;gap:8px;flex-wrap:wrap}
-.etapas{grid-column:3/7;list-style:none;margin:0;padding:0}
-.etapas li{display:grid;grid-template-columns:1fr 3fr;gap:24px;border-top:1px solid var(--linha);padding:36px 0 88px}
-.etapas li .rot{padding-top:10px;margin:0}
-.etapas h3{margin-bottom:16px}
-.etapas p{color:var(--tinta-2);max-width:30em;margin:0}
-.processo-guia{margin:16px 0 0;padding-left:calc((100% + 24px) / 3)}
+/* Como trabalho (15/10, noite: a seção "About us" da Stanzza): quatro cartões que acendem um de cada vez com a foto.
+   Sem JS, no celular e com movimento reduzido ficam todos acesos; o .js-etapas (estudio.js) liga o "um de cada vez" e,
+   em tela alta, prende a seção enquanto as quatro etapas passam. */
+.processo{padding:160px var(--lateral) 144px}
+.processo-topo{display:grid;grid-template-columns:repeat(6,1fr);gap:0 24px;margin-bottom:56px}
+.processo-topo > *{grid-column:3/7}
+.processo-topo h2{max-width:11em}
+.etapas{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.etapa-card{position:relative;overflow:hidden;height:clamp(260px,40svh,420px);background:#2B211C;padding:22px 24px;transition:background-color .8s var(--facil)}
+.etapa-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 50%);opacity:1;transform:scale(1);transition:opacity .8s var(--facil),transform 1.4s var(--facil)}
+.etapa-card::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(22,15,12,.62) 0%,rgba(22,15,12,.22) 42%,rgba(22,15,12,.58) 100%);opacity:1;transition:opacity .8s var(--facil)}
+.etapa-card h3{position:relative;z-index:2;font-size:var(--t-h4);line-height:1.02;max-width:8em;margin:0;color:#fff;transition:color .6s var(--facil)}
+.etapa-n{position:absolute;z-index:2;left:22px;bottom:14px;font:italic 400 clamp(110px,11vw,160px)/1 var(--f-display);letter-spacing:-.03em;color:#fff;transition:color .6s var(--facil)}
+.etapa > p{color:var(--tinta-2);max-width:22em;margin:18px 24px 0 0}
+/* apagado: o papel e o número claro; aceso: a foto escurecida e o texto branco */
+.js-etapas .etapa:not(.on) .etapa-card img{opacity:0;transform:scale(1.06)}
+.js-etapas .etapa:not(.on) .etapa-card{background:var(--cal-2)}
+.js-etapas .etapa:not(.on) .etapa-card::after{opacity:0}
+.js-etapas .etapa:not(.on) .etapa-card h3{color:var(--tinta-2)}
+.js-etapas .etapa:not(.on) .etapa-n{color:rgba(30,26,23,.17)}
+.js-etapas .etapa > p{transition:color .6s var(--facil)}
+.js-etapas .etapa.on > p{color:var(--tinta)}
+/* presa: a seção ganha o comprimento de quatro passos e o conteúdo fica parado na tela */
+.etapas-presas{padding-top:0;padding-bottom:0}
+.etapas-presas .processo-trilho{position:sticky;top:0;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:96px 0 40px}
+.etapas-presas .processo-palco{height:calc(100svh + 150svh)}
+.processo-guia{display:grid;grid-template-columns:repeat(6,1fr);gap:0 24px;align-items:end;margin-top:72px}
+.processo-guia p{grid-column:3/5;color:var(--tinta-2);margin:0}
+.processo-guia .btn{grid-column:5/7;justify-self:start}
+.etapas-presas .processo-guia{margin-top:0;padding-bottom:144px}
 
 /* ---------- 6. faixa vinho: os gatos grandes, o desenho no meio ---------- */
 .faixa{position:relative;overflow:hidden;background:var(--vinho);color:var(--cal);padding:140px var(--lateral) 150px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;column-gap:56px;align-items:start}
@@ -445,6 +465,9 @@ main,.rodape{position:relative;z-index:1}
   .pj-indice button{font-size:0;padding-bottom:18px}
   .pj-indice button span{display:none}
   .faixa{column-gap:32px}
+  .etapas{grid-template-columns:1fr 1fr;row-gap:40px}
+  .processo-guia p{grid-column:1/4}
+  .processo-guia .btn{grid-column:4/7}
 }
 /* ---------- celular ---------- */
 @media (max-width:760px){
@@ -457,10 +480,24 @@ main,.rodape{position:relative;z-index:1}
   .menu li a{font-size:44px}
   .menu-dados{flex-direction:column;gap:20px}
 
-  .capa .mao{font-size:26px}
-  .capa{padding:72px 12px 12px}
-  .capa-txt{bottom:6%}
-  .capa-sub{font-size:var(--t-corpo)}
+  /* capa no celular (modelo do Marcelo, 15/10): foto de ponta a ponta sob o cabeçalho, texto à esquerda embaixo,
+     "Conheça meus projetos" como botão e "Fale com a Débora" como link */
+  .cab,.cab.solido{background:var(--cal);box-shadow:0 1px 0 var(--linha)}
+  .cab-menu,.cab.solido .cab-menu{background:transparent;padding:10px 0;backdrop-filter:none}
+  .cab-menu span{display:inline-block;width:22px;height:10px;margin-left:12px;font-size:0;border-top:1.5px solid currentColor;border-bottom:1.5px solid currentColor;position:relative;vertical-align:middle}
+  .cab-menu span::after{content:"";position:absolute;left:0;right:0;top:50%;border-top:1.5px solid currentColor;transform:translateY(-50%)}
+  .capa{padding:64px 0 0;min-height:600px}
+  .capa-quadro::after{background:linear-gradient(to bottom,rgba(22,15,12,0) 0%,rgba(22,15,12,.12) 26%,rgba(22,15,12,.62) 46%,rgba(22,15,12,.86) 72%,rgba(22,15,12,.92) 100%)}
+  .capa-foto{object-position:42% 40%}
+  .capa-txt{text-align:left;bottom:58px;padding:0 28px}
+  .capa .mao{font-size:27px;margin-bottom:8px}
+  .capa h1{font-size:50px;line-height:.92}
+  .capa-sub{font-size:19px;line-height:1.3;margin-top:18px}
+  .capa-prova{font-size:11px;letter-spacing:.18em;margin:14px 0 22px}
+  .capa-acao{display:none}
+  .capa-mob{display:flex;flex-direction:column;gap:20px}
+  .capa-mob .btn{display:block;text-align:center;padding:19px 16px}
+  .comp-antes .quebra{display:block}
   .comp-perg{font-size:28px}
   .comp-serv{font-size:var(--t-corpo)}
 
@@ -469,12 +506,11 @@ main,.rodape{position:relative;z-index:1}
   .comp-centro{grid-column:1/3;order:0;margin-bottom:24px}
   .comp-b{grid-column:1/3;order:1;font-size:var(--t-h4);margin:8px 0 24px}
   .flut{order:2}
-  .f2,.f4{margin-top:56px}
-  .f3{margin-top:12px}
+  .f2,.f4,.f6{margin-top:56px}
+  .f3,.f5{margin-top:12px}
   .flut figcaption{font-size:20px;margin-top:12px}
   .nicho .flut-q{outline-offset:6px}
   .bastidor .flut-q{box-shadow:0 0 0 6px var(--cal),0 0 0 7.5px var(--madeira)}
-  .f5{display:none}
   .comp-a{grid-column:1/3;order:3;margin-top:24px}
 
   .pj-palco{min-height:560px}
@@ -494,19 +530,23 @@ main,.rodape{position:relative;z-index:1}
   .nota::before{width:22px}
 
   .processo{padding:112px var(--lateral)}
-  .processo-topo,.processo-corpo{grid-template-columns:1fr}
-  .processo-lead,.processo-topo > div,.processo-comeca,.etapas{grid-column:auto}
-  .processo-topo{margin-bottom:48px;gap:24px}
-  .processo-lead{order:2}
-  .processo-comeca{position:static;padding-right:0;margin-bottom:48px}
-  .etapas li{grid-template-columns:1fr;gap:10px;padding:28px 0 48px}
-  .processo-guia{padding-left:0}
+  .processo-topo,.processo-guia{grid-template-columns:1fr}
+  .processo-topo > *,.processo-guia p,.processo-guia .btn{grid-column:auto}
+  .processo-topo{margin-bottom:40px}
+  .etapas{grid-template-columns:1fr;gap:36px}
+  .etapa-card{height:auto;aspect-ratio:4/3.4}
+  .etapa > p{margin:14px 0 0}
+  .etapa-n{font-size:112px;bottom:10px}
+  .processo-guia{gap:20px;margin-top:56px}
+  .processo-guia .btn{justify-self:stretch;text-align:center}
 
   .faixa{display:flex;flex-direction:column;padding:96px var(--lateral) 112px}
   .faixa-centro{gap:40px;padding:0;margin:48px 0}
   .desenho-estante{max-width:340px}
-  .fa{width:80%}
-  .fb{width:56%;margin:-58% 0 0 auto;outline:8px solid var(--vinho)}
+  .faixa-centro{order:0;margin:0 0 56px}
+  .fa{order:1;width:66%}
+  .fb{order:2;width:52%;margin:-44% 0 0 auto;outline:8px solid var(--vinho)}
+  .fa figcaption{left:-8px;bottom:auto;top:-20px}
   .fb figcaption{right:auto;left:-12px;top:auto;bottom:-20px}
   .faixa-foto figcaption{font-size:24px}
 
@@ -514,7 +554,9 @@ main,.rodape{position:relative;z-index:1}
   .sobre{padding:112px var(--lateral) 96px}
   .sobre{grid-template-columns:1fr;row-gap:40px}
   .sobre-retrato,.sobre-txt{grid-column:1/-1}
-  .sobre-retrato{position:static;max-width:320px}
+  .sobre-retrato{position:static;max-width:none}
+  .contato-acoes{flex-direction:column;align-items:stretch;max-width:300px;margin:0 auto}
+  .contato-acoes .btn{text-align:center}
   .sobre-frase p{font-size:23px}
   .previa{padding:7px 9px;left:10px;bottom:10px}
   .perguntas{padding-bottom:112px}
@@ -536,7 +578,11 @@ main,.rodape{position:relative;z-index:1}
   .obra-uma img,.obra-detalhe .obra-uma img{max-height:none}
   .obra-detalhe .obra-uma{grid-column:1/-1}
   .todos-fim .mao{font-size:30px}
-  .rodape-grade{grid-template-columns:1fr;text-align:left}
+  .rodape-grade{grid-template-columns:1fr auto;text-align:left;column-gap:20px;row-gap:28px}
+  .rodape-grade ul{grid-column:2;grid-row:1/3;text-align:right}
+  .rodape-marca{grid-column:1;grid-row:1}
+  .rodape-dir{grid-column:1;grid-row:2;min-width:0}
+  .rodape-dir a{overflow-wrap:anywhere}
   .rodape-marca,.rodape-dir{text-align:left}
   .rodape-dir .rodape-contato{align-items:flex-start}
   .rodape-desenho{overflow:hidden;margin:48px calc(-1 * var(--lateral)) 20px}

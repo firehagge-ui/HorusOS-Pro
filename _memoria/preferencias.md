@@ -8,6 +8,10 @@
 
 Sempre português (PT-BR), inclusive ao citar erros ou ferramentas.
 
+**O nome da agência se escreve "Horus", sem acento** (Marcelo, 16/10/2026: "quando escrever Horus, escreva sem acento").
+Vale para tudo o que se escreve daqui pra frente: resposta, arquivo, mensagem, peça. Os arquivos antigos com "Hórus"
+não foram trocados em massa; corrigir quando mexer na linha.
+
 ## Jeito de trabalhar (agência)
 
 - **Produzir por prioridade**, um bloco por vez. Nunca "product-dump" (não
@@ -25,6 +29,9 @@ Sempre português (PT-BR), inclusive ao citar erros ou ferramentas.
 - **Não declarar pronto sem verificar.** Se a checagem não rodou agora, não passou.
   Pendência declarada é profissional; pendência escondida quebra confiança. Skill
   `/verificar`.
+- **Vigiar sem torrar o limite.** Para esperar resposta de lead, deploy ou processo, usar um intervalo longo ou o aviso
+  do Monitor, nunca uma checagem a cada poucos segundos ("Calma, não faça a cada 20 segundos, vai torrar os tokens",
+  Débora, 09/10/2026). Mesma família do loop do Farejador (03/10).
 - **Decisão pesada passa pelo Conselho** (`_conselho/`), decisão simples não. Se a
   resposta está num arquivo é consulta, se é execução é pra fazer, se é gosto do
   Marcelo ele decide.

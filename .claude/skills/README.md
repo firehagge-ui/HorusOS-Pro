@@ -13,7 +13,7 @@ roteamento de estilo e precedência das `kit-*` no `CLAUDE.md`.
 |---|---|
 | `abrir` | carrega a memória e abre a sessão de trabalho |
 | `salvar` | commit + push (backup no GitHub) |
-| `atualizar` | varredura e reconciliação da memória com o estado real |
+| `atualizar` | retrospectiva (o que o Marcelo corrigiu, escolheu e elogiou nas conversas vira regra, checklist ou script; script `mensagens-do-marcelo.cjs`) + varredura e reconciliação da memória com o estado real |
 | `instalar` | primeiro setup do Horus OS |
 | `novo-projeto` | cria pasta de projeto/cliente com CLAUDE.md dedicado |
 | `mapear-rotinas` | entrevista e gera skills personalizadas |

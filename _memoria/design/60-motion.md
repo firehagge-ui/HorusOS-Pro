@@ -225,6 +225,19 @@ Tudo com `transform`/`opacity`, guard de `prefers-reduced-motion` e gate de desk
 (pin e scrub em tela estreita brigam com o toque). DrawSVG desenhou o Olho de Hórus
 em volta da esfera e a linha curva dos "4 passos".
 
+- **Seção presa decide pela largura E pela altura da tela.** Foi assim no "Como trabalho" da Débora (15/10/2026), feito no
+  modelo do "About us" da Stanzza: quatro cartões que acendem um de cada vez.
+  - Computador alto (≥1081px de largura e ≥700px de altura): o palco fica preso (`sticky`, trilho de 250svh), e a
+    rolagem acende um cartão por vez.
+  - Computador baixo (notebook de 1366x640): acende pela rolagem, sem prender. Preso ali, o cartão não cabe e a rolagem
+    parece travada.
+  - Tablet: dois por linha, todos acesos.
+  - Celular: empilhados e acesos.
+  - Conferir em 1280x720 e 1366x640, não só em 1440x900.
+  - O texto que explica cada etapa fica fora do cartão e sempre visível. O efeito chama a atenção, mas não esconde o
+    conteúdo.
+  - Recebeu um "Amei o site" do Marcelo.
+
 ---
 
 ## Espaço de eventos com emoção (Casa Verona, rodada 3, 24/09/2026)

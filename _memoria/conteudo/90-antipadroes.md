@@ -80,6 +80,20 @@ texto e contraste alto, não um parágrafo igual aos outros.
 uma situação vivida: "Qual foi a pergunta de cliente que mais te deixou sem resposta? Conta aqui."
 → *Origem das cinco: revisão do Marcelo no roteiro "Quanto custa?", 10/10/2026.*
 
+**Dica que o dono já sabe fazer sozinho.** "Peça pro ChatGPT responder uma avaliação", "descrever um produto": o
+dono olha e pensa "isso eu já faço" ou "isso eu resolvo sozinho". Para pra olhar, não salva. Teste antes da pauta:
+**o Marcelo, como dono de negócio, salvaria isso?** Se a resposta é "eu já sabia", o tema é genérico. Material
+salvável é inédito ou exclusivo: o achado de um perfil que bombou (aqui ou na gringa), o truque que quase ninguém
+usa, a prova que só a gente tem.
+→ *Origem: o Marcelo reprovou o "5 coisas pra pedir pro ChatGPT" em 15/10/2026 ("bem genéricos... eu não salvaria,
+eu não postaria"), mesmo achando o visual bonito.*
+
+**Título comprimido que esconde o verbo.** "A bio responde 3 perguntas em até 150 caracteres" lê como manchete de
+jornal. O Marcelo escreveria: "A bio **deve** responder três perguntas." Frase inteira, com o verbo que diz o que
+fazer, número por extenso quando cabe, um dado por vez. Clareza de gente falando vence a economia de palavra.
+→ *Origem: correção do Marcelo no slide 2 do post da bio, 15/10/2026 ("olha a diferença do que eu te disse agora
+pro que você escreveu").*
+
 **Tracinho como separador.** Nunca `—`, `–` ou ` - ` em copy de peça. Vírgula,
 ponto ou quebra de linha. Vale pra legenda também.
 → *Origem: preferência antiga do Marcelo, registrada na memória.*
@@ -111,6 +125,17 @@ padrão no Instagram.*
 usa fundo tingido com borda fina em volta, sem brilho colorido (`dark-glow` também é tell).
 → *Origem: post "Quem lê sua resposta à 1 estrela", 08/10/2026; a barra vinha da referência do
 Thiago Finch e o Marcelo aprovou trocar.*
+
+**Brilho azul no canto do slide (radial-spotlight-glow).** Degradê radial do acento sumindo no fundo, posto
+atrás do slide como "holofote". É enfeite reflexo de IA, e estava no modelo escuro dos posts de 08 e 12/10. Fundo
+chapado; luz só quando ela tem função (a ilustração já traz a dela).
+→ *Origem: detector oficial (`npx impeccable@4.0.4`) rodado em 15/10/2026 nos posts da semana de 12/10; o detector
+local tinha dado "limpo" nos mesmos arquivos. O "Quanto custa?" foi ao ar com o brilho.*
+
+**O detector é de site; três regras dele não valem pra carrossel.** `oversized-h1` (capa de carrossel é pra ser
+grande, o piso é de `10-legibilidade.md`), `clipped-overflow-container` (o slide é um quadro de 1080 de propósito) e
+`tight-leading` em frase de destaque de 90px ou mais (a regra mira texto corrido). Os outros achados valem. Silenciar
+no `.impeccable/config.json` só com o ok do Marcelo.
 
 **Texto sem proteção sobre foto.** Ver `10-legibilidade.md`. Sombra de texto não
 é proteção.

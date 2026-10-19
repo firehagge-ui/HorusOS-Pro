@@ -5,7 +5,10 @@
 
 1. **Verba pequena = uma campanha, um conjunto.** Com R$ 30 a 50 por dia, cada conjunto extra
    divide um sinal que já é pouco. Público Advantage+ travado só pela localização. (Meta pede
-   combinar conjuntos parecidos; Loomer, Foxwell e Pedro Sobral convergem.)
+   combinar conjuntos parecidos; Loomer e Foxwell convergem. **Pedro Sobral não está nesse consenso desde
+   set/2026:** acima de R$ 1.000/mês ele divide frio geolocalizado, remarketing, vídeo e engajamento com
+   público manual, mas ele mesmo diz que **abaixo de R$ 500/mês uma campanha só rende mais**. A regra
+   depende da verba, não do autor. Ver `fontes/reports/Sobral tráfego comercial e captação.md`.)
 
 2. **A segmentação mora no criativo.** Desde o Andromeda (fim de 2024) e o GEM (2025), a Meta
    escolhe quem vê pelo próprio anúncio. Um vídeo que abre com "dono de BYD" acha o dono de BYD.

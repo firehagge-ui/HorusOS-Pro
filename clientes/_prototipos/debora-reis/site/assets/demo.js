@@ -1,4 +1,4 @@
-/* Demonstração da Hórus: o botão que esconde as marcas de simulação (lembra a escolha nesta aba)
+/* Demonstração: o botão que esconde as marcas de simulação (lembra a escolha nesta aba)
    e os pontos clicáveis da foto do Rio Vermelho. */
 (function () {
   'use strict';

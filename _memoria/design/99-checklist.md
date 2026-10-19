@@ -148,6 +148,26 @@ de IA precisou entrar.*
   Pedido do Marcelo em 09/10/2026: "cada coisa tem que ser escrita e feita por um motivo". Modelo:
   `clientes/_prototipos/debora-reis/JUSTIFICATIVA.md`
 - [ ] Peso da página conferido
+- [ ] **Toda imagem que mostra a página foi refeita depois da última mudança visível.** Isso inclui a miniatura de uma
+      sala de ideias ou portfólio, a `og:image` e a capa de PDF. Na Débora (15/10/2026), a miniatura do site ainda
+      mostrava o "desde 2004" que tinha saído da capa, e as do Rio Vermelho e do guia, o selo antigo. Só a conferência
+      final pegou.
+- [ ] **Página temporária fora do ar antes de o link sair.** O backup publicado para o Marcelo comparar
+      (`/versao-anterior/`) e a página de teste não podem ficar no ar quando o lead recebe o link (Débora, 15/10/2026)
+- [ ] **Conferência no ar rodada:** `node .claude/skills/verificar/scripts/conferencia-no-ar.cjs <url> --fora versao-anterior/`.
+      Ela cobre todas as páginas em 360, 390, 768 e 1440 e acusa:
+      - erro de console, imagem quebrada e rolagem lateral;
+      - texto fora da tela, `[FALTA]` visível e travessão;
+      - link interno ou âncora sem alvo, e página que devia estar fora do ar.
+      Também lista os números de WhatsApp e os e-mails, para bater com o Hounder. Saída `0` limpo, `2` achou coisa.
+      Na Débora (15/10/2026, noite) ela achou um defeito que estava no ar havia horas: o "Baixar em PDF" do guia dava 404.
+- [ ] **Antes de publicar, o que está no ar bate com a pasta que vai subir?** Duas sessões publicando o mesmo projeto da
+      Vercel a partir de pastas diferentes apagam o trabalho uma da outra. Comparar o no ar com o local (`curl` + `md5sum`
+      dos arquivos que mudaram) e sincronizar a pasta de publicação a partir do repositório logo antes do `deploy`
+      (Débora, 15/10/2026: o guia "Simulação" de outra sessão quase foi sobrescrito por uma cópia velha no scratchpad).
+- [ ] **Página de demonstração se explica sozinha.** Sala de ideias, portfólio ou proposta em página: mapa no topo e, em
+      cada peça, o que é, como o cliente usa e o que muda pra ele. Se o Marcelo precisaria explicar por mensagem, a página
+      não está pronta (Débora, 15/10/2026: "deixe bem claro para ela não ter dúvida e a gente não precise explicar").
 - [ ] **Vídeo testado tocando de verdade.** O Chromium que vem com o Playwright **não tem H.264**:
       o `.mp4` falha calado e parece bug do site. Testar com `chromium.launch({ channel: 'chrome' })`
       (o Chrome instalado). *Casa Verona, 24/09/2026.*

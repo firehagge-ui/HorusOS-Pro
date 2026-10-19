@@ -3,6 +3,20 @@
 Site da **própria agência**, não de cliente. Por isso mora em `site/` na raiz e
 não em `clientes/`.
 
+## Estado em 16/10/2026: primeira página de serviço + ⚠️ home do repositório regredida
+
+- **Nova página `criacao-de-sites.html`** (folha própria `assets/servico.css`, imagens em `assets/servicos-pg/`).
+  Página CLARA de leitura com a noite da home só nos projetos e na chamada final (modelo Instrument). H1 com a
+  palavra-chave, os três planos aprovados, a régua "R$ 0 até aqui" como assinatura. Plano e passe duplo em
+  `PLANO-SERVICOS.md`. Detector `0`, 1440 e 390 sem rolagem lateral. **Prévia (noindex):**
+  https://horus-site-previa.vercel.app/criacao-de-sites. Ainda NÃO está no domínio nem no `RAIZ_PUBLICA`/sitemap.
+- ✅ **Regressão da home corrigida (16/10, com o ok do Marcelo).** O commit `caa0524` (08/10) tinha trazido de volta
+  uma versão anterior de `index.html` e `assets/site.css` (título "Hórus Agência | Nós construímos máquinas...",
+  `noindex`). Restaurados do commit `8d1b942` com `git checkout`; conferido que batem com o que está no ar (fora a
+  quebra de linha CRLF do Git e duas linhas que a Netlify reescreve). O `build-deploy.mjs` voltou a ser seguro.
+  **Lição:** antes de publicar, comparar a pasta de trabalho com o no ar (`diff --strip-trailing-cr`), porque um
+  merge pode carregar cópia velha sem ninguém ver.
+
 ## Estado em 22/09/2026 (versão 31) — Seção Nossos Compromissos (Design Fiel ao Print + Motion de Entrada)
 
 Atualização da seção `.qualidade` ("Nossos cinco compromissos.") conforme o print de referência enviado pelo Marcelo:
