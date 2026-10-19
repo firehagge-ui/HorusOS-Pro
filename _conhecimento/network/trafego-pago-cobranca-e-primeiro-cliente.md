@@ -4,7 +4,8 @@
 > 01/10/2026 (perguntas 22, 23, 25 e, na segunda rodada do mesmo dia, 23b e 26 a 30 de
 > `_gestao/perguntas-oraculo.md`; essas perguntas saíram do arquivo depois de enviadas, a pedido do
 > Marcelo; puxadas pela R1 da Paralela Film). As seções 6 a 11 são da segunda
-> rodada; a seção 12 (uso na Hórus) vale para as duas.
+> rodada; a seção 12 (uso na Hórus) vale para as duas. **Terceira rodada (19/10/2026, 8 perguntas
+> puxadas pela MB Barbearia, ticket baixo): seções 13 a 20.**
 > **Confiança: MÉDIA** para modelo e faixa de cobrança (vários relatos convergentes) · **MÉDIA**
 > para as táticas de primeiro cliente · **BAIXA** para custo por conversa e conversão: o oráculo
 > **não tinha** esse dado e respondeu com números de outra coisa (ver "O que a resposta não
@@ -145,3 +146,112 @@
 - 🔴 **Travas da casa que vencem a rede:** "projeto fictício" só como prévia marcada como prévia, nunca
   apresentada como cliente real (regra do portfólio conceitual: "projeto nosso", nunca "cliente
   nosso"); número de benchmark nunca vira promessa ao cliente.
+
+---
+
+# Terceira rodada (19/10/2026): ticket baixo, risco do dono e primeiro case
+
+> Puxada pela MB Barbearia (corte R$ 30). **Confiança: MÉDIA** para preço praticado e para o que
+> faz o cliente cancelar (vários relatos convergentes); **MÉDIA** para "primeiro mês sem verba"
+> (relatos de sucesso, nenhum de fracasso, cheiro de viés); **BAIXA** para tudo que veio sem
+> citação na resposta (marcado abaixo). Referência, nunca meta nem promessa.
+
+## 13. Quanto se cobra de negócio de ticket baixo
+
+- Relatos com fonte: **barbearia R$ 800/mês** (tráfego + redes, junto de site de R$ 2.600, primeiro
+  cliente com desconto); **estética automotiva R$ 800/mês** com contrato de 6 meses; **estética
+  R$ 600/mês** (somado a sistema ou Google); pacote página + Google + tráfego **R$ 1.500/mês**.
+- Faixa da mensalidade pura em negócio local: **R$ 397, R$ 450 a 600, até R$ 800 a 1.500** (a maioria
+  dos experientes). Parte deles diz **não cobrar menos de R$ 1.000**: abaixo disso o suporte come a
+  margem, e um membro cancelou ele mesmo um cliente de menos de R$ 1.000 que dava mais trabalho que
+  três de R$ 2.000.
+- ⚠️ Caso "R$ 200 de verba virou R$ 15 mil em vendas" (hamburgueria): anedota, não referência.
+
+## 14. Por que o cliente de ticket baixo cancela nos 3 primeiros meses
+
+1. **Verba baixa (R$ 500 a 700) com expectativa de milagre.** É o perfil mais ansioso: cobra demais,
+   quer pausar a verba em 7 a 10 dias e culpa o gestor.
+2. **Atendimento lento do próprio cliente.** O lead chega no WhatsApp e morre na resposta; o dono
+   não vê a falha e cancela.
+- O que segura: **prazo mínimo de 3 a 6 meses** com multa proporcional e **pacote integrado**
+  (presença + anúncio), porque o cliente enxerga a melhora além do anúncio.
+
+## 15. "E se eu pagar e não vier ninguém?"
+
+- Resposta dominante: **separar demanda de venda.** O gestor promete gente chegando no WhatsApp;
+  atender rápido, passar preço e fechar é do cliente.
+- Fazer a conta **antes do contrato**: verba → estimativa de conversas → conversão dele → retorno. Se
+  não fecha, ou sobe a verba ou ele assume o risco sabendo.
+- Garantia: **a maioria não dá** (serviço de meio, não de fim). Minoria devolve **só a gestão** se não
+  entregar o número de contatos combinado; a verba nunca volta. Teste grátis quase ninguém faz (a
+  verba é custo real); o "grátis" é o diagnóstico na reunião.
+- Contrato: cláusula de **não garantia de faturamento**, deveres de cada lado (cliente paga a mídia e
+  atende com presteza), prazo mínimo, etapas executadas não se devolvem.
+
+## 16. Fixo menor + variável por resultado
+
+- Aparece (fixo de R$ 300 a 500 + valor por agendamento ou atendimento; % só em ticket alto), mas é a
+  **maior fonte de briga**: cliente omite venda, diz que o lead "não era qualificado", e o gargalo do
+  atendimento dele vira desconto no gestor.
+- Se fizer: contar **o que é auditável sem depender do cliente** (conversa ou agendamento rastreado),
+  nunca venda ou comparecimento informado por ele.
+- **Os experientes recomendam fixo justo + implantação** em negócio local: não auditar o caixa do
+  cliente todo mês.
+
+## 17. Primeiro mês sem verba ("arrumar a casa")
+
+- Estratégia comum e bem relatada: mês 1 = Google (ficha, fotos, palavras), Instagram (bio,
+  destaques), canal do WhatsApp; mês 2 = anúncio. Argumento: **não gastar verba levando gente para uma
+  casa bagunçada.**
+- Relatos: clínica que não aparecia no Maps foi a 1º da região só com ficha e SEO local, e a cliente
+  pediu o anúncio sozinha; o anúncio do mês 2 vira **pedido do cliente**, não venda.
+- Cobrança relatada: a mensalidade já inclui o setup do mês 1, ou uma entrada de R$ 300 a 800 pelo
+  Google/página.
+
+## 18. Fazer voltar (retenção) e intervalo de volta
+
+- **Intervalo de volta: o oráculo não deu número de rede.** O que existe é o princípio: frequência
+  **por cliente**, e o gatilho é "passou do prazo habitual dele" (o "20 a 30 dias" aparece só como
+  exemplo de régua). Não responde à pergunta; não usar como dado.
+- **Ninguém mediu a volta de cliente de anúncio.** O dono local não mede; quem mede usa número de
+  WhatsApp exclusivo do anúncio ou o CRM/agenda com histórico.
+- A rede vende retenção dentro de agenda/CRM/agente, não avulsa: relatos com fonte de **R$ 297/mês +
+  R$ 1.490 de implantação** e **R$ 97/mês** (com site/agenda parcelado) em barbearia. Os planos
+  "R$ 300 a 500" e "R$ 600 a 1.200", o sinal por Pix e o custo de VPS vieram **sem citação**: baixa.
+- Argumentos de venda: falta de horário (3 a 4 por semana passa de R$ 600/mês) e **reativação da base
+  parada**. O "100 sumidos, 20 voltam no fim de semana" é ilustração, não dado.
+
+## 19. Primeiro case com desconto
+
+- Funciona quando o serviço gera resultado: indicações em cadeia e portfólio para subir o preço.
+- Dá errado em três pontos: **indicação não se cobra na justiça** (depende da boa vontade);
+  **cliente barato ou amigo** é o que mais some ou desiste ("nada é mais caro que cliente barato");
+  e **desconto no tráfego vem com verba pequena**, que é o perfil ansioso da seção 14.
+- Proteção: contrato mesmo com amigo; **ancorar o valor cheio** antes e dizer por que o desconto
+  existe.
+- 🔴 O "R$ 1.000 de desconto se fechar no Pix e indicar 5 agora" continua **vetado pela casa**
+  (desconto por fechar hoje; ver `pacotes-e-precos-2026-10.md`).
+
+## 20. Primeira reunião com dono pequeno
+
+- Ele compra solução para a dor e mais receita, não ferramenta. **Escutar mais que falar.**
+- Perguntas que geram confiança: como é o dia a dia e o que toma tempo; qual o maior gargalo; de onde
+  vêm os clientes novos; o que já tentou e não deu certo; quem decide.
+- Número que gera confiança é **quanto ele perde hoje** (procura que não acha ele, horário vazio,
+  falta), não projeção de ganho. "Quantos clientes pagam o mês" em uma frase.
+- O que faz desistir: promessa grande; **falar técnico** (ferramenta, plataforma); mudar a rotina
+  dele; script pronto sem perguntar; **preço cedo** sem ancoragem.
+
+## 21. Como a Hórus usa a terceira rodada (MB Barbearia e ticket baixo em geral)
+
+- **R$ 690 → 890 está dentro do praticado** (barbearia R$ 800). Preço não é o problema; risco e
+  clareza são.
+- **Bônus por cliente que voltou: abandonado como proposta.** A rede mostra briga na contagem e a
+  volta depende do atendimento do dono. Se o dono pedir variável, só sobre o que é auditável sem ele.
+- **Primeiro mês sem verba ganha força** para ticket baixo: o dono paga só a mensalidade no mês 1,
+  a casa fica arrumada e o anúncio do mês 2 entra com a base já medindo. Decisão de preço/escopo é do
+  Marcelo.
+- **Na R1, mostrar a perda, não os 3 cenários.** A tabela pessimista/base/otimista fica na preparação
+  interna; para o dono, "horário vazio vezes R$ 30" e "quantos clientes pagam o mês".
+- Trava da casa que vence a rede: na MB, retenção é **configurar o Dom Agenda que ele já tem**, não
+  vender CRM ou robô por cima.
