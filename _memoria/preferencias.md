@@ -23,6 +23,10 @@ não foram trocados em massa; corrigir quando mexer na linha.
 - **Cliente de setor regulado** (saúde/odonto): o compliance do cliente trava a
   entrega. Na dúvida entre copy mais vendedora e compliance, **compliance vence.**
 - Mostrar o que muda antes de salvar em memória; não reformatar arquivo inteiro à toa.
+- **Escrever claro, para quem não é do ramo** ("gostaria que quando você escrevesse, escrevesse de forma mais clara, para eu
+  entender", 19/10/2026, MB Barbearia). Frase curta, palavra do dia a dia, no máximo 3 ou 4 números por bloco, termo técnico
+  explicado na primeira vez (margem, ponto de equilíbrio, CAC, cenário). A resposta que ele entendeu de primeira foi a com
+  exemplo do próprio cliente ("R$ 683 ÷ 27 clientes = R$ 25 por cliente").
 - **Nunca inventar dado de cliente.** Número, formação, diferencial e depoimento
   saem do briefing ou não existem. O que falta vira `[FALTA: x]` marcado no
   arquivo, nunca texto plausível. Regra completa em `_memoria/integridade.md`.

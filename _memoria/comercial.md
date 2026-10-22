@@ -226,6 +226,18 @@ R$ 2.000 → Fase 2 CRM de recompra → Fase 3 tráfego. Números por cliente no
 
 ---
 
+## Serviço novo: preparar a dupla antes da R1 (MB Barbearia, 19 a 20/10/2026)
+
+- **19/10 · MB Barbearia · "a gente precisava estudar mais" (Antônio, ao cancelar a R1 de tráfego na véspera).** O estudo
+  tinha 662 linhas, três cenários e jargão; nenhum dos dois sabia responder "e se não vier ninguém?". Eles iam vender um
+  serviço que nunca operaram, e o medo era gerar prejuízo ao cliente e queimar o nome. Muda: **serviço novo não vai para
+  R1 sem (1) cola de uma página com as 5 respostas (o que fazemos, quanto custa, quando dá resultado, e se não der, o que
+  ele faz do lado dele), (2) um ensaio com o Claude no papel do cliente e (3) treino no dinheiro da Horus quando houver
+  verba envolvida.** A tabela de cenários é preparação interna; ao dono se mostra a perda de hoje.
+- **Separar verba e mensalidade em toda conta por cliente.** O Marcelo leu "o corte deixa R$ 34 e não paga o anúncio"
+  como absurdo: o anúncio sozinho custava ~R$ 25 por cliente; o que pedia dois cortes era a mensalidade somada. Muda:
+  **mostrar "custo do anúncio por cliente" e "custo total por cliente" em linhas separadas.**
+
 ## Presencial ou digital?
 
 A pergunta real não é o meio, é **onde se tira o compromisso** — sempre dentro da
