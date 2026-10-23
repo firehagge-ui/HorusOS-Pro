@@ -8,6 +8,7 @@
     "migrar": "node scripts/migrar.mjs",
     "semear": "node scripts/semear-real.mjs",
     "farejador": "node farejador/index.mjs",
+    "conta-claude": "node scripts/conta-claude.mjs",
     "mcp": "node mcp/server.mjs",
     "hd": "node cli/hd.mjs",
     "navegador": "node scripts/navegador-login.mjs"

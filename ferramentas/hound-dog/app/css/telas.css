@@ -456,6 +456,9 @@ details[open] > summary.rotulo::before { content: "▾ "; }
 .tarefa-meta svg { width: 13px; height: 13px; }
 .tarefa-meta .atrasada { color: #ff8a8a; font-weight: 600; }
 .tarefa-meta .travada { color: var(--yellow); }
+.tarefa-meta .tarefa-proj { color: var(--violet); font-weight: 600; }
+.tarefa-meta .tarefa-privada { color: var(--accent-2); }
+.tarefas-filtro-proj { width: auto; min-width: 180px; }
 .tarefa.feita .tarefa-tit { color: var(--txt-3); text-decoration: line-through; }
 .tarefa.cancelada { opacity: 0.55; }
 .dep-lista { max-height: 200px; overflow: auto; }

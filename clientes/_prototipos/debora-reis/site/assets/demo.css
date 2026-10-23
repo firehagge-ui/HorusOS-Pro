@@ -602,3 +602,7 @@ button.btn{cursor:pointer;font-family:var(--f-texto)}
 /* foto menor que a tela (o recorte do Colorir): no tamanho do arquivo, sem ampliar */
 .caso-foto-nativa{max-width:calc(628px + 2 * var(--lateral))}
 .pag-capa img{object-position:50% 58%}
+
+/* 23/10: a logo da Débora na capa do guia (o dourado dela sobre o escuro da capa) */
+.pag-capa .capa-logo{display:block;width:auto;height:64px;max-height:none;object-fit:contain;margin:0 0 26px}
+@media print{.pag-capa .capa-logo{height:72px}}

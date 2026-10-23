@@ -1,6 +1,9 @@
 # MB Barbearia · Barbearia no Calabar (entre Barra e Ondina, Salvador)
 
-> **LEAD que pediu tráfego pago.** Dono: **Marcelo Bispo** (@marcelost10). **R1 terça 20/10/2026, 10h, online por vídeo**
+> **ESTADO (21/10/2026): follow-up.** O Antônio cancelou a R1 de 20/10 ("a gente não sabe tráfego, risco de se queimar").
+> Reabrir em 14/12 com o número da campanha da própria Horus (projeto Tráfego no Hounder). `[FALTA: o que o Antônio disse ao dono]`
+>
+> **LEAD que pediu tráfego pago.** Dono: **Marcelo Bispo** (@marcelost10). (HISTÓRICO: R1 era terça 20/10/2026, 10h, online por vídeo)
 > `[FALTA: como o contato chegou]`. **É o mesmo lead que aparecia como "o salão" da R1 de tráfego** (tarefa do Hounder de 19/10; confirmado pelo
 > Marcelo em 19/10/2026).
 > Estado vivo no Hounder (ficha "MB Barbearia").

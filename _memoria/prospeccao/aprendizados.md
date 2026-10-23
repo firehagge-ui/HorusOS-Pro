@@ -119,6 +119,19 @@ Bioclin ficou com a nova, sem o pedido de horário. O que isso ensina:
 
 ## Correções do Marcelo
 
+- **21/10 · Débora Reis · escolha silenciosa: ele mandou a v1 e cortou a oferta.** Ela tinha recusado a segunda e
+  pedido "a partir de quarta". Ele quis acrescentar "se quiser, já posso ir adiantando algumas coisas"; eu troquei por
+  ela mandar a lista do que mudar. Ele não mandou nenhuma das duas: só a desculpa pela demora, os dois horários e um
+  emoji. Ela respondeu em 7 minutos ("QUARTA AS 15H"). Ele estava certo: a mensagem que marca a reunião faz uma coisa
+  só, e qualquer extra (oferta ou tarefa pra ela) disputa a atenção com a pergunta. Muda: **mensagem de remarcar
+  leva desculpa curta + dois horários e mais nada; o "adiantar" vai pra dentro da reunião.** Mesma família de
+  "mensagem curta, marcar logo" (09/10).
+- **16/10 · Débora Reis · acerto, repetir: o próximo passo concreto e o canal à escolha dela.** A ideia dele tinha quatro
+  perguntas e "essa semana mesmo eu já poderia implementar"; ficou "você quer colocar o site no ar? Antes eu preciso
+  alinhar umas coisas... Pode ser por aqui, por áudio ou numa ligação rápida. O que fica melhor pra você?". Ele mandou
+  igual, e em 31 minutos ela mesma pediu a reunião ("Podemos conversar na segunda?"). Funcionou porque a pergunta era uma
+  só, sobre algo que ela quer (o site no ar), sem prometer produção, e a escolha do canal deu o controle a ela. Muda:
+  **com lead em modo de conexão, propor o próximo passo concreto e deixar o canal com ele, em vez de pedir horário.**
 - **15/10 · Débora Reis · "Será que a gente deixa mesmo pra marcar reunião agora? Ela parece querer se conectar e tenho medo
   de parecer um vendedor nervoso".** Às 20h04 ele perguntou "Fica melhor uma ligação?" (tirou os dois horários do meu
   rascunho). Ela respondeu com afeto ("ameiiii", "salva o meu número", "vc ama seu trabalho") e uma pergunta sobre ele, sem

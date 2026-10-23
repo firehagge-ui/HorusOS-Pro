@@ -2,7 +2,8 @@
    HOUNDER — Tarefas: o plano de negócio da Hórus e as pendências da casa,
    com prazo, prioridade, responsável e check. Pedido do Marcelo (27/09/2026).
    O plano (`_gestao/plano-de-negocio.md`) diz para onde e por quê; aqui fica o
-   quê, quem e quando. O Antônio não é operador do painel: o Marcelo marca por ele.
+   quê, quem e quando. Desde 21/10/2026 o Antônio é operador: tarefa "privada" só o dono vê
+   (trava no banco, migração 018).
    ============================================================================= */
 import { sb, estado, ouvir, quem } from '../sb.js';
 import { $, $$, esc, toast, modal, confirmar, erroAmigavel, botaoCarregando, vazio, esqueleto, debounce, kpi } from '../ui.js';
@@ -47,7 +48,8 @@ export function linhaTarefa(t, todas = []) {
       <span class="tarefa-meta">
         <span class="${atrasada ? 'atrasada' : ''}">${icone('relogio')}${feita && t.concluida_em ? `feita ${new Date(t.concluida_em).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })}` : esc(prazoTxt(t.prazo))}</span>
         ${t.responsavel && !/marcelo/i.test(t.responsavel) ? `<span>${icone('clientes')}${esc(t.responsavel)}</span>` : ''}
-        <span>${esc(nomeArea(t.area))}</span>
+        ${t.privada ? `<span class="tarefa-privada" title="Só o dono vê esta tarefa">${icone('cadeado')}só você vê</span>` : ''}
+        ${t.projeto ? `<span class="tarefa-proj">${icone('pasta')}${esc(t.projeto)}</span>` : `<span>${esc(nomeArea(t.area))}</span>`}
         ${emp ? `<span>${icone('predio')}${esc(emp.nome)}</span>` : ''}
         ${t.status === 'travada' ? `<span class="travada">${icone('cadeado')}travada${t.motivo_trava ? `: ${esc(t.motivo_trava)}` : ''}</span>` : ''}
         ${bloqueio.length && !feita ? `<span class="travada">${icone('cadeado')}espera: ${esc(bloqueio.map((b) => b.titulo).join(', '))}</span>` : ''}
@@ -72,7 +74,11 @@ export async function alternarFeita(t, feita) {
 /** Cria ou edita uma tarefa (modal). */
 export async function editarTarefa(existente = null, prefill = {}) {
   const base = existente || { prioridade: 'media', status: 'a_fazer', responsavel: 'Marcelo', area: 'geral', ...prefill };
-  const { data: abertas } = await sb.from('tarefas').select('id, titulo, status').in('status', ABERTAS).order('prazo', { nullsFirst: false });
+  const [{ data: abertas }, { data: comProjeto }] = await Promise.all([
+    sb.from('tarefas').select('id, titulo, status').in('status', ABERTAS).order('prazo', { nullsFirst: false }),
+    sb.from('tarefas').select('projeto').not('projeto', 'is', null).limit(1000),
+  ]);
+  const projetos = [...new Set((comProjeto || []).map((x) => x.projeto))].sort((a, b) => a.localeCompare(b));
   const outras = (abertas || []).filter((x) => x.id !== existente?.id);
   const deps = new Set(base.depende_de || []);
   const empresas = estado.empresas.filter((e) => !e.arquivado).sort((a, b) => a.nome.localeCompare(b.nome));
@@ -93,9 +99,13 @@ export async function editarTarefa(existente = null, prefill = {}) {
       <div class="campo"><label>Pronto quando</label><input class="inp" name="pronto_quando" value="${esc(base.pronto_quando || '')}" placeholder="Como se sabe que acabou"></div>
       <div class="campo"><label>Detalhes</label><textarea class="txt" name="descricao" rows="3" placeholder="Passos, links, contexto">${esc(base.descricao || '')}</textarea></div>
       <div class="grade-2">
+        <div class="campo"><label>Projeto</label><input class="inp" name="projeto" list="lista-projetos" value="${esc(base.projeto || '')}" placeholder="Ex.: Tráfego, Icarus, Empresa"><datalist id="lista-projetos">${projetos.map((p) => `<option value="${esc(p)}">`).join('')}</datalist></div>
         <div class="campo"><label>Objetivo do plano</label><input class="inp" name="objetivo" value="${esc(base.objetivo || '')}" placeholder="Ex.: O1 Caixa"></div>
+      </div>
+      <div class="grade-2">
         <div class="campo"><label>Empresa (opcional)</label><select class="sel" name="empresa_id"><option value="">Nenhuma</option>${empresas.map((e) => `<option value="${e.id}"${e.id === base.empresa_id ? ' selected' : ''}>${esc(e.nome)}</option>`).join('')}</select></div>
       </div>
+      ${estado.eu?.papel === 'dono' ? `<label class="check mt-8"><input type="checkbox" name="privada"${base.privada ? ' checked' : ''}> Só eu vejo (os outros operadores não veem esta tarefa)</label>` : ''}
       <div class="campo"><label>Travada por quê</label><input class="inp" name="motivo_trava" value="${esc(base.motivo_trava || '')}" placeholder="Só se a situação for Travada"></div>
       ${outras.length ? `<details class="dobra mt-8"${deps.size ? ' open' : ''}><summary><span class="rotulo">Depende de ${deps.size ? `(${deps.size})` : ''}</span></summary>
         <div class="col gap-6 mt-8 dep-lista">${outras.map((o) => `<label class="check"><input type="checkbox" name="dep" value="${o.id}"${deps.has(o.id) ? ' checked' : ''}> ${esc(o.titulo)}</label>`).join('')}</div></details>` : ''}
@@ -113,8 +123,10 @@ export async function editarTarefa(existente = null, prefill = {}) {
       titulo, prazo: f.get('prazo') || null, prioridade: f.get('prioridade'), responsavel: f.get('responsavel'), status: f.get('status'),
       area: f.get('area'), marco: f.get('marco') || null, pronto_quando: String(f.get('pronto_quando') || '').trim() || null,
       descricao: String(f.get('descricao') || '').trim() || null, objetivo: String(f.get('objetivo') || '').trim() || null,
+      projeto: String(f.get('projeto') || '').trim() || null,
       empresa_id: f.get('empresa_id') || null, motivo_trava: String(f.get('motivo_trava') || '').trim() || null, depende_de: f.getAll('dep'),
     };
+    if (estado.eu?.papel === 'dono') linha.privada = f.has('privada');
     if (f.has('concluida_obs')) linha.concluida_obs = String(f.get('concluida_obs') || '').trim() || null;
     botaoCarregando(ev.currentTarget, true, 'Salvando…');
     const r = existente ? await sb.from('tarefas').update(linha).eq('id', existente.id) : await sb.from('tarefas').insert({ ...linha, criado_por: quem() });
@@ -134,6 +146,7 @@ export async function editarTarefa(existente = null, prefill = {}) {
 export default async function tarefas(v, { params }) {
   let modo = params.modo || 'agora';
   let resp = 'todos';
+  let projeto = params.projeto || '';
   let lista = [];
 
   v.innerHTML = `
@@ -141,7 +154,8 @@ export default async function tarefas(v, { params }) {
       <div class="acoes"><button class="btn prim" data-nova>${icone('mais')}Nova tarefa</button></div></div>
     <div class="kpis" data-kpis>${esqueleto(1, 60)}</div>
     <div class="row wrap gap-14 mt-16 mb-16">
-      <div class="segmento" data-modos>${[['agora', 'Agora'], ['marcos', 'Por marco'], ['feitas', 'Feitas']].map(([k, r]) => `<button data-modo="${k}" class="${k === modo ? 'on' : ''}">${r}</button>`).join('')}</div>
+      <div class="segmento" data-modos>${[['agora', 'Agora'], ['projetos', 'Por projeto'], ['marcos', 'Por marco'], ['feitas', 'Feitas']].map(([k, r]) => `<button data-modo="${k}" class="${k === modo ? 'on' : ''}">${r}</button>`).join('')}</div>
+      <select class="sel tarefas-filtro-proj" data-projeto aria-label="Filtrar por projeto"><option value="">Todos os projetos</option></select>
       <span class="grow"></span>
       <div class="chips" data-resp>${[['todos', 'Todos'], ['marcelo', 'Marcelo'], ['antonio', 'Antônio']].map(([k, r]) => `<button class="chip ${k === resp ? 'on' : ''}" data-r="${k}">${r}</button>`).join('')}</div>
     </div>
@@ -152,10 +166,15 @@ export default async function tarefas(v, { params }) {
     const { data, error } = await sb.from('tarefas').select('*').order('prazo', { ascending: true, nullsFirst: false }).order('ordem').limit(1000);
     if (error) { $('[data-corpo]', v).innerHTML = vazio('alerta', 'Não carregou', erroAmigavel(error)); return; }
     lista = data || [];
+    const sel = $('[data-projeto]', v);
+    const nomes = [...new Set(lista.filter((t) => t.projeto && t.status !== 'cancelada').map((t) => t.projeto))].sort((a, b) => a.localeCompare(b));
+    if (projeto && !nomes.includes(projeto)) nomes.push(projeto);
+    sel.innerHTML = `<option value="">Todos os projetos</option>${nomes.map((p) => `<option value="${esc(p)}"${p === projeto ? ' selected' : ''}>${esc(p)}</option>`).join('')}`;
     desenhar();
   }
 
-  const doResp = (t) => resp === 'todos' || (resp === 'antonio' ? /ant[oô]nio/i.test(t.responsavel || '') : /marcelo/i.test(t.responsavel || ''));
+  const doResp = (t) => (resp === 'todos' || (resp === 'antonio' ? /ant[oô]nio/i.test(t.responsavel || '') : /marcelo/i.test(t.responsavel || '')))
+    && (!projeto || t.projeto === projeto);
   const ordemPrio = (a, b) => ['alta', 'media', 'baixa'].indexOf(a.prioridade) - ['alta', 'media', 'baixa'].indexOf(b.prioridade);
   const porPrazo = (a, b) => (a.prazo || '9999') < (b.prazo || '9999') ? -1 : (a.prazo || '9999') > (b.prazo || '9999') ? 1 : ordemPrio(a, b) || a.ordem - b.ordem;
   const bloco = (titulo, itens, extra = '') => itens.length ? `<h2 class="secao-tit mt-24">${titulo} <span class="dim">· ${itens.length}</span></h2>${extra}<div class="card pad-0 mt-12 tarefas-lista">${itens.map((t) => linhaTarefa(t, lista)).join('')}</div>` : '';
@@ -187,6 +206,19 @@ export default async function tarefas(v, { params }) {
       ];
       corpo.innerHTML = ab.length ? grupos.map(([tt, it]) => bloco(tt, it)).join('')
         : `<div class="card">${vazio('checkc', 'Nenhuma tarefa aberta', 'Crie uma aqui ou peça ao Claude: "coloca no Hounder".', `<button class="btn sm prim" data-nova>${icone('mais')}Nova tarefa</button>`)}</div>`;
+    } else if (modo === 'projetos') {
+      // Um bloco por projeto, com a barra do que já foi feito; "Sem projeto" mostra só as abertas
+      const nomes = [...new Set(vis.filter((t) => t.projeto && t.status !== 'cancelada').map((t) => t.projeto))]
+        .sort((a, b) => vis.filter((t) => t.projeto === b && ABERTAS.includes(t.status)).length - vis.filter((t) => t.projeto === a && ABERTAS.includes(t.status)).length || a.localeCompare(b));
+      const blocos = nomes.map((p) => {
+        const it = vis.filter((t) => t.projeto === p && t.status !== 'cancelada').sort((a, b) => (a.status === 'feita') - (b.status === 'feita') || porPrazo(a, b));
+        const f = it.filter((t) => t.status === 'feita').length;
+        const atr = it.filter((t) => ABERTAS.includes(t.status) && t.prazo && t.prazo < h).length;
+        const barra = `<div class="row gap-12 mt-8"><span class="funil-barra grow"><i style="width:${(f / it.length) * 100}%;background:var(--violet)"></i></span><b class="num">${f}/${it.length}</b>${atr ? `<span class="selo vermelho mini">${atr} atrasada${atr > 1 ? 's' : ''}</span>` : ''}</div>`;
+        return bloco(esc(p), it, barra);
+      });
+      const soltas = vis.filter((t) => !t.projeto && ABERTAS.includes(t.status)).sort(porPrazo);
+      corpo.innerHTML = blocos.join('') + bloco('Sem projeto', soltas) || `<div class="card">${vazio('pasta', 'Nenhum projeto ainda', 'Abra uma tarefa e escreva o projeto dela (Tráfego, Icarus, Empresa…).')}</div>`;
     } else if (modo === 'marcos') {
       corpo.innerHTML = [...MARCOS, ['', 'Fora do plano (pendências gerais)']].map(([mk, rot]) => {
         const it = vis.filter((t) => (t.marco || '') === mk && t.status !== 'cancelada').sort((a, b) => (a.status === 'feita') - (b.status === 'feita') || porPrazo(a, b));
@@ -213,6 +245,7 @@ export default async function tarefas(v, { params }) {
     if (ev.target.closest('[data-abrir]')) editarTarefa(t);
   });
   v.addEventListener('change', async (ev) => {
+    if (ev.target.matches('[data-projeto]')) { projeto = ev.target.value; desenhar(); return; }
     const c = ev.target.closest('[data-check]'); if (!c) return;
     const t = lista.find((x) => x.id === c.closest('[data-tarefa]').dataset.tarefa);
     if (t && !(await alternarFeita(t, c.checked))) c.checked = !c.checked;

@@ -78,6 +78,14 @@ o Marcelo aprova no Disparos → o Farejador envia. O Conselho só roda quando o
   `.navegador/`, fora do Git) e por isso rodam **uma de cada vez** (`USA_NAVEGADOR` em `tarefas.mjs`).
   O perfil não é o Chrome do Marcelo: o Chrome não abre o mesmo perfil em dois programas e bloqueia
   automação no perfil principal. Login (Instagram e Google) uma vez com `npm run navegador`.
+- **Qual Claude roda (21/10/2026):** o CLI global sumiu do PC; `binarioClaude()` agora acha também o Claude Code que
+  vem dentro do app Claude (`%LOCALAPPDATA%\Claude-Data\...\claude-code\<versão mais nova>\...\claude.exe`), que muda de
+  pasta a cada atualização do app. **Conta por operador:** tarefa criada no painel por quem tem pasta em
+  `~/.claude-contas/<nome>` roda com `CLAUDE_CONFIG_DIR` dela (`comConta` em `claude.mjs`, chamado no `executar` do
+  index). Conectar: `npm run conta-claude -- Antônio` com o Antônio junto (ele faz o /login com a conta dele). Pasta sem
+  login = a tarefa falha com aviso, nunca cai na conta do Marcelo. O que o Farejador dispara sozinho (Mídia, agentes)
+  segue na conta do Marcelo. `criado_por` vem do nome do operador no painel (não é à prova de fraude; entre sócios basta).
+  O Farejador sobe pelo atalho de inicialização do Windows (`farejador/iniciar-oculto.vbs`).
 - Modelo: Ajustes → Claude (`config.claude`). Investigação e chat fixos em `claude-opus-5-5` com esforço alto (`--effort high` para todo Opus, em `claude.mjs`; pedido do
   Marcelo, 27/09). **Leitura de WhatsApp e mensagem personalizada também em Opus 5.5 desde 29/09**, em modo `horus` com ferramentas
   só de leitura (Read, Grep, Glob: sem escrita, sem comando, sem CRM, pro texto do lead não virar ação) e com o conhecimento de
@@ -107,6 +115,13 @@ o Marcelo aprova no Disparos → o Farejador envia. O Conselho só roda quando o
   preparadas"), e usar uma ali marca como enviada e descarta as outras. As mensagens moram só na aba Geral; o
   Briefing fica com a pesquisa. O Copiloto da Geral mostra a variação simples com "Assina Marcelo/Antônio".
 - Link wa.me sem o nono dígito **não é erro** (Bioclin, 25/09); o número gravado nunca é alterado.
+- **Triagem com o conhecimento da casa (22/10/2026, pedido do Marcelo):** `doutrinaTriagem()` em `prompts.mjs` põe no pedido
+  o geral (sinais do negócio local, ideia central do catálogo) sempre, e o específico só dos nichos que existem na lista:
+  caderno + lições + catálogo do especialista (régua dos especialistas) ou, para os outros, só a SEÇÃO do nicho no
+  `02-nichos-amplos.md` (mapa `NICHOS_AMPLOS`; seção nova no catálogo = linha nova no mapa). Cada lead vai com o campo
+  `nicho` marcado e a regra de não aplicar lição de um nicho em outro. Pedido de operador restrito vai sem nada de
+  `_gestao/` (`contaRestrita()`). Lista só de pet shops: uns 11 mil caracteres (antes, 70 mil num teste misturado). A nota da triagem grava os sinais vistos e, de quem passa, as
+  oportunidades como hipótese.
 
 ## Time de agentes de prospecção (Fase 1 no ar desde 29/09/2026)
 
@@ -211,6 +226,17 @@ e as do dia (`rotinaBriefing` em `farejador/index.mjs`).
   área, marco (m1 90 dias até 26/12/2026, m2, m3, m4), objetivo do plano (O1 a O7), `depende_de` (ids),
   empresa opcional (concluir tarefa com empresa grava na linha do tempo), `pronto_quando`.
 - `concluida_em` é preenchido pelo gatilho do banco; não mandar pelo cliente.
+- **Tarefa privada e o Antônio (21/10/2026, migração 018):** o Antônio é operador e **não pode saber que existe um
+  teste de 90 dias** (pedido do Marcelo). Tudo do acompanhamento dele é `privada = true` (só o dono vê; trava no banco,
+  conferida simulando um operador). O que ele vê se escreve neutro ("meta comercial", nunca "teste"). Pedido de operador
+  no painel roda **restrito**: só na conta Claude dele, MCP sem tarefa privada (`HD_SO_PUBLICO`,
+  `mcp-farejador-restrito.json`) e `Read` negado em `_gestao/`. Conferir com `node scripts/testar-restrito.mjs`.
+- **Prazo só em dia útil (21/10/2026):** o `hd_salvar_tarefa` recusa sábado e domingo. Origem: na revisão de 21/10 o
+  Claude marcou contador, CNPJ e conta PJ em sábados. Script em lote que escreve direto na tabela confere o dia também.
+- **Projeto (21/10/2026, migração 017):** `tarefas.projeto` agrupa tarefas do mesmo fim (Tráfego, Icarus, Empresa, Teste do
+  Antônio, Social Media, Prospecção, Presença Google, CRM + WhatsApp, Ofertas e preço, Cases e prova). Não substitui o
+  objetivo do plano (O1 a O7). Tela: visão "Por projeto" com barra de progresso e filtro; MCP: `projeto` no `hd_tarefas`
+  e no `hd_salvar_tarefa`.
 - Agenda continua sendo compromisso com hora. Tarefa não tem hora.
 
 ## 📣 Mídia, o agente de social media (27/09/2026)
@@ -221,6 +247,33 @@ as tarefas `midia_semana`, `midia_ajuste` e `midia_triagem` estão em `tarefas.m
 a coleta antiga do Instagram (leitura pública) fica parada e o botão "Atualizar agora" coleta pela API oficial.
 O motor e o porquê moram em `ferramentas/social/` (ARQUITETURA.md §7). **Nunca rodar `npm run migrar` inteiro
 sem conferir a 002** (tem o @ antigo como padrão); aplicar só a migração nova.
+
+**🎨 Estúdio e tela cheia (21/10/2026, pedido do Marcelo para o Antônio cuidar do Instagram):**
+- `app/js/estudio.js`: editor de carrossel em canvas 1080 × 1440 (texto com `*destaque*`, formas, linha/seta, imagem do
+  computador, colar ou arrastar; camadas, ímã, desfazer, modelos com a identidade da Horus, avisos do piso de 24 px).
+  O mesmo desenho serve à tela e ao JPG. Salvar sobe os slides em `midia/horus/estudio/<post>/` (regras da migração 017:
+  operador só escreve embaixo de `horus/estudio/`) e grava o post em `social_posts` com `status = 'aguardando'` e o
+  documento em `conteudo.estudio`. Post do Mídia aberto no Estúdio entra com cada slide como imagem travada no fundo.
+  Post editado no Estúdio não aceita "Pedir ajuste" do Mídia (refazer apagaria a edição; `midiaAjuste` recusa).
+- `app/js/visor.js`: tela cheia com zoom (clique, roda, pinça), setas e miniaturas. Usa `slides[].url_publica`.
+- Desde 21/10 o `montarPost` já sobe os slides do rascunho (`midia/horus/rascunho/...`) e grava `url_publica`; o
+  `rotinaPublicar` usa a URL quando o slide não tem `arquivo` (slide do Estúdio). **Mudança no Farejador só vale depois de
+  reiniciá-lo.** Teste local do painel: `node scripts/servir-painel.mjs` (porta 5179).
+
+**Mídia com o conhecimento da casa e imagem do ChatGPT (21/10/2026, pedido do Marcelo):**
+- `doutrinaMidia()` em `farejador/midia.mjs` lê na hora e põe DENTRO do pedido: padrão da casa (topo da skill /carrossel),
+  essência (07/10), perfil, antipadrões, checklist, formatos, legibilidade, as referências da skill, perfis e estudos de
+  perfil, integridade; a sessão da semana recebe também a pauta aprovada mais recente (`marketing/conteudo/midia/pautas/`).
+  A versão curta (núcleo) vai nas rodadas de correção e no revisor 🎨 Criação. Pauta acabou = nenhum post, aviso com ideias.
+- Séries novas em `ferramentas/social/lib/carrossel-v2.mjs` (`serie: tweet | escuro`), copiadas dos posts que o Marcelo
+  aprovou: capa sempre com imagem, metade do miolo com prova visual (imagem, antes/depois, conversa de WhatsApp, busca),
+  aperto automático quando o texto não cabe. O molde antigo (`layout`) segue só para ajustar post antigo; ajuste que pede
+  imagem ou outra estrutura converte o post para a série nova. Imagem que não muda guarda o `arquivo` e não se gera de novo.
+- Imagem: `farejador/imagens.mjs` roda o Claude em modo `chrome` (`--chrome`, isolado) no Chrome do Marcelo, conversa
+  normal do ChatGPT (a temporária não gera imagem), baixa em `E:\Users\hagge\Downloads` e move pra `<post>/img/`. Sonnet,
+  uns 2 min por imagem, até 4 por post.
+- Chrome fora: a tarefa volta pra fila a cada 15 min (`retomarEm` no erro, tratado em `index.mjs`), um aviso no WhatsApp,
+  e retoma de onde parou (plano e posts feitos ficam em `jobs.saida`). Depois de 4 dias, desiste com erro.
 
 **Estado das rotinas (18/10/2026, Marcelo):** só `semana` (planejamento semanal de posts, segunda 8h), `publicar` e `token`
 ficam ligadas em `social_rotinas`. `caixa` (comentários e DMs) e `triagem` estão desligadas por gastar token e engavetadas;

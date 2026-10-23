@@ -827,8 +827,75 @@ o porquê em uma linha e o que você mudou.`;
 /* ------------------------------ Triagem da lista do Spark ------------------------------ */
 // A triagem de 5 minutos por lead, antes de virar ficha (regra da casa, 23/09): o Spark acertou? o gancho existe?
 // Não é a investigação profunda (essa vem depois, um lead por vez, no Novo).
-export function promptTriagem({ itens }) {
-  return `Faça a TRIAGEM destes leads que vieram da lista do Gemini Spark. Uns 5 minutos por lead, um de cada vez.
+/**
+ * O que a triagem sabe da casa (22/10/2026, pedido do Marcelo: "quero que ela tenha o contexto, não seja só um agente com
+ * uma missão"). Lido do repositório na hora: os sinais do negócio local, o caderno de cada nicho da lista (com as lições
+ * válidas) e o catálogo de soluções daquele nicho. O catálogo mora em _gestao/ e não entra em pedido de operador restrito.
+ */
+/* Mapa dos nichos amplos (22/10/2026, Marcelo: "o pet shop só lê sobre pet shop"): cada seção do
+   _gestao/catalogo/02-nichos-amplos.md com as palavras que a ligam à categoria do lead. Só a seção do nicho entra no
+   pedido; o arquivo inteiro tem 12 mil caracteres. Seção nova no catálogo = linha nova aqui. */
+export const NICHOS_AMPLOS = [
+  ['## Infoprodutor, mentor, expert', ['infoprod', 'mentor', 'coach', 'curso online', 'expert']],
+  ['## Imobiliária e corretor', ['imobili', 'corretor', 'imove']],
+  ['## Advocacia', ['advoca', 'advogad', 'juridic']],
+  ['## Academia, estúdio e personal', ['academia', 'crossfit', 'personal', 'treino funcional', 'box de']],
+  ['## Restaurante, bar, café e delivery', ['restaurante', 'bar(?![a-z])', 'lanchonete', 'pizzaria', 'hamburg', 'cafe', 'delivery', 'padaria', 'doceria', 'confeitaria', 'acai', 'sorveteria', 'marmita']],
+  ['## E-commerce e loja com venda pelo WhatsApp', ['loja', 'e-commerce', 'ecommerce', 'boutique', 'moda', 'roupa', 'calcado', 'presente', 'floricultura']],
+  ['## Empresa B2B e prestador de serviço', ['b2b', 'distribuidora', 'industria', 'consultoria', 'atacado']],
+  ['## Pousada, hotel e turismo', ['pousada', 'hotel', 'hostel', 'turismo', 'viage']],
+  ['## Escola, curso livre, idioma', ['escola', 'curso', 'idioma', 'ingles', 'reforco', 'colegio', 'creche']],
+  ['## Concessionária e revenda de veículos', ['concession', 'revenda', 'seminovo', 'multimarca', 'veiculos']],
+  ['## Contabilidade', ['contab', 'contador']],
+  ['## Serviço técnico com retorno obrigatório', ['assistencia tecnica', 'ar condicionado', 'refrigera', 'climatiz', 'dedetiz', 'manutencao', 'eletric', 'encanad', 'desentup']],
+  ['## Energia solar (integrador)', ['solar', 'fotovolt']],
+  ['## Arquitetura, engenharia e projetos', ['arquitet', 'interiores', 'engenhar', 'projetos estrutura', 'estrutural', 'laudo', 'reforma', 'construtora']],
+  ['## Veterinária, pet shop, banho e tosa', ['veterin', 'pet', 'banho e tosa']],
+  ['## Salão de beleza e barbearia', ['salao', 'barbearia', 'barber', 'cabeleire', 'manicure', 'esmalteria', 'beleza']],
+];
+const semAcentoP = (t) => String(t || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+// a palavra casa no começo de uma palavra ("pet" pega "pet shop"); "bar(?![a-z])" exige a palavra inteira (barbearia não é bar)
+/** A seção dos nichos amplos que casa com a categoria (ou, sem nada na categoria, com o nome) do lead; null se nenhuma. */
+export function secaoAmpla({ categoria, nome }) {
+  // vence a seção cuja palavra aparece PRIMEIRO ("Advocacia Imobiliária" é advocacia; "Energia Solar & Manutenção" é solar)
+  const casa = (txt) => {
+    const t = semAcentoP(txt);
+    let melhor = null;
+    for (const [titulo, ps] of NICHOS_AMPLOS) for (const p of ps) {
+      const m = new RegExp(`(^|[^a-z])${p}`).exec(t);
+      if (m && (!melhor || m.index < melhor.pos)) melhor = { titulo, pos: m.index };
+    }
+    return melhor?.titulo || null;
+  };
+  return casa(categoria) || casa(nome) || null;
+}
+
+/**
+ * Cada lead leva o nicho dele marcado (no JSON da lista); aqui vai cada bloco UMA vez: o geral (sinais, ideia central)
+ * sempre, e o específico só dos nichos que existem na lista. nichos = especialistas (caderno + lições + catálogo do nicho);
+ * amplos = títulos de seção do 02-nichos-amplos.md; semMapa = algum lead não casou com nada (vai só o índice das seções).
+ */
+export function doutrinaTriagem({ nichos = [], amplos = [], semMapa = false, restrito = false }) {
+  const blocos = [['GERAL · SINAIS DO NEGÓCIO LOCAL (vale pra todo lead: o que cada sinal quer dizer e o que resolve)', ler('_memoria/prospeccao/10-sinais.md')]];
+  if (!restrito) blocos.push(['GERAL · CATÁLOGO DE SOLUÇÕES: A IDEIA CENTRAL (Marcelo, 03/10/2026)', secoes(ler('_gestao/catalogo/README.md'), ['## A ideia central'])]);
+  for (const esp of nichos) {
+    blocos.push([`NICHO ${esp.segmento} · CADERNO (só para os leads marcados com este nicho)`, blocoNicho(esp).replace(/^=== .*?===\n/, '').replace('=== LIÇÕES NOVAS DO NICHO', `=== NICHO ${esp.segmento} · LIÇÕES NOVAS`)]);
+    if (!restrito) blocos.push([`NICHO ${esp.segmento} · CATÁLOGO (só para os leads marcados com este nicho)`, ler(`_gestao/catalogo/${esp.id}.md`)]);
+  }
+  if (!restrito) {
+    const amplo = ler('_gestao/catalogo/02-nichos-amplos.md');
+    for (const titulo of amplos) blocos.push([`NICHO ${titulo.replace(/^## /, '')} · CATÁLOGO (só para os leads marcados com este nicho)`, secoes(amplo, [titulo])]);
+    if (semMapa) blocos.push(['MAPA DOS OUTROS NICHOS (para lead "sem nicho mapeado")', `Se o negócio cair num destes, abra com Read só a seção dele em _gestao/catalogo/02-nichos-amplos.md; se não cair em nenhum, siga só com o geral.\n${NICHOS_AMPLOS.map(([t]) => `- ${t.replace(/^## /, '')}`).join('\n')}`]);
+  }
+  return blocos.filter(([, t]) => t && t.trim()).map(([t, c]) => `=== ${t} ===\n${c.trim()}`).join('\n\n');
+}
+
+export function promptTriagem({ itens, doutrina = '' }) {
+  return `${doutrina ? `O QUE A CASA SABE. Os blocos GERAL valem pra todo lead; um bloco NICHO vale só para os leads cujo campo "nicho" aponta pra ele (nunca aplique a lição de um nicho em lead de outro)
+
+${doutrina}
+
+` : ''}Faça a TRIAGEM destes leads que vieram da lista do Gemini Spark. Uns 5 minutos por lead, um de cada vez.
 O Spark erra muito: inventa site, erra Instagram, telefone e bairro, diz "sem anúncio" sem olhar e chuta posição no Google.
 A triagem responde só três perguntas: o negócio existe e está ativo? O que o Spark disse bate? Sobra um gancho verdadeiro?
 
@@ -843,6 +910,9 @@ PARA CADA LEAD
 3. Site: se o Spark ou o Google citam um, abra. Diga se abre, se é próprio (domínio da empresa) ou plataforma genérica (Linktree,
    Canva, Wix gratuito, Google Sites), e se está atualizado.
 4. O gancho: a lacuna do Spark é verdadeira e o dono confere em segundos? Se caiu, existe outra lacuna visível?
+   Dê nome ao que você viu pelos SINAIS da casa (o código S, quando houver) e use o caderno do nicho: lição do nicho vale mais que palpite.
+5. Oportunidades: pelo catálogo do nicho (quando veio no pedido), anote de 1 a 3 soluções que encaixam neste negócio, como HIPÓTESE
+   ligada ao que você viu. "Ainda não temos" não é filtro; nunca diga que já existe ou já foi entregue.
 
 DECISÃO
 - "passa": ativo, com contato público, e uma lacuna real que a Hórus resolve (site próprio, Google, caminho até o WhatsApp,
@@ -869,6 +939,8 @@ Responda SÓ com \`\`\`json no formato:
   "instagram": "@ confirmado", "instagram_seguidores": 0, "ultimo_post": "AAAA-MM-DD",
   "google_nota": 0, "google_avaliacoes": 0, "gmb_status": "categoria, campo de site e o que chamou atenção",
   "roda_anuncio": true,
-  "divergencias": ["o que o Spark disse e não bate, com o que você viu"]
+  "divergencias": ["o que o Spark disse e não bate, com o que você viu"],
+  "sinais": ["S3: o que você viu que mostra esse sinal"],
+  "oportunidades": ["hipótese: solução do catálogo + por que encaixa aqui"]
 }]}`;
 }

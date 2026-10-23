@@ -5,7 +5,7 @@
 import { q, q1 } from '../lib/db.mjs';
 import { salvarEmpresa, registrarAtividade, adicionarItensLista, resumoCRM, detalheEmpresa } from '../lib/crm.mjs';
 import { criarOperador } from '../lib/operadores.mjs';
-import { rodarClaude } from './claude.mjs';
+import { rodarClaude, contaRestrita } from './claude.mjs';
 import * as P from './prompts.mjs';
 import { revisar, similaridade } from '../app/js/revisor.js';
 import * as WA from './whatsapp.mjs';
@@ -14,7 +14,7 @@ import { log } from './log.mjs';
 import { detectarObjecoesTexto } from './objecoes.mjs';
 import { midiaSemana, midiaAjuste, midiaTriagem, coletarAgora } from './midia.mjs';
 import { cicloAgente } from './agente.mjs';
-import { pedirCiclo } from '../lib/agentes.mjs';
+import { pedirCiclo, especialistaPara, saberDoEspecialista } from '../lib/agentes.mjs';
 
 const FERR_PESQUISA = ['WebSearch', 'WebFetch', 'Read', 'Grep', 'Glob', 'mcp__firecrawl', 'mcp__hound-dog'];
 const FERR_INVESTIGACAO = [...FERR_PESQUISA, 'mcp__navegador'];
@@ -415,10 +415,23 @@ export async function triarLista(job, progresso, cancelado) {
     where i.id = any($1) and not i.descartado and i.empresa_id is null`, [ids]);
   if (!itens.length) return { passaram: 0, descartados: 0, pedidos: ids.length };
   progresso(`Triagem de ${itens.length} leads: existe, o Spark acertou, tem gancho`);
-  const enviar = itens.map((i) => ({ id: i.id, nome: i.nome, categoria: i.categoria, cidade: i.cidade, bairro: i.bairro, endereco: i.endereco,
+  // O nicho de cada lead (22/10/2026): especialista (clínicas, eventos, oficinas) pela régua dos agentes; senão, a seção dos
+  // nichos amplos. Cada lead leva o nicho marcado e cada bloco específico entra uma vez, só se algum lead da lista for dele.
+  const espIds = await Promise.all(itens.map((i) => especialistaPara({ categoria: i.categoria, nome: i.nome })));
+  const nichos = (await Promise.all([...new Set(espIds.filter(Boolean))].map(saberDoEspecialista))).filter(Boolean);
+  const amplas = itens.map((i, k) => (espIds[k] ? null : P.secaoAmpla(i)));
+  const restrito = contaRestrita();
+  const marcar = (k) => {
+    const esp = nichos.find((n) => n.id === espIds[k]);
+    if (esp) return `${esp.segmento}: use o caderno${restrito ? '' : ' e o catálogo'} desse nicho`;
+    if (amplas[k] && !restrito) return `${amplas[k].replace(/^## /, '')}: use o catálogo desse nicho`;
+    return 'sem nicho mapeado: use só o geral' + (restrito ? '' : ' (e o mapa dos outros nichos, se o negócio cair num deles)');
+  };
+  const enviar = itens.map((i, k) => ({ id: i.id, nome: i.nome, categoria: i.categoria, nicho: marcar(k), cidade: i.cidade, bairro: i.bairro, endereco: i.endereco,
     whatsapp: i.whatsapp, telefone: i.telefone, instagram: i.instagram, site: i.site, site_status: i.site_status, observacao: i.observacao, dados: i.dados }));
+  const doutrina = P.doutrinaTriagem({ nichos, amplos: [...new Set(amplas.filter(Boolean))], semMapa: itens.some((_, k) => !espIds[k] && !amplas[k]), restrito });
   const r = await rodarClaude({
-    prompt: P.promptTriagem({ itens: enviar }), sistema: P.REGRAS_CASA, modelo: await modeloDe('modelo_pesquisa'), modo: 'horus',
+    prompt: P.promptTriagem({ itens: enviar, doutrina }), sistema: P.REGRAS_CASA, modelo: await modeloDe('modelo_pesquisa'), modo: 'horus',
     ferramentas: FERR_INVESTIGACAO, timeoutMs: Math.min(60, 8 + itens.length * 6) * 60 * 1000,
     aoFerramenta: (f) => progresso(`${f.rotulo}${f.detalhe ? `: ${f.detalhe.slice(0, 60)}` : ''}`), deveParar: cancelado,
   });
@@ -439,7 +452,8 @@ export async function triarLista(job, progresso, cancelado) {
     const p = pontuar(comb, { pesos: opc.score, nichos: opc.nichos_conhecidos, praca: opc.praca?.regiao });
     const passa = up.decisao === 'passa';
     const div = (up.divergencias || []).filter(Boolean);
-    const nota = `Triagem ${hoje}: ${passa ? 'passou' : 'descartado'}. ${up.motivo || ''}${div.length ? ` Divergências: ${div.join(' · ')}` : ''}`.trim();
+    const sinais = (up.sinais || []).filter(Boolean), oport = (up.oportunidades || []).filter(Boolean);
+    const nota = `Triagem ${hoje}: ${passa ? 'passou' : 'descartado'}. ${up.motivo || ''}${div.length ? ` Divergências: ${div.join(' · ')}` : ''}${sinais.length ? ` Sinais: ${sinais.join(' · ')}` : ''}${passa && oport.length ? ` Oportunidades (hipótese): ${oport.join(' · ')}` : ''}`.trim();
     const cols = Object.keys(novo);
     await q(`update lista_itens set ${cols.map((c, i) => `${c} = $${i + 2}, `).join('')}score = $${cols.length + 2}, prioridade = $${cols.length + 3},
       score_motivos = $${cols.length + 4}, observacao = $${cols.length + 5}, descartado = $${cols.length + 6} where id = $1`,

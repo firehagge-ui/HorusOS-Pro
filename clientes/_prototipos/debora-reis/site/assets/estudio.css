@@ -597,3 +597,75 @@ main,.rodape{position:relative;z-index:1}
   .js-pj .pj *{transition-duration:.01s!important;transition-delay:0s!important}
   .desenho.vivo .gato-rabo{animation:none}
 }
+
+/* ---------- 23/10: o que a Débora pediu no áudio de 22/10 ---------- */
+/* a logo dela: o monograma no cabeçalho, ao lado do nome; a assinatura inteira no rodapé */
+.cab-marca,.marca{display:inline-flex;align-items:center;gap:12px}
+.cab-marca img,.marca img{width:auto;height:38px;flex:none}
+.rodape-marca img{width:172px;margin:0 auto}
+
+/* seção 2 só com a pergunta e a resposta dela (as seis fotos pequenas saíram) */
+.composicao.comp-so{height:auto;padding:150px 0 120px}
+.comp-so .comp-centro{position:static}
+
+/* Como trabalho: o cronograma da proposta dela, numa régua de quatro etapas */
+.cronograma{padding:150px var(--lateral) 140px}
+.crono-topo{display:grid;grid-template-columns:repeat(6,1fr);gap:0 24px;margin-bottom:72px}
+.crono-topo > *{grid-column:3/7}
+.crono-topo h2{max-width:none}
+.crono-topo .linha{display:block}
+.crono{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--tinta)}
+.crono li{position:relative;padding:26px 28px 0 0}
+.crono li + li{padding-left:28px}
+.crono li + li::before{content:"";position:absolute;left:0;top:0;bottom:0;border-left:1px solid var(--linha)}
+.crono li > p{color:var(--tinta-2);max-width:17em;margin:0}
+.crono .crono-n{font:500 var(--t-rotulo)/1 var(--f-texto);letter-spacing:.16em;color:var(--tinta-2);margin:0 0 30px}
+.crono h3{font-size:var(--t-h4);line-height:1.05;margin:0 0 34px}
+.crono .crono-prazo{display:flex;align-items:baseline;gap:10px;font:400 clamp(72px,7.2vw,108px)/.8 var(--f-display);letter-spacing:-.02em;color:var(--tinta);margin:0 0 26px;max-width:none}
+.crono-prazo span{font:500 var(--t-rotulo)/1.2 var(--f-texto);letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2)}
+/* o "você aprova" fica na divisa entre as etapas em que a proposta dela pede aprovação, em cima da régua */
+.crono .crono-sim{position:absolute;top:0;right:0;transform:translate(50%,calc(-100% - 14px)) rotate(-4deg);font-size:25px;line-height:1;color:var(--vermelho);white-space:nowrap;margin:0;max-width:none}
+.crono-sim::after{content:"";position:absolute;left:50%;top:calc(100% + 9px);width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:var(--vermelho);transform:rotate(4deg)}
+.crono-pe{display:grid;grid-template-columns:repeat(6,1fr);gap:0 24px;align-items:end;margin-top:72px}
+.crono-pe p{grid-column:1/4;color:var(--tinta-2);margin:0}
+.crono-pe .btn{grid-column:5/7;justify-self:end}
+
+/* projetos: as legendas inteiras dela pedem a letra um pouco menor; nos detalhes, uma moldura por vez */
+.obra-uma blockquote p{font-size:clamp(21px,1.75vw,25px);line-height:1.32}
+.moldura-arco .obra-uma img{border-radius:999px 999px 0 0;outline:1px solid var(--tinta);outline-offset:10px}
+.moldura-quadro .obra-uma figure{padding:18px;background:#FBF8F2;border:1px solid var(--tinta)}
+.moldura-circulo .obra-uma img{aspect-ratio:1;width:min(100%,58vh);border-radius:50%;box-shadow:0 0 0 10px var(--cal),0 0 0 11.5px var(--madeira)}
+
+@media (max-width:1080px){
+  .crono{grid-template-columns:1fr 1fr;row-gap:48px}
+  .crono li:nth-child(3){padding-left:0}
+  .crono li:nth-child(3)::before{display:none}
+  .crono .crono-sim{position:static;transform:none;margin-top:14px}
+  .crono-sim::after{display:none}
+  .crono-pe p{grid-column:1/5}
+}
+@media (max-width:760px){
+  .cab-marca{gap:9px}
+  .cab-marca img,.marca img{height:30px}
+  .rodape-marca img{width:132px;margin:0}
+  .composicao.comp-so{display:block;padding:104px var(--lateral) 72px}
+  .cronograma{padding:104px var(--lateral) 96px}
+  .crono-topo{display:block;margin-bottom:40px}
+  .crono{grid-template-columns:1fr;row-gap:0;border-top:0}
+  .crono li,.crono li + li{padding:24px 0 28px}
+  .crono li::before,.crono li + li::before,.crono li:nth-child(3)::before{content:"";display:block;position:absolute;left:0;right:0;top:0;bottom:auto;border-left:0;border-top:1px solid var(--linha)}
+  .crono li:first-child::before{border-top-color:var(--tinta)}
+  .crono .crono-n{margin-bottom:14px}
+  .crono h3{margin-bottom:16px}
+  .crono .crono-prazo{font-size:64px;margin-bottom:16px}
+  .crono-pe{display:block;margin-top:40px}
+  .crono-pe p{margin-bottom:22px}
+  .crono-pe .btn{display:block;width:100%;text-align:center}
+  .cab-marca span{display:none}
+  .moldura-circulo .obra-uma img{width:100%}
+}
+/* tablet em pé: a frase dela embaixo da foto, porque ao lado ficava numa coluna de ~120 px (12 linhas) */
+@media (min-width:761px) and (max-width:900px){
+  .obra-uma{grid-template-columns:1fr;gap:22px;align-items:start}
+  .obra-uma blockquote{max-width:26em}
+}

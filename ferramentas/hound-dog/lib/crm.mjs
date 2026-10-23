@@ -190,7 +190,8 @@ export async function resumoCRM() {
     // Tarefas atrasadas e dos próximos 7 dias (o resto sai em hd_tarefas)
     q(`select id, titulo, prioridade, status, responsavel, prazo, marco from tarefas
        where status in ('a_fazer','fazendo','travada') and prazo <= (now() at time zone 'America/Bahia')::date + 7
-       order by prazo, array_position(array['alta','media','baixa'], prioridade) limit 20`).catch(() => []),
+         and (not privada or $1::boolean is not true)
+       order by prazo, array_position(array['alta','media','baixa'], prioridade) limit 20`, [process.env.HD_SO_PUBLICO === '1']).catch(() => []),
   ]);
   return { estagios, empresas: abertos, precisam_de_atencao: atencao, agenda_14_dias: agenda, atividade_recente: ativ, financeiro: fin, tarefas_7_dias: tarefas, agora: new Date().toISOString() };
 }

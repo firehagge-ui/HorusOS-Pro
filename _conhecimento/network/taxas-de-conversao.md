@@ -5,7 +5,7 @@
 > **Confiança: MÉDIA.** São médias relatadas por membros, úteis como ordem de grandeza pra
 > dimensionar esforço e meta, **não** como número garantido. Variam por nicho, cidade, canal
 > e habilidade. ⚠️ Referência, **não meta e não promessa**. Nada aqui vai para peça de cliente.
-> Cross-ref: `abordagem-e-prospeccao.md`, `_gestao/teste-90-dias.md`.
+> Cross-ref: `abordagem-e-prospeccao.md`; as metas comerciais da dupla ficam em `_gestao/`.
 
 ---
 
@@ -43,9 +43,9 @@ Quando se gasta 15 a 20 min estudando o negócio e se chega com prévia ou liga�
 
 ## 5. Como a Hórus usa isto (calibração)
 
-- Serve pra dimensionar a **meta do teste de 90 dias** (`_gestao/teste-90-dias.md`): se o
-  modelo focado rende ~1 contrato/semana com 3 a 7 abordagens boas/dia, a meta do Antônio
-  sai de uma faixa realista, não de um chute.
+- Serve pra dimensionar as **metas comerciais de 90 dias** da dupla: se o modelo focado rende
+  ~1 contrato/semana com 3 a 7 abordagens boas/dia, a meta de abordagens sai de uma faixa
+  realista, não de um chute.
 - A casa fica no **modelo focado/personalizado**, não no volume frio. Bate com a força do
   Antônio (originação de qualidade, presencial) e com a trava de não queimar número.
 - ⚠️ Número de rede é benchmark, não promessa. Medir o real do Antônio e comparar, sem cobrar

@@ -203,8 +203,9 @@ no CNPJ do cliente sempre que existir (no CPF vale o arrependimento de 7 dias do
 
 **Gestão de mídias (conteúdo mensal): proposta de 15/10/2026, ainda não aprovada.** Pacotes, preços, regras e contrato
 em `_gestao/servico-gestao-de-midias.md` (Feed, Presença e Presença completa; piso; Pacote Fim de Ano; teto de 5 clientes
-até medir as horas). Decisão do Marcelo e do Antônio, tarefa no Hounder até 20/10. Até lá não é tabela: o único preço já
-dito a cliente é o da Aion (Presença R$ 1.200, primeiro caso R$ 990).
+até medir as horas). Decisão do Marcelo e do Antônio, tarefa no Hounder (prazo movido para 28/10). Até lá não é tabela:
+nenhum preço de mídias foi dito a cliente; o da Aion (Presença R$ 1.200, primeiro caso R$ 990) está no roteiro de uma
+reunião que ainda não tem data (22/10).
 
 **Ressalva (01/10/2026, Paralela Film):** quando o cliente **recusa site** e o anúncio leva **direto ao
 WhatsApp**, o tráfego pode ser a entrada. O "destino pronto" passa a ser o atendimento (quem responde,
@@ -238,6 +239,17 @@ reunião. Régua:
   distante e para manter volume.
 - **Não é reunião:** mandar proposta em grupo e esperar. É a *ausência* de fechamento.
 
+## Preparação de reunião: para nós, em língua de gente (MB Barbearia, 19/10/2026)
+
+- **"Esse diagnóstico é apenas para A GENTE. Quero poder ler e entender tudo. Nesse mesmo documento ter o roteiro."**
+  Montei a página como peça para mostrar ao dono; ele queria a preparação interna, com o roteiro junto. Muda: **a
+  página de preparação de R1 é interna por padrão** (achados, conta, preço, roteiro, cola, preparo pessoal num lugar
+  só); peça para o cliente só quando pedida, e na reunião mostra-se o Google e o Instagram dele ao vivo.
+- **"Não entendi a diferença das duas opções."** Juntei três decisões numa pergunta com jargão. Muda: **opção de
+  preço se apresenta lado a lado, em reais: quanto ele paga, quanto sai do bolso do cliente, quantos atendimentos
+  empatam, quanto a Horus recebe**; uma decisão por pergunta quando ele não pediu o pacote.
+- O que funcionou: a conta da cadeira (atendimentos a mais por dia) fez a escolha da opção A sair em uma resposta.
+
 ## Mostrar antes de vender: as demos (Marcelo, 13/10/2026)
 
 **Princípio:** não vender só o que a Hórus faz, mas mostrar o que o negócio do cliente pode se tornar.
@@ -254,6 +266,13 @@ clínica, do tamanho que ela é). Duas travas: o sonho se ancora em fato verdade
 inventados, `integridade.md`), e em cliente regulado a emoção vive na conversa com o dono, nunca na peça publicada, que
 o conselho quer sóbria. A agência pode parecer maior do que é mostrando processo, material caprichado e a equipe real
 (dois sócios mais agentes de IA), nunca inventando tamanho. Estudo de persuasão e neuromarketing: tarefa no Hounder.
+
+**Todo lead tem que trazer alguma coisa: caixa, prova ou porta (Marcelo, 16/10/2026).** "O nosso objetivo é ou ganhar
+dinheiro, ou poder, ou fama, ou indicação... precisa ganhar alguma coisa com isso. Quando a gente olha o nosso grande
+plano, onde ela se encaixa?" Antes de investir tempo num lead, dizer em uma linha o que ele traz para o marco do plano
+de negócio: **caixa** (dinheiro entrando), **prova** (case, avaliação real, depoimento) ou **porta** (indicação, nicho
+novo, vitrine para vender a outros), e o limite de horas que isso justifica. Lead sem nenhum dos três não recebe
+produção. Exemplo: a Débora é prova e porta, não caixa (~3 h; plano no topo do dossiê dela).
 
 **Primeiro o compromisso, depois o trabalho (15/10/2026, aprovado pelo Marcelo).** Sates (perfil do Google feito antes
 do aceite, sem retorno), Débora (seis rodadas de site antes de ela pedir; um amigo entregou antes), Spaço (site pronto

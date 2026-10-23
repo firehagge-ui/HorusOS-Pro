@@ -36,6 +36,9 @@ Ler antes de tudo. É o que separa o post que ele aprova do que ele reprova. Ori
 **Tema**
 - **O teste é: o Marcelo, como dono de negócio, salvaria isso?** "Eu já sabia" ou "isso eu resolvo sozinho" =
   genérico, não vai (o "5 coisas pra pedir pro ChatGPT" foi reprovado por isso, 15/10).
+- **O que ele elogiou e é pra repetir (15/10):** "adorei como você montou tudo, tá muito bonito" (as capas com
+  ilustração do ChatGPT na mesma conversa, os cartões com print real, o par ✕/✓ com destaque) e "gostei demais" da bio
+  (o recurso que quase ninguém usa, com a fonte). O visual está aprovado; o que reprova é tema genérico.
 - O que ele aprovou: a frase pronta pra uma cena de cliente ("Quanto custa?"), o recurso que quase ninguém usa (a bio
   com 5 links e botão de WhatsApp), o achado de um perfil que bombou refeito pro dono daqui.
 - O que ele não quer: tema de Google repetido, post sobre o método da Horus, isca "comenta PALAVRA" (sem bot de DM).
@@ -63,6 +66,13 @@ Ler antes de tudo. É o que separa o post que ele aprova do que ele reprova. Ori
 - Print de verdade quando o post fala de ferramenta.
 - Fundo chapado: **sem brilho azul no canto, sem barra grossa de um lado só, sem brilho colorido**. Destaque é fundo
   tingido com borda fina.
+
+**Distribuição (fato de 19/10/2026)**
+- Os cinco primeiros posts alcançaram 2 a 3 contas cada, com zero salvamento e zero envio: o perfil ainda não chega em
+  quem não segue. Formato bom não resolve sozinho. Cada post leva junto um jeito de chegar em gente nova (story,
+  repost do Antônio e do Marcelo, colaboração, ou o post de contraste que vira anúncio, tarefa de 06/11).
+- A cadência trava na aprovação: post que não foi aprovado até a véspera perde a data (o do ChatGPT perdeu). Avisar o
+  Marcelo na véspera, com a folha, em vez de deixar na tela Semana.
 
 **Antes de mostrar**
 - Render com `ferramentas/social/bin/render-carrossel.mjs`, folha da série olhada, detector `npx impeccable@4.0.4`

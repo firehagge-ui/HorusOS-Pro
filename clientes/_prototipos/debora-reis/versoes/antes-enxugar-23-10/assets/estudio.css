@@ -1,0 +1,599 @@
+/* Débora Reis, rodada 6 (14/10/2026): capa e cabeçalho da rodada 4 restaurados; "Nunca a mesma casa" com objetos
+   de parede; projetos em tela cheia. Rodada 5 guardada em ../../versoes/rodada-5/. Plano em ../../PLANO.md.
+   Da Stanzza fica o sistema: papel contínuo com fios de grade, serifa estreita de entrelinha apertada, grotesca estreita
+   no texto, metadado em 12px caixa alta, o enorme contra o minúsculo.
+   Da Débora: as fotos dela, os objetos de parede, a anotação à mão (assinatura) e os desenhos de traço com o gato. */
+
+:root{
+  --cal:#F3F0E8;
+  --cal-2:#E8E3D8;
+  --tinta:#1E1A17;
+  --tinta-2:#5E554D;
+  --vermelho:#9E3326;
+  --madeira:#7A5233;
+  --linha:rgba(30,26,23,.16);
+  --fio:rgba(30,26,23,.07);
+  --vinho:#3A1F1A;
+  --azul:#3F6489;
+
+  --f-display:"Boska",Georgia,serif;
+  --f-texto:"Archivo","Arial Narrow",Arial,sans-serif;
+  --f-mao:"La Belle Aurore","Segoe Script",cursive;
+
+  --t-rotulo:12px;
+  --t-min:15px;
+  --t-corpo:18px;
+  --t-lead:24px;
+  --t-h4:28px;
+  --t-h3:40px;
+  --t-h2:56px;
+  --t-h1:74px;
+
+  --lateral:32px;
+  --facil:cubic-bezier(.16,1,.3,1);
+  --troca:cubic-bezier(.77,0,.18,1);
+  --zoom:1.14;
+}
+
+*{box-sizing:border-box}
+html{scroll-padding-top:90px}
+body{margin:0;background:var(--cal);color:var(--tinta);font:400 var(--t-corpo)/1.4 var(--f-texto);font-stretch:82%;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;margin:0;line-height:.9;letter-spacing:-.005em;text-wrap:balance;font-stretch:normal}
+h1{font-size:var(--t-h1)}
+h2{font-size:var(--t-h2)}
+h3{font-size:var(--t-h3);line-height:.95}
+em{font-style:italic}
+p{margin:0 0 16px}
+a{color:inherit;text-underline-offset:4px}
+:focus-visible{outline:2px solid var(--vermelho);outline-offset:3px}
+button{font:inherit;color:inherit}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.pular{position:absolute;left:-999px}
+.pular:focus{left:12px;top:12px;z-index:99;background:var(--tinta);color:var(--cal);padding:10px 14px}
+
+/* os fios da grade de seis colunas, atrás de tudo */
+.home::before{content:"";position:fixed;top:0;bottom:0;left:var(--lateral);right:var(--lateral);z-index:0;pointer-events:none;
+  background:linear-gradient(to right,var(--fio) 1px,transparent 1px) 0 0/calc(100% / 6) 100%;border-right:1px solid var(--fio)}
+main,.rodape{position:relative;z-index:1}
+
+/* metadado: 12px, caixa alta, espaçado */
+.rot{font:500 var(--t-rotulo)/1.2 var(--f-texto);font-stretch:100%;letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2);margin:0 0 18px}
+.mao{font-family:var(--f-mao);font-weight:400;letter-spacing:0;text-transform:none}
+.lead{font-size:var(--t-lead);line-height:1.3;color:var(--tinta-2);max-width:30em}
+
+.btn{display:inline-block;background:var(--tinta);color:var(--cal);font:500 var(--t-rotulo)/1 var(--f-texto);font-stretch:100%;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:17px 24px;border:1px solid var(--tinta);cursor:pointer;transition:background .35s var(--facil),color .35s var(--facil),border-color .35s var(--facil)}
+.btn:hover{background:transparent;color:var(--tinta)}
+.btn-claro{background:var(--cal);color:var(--tinta);border-color:var(--cal)}
+.btn-claro:hover{background:transparent;color:var(--cal)}
+.btn-linha{background:transparent;color:var(--tinta)}
+.btn-linha:hover{background:var(--tinta);color:var(--cal)}
+.btn-grande{padding:20px 30px}
+.acoes{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.link{font-weight:500}
+.link-seta{font-size:var(--t-corpo);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px;transition:color .3s ease}
+.link-seta:hover{color:var(--vermelho)}
+.marca{font-family:var(--f-display);font-size:28px;line-height:1;color:var(--tinta);text-decoration:none;margin-right:auto}
+
+/* ---------- cabeçalho (rodada 4: Menu · marca · um botão) ---------- */
+.cab{position:fixed;top:0;left:0;right:0;z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:20px var(--lateral);color:var(--tinta);transition:background .4s var(--facil),color .4s var(--facil),transform .5s var(--facil)}
+.cab.solido{background:rgba(243,240,232,.94);color:var(--tinta);padding-top:14px;padding-bottom:14px;box-shadow:0 1px 0 var(--linha)}
+.cab.some{transform:translateY(-100%)}
+.cab-menu{justify-self:start;background:rgba(30,26,23,.06);border:0;padding:11px 14px;cursor:pointer;font:500 var(--t-rotulo)/1 var(--f-texto);letter-spacing:.16em;text-transform:uppercase;backdrop-filter:blur(6px)}
+.cab.solido .cab-menu{background:rgba(30,26,23,.06)}
+.cab-menu span{margin-left:6px}
+.cab-marca{font-family:var(--f-display);font-size:32px;line-height:1;text-decoration:none}
+.cab-acao{justify-self:end;font:500 var(--t-rotulo)/1 var(--f-texto);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:1px solid currentColor;padding:13px 18px;transition:background .3s ease,color .3s ease}
+.cab-acao:hover{background:var(--tinta);color:var(--cal)}
+.cab.solido .cab-acao:hover{background:var(--tinta);color:var(--cal)}
+.menu-aberto .cab{color:var(--tinta);background:transparent;box-shadow:none;transform:none}
+/* página sem capa escura (todos os projetos): o cabeçalho já começa em tinta */
+.pagina .cab{color:var(--tinta)}
+.pagina .cab-acao:hover{background:var(--tinta);color:var(--cal)}
+
+.menu{position:fixed;inset:0;z-index:45;background:var(--cal);padding:140px var(--lateral) 40px;display:flex;flex-direction:column;justify-content:space-between;clip-path:inset(0 0 100% 0);transition:clip-path .7s var(--facil)}
+.menu.aberto{clip-path:inset(0 0 0 0)}
+.menu ul{list-style:none;margin:0;padding:0}
+.menu li a{display:inline-block;font:400 72px/1 var(--f-display);text-decoration:none;padding:4px 0;transform:translateY(24px);opacity:0;transition:transform .6s var(--facil),opacity .6s var(--facil),color .3s ease}
+.menu.aberto li a{transform:none;opacity:1}
+.menu li:nth-child(2) a{transition-delay:.05s}.menu li:nth-child(3) a{transition-delay:.1s}.menu li:nth-child(4) a{transition-delay:.15s}.menu li:nth-child(5) a{transition-delay:.2s}.menu li:nth-child(6) a{transition-delay:.25s}
+.menu li a:hover{color:var(--vermelho)}
+.menu-dados{display:flex;gap:64px;margin:0}
+.menu-dados dt{font:500 var(--t-rotulo)/1.2 var(--f-texto);letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2);margin-bottom:6px}
+.menu-dados dd{margin:0}
+
+/* ---------- 1. capa (rodada 4) ---------- */
+.capa{position:relative;height:100vh;height:100svh;min-height:640px;padding:84px var(--lateral) var(--lateral);color:var(--cal)}
+/* 15/10: a foto do Instagram tem 1080 px; emoldurada pelo papel, com teto de 1180 px, ela fica no tamanho em que é nítida */
+.capa-quadro{position:relative;height:100%;max-width:1180px;margin:0 auto;overflow:hidden}
+.capa-foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
+.capa-quadro::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(22,15,12,.34) 0%,rgba(22,15,12,.08) 26%,rgba(22,15,12,.22) 52%,rgba(22,15,12,.8) 100%)}
+.capa-txt{position:absolute;z-index:1;left:0;right:0;bottom:8%;text-align:center;padding:0 var(--lateral)}
+.capa .mao{font-size:34px;line-height:1;color:#F2E6D4;margin:0 0 10px}
+.capa h1{color:var(--cal);font-size:var(--t-h1)}
+.capa .linha{display:block}
+.capa-sub{font-size:var(--t-lead);color:#F1E8DC;margin:22px 0 0}
+.capa-mob{display:none}
+.capa-link{font:400 22px/1 var(--f-display);color:var(--cal);text-decoration:none;border-bottom:1px solid rgba(243,240,232,.7);padding-bottom:8px;align-self:flex-start}
+.capa-link span,.capa-mob .btn span{margin-left:10px}
+.capa-prova{font:500 var(--t-rotulo)/1.5 var(--f-texto);font-stretch:100%;letter-spacing:.14em;text-transform:uppercase;color:#E6DACB;margin:14px 0 26px}
+
+/* ---------- 2. nunca a mesma casa: a estrutura da rodada 4, as fotos como objetos de parede ---------- */
+.composicao{position:relative;height:1560px;margin:0 var(--lateral)}
+.comp-centro{position:absolute;left:0;right:0;top:31%;text-align:center}
+.comp-centro h2{max-width:9.5em;margin:0 auto}
+.comp-antes{margin:0 0 18px}
+.comp-perg{font-size:34px;line-height:1;color:var(--vermelho);margin:0 0 16px;transform:rotate(-3deg)}
+.comp-serv{font-size:var(--t-lead);line-height:1.35;color:var(--tinta);max-width:21em;margin:30px auto 0}
+.flut a{display:block;text-decoration:none;color:inherit}
+.flut a:hover figcaption{color:var(--tinta)}
+.flut figcaption{transition:color .3s ease}
+.risco{display:block;width:min(340px,60%);margin:10px auto 0;stroke:var(--vermelho)}
+.risco .g{stroke-width:2}
+.comp-txt{position:absolute;width:min(330px,24vw);font-size:var(--t-corpo);color:var(--tinta-2);margin:0}
+.comp-a{left:0;top:62%}
+.comp-b{right:0;top:27%;font-family:var(--f-display);font-size:var(--t-h4);line-height:1.1;color:var(--tinta)}
+.flut{position:absolute;margin:0;will-change:transform}
+.flut-q{display:block;overflow:hidden;background:var(--cal-2)}
+.flut img{width:100%;height:100%;object-fit:cover}
+.flut figcaption{font-size:25px;line-height:1.05;color:var(--vermelho);margin:14px 0 0 6px;transform:rotate(-3deg);transform-origin:left top;max-width:12em}
+/* nicho em arco, com o contorno do vão desenhado por fora */
+.nicho .flut-q{border-radius:999px 999px 0 0;outline:1px solid var(--tinta);outline-offset:9px}
+/* quadro com passe-partout */
+.quadro .flut-q{padding:14px;background:#FBF8F2;border:1px solid var(--tinta)}
+/* bastidor: o aro duplo */
+.bastidor .flut-q{border-radius:50%;box-shadow:0 0 0 8px var(--cal),0 0 0 9.5px var(--madeira)}
+.f1{left:4%;top:5%;width:210px}
+.f1 .flut-q{aspect-ratio:3/4}
+.f1 img{object-position:50% 38%}
+.f2{left:calc(50% - 115px);top:2%;width:230px}
+.f2 .flut-q{aspect-ratio:4/5}
+.f3{right:3%;top:66%;width:270px}
+.f3 .flut-q{aspect-ratio:1/1}
+.f3 img{object-position:50% 52%}
+.f3 figcaption{margin-top:22px}
+.f4{left:6%;top:67%;width:220px}
+.f4 .flut-q{aspect-ratio:1/1}
+.f4 img{object-position:50% 30%}
+.f5{right:5%;top:9%;width:200px}
+.f5 .flut-q{aspect-ratio:3/4}
+.f5 img{object-position:50% 40%}
+.f6{left:calc(50% - 90px);top:79%;width:180px}
+.f6 .flut-q{aspect-ratio:3/4}
+.f6 img{object-position:40% 60%}
+
+/* ---------- 3. projetos: um ambiente por vez, em tela cheia ---------- */
+.projetos{position:relative;background:#14100D;color:var(--cal);scroll-margin-top:-90px}
+/* o link "Projetos" para com a seção inteira na tela (o html tem scroll-padding de 90px) */
+.pj-palco{position:relative;height:100vh;height:100svh;min-height:620px;overflow:hidden}
+.pj{position:absolute;inset:0;margin:0}
+.pj-foto{position:absolute;inset:0;overflow:hidden}
+.pj-cam{position:absolute;inset:0;transform-origin:50% 50%}
+.pj-cam img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 50%);-webkit-user-drag:none;user-select:none}
+.pj-foto::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(20,16,13,.84) 0%,rgba(20,16,13,.42) 30%,rgba(20,16,13,0) 56%,rgba(20,16,13,0) 76%,rgba(20,16,13,.38) 100%)}
+.pj-txt{position:absolute;z-index:3;left:var(--lateral);bottom:136px;max-width:600px}
+.pj-txt .rot{color:#D9D0C3;margin-bottom:14px}
+.pj-mao{font-size:32px;line-height:1;color:#F2E6D4;margin:0 0 12px;transform:rotate(-3deg);transform-origin:left bottom}
+.pj h3{font-size:clamp(56px,6.4vw,104px);line-height:.88;color:var(--cal);margin:0 0 20px}
+.pj-txt p:not(.rot):not(.pj-mao){color:#E9E1D5;margin:0 0 22px;max-width:30em}
+.pj-link{color:var(--cal);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px;transition:color .3s ease}
+.pj-link:hover{color:#F2C7BD}
+.pj-batente{position:absolute;top:0;bottom:0;left:100%;z-index:3;width:1px;background:rgba(243,240,232,.9);box-shadow:0 0 22px 2px rgba(243,240,232,.25);opacity:0;pointer-events:none}
+
+.pj-hud{position:absolute;inset:0;z-index:4;pointer-events:none}
+.pj-hud > *{pointer-events:auto}
+.pj-topo{position:absolute;top:104px;left:var(--lateral);right:var(--lateral);display:flex;justify-content:space-between;align-items:baseline;margin:0}
+.pj-topo .rot{color:#D9D0C3;margin:0}
+.pj-cont{font:500 var(--t-rotulo)/1 var(--f-texto);font-stretch:100%;letter-spacing:.16em;color:#D9D0C3}
+.pj-cont b{font:400 40px/1 var(--f-display);letter-spacing:0;color:var(--cal);margin-right:6px}
+.pj-base{position:absolute;left:var(--lateral);right:var(--lateral);bottom:30px;display:flex;align-items:flex-end;gap:40px}
+.pj-indice{flex:1;min-width:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;list-style:none;margin:0;padding:0}
+.pj-indice button{position:relative;display:block;width:100%;text-align:left;background:none;border:0;padding:0 0 14px;cursor:pointer;color:rgba(243,240,232,.58);font:400 21px/1.1 var(--f-display);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .3s ease}
+.pj-indice button::before{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:rgba(243,240,232,.28)}
+.pj-indice button i{position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--cal);transform:scaleX(0);transform-origin:left}
+.pj-indice button[aria-current="true"]{color:var(--cal)}
+.pj-indice button:hover{color:var(--cal)}
+.pj-ctrl{display:flex;align-items:center;gap:6px;flex:none}
+.pj-seta{width:52px;height:46px;display:grid;place-items:center;background:none;color:var(--cal);border:1px solid rgba(243,240,232,.38);cursor:pointer;transition:background .35s var(--facil),color .35s var(--facil),border-color .35s var(--facil)}
+.pj-seta svg{width:28px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;transition:transform .45s var(--facil)}
+.pj-pausa svg{width:14px;stroke-width:1.6}
+.pj-pausa .i-toca{display:none}
+.pj-pausa[aria-pressed="true"] .i-pausa{display:none}
+.pj-pausa[aria-pressed="true"] .i-toca{display:inline}
+.pj-seta:hover{background:var(--cal);color:var(--tinta);border-color:var(--cal)}
+.pj-prox:hover svg{transform:translateX(3px)}
+.pj-ant:hover svg{transform:translateX(-3px)}
+.pj-todos{margin-left:10px}
+
+/* sem JS: os ambientes viram uma faixa que rola de lado */
+.projetos:not(.js-pj) .pj-palco{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}
+.projetos:not(.js-pj) .pj{position:relative;flex:0 0 100%;scroll-snap-align:start}
+.projetos:not(.js-pj) .pj-hud{position:fixed;display:none}
+/* com JS: um ambiente na tela, o próximo só enquanto entra */
+.js-pj .pj{visibility:hidden}
+.js-pj .pj.ativo{visibility:visible;z-index:1}
+.js-pj .pj.entrando{visibility:visible;z-index:2}
+.js-pj .pj-palco{touch-action:pan-y;cursor:grab}
+.js-pj.arrastando .pj-palco{cursor:grabbing}
+.js-pj.arrastando .pj-palco *{user-select:none}
+
+/* a anotação à mão (assinatura): ponto, traço e a frase dela */
+.notas{position:absolute;inset:0;z-index:1;pointer-events:none}
+.nota{position:absolute;display:flex;align-items:center;gap:0;white-space:nowrap;color:#FBF3E4}
+.nota i{width:14px;height:14px;border-radius:50%;border:1.5px solid currentColor;flex:none;margin:-7px 0 0 -7px;box-shadow:0 0 0 4px rgba(251,243,228,.18)}
+.nota::before{content:"";order:1;width:64px;height:1.5px;background:currentColor;transform-origin:left;margin-left:6px}
+.nota b{order:2;font:400 30px/1 var(--f-mao);margin-left:12px;text-shadow:0 1px 12px rgba(0,0,0,.5)}
+.nota[data-lado="esq"]{flex-direction:row-reverse;transform:translateX(-100%)}
+.nota[data-lado="esq"] i{margin:-7px -7px 0 0}
+.nota[data-lado="esq"]::before{margin:0 6px 0 0;transform-origin:right}
+.nota[data-lado="esq"] b{margin:0 12px 0 0}
+/* em foto clara a anotação vem em tinta */
+.notas-escuras .nota{color:var(--tinta)}
+.notas-escuras .nota i{box-shadow:0 0 0 4px rgba(243,240,232,.45)}
+.notas-escuras .nota b{text-shadow:0 0 10px rgba(243,240,232,.9),0 0 2px rgba(243,240,232,.9)}
+.notas-escuras .nota[data-tom="claro"]{color:#FBF3E4}
+.notas-escuras .nota[data-tom="claro"] b{text-shadow:0 1px 12px rgba(0,0,0,.5)}
+
+/* ---------- 5. como trabalho ---------- */
+/* Como trabalho (15/10, noite: a seção "About us" da Stanzza): quatro cartões que acendem um de cada vez com a foto.
+   Sem JS, no celular e com movimento reduzido ficam todos acesos; o .js-etapas (estudio.js) liga o "um de cada vez" e,
+   em tela alta, prende a seção enquanto as quatro etapas passam. */
+.processo{padding:160px var(--lateral) 144px}
+.processo-topo{display:grid;grid-template-columns:repeat(6,1fr);gap:0 24px;margin-bottom:56px}
+.processo-topo > *{grid-column:3/7}
+.processo-topo h2{max-width:11em}
+.etapas{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.etapa-card{position:relative;overflow:hidden;height:clamp(260px,40svh,420px);background:#2B211C;padding:22px 24px;transition:background-color .8s var(--facil)}
+.etapa-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 50%);opacity:1;transform:scale(1);transition:opacity .8s var(--facil),transform 1.4s var(--facil)}
+.etapa-card::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(22,15,12,.62) 0%,rgba(22,15,12,.22) 42%,rgba(22,15,12,.58) 100%);opacity:1;transition:opacity .8s var(--facil)}
+.etapa-card h3{position:relative;z-index:2;font-size:var(--t-h4);line-height:1.02;max-width:8em;margin:0;color:#fff;transition:color .6s var(--facil)}
+.etapa-n{position:absolute;z-index:2;left:22px;bottom:14px;font:italic 400 clamp(110px,11vw,160px)/1 var(--f-display);letter-spacing:-.03em;color:#fff;transition:color .6s var(--facil)}
+.etapa > p{color:var(--tinta-2);max-width:22em;margin:18px 24px 0 0}
+/* apagado: o papel e o número claro; aceso: a foto escurecida e o texto branco */
+.js-etapas .etapa:not(.on) .etapa-card img{opacity:0;transform:scale(1.06)}
+.js-etapas .etapa:not(.on) .etapa-card{background:var(--cal-2)}
+.js-etapas .etapa:not(.on) .etapa-card::after{opacity:0}
+.js-etapas .etapa:not(.on) .etapa-card h3{color:var(--tinta-2)}
+.js-etapas .etapa:not(.on) .etapa-n{color:rgba(30,26,23,.17)}
+.js-etapas .etapa > p{transition:color .6s var(--facil)}
+.js-etapas .etapa.on > p{color:var(--tinta)}
+/* presa: a seção ganha o comprimento de quatro passos e o conteúdo fica parado na tela */
+.etapas-presas{padding-top:0;padding-bottom:0}
+.etapas-presas .processo-trilho{position:sticky;top:0;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:96px 0 40px}
+.etapas-presas .processo-palco{height:calc(100svh + 150svh)}
+.processo-guia{display:grid;grid-template-columns:repeat(6,1fr);gap:0 24px;align-items:end;margin-top:72px}
+.processo-guia p{grid-column:3/5;color:var(--tinta-2);margin:0}
+.processo-guia .btn{grid-column:5/7;justify-self:start}
+.etapas-presas .processo-guia{margin-top:0;padding-bottom:144px}
+
+/* ---------- 6. faixa vinho: os gatos grandes, o desenho no meio ---------- */
+.faixa{position:relative;overflow:hidden;background:var(--vinho);color:var(--cal);padding:140px var(--lateral) 150px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;column-gap:56px;align-items:start}
+.faixa-foto{position:relative;margin:0}
+.faixa-foto img{width:100%;height:100%;object-fit:cover}
+.fa{width:min(32vw,460px);aspect-ratio:540/926}
+.fb{width:min(25vw,360px);aspect-ratio:640/1062;margin-top:240px}
+.faixa-foto figcaption{position:absolute;left:-16px;bottom:30px;font-size:30px;line-height:1;white-space:nowrap;color:var(--cal);background:var(--vinho);padding:7px 14px 2px;transform:rotate(-4deg)}
+.fb figcaption{left:auto;right:-16px;bottom:auto;top:36px;transform:rotate(3deg)}
+.faixa-centro{display:flex;flex-direction:column;gap:64px;padding-top:24px}
+.faixa-txt{max-width:460px}
+.faixa .rot{color:#CDB8AE}
+.faixa h2{margin-bottom:24px}
+.faixa-txt p:not(.rot){color:#DCCDC4;margin-bottom:32px}
+
+/* os desenhos de traço */
+.desenho{fill:none;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+.desenho-estante{width:100%;max-width:440px;stroke:rgba(243,240,232,.78)}
+.desenho-estante .g{stroke-width:1.5}
+.desenho-estante .f{stroke-width:1.05;stroke:rgba(243,240,232,.5)}
+.desenho .gato{stroke:var(--cal);stroke-width:1.7}
+.desenho .gato-corpo{fill:rgba(243,240,232,.08)}
+.gato-rabo{transform-box:fill-box;transform-origin:0 0}
+.desenho.vivo .gato-rabo{animation:rabo 3.6s ease-in-out infinite}
+@keyframes rabo{0%,100%{transform:rotate(0)}50%{transform:rotate(5deg)}}
+
+/* ---------- 7. a arquiteta ---------- */
+.sobre{display:grid;grid-template-columns:repeat(6,1fr);gap:0 24px;align-items:start;padding:180px var(--lateral) 160px}
+.sobre-retrato{grid-column:1/3;margin:0;position:sticky;top:110px}
+.sobre-retrato img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.sobre-txt{grid-column:4/7}
+.sobre-nome{font-size:var(--t-h2);line-height:.95;margin:0 0 14px}
+.sobre-form{color:var(--tinta-2);margin:0 0 44px}
+.sobre-frase{margin:0 0 48px}
+.sobre-frase p{font:400 30px/1.35 var(--f-display);color:var(--tinta);margin:0 0 18px}
+.sobre-frase footer{font-size:36px;line-height:1;color:var(--vermelho);transform:rotate(-3deg);transform-origin:left}
+.sobre-cartao{background:var(--tinta);color:var(--cal);padding:32px;max-width:520px}
+.sobre-cartao > p{color:#DCD3C8;margin-bottom:24px}
+
+.perguntas{max-width:880px;margin:0 auto;padding:40px var(--lateral) 160px;text-align:center}
+.perguntas h2{margin-bottom:56px}
+.perguntas-lista{text-align:left}
+.perguntas details{border-top:1px solid var(--linha)}
+.perguntas details:last-child{border-bottom:1px solid var(--linha)}
+.perguntas summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0;font:400 var(--t-h4)/1.15 var(--f-display);transition:color .3s ease}
+.perguntas summary::-webkit-details-marker{display:none}
+.perguntas summary:hover{color:var(--vermelho)}
+.perguntas summary::after{content:"";width:9px;height:9px;flex:none;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-3px);transition:transform .35s var(--facil)}
+.perguntas details[open] summary::after{transform:rotate(-135deg) translateY(-3px)}
+.perguntas details p{color:var(--tinta-2);max-width:40em;margin:0 0 28px}
+
+/* ---------- 9. contato ---------- */
+.contato{padding:120px var(--lateral) 120px;text-align:center}
+.contato h2{max-width:11em;margin:0 auto 24px}
+.contato > p:not(.rot){color:var(--tinta-2);margin:0 auto 36px;max-width:28em}
+.contato-acoes{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.contato-alt{color:var(--tinta-2);font-size:var(--t-min);margin:28px auto 0;max-width:30em}
+
+.rodape{background:var(--cal-2);color:var(--tinta);padding:56px var(--lateral) 32px;font-size:var(--t-min)}
+.rodape-grade{display:grid;grid-template-columns:1fr auto 1fr;align-items:start;gap:24px;border-bottom:1px solid var(--linha);padding-bottom:40px}
+.rodape ul{list-style:none;margin:0;padding:0;line-height:1.9}
+.rodape a{text-decoration:none}
+.rodape a:hover{color:var(--vermelho)}
+.rodape-marca{font:400 34px/1 var(--f-display);text-align:center;margin:0}
+.rodape-marca span{display:block;font:500 var(--t-rotulo)/1.2 var(--f-texto);letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2);margin-top:10px}
+.rodape-dir{text-align:right;margin:0;line-height:1.9}
+.rodape-dir p{margin:0}
+.rodape-contato{display:flex;flex-direction:column;align-items:flex-end;margin:0}
+.rodape > .rodape-contato{align-items:center;margin:0 0 18px;line-height:1.9}
+.rede-icone{display:inline-grid;place-items:center;width:42px;height:42px;margin-top:10px;border:1px solid var(--tinta);border-radius:50%;transition:background .35s var(--facil),color .35s var(--facil)}
+.rede-icone svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.rodape a.rede-icone:hover{background:var(--tinta);color:var(--cal)}
+.rodape-desenho{max-width:1200px;margin:72px auto 28px}
+.desenho-rodape{display:block;width:100%;stroke:var(--tinta)}
+.desenho-rodape .g{stroke-width:1.4}
+.desenho-rodape .f{stroke-width:1;stroke:rgba(30,26,23,.5)}
+.desenho-rodape .vm{stroke:var(--vermelho);stroke-width:1.4}
+.desenho-rodape .gato{stroke:var(--tinta);stroke-width:1.5}
+.desenho-rodape .gato-corpo{fill:rgba(30,26,23,.05)}
+.desenho-rodape .gato-rabo{transform-origin:100% 0}
+.desenho-rodape .cota{font:400 26px var(--f-mao);fill:var(--vermelho);stroke:none}
+.desenho-rodape .luz{fill:url(#luz-quente);stroke:none}
+.rodape-pe{text-align:center;color:var(--tinta-2);margin:0}
+.rodape > p:only-child{text-align:center;max-width:46em;margin:0 auto}
+
+/* ---------- página Todos os projetos (a lógica da Stanzza /projects: um projeto por linha, ficha e fotos) ---------- */
+.todos{position:relative;z-index:1;padding:150px var(--lateral) 40px}
+.todos-topo{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:end;padding-bottom:64px;border-bottom:1px solid var(--linha)}
+.todos-voltar{grid-column:1/-1;display:inline-flex;align-items:center;gap:10px;justify-self:start;text-decoration:none;margin:0 0 36px}
+.todos-voltar svg{width:22px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .4s var(--facil)}
+.todos-voltar:hover{color:var(--vermelho)}
+.todos-voltar:hover svg{transform:translateX(-3px)}
+.todos-topo h1{grid-column:1/7;font-size:clamp(72px,9vw,140px);line-height:.84}
+.todos-conta{grid-column:7/9;align-self:start;font:400 var(--t-h2)/1 var(--f-display);margin:0}
+.todos-mao{grid-column:9/13;justify-self:end;font-size:34px;line-height:1;color:var(--vermelho);transform:rotate(-4deg);margin:0 0 8px}
+
+.obra{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;padding:72px 0;border-bottom:1px solid var(--linha)}
+.obra-ficha{grid-column:1/5;display:flex;flex-direction:column;align-items:flex-start;padding-right:24px}
+.obra h2{font-size:clamp(48px,5vw,80px);line-height:.88;margin:0 0 14px}
+.obra-mao{font-size:29px;line-height:1;color:var(--vermelho);transform:rotate(-3deg);transform-origin:left;margin:0 0 36px}
+/* a ficha em carimbo de prancha */
+.ficha-obra{align-self:stretch;margin:0 0 32px;border:1px solid var(--tinta)}
+.ficha-obra div{padding:12px 14px 13px;border-top:1px solid var(--tinta)}
+.ficha-obra div:first-child{border-top:0}
+.ficha-obra dt{font:500 11px/1.2 var(--f-texto);font-stretch:100%;letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2);margin-bottom:6px}
+.ficha-obra dd{margin:0;font-size:var(--t-min);line-height:1.3}
+.obra-acoes{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap}
+
+.obra-fotos{grid-column:5/13;min-width:0}
+.obra-faixa{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;outline-offset:4px}
+.obra-faixa::-webkit-scrollbar{display:none}
+.obra-faixa figure{flex:0 0 auto;height:min(66vh,580px);margin:0;scroll-snap-align:start}
+.obra-faixa img{height:100%;width:auto;object-fit:cover}
+.obra-nav{display:flex;align-items:center;gap:6px;margin-top:20px}
+.obra-fio{flex:1;height:1px;background:var(--linha);position:relative;margin-right:18px}
+.obra-fio i{position:absolute;inset:0;background:var(--tinta);transform:scaleX(.33);transform-origin:left;transition:transform .3s ease}
+.obra-seta{width:52px;height:46px;display:grid;place-items:center;background:none;color:var(--tinta);border:1px solid var(--linha);cursor:pointer;transition:background .35s var(--facil),color .35s var(--facil),border-color .35s var(--facil),opacity .3s ease}
+.obra-seta svg{width:28px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.obra-seta:hover:not(:disabled){background:var(--tinta);color:var(--cal);border-color:var(--tinta)}
+.obra-seta:disabled{opacity:.3;cursor:default}
+/* projeto de uma foto só: a foto grande e a frase dela ao lado */
+.obra-uma{grid-column:5/13;display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:32px;align-items:end}
+.obra-uma figure{margin:0}
+.obra-uma img{width:100%;aspect-ratio:4/5;max-height:72vh;object-fit:cover}
+.obra-uma blockquote{margin:0 0 8px}
+.obra-uma blockquote p{font:italic 400 var(--t-h4)/1.15 var(--f-display);margin:0 0 14px}
+.obra-uma cite{font-style:normal}
+.obra-deitada{grid-template-columns:1fr;gap:20px}
+.obra-deitada img{aspect-ratio:1080/717;max-height:none}
+.obra-deitada blockquote{max-width:30em}
+/* os detalhes: menores que os apartamentos, sem "tela cheia" */
+.todos-sub{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:end;padding:128px 0 40px;border-bottom:1px solid var(--linha)}
+.todos-sub .rot{grid-column:1/-1}
+.todos-sub h2{grid-column:1/7;font-size:var(--t-h2)}
+.todos-sub h2 em{display:block}
+.todos-sub > p:not(.rot){grid-column:8/13;color:var(--tinta-2);margin:0 0 6px}
+.obra-detalhe{padding:56px 0}
+.obra-detalhe h2{font-size:clamp(40px,3.6vw,56px)}
+.obra-detalhe .obra-uma{grid-column:6/13}
+.obra-detalhe .obra-uma img{max-height:60vh}
+.todos-fim{padding:96px 0 56px;text-align:center}
+.todos-fim .mao{font-size:40px;line-height:1;color:var(--vermelho);transform:rotate(-3deg);margin:0 0 32px}
+
+/* a etiqueta da prévia: discreta, sempre lá */
+.previa{position:fixed;left:16px;bottom:16px;z-index:40;font:500 11px/1 var(--f-texto);letter-spacing:.12em;text-transform:uppercase;color:var(--cal);background:rgba(30,26,23,.72);padding:9px 12px;text-decoration:none;backdrop-filter:blur(6px);transition:background .3s ease}
+.previa span{font-weight:600}
+.previa b{font-weight:500}
+.so-celular{display:none}
+.previa:hover{background:var(--tinta)}
+
+/* compatibilidade com as páginas da demo (guia, questionário, Rio Vermelho, ideias) */
+.selo-esboco{position:fixed;left:16px;bottom:16px;z-index:60;margin:0;display:flex;align-items:center;gap:2px;background:rgba(30,26,23,.72);color:var(--cal);backdrop-filter:blur(6px)}
+.selo-esboco a,.selo-esboco button{color:var(--cal);background:none;border:0;font:500 11px/1 var(--f-texto);letter-spacing:.12em;text-transform:uppercase;padding:9px 12px;text-decoration:none;cursor:pointer}
+.selo-esboco a:hover,.selo-esboco button:hover{background:var(--tinta)}
+.sim{display:inline-block;vertical-align:middle;font:500 11px/1 var(--f-texto);font-stretch:100%;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2);border:1px solid currentColor;padding:4px 6px 3px;margin-left:6px;opacity:.85}
+.sem-sim .sim{display:none!important}
+
+/* cada apartamento na composição que a foto dele pede (15/10) */
+.pj-dir .pj-txt{left:auto;right:var(--lateral);text-align:right}
+.pj-dir .pj-txt p:not(.rot):not(.pj-mao){margin-left:auto}
+.pj-dir .pj-mao{transform-origin:right bottom}
+/* 15/10: no computador a foto fica emoldurada no escuro, na altura da tela, no tamanho em que o arquivo de 1080 px é nítido;
+   o texto fica ao lado. --ar é a proporção da foto de cada apartamento. No celular e no tablet, a foto ocupa a tela. */
+@media (min-width:1081px){
+  .pj{background:#14100D}
+  .pj-retrato{background:var(--vinho)}
+  .pj-foto{top:150px;bottom:138px;left:auto;right:var(--lateral);width:min(56%,calc((100svh - 288px) * var(--ar,1)))}
+  /* a etiqueta da prévia fica embaixo, à esquerda: os controles sobem acima dela */
+  .pj-base{bottom:58px}
+  .pj-foto::after{display:none}
+  .pj-txt{bottom:auto;top:50%;transform:translateY(-50%);max-width:min(520px,34%)}
+  .pj-dir .pj-foto{right:auto;left:var(--lateral)}
+}
+
+@media (max-width:760px){
+  .pj-dir .pj-txt{text-align:left;left:var(--lateral)}
+  .pj-dir .pj-txt p:not(.rot):not(.pj-mao){margin-left:0}
+  .pj-dir .pj-mao{transform-origin:left bottom}
+}
+
+
+/* palavras que acendem com a rolagem */
+.acende .p{opacity:.16;transition:opacity .2s linear}
+
+/* ---------- telas médias ---------- */
+@media (max-width:1180px){
+  .pj-indice button{font-size:18px}
+  .pj-base{gap:24px}
+}
+@media (max-width:1080px){
+  :root{--t-h1:64px;--t-h2:46px;--t-h3:34px;--lateral:24px}
+  .sobre-retrato{grid-column:1/3}
+  .sobre-txt{grid-column:3/7}
+  .menu li a{font-size:56px}
+  .nota b{font-size:25px}
+  .nota::before{width:34px}
+  .pj-indice button{font-size:0;padding-bottom:18px}
+  .pj-indice button span{display:none}
+  .faixa{column-gap:32px}
+  .etapas{grid-template-columns:1fr 1fr;row-gap:40px}
+  .processo-guia p{grid-column:1/4}
+  .processo-guia .btn{grid-column:4/7}
+}
+/* ---------- celular ---------- */
+@media (max-width:760px){
+  :root{--t-h1:46px;--t-h2:38px;--t-h3:30px;--t-h4:24px;--t-lead:20px;--lateral:20px}
+  .home::before{background-size:calc(100% / 2) 100%}
+  .cab{grid-template-columns:auto 1fr auto;gap:12px;padding:14px var(--lateral)}
+  .cab-marca{font-size:22px;justify-self:center;white-space:nowrap}
+  .cab-acao{padding:11px 12px}
+  .menu{padding-top:110px}
+  .menu li a{font-size:44px}
+  .menu-dados{flex-direction:column;gap:20px}
+
+  /* capa no celular (modelo do Marcelo, 15/10): foto de ponta a ponta sob o cabeçalho, texto à esquerda embaixo,
+     "Conheça meus projetos" como botão e "Fale com a Débora" como link */
+  .cab,.cab.solido{background:var(--cal);box-shadow:0 1px 0 var(--linha)}
+  .cab-menu,.cab.solido .cab-menu{background:transparent;padding:10px 0;backdrop-filter:none}
+  .cab-menu span{display:inline-block;width:22px;height:10px;margin-left:12px;font-size:0;border-top:1.5px solid currentColor;border-bottom:1.5px solid currentColor;position:relative;vertical-align:middle}
+  .cab-menu span::after{content:"";position:absolute;left:0;right:0;top:50%;border-top:1.5px solid currentColor;transform:translateY(-50%)}
+  .capa{padding:64px 0 0;min-height:600px}
+  .capa-quadro::after{background:linear-gradient(to bottom,rgba(22,15,12,0) 0%,rgba(22,15,12,.12) 26%,rgba(22,15,12,.62) 46%,rgba(22,15,12,.86) 72%,rgba(22,15,12,.92) 100%)}
+  .capa-foto{object-position:42% 40%}
+  .capa-txt{text-align:left;bottom:58px;padding:0 28px}
+  .capa .mao{font-size:27px;margin-bottom:8px}
+  .capa h1{font-size:50px;line-height:.92}
+  .capa-sub{font-size:19px;line-height:1.3;margin-top:18px}
+  .capa-prova{font-size:11px;letter-spacing:.18em;margin:14px 0 22px}
+  .capa-acao{display:none}
+  .capa-mob{display:flex;flex-direction:column;gap:20px}
+  .capa-mob .btn{display:block;text-align:center;padding:19px 16px}
+  .comp-antes .quebra{display:block}
+  .comp-perg{font-size:28px}
+  .comp-serv{font-size:var(--t-corpo)}
+
+  .composicao{height:auto;margin:0;padding:96px var(--lateral) 64px;display:grid;grid-template-columns:1fr 1fr;gap:16px 12px;align-items:start}
+  .comp-centro,.comp-txt,.flut{position:static;width:auto}
+  .comp-centro{grid-column:1/3;order:0;margin-bottom:24px}
+  .comp-b{grid-column:1/3;order:1;font-size:var(--t-h4);margin:8px 0 24px}
+  .flut{order:2}
+  .f2,.f4,.f6{margin-top:56px}
+  .f3,.f5{margin-top:12px}
+  .flut figcaption{font-size:20px;margin-top:12px}
+  .nicho .flut-q{outline-offset:6px}
+  .bastidor .flut-q{box-shadow:0 0 0 6px var(--cal),0 0 0 7.5px var(--madeira)}
+  .comp-a{grid-column:1/3;order:3;margin-top:24px}
+
+  .pj-palco{min-height:560px}
+  .pj-topo{top:78px}
+  .pj-cont b{font-size:32px}
+  .pj-txt{right:var(--lateral);bottom:178px}
+  .pj h3{font-size:48px;margin-bottom:14px}
+  .pj-mao{font-size:25px}
+  .pj-txt p:not(.rot):not(.pj-mao){font-size:var(--t-min);margin-bottom:16px}
+  .pj-base{flex-direction:column;align-items:stretch;gap:16px;bottom:62px}
+  /* a etiqueta da prévia fica embaixo, à esquerda: os controles sobem acima dela */
+  .pj-indice{gap:8px}
+  .pj-indice button{padding-bottom:16px}
+  .pj-seta{width:46px;height:44px}
+  .pj-todos{flex:1;margin-left:6px;padding:15px 12px;letter-spacing:.1em;text-align:center}
+  .nota b{font-size:21px}
+  .nota::before{width:22px}
+
+  .processo{padding:112px var(--lateral)}
+  .processo-topo,.processo-guia{grid-template-columns:1fr}
+  .processo-topo > *,.processo-guia p,.processo-guia .btn{grid-column:auto}
+  .processo-topo{margin-bottom:40px}
+  .etapas{grid-template-columns:1fr;gap:36px}
+  .etapa-card{height:auto;aspect-ratio:4/3.4}
+  .etapa > p{margin:14px 0 0}
+  .etapa-n{font-size:112px;bottom:10px}
+  .processo-guia{gap:20px;margin-top:56px}
+  .processo-guia .btn{justify-self:stretch;text-align:center}
+
+  .faixa{display:flex;flex-direction:column;padding:96px var(--lateral) 112px}
+  .faixa-centro{gap:40px;padding:0;margin:48px 0}
+  .desenho-estante{max-width:340px}
+  .faixa-centro{order:0;margin:0 0 56px}
+  .fa{order:1;width:66%}
+  .fb{order:2;width:52%;margin:-44% 0 0 auto;outline:8px solid var(--vinho)}
+  .fa figcaption{left:-8px;bottom:auto;top:-20px}
+  .fb figcaption{right:auto;left:-12px;top:auto;bottom:-20px}
+  .faixa-foto figcaption{font-size:24px}
+
+  .so-largo{display:none}.so-celular{display:inline}
+  .sobre{padding:112px var(--lateral) 96px}
+  .sobre{grid-template-columns:1fr;row-gap:40px}
+  .sobre-retrato,.sobre-txt{grid-column:1/-1}
+  .sobre-retrato{position:static;max-width:none}
+  .contato-acoes{flex-direction:column;align-items:stretch;max-width:300px;margin:0 auto}
+  .contato-acoes .btn{text-align:center}
+  .sobre-frase p{font-size:23px}
+  .previa{padding:7px 9px;left:10px;bottom:10px}
+  .perguntas{padding-bottom:112px}
+  .perguntas summary{font-size:22px}
+  .todos{padding-top:110px}
+  .todos-topo{grid-template-columns:1fr auto;padding-bottom:40px}
+  .todos-topo h1{grid-column:1/2;font-size:72px}
+  .todos-conta{grid-column:2/3;font-size:var(--t-h3)}
+  .todos-mao{grid-column:1/-1;justify-self:start;font-size:27px;margin-top:20px}
+  .todos-sub{grid-template-columns:1fr;padding-top:96px}
+  .todos-sub h2,.todos-sub > p:not(.rot){grid-column:1/-1}
+  .todos-sub > p:not(.rot){margin-top:16px}
+  .obra{grid-template-columns:1fr;padding:48px 0;row-gap:28px}
+  .obra-ficha,.obra-fotos,.obra-uma{grid-column:1/-1;padding:0}
+  .obra-ficha{display:grid;grid-template-columns:1fr;order:0}
+  .obra-acoes{order:9;margin-top:4px}
+  .obra-faixa figure{height:min(52svh,420px)}
+  .obra-uma{grid-template-columns:1fr;gap:18px}
+  .obra-uma img,.obra-detalhe .obra-uma img{max-height:none}
+  .obra-detalhe .obra-uma{grid-column:1/-1}
+  .todos-fim .mao{font-size:30px}
+  .rodape-grade{grid-template-columns:1fr auto;text-align:left;column-gap:20px;row-gap:28px}
+  .rodape-grade ul{grid-column:2;grid-row:1/3;text-align:right}
+  .rodape-marca{grid-column:1;grid-row:1}
+  .rodape-dir{grid-column:1;grid-row:2;min-width:0}
+  .rodape-dir a{overflow-wrap:anywhere}
+  .rodape-marca,.rodape-dir{text-align:left}
+  .rodape-dir .rodape-contato{align-items:flex-start}
+  .rodape-desenho{overflow:hidden;margin:48px calc(-1 * var(--lateral)) 20px}
+  .desenho-rodape{width:230%;margin-left:-90%}
+  .desenho-rodape .g,.desenho-rodape .vm{stroke-width:2}
+  .desenho-rodape .f{stroke-width:1.5}
+  .desenho-rodape .gato{stroke-width:2.1}
+}
+@media (prefers-reduced-motion:reduce){
+  .menu,.menu li a,.cab{transition:none}
+  .acende .p{opacity:1}
+  .js-pj .pj *{transition-duration:.01s!important;transition-delay:0s!important}
+  .desenho.vivo .gato-rabo{animation:none}
+}

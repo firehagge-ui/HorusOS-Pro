@@ -7,9 +7,56 @@
 > (corretores e fornecedores dela); (4) a vitrine do nicho: com o site dela no ar, o template de arquitetura se vende a
 > outras arquitetas pela Fase 1. Investimento máximo: ~3 h. O resto só com acordo escrito ou plano pago. Nota no Hounder.
 >
-> 📅 **Reunião de 19/10 (15h) adiada a pedido dela:** Débora mandou mensagem avisando que a semana ficou muito puxada com atividades extras e pediu para combinar na próxima semana a partir de quinta (29/10). Reunião remarcada no Hounder; alinhando horário (quinta 29/10 às 10h ou 15h). Plano de conversa mantido em `reuniao-2026-10-19.md`.
+> 📅 **Reunião: sexta 30/10/2026, a partir das 11h, por vídeo** `[FALTA: horário fechado; rascunho "sexta às 11h fica bom?"
+> na ficha, nota de 21/10]`. Ela remarcou duas vezes, sempre com motivo e carinho: 19/10 → quarta 28/10 15h (semana
+> puxada) → sexta 30/10 (vai apresentar uma proposta na quinta). Roteiro em `reuniao-2026-10-19.md`. Domínios livres no
+> Registro.br em 21/10: deborareisarquitetura.com.br, deborareis.arq.br, deborareisarquiteta.com.br.
 
-> 🟡 **ESTADO ATUAL (15/10/2026, 17h58): ELA VOLTOU, conversando.** Por áudio, preferiu o nosso site ao do amigo
+> ✅ **23/10/2026: os pedidos do áudio dela de 22/10 aplicados e publicados** (https://esboco-debora-reis.vercel.app).
+> Ela achou o site "muito lindo" e pediu: os prazos dela (mandou o cronograma de uma proposta de loft), site mais enxuto
+> ("o cliente tem preguiça de ficar clicando", "sem coisa repetida"), as figuras geométricas "uma em cada página ou fora",
+> e mandou a logo nova (monograma DR dourado). Obra: "nem sempre eu faço"; só visita de arquiteta, nunca gestão nem compra
+> de material; obra grande ela indica alguém. Enxoval (roupa de cama, louça) foi exceção daquela cliente: não entra.
+> - **Uma sessão paralela ("Débora Analise") fez uma versão às 12h40; o Marcelo a descartou ("fez um monte de coisa errada,
+>   faça do seu jeito e reaplique por cima").** Guardada em `versoes/sessao-descartada-23-10/`; a base foi o commit
+>   `b0c6098` (igual a `versoes/antes-enxugar-23-10/`).
+> - **Como trabalho:** saíram os cartões presos na rolagem; entrou uma régua de 4 etapas com os prazos dela (briefing e
+>   medição até 5 d.u., estudo preliminar até 24, anteprojeto até 30, detalhamento até 30) e "você aprova" nas divisas em
+>   que a proposta dela pede aprovação (depois do estudo e do anteprojeto). Os complementares numa frase. Obra não é etapa.
+> - **Figuras:** saíram da home (seção 2 ficou só com "Você não enjoa?"); cada moldura foi para um detalhe em
+>   `projetos.html`, uma por vez e grande: arco nos Livros, quadro no Artesanato, círculo no Frio e quente.
+> - **Enxuto:** as páginas `projeto-colorir`, `-aconchego`, `-livros`, `-artesanato` e `-azul-e-madeira` só repetiam foto e
+>   legenda; saíram (em `versoes/paginas-removidas-23-10/`) e um trecho contínuo da legenda dela foi para `projetos.html`
+>   (a legenda inteira só no Colorir, no Aconchego e no Frio e quente; nunca frases emendadas). Só o Rio
+>   Vermelho abre página própria. Perguntas de 6 para 4 (três respostas agora são dela: obra, mudanças, o que recebe); a
+>   linha "Fotos: Roberto" repetida em cada ficha saiu (o crédito fica no rodapé); o contato ficou com um botão. Home de
+>   10.026 px para 7.453 px no computador.
+> - **Logo:** monograma no cabeçalho de todas as páginas (no celular, só o monograma), assinatura completa no rodapé,
+>   ícone da aba. Arquivos transparentes na cor dela (#C79560) feitos da imagem que ela mandou: `assets/logo-dr.png`,
+>   `logo-debora-reis.png`, `favicon-dr.png`. Capa: "projeto, obra e decoração" virou "projeto e decoração".
+> - **Guia:** a página das etapas com os prazos e as regras dela, "Quando faz sentido, também" no lugar de "Por que
+>   respeitar cada etapa", perguntas da obra e das mudanças com as palavras dela; PDF refeito (7 páginas, todas dentro da
+>   folha) e cópia em `Downloads/Guia do cliente - Débora Reis.pdf`. O questionário cita as etapas novas.
+> - **Verificado:** 6 páginas em 1440 e 390 sem erro, sem imagem quebrada e sem rolagem lateral; nenhum link interno
+>   quebrado; 18 links de WhatsApp, todos no número dela; detector com os mesmos avisos da base, nenhum novo; publicado e
+>   conferido no ar (páginas e PDF 200, as cinco antigas 404).
+> - **Ainda falta:** as miniaturas da sala de ideias mostram a home antiga; forma de cobrança `[FALTA]`; a pergunta dela
+>   sobre Google e Reels vai para a reunião (`reuniao-2026-10-19.md`, "A pergunta que ela trouxe").
+> - **Auditoria do mesmo dia (pedido do Marcelo), contra a proposta e o áudio. Erros meus achados e corrigidos:**
+>   (1) o "até 5 dias úteis" estava no "Briefing e medição" inteiro, mas na proposta vale só para o levantamento físico:
+>   virou "medição em até 5 dias úteis"; (2) o orçamento dos acabamentos finos estava dentro dos 30 dias do detalhamento,
+>   mas na proposta é o passo 8, sem prazo: virou "Depois, ..."; (3) a frase do Artesanato emendava dois trechos
+>   distantes da legenda entre aspas: trocada por um trecho contínuo; (4) "apresento orçamentos" soava como incluído:
+>   virou "Se você quiser" (é serviço complementar na proposta); (5) faltava "paginação de revestimentos (se precisar)"
+>   na lista do que o cliente recebe; (6) o PDF do guia não tinha a logo: entrou na capa; (7) no tablet em pé (761 a
+>   900 px) a frase ao lado da foto em Projetos ficava numa coluna de ~120 px: passou para baixo da foto.
+>   Verificado: 6 páginas em 1440, 1024, 768, 390 e 360, menu, perguntas e carrossel funcionando, nenhum link quebrado,
+>   detector igual à base, PDF com 7 páginas dentro da folha, publicado e conferido no ar (PDF no ar idêntico ao local).
+> - **Depende da Débora:** forma de cobrança; se o "Por metro quadrado / Por ambiente" do guia vale (é nosso, marcado
+>   Simulação); CAU; fotos originais do Roberto (as do Instagram têm 1080 px); e se quer a cor dela (dourado) no site
+>   além da logo.
+
+> 🟡 **HISTÓRICO, 15/10/2026, 17h58: ela voltou, conversando.** Por áudio, preferiu o nosso site ao do amigo
 > ("infinitamente melhor"), vai ler as ideias em 16/10 e propôs parceria: o Marcelo capta e ela paga um percentual do
 > projeto que entrar (sem dinheiro agora). Sugeriu o site do amigo para corretores e o nosso no Google. Rascunho de
 > resposta e recomendação para a ligação na ficha do Hounder (nota de 15/10). Base da recomendação: a promessa de 14/10

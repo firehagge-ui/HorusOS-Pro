@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "hounder-painel",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["ferramentas/hound-dog/scripts/servir-painel.mjs", "5179"],
+      "port": 5179
+    }
+  ]
+}

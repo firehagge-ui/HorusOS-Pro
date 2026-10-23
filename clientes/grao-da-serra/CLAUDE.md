@@ -3,6 +3,27 @@
 > Projeto criado em 29/07/2026. Pasta dedicada — instruções aqui sobrescrevem as
 > da raiz quando relevantes.
 
+> **ESTADO (21/10/2026): trabalho concluído.** Site novo no Netlify (cafegraodaserra.netlify.app), zip entregue em 16/10.
+> O Nelson agradeceu e deixou avaliação no Google da Horus (1º case). O Marcelo ofereceu, sem custo e pra juntar case,
+> tráfego, social media ou e-commerce; o Nelson ainda vai dizer o que faz sentido. O CRM pago saiu da fila. Pendente:
+> autorização de case e os números do Google dele (tarefa de 22/10), Search Console (23/10).
+>
+> **Indicação (21/10/2026, 21h41):** o Nelson tem um lead pra Horus. Explicou o escopo do nosso trabalho, o lead
+> mostrou interesse; segunda 26/10 o Nelson encontra com ele, explica melhor e passa o contato do Marcelo ("aí vc
+> ajeita os valores com ele"). Nome e negócio do lead: [FALTA]. Rascunho de resposta v1 na ficha do Hounder; tarefa
+> "Receber o contato do lead indicado pelo Nelson" com prazo em 27/10.
+> **Decisão pendente: o lead é pago ou case sem custo?** De manhã o Marcelo disse ao Nelson que podia contar que a
+> Horus faz trabalhos de graça por enquanto; à noite o Nelson falou em valores. Recomendação do Claude: cobrar (o
+> grátis foi agradecimento ao Nelson; site já tem case), com preço de primeiro cliente. O Marcelo decidiu esperar
+> saber quem é o lead (21/10). Quando o lead chamar, criar a ficha dele no Hounder (origem indicação, Nelson).
+> **Áudio do lead (encaminhado pelo Nelson em 21/10, transcrito pelo Marcelo em 22/10):** colega do Nelson na
+> faculdade; acabou de trocar o tráfego e o social media da empresa dele ("Remox" na transcrição, nome a confirmar) e
+> precisa de **site institucional**. Entrar só pelo site, sem disputar o fornecedor novo. Empresa que paga tráfego e
+> social: reforça a recomendação de cobrar. Rascunho v2 da resposta ao Nelson na ficha do Hounder.
+> **23/10: o lead é a Remox Brasil** (remoção de tatuagem, Shopping da Bahia), ficha própria no Hounder e estudo em
+> `clientes/remox-brasil/`. O Marcelo decidiu **não pedir o contato ao Nelson** ("acho invasivo"): o Nelson conversa
+> com ele segunda 26/10. Mensagem de agradecimento (v4, substitui as anteriores) na ficha do Hounder.
+
 ## 📱 Trigésima-nona rodada (15/10/2026) — celular "100% pronto pra entregar"
 
 - **Espaço vazio perto do cabeçalho:** o cabeçalho era transparente e a abertura subia por baixo com

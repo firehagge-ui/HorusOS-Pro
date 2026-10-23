@@ -3,6 +3,7 @@
 // Sem chave de API: é o mesmo "claude" do terminal, rodando sem interface.
 // =============================================================================
 import { spawn, execFile } from 'node:child_process';
+import { AsyncLocalStorage } from 'node:async_hooks';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -12,6 +13,26 @@ import { log } from './log.mjs';
 const PASTA_LEVE = path.join(os.tmpdir(), 'hound-dog-claude-leve');
 fs.mkdirSync(PASTA_LEVE, { recursive: true });
 const MCP_CONFIG = path.join(RAIZ_HD, 'farejador', 'mcp-farejador.json');
+const MCP_CONFIG_RESTRITO = path.join(RAIZ_HD, 'farejador', 'mcp-farejador-restrito.json');
+
+/** Claude Code que vem dentro do app Claude (Windows): pega a versão mais nova, que muda a cada atualização do app. */
+function claudeDoApp() {
+  const base = path.join(process.env.LOCALAPPDATA || '', 'Claude-Data');
+  if (!fs.existsSync(base)) return null;
+  const achados = [];
+  for (const pacote of fs.readdirSync(base)) {
+    const cc = path.join(base, pacote, 'claude-code');
+    if (!fs.existsSync(cc)) continue;
+    for (const versao of fs.readdirSync(cc)) {
+      const pv = path.join(cc, versao);
+      if (!fs.statSync(pv).isDirectory()) continue;
+      for (const h of fs.readdirSync(pv)) { const exe = path.join(pv, h, 'claude.exe'); if (fs.existsSync(exe)) achados.push({ versao, exe }); }
+    }
+  }
+  const num = (v) => v.split('.').map((n) => Number(n) || 0);
+  achados.sort((a, b) => { const x = num(a.versao), y = num(b.versao); for (let i = 0; i < 3; i++) if (x[i] !== y[i]) return y[i] - x[i]; return 0; });
+  return achados[0]?.exe || null;
+}
 
 export function binarioClaude() {
   if (process.env.HD_CLAUDE_BIN && fs.existsSync(process.env.HD_CLAUDE_BIN)) return { bin: process.env.HD_CLAUDE_BIN, shell: false };
@@ -22,7 +43,47 @@ export function binarioClaude() {
     '/usr/local/bin/claude',
   ];
   for (const c of candidatos) if (c && fs.existsSync(c)) return { bin: c, shell: false };
+  // 21/10/2026: o Claude CLI global sumiu do PC; o do app Claude responde igual (mesma assinatura do Marcelo)
+  const doApp = claudeDoApp();
+  if (doApp) return { bin: doApp, shell: false };
   return { bin: 'claude', shell: true };
+}
+
+/* ------------------------------ conta do Claude por operador (21/10/2026) ------------------------------
+   Pedido do Marcelo: o que o Antônio pede no painel roda na conta Claude DELE, não na do Marcelo.
+   Cada operador com conta própria tem uma pasta em ~/.claude-contas/<nome> (o login é feito uma vez pelo
+   próprio operador com `npm run conta-claude -- <Nome>`). A tarefa roda com CLAUDE_CONFIG_DIR apontando pra
+   ela. Sem pasta = conta do Marcelo (padrão, e também o que o Farejador dispara sozinho: Mídia, agentes). */
+export const PASTA_CONTAS = path.join(os.homedir(), '.claude-contas');
+export const slugConta = (nome) => String(nome || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const contaAtual = new AsyncLocalStorage();
+
+/** Pasta da conta de quem criou a tarefa, ou null (conta padrão). Falha se a pasta existe e o login não foi feito. */
+export function pastaDaConta(nome) {
+  const slug = slugConta(nome);
+  if (!slug) return null;
+  const pasta = path.join(PASTA_CONTAS, slug);
+  if (!fs.existsSync(pasta)) return null;
+  if (!fs.existsSync(path.join(pasta, '.credentials.json'))) throw new Error(`A conta do Claude de ${nome} ainda não foi conectada neste PC (npm run conta-claude -- ${nome}). Nada rodou na conta do Marcelo.`);
+  return pasta;
+}
+
+/** Contas próprias deste PC e se o login já foi feito (o Farejador lista ao ligar). */
+export function contasClaude() {
+  if (!fs.existsSync(PASTA_CONTAS)) return [];
+  return fs.readdirSync(PASTA_CONTAS).filter((n) => fs.statSync(path.join(PASTA_CONTAS, n)).isDirectory())
+    .map((n) => ({ nome: n, conectada: fs.existsSync(path.join(PASTA_CONTAS, n, '.credentials.json')) }));
+}
+
+/** Roda `fn` com a conta do Claude de `nome` (usada pelo executor da fila). */
+/** A tarefa atual roda restrita (pedido de operador que não é o dono)? Quem monta o pedido usa para não pôr nada de _gestao/. */
+export const contaRestrita = () => Boolean(contaAtual.getStore()?.restrito);
+
+export function comConta(nome, fn, { restrito = false } = {}) {
+  const pasta = pastaDaConta(nome);
+  // Operador que não é o dono só roda na conta dele: na do Marcelo o Claude carregaria a memória do Marcelo
+  if (restrito && !pasta) throw new Error(`A conta do Claude de ${nome} ainda não foi conectada neste PC (npm run conta-claude -- ${nome}). Nada rodou na conta do Marcelo.`);
+  return pasta || restrito ? contaAtual.run({ nome, pasta, restrito }, fn) : fn();
 }
 
 export function versaoClaude() {
@@ -60,12 +121,15 @@ export function rotuloFerramenta(nome, input = {}) {
  * Roda o Claude e devolve { texto, json, ferramentas, custo, duracaoMs }.
  * modo 'horus': roda na raiz do repositório (CLAUDE.md, memória, .mcp.json com Firecrawl) + MCP do Hound Dog.
  * modo 'leve': pasta vazia fora do repo, sem ferramentas nem MCP (rápido e imune a injeção de prompt).
+ * modo 'chrome': pasta vazia, só o Chrome do Marcelo (extensão Claude in Chrome). É assim que o Mídia usa o
+ *   ChatGPT dele (21/10/2026): o Chrome tem a sessão; Playwright e o navegador do Farejador não têm.
  */
 export function rodarClaude({
   prompt, sistema = '', modelo = 'sonnet', modo = 'horus', ferramentas = [], proibidas = [], timeoutMs = 10 * 60 * 1000,
   aoTexto, aoFerramenta, deveParar, esquemaJson, esforco,
 }) {
   const { bin, shell } = binarioClaude();
+  const conta = contaAtual.getStore();
   const args = ['-p', '--output-format', 'stream-json', '--verbose', '--include-partial-messages', '--model', modelo, '--no-session-persistence',
     '--permission-mode', 'dontAsk'];
   // Opus roda com esforço alto (pedido do Marcelo, 27/09); os outros no padrão do modelo
@@ -75,11 +139,16 @@ export function rodarClaude({
   if (modo === 'leve') {
     cwd = PASTA_LEVE;
     args.push('--setting-sources', 'project', '--strict-mcp-config', '--tools', ferramentas.length ? ferramentas.join(',') : '');
+  } else if (modo === 'chrome') {
+    cwd = PASTA_LEVE;
+    args.push('--chrome', '--setting-sources', 'project', '--strict-mcp-config', '--tools', '', '--allowedTools', 'mcp__claude-in-chrome');
   } else {
     cwd = RAIZ_REPO;
-    args.push('--setting-sources', 'project,local', '--mcp-config', MCP_CONFIG);
+    // Pedido de operador que não é o dono: MCP sem tarefas privadas e nada da pasta _gestao (acompanhamento do Marcelo)
+    args.push('--setting-sources', 'project,local', '--mcp-config', conta?.restrito ? MCP_CONFIG_RESTRITO : MCP_CONFIG);
     if (ferramentas.length) args.push('--allowedTools', ferramentas.join(','));
-    const bloquear = ['Bash', 'PowerShell', 'Write', 'Edit', 'NotebookEdit', 'MultiEdit', ...proibidas];
+    const bloquear = ['Bash', 'PowerShell', 'Write', 'Edit', 'NotebookEdit', 'MultiEdit', ...proibidas,
+      ...(conta?.restrito ? ['Read(./_gestao/**)', 'Read(//E:/Users/hagge/Downloads/HorusOS/_gestao/**)'] : [])];
     args.push('--disallowedTools', bloquear.join(','));
   }
   if (sistema) args.push('--append-system-prompt', sistema);
@@ -87,7 +156,8 @@ export function rodarClaude({
 
   return new Promise((resolve, reject) => {
     const t0 = Date.now();
-    const filho = spawn(bin, args, { cwd, shell, windowsHide: true, stdio: ['pipe', 'pipe', 'pipe'] });
+    const env = conta?.pasta ? { ...process.env, CLAUDE_CONFIG_DIR: conta.pasta } : process.env;
+    const filho = spawn(bin, args, { cwd, shell, env, windowsHide: true, stdio: ['pipe', 'pipe', 'pipe'] });
     let buffer = '';
     let textoParcial = '';
     let textoFinal = null;
@@ -165,7 +235,7 @@ export function rodarClaude({
         return;
       }
       const json = estruturado || extrairJson(texto);
-      log('claude', `ok (${modelo}, ${modo}, ${Math.round(duracaoMs / 1000)}s, ${usadas.length} ferramentas)`);
+      log('claude', `ok (${modelo}, ${modo}, ${Math.round(duracaoMs / 1000)}s, ${usadas.length} ferramentas${conta ? `, conta de ${conta.nome}` : ''})`);
       resolve({ texto, json, ferramentas: usadas, custo, duracaoMs });
     });
 

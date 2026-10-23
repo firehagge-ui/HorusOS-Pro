@@ -39,6 +39,12 @@ compliance do cliente (CFO/CFP)  >  integridade.md  >  briefing.md + marca.md
   **placeholder marcado** (`[FALTA: telefone ativo]`), nunca texto plausível. Fortificar o
   que o cliente disse é permitido; inventar o que ele não disse, não.
 - **Nunca presumir dígito de contato** (telefone/WhatsApp). Perguntar.
+- **Antes de dizer que o Marcelo errou um dado, conferir na fonte.** Em 21/10/2026 eu disse que ele mandou o endereço
+  errado ao Nelson ("horusagencia.br"); era o @ certo do Instagram, escrito no `CLAUDE.md` do Hounder. Corrigir o
+  Marcelo sem conferir gasta a confiança dele e uma mensagem desnecessária ao cliente.
+- **Quando o Marcelo diz que duas frentes são separadas e o material se sobrepõe** (mesmo horário, mesmo serviço,
+  mesma lista de "do que preciso"), perguntar uma vez antes de montar duas. Em 19/10/2026 o "salão" e a MB Barbearia
+  eram o mesmo lead; o estudo saiu com avisos de "não confundir" e a correção custou quatro arquivos e o Hounder.
 - **`/verificar` antes de declarar qualquer coisa pronta.** Se a checagem não rodou nesta
   mensagem, não dá pra dizer que passou. Pendência declarada é profissional.
 
@@ -448,12 +454,15 @@ produzir PARA um cliente, ler os dois; a marca das peças é a do cliente, não 
   presença digital zero. Máquina: **Google Meu Negócio** → Instagram → site. Sem regulação
   pesada; evitar promessa de resultado físico.
 - **#3 — Aion Psicologia** (clínica, Itaigara/Salvador · CFP) — **reaberta em 15/10/2026** pelo Antônio:
-  reunião presencial de 16/10 **remarcada para a semana de 19/10** `[FALTA: dia e hora]`. Site sai sem cobrança (promessa do Antônio); a venda é o plano mensal (posts + Google +
+  reunião presencial de 16/10 remarcada; **em 21/10 o Antônio disse que ainda não há data** (decisões de preço travadas
+  no Hounder até a data sair). Site sai sem cobrança (promessa do Antônio); a venda é o plano mensal (posts + Google +
   manutenção). Reestudo em `ESTUDO-2026-10.md`, site novo de uma página em `site-v2/` (protegido na Vercel), plano da
   reunião em `reuniao-2026-10-16.md`. **Compliance CFP trava** (sem depoimento em nenhum formato; CRP visível; site
   abre ao público só com CRP da PJ + responsável técnica). Peso igual entre os serviços.
 - **#4 — Café Grão da Serra / Nelson** (café torrado, Brejões/BA · B2B+B2C) — site **no ar**
-  (https://cafegraodaserra.netlify.app/). Próximo: CRM (pago). 🔴 **A família não planta:**
+  (https://cafegraodaserra.netlify.app/). ✅ **Trabalho concluído em 21/10/2026**, com avaliação dele no
+  Google da Horus; o Marcelo ofereceu sem custo, pra juntar case, tráfego, social ou e-commerce (o CRM pago
+  ficou em aberto). 🔴 **A família não planta:**
   compra o grão e beneficia — proibido "nossa lavoura/fazenda/do pé à xícara". Origem da
   região confirmada. Regras de alimento (sem alegação de saúde, sem jargão de café especial).
 - **#5 — Mayara Barros** (psicologia/arte/filosofia, Salvador · CFP) — ⚠️ **não pagante**
@@ -477,8 +486,8 @@ produzir PARA um cliente, ler os dois; a marca das peças é a do cliente, não 
   R$ 2.000). 🔴 gancho verdadeiro ("vi vocês no Bon Odori"), nunca pretexto falsificável; nada
   de bot no número deles.
 - **#9 — Paralela Film** (película/insulfilm, estética e som automotivo, Av. Paralela/Salvador) —
-  LEAD, R1 que estava remarcada para segunda 05/10/2026 (histórico) `[FALTA: aconteceu? resultado não registrado no
-  Hounder em 09/10]`, com Daniel e Danilo (Danilo é o sócio no CNPJ). Pediu **tráfego pago, não site**; primeiro cliente de tráfego da Hórus. Tudo em
+  LEAD em **follow-up**: a R1 de 05/10 não aconteceu (tarefas canceladas em 21/10; volta quando a Horus tiver número
+  próprio de tráfego), com Daniel e Danilo (Danilo é o sócio no CNPJ). Pediu **tráfego pago, não site**; primeiro cliente de tráfego da Hórus. Tudo em
   `clientes/paralela-film/` (comece pelo `CLAUDE.md` de lá) e no dossiê do Hounder. 🔴 Avaliações de
   1★ de qualidade e agenda: processo de entrega antes de subir verba; anúncio só com película dentro
   da lei e sem percentual de calor sem ficha.
@@ -495,8 +504,11 @@ produzir PARA um cliente, ler os dois; a marca das peças é a do cliente, não 
   Oferta maior: piloto de 60 dias sem honorário, com contrapartida e cobrança combinada no dia 1. Tudo em `clientes/sates-saude/` (`playbook.md`). 🔴 Nada se
   constrói antes do aceite; parceria B2B sem comissão por paciente; quem compra é a família do paciente.
   ⚠️ **15/10/2026 (contado pelo Marcelo): depois do perfil do Google entregue, ela não deu retorno nem respondeu mais.**
+  Follow-up; tarefas canceladas em 21/10.
 - **#12 · MB Barbearia** (barbearia no Calabar, entre Barra e Ondina, Salvador) · LEAD que pediu **tráfego pago**, dono
   Marcelo Bispo. Estudo de 19/10/2026 em `clientes/mb-barbearia/estudo-2026-10-19.md`. 🔴 Usa o **Dom Agenda** (agenda,
   página e retenção): não vender site, CRM nem robô. Corte a R$ 30: o anúncio se paga na volta do cliente, então a conta
-  e a regra de parada do dia 45 vêm antes da verba. É o "salão" da R1 de tráfego (mesmo lead). **R1 em 20/10/2026, 10h;
-  preço decidido em 19/10:** R$ 690/mês por 3 meses (primeiro case), implantação de graça, depois R$ 890; verba paga por ele.
+  e a regra de parada do dia 45 vêm antes da verba. É o "salão" da R1 de tráfego (mesmo lead). Preço decidido em 19/10:
+  R$ 690/mês por 3 meses (primeiro case), implantação de graça, depois R$ 890; verba paga por ele. ⚠️ **A R1 de 20/10 foi
+  cancelada pelo Antônio** ("a gente não sabe tráfego, risco de se queimar"). Follow-up: reabrir em 14/12 com o número
+  da campanha da própria Horus (projeto Tráfego no Hounder).

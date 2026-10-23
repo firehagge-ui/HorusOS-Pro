@@ -438,4 +438,6 @@ Duas paradas em vez de seis: **aprovar a ideia** e **aprovar o post pronto**.
   `marketing/conteudo/midia/pautas/<segunda>.md`, com tarefa no Hounder para aprovar.
 - Fase 2 (a construir): job `midia_pauta` no Farejador gravando as ideias numa tabela
   `social_pautas`; aba Semana do Hounder com Aprovar/Trocar por ideia; a sessão de segunda passa
-  a escrever só as aprovadas. A rotina `semana` continua desligada até isso existir.
+  a escrever só as aprovadas. A rotina `semana` continua desligada até isso existir. *(Histórico: em 19/10/2026 ela voltou a rodar, com o Mídia
+  lendo o "padrão da casa" da `/carrossel` e `identidade/social/referencias/perfis.md`; a aprovação da ideia antes do post
+  segue manual, pela tela Semana.)*

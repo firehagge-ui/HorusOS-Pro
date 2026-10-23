@@ -4,7 +4,8 @@
   "description": "> O sistema operacional da Hórus dentro do Claude Code.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "conta-claude": "node ferramentas/hound-dog/scripts/conta-claude.mjs"
   },
   "repository": {
     "type": "git",

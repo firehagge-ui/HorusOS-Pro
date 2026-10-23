@@ -1,0 +1,34 @@
+{
+  "mcpServers": {
+    "hound-dog": {
+      "type": "stdio",
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "E:\\Users\\hagge\\Downloads\\HorusOS\\ferramentas\\hound-dog\\mcp\\server.mjs"
+      ],
+      "env": {
+        "HD_AUTOR": "claude",
+        "HD_SO_PUBLICO": "1"
+      }
+    },
+    "navegador": {
+      "type": "stdio",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@playwright/mcp@0.0.82",
+        "--browser",
+        "chrome",
+        "--headless",
+        "--user-data-dir",
+        "E:\\Users\\hagge\\Downloads\\HorusOS\\ferramentas\\hound-dog\\.navegador",
+        "--output-dir",
+        "E:\\Users\\hagge\\Downloads\\HorusOS\\ferramentas\\hound-dog\\.navegador-saidas",
+        "--viewport-size",
+        "1366x900"
+      ]
+    }
+  }
+}

@@ -6,6 +6,8 @@
 import { sb, estado, ouvir, criarJob, farejadorOnline } from '../sb.js';
 import { $, $$, esc, relativo, dataHora, vazio, esqueleto, toast, erroAmigavel, confirmar, perguntar, modal, debounce } from '../ui.js';
 import { icone } from '../icones.js';
+import { abrirVisor, imagensDoPost } from '../visor.js';
+import { abrirEstudio } from '../estudio.js';
 
 const STATUS = {
   planejado: ['cinza', 'Planejado'], criando: ['cinza', 'Criando'], revisao: ['violeta', 'Com o 🎨 Criação'], aguardando: ['laranja', 'Esperando você'],
@@ -55,30 +57,37 @@ async function semana(corpo) {
     ['Com problema', (p) => p.status === 'erro'],
     ['No ar', (p) => ['publicado', 'medido'].includes(p.status)],
   ];
+  const recarregar = () => corpo.isConnected && semana(corpo);
+  const estudioNovo = () => abrirEstudio({ aoSalvar: recarregar });
   if (!posts.length) {
-    corpo.innerHTML = `<div class="card">${vazio('agenda', 'Nada planejado ainda', 'Toda segunda às 8h o Mídia analisa a semana, planeja e escreve 3 posts. Eles aparecem aqui para você aprovar.',
-      `<button class="btn prim" data-rodar-semana>${icone('play')}Planejar a semana agora</button>`)}</div>`;
+    corpo.innerHTML = `<div class="card">${vazio('agenda', 'Nada planejado ainda', 'Toda segunda às 8h o Mídia analisa a semana, planeja e escreve 3 posts. Eles aparecem aqui para você aprovar. Dá também pra montar um post à mão no Estúdio.',
+      `<div class="row wrap"><button class="btn prim" data-rodar-semana>${icone('play')}Planejar a semana agora</button><button class="btn" data-estudio-novo>${icone('editar')}Novo post no Estúdio</button></div>`)}</div>`;
     $('[data-rodar-semana]', corpo).onclick = rodarSemana;
+    $('[data-estudio-novo]', corpo).onclick = estudioNovo;
     return;
   }
-  corpo.innerHTML = grupos.map(([titulo, filtro]) => {
+  corpo.innerHTML = `<div class="row wrap midia-semana-acoes"><button class="btn prim sm" data-estudio-novo>${icone('editar')}Novo post no Estúdio</button>
+    <span class="dim" style="font-size:12.5px">Editor de carrossel: texto, formas e imagem, salvo direto aqui para aprovação.</span></div>` + grupos.map(([titulo, filtro]) => {
     const lista = posts.filter(filtro);
     if (!lista.length) return '';
     return `<h3 class="midia-grupo">${esc(titulo)} <span class="badge">${lista.length}</span></h3>${lista.map(cartaoPost).join('')}`;
   }).join('') + `<div class="row mt-16"><button class="btn sm" data-rodar-semana>${icone('play')}Planejar a semana agora</button><span class="dim" style="font-size:12.5px">Normalmente roda sozinho na segunda, 8h.</span></div>`;
   $$('[data-rodar-semana]', corpo).forEach((b) => (b.onclick = rodarSemana));
+  $$('[data-estudio-novo]', corpo).forEach((b) => (b.onclick = estudioNovo));
   $$('[data-acao]', corpo).forEach((b) => (b.onclick = () => acaoPost(b.dataset.acao, posts.find((p) => p.id === b.dataset.id), corpo)));
-  $$('[data-slides]', corpo).forEach((b) => (b.onclick = () => verSlides(posts.find((p) => p.id === b.dataset.slides))));
+  $$('[data-slides]', corpo).forEach((b) => (b.onclick = (ev) => verSlides(posts.find((p) => p.id === b.dataset.slides), Number(ev.target.closest('[data-i]')?.dataset.i || 0))));
 }
 
 function cartaoPost(p) {
   const rev = p.revisao || {};
   const esperando = ['aguardando', 'revisao', 'ajuste'].includes(p.status);
   const agendado = ['aprovado', 'agendado'].includes(p.status);
+  const noAr = ['publicado', 'publicando', 'medido'].includes(p.status);
+  const est = p.conteudo?.estudio ? `<span class="selo violeta mini">🎨 Estúdio${p.conteudo.editado_por || p.conteudo.autor ? ` · ${esc(p.conteudo.editado_por || p.conteudo.autor)}` : ''}</span>` : '';
   return `<article class="card midia-post">
-    <div class="midia-tira" data-slides="${p.id}" title="Ver os slides">${(p.previa || []).map((src, i) => `<img src="${src}" alt="Slide ${i + 1}" loading="lazy">`).join('') || '<span class="dim">sem prévia</span>'}</div>
+    <div class="midia-tira" data-slides="${p.id}" title="Ver em tela cheia">${(p.previa || []).map((src, i) => `<img src="${src}" alt="Slide ${i + 1}" loading="lazy" data-i="${i}">`).join('') || '<span class="dim">sem prévia</span>'}</div>
     <div class="midia-info">
-      <div class="row wrap" style="gap:6px">${selo(p.status)}${p.fixar ? '<span class="selo mini">📌 fixar no topo</span>' : ''}${p.experimento ? '<span class="selo violeta mini">experimento</span>' : ''}${p.pilar ? `<span class="selo cinza mini">${esc(p.pilar)}</span>` : ''}${p.formato ? `<span class="selo cinza mini">${esc(p.formato)}</span>` : ''}</div>
+      <div class="row wrap" style="gap:6px">${selo(p.status)}${est}${p.fixar ? '<span class="selo mini">📌 fixar no topo</span>' : ''}${p.experimento ? '<span class="selo violeta mini">experimento</span>' : ''}${p.pilar ? `<span class="selo cinza mini">${esc(p.pilar)}</span>` : ''}${p.formato ? `<span class="selo cinza mini">${esc(p.formato)}</span>` : ''}</div>
       <h3 class="mt-8">${esc(p.titulo)}</h3>
       <dl class="midia-dl">
         ${p.objetivo ? `<dt>Por que existe</dt><dd>${esc(p.objetivo)}</dd>` : ''}
@@ -95,7 +104,8 @@ function cartaoPost(p) {
           <button class="btn sm" data-acao="reprovar" data-id="${p.id}">${icone('x')}Reprovar</button>` : ''}
         ${agendado ? `<button class="btn sm" data-acao="data" data-id="${p.id}">${icone('relogio')}Mudar horário</button><button class="btn sm" data-acao="voltar" data-id="${p.id}">${icone('setae')}Voltar para aprovação</button>` : ''}
         ${p.status === 'erro' ? `<button class="btn sm" data-acao="tentar" data-id="${p.id}">${icone('atualizar')}Tentar de novo</button>` : ''}
-        <button class="btn sm" data-slides="${p.id}">${icone('quadros')}Ver slides</button>
+        <button class="btn sm" data-slides="${p.id}">${icone('olho')}Tela cheia</button>
+        <button class="btn sm" data-acao="estudio" data-id="${p.id}" title="${noAr ? 'Já está no ar: vira um post novo' : 'Editar texto, formas e imagens'}">${icone('editar')}${noAr ? 'Copiar no Estúdio' : 'Editar no Estúdio'}</button>
       </div>
     </div></article>`;
 }
@@ -103,6 +113,11 @@ function cartaoPost(p) {
 async function acaoPost(acao, p, corpo) {
   const upd = (campos) => sb.from('social_posts').update(campos).eq('id', p.id);
   let r;
+  if (acao === 'estudio' || (acao === 'ajuste' && p.conteudo?.estudio)) {
+    if (acao === 'ajuste') toast('Esse post foi editado no Estúdio: o ajuste é lá, para não perder a edição.', 'info');
+    abrirEstudio({ post: p, aoSalvar: () => corpo.isConnected && semana(corpo) });
+    return;
+  }
   if (acao === 'aprovar') r = await upd({ status: 'aprovado', erro: null });
   if (acao === 'reprovar') { if (!(await confirmar('Reprovar este post?', 'Ele sai da fila e não vai ao ar. O Mídia registra como aprendizado.', { rotulo: 'Reprovar', perigo: true }))) return; r = await upd({ status: 'reprovado' }); }
   if (acao === 'voltar') r = await upd({ status: 'aguardando' });
@@ -128,11 +143,12 @@ async function acaoPost(acao, p, corpo) {
   semana(corpo);
 }
 
-function verSlides(p) {
-  const m = modal({ titulo: p.titulo, subtitulo: `${(p.previa || []).length} slides · prévia reduzida`, icone: 'quadros', largo: true,
-    corpo: `<div class="midia-slides">${(p.previa || []).map((src, i) => `<figure><img src="${src}" alt="Slide ${i + 1}"><figcaption class="dim">${i + 1}</figcaption></figure>`).join('')}</div>`,
-    pe: '<button class="btn" data-fechar>Fechar</button>' });
-  m.el.querySelectorAll('[data-fechar]').forEach((b) => (b.onclick = () => m.fechar()));
+/** Tela cheia com a resolução real (url_publica) quando existe; senão a prévia, avisando. */
+function verSlides(p, inicio = 0) {
+  if (!p) return;
+  const { imagens, reduzida } = imagensDoPost(p);
+  if (!imagens.length) return toast('Esse post ainda não tem slides.', 'info');
+  abrirVisor(imagens, { inicio, titulo: p.titulo, reduzida, miniaturas: p.previa });
 }
 
 async function rodarSemana() {

@@ -19,6 +19,13 @@ alta em outro lugar. Corrige e roda de novo.
 - [ ] Todos os slides com o mesmo layout, sem variação
 - [ ] Algum texto de leitura abaixo do piso de `10-legibilidade.md`
 - [ ] **Compliance do cliente violado** (ver `90-antipadroes.md` §Compliance)
+- [ ] **Teste do "eu salvaria":** o Marcelo, como dono de negócio, olharia e pensaria "isso eu já sei" ou "isso eu
+      resolvo sozinho" (reprovação do post do ChatGPT, 15/10/2026)
+- [ ] Recurso de app (limite de caracteres, botão, menu) afirmado sem ter sido conferido na própria tela do app ou na
+      ajuda oficial; sem conferir, o slide sai (bio, 15/10/2026: os 150 caracteres foram vistos no contador; o "Nome
+      entra na busca" não se confirmou e saiu)
+- [ ] Detector oficial (`npx --yes impeccable@4.0.4 detect`) não rodou, ou achou algo fora das três regras de site que
+      não valem pra carrossel (`90-antipadroes.md`); o detector local não conta
 
 O último não é veto de qualidade, é trava. Em cliente regulado ele para a
 entrega mesmo que todo o resto esteja nota 10.

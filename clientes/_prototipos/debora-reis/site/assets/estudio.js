@@ -306,7 +306,11 @@
 
     // títulos que acendem palavra por palavra
     document.querySelectorAll('.acende').forEach(function (el) {
-      el.innerHTML = el.textContent.trim().split(/\s+/).map(function (p) { return '<span class="p">' + p + '</span>'; }).join(' ');
+      // com .linha (quebra escolhida à mão), as palavras se dividem dentro de cada linha, para a quebra não se perder
+      var linhas = el.querySelectorAll('.linha');
+      (linhas.length ? Array.prototype.slice.call(linhas) : [el]).forEach(function (alvo) {
+        alvo.innerHTML = alvo.textContent.trim().split(/\s+/).map(function (p) { return '<span class="p">' + p + '</span>'; }).join(' ');
+      });
       gsap.to(el.querySelectorAll('.p'), { opacity: 1, stagger: 0.15, ease: 'none',
         scrollTrigger: { trigger: el, start: 'top 88%', end: 'top 45%', scrub: true } });
     });

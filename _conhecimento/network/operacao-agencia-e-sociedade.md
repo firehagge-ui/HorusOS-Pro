@@ -81,5 +81,5 @@ e subordinado. (É exatamente a divisão Antônio = originação / Marcelo = pro
 
 - Confirma a doutrina de **oferta em fases** e projetos de ticket R$ 1,2k a ~10k (não escopo
   gigante), e a regra de **50% de entrada antes de abrir o PC** (`cobranca-e-protecao-comercial.md`).
-- A aplicação concreta à dupla (papéis, teste de 90 dias, como trabalhar junto) fica em
+- A aplicação concreta à dupla (papéis, metas de 90 dias, como trabalhar junto) fica em
   `_gestao/operacao-da-dupla.md`, que é interno e fora do Git.

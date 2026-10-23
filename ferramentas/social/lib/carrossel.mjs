@@ -18,6 +18,7 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
 import { RAIZ_REPO } from './marca.mjs';
+import { validarV2, montarHtmlV2, SERIES } from './carrossel-v2.mjs';
 
 const FUNDOS = ['void', 'claro', 'painel', 'eletrico'];
 const CLASSE_FUNDO = { void: '', claro: 'claro', painel: 'painel', eletrico: 'eletrico' };
@@ -27,7 +28,9 @@ const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').r
 const palavras = (s = '') => String(s).split(/\s+/).filter(Boolean).length;
 
 /** Os pisos que o código mede. Devolve lista de vetos (vazia = passou). */
-export function validar(post) {
+export function validar(post, opcoes) {
+  // séries novas (21/10/2026): tweet e escuro, com imagem e prova visual (carrossel-v2.mjs)
+  if (SERIES.includes(post?.serie)) return validarV2(post, opcoes);
   const vetos = [];
   const s = post?.slides || [];
   if (s.length < 5 || s.length > 10) vetos.push(`Carrossel com ${s.length} slides (a casa pede de 5 a 10).`);
@@ -154,7 +157,8 @@ export function montarHtml(post, marca = {}) {
  */
 export async function renderizar(post, pasta, marca = {}) {
   fs.mkdirSync(path.join(pasta, 'instagram'), { recursive: true });
-  const { html } = montarHtml(post, marca);
+  const v2 = SERIES.includes(post?.serie);
+  const html = v2 ? montarHtmlV2(post, marca) : montarHtml(post, marca).html;
   const arqHtml = path.join(pasta, 'carrossel.html');
   fs.writeFileSync(arqHtml, html);
   const { chromium } = createRequire(path.join(RAIZ_REPO, 'package.json'))('playwright');
@@ -169,7 +173,15 @@ export async function renderizar(post, pasta, marca = {}) {
       if (escala === 1) {
         const fontes = await pg.evaluate(() => ['DM Sans', 'JetBrains Mono'].filter((f) => ![...document.fonts].some((x) => x.family.replace(/"/g, '') === f && x.status === 'loaded')));
         if (fontes.length) problemas.push(`Fonte não carregou: ${fontes.join(', ')}`);
+        const quebradas = await pg.evaluate(() => [...document.images].filter((i) => !i.complete || !i.naturalWidth).map((i) => i.src.split('/').pop()));
+        if (quebradas.length) problemas.push(`Imagem quebrada: ${quebradas.join(', ')}`);
       }
+      // séries novas: slide que passa do tamanho ganha o aperto (letra e imagem menores); se ainda passar, vira problema
+      const estouro = v2 ? await pg.evaluate(() => {
+        const passa = (s) => s.scrollHeight > s.clientHeight + 2 || [...s.querySelectorAll('.miolo')].some((m) => m.scrollHeight > m.clientHeight + 2);
+        return [...document.querySelectorAll('.slide')].map((s, i) => { if (!passa(s)) return null; s.classList.add('aperta'); return passa(s) ? i + 1 : null; }).filter(Boolean);
+      }) : [];
+      if (escala === 1 && estouro.length) problemas.push(`Slide ${estouro.join(', ')}: conteúdo estoura o slide (cortar texto).`);
       const els = await pg.$$('.slide');
       for (let i = 0; i < els.length; i++) {
         const n = String(i + 1).padStart(2, '0');

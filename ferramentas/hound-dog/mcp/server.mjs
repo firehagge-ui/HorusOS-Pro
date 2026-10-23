@@ -212,16 +212,20 @@ servidor.registerTool('hd_tarefas', {
   inputSchema: {
     status: z.array(STATUS_TAREFA).optional().describe('Padrão: a_fazer, fazendo, travada'), responsavel: z.string().optional(), area: AREA_TAREFA.optional(),
     marco: z.enum(['m1', 'm2', 'm3', 'm4']).optional(), empresa_id: z.string().optional(), texto: z.string().optional(), limite: z.number().int().min(1).max(300).optional(),
+    projeto: z.string().optional().describe('Ex.: Tráfego, Icarus, Empresa, Teste do Antônio, Social Media'),
   },
-}, envolver(async ({ status, responsavel, area, marco, empresa_id, texto, limite = 100 }) => {
+}, envolver(async ({ status, responsavel, area, marco, empresa_id, texto, projeto, limite = 100 }) => {
   const cond = ['t.status = any($1)']; const p = [status?.length ? status : ['a_fazer', 'fazendo', 'travada']];
+  // Pedido de operador que não é o dono (HD_SO_PUBLICO, posto pelo Farejador): tarefa privada não existe pra ele
+  if (process.env.HD_SO_PUBLICO === '1') cond.push('not t.privada');
   if (responsavel) { p.push(`%${responsavel}%`); cond.push(`unaccent_simples(t.responsavel) ilike unaccent_simples($${p.length})`); }
   if (area) { p.push(area); cond.push(`t.area = $${p.length}`); }
   if (marco) { p.push(marco); cond.push(`t.marco = $${p.length}`); }
   if (empresa_id) { p.push(empresa_id); cond.push(`t.empresa_id = $${p.length}`); }
+  if (projeto) { p.push(projeto); cond.push(`unaccent_simples(t.projeto) ilike unaccent_simples($${p.length})`); }
   if (texto) { p.push(`%${texto}%`); cond.push(`(t.titulo ilike $${p.length} or t.descricao ilike $${p.length} or t.objetivo ilike $${p.length})`); }
   p.push(limite);
-  return q(`select t.id, t.titulo, t.descricao, t.pronto_quando, t.area, t.prioridade, t.status, t.responsavel, t.prazo, t.marco, t.objetivo, t.depende_de, t.motivo_trava,
+  return q(`select t.id, t.titulo, t.descricao, t.pronto_quando, t.area, t.prioridade, t.status, t.responsavel, t.prazo, t.marco, t.objetivo, t.projeto, t.privada, t.depende_de, t.motivo_trava,
       t.concluida_em, t.concluida_obs, e.nome empresa, t.empresa_id,
       (t.prazo is not null and t.prazo < (now() at time zone 'America/Bahia')::date and t.status not in ('feita','cancelada')) atrasada,
       exists (select 1 from tarefas d where d.id = any(t.depende_de) and d.status not in ('feita','cancelada')) bloqueada
@@ -237,11 +241,20 @@ servidor.registerTool('hd_salvar_tarefa', {
     id: z.string().optional(), titulo: z.string().optional().describe('Obrigatório para criar. Verbo no começo: "Abrir o CNPJ"'), descricao: z.string().optional(),
     pronto_quando: z.string().optional().describe('Como se sabe que acabou'), area: AREA_TAREFA.optional(), prioridade: z.enum(['alta', 'media', 'baixa']).optional(),
     status: STATUS_TAREFA.optional(), responsavel: z.string().optional(), prazo: z.string().nullable().optional(), marco: z.enum(['m1', 'm2', 'm3', 'm4']).nullable().optional(),
-    objetivo: z.string().optional(), depende_de: z.array(z.string()).optional().describe('ids de tarefas que precisam acabar antes'), empresa_id: z.string().nullable().optional(),
+    objetivo: z.string().optional(), projeto: z.string().nullable().optional().describe('Agrupa tarefas do mesmo fim: Tráfego, Icarus, Empresa, Social Media...'),
+    privada: z.boolean().optional().describe('true = só o dono (Marcelo) vê. Use em tudo do acompanhamento do Antônio: ele é operador e não pode saber do teste'), depende_de: z.array(z.string()).optional().describe('ids de tarefas que precisam acabar antes'), empresa_id: z.string().nullable().optional(),
     motivo_trava: z.string().nullable().optional(), ordem: z.number().int().optional(), concluida_obs: z.string().optional(),
   },
 }, envolver(async ({ id, ...t }) => {
+  // Prazo em sábado ou domingo volta com aviso (21/10/2026: o Claude marcou contador e CNPJ no sábado)
+  if (t.prazo && [0, 6].includes(new Date(`${String(t.prazo).slice(0, 10)}T12:00:00`).getDay())) {
+    throw new Error(`O prazo ${t.prazo} cai no fim de semana. Use a sexta antes ou a segunda depois (ou mande de novo com o dia útil).`);
+  }
   const campos = Object.keys(t).filter((c) => t[c] !== undefined);
+  if (process.env.HD_SO_PUBLICO === '1') {
+    if (t.privada) throw new Error('Só o dono cria tarefa privada.');
+    if (id && (await q1('select privada from tarefas where id = $1', [id]))?.privada) throw new Error('Tarefa não encontrada');
+  }
   if (id) {
     if (!campos.length) throw new Error('Nada para mudar');
     const r = await q1(`update tarefas set ${campos.map((c, i) => `${c} = $${i + 2}`).join(', ')} where id = $1 returning id, titulo, status, prazo, responsavel, concluida_em`, [id, ...campos.map((c) => t[c])]);

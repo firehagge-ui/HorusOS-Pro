@@ -11,7 +11,7 @@ import path from 'node:path';
 import { RAIZ_HD, RAIZ_REPO, carregarEnv } from '../lib/env.mjs';
 import { db, q, q1, novoCliente, fecharDb } from '../lib/db.mjs';
 import { log, logErro } from './log.mjs';
-import { versaoClaude } from './claude.mjs';
+import { versaoClaude, comConta, contasClaude } from './claude.mjs';
 import { TAREFAS, USA_CLAUDE, USA_NAVEGADOR } from './tarefas.mjs';
 import * as WA from './whatsapp.mjs';
 import { precisaColetar, coletarESalvar } from './instagram.mjs';
@@ -53,6 +53,9 @@ function escreverConfigMCP() {
       '--user-data-dir', path.join(RAIZ_HD, '.navegador'), '--output-dir', path.join(RAIZ_HD, '.navegador-saidas'), '--viewport-size', '1366x900'] },
   } };
   fs.writeFileSync(arq, JSON.stringify(conf, null, 2));
+  // Igual, mas pra pedido de operador que não é o dono: o MCP esconde as tarefas privadas (21/10/2026)
+  conf.mcpServers['hound-dog'].env = { HD_AUTOR: 'claude', HD_SO_PUBLICO: '1' };
+  fs.writeFileSync(path.join(RAIZ_HD, 'farejador', 'mcp-farejador-restrito.json'), JSON.stringify(conf, null, 2));
 }
 
 /* ------------------------------ status no painel ------------------------------ */
@@ -131,7 +134,10 @@ async function executar(job) {
   try {
     const fn = TAREFAS[job.tipo];
     if (!fn) throw new Error(`Tipo de tarefa desconhecido: ${job.tipo}`);
-    const saida = await fn(job, progresso, cancelado, { aoMudarWhats });
+    // Tarefa pedida por um operador com conta Claude própria roda na conta dele (claude.mjs, comConta)
+    // e, se não for o dono, sem acesso ao que é só do Marcelo (tarefas privadas, _gestao/)
+    const papel = (await q1('select papel from operadores where nome = $1', [job.criado_por]).catch(() => null))?.papel;
+    const saida = await comConta(job.criado_por, () => fn(job, progresso, cancelado, { aoMudarWhats }), { restrito: papel === 'operador' });
     const atual = await q1('select status, saida from jobs where id = $1', [job.id]);
     if (atual?.status === 'cancelado') { log('fila', `✖ ${job.tipo} cancelado`); return; }
     await q("update jobs set status = 'concluido', concluido_em = now(), saida = $2, progresso = 'Pronto' where id = $1",
@@ -141,7 +147,12 @@ async function executar(job) {
     const cancel = await cancelado();
     const espera = esperarPeloLimite(e.message);
     if (cancel) { log('fila', `✖ ${job.tipo} cancelado`); }
-    else if (espera && job.tentativas < 8) {
+    else if (e.retomarEm instanceof Date) {
+      // A tarefa pediu pra esperar algo de fora (ex.: o Chrome do Marcelo, no Mídia): volta pra fila, sem contar como erro
+      await q("update jobs set status = 'fila', retomar_em = $2, progresso = $3, erro = null, iniciado_em = null where id = $1",
+        [job.id, e.retomarEm.toISOString(), String(e.message).slice(0, 400)]).catch(() => {});
+      log('fila', `⏸ ${job.tipo}: ${e.message}`);
+    } else if (espera && job.tentativas < 8) {
       const horaBr = espera.toLocaleTimeString('pt-BR', { timeZone: 'America/Bahia', hour: '2-digit', minute: '2-digit' });
       await q("update jobs set status = 'fila', retomar_em = $2, progresso = $3, erro = null, iniciado_em = null where id = $1",
         [job.id, espera.toISOString(), `Limite da assinatura do Claude atingido. Retomo sozinho às ${horaBr}.`]).catch(() => {});
@@ -327,6 +338,7 @@ async function inicio() {
   const v = await versaoClaude();
   claudeOk = v.ok; claudeInfo = v.info;
   log('claude', v.info);
+  log('claude', `contas próprias: ${contasClaude().map((c) => `${c.nome} (${c.conectada ? 'conectada' : 'sem login'})`).join(', ') || 'nenhuma; tudo na conta do Marcelo'}`);
 
   // tarefas órfãs de uma execução anterior voltam para a fila
   const orfas = await q("update jobs set status = 'fila', progresso = 'Retomado após reinício do Farejador' where status = 'processando' returning id, tipo");
