@@ -95,3 +95,6 @@ scratch/
 # Nunca editar nada aqui dentro; a edição se perde no build seguinte.
 site/_publish/
 .netlify/
+
+# Configuração local do Obsidian (não é trabalho)
+.obsidian/

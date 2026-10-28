@@ -7,6 +7,13 @@ Eles usam Apify e a API do Gemini; aqui é tudo com o que já temos, sem chave n
 
 ## Pegar o material
 
+- **Script da casa (23/10/2026):** `node ferramentas/social/bin/referencias.mjs perfil <handle>` (12 posts
+  recentes com curtidas, comentários e outlier), `post <codigo> <pasta>` (slides + legenda + `folha.jpg`),
+  `estudar <handle> <pasta> [N]` (os dois juntos). Sem login o Instagram corta depois de 1 ou 2 perfis: a grade
+  passa a vir vazia. Dali em diante, grade pelo Chrome logado do Marcelo (liberado por ele em 23/10), em ritmo
+  de leitura, e download pelo embed. Erro 429 = parar.
+- **Busca por palavra-chave** no Chrome logado (`/explore/search/keyword/?q=...`) mostra os posts em destaque
+  do assunto: é o jeito mais rápido de achar o que está circulando num nicho sem saber o nome das contas.
 - **Carrossel e foto:** `/embed/captioned/` no Playwright sem login (método em
   `reference_instagram-fotos-embed` da memória): baixa os slides e a legenda.
 - **Reel:** o mesmo embed costuma entregar o `.mp4`. Se o perfil bloquear o embed, abrir no

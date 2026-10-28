@@ -274,10 +274,18 @@ sem conferir a 002** (tem o @ antigo como padrão); aplicar só a migração nov
   uns 2 min por imagem, até 4 por post.
 - Chrome fora: a tarefa volta pra fila a cada 15 min (`retomarEm` no erro, tratado em `index.mjs`), um aviso no WhatsApp,
   e retoma de onde parou (plano e posts feitos ficam em `jobs.saida`). Depois de 4 dias, desiste com erro.
+- Primeira sessão real em 26/10/2026 (PC ligado às 12h37): 23 min, 9 imagens, 3 posts nas séries novas, Criação revisou.
+  Corrigido em 28/10: `\n` no texto vira quebra de linha (CSS `pre-line`), render novo apaga os slides do anterior, e
+  imagem que ficou na pasta do título antigo (título mudou na correção) é copiada pra pasta do post (`trazerImagens`).
+- **28/10:** a direção de arte de 23/10 veio do worktree `swordtail` pra `main` (pedido do Marcelo: "traz tudo") e entra
+  na `doutrinaMidia()`. ⚠️ **Falta no Mídia:** em 28/10 o Marcelo reprovou os 3 posts de 26/10 e a regra virou "duas
+  aprovações antes de qualquer slide" (temas da semana, depois o esqueleto de cada post; `/carrossel`, topo). Hoje a
+  sessão da semana ainda monta os slides direto, e as séries `tweet`/`escuro` não podem sair em dois posts seguidos.
 
 **Estado das rotinas (18/10/2026, Marcelo):** só `semana` (planejamento semanal de posts, segunda 8h), `publicar` e `token`
 ficam ligadas em `social_rotinas`. `caixa` (comentários e DMs) e `triagem` estão desligadas por gastar token e engavetadas;
 sem a caixa, DM nova não avisa no WhatsApp. `metricas` também desligada (05/10). Religar = `ativo = true` na linha.
+**Conferido em 28/10/2026:** `caixa` está LIGADA de novo (quem religou não ficou registrado); `triagem` e `metricas` seguem desligadas.
 
 ## Dívidas conhecidas (27/09/2026)
 

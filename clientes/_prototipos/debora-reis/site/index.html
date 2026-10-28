@@ -9,7 +9,7 @@
 <meta property="og:title" content="Débora Reis | Casas com história. Interiores com identidade.">
 <meta property="og:description" content="Reforma de apartamentos em Salvador, do projeto à decoração.">
 <meta property="og:image" content="assets/fotos/alma-brasileira.jpg">
-<link rel="icon" href="assets/favicon-dr.png" type="image/png">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://api.fontshare.com">
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=boska@400,401&display=swap">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +23,7 @@
 
 <header class="cab" id="cab">
   <button class="cab-menu" type="button" aria-expanded="false" aria-controls="menu">Menu <span aria-hidden="true">::</span></button>
-  <a class="cab-marca" href="#conteudo"><img src="assets/logo-dr.png" alt="" width="300" height="309"><span>Débora Reis</span></a>
+  <a class="cab-marca" href="#conteudo">Débora Reis</a>
   <a class="cab-acao" href="https://wa.me/5571999775453?text=Ol%C3%A1%2C%20D%C3%A9bora!%20Vim%20pelo%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto.">Conversar</a>
 </header>
 
@@ -63,16 +63,26 @@
   </div>
 </section>
 
-<!-- 2. COMO ELA PENSA: a pergunta que fazem a ela e a resposta dela. 23/10: as seis fotos pequenas em arco, círculo e
-     quadro saíram daqui (a Débora: "não todas juntas com as figuras pequenininhas"). Cada moldura foi para um detalhe em
-     projetos.html, uma por vez e grande. -->
-<section class="composicao comp-so" aria-labelledby="comp-t">
-  <div class="comp-centro">
-    <p class="rot comp-antes"><span class="quebra">Mais de duas décadas depois,</span> sempre me perguntam</p>
-    <p class="mao comp-perg">“Você não enjoa?”</p>
-    <h2 id="comp-t" class="acende">Não. Nunca projetei a mesma casa duas vezes.</h2>
+<!-- 2. COMO ELA PENSA (28/10, refeita a partir das referências). Nos sites estudados, a seção logo depois da capa junta
+     três coisas: a frase de posição, um parágrafo curto e fotos retas de tamanhos diferentes, uma grande e duas menores
+     (Simone Katherine, Tarq, Stanzza, Telha Clarke). A frase vem à esquerda e grande, como na maioria; nenhuma foto vai em
+     forma geométrica. Três fotos, e não seis pequenas (a Débora: "não todas juntas com as figuras pequenininhas"), e
+     nenhuma repete o carrossel logo abaixo. Cada legenda leva ao detalhe em projetos.html. -->
+<section class="intro" aria-labelledby="comp-t">
+  <div class="intro-frase">
+    <p class="rot">Mais de duas décadas depois, sempre me perguntam</p>
+    <p class="mao intro-perg">“Você não enjoa?”</p>
+    <h2 id="comp-t" class="acende"><span class="linha">Não. Nunca projetei</span> <span class="linha">a mesma casa duas vezes.</span></h2>
     <svg class="desenho risco" viewBox="0 0 340 26" aria-hidden="true"><path class="g d0" d="M6 17 C 70 9, 150 6, 226 9 C 268 11, 306 14, 334 8"/></svg>
-    <p class="comp-serv">Reforma de apartamentos pensada a partir de quem mora ali: os livros, os discos, o artesanato, os bichos.</p>
+  </div>
+  <figure class="intro-f intro-grande"><a href="projetos.html#o2"><span class="intro-q"><img src="assets/fotos/livros.jpg" alt="Estante branca planejada para os livros, cheia de títulos coloridos" width="1080" height="1427" loading="lazy"></span><figcaption class="mao">a estante dos livros</figcaption></a></figure>
+  <div class="intro-lado">
+    <p class="intro-txt">Cada projeto parte de quem mora ali: os livros, os discos, o artesanato, os bichos.</p>
+    <a class="link-seta intro-link" href="#sobre">Conheça a arquiteta <span aria-hidden="true">→</span></a>
+    <div class="intro-par">
+      <figure class="intro-f"><a href="projetos.html#o3"><span class="intro-q"><img src="assets/fotos/artesanato.jpg" alt="Pendente de vidro diante de prateleiras de madeira com cerâmica e quadros" width="1076" height="1434" loading="lazy"></span><figcaption class="mao">a cerâmica feita à mão</figcaption></a></figure>
+      <figure class="intro-f intro-desce"><a href="projetos.html#o4"><span class="intro-q"><img src="assets/fotos/azul-madeira.jpg" alt="Marcenaria de madeira com nicho azul e quadro de cavalo-marinho" width="1080" height="1350" loading="lazy"></span><figcaption class="mao">o nicho azul</figcaption></a></figure>
+    </div>
   </div>
 </section>
 
@@ -85,7 +95,7 @@
   <p class="vh" aria-live="polite" id="pj-aviso"></p>
   <div class="pj-palco">
 
-    <article class="pj ativo" style="--ar:1" aria-roledescription="slide" aria-label="1 de 3: Rio Vermelho">
+    <article class="pj ativo" style="--ar:1;--art:1.45" aria-roledescription="slide" aria-label="1 de 3: Rio Vermelho">
       <div class="pj-foto"><div class="pj-cam anotada" data-w="1080" data-h="1080">
         <img style="--pos:50% 45%" src="assets/fotos/rio-vermelho.jpg" alt="Corredor do apartamento no Rio Vermelho: piso claro, paredes verdes, estante embutida, ripas e luz baixa" width="1080" height="1080">
         <div class="notas" aria-hidden="true">
@@ -103,7 +113,7 @@
     </article>
 
     <!-- a sala, com o texto à direita, do lado da janela -->
-    <article class="pj pj-dir" style="--ar:.878" aria-roledescription="slide" aria-label="2 de 3: Colorir">
+    <article class="pj pj-dir" style="--ar:.878;--art:1.1" aria-roledescription="slide" aria-label="2 de 3: Colorir">
       <div class="pj-foto"><div class="pj-cam">
         <img style="--pos:50% 60%" src="assets/fotos/sala-vermelha-sem-tv.jpg" alt="Sala com a borda da mesa vermelha, cadeiras em zigue-zague, sofá claro, poltrona e cortinas diante da janela" width="628" height="715" loading="lazy">
       </div></div>
@@ -116,7 +126,7 @@
     </article>
 
     <!-- foto em pé, sobre o vinho -->
-    <article class="pj pj-retrato" style="--ar:.75" aria-roledescription="slide" aria-label="3 de 3: Aconchego">
+    <article class="pj pj-retrato" style="--ar:.75;--art:1" aria-roledescription="slide" aria-label="3 de 3: Aconchego">
       <div class="pj-foto"><div class="pj-cam anotada" data-w="1080" data-h="1440">
         <img style="--pos:50% 40%" src="assets/fotos/aconchego.jpg" alt="Sofá de linho com almofadas, banco de madeira e planta" width="1080" height="1440" loading="lazy">
         <div class="notas notas-escuras" aria-hidden="true">
@@ -157,7 +167,11 @@
 <!-- 5. COMO TRABALHO (23/10): o cronograma da proposta que a Débora mandou ("pode tirar os meus prazos"). Quatro etapas
      numa régua, com o prazo dela em cada uma e o "você aprova" onde a proposta dela pede aprovação (depois do estudo e
      depois do anteprojeto). Saíram os cartões presos na rolagem (a Débora: "o cliente tem preguiça") e a obra como etapa:
-     "nem sempre eu faço"; ela aparece nas perguntas, como visita combinada. Valor e percentual de obra ficam na proposta. -->
+     "nem sempre eu faço"; ela aparece nas perguntas, como visita combinada. Valor e percentual de obra ficam na proposta.
+     28/10: um desenho de linha em cada etapa. Tarq e Stanzza mostram cada etapa com uma imagem; sem foto das etapas dela,
+     vai o desenho, que é como a Stanzza ilustra as fases (axonometria em linha). As formas que a Débora gosta voltam aqui,
+     uma por etapa, como desenho e não como moldura de foto: a mesa redonda (círculo), o nicho (arco), os nichos da
+     marcenaria (quadro). Quando houver foto real de cada etapa, ela entra no lugar do desenho. -->
 <section class="cronograma" id="processo" aria-labelledby="pr-t">
   <div class="crono-topo">
     <p class="rot">[ Como trabalho ]</p>
@@ -165,12 +179,22 @@
   </div>
   <ol class="crono">
     <li>
+      <svg class="desenho crono-des" viewBox="0 0 300 170" aria-hidden="true">
+        <path class="g d0" d="M30 150 V40 H190 V90 H270 V150 H172 M142 150 H30"/>
+        <path class="f d1" d="M110 40 V104 M172 150 V122 M172 122 A28 28 0 0 0 144 150 M58 40 V36 H92 V40 M214 90 V86 H248 V90"/>
+        <path class="vm d2" d="M30 22 H190 M26 26 L34 18 M186 26 L194 18 M30 16 V28 M190 16 V28 M286 90 V150 M282 94 L290 86 M282 154 L290 146 M280 90 H292 M280 150 H292"/>
+      </svg>
       <p class="crono-n">01</p>
       <h3>Briefing e medição</h3>
       <p class="crono-prazo"><span>medição em até</span> 5 <span>dias úteis</span></p>
       <p>Você responde ao briefing, contando como vive e o que quer mudar. Depois eu meço o apartamento.</p>
     </li>
     <li>
+      <svg class="desenho crono-des" viewBox="0 0 300 170" aria-hidden="true">
+        <path class="g d0" d="M30 150 V40 H190 V90 H270 V150 H172 M142 150 H30 M110 40 V104"/>
+        <path class="f d1" d="M40 50 H96 V86 H40 Z M44 54 H64 V62 H44 Z M72 54 H92 V62 H72 Z M44 140 H100 V120 H44 Z M44 120 V114 H100 V120 M130 44 H186 V56 H130 M200 140 H248 V132 H200"/>
+        <path class="vm d2" d="M207 115 A18 18 0 1 0 243 115 A18 18 0 1 0 207 115 M219 93 H231 M219 137 H231 M201 109 V121 M249 109 V121"/>
+      </svg>
       <p class="crono-n">02</p>
       <h3>Estudo preliminar</h3>
       <p class="crono-prazo"><span>até</span> 24 <span>dias úteis</span></p>
@@ -178,6 +202,11 @@
       <p class="crono-sim mao" aria-label="Você aprova antes de seguir">você aprova</p>
     </li>
     <li>
+      <svg class="desenho crono-des" viewBox="0 0 300 170" aria-hidden="true">
+        <path class="g d0" d="M100 40 H200 V120 H100 Z M100 40 L40 8 M200 40 L260 8 M100 120 L40 162 M200 120 L260 162"/>
+        <path class="f d1" d="M58 58 L90 72 V106 L58 98 Z M74 65 V102 M125 120 L104 162 M175 120 L196 162 M150 0 V24 M141 32 Q150 22 159 32 Z M214 72 L244 58 V88 L214 100 Z"/>
+        <path class="vm d2" d="M135 120 V78 A15 15 0 0 1 165 78 V120"/>
+      </svg>
       <p class="crono-n">03</p>
       <h3>Anteprojeto</h3>
       <p class="crono-prazo"><span>até</span> 30 <span>dias úteis</span></p>
@@ -185,6 +214,11 @@
       <p class="crono-sim mao" aria-label="Você aprova antes de seguir">você aprova</p>
     </li>
     <li>
+      <svg class="desenho crono-des" viewBox="0 0 300 170" aria-hidden="true">
+        <path class="g d0" d="M60 30 H240 V150 H60 Z M60 110 H240 M60 70 H240 M120 30 V110 M180 30 V110"/>
+        <path class="f d1" d="M120 110 V150 M180 110 V150 M115 126 V134 M125 126 V134 M175 126 V134 M185 126 V134 M70 66 V46 M76 66 V42 M82 66 V48 M90 66 L96 47 M196 106 C192 96 194 86 202 84 C210 86 212 96 208 106"/>
+        <path class="vm d2" d="M40 30 V150 M36 34 L44 26 M36 154 L44 146 M60 164 H240 M56 168 L64 160 M236 168 L244 160 M226 30 A14 14 0 1 0 254 30 A14 14 0 1 0 226 30 M252 20 L272 8 H292"/>
+      </svg>
       <p class="crono-n">04</p>
       <h3>Detalhamento</h3>
       <p class="crono-prazo"><span>até</span> 30 <span>dias úteis</span></p>
@@ -192,7 +226,7 @@
     </li>
   </ol>
   <div class="crono-pe">
-    <p>Prazos em dias úteis, contados do início ao fim de cada etapa. Quando faz sentido, também ajudo na escolha dos materiais e nas compras, apresento orçamentos de empresas de obra e, no fim, arrumo os objetos e oriento onde vão os quadros.</p>
+    <p>Prazos em dias úteis, contados do início ao fim de cada etapa. Quando faz sentido, também ajudo na escolha dos materiais e, no fim, arrumo os objetos e oriento onde vão os quadros.</p>
     <a class="btn btn-linha" href="guia.html">Ler o guia do cliente</a>
   </div>
 </section>
@@ -276,7 +310,7 @@
       <li><a href="conte-sua-casa.html">Conte a sua casa</a></li>
       <li><a href="guia.html">Guia do cliente</a></li>
     </ul>
-    <p class="rodape-marca"><img src="assets/logo-debora-reis.png" alt="Débora Reis Arquitetura" width="640" height="503" loading="lazy"></p>
+    <p class="rodape-marca">Débora Reis<span>Arquitetura de interiores</span></p>
     <div class="rodape-dir">
       <p>Rua Aracaju, 34, Barra, Salvador</p>
       <p class="rodape-contato"><a href="https://wa.me/5571999775453?text=Ol%C3%A1%2C%20D%C3%A9bora!%20Vim%20pelo%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto.">(71) 99977-5453</a><a href="mailto:deboraa_reis@yahoo.com.br">deboraa_reis@yahoo.com.br</a><a class="rede-icone" href="https://www.instagram.com/deborareisarquitetura/" rel="noopener" aria-label="Instagram da Débora Reis"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></svg></a></p>

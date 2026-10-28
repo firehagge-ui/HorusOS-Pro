@@ -12,6 +12,17 @@ description: >
 
 # /carrossel: da pauta ao post pronto
 
+**O processo tem duas aprovações do Marcelo, e nenhum slide nasce antes da segunda (28/10/2026):**
+
+1. **Temas da semana** (Passo 0): a lista da semana, mostrada toda semana, mesmo que as ideias já tenham sido
+   aprovadas numa pauta antiga. Espera o ok.
+2. **Esqueleto de cada post** (Passos 1 a 3): capa, slide a slide com função, texto exato, imagem (print, réplica
+   da tela, obra, diagrama) e layout, mais a referência olhada e o que muda em relação ao post anterior. Espera o ok.
+3. **Slides** (Passos 4 a 9), só com o esqueleto aprovado.
+
+Origem: em 28/10 o Marcelo reprovou os três posts da semana de 26/10, montados direto a partir de uma pauta
+aprovada duas semanas antes, sem que ele visse texto, imagem nem layout.
+
 Tema aprovado → formato → gancho → texto com fala humana → imagem → sistema de design → HTML →
 PNG → checklist → legenda. Atualizada em 10/10/2026 juntando o que a casa já tinha com
 `sergebulaev/instagram-skills`, `coreyhaines31/marketingskills` (social, marketing-psychology),
@@ -24,6 +35,9 @@ PNG → checklist → legenda. Atualizada em 10/10/2026 juntando o que a casa j�
 2. `_memoria/conteudo/10-legibilidade.md`: pisos de fonte, contraste e densidade
 3. `_memoria/conteudo/90-antipadroes.md`: o que denuncia post feito por IA (correções do Marcelo)
 4. `_memoria/integridade.md`: dado que falta vira `[FALTA: ...]`, nunca texto plausível
+4b. `_memoria/conteudo/20-direcao-de-arte.md`: moldura fixa e mundo variável, a imagem que mostra a ideia,
+   catálogo de linguagens, a ficha de direção de arte (23/10/2026). Se a imagem sai do ChatGPT, também
+   `_memoria/conteudo/25-imagem-no-chatgpt.md`
 5. **Peça da Horus:** `identidade/social/perfil.md` (público, pilares, voz, o que nunca vai ao ar)
    e `identidade/social/referencias/2026-10-07-essencia.md` (a direção que o Marcelo quer)
 6. **Peça de cliente:** `clientes/<nome>/briefing.md` e `marca.md`; compliance trava
@@ -36,9 +50,12 @@ Ler antes de tudo. É o que separa o post que ele aprova do que ele reprova. Ori
 **Tema**
 - **O teste é: o Marcelo, como dono de negócio, salvaria isso?** "Eu já sabia" ou "isso eu resolvo sozinho" =
   genérico, não vai (o "5 coisas pra pedir pro ChatGPT" foi reprovado por isso, 15/10).
-- **O que ele elogiou e é pra repetir (15/10):** "adorei como você montou tudo, tá muito bonito" (as capas com
-  ilustração do ChatGPT na mesma conversa, os cartões com print real, o par ✕/✓ com destaque) e "gostei demais" da bio
-  (o recurso que quase ninguém usa, com a fonte). O visual está aprovado; o que reprova é tema genérico.
+- **O que ele elogiou em 15/10:** "adorei como você montou tudo, tá muito bonito" (as capas com ilustração do
+  ChatGPT na mesma conversa, os cartões com print real, o par ✕/✓ com destaque) e "gostei demais" da bio (o recurso
+  que quase ninguém usa, com a fonte). Desde 20/10 o visual também reprova quando se repete (ver Visual abaixo).
+- **Tema que todo mundo já sabe vira ângulo de uso** (28/10): "negrito, lista e citação" não; "como usar melhor o
+  negrito e a citação no SEU WhatsApp Business", sim. A curiosidade do original ("7 códigos que quase ninguém usa")
+  tem que sobreviver na nossa versão.
 - O que ele aprovou: a frase pronta pra uma cena de cliente ("Quanto custa?"), o recurso que quase ninguém usa (a bio
   com 5 links e botão de WhatsApp), o achado de um perfil que bombou refeito pro dono daqui.
 - O que ele não quer: tema de Google repetido, post sobre o método da Horus, isca "comenta PALAVRA" (sem bot de DM).
@@ -46,6 +63,10 @@ Ler antes de tudo. É o que separa o post que ele aprova do que ele reprova. Ori
   pauta, olhar o que fugiu da média neles.
 
 **Escrita**
+- **Capa se entende de relance** (28/10): até 10 palavras, uma ponta de curiosidade, sem linha de apoio que precise
+  ser lida. Se a pessoa tem que parar e ler com calma, a capa falhou.
+- **Introdução antes do passo** (28/10): o slide 2 situa a cena e o problema (onde fica, que bagunça resolve); só
+  depois vem o "faça assim". Nunca chegar mandando fazer como se o leitor já tivesse o contexto.
 - Frase inteira, com o verbo que diz o que fazer, como ele fala: "A bio **deve** responder três perguntas", nunca
   manchete comprimida. Um dado por frase.
 - Gancho pergunta a cena e abre a hipótese, sem afirmar causa única ("...e sumiu? Talvez o problema não seja o preço").
@@ -58,6 +79,16 @@ Ler antes de tudo. É o que separa o post que ele aprova do que ele reprova. Ori
 **Conteúdo**
 - Cada slide do miolo traz algo que o dono não sabia ou uma frase que ele vai copiar. Slide que só repete é cortado.
 - Todo fato com fonte conferida no dia, na linha do slide; exemplo inventado leva a etiqueta "exemplo".
+
+**Visual (todas as marcas, 23/10/2026)**
+- **Nunca o visual do post anterior.** O do cliente que volta (20/10) foi reprovado por repetir capa e sequência
+  do "Seu próximo cliente ainda não te segue". A moldura da marca fica; a linguagem e o mundo visual mudam.
+- **Coisa visual que mostra a ideia** em cada slide do miolo (objeto, interface, diagrama, cena); enfeite não conta.
+  Post que ensina ferramenta mostra a tela dela: print real ou réplica fiel em HTML, nunca objeto 3D genérico
+  (caixa de presente pro catálogo foi reprovada em 28/10).
+- **As séries prontas do Mídia ("escuro" e "tweet") não podem sair em dois posts seguidos** (28/10: o "Não sabe o que
+  postar" e o "4 ferramentas" saíram iguais).
+- **Fala direta**: a frase que o dono diria no balcão, nada de pergunta abstrata na capa.
 
 **Visual (Horus)**
 - Assina o avatar da Horus, nunca rosto. 1080 × 1440. Formatos que funcionaram: antes/depois de fala (escuro), print
@@ -104,7 +135,8 @@ risco, as 3 melhores recomendadas. Salvar em `marketing/conteudo/midia/pautas/<s
 criar ou atualizar a tarefa no Hounder e mostrar a tabela curta no chat.
 
 **CHECKPOINT:** o Marcelo aprova, troca ou pede mais. Produzir só as aprovadas. Se ele
-apontar um tipo que gostou, puxar a próxima pauta pra esse lado e anotar.
+apontar um tipo que gostou, puxar a próxima pauta pra esse lado e anotar. Mesmo com ideias aprovadas
+numa pauta antiga, **os temas de cada semana voltam pra ele** antes do esqueleto (28/10/2026).
 
 ## Passo 1: Entender
 
@@ -115,6 +147,20 @@ apontar um tipo que gostou, puxar a próxima pauta pra esse lado e anotar.
 3. **Objetivo único** do post (`references/algoritmo.md`): enviar, salvar, comentar ou seguir.
    Pergunta-filtro: alguém mandaria pra um amigo específico, ou salvaria pra usar depois?
 4. Tipo: carrossel (2 a 10), post único (ideia de menos de 4 pontos) ou story.
+
+## Passo 1b: Referência visual (antes do texto, toda vez)
+
+Pedido do Marcelo (23/10/2026): olhar um carrossel que funcionou e seguir a organização e o layout, mesmo
+que o tema seja outro. Instagram se vê pelo Playwright, com o Chrome logado dele quando precisar de mais.
+
+1. `node ferramentas/social/bin/referencias.mjs perfil <handle>`: 12 posts recentes, curtidas, outlier.
+   `... post <codigo> <pasta>`: baixa os slides pelo embed e monta `folha.jpg`. Contas e posts já estudados:
+   `_memoria/conteudo/referencias/` e `identidade/social/referencias/perfis.md`.
+2. O acesso sem login corta depois de 1 ou 2 perfis (grade vazia). Aí: grade pelo Chrome logado do Marcelo,
+   em ritmo de leitura, e o download continua pelo embed. Perfil que esconde curtida (@brun0gpt): ler a página
+   do post pela sessão dele. Nunca curtir, seguir, comentar nem mandar DM; 429 = parar e esperar.
+3. Escolher 1 ou 2 posts e anotar na ficha (passo 3): conta, código, o que vou seguir (ordem, layout,
+   densidade) e o que não vou levar.
 
 ## Passo 2: Ângulo e gancho
 
@@ -135,8 +181,13 @@ solta, funciona sozinho como post, e qualquer número dele é real e conferível
 5. **Passe de fala humana:** `references/fala-humana.md` + `_memoria/prospeccao/90-cara-de-ia.md`.
    Teste de trocar o nome da marca pelo do concorrente.
 6. Passar pelo `90-antipadroes.md`.
+7. **Ficha de direção de arte** (`_memoria/conteudo/20-direcao-de-arte.md` §6): linguagem, metáfora central,
+   moldura da marca, mundo deste post, o que muda em relação ao post anterior (citar qual), referência olhada,
+   e o roteiro slide a slide com função, layout, texto exato e imagem.
 
-**CHECKPOINT:** texto completo aprovado antes do visual.
+**CHECKPOINT (o esqueleto):** texto completo **e ficha de direção de arte** aprovados antes do visual. Mostrar
+como esqueleto legível: uma linha por slide com função, texto exato, imagem (de onde vem) e layout. Sem esse ok,
+nada de ChatGPT, HTML ou render.
 
 ## Passo 4: Imagem e elementos visuais
 
@@ -160,6 +211,14 @@ reposiciona o mesmo arquivo (recorte, `object-position`, escala). Série de cena
 4. **Conferir lado a lado** antes do lote; objeto que derivou volta pra geração.
 
 Prompt em inglês: conteúdo do slide + objetos nomeados + style lock.
+
+### Slide inteiro no ChatGPT (o jeito da May, 23/10/2026)
+
+Quando o slide todo sai do ChatGPT (texto e cena juntos), seguir `_memoria/conteudo/25-imagem-no-chatgpt.md`:
+plano aprovado antes, conversa nova **dentro do projeto da marca** (as Fontes têm as referências visuais),
+roteiro inteiro colado no primeiro pedido, slide âncora, lista de preservação repetida a cada slide, texto entre
+aspas, zoom no texto pequeno e folha da série. Pintura com nu é bloqueada: modo híbrido (cena gerada, obra e
+texto pelo código).
 
 ## Passo 5: Sistema de design (antes do primeiro HTML)
 
@@ -249,6 +308,8 @@ que funcionou fica de 7 a 10 posts antes de trocar.
 ## Regras
 
 - Nada se monta sem ideia aprovada (Passo 0)
+- Referência visual olhada antes do texto (Passo 1b); ficha de direção de arte aprovada com o texto
+- Nunca repetir capa nem sequência de layouts do post anterior da marca
 - Um formato, um objetivo, um estilo, um CTA por post
 - Todo número com fonte conferível no slide; exemplo marcado "exemplo"; nada inventado
 - Slide 1 é promessa com ponta solta; melhor ponto cedo; nunca encher slide

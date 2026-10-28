@@ -5,6 +5,12 @@
 
 ## ⏱️ ONDE PARAMOS (03/08/2026) — ler primeiro
 
+> **23/10/2026 (vence o bloco de 03/08 abaixo onde ele diverge):** o post #1 **está renderizado** (8 PNGs em modo
+> claro, `conteudo/post-01-xeque-mate/`, build v3.2) e **nunca foi publicado**. O perfil segue com 0 posts, 189
+> seguidores e a bio antiga ("Estudante de Psicologia"), lidos hoje pelo Playwright. Rascunho do post #2 (Ticiano +
+> Camus) feito no teste do Agy, não aprovado: `conteudo/post-02-sisifo-rascunho-agy/LEIA.md`. O gargalo não é produzir,
+> é publicar: falta o ok da May e a troca da bio pelo app.
+
 **Foco definido pelo Marcelo: redes sociais.** Site e Google Meu Negócio ficam fora
 por ora.
 
@@ -150,6 +156,10 @@ para o conteúdo**. Perfil que fala com todo mundo não fala com ninguém. O rec
 editorial continua em aberto e é pergunta para ela.
 
 ### Por que não gerar carrossel por IA de imagem
+
+> ⚠️ **Em revisão (23/10/2026, decisão do Marcelo pendente).** O Marcelo vem gerando os carrosséis no projeto do
+> ChatGPT "Mayara Barros Redes Sociais" e gosta da estética. O texto em português já sai limpo; obra redesenhada e
+> pintura com nu bloqueada pelo filtro continuam valendo. Proposta de dois modos em `ferramentas/agy/teste-2026-10-23.md`.
 
 Decisão de 03/08/2026, quando o Marcelo cogitou pedir ao ChatGPT para gerar os
 posts a partir dos que a Horus fez. **Carrossel editorial se gera por HTML→PNG, não

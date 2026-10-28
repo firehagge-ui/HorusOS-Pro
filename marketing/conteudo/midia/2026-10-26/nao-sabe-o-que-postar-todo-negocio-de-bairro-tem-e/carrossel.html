@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Não sabe o que postar? Todo negócio de bairro tem estes 7 assuntos</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=JetBrains+Mono:wght@500;600;700&family=Noto+Color+Emoji&display=swap');
+:root { --tinta:#0f1419; --cinza:#536471; --fio:#cfd9de; --void:#0e0918; --painel:#1b1728; --osso:#d1cece; --osso-2:#a7a1b3;
+  --azul:#0077ff; --azul-claro:#4a9bff; --lavanda:#f2f0f6; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:#444; font-family:'DM Sans','Noto Color Emoji',system-ui,sans-serif; }
+.e { font-family:'Noto Color Emoji'; font-weight:400; }
+.slide { width:1080px; height:1440px; position:relative; overflow:hidden; margin-bottom:40px; display:flex; flex-direction:column; }
+
+/* tweet */
+.tw { background:#fff; justify-content:center; padding:0 72px; color:var(--tinta); }
+.tw.capa { justify-content:flex-start; padding-top:130px; }
+.tw .fio { width:4px; height:64px; margin:0 0 18px 65px; background:var(--fio); border-radius:2px; }
+.tw .autor { display:flex; align-items:center; gap:30px; }
+.tw .avatar { width:134px; height:134px; border-radius:50%; background:var(--void); display:grid; place-items:center; flex-shrink:0; }
+.tw .avatar img { width:98px; }
+.tw .nome { font-size:48px; font-weight:700; letter-spacing:-.01em; line-height:1.1; }
+.tw .arroba { font-size:42px; font-weight:500; color:var(--cinza); line-height:1.25; }
+.tw .txt { margin-top:50px; font-size:56px; font-weight:500; line-height:1.3; letter-spacing:-.012em; }
+.tw .txt p + p { margin-top:40px; }
+.tw .txt b { font-weight:700; }
+.tw.impacto .txt { font-size:78px; font-weight:700; line-height:1.12; letter-spacing:-.025em; }
+.tw.impacto .txt .antes { font-size:48px; font-weight:500; color:var(--cinza); letter-spacing:-.01em; }
+.tw .lista { list-style:none; margin-top:28px; counter-reset:p; }
+.tw .lista li { position:relative; padding-left:60px; }
+.tw .lista li + li { margin-top:12px; }
+.tw .lista.pontos li::before { content:''; position:absolute; left:8px; top:28px; width:16px; height:16px; border-radius:50%; background:var(--azul); }
+.tw .lista.numeros li { counter-increment:p; padding-left:78px; }
+.tw .lista.numeros li::before { content:counter(p); position:absolute; left:0; top:4px; width:58px; height:58px; border-radius:50%; background:var(--void); color:#fff; font-size:34px; font-weight:700; display:grid; place-items:center; }
+.tw .lista.setas li::before { content:'→'; position:absolute; left:0; color:var(--azul); font-weight:700; }
+.tw .lista.checks li::before { content:'✓'; position:absolute; left:0; top:6px; width:46px; height:46px; border-radius:10px; background:var(--azul); color:#fff; font-size:32px; font-weight:700; display:grid; place-items:center; }
+.tw .card-img { margin-top:48px; border-radius:40px; overflow:hidden; border:2px solid #e6e9ee; flex:0 1 auto; min-height:0; }
+.tw .card-img img { display:block; width:100%; max-height:600px; object-fit:cover; }
+.tw .fonte { margin-top:40px; font-size:27px; font-weight:500; color:#6e767d; }
+.tw .buscas { margin-top:48px; background:var(--lavanda); border-radius:40px; padding:48px 52px 54px; }
+.tw .ad .ruim { background:#f4f4f6; border:2px solid #e6e6ec; color:#5c5668; }
+.tw .ad .bom { background:rgba(0,119,255,.07); border:2px solid rgba(0,119,255,.45); color:var(--tinta); }
+.tw .ad .rot { color:#5c5668; }
+.tw .zap { background:#efeae2; }
+.tw .zap .cliente { background:#fff; color:var(--tinta); }
+.tw .zap .voce { background:#d9fdd3; color:var(--tinta); }
+
+/* blocos comuns */
+.rotb { font-family:'JetBrains Mono',monospace; font-size:26px; font-weight:600; letter-spacing:.16em; color:#5c5668; text-transform:uppercase; }
+.pilula { margin-top:24px; background:#fff; border-radius:999px; padding:24px 34px; display:flex; align-items:center; gap:22px; font-size:40px; font-weight:500; color:var(--tinta); }
+.pilula svg { width:40px; height:40px; flex-shrink:0; }
+.pilula.alvo { box-shadow:0 0 0 4px var(--azul); }
+.ad { margin-top:20px; }
+.ad .rot { margin-top:40px; font-size:28px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; display:flex; align-items:center; gap:16px; }
+.ad .rot .x { color:#ff5c5c; font-size:34px; } .ad .rot .v { color:var(--azul); font-size:34px; }
+.ad .ruim, .ad .bom { margin-top:20px; border-radius:22px; padding:36px 46px; font-size:40px; font-weight:500; line-height:1.4; position:relative; }
+.ad .ex { position:absolute; top:-18px; right:30px; font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; background:var(--azul); color:#fff; padding:6px 16px; border-radius:8px; }
+.zap { margin-top:48px; border-radius:36px; padding:40px 36px; display:flex; flex-direction:column; gap:22px; }
+.zap .bal { max-width:84%; padding:24px 32px; border-radius:26px; font-size:38px; font-weight:500; line-height:1.35; }
+.zap .cliente { align-self:flex-start; border-top-left-radius:6px; }
+.zap .voce { align-self:flex-end; border-top-right-radius:6px; }
+.falta { display:grid; place-items:center; min-height:420px; background:#fff0f0; border:4px dashed #b00020; color:#b00020; font-size:34px; font-weight:700; }
+
+/* escuro: fundo chapado (Marcelo, 15/10: sem brilho azul no canto) */
+.es { background:var(--void); color:var(--osso); padding:104px 96px 84px; }
+.es .rotulo { display:flex; align-items:center; gap:18px; font-family:'JetBrains Mono',monospace; font-weight:600; font-size:26px; letter-spacing:.2em; text-transform:uppercase; color:rgba(226,232,240,.75); }
+.es .rotulo i { width:14px; height:14px; border-radius:3px; background:var(--azul); flex-shrink:0; }
+.es .miolo { flex:1; display:flex; flex-direction:column; justify-content:center; min-height:0; }
+.es h1 { font-size:86px; font-weight:700; line-height:1.05; letter-spacing:-.028em; color:#fff; text-wrap:balance; }
+.es h2 { font-size:72px; font-weight:700; line-height:1.08; letter-spacing:-.025em; color:#fff; text-wrap:balance; }
+.es em { font-style:normal; color:var(--azul-claro); }
+.es p { font-size:40px; font-weight:500; line-height:1.42; margin-top:30px; }
+.es p b { color:#fff; font-weight:700; }
+.es .lista { list-style:none; margin-top:40px; counter-reset:p; }
+.es .lista li { font-size:42px; font-weight:500; line-height:1.32; padding-left:72px; position:relative; }
+.es .lista li + li { margin-top:28px; }
+.es .lista b { color:#fff; font-weight:700; }
+.es .lista.pontos li::before { content:''; position:absolute; left:10px; top:22px; width:16px; height:16px; border-radius:50%; background:var(--azul-claro); }
+.es .lista.setas li::before { content:'→'; position:absolute; left:0; color:var(--azul-claro); font-weight:700; }
+.es .lista.numeros li { counter-increment:p; }
+.es .lista.numeros li::before { content:counter(p); position:absolute; left:0; top:0; width:52px; height:52px; border-radius:12px; background:rgba(0,119,255,.16); border:1.5px solid rgba(74,155,255,.55); color:#fff; font-size:30px; font-weight:700; display:grid; place-items:center; }
+.es .lista.checks li::before { content:'✓'; position:absolute; left:0; top:2px; width:48px; height:48px; border-radius:10px; background:var(--azul); color:#fff; font-size:32px; font-weight:700; display:grid; place-items:center; }
+.es .card-img { margin-top:44px; border-radius:28px; overflow:hidden; border:1.5px solid rgba(255,255,255,.10); min-height:0; flex:0 1 auto; }
+.es .card-img img { display:block; width:100%; max-height:620px; object-fit:cover; }
+.es .fonte { margin-top:30px; font-size:26px; font-weight:500; color:#8a8496; }
+.es .buscas { margin-top:44px; background:var(--painel); border:1.5px solid rgba(255,255,255,.07); border-radius:28px; padding:44px 48px 50px; }
+.es .rotb { color:var(--osso-2); }
+.es .ad .rot { color:var(--osso-2); } .es .ad .rot .v { color:var(--azul-claro); }
+.es .ad .ruim { background:var(--painel); border:1.5px solid rgba(255,255,255,.07); color:var(--osso-2); }
+.es .ad .bom { background:rgba(0,119,255,.13); border:1.5px solid rgba(74,155,255,.55); color:#fff; }
+.es .zap { background:#0b141a; border:1.5px solid rgba(255,255,255,.06); }
+.es .zap .cliente { background:#202c33; color:#e9edef; }
+.es .zap .voce { background:#005c4b; color:#e9edef; }
+.es .rodape { margin-top:auto; padding-top:32px; border-top:1.5px solid rgba(255,255,255,.10); display:flex; align-items:center; gap:24px; }
+.es .avatar { width:92px; height:92px; border-radius:50%; background:var(--void); border:2px solid rgba(255,255,255,.16); display:grid; place-items:center; }
+.es .avatar img { width:66px; }
+.es .rodape .nome { font-size:34px; font-weight:700; color:#fff; line-height:1.1; }
+.es .rodape .arroba { font-size:28px; font-weight:500; color:var(--azul-claro); }
+.es.capa { padding-top:0; }
+.es.capa .ilus { margin:0 -96px; height:700px; flex-shrink:0; background:center 40% / cover no-repeat; position:relative; }
+.es.capa .ilus::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,transparent 55%,var(--void) 100%); }
+.es.capa .ilus.falta::after { display:none; }
+.es.capa .miolo { justify-content:flex-start; padding-top:20px; }
+.es.capa.sem-ilus .miolo { justify-content:center; }
+.es.capa p { font-size:40px; }
+.es.impacto { background:linear-gradient(141deg,#077ac7,#6b21ef); color:#fff; }
+.es.impacto .rotulo { color:rgba(255,255,255,.85); } .es.impacto .rotulo i { background:#fff; }
+.es.impacto .antes { font-size:44px; line-height:1.3; color:rgba(255,255,255,.88); margin-top:0; }
+.es.impacto .forte { margin-top:36px; font-size:100px; font-weight:800; line-height:1.02; letter-spacing:-.03em; text-wrap:balance; }
+.es.impacto .rodape { border-top-color:rgba(255,255,255,.25); }
+.es.impacto .rodape .arroba { color:#fff; }
+.es.impacto .avatar { border-color:rgba(255,255,255,.35); }
+
+/* "\n" no texto vira quebra de linha (preço por linha, lista dentro do balão; post de 26/10 saiu emendado) */
+.bal, .ad .ruim, .ad .bom, .txt p, .es p, .lista li { white-space:pre-line; }
+
+/* aperto automático quando o conteúdo passa do slide (o render liga e mede de novo) */
+.aperta.tw .txt { font-size:48px; } .aperta.tw .txt p + p { margin-top:30px; }
+.aperta.tw .card-img img, .aperta.es .card-img img { max-height:440px; }
+.aperta.es h2 { font-size:62px; } .aperta.es h1 { font-size:76px; } .aperta.es p, .aperta.es .lista li { font-size:36px; }
+.aperta .ad .ruim, .aperta .ad .bom { font-size:36px; padding:28px 40px; } .aperta .zap .bal { font-size:34px; }
+.aperta.es.capa .ilus { height:600px; }
+</style>
+</head>
+<body>
+<section class="slide es capa"><div class="ilus" style="background-image:url('file:///E:/Users/hagge/Downloads/HorusOS/marketing/conteudo/midia/2026-10-26/nao-sabe-o-que-postar-todo-negocio-de-bairro-tem-e/img/img-229321e5.png')"></div><div class="miolo"><h1>Não sabe o&nbsp;que postar? Todo negócio de&nbsp;bairro tem <em>estes 7 assuntos</em>.</h1><p>Nenhum pede dancinha nem câmera boa.</p></div><div class="rodape"><div class="avatar"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div></section>
+
+<section class="slide es conteudo"><div class="rotulo"><i></i>O QUE POSTAR</div><div class="miolo"><h2>1. A&nbsp;pergunta que&nbsp;mais chega no&nbsp;seu WhatsApp.</h2><p>Responda no&nbsp;post. Quem ia perguntar já chega sabendo.</p><div class="zap"><div class="bal cliente">Vocês entregam no&nbsp;Rio Vermelho?</div><div class="bal cliente">Aceita cartão?</div><div class="bal cliente">Abre domingo?</div></div></div><div class="rodape"><div class="avatar"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div></section>
+
+<section class="slide es conteudo"><div class="rotulo"><i></i>O QUE POSTAR</div><div class="miolo"><h2>2. Os quinze segundos antes de&nbsp;abrir a&nbsp;porta.</h2><p>Ligar a&nbsp;máquina, arrumar a&nbsp;vitrine, a&nbsp;primeira fornada. O&nbsp;que é&nbsp;rotina pra&nbsp;você é&nbsp;novidade pra&nbsp;quem compra.</p><div class="card-img"><img src="file:///E:/Users/hagge/Downloads/HorusOS/marketing/conteudo/midia/2026-10-26/nao-sabe-o-que-postar-todo-negocio-de-bairro-tem-e/img/img-ca97cfb9.png" alt=""></div></div><div class="rodape"><div class="avatar"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div></section>
+
+<section class="slide es conteudo"><div class="rotulo"><i></i>O QUE POSTAR</div><div class="miolo"><h2>3. Quem atende.</h2><p>Nome e&nbsp;o que&nbsp;a pessoa faz. É&nbsp;quem o&nbsp;cliente vai procurar no&nbsp;balcão.</p><div class="ad">
+      <div class="rot"><span class="x">✕</span>Em vez de</div><div class="ruim">Venha conhecer nossa equipe!</div>
+      <div class="rot"><span class="v">✓</span>Escreva assim</div><div class="bom"><span class="ex">exemplo</span>Essa é&nbsp;a Rose. É&nbsp;ela que&nbsp;separa seu pedido quando você manda mensagem.</div></div></div><div class="rodape"><div class="avatar"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div></section>
+
+<section class="slide es conteudo"><div class="rotulo"><i></i>O QUE POSTAR</div><div class="miolo"><h2>4. O&nbsp;antes e&nbsp;depois do&nbsp;serviço.</h2><p>Do&nbsp;processo, nunca de&nbsp;pessoa: o&nbsp;tênis sujo e&nbsp;o limpo, a&nbsp;parede crua e&nbsp;a pintada.</p><div class="card-img"><img src="file:///E:/Users/hagge/Downloads/HorusOS/marketing/conteudo/midia/2026-10-26/nao-sabe-o-que-postar-todo-negocio-de-bairro-tem-e/img/img-47640cf0.png" alt=""></div></div><div class="rodape"><div class="avatar"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div></section>
+
+<section class="slide es conteudo"><div class="rotulo"><i></i>O QUE POSTAR</div><div class="miolo"><h2>5. O&nbsp;aviso que&nbsp;alguém vai procurar.</h2><p>Horário de&nbsp;feriado, produto que&nbsp;chegou. Finados é&nbsp;segunda que&nbsp;vem, dia 2.</p><div class="buscas"><div class="rotb">O que a pessoa digita (exemplo)</div><div class="pilula alvo"><svg viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg>padaria aberta feriado</div><div class="pilula"><svg viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg>lava jato aberto hoje</div><div class="pilula"><svg viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg>farmácia aberta agora perto de mim</div></div></div><div class="rodape"><div class="avatar"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div></section>
+
+<section class="slide es conteudo"><div class="rotulo"><i></i>O QUE POSTAR</div><div class="miolo"><h2>6. O&nbsp;pedido diferente da&nbsp;semana.</h2><p>Mostra até onde você vai. Peça licença antes de&nbsp;postar quem pediu.</p><div class="zap"><div class="bal cliente">Consegue um bolo em&nbsp;formato de&nbsp;violão pra&nbsp;sábado?</div><div class="bal voce">Consigo! Te mando o&nbsp;desenho até amanhã.</div></div></div><div class="rodape"><div class="avatar"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div></section>
+
+<section class="slide es conteudo"><div class="rotulo"><i></i>O QUE POSTAR</div><div class="miolo"><h2>7. O&nbsp;truque que&nbsp;só quem é&nbsp;do ramo sabe.</h2><p>Como guardar o&nbsp;pão pra&nbsp;durar até amanhã. Como ver se o&nbsp;pneu está careca. Você acha óbvio. O&nbsp;cliente, não.</p><div class="card-img"><img src="file:///E:/Users/hagge/Downloads/HorusOS/marketing/conteudo/midia/2026-10-26/nao-sabe-o-que-postar-todo-negocio-de-bairro-tem-e/img/img-ebe5a0ce.png" alt=""></div></div><div class="rodape"><div class="avatar"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div></section>
+
+<section class="slide es impacto"><div class="rotulo"><i></i>O QUE POSTAR</div><div class="miolo"><p class="antes">Anota uma por dia nesta semana.</p><div class="forte">O&nbsp;assunto do&nbsp;post está nas perguntas que&nbsp;você já responde todo dia.</div></div><div class="rodape"><div class="avatar"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div></section>
+
+<section class="slide es cta"><div class="rotulo"><i></i>O QUE POSTAR</div><div class="miolo"><h2>Qual pergunta seu cliente faz toda semana?</h2><p>Conta aqui. Ela pode ser o&nbsp;seu próximo post.</p></div><div class="rodape"><div class="avatar"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div></section>
+</body>
+</html>

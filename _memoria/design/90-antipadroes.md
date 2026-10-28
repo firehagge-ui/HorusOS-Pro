@@ -1336,3 +1336,24 @@ pergunta que sempre me fazem") e a resposta começa respondendo ("Não. Nunca pr
 número grande, rótulo e nome compete com o título e parece uma segunda capa. Sumário é lista vertical compacta: número
 pequeno, nome e uma linha de rótulo, até uns 440 px de largura, igual no computador e no celular.
 → *Origem: Débora Reis, 15/10/2026 ("Deixe o sumário menorzinho na vertical", Marcelo, sobre o mapa da sala de ideias).*
+
+**Foto do projeto menor que o texto ao lado.** No carrossel de projetos, a foto presa a meia tela e encostada na borda
+(a foto de 1080 px limitada pela altura) deixa o título e o parágrafo maiores que o trabalho. Em portfólio a foto é a
+protagonista: no computador, ela ocupa perto de dois terços da largura e vem para perto do centro; quando o arquivo é
+pequeno, ela muda de proporção (recorte) antes de crescer além do arquivo, e o texto encosta nela em vez de ir para a
+outra borda.
+→ *Origem: Débora Reis, 25/10/2026 ("a imagem do projeto está muito concentrada na direita", Marcelo).*
+
+**Foto dentro de forma geométrica (arco, círculo, quadro) como sistema.** Na revisita de 25/10, nenhum dos cerca de
+20 escritórios de arquitetura e interiores estudados (`referencias/arquitetura-awwwards-2026-10.md`) recorta a foto em
+forma geométrica; o arco aparece dentro da foto, na arquitetura. Moldura em arco é marca de template. Se o cliente
+pedir a forma, uma por tela e grande, e mostrar a alternativa reta lado a lado antes de decidir.
+→ *Origem: Débora Reis, 22 a 25/10/2026 (ela sugeriu "cada figura geométrica em uma página, ou então tiraria"; o
+Marcelo ficou em dúvida e pediu para conferir nas referências).*
+
+### Seção de abertura só com texto (Débora Reis, 28/10/2026)
+Depois de tirar as fotos da seção 2 (a cliente não gostou das seis pequenas em moldura), ficou só a frase centralizada,
+com os lados vazios. Nas referências, a seção logo depois da capa junta frase de posição + parágrafo curto + fotos retas
+de tamanhos diferentes, uma dominante (Stanzza, Tarq, Simone Katherine, Telha Clarke). **Por quê:** a abertura é onde o
+visitante confirma o que o escritório faz e vê o primeiro trabalho; texto sozinho ali parece seção inacabada. **Como
+aplicar:** quando o cliente pede menos fotos, diminuir o número e aumentar a que fica, nunca zerar.

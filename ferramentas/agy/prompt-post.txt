@@ -1,0 +1,11 @@
+Você vai escrever o rascunho do POST #2 do Instagram da psicóloga Mayara Barros (@universpsiquee). NÃO publique nada, NÃO abra navegador para o Instagram. Só escreva.
+
+Antes de escrever, leia (caminhos relativos à raiz do repositório C:/Users/hagge/orca/workspaces/HorusOS/swordtail):
+- clientes/mayara-barros/CLAUDE.md, briefing.md, marca.md, instagram/estrategia.md
+- clientes/mayara-barros/conteudo/post-01-xeque-mate.md (o post #1, para não repetir obra nem tema)
+- _memoria/integridade.md
+- _memoria/conteudo/00-formatos.md, 90-antipadroes.md, 99-checklist.md
+
+Regras que não se negociam: compliance CFP (nada de depoimento, promessa, autoteste, "sinais de que", superlativo); CRP 03/36219 na peça; obra REAL em domínio público com ficha técnica conferida (pesquise na web em fonte de museu); ideia filosófica corretamente atribuída; o que você não conseguiu conferir fica conferido=false e vira pendência, nunca texto plausível; tema de sofrimento agudo leva CVV 188; português do Brasil com acento; sem travessão como separador na copy.
+
+Devolva SOMENTE o JSON no schema pedido.

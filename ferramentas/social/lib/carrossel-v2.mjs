@@ -269,6 +269,9 @@ body { background:#444; font-family:'DM Sans','Noto Color Emoji',system-ui,sans-
 .es.impacto .rodape .arroba { color:#fff; }
 .es.impacto .avatar { border-color:rgba(255,255,255,.35); }
 
+/* "\\n" no texto vira quebra de linha (preço por linha, lista dentro do balão; post de 26/10 saiu emendado) */
+.bal, .ad .ruim, .ad .bom, .txt p, .es p, .lista li { white-space:pre-line; }
+
 /* aperto automático quando o conteúdo passa do slide (o render liga e mede de novo) */
 .aperta.tw .txt { font-size:48px; } .aperta.tw .txt p + p { margin-top:30px; }
 .aperta.tw .card-img img, .aperta.es .card-img img { max-height:440px; }

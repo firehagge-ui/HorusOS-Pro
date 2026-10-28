@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "required": ["instrucoes_carregadas_automaticamente", "arquivos_lidos", "formato_escolhido", "obra", "ideia_filosofica", "slides", "legenda", "compliance", "pendencias"],
+  "properties": {
+    "instrucoes_carregadas_automaticamente": {"type": "string", "description": "Quais arquivos de regra (AGENTS.md, CLAUDE.md, GEMINI.md etc.) chegaram no seu contexto SEM você abrir"},
+    "arquivos_lidos": {"type": "array", "items": {"type": "string"}},
+    "formato_escolhido": {"type": "string"},
+    "obra": {"type": "object", "required": ["autor", "titulo", "ano", "acervo", "dominio_publico", "fonte_conferida", "conferido"], "properties": {
+      "autor": {"type": "string"}, "titulo": {"type": "string"}, "ano": {"type": "string"}, "acervo": {"type": "string"},
+      "dominio_publico": {"type": "boolean"}, "fonte_conferida": {"type": "string"}, "conferido": {"type": "boolean"}}},
+    "ideia_filosofica": {"type": "object", "required": ["autor", "ideia", "obra_fonte", "conferido"], "properties": {
+      "autor": {"type": "string"}, "ideia": {"type": "string"}, "obra_fonte": {"type": "string"}, "conferido": {"type": "boolean"}}},
+    "slides": {"type": "array", "minItems": 5, "maxItems": 9, "items": {"type": "object", "required": ["n", "tipo", "titulo", "corpo"], "properties": {
+      "n": {"type": "integer"}, "tipo": {"type": "string"}, "titulo": {"type": "string"}, "corpo": {"type": "string"}}}},
+    "legenda": {"type": "string"},
+    "compliance": {"type": "array", "items": {"type": "string"}},
+    "pendencias": {"type": "array", "items": {"type": "string"}}
+  }
+}

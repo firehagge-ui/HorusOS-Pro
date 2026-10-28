@@ -1,6 +1,7 @@
 # Revisão do site da Débora (fim de semana de 24 e 25/10/2026)
 
-Link: https://esboco-debora-reis.vercel.app (as mudanças de 23/10 já estão no ar; a Débora pode ver se abrir o link).
+Link: https://esboco-debora-reis.vercel.app (as mudanças de 23 e 25/10 já estão no ar; a Débora pode ver se abrir o link).
+Versão de antes de 23/10, no ar para comparar lado a lado: https://esboco-debora-reis-antes.vercel.app
 Fontes para conferir: o áudio dela de 22/10, a imagem da proposta do loft (cronograma) e a logo.
 Versão de antes, para comparar: `versoes/antes-enxugar-23-10/` (igual ao commit `b0c6098`).
 
@@ -31,15 +32,21 @@ Onde: home, pergunta "Você cuida da obra?" e o rodapé do "Como trabalho"; guia
 - [ ] Projetos: cada apartamento numa tela, com um trecho da legenda dela. Só o Rio Vermelho abre página própria.
 - [ ] As 5 páginas de projeto que só repetiam foto e legenda saíram. Sente falta de alguma?
 
-## 4. Figuras geométricas
+## 4. Seção 2 e figuras geométricas (mudou em 25/10 e em 28/10)
 
-Onde: só em `/projetos.html` (saíram da home).
-- [ ] Arco nos Livros, quadro no Artesanato, círculo no Frio e quente: uma por projeto, grande. Ficou bonito?
+28/10: a seção 2 voltou a ter fotos, no jeito das referências (uma grande e duas menores, retas), e as figuras dela
+viraram desenho de linha nas etapas do "Como trabalho" (círculo, arco, quadro, uma por etapa).
+- [ ] A seção 2 ficou melhor com a estante grande e duas menores?
+- [ ] Os desenhos das etapas ajudam ou atrapalham a leitura dos prazos?
 
-## 5. Logo e cor
 
-- [ ] Monograma no topo de todas as páginas (no celular, só o monograma); logo completa no rodapé; ícone da aba; capa
-      do PDF.
+As molduras saíram de vez: nenhum dos ~20 escritórios estudados emoldura foto em forma geométrica (ver
+`referencias/arquitetura-awwwards-2026-10.md`, "Revisita de 25/10"). Em `/projetos.html` os detalhes ficam com a foto reta.
+- [ ] Ficou melhor sem? (para voltar, as molduras estão em `versoes/antes-ajustes-25-10/`)
+
+## 5. Logo e cor (mudou em 25/10)
+
+- [ ] A logo dourada saiu, a seu pedido: topo e rodapé só com o nome, guia e PDF sem logo.
 - [ ] A cor do resto do site continua a nossa (vermelho e madeira). Usar o dourado dela também? (pergunta para ela)
 
 ## 6. No celular

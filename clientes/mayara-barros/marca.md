@@ -37,6 +37,10 @@ As 7 imagens se dividem em dois grupos, e a diferença importa:
 
 **✅ O grupo que define a marca** (Julia Marques `@julia.psico`, Andréa Barini
 `CRP 09/7277`, Luana Farah `@luanafarah.psi`):
+
+> Conferido em 23/10/2026: a Andréa Barini é **@psiandreabarini** (psicóloga e suicidologista, 2.339
+> seguidores); o `@julia.psico` é de "Julia Ferber Cirri", não de Julia Marques ❓ (perguntar à May qual
+> perfil ela quis dizer). Estudo do sistema visual da Barini em `_memoria/conteudo/20-direcao-de-arte.md` §1.
 - **Pintura clássica** como imagem-herói (Caravaggio, Ticiano, a Pietà, retratos
   barrocos). 🟢 Obra pré-1900 é **domínio público** — de graça e sem risco de
   direito autoral, e é exatamente o acervo que ela ama

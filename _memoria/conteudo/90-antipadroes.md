@@ -108,9 +108,53 @@ hashtags entram nele. Mirar 1.500 a 1.800 deixa a legenda respirar.
 **Link na legenda.** Legenda do Instagram não tem link clicável. URL ali queima
 caractere e denuncia amadorismo. Link vai na bio ou no sticker do story.
 
+**Chamada abstrata, escrita "de lado".** "Quanto vale um cliente que volta?", "Um cliente vale mais que a
+primeira compra". O dono não sabe responder na hora e não se vê na cena; soa como texto de IA, indireto e
+subjetivo. Capa fala a frase da cena ou a regra com verbo ("Não posso.", "Se você é empresário, estude"),
+pergunta só se a pessoa responde em um segundo.
+→ *Origem: o Marcelo reprovou o post do cliente que volta (semana de 19/10/2026): "o tema era bom, mas a
+forma como foi redigido não estava boa", "parece ser IA, falar de forma não direta e clara e meio subjetiva".*
+
+**Capa grande que precisa de leitura calma.** "Além da saudação, seu WhatsApp Business tem mais quatro ferramentas.
+Quantas estão ligadas aí?" (17 palavras e mais uma linha embaixo). Quem rola o feed não para pra ler; a capa se
+entende de relance, em até 10 palavras, com uma ponta de curiosidade ("os códigos que quase ninguém usa").
+→ *Origem: o Marcelo reprovou o "4 ferramentas do WhatsApp Business" (28/10/2026): "ficou grande, não ficou
+sexy. Pra entender logo de cara esse título a pessoa tem que parar e ler com calma".*
+
+**Entrar explicando sem introdução.** O slide 2 já manda fazer ("Separe quem pediu, quem pagou e quem espera
+entrega. Depois filtre as conversas...") como se o leitor já soubesse do que se trata. Antes do passo vem a cena
+e o problema: onde fica a ferramenta, que bagunça ela resolve, depois como usar.
+→ *Origem: mesma reprovação de 28/10/2026: "você já chega falando como se a pessoa já tivesse um contexto
+anterior... CALMA!".*
+
+**Tema que todo mundo já sabe, apresentado como novidade.** "Negrito, lista e citação no WhatsApp": o dono já
+conhece o recurso. O ângulo que salva é o uso no negócio dele: "como usar melhor o negrito, a citação etc. no SEU
+WhatsApp Business", com a mensagem real antes e depois.
+→ *Origem: reprovação de 28/10/2026 ("todo mundo já sabe, poderia ser...").*
+
 ---
 
 ## Design
+
+**Repetir o visual do post anterior.** Mesma capa (o olho 3D no mesmo canto), mesma sequência de layouts
+(números 01-02-03, lista, frase sublinhada, botão) em temas diferentes. O perfil vira a mesma peça repintada
+e o Marcelo não aprova. Consistência mora na moldura (assinatura, fontes, paleta); o mundo visual muda a
+cada post. Antes de montar, citar o post anterior da marca e dizer o que muda (`20-direcao-de-arte.md` §1 e §6).
+→ *Origem: post do cliente que volta (20/10/2026), reprovado por estar "com o mesmo visual que o post Seu
+próximo cliente ainda não te segue". Folhas lado a lado em `referencias/2026-10-23/horus-*.png`.*
+
+**Slide sem nada visual, ou com imagem que só enfeita.** Título e parágrafo sobre fundo chapado, ou o mesmo
+símbolo da marca em toda capa. A imagem tem que mostrar a ideia: objeto, interface, diagrama, cena
+(`20-direcao-de-arte.md` §2). Slide só tipográfico é escolha de ritmo, não falta de ideia.
+→ *Origem: mesma reprovação de 20/10/2026 ("não tinha muitas coisas visuais também") e a de 21/10 ("a
+pessoa olha, vê esse texto todo, não fica com vontade de ver").*
+
+**Objeto 3D no lugar da tela que se explica.** Caixa de presente pro catálogo, sacola pro QR code, caixa de
+ferramentas na capa: bonito e genérico, não mostra nada. Post que ensina ferramenta mostra a ferramenta: print da
+tela de verdade (tirado pelo Chrome) ou réplica fiel da interface em HTML, com o botão e o caminho que a pessoa vai
+tocar. ChatGPT não desenha interface.
+→ *Origem: reprovação do "4 ferramentas do WhatsApp Business" (28/10/2026): "é importante que tenham imagens
+mostrando exatamente o que você está explicando, pode ser prints ou montar exatamente como é aquilo".*
 
 **Contador de slide "1/8".** O Instagram já mostra os pontinhos de navegação
 nativos. Um contador desenhado dentro da arte é ruído redundante e um dos tells

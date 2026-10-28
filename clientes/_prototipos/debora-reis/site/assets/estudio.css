@@ -105,8 +105,9 @@ main,.rodape{position:relative;z-index:1}
 
 /* ---------- 1. capa (rodada 4) ---------- */
 .capa{position:relative;height:100vh;height:100svh;min-height:640px;padding:84px var(--lateral) var(--lateral);color:var(--cal)}
-/* 15/10: a foto do Instagram tem 1080 px; emoldurada pelo papel, com teto de 1180 px, ela fica no tamanho em que é nítida */
-.capa-quadro{position:relative;height:100%;max-width:1180px;margin:0 auto;overflow:hidden}
+/* 15/10: a foto do Instagram tem 1080 px; emoldurada pelo papel, ela fica no tamanho em que é nítida.
+   25/10: o teto passou de 1180 para 1320 px (o Marcelo pediu a foto um pouco mais larga, sem ir até a borda) */
+.capa-quadro{position:relative;height:100%;max-width:1320px;margin:0 auto;overflow:hidden}
 .capa-foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
 .capa-quadro::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(22,15,12,.34) 0%,rgba(22,15,12,.08) 26%,rgba(22,15,12,.22) 52%,rgba(22,15,12,.8) 100%)}
 .capa-txt{position:absolute;z-index:1;left:0;right:0;bottom:8%;text-align:center;padding:0 var(--lateral)}
@@ -404,8 +405,6 @@ main,.rodape{position:relative;z-index:1}
 .todos-sub > p:not(.rot){grid-column:8/13;color:var(--tinta-2);margin:0 0 6px}
 .obra-detalhe{padding:56px 0}
 .obra-detalhe h2{font-size:clamp(40px,3.6vw,56px)}
-.obra-detalhe .obra-uma{grid-column:6/13}
-.obra-detalhe .obra-uma img{max-height:60vh}
 .todos-fim{padding:96px 0 56px;text-align:center}
 .todos-fim .mao{font-size:40px;line-height:1;color:var(--vermelho);transform:rotate(-3deg);margin:0 0 32px}
 
@@ -432,12 +431,19 @@ main,.rodape{position:relative;z-index:1}
 @media (min-width:1081px){
   .pj{background:#14100D}
   .pj-retrato{background:var(--vinho)}
-  .pj-foto{top:150px;bottom:138px;left:auto;right:var(--lateral);width:min(56%,calc((100svh - 288px) * var(--ar,1)))}
+  /* 25/10: a foto cresce e vem para perto do centro (o Marcelo achou pequena e encostada na direita). --art é a proporção
+     em que ela aparece: o Rio Vermelho, quadrado, aparece deitado; o Aconchego, em pé, aparece quadrado. O Colorir fica na
+     proporção do arquivo, que tem só 628 px de largura e amoleceria se crescesse mais. */
+  .pj-foto{top:150px;bottom:120px;left:auto;right:var(--lateral);width:min(64%,calc((100svh - 270px) * var(--art,var(--ar,1))))}
   /* a etiqueta da prévia fica embaixo, à esquerda: os controles sobem acima dela */
   .pj-base{bottom:58px}
   .pj-foto::after{display:none}
-  .pj-txt{bottom:auto;top:50%;transform:translateY(-50%);max-width:min(520px,34%)}
+  .pj-txt{bottom:auto;top:50%;transform:translateY(-50%);max-width:min(440px,29%)}
   .pj-dir .pj-foto{right:auto;left:var(--lateral)}
+  /* 25/10: com a foto à esquerda, o texto encosta nela em vez de ir para a borda da direita */
+  .pj-dir .pj-txt{right:auto;left:calc(var(--lateral) + min(64%, calc((100svh - 270px) * var(--art,var(--ar,1)))) + 72px);text-align:left}
+  .pj-dir .pj-txt p:not(.rot):not(.pj-mao){margin-left:0}
+  .pj-dir .pj-mao{transform-origin:left bottom}
 }
 
 @media (max-width:760px){
@@ -599,10 +605,7 @@ main,.rodape{position:relative;z-index:1}
 }
 
 /* ---------- 23/10: o que a Débora pediu no áudio de 22/10 ---------- */
-/* a logo dela: o monograma no cabeçalho, ao lado do nome; a assinatura inteira no rodapé */
-.cab-marca,.marca{display:inline-flex;align-items:center;gap:12px}
-.cab-marca img,.marca img{width:auto;height:38px;flex:none}
-.rodape-marca img{width:172px;margin:0 auto}
+/* 25/10: a logo dourada saiu, a pedido do Marcelo; o topo e o rodapé voltam a ser só o nome (os arquivos ficam em assets) */
 
 /* seção 2 só com a pergunta e a resposta dela (as seis fotos pequenas saíram) */
 .composicao.comp-so{height:auto;padding:150px 0 120px}
@@ -630,11 +633,11 @@ main,.rodape{position:relative;z-index:1}
 .crono-pe p{grid-column:1/4;color:var(--tinta-2);margin:0}
 .crono-pe .btn{grid-column:5/7;justify-self:end}
 
-/* projetos: as legendas inteiras dela pedem a letra um pouco menor; nos detalhes, uma moldura por vez */
+/* projetos: as legendas inteiras dela pedem a letra um pouco menor.
+   25/10: as molduras em arco, quadro e círculo saíram. Nos cerca de 20 escritórios estudados (referencias/), nenhum põe a
+   foto dentro de forma geométrica; o arco aparece dentro da foto, na arquitetura. Os detalhes ficam do tamanho dos
+   apartamentos, a foto reta e inteira. */
 .obra-uma blockquote p{font-size:clamp(21px,1.75vw,25px);line-height:1.32}
-.moldura-arco .obra-uma img{border-radius:999px 999px 0 0;outline:1px solid var(--tinta);outline-offset:10px}
-.moldura-quadro .obra-uma figure{padding:18px;background:#FBF8F2;border:1px solid var(--tinta)}
-.moldura-circulo .obra-uma img{aspect-ratio:1;width:min(100%,58vh);border-radius:50%;box-shadow:0 0 0 10px var(--cal),0 0 0 11.5px var(--madeira)}
 
 @media (max-width:1080px){
   .crono{grid-template-columns:1fr 1fr;row-gap:48px}
@@ -645,9 +648,6 @@ main,.rodape{position:relative;z-index:1}
   .crono-pe p{grid-column:1/5}
 }
 @media (max-width:760px){
-  .cab-marca{gap:9px}
-  .cab-marca img,.marca img{height:30px}
-  .rodape-marca img{width:132px;margin:0}
   .composicao.comp-so{display:block;padding:104px var(--lateral) 72px}
   .cronograma{padding:104px var(--lateral) 96px}
   .crono-topo{display:block;margin-bottom:40px}
@@ -661,11 +661,63 @@ main,.rodape{position:relative;z-index:1}
   .crono-pe{display:block;margin-top:40px}
   .crono-pe p{margin-bottom:22px}
   .crono-pe .btn{display:block;width:100%;text-align:center}
-  .cab-marca span{display:none}
-  .moldura-circulo .obra-uma img{width:100%}
 }
 /* tablet em pé: a frase dela embaixo da foto, porque ao lado ficava numa coluna de ~120 px (12 linhas) */
 @media (min-width:761px) and (max-width:900px){
   .obra-uma{grid-template-columns:1fr;gap:22px;align-items:start}
   .obra-uma blockquote{max-width:26em}
+}
+
+/* ---------- 28/10: seção 2 e Como trabalho refeitas a partir das referências ---------- */
+/* Seção 2: frase à esquerda e grande, uma foto grande e duas menores, retas (Simone Katherine, Tarq, Stanzza) */
+.intro{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;padding:150px var(--lateral) 140px;align-items:start}
+.intro-frase{grid-column:1/11;grid-row:1;margin-bottom:80px}
+.intro-frase .rot{margin-bottom:14px}
+.intro-perg{font-size:34px;line-height:1;color:var(--vermelho);margin:0 0 18px;transform:rotate(-3deg);transform-origin:left bottom}
+.intro-frase h2{font-size:clamp(48px,5.4vw,80px);line-height:1;max-width:none}
+.intro-frase .linha{display:block}
+.intro .risco{margin:18px 0 0;width:min(380px,40%)}
+.intro-grande{grid-column:1/7;grid-row:2}
+.intro-grande .intro-q{aspect-ratio:1/1}
+.intro-grande img{object-position:50% 20%}
+.intro-lado{grid-column:8/13;grid-row:2;align-self:stretch;display:flex;flex-direction:column}
+.intro-txt{font-size:var(--t-lead);line-height:1.35;color:var(--tinta);max-width:17em;margin:0 0 22px}
+.intro-link{align-self:flex-start}
+.intro-par{display:grid;grid-template-columns:1fr 1fr;column-gap:24px;align-items:end;margin-top:auto;padding-top:56px}
+.intro-par .intro-desce{margin-bottom:64px}
+.intro-f{margin:0}
+.intro-f a{display:block;color:inherit;text-decoration:none}
+.intro-q{display:block;overflow:hidden;background:var(--cal-2);aspect-ratio:3/4}
+.intro-q img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--facil)}
+.intro-f a:hover img{transform:scale(1.03)}
+.intro-f figcaption{font-size:25px;line-height:1.05;color:var(--vermelho);margin:14px 0 0 6px;transform:rotate(-3deg);transform-origin:left top;transition:color .3s ease}
+.intro-f a:hover figcaption{color:var(--tinta)}
+
+/* Como trabalho: um desenho de linha por etapa, no lugar da foto que Tarq e Stanzza põem */
+.crono-des{display:block;width:100%;max-width:280px;height:auto;margin:6px 0 30px;stroke:var(--tinta)}
+.crono-des .g{stroke-width:1.4}
+.crono-des .f{stroke-width:1;stroke:rgba(30,26,23,.55)}
+.crono-des .vm{stroke:var(--vermelho);stroke-width:1.4}
+
+@media (max-width:1080px){
+  .intro{padding:120px var(--lateral) 110px}
+  .intro-grande{grid-column:1/8}
+  .intro-lado{grid-column:8/13;padding-left:8px}
+  .intro-par{grid-template-columns:1fr;row-gap:32px}
+  .intro-par .intro-desce{display:none}
+}
+@media (max-width:760px){
+  .intro{display:block;padding:104px var(--lateral) 80px}
+  .intro-frase{margin-bottom:40px}
+  .intro-perg{font-size:28px}
+  .intro-frase h2{font-size:40px}
+  .intro .risco{width:70%}
+  .intro-grande .intro-q{aspect-ratio:4/5}
+  .intro-lado{padding:0;margin-top:32px}
+  .intro-txt{font-size:var(--t-corpo)}
+  .intro-par{grid-template-columns:1fr 1fr;column-gap:12px;padding-top:32px}
+  .intro-par .intro-desce{display:block}
+  .intro-par .intro-desce{margin-bottom:40px}
+  .intro-f figcaption{font-size:20px}
+  .crono-des{max-width:220px;margin-bottom:20px}
 }

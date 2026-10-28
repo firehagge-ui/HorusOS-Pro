@@ -68,3 +68,70 @@
 - **Rodada 5 (14/10/2026):** o Marcelo achou a capa e a cena do projeto parecidas demais com a Stanzza. Ficou o sistema;
   a capa virou uma prancha com carimbo e os projetos viraram carrossel com composição própria em cada um
   (`_memoria/design/90-antipadroes.md`, "Referência obrigatória copiada na estrutura").
+
+## Revisita de 25/10/2026: o que a Débora pediu, visto nas referências
+
+> A pedido do Marcelo: procurar nas referências o que se parece com o pedido do áudio da Débora (22/10): prazos, site
+> enxuto, as figuras geométricas "cada uma em uma página ou tirar", e a obra. Rolagem real com o Playwright, em 1440 px,
+> em 13 sites: 7 já estudados (Stanzza, Tarq, LPAS, Mathilde de Chiara, Loam House, Telha Clarke, Simone Katherine) e 6
+> novos (Beata Heuman, TWODESIGNERS, India Mahdavi, Studio Ashby, Paula Müller, Natália Salla). Somados aos estudos de
+> 13/10 e 15/10, são cerca de 20 escritórios. Telas no scratchpad da sessão (somem com ela); o que importa está aqui.
+
+| O que ela pediu | O que as referências fazem | O que aplicamos (25/10) |
+|---|---|---|
+| **Figuras geométricas, "cada uma em uma página"** | Nenhum dos ~20 recorta foto em arco, círculo ou quadro. A forma aparece **dentro** da foto (o arco da porta na India Mahdavi) ou como **desenho de linha** (a axonometria da Stanzza, o contorno de casa da Natália Salla). O que existe de "um por página" é **um capítulo por tela**: Loam House (01 a 06, uma ideia e uma foto por tela, com números) e Stanzza (um projeto por tela, com ficha). Busca na web por "arch-shaped" só achou template de Webflow e Squarespace | As molduras saíram de `projetos.html`. Os detalhes ficam do tamanho dos apartamentos, com a foto reta, um por bloco. O "um por página" dela ficou como um por bloco, grande |
+| **Prazos** | Só a Stanzza dá prazo: na ficha do projeto ("Project executed in 62 days") e nas perguntas. Tarq e Stanzza mostram o processo em 4 itens numerados com foto de cada etapa (gente na mesa, amostra de material, obra); a Stanzza junta o rosto do responsável ("One responsible lead") | A régua de 4 etapas com o prazo dela fica: ela já passa todas as referências (nenhuma põe o prazo de cada etapa na home). Falta para chegar no nível da Stanzza: o prazo de um projeto entregue na ficha de cada apartamento e uma foto de cada etapa `[FALTA: dado e fotos dela]` |
+| **Obra: "visita de arquiteta, não gestão"** | A Stanzza escreve exatamente isso como compromisso: "Quality on site: author supervision throughout construction", separado da construção | Fica na pergunta "Você cuida da obra?" (uma vez só; ela pediu sem repetição) |
+| **Enxuto** | Tarq, Loam e LPAS: texto curto, um assunto por tela, foto grande. As brasileiras (Paula Müller, Natália Salla) são grade de catálogo com mais blocos | Duas repetições saíram: "Reforma de apartamentos" estava na capa e logo abaixo; "apresento orçamentos de empresas de obra" estava no Como trabalho e na pergunta da obra |
+| **Foto do projeto com destaque** (pedido do Marcelo) | Stanzza: foto do projeto com ~72% da largura, título e ficha por cima das bordas. Loam: foto de ponta a ponta | No carrossel da home, a foto foi de ~42% para ~64% da largura e veio para perto do centro; o Rio Vermelho aparece deitado e o Aconchego quadrado (recorte), o Colorir cresce pouco porque o arquivo tem 628 px. A capa passou de 1180 para 1320 px de largura |
+
+**O que não copiar:** a Stanzza com a foto no centro e o título por cima foi recusada pelo Marcelo em 14/10 (rodada 5,
+"parecido demais"). A foto cresce, mas a composição continua sendo a do carrossel dela (texto ao lado, nota à mão).
+
+## Como montam cada seção, e o que viramos no site da Débora (28/10/2026)
+
+> Pedido do Marcelo: não comparar, e sim ver como as referências montam cada seção (o que põem, como organizam, layout,
+> arte) e aplicar. Base: as telas da revisita de 25/10 (Stanzza, Tarq, Loam House, LPAS, Beata Heuman, Natália Salla,
+> Paula Müller, Simone Katherine, Telha Clarke). Vale para qualquer escritório de interiores.
+
+### A seção de abertura (logo depois da capa)
+
+| Site | O que põe | Como organiza |
+|---|---|---|
+| Stanzza | `[ COMPOSED ]` + "A home is a composition." + dois parágrafos curtos (como trabalham; o que acreditam) | Título pequeno no centro, parágrafos nas bordas, 4 fotos retas de tamanhos diferentes subindo em ritmos diferentes |
+| Tarq | "THE STUDIO" enorme + dois parágrafos (o que fazem) + as cidades + "Conoce nuestro estudio" | Texto à esquerda, **uma foto grande** à direita (o estúdio, gente trabalhando, preto e branco) |
+| Simone Katherine | Frase grande em serifa + um parágrafo com o nome da fundadora e a cidade | **Uma foto grande** à esquerda, à direita uma média com o parágrafo e duas pequenas embaixo |
+| Telha Clarke | "Telha Clarke is a Melbourne based Architecture & Interior Design studio..." | Frase enorme na largura toda, uma foto pequena e um parágrafo |
+| LPAS | "Clear Process. Creative Results. Human Centered. Always Curious." + parágrafo + "More about us" | Só texto, à esquerda, antes da grade de projetos |
+| Natália Salla | "BEM VINDO" + parágrafo + "Confira" | Texto curto, depois a grade de projetos |
+| Loam House | Um capítulo numerado por tela: frase em serifa, uma linha, números | Foto de ponta a ponta, texto por cima |
+
+**O padrão:** frase de posição (todas) + parágrafo curto do que fazem (7 de 9) + fotos retas de tamanhos diferentes, uma
+dominante (Stanzza, Tarq, Simone, Telha) + um link para o "sobre" (Tarq, LPAS, Salla). A frase fica à esquerda em 6 de 9.
+Nenhuma foto em forma geométrica. **Débora antes:** a frase centralizada sozinha, os lados vazios. **Débora agora:** a
+pergunta e a resposta dela à esquerda e grandes; a estante dos livros grande; "Cada projeto parte de quem mora ali" com
+"Conheça a arquiteta"; a cerâmica e o nicho azul menores e desencontrados, cada legenda à mão levando ao detalhe.
+
+### Processo e prazos
+
+| Site | O que põe | Como organiza, com que arte |
+|---|---|---|
+| Tarq | "NUESTRO PROCESO" enorme + 4 etapas | Numeral em itálico grande + nome da etapa, **uma foto por etapa** (reunião na mesa, amostras de material, render, obra) e 3 linhas de texto, em fila |
+| Stanzza | `[01]` a `[04]`: responsável único, processo com aprovação, custos visíveis, supervisão na obra | Fotos em preto e branco presas à esquerda, itens com fio à direita; as fases (Arquitetura, Design, Entrega) em painel escuro com **axonometria em desenho de linha** |
+| LPAS | "Listen. Plan. Analyze. Shape." | Quatro verbos em texto pequeno |
+| Stanzza (FAQ) | O único que dá prazo, e só na ficha do projeto ("executed in 62 days") e nas perguntas | — |
+
+**O padrão:** etapas numeradas, poucas linhas cada, e **uma imagem por etapa** (Tarq e Stanzza). Prazo por etapa: nenhum
+dos ~20 escritórios. **Débora agora:** fica a régua com os prazos dela (o que nenhum tem) e entra um desenho de linha por
+etapa, que é como a Stanzza ilustra as fases: a planta com as cotas (medição), a planta com os móveis e a mesa redonda
+(estudo), a perspectiva com o nicho em arco (anteprojeto), a marcenaria com cotas e o detalhe circulado (detalhamento).
+**As formas que a Débora pediu (círculo, arco, quadro) voltam aqui, uma por etapa, como desenho**, que é o único jeito em
+que as referências usam forma geométrica. Quando houver foto real de cada etapa, ela entra no lugar do desenho (Tarq).
+
+### Capa e projetos
+
+- **Capa:** 9 de 9 abrem com foto do trabalho; Tarq e Paula Müller dão o nome do projeto da foto com um link. A da Débora
+  segue o modelo (foto, frase à mão, título, serviço, formação, botão); não cresce mais porque o arquivo tem 1072 px.
+  `[FALTA: de qual apartamento é a estante dos CDs, para pôr o nome e o link, como a Tarq]`.
+- **Projetos:** um por tela com ficha (Stanzza: prazo, área, cidade). O carrossel dela já é um por tela; a ficha fica com
+  o que se sabe (bairro). `[FALTA: prazo e metragem de cada apartamento, só a Débora]`.

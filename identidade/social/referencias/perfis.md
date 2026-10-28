@@ -13,6 +13,12 @@ Nunca copiar número, rosto, nicho ou a isca "comenta PALAVRA" (sem bot de DM, d
 | [@brun0gpt](https://www.instagram.com/brun0gpt/) | Bruno Francisco, IA e marketing (229 mil) | Método de um mestre virando prompt; lista de ferramenta grátis; manchete em duas espessuras | `2026-10-10-brun0gpt.md` |
 | [@brunofragaoficial](https://www.instagram.com/brunofragaoficial/) | Bruno Fraga, vendas | Print de tweet com framework de números ("o ouro das vendas cabe em 4 números") | abaixo |
 
+**Conferido em 23/10/2026:** @lucureau e @nacaothiagofinch postaram só reels nos 12 posts mais recentes;
+pra estudar carrossel, @brun0gpt (17 carrosséis em 24 posts) segue útil. Contas de carrossel achadas no
+estudo de 23/10 (não são da lista do Marcelo, entram como apoio): @eugersonrodrigues, @barretobru,
+@ideiasquepagam25 (pequeno negócio); @tarcisioelias_, @portadoestoicismo, @yurimocellin (psicologia e
+filosofia). Números e o que levar de cada uma: `_memoria/conteudo/referencias/2026-10-23-estudo.md`.
+
 ## @brunofragaoficial, post `DeMmFKAkSlH` (mandado em 15/10/2026)
 
 Print de tweet, 8 slides, capa com meme (Leonardo DiCaprio mordendo ouro) e "O ouro das vendas cabe em 4 números".

@@ -50,8 +50,10 @@
         n.style.left = x + 'px'; n.style.top = y + 'px';
         n.style.display = '';
         var r = n.getBoundingClientRect(), f = fig.getBoundingClientRect();
-        // longe do número no topo e do texto embaixo, e inteira dentro da foto
-        var cabe = y > 150 && y < h - 330 && r.left > f.left + 12 && r.right < f.right - 12;
+        // na tela cheia (celular), longe do número no topo e do texto embaixo; na foto emoldurada (computador), só não
+        // encostar na borda. Sempre inteira dentro da foto.
+        var cheia = h > window.innerHeight - 120;
+        var cabe = (cheia ? (y > 150 && y < h - 330) : (y > 36 && y < h - 36)) && r.left > f.left + 12 && r.right < f.right - 12;
         n.style.display = cabe ? '' : 'none';
       });
     });
@@ -318,9 +320,15 @@
     tracar(document.querySelector('.risco'));
     tracar(document.querySelector('.desenho-estante'));
     tracar(document.querySelector('.desenho-rodape'));
+    document.querySelectorAll('.crono-des').forEach(tracar);
+
+    // seção 2 (28/10): as três fotos sobem ao chegar, a grande primeiro
+    gsap.utils.toArray('.intro-f').forEach(function (f, i) {
+      gsap.from(f, { y: 60, opacity: 0, duration: 1.4, ease: ease, delay: i * 0.12, scrollTrigger: { trigger: f, start: 'top 88%' } });
+    });
 
     // os objetos de parede: a etiqueta à mão aparece depois que o objeto chega
-    gsap.utils.toArray('.flut figcaption').forEach(function (c) {
+    gsap.utils.toArray('.flut figcaption, .intro-f figcaption').forEach(function (c) {
       gsap.from(c, { opacity: 0, x: -10, duration: 1, ease: ease, scrollTrigger: { trigger: c, start: 'top 90%' } });
     });
 

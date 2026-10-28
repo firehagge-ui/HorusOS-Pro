@@ -285,6 +285,7 @@ export function doutrinaMidia({ curta = false } = {}) {
     ['A ESSÊNCIA QUE O MARCELO QUER (estudo de 07/10, regras aprovadas em 08/10)', lerRepo('identidade/social/referencias/2026-10-07-essencia.md')],
     ['PERFIL DO INSTAGRAM DA HORUS (público, pilares, voz, o que nunca vai ao ar)', lerRepo('identidade/social/perfil.md')],
     ['ANTIPADRÕES (correções do Marcelo, com o porquê)', lerRepo('_memoria/conteudo/90-antipadroes.md')],
+    ['DIREÇÃO DE ARTE (moldura fixa, mundo variável, imagem que mostra a ideia, nunca o visual do post anterior; 23/10)', lerRepo('_memoria/conteudo/20-direcao-de-arte.md')],
     ['CHECKLIST DO POST (vetos e rubrica)', lerRepo('_memoria/conteudo/99-checklist.md')],
     ['IMAGEM E CONSISTÊNCIA ENTRE SLIDES (skill /carrossel)', secao(skill, '## Passo 4')],
   ];
@@ -413,7 +414,8 @@ pelo menos metade dos slides do miolo leva UM destes, e só um por slide:
 - "conversa": [{de: "cliente" | "voce", texto}]: até 4 balões de WhatsApp (a cena da conversa, a resposta pronta).
 - "buscas": {rotulo?, itens (até 3), destaque (índice)}: cartão de busca do Google (o que a pessoa digita).
 Varie a prova visual ao longo do post (nunca o mesmo tipo três slides seguidos); imagem no miolo é bem-vinda quando ilustra a ideia.
-Densidade: até 45 palavras por slide somando tudo; slide com visual leva pouco texto (título e uma frase).`;
+Densidade: até 45 palavras por slide somando tudo; slide com visual leva pouco texto (título e uma frase).
+Quebra de linha: "\\n" dentro do texto (um preço por linha, a lista "1. ... 2. ..." dentro do balão ou do antes/depois).`;
 
 /** O estilo colado em todo pedido de imagem de um post (mesma conversa do ChatGPT = mesma cara). */
 const ESTILO_IMAGEM = {
@@ -434,6 +436,21 @@ async function completarImagens(post, pasta, progresso = () => {}) {
   const feitas = await gerarImagens({ pedidos, pastaImg: path.join(pasta, 'img'), estilo, rotulo: path.basename(pasta).slice(0, 30), aoProgresso: progresso });
   for (const sl of faltam) { const f = feitas[chaveImagem(sl.imagem.pedido)]; if (f) sl.imagem = { ...sl.imagem, arquivo: relRepo(f) }; }
   if (feitas._falhas) log('midia', `imagens que não vieram: ${feitas._falhas.join(' | ')}`);
+  return post;
+}
+
+/** Imagem que mora na pasta de outro título (o título mudou numa correção) é copiada pra pasta do post, que fica inteira. */
+function trazerImagens(post, pasta) {
+  for (const sl of post.slides || []) {
+    const arq = sl.imagem?.arquivo;
+    if (!arq) continue;
+    const origem = path.join(RAIZ_REPO, arq);
+    const destino = path.join(pasta, 'img', path.basename(arq));
+    if (path.resolve(origem) === path.resolve(destino) || !fs.existsSync(origem)) continue;
+    fs.mkdirSync(path.dirname(destino), { recursive: true });
+    if (!fs.existsSync(destino)) fs.copyFileSync(origem, destino);
+    sl.imagem = { ...sl.imagem, arquivo: relRepo(destino) };
+  }
   return post;
 }
 
@@ -562,6 +579,7 @@ async function montarPost({ post, semana, marca, cfg, idExistente = null, progre
   const pasta = path.join(RAIZ_REPO, pastaRel);
   if (v2) {
     post = await completarImagens(post, pasta, progresso);
+    post = trazerImagens(post, pasta);
     vetos = validar(post, { exigirArquivos: true });
   }
   progresso(`Renderizando: ${post.titulo}`);

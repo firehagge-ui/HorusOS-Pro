@@ -12,6 +12,38 @@
 > puxada) → sexta 30/10 (vai apresentar uma proposta na quinta). Roteiro em `reuniao-2026-10-19.md`. Domínios livres no
 > Registro.br em 21/10: deborareisarquitetura.com.br, deborareis.arq.br, deborareisarquiteta.com.br.
 
+> ✅ **28/10/2026: seção 2 e Como trabalho refeitas pelo jeito das referências, publicadas** (pedido do Marcelo: "não só
+> comparar, assimilar e aplicar"). Estudo seção por seção em `referencias/arquitetura-awwwards-2026-10.md` ("Como montam
+> cada seção"). Backup de antes em `versoes/antes-referencias-28-10/`.
+> - **Seção 2 (a abertura):** a frase dela à esquerda e grande; a estante dos livros grande; "Cada projeto parte de quem
+>   mora ali" + "Conheça a arquiteta"; a cerâmica e o nicho azul menores (no tablet, só a cerâmica). Fotos retas, legenda
+>   à mão levando ao detalhe em `projetos.html`. Modelo: Simone Katherine, Tarq, Stanzza.
+> - **Como trabalho:** a régua com os prazos fica; cada etapa ganhou um desenho de linha que se traça ao rolar (planta com
+>   cotas, planta com a mesa redonda, perspectiva com o nicho em arco, marcenaria com cotas). As figuras dela (círculo,
+>   arco, quadro) voltam como desenho, uma por etapa. Modelo: Tarq (imagem por etapa) e Stanzza (axonometria em linha).
+> - **Verificado:** home rolada em 1440, 1024, 768, 390 e 360, local e no ar: fotos visíveis, desenhos traçados, sem erro,
+>   sem imagem quebrada, sem rolagem lateral; detector com os mesmos avisos de 25/10.
+
+> ✅ **25/10/2026: ajustes do Marcelo e revisita das referências, publicados** (mesmo link; a versão de antes de 23/10 está
+> em https://esboco-debora-reis-antes.vercel.app para comparar; backup da de 23/10 em `versoes/antes-ajustes-25-10/`).
+> - **Logo dourada fora** (pedido do Marcelo, "por enquanto"): topo e rodapé voltam a ser só o nome, o ícone da aba volta
+>   ao antigo, a capa do guia e o PDF sem a logo. Os arquivos da logo continuam em `site/assets/`.
+> - **Capa** de 1180 para 1320 px de largura. **Carrossel:** a foto de ~42% para ~64% da largura, perto do centro, com as
+>   três notas à mão aparecendo no computador (antes só uma); o Colorir cresce pouco (arquivo de 628 px) e o texto encosta
+>   na foto.
+> - **Molduras geométricas fora de `projetos.html`:** na revisita, nenhum dos ~20 escritórios estudados emoldura foto em
+>   forma geométrica (`referencias/arquitetura-awwwards-2026-10.md`, "Revisita de 25/10"). Os detalhes ficam do tamanho
+>   dos apartamentos, foto reta.
+> - **Enxuto:** saíram duas repetições ("Reforma de apartamentos" na capa e na seção 2; "apresento orçamentos de empresas
+>   de obra" no Como trabalho e na pergunta da obra). **"Ajudo nas compras" saiu** do Como trabalho e do guia: está na
+>   proposta do loft como complementar, mas no áudio ela diz que não gosta de ficar "comprando material" (só para amigo).
+>   `[confirmar com ela]`.
+> - **Verificado:** 6 páginas em 1440 e 390, home em 1024, 768 e 360 (menu, perguntas, carrossel nas três larguras), sem
+>   erro, sem imagem quebrada, sem rolagem lateral; detector com os mesmos avisos da base; PDF com 7 páginas dentro da
+>   folha; no ar, páginas e PDF 200 e PDF idêntico ao local.
+> - **Para chegar no nível da Stanzza, falta dado dela:** prazo de um projeto entregue e metragem na ficha de cada
+>   apartamento; uma foto de cada etapa (medição, prancha, amostra, obra).
+
 > ✅ **23/10/2026: os pedidos do áudio dela de 22/10 aplicados e publicados** (https://esboco-debora-reis.vercel.app).
 > Ela achou o site "muito lindo" e pediu: os prazos dela (mandou o cronograma de uma proposta de loft), site mais enxuto
 > ("o cliente tem preguiça de ficar clicando", "sem coisa repetida"), as figuras geométricas "uma em cada página ou fora",

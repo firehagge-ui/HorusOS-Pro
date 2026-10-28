@@ -38,6 +38,9 @@ reescrito pro contexto daqui, não copiado.
 |---|---|
 | `00-formatos.md` | Os nove formatos narrativos de carrossel (os sete + print de tweet e antes/depois de fala, 07/10/2026). Escolher UM antes de escrever a primeira linha de copy |
 | `10-legibilidade.md` | Os pisos duros: tamanho de fonte, contraste, dimensão, densidade de texto por slide |
+| `20-direcao-de-arte.md` | Moldura fixa e mundo variável, a imagem que mostra a ideia, catálogo de linguagens visuais, a ficha de direção de arte de cada post (23/10/2026) |
+| `25-imagem-no-chatgpt.md` | Como gerar slide e imagem no ChatGPT com a série coerente: plano antes, projeto com Fontes, slide âncora, lista de preservação, limites (23/10/2026) |
+| `referencias/` | Estudos de contas reais com folhas dos slides e números (`2026-10-23-estudo.md`). Script: `ferramentas/social/bin/referencias.mjs` |
 | `90-antipadroes.md` | O que denuncia carrossel feito por IA. Cresce a cada correção do Marcelo |
 | `91-o-que-veio-do-opensquad.md` | O que foi trazido, o que foi recusado e por quê. Pra não reabrir a discussão daqui a três meses |
 | `99-checklist.md` | A porta antes de entregar: rubrica com nota e as condições que reprovam sozinhas |

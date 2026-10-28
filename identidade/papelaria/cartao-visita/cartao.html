@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Cartão de visita Horus Agência</title>
+<!--
+  Cartão de visita 90 x 50 mm, com 3 mm de sangria em cada lado (página 96 x 56 mm).
+  Página 1 = frente (escura, logo). Página 2 = verso (claro, nome e contatos).
+  Área de segurança: nada importante a menos de 4 mm do corte (7 mm da borda da página).
+  Contatos conferidos no site no ar (site/index.html) em 28/10/2026.
+  O nome no verso é "Horus Agência", igual ao perfil do Google: o logotipo fechado tem o acento (HÓRUS),
+  por isso o nome também aparece em texto.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&family=Archivo:wght@400;500&display=block" rel="stylesheet">
+<style>
+  @page { size: 96mm 56mm; margin: 0; }
+  :root {
+    --fundo: #0A0B0F;
+    --papel: #F5F4F0;
+    --tinta: #0A0B0F;
+    --tinta-2: #3B3F46;
+    --azul: #0077ff;
+    --nevoa: #A7ACB4;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #777; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .pagina {
+    width: 96mm; height: 56mm; position: relative; overflow: hidden;
+    page-break-after: always; break-after: page;
+  }
+  .pagina:last-child { page-break-after: auto; break-after: auto; }
+
+  /* Frente */
+  .frente { background: var(--fundo); }
+  .frente .miolo {
+    position: absolute; inset: 7mm;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4.2mm;
+  }
+  .frente img { width: 56mm; height: auto; display: block; }
+  .frente .linha {
+    font: 400 6.6pt/1 'Archivo', sans-serif; color: var(--nevoa);
+    letter-spacing: 0.06em;
+  }
+
+  /* Verso */
+  .verso { background: var(--papel); color: var(--tinta); }
+  .verso .miolo {
+    position: absolute; inset: 7mm;
+    display: grid; grid-template-columns: 1fr 17mm; column-gap: 4mm;
+  }
+  .verso .barra {
+    position: absolute; left: 3mm; top: 3mm; bottom: 3mm; width: 1.6mm; background: var(--azul);
+  }
+  .nome { font: 600 15pt/1 'Sora', sans-serif; letter-spacing: -0.01em; }
+  .oferta { font: 400 7pt/1.3 'Archivo', sans-serif; color: var(--tinta-2); margin-top: 1.6mm; }
+  .area { font: 500 7pt/1.3 'Archivo', sans-serif; color: var(--tinta); margin-top: 1mm; }
+  .contatos { list-style: none; margin-top: 3.4mm; font: 400 7.4pt/1.42 'Archivo', sans-serif; }
+  .contatos b { font-weight: 500; }
+  .qr { align-self: end; display: flex; flex-direction: column; align-items: center; gap: 1.2mm; }
+  .qr img { width: 17mm; height: 17mm; display: block; }
+  .qr span { font: 400 6pt/1 'Archivo', sans-serif; color: var(--tinta-2); }
+
+  /* Na tela: mostra as duas faces lado a lado, com a linha de corte */
+  @media screen {
+    body { display: flex; gap: 24px; padding: 24px; flex-wrap: wrap; }
+    .pagina { transform-origin: top left; zoom: 3; outline: 0.3mm dashed rgba(255,255,255,.35); outline-offset: -3mm; }
+  }
+</style>
+</head>
+<body>
+
+<section class="pagina frente" aria-label="Frente">
+  <div class="miolo">
+    <img src="marca-assinatura.png" alt="Horus Agência">
+    <p class="linha">Marketing digital · Sites · Atendimento com IA</p>
+  </div>
+</section>
+
+<section class="pagina verso" aria-label="Verso">
+  <div class="barra"></div>
+  <div class="miolo">
+    <div>
+      <h1 class="nome">Horus Agência</h1>
+      <p class="oferta">Marketing digital, sites e atendimento com IA</p>
+      <p class="area">Atendemos Salvador e região metropolitana</p>
+      <ul class="contatos">
+        <li><b>(71) 99912-7514</b></li>
+        <li>horusagencia.com.br</li>
+        <li>@horusagencia.br</li>
+        <li>contato.horus@gmail.com</li>
+      </ul>
+    </div>
+    <div class="qr">
+      <img src="qr-whatsapp.svg" alt="QR code do WhatsApp">
+      <span>WhatsApp</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

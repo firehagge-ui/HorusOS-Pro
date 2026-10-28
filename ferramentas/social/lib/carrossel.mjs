@@ -157,6 +157,8 @@ export function montarHtml(post, marca = {}) {
  */
 export async function renderizar(post, pasta, marca = {}) {
   fs.mkdirSync(path.join(pasta, 'instagram'), { recursive: true });
+  // render novo apaga os slides do anterior (post que encolheu de 9 pra 8 deixava o slide-09 velho na pasta)
+  for (const f of fs.readdirSync(path.join(pasta, 'instagram'))) if (/^slide-\d+\.(png|jpg)$/.test(f)) fs.unlinkSync(path.join(pasta, 'instagram', f));
   const v2 = SERIES.includes(post?.serie);
   const html = v2 ? montarHtmlV2(post, marca) : montarHtml(post, marca).html;
   const arqHtml = path.join(pasta, 'carrossel.html');

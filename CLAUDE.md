@@ -293,11 +293,17 @@ responde sozinha; aprovar mensagem por mensagem é só o jeito da nossa prospec�
 ## Trabalho de carrossel e post: leitura obrigatória
 
 Antes da primeira linha de copy:
-0. **Nenhum post da Hórus é montado sem a ideia aprovada pelo Marcelo** (08/10/2026). A `/carrossel` é a central: pauta, gancho, fala humana, imagem, checklist.
+0. **Duas aprovações antes do primeiro slide** (28/10/2026): os **temas da semana** (toda semana, mesmo com pauta antiga
+   aprovada), depois o **esqueleto** de cada post (texto, imagem e layout slide a slide). Só então os slides. Em 28/10 o
+   Marcelo reprovou os três posts da semana, montados direto de uma pauta de 10/10. A `/carrossel` é a central.
 1. `_memoria/conteudo/00-formatos.md` — os nove formatos narrativos (os sete + print de tweet e antes/depois de fala, 07/10). **Escolher UM antes de escrever.**
 2. `_memoria/conteudo/10-legibilidade.md` — pisos de fonte/contraste/densidade (corpo ≥ 34px, nada de leitura < 24px; renderiza a 1080px, lido num celular de 390px)
 3. `_memoria/conteudo/90-antipadroes.md` — o que denuncia carrossel feito por IA
 4. `_memoria/integridade.md` — dado que falta vira `[FALTA: ...]`
+5. `_memoria/conteudo/20-direcao-de-arte.md` — **nunca o visual do post anterior**, imagem que mostra a ideia, fala
+   direta; olhar um carrossel de referência (pelo Playwright) e seguir a organização dele antes de montar. Imagem no
+   ChatGPT: `25-imagem-no-chatgpt.md` (plano completo antes, conversa no projeto da marca). Origem: reprovação do
+   post do cliente que volta, 20/10/2026.
 
 Antes de entregar, rodar `_memoria/conteudo/99-checklist.md` (vetos primeiro, rubrica
 depois). **Correção do Marcelo vira linha em `_memoria/conteudo/90-antipadroes.md` com o
@@ -411,6 +417,9 @@ O serviço de CRM + WhatsApp que as mensagens oferecem ainda não foi entregue a
 "Investigar" na ficha (investigação profunda, Opus 5.5, uma por vez) e "Falar sobre este lead" (chat com a
 ficha, a investigação e o Disparos no contexto, que grava no CRM quando pedido). Cada botão abre um Claude
 novo no Farejador, não esta conversa. O Conselho continua sendo pedido por texto, nomeando o lead.
+**Pedido de agente do Farejador leva o geral sempre e o específico só do caso** (Marcelo, 22/10/2026): sinais pra todo
+lead, caderno e catálogo só do nicho dele; medir o tamanho antes e depois e provar a qualidade num teste sem gravar.
+Resultado vence economia: "se for necessário usar muitos tokens pra ter um resultado incrível, pode usar".
 
 ## Equipe (SOW por função)
 
