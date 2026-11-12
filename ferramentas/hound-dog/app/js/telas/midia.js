@@ -10,7 +10,7 @@ import { abrirVisor, imagensDoPost } from '../visor.js';
 import { abrirEstudio } from '../estudio.js';
 
 const STATUS = {
-  planejado: ['cinza', 'Planejado'], criando: ['cinza', 'Criando'], revisao: ['violeta', 'Com o 🎨 Criação'], aguardando: ['laranja', 'Esperando você'],
+  tema: ['azul', 'Tema para aprovar'], esboco: ['laranja', 'Esboço esperando você'], planejado: ['cinza', 'Escrevendo o esboço'], criando: ['cinza', 'Gerando imagens e slides'], revisao: ['violeta', 'Com o 🎨 Criação'], aguardando: ['laranja', 'Esperando você'],
   ajuste: ['amarelo', 'Ajustando'], aprovado: ['azul', 'Aprovado'], agendado: ['azul', 'Agendado'], publicando: ['azul', 'Publicando'],
   publicado: ['verde', 'No ar'], medido: ['verde', 'Medido'], reprovado: ['cinza', 'Reprovado'], erro: ['vermelho', 'Com problema'],
 };
@@ -49,9 +49,12 @@ export async function abaMidia(aba, corpo) {
 
 /* ------------------------------ Semana: plano e fila de aprovação ------------------------------ */
 async function semana(corpo) {
-  const { data: posts, error } = await sb.from('social_posts').select('*').eq('marca', 'horus').neq('status', 'reprovado').order('agendado_para', { ascending: true, nullsFirst: false }).limit(40);
+  const { data: posts, error } = await sb.from('social_posts').select('*').eq('marca', 'horus').neq('status', 'reprovado').order('agendado_para', { ascending: true, nullsFirst: false }).limit(60);
   if (error) { corpo.innerHTML = vazio('alerta', 'Não carregou', erroAmigavel(error)); return; }
   const grupos = [
+    ['Temas para você aprovar', (p) => p.status === 'tema', cartaoTema],
+    ['Esboços para você aprovar', (p) => p.status === 'esboco', cartaoEsboco],
+    ['Em preparo pelo Mídia', (p) => ['planejado', 'criando'].includes(p.status), cartaoPreparo],
     ['Esperando você', (p) => ['aguardando', 'revisao', 'ajuste'].includes(p.status)],
     ['Agendados', (p) => ['aprovado', 'agendado', 'publicando'].includes(p.status)],
     ['Com problema', (p) => p.status === 'erro'],
@@ -60,22 +63,79 @@ async function semana(corpo) {
   const recarregar = () => corpo.isConnected && semana(corpo);
   const estudioNovo = () => abrirEstudio({ aoSalvar: recarregar });
   if (!posts.length) {
-    corpo.innerHTML = `<div class="card">${vazio('agenda', 'Nada planejado ainda', 'Toda segunda às 8h o Mídia analisa a semana, planeja e escreve 3 posts. Eles aparecem aqui para você aprovar. Dá também pra montar um post à mão no Estúdio.',
-      `<div class="row wrap"><button class="btn prim" data-rodar-semana>${icone('play')}Planejar a semana agora</button><button class="btn" data-estudio-novo>${icone('editar')}Novo post no Estúdio</button></div>`)}</div>`;
+    corpo.innerHTML = `<div class="card">${vazio('agenda', 'Nada planejado ainda', 'Toda quinta às 8h o Mídia pesquisa a pauta da semana seguinte. Você aprova os temas aqui, ele escreve o esboço de cada um, você aprova o esboço, e só então saem as imagens e os slides. Dá também pra montar um post à mão no Estúdio.',
+      `<div class="row wrap"><button class="btn prim" data-rodar-semana>${icone('play')}Pesquisar a pauta agora</button><button class="btn" data-estudio-novo>${icone('editar')}Novo post no Estúdio</button></div>`)}</div>`;
     $('[data-rodar-semana]', corpo).onclick = rodarSemana;
     $('[data-estudio-novo]', corpo).onclick = estudioNovo;
     return;
   }
   corpo.innerHTML = `<div class="row wrap midia-semana-acoes"><button class="btn prim sm" data-estudio-novo>${icone('editar')}Novo post no Estúdio</button>
-    <span class="dim" style="font-size:12.5px">Editor de carrossel: texto, formas e imagem, salvo direto aqui para aprovação.</span></div>` + grupos.map(([titulo, filtro]) => {
+    <span class="dim" style="font-size:12.5px">Editor de carrossel: texto, formas e imagem, salvo direto aqui para aprovação.</span></div>` + grupos.map(([titulo, filtro, cartao]) => {
     const lista = posts.filter(filtro);
     if (!lista.length) return '';
-    return `<h3 class="midia-grupo">${esc(titulo)} <span class="badge">${lista.length}</span></h3>${lista.map(cartaoPost).join('')}`;
-  }).join('') + `<div class="row mt-16"><button class="btn sm" data-rodar-semana>${icone('play')}Planejar a semana agora</button><span class="dim" style="font-size:12.5px">Normalmente roda sozinho na segunda, 8h.</span></div>`;
+    return `<h3 class="midia-grupo">${esc(titulo)} <span class="badge">${lista.length}</span></h3>${lista.map(cartao || cartaoPost).join('')}`;
+  }).join('') + `<div class="row mt-16"><button class="btn sm" data-rodar-semana>${icone('play')}Pesquisar a pauta agora</button><span class="dim" style="font-size:12.5px">Normalmente roda sozinho na quinta, 8h.</span></div>`;
   $$('[data-rodar-semana]', corpo).forEach((b) => (b.onclick = rodarSemana));
   $$('[data-estudio-novo]', corpo).forEach((b) => (b.onclick = estudioNovo));
   $$('[data-acao]', corpo).forEach((b) => (b.onclick = () => acaoPost(b.dataset.acao, posts.find((p) => p.id === b.dataset.id), corpo)));
   $$('[data-slides]', corpo).forEach((b) => (b.onclick = (ev) => verSlides(posts.find((p) => p.id === b.dataset.slides), Number(ev.target.closest('[data-i]')?.dataset.i || 0))));
+}
+
+const diaSemana = (n) => ({ 1: 'segunda', 2: 'terça', 3: 'quarta', 4: 'quinta', 5: 'sexta' }[n] || '');
+
+function cartaoTema(p) {
+  const i = p.conteudo?.ideia || {};
+  const nota = i.nota ? ['surpresa', 'relevancia', 'acionavel', 'atualidade'].reduce((t, k) => t + (i.nota[k] || 0), 0) : null;
+  return `<article class="card midia-tema">
+    <div class="row wrap" style="gap:6px">${selo(p.status)}${i.recomendada ? '<span class="selo verde mini">⭐ recomendado</span>' : ''}${i.formato ? `<span class="selo cinza mini">${esc(i.formato)}</span>` : ''}${i.objetivo ? `<span class="selo cinza mini">pra ${esc(i.objetivo)}</span>` : ''}${nota != null ? `<span class="selo cinza mini">nota ${nota}</span>` : ''}</div>
+    <h3>${esc(p.titulo)}</h3>
+    <dl class="midia-dl">
+      ${i.angulo ? `<dt>Ângulo</dt><dd>${esc(i.angulo)}</dd>` : ''}
+      ${i.cena_de_abertura ? `<dt>Como abre</dt><dd>${esc(i.cena_de_abertura)}</dd>` : ''}
+      ${i.prova_visual ? `<dt>Prova visual</dt><dd>${esc(i.prova_visual)}</dd>` : ''}
+      ${i.fonte ? `<dt>Fonte</dt><dd>${esc(i.fonte)}${i.confianca ? ` (confiança ${esc(i.confianca)})` : ''}</dd>` : ''}
+      ${i.risco ? `<dt>Risco</dt><dd>${esc(i.risco)}</dd>` : ''}
+    </dl>
+    <div class="row wrap mt-12">
+      <button class="btn prim sm" data-acao="tema_ok" data-id="${p.id}">${icone('check')}Aprovar tema</button>
+      <button class="btn sm" data-acao="tema_nao" data-id="${p.id}">${icone('x')}Não quero</button>
+    </div></article>`;
+}
+
+function cartaoEsboco(p) {
+  const e = p.conteudo?.esboco || {};
+  const negrito = (t) => esc(t).replace(/\*([^*]+)\*/g, '<b>$1</b>');
+  const linhas = (e.slides || []).map((s, k) => {
+    const texto = [s.titulo, ...(s.paragrafos || []), ...((s.lista && s.lista.itens) || [])].filter(Boolean).map(negrito).join('<br>');
+    const conv = (s.conversa || []).map((c) => `<i>${c.de === 'voce' ? 'Você' : 'Cliente'}:</i> ${esc(c.texto)}`).join('<br>')
+      || (s.antes_depois ? `✕ ${esc(s.antes_depois.antes)}<br>✓ ${esc(s.antes_depois.depois)}` : '') || (s.buscas?.itens ? `Busca: ${esc(s.buscas.itens.join(' / '))}` : '');
+    return `<tr><td>${k + 1}</td><td>${texto}${s.fonte ? `<div class="dim">Fonte: ${esc(String(s.fonte).replace(/^s*fonte:s*/i, ''))}</div>` : ''}</td><td>${s.imagem ? esc(s.imagem.pedido) : '<span class="dim">sem imagem</span>'}</td><td>${conv}${s.exemplo ? ' <span class="ex">exemplo</span>' : ''}</td></tr>`;
+  }).join('');
+  const vetos = p.conteudo?.vetos_esboco || [];
+  return `<article class="card midia-tema">
+    <div class="row wrap" style="gap:6px">${selo(p.status)}${e.serie ? `<span class="selo cinza mini">série ${esc(e.serie)}</span>` : ''}${e.dia ? `<span class="selo cinza mini">${esc(diaSemana(e.dia))}</span>` : ''}${p.formato ? `<span class="selo cinza mini">${esc(p.formato)}</span>` : ''}</div>
+    <h3>${esc(p.titulo)}</h3>
+    <dl class="midia-dl">
+      ${p.objetivo ? `<dt>Por que existe</dt><dd>${esc(p.objetivo)}</dd>` : ''}
+      ${e.referencia ? `<dt>Referência</dt><dd>${esc(e.referencia)}</dd>` : ''}
+      ${e.muda ? `<dt>O que muda</dt><dd>${esc(e.muda)}</dd>` : ''}
+      ${e.riscos ? `<dt>Riscos</dt><dd>${esc(e.riscos)}</dd>` : ''}
+    </dl>
+    ${(e.pendencias || []).length ? `<div class="aviso laranja mt-8">${icone('alerta')}<div><b>Pendências (não conferido na fonte):</b><br>${e.pendencias.map(esc).join('<br>')}</div></div>` : ''}
+    ${vetos.length ? `<div class="aviso laranja mt-8">${icone('alerta')}<div><b>O código mediu:</b> ${vetos.map(esc).join(' · ')}</div></div>` : ''}
+    <table class="midia-esb"><thead><tr><th>#</th><th>Texto</th><th>Imagem (ChatGPT)</th><th>Conversa ou outro visual</th></tr></thead><tbody>${linhas}</tbody></table>
+    <details class="mt-8"><summary class="dim">Legenda</summary><p class="midia-legenda">${esc(p.legenda || '')}</p></details>
+    <div class="row wrap mt-12">
+      <button class="btn prim sm" data-acao="esboco_ok" data-id="${p.id}">${icone('check')}Aprovar esboço (gera imagens e slides)</button>
+      <button class="btn sm" data-acao="esboco_ajuste" data-id="${p.id}">${icone('editar')}Pedir ajuste</button>
+      <button class="btn sm" data-acao="tema_nao" data-id="${p.id}">${icone('x')}Reprovar</button>
+    </div></article>`;
+}
+
+function cartaoPreparo(p) {
+  const fazendo = p.status === 'criando' ? 'O Mídia gera as imagens no ChatGPT (pelo seu Chrome) e monta os slides.' : 'O Mídia escreve o esboço.';
+  return `<article class="card midia-tema"><div class="row wrap" style="gap:6px">${selo(p.status)}</div><h3>${esc(p.titulo)}</h3>
+    <p class="dim">${fazendo} ${farejadorOnline() ? 'Aparece aqui sozinho quando terminar.' : '⚠ O Farejador está desligado: roda quando ligar.'}</p>${p.pedido_ajuste ? `<p><b>Seu pedido:</b> ${esc(p.pedido_ajuste)}</p>` : ''}</article>`;
 }
 
 function cartaoPost(p) {
@@ -118,7 +178,39 @@ async function acaoPost(acao, p, corpo) {
     abrirEstudio({ post: p, aoSalvar: () => corpo.isConnected && semana(corpo) });
     return;
   }
-  if (acao === 'aprovar') r = await upd({ status: 'aprovado', erro: null });
+  if (acao === 'tema_ok') {
+    r = await upd({ status: 'planejado', pedido_ajuste: null, erro: null });
+    if (!r.error) { await criarJob('midia_esboco', { marca: 'horus', post_id: p.id }, {}, 4); toast(farejadorOnline() ? 'Tema aprovado. O Mídia escreve o esboço e avisa.' : 'Tema aprovado. Na fila: roda quando o Farejador ligar', 'info'); }
+  }
+  if (acao === 'tema_nao') {
+    if (!(await confirmar('Tirar este item?', 'Ele sai da fila e o Mídia registra que você não quis.', { rotulo: 'Tirar', perigo: true }))) return;
+    r = await upd({ status: 'reprovado', pedido_ajuste: p.status === 'esboco' ? 'Esboço reprovado pelo Marcelo' : 'Tema recusado pelo Marcelo' });
+  }
+  if (acao === 'esboco_ok') {
+    r = await upd({ status: 'criando', erro: null });
+    if (!r.error) { await criarJob('midia_montar', { marca: 'horus', post_id: p.id }, {}, 4); toast(farejadorOnline() ? 'Esboço aprovado. O Mídia gera as imagens e monta os slides (o Chrome precisa estar aberto).' : 'Esboço aprovado. Na fila: roda quando o Farejador ligar', 'info'); }
+  }
+  if (acao === 'esboco_ajuste') {
+    const texto = await perguntar('O que mudar no esboço?', { multilinha: true, rotulo: 'Pedir ajuste', placeholder: 'Ex.: tira o slide 4; troca a capa por uma pergunta.' });
+    if (!texto) return;
+    r = await upd({ status: 'planejado', pedido_ajuste: texto });
+    if (!r.error) { await criarJob('midia_esboco', { marca: 'horus', post_id: p.id }, {}, 4); toast('O Mídia refaz o esboço com o seu pedido', 'info'); }
+  }
+  if (acao === 'aprovar') {
+    // Post com horário que já passou sairia na hora: pergunta quando ele vai ao ar antes de aprovar
+    let quando = p.agendado_para;
+    if (quando && new Date(quando).getTime() < Date.now()) {
+      const bahia = new Date(Date.now() - 3 * 3600000);
+      const alvo = new Date(Date.UTC(bahia.getUTCFullYear(), bahia.getUTCMonth(), bahia.getUTCDate() + (bahia.getUTCHours() >= 11 ? 1 : 0), 12, 0));
+      const v = await perguntar('O horário deste post já passou', { valor: alvo.toISOString().slice(0, 16).replace('T', ' '), placeholder: '2026-11-05 12:00', subtitulo: 'Aprovando sem mudar, ele sai agora. Informe quando vai ao ar (Bahia, AAAA-MM-DD HH:MM).' });
+      if (!v) return;
+      const d = new Date(`${v.trim().replace(' ', 'T')}:00-03:00`);
+      if (Number.isNaN(d.getTime())) return toast('Data não entendida', 'erro');
+      quando = d.toISOString();
+    }
+    r = await upd({ status: 'aprovado', erro: null, agendado_para: quando });
+  }
+
   if (acao === 'reprovar') { if (!(await confirmar('Reprovar este post?', 'Ele sai da fila e não vai ao ar. O Mídia registra como aprendizado.', { rotulo: 'Reprovar', perigo: true }))) return; r = await upd({ status: 'reprovado' }); }
   if (acao === 'voltar') r = await upd({ status: 'aguardando' });
   if (acao === 'tentar') r = await upd({ status: 'agendado', erro: null, agendado_para: new Date().toISOString() });
@@ -152,7 +244,7 @@ function verSlides(p, inicio = 0) {
 }
 
 async function rodarSemana() {
-  const { error } = await sb.from('social_rotinas').update({ proxima: new Date().toISOString() }).eq('id', 'semana');
+  const { error } = await sb.from('social_rotinas').update({ proxima: new Date().toISOString() }).eq('id', 'pauta');
   if (error) return toast(erroAmigavel(error), 'erro');
   toast(farejadorOnline() ? 'O Mídia começa em até 1 minuto' : 'Marcado: roda quando o Farejador ligar', 'info');
 }
@@ -187,7 +279,7 @@ async function agora(corpo) {
     sb.from('social_acoes').select('*').eq('marca', 'horus').order('criado_em', { ascending: false }).limit(50),
   ]);
   const vivos = (jobs || []).filter((j) => ['fila', 'processando'].includes(j.status));
-  const nomes = { midia_semana: 'Sessão da semana', midia_ajuste: 'Ajuste de post', midia_triagem: 'Triagem de comentários e DMs' };
+  const nomes = { midia_semana: 'Sessão da semana', midia_pauta: 'Pesquisa e pauta da semana', midia_ajuste: 'Ajuste de post', midia_esboco: 'Esboço do post', midia_montar: 'Montagem do post (imagens e slides)', midia_triagem: 'Triagem de comentários e DMs' };
   const res = { ok: 'verde', erro: 'vermelho', bloqueada: 'amarelo', pendente: 'laranja' };
   corpo.innerHTML = `
     <section class="card"><div class="card-cab"><div class="icone-caixa sm">${icone('raio')}</div><h3>Neste momento</h3></div>

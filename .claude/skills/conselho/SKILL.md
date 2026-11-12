@@ -31,7 +31,11 @@ qualquer um diria em uma frase, dizer a frase.
 3. Classificar o **risco** (BAIXO / MÉDIO / ALTO / CRÍTICO)
 4. Escolher os **cargos** (2 a 4) pela tabela de convocação do `PROTOCOLO-DEBATE.md`.
    Cliente regulado convoca **Compliance obrigatoriamente**
-5. Se faltar informação que muda tudo, perguntar ao Marcelo **antes** de rodar,
+5. **Modo cliente:** listar a pasta do cliente e ler todo plano que já existe (`PLANO.md`, `estrategia-*`,
+   `reuniao-*`, logs anteriores do Conselho sobre ele), não só o topo do dossiê. Recomendação que contradiz um plano
+   anterior diz isso e explica por quê. Origem: Débora Reis, 03/11/2026. O Conselho pôs verba de anúncio no começo, e o
+   plano de visibilidade de 23/10, na mesma pasta, dizia "anúncio só no mês 4". O Marcelo precisou perguntar.
+6. Se faltar informação que muda tudo, perguntar ao Marcelo **antes** de rodar,
    não no meio
 
 ## Execução

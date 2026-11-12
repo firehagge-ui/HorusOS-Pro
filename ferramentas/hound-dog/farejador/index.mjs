@@ -19,6 +19,7 @@ import { detectarObjecoesTexto } from './objecoes.mjs';
 import { rotinaDisparos } from './disparos.mjs';
 import { rotinaMidia } from './midia.mjs';
 import { rotinaFollowup, claudeAutomatico } from './followup.mjs';
+import { talvezResponder } from './resposta-auto.mjs';
 import { agenteDa, pedirCiclo } from '../lib/agentes.mjs';
 import { pareceAutoResposta } from '../app/js/revisor.js';
 
@@ -352,6 +353,9 @@ async function inicio() {
   // quando chega mensagem de lead, o Claude lê sozinho (conforme o ajuste do painel)
   WA.wa.aoMensagemNova = async ({ conversa, empresa, texto, tipo }) => {
     try {
+      // Resposta automática só na ficha com a etiqueta auto:responder (05/11/2026, pedido do Marcelo; resposta-auto.mjs).
+      // Vem antes da chave geral: o gatilho é a mensagem chegando, sem loop e sem token parado.
+      if (await talvezResponder({ conversa, empresa, texto, tipo })) return;
       // Claude automático desligado (05/10/2026): resposta de lead não dispara ciclo nem análise; o Marcelo pede no painel
       if (!(await claudeAutomatico())) return;
       if (tipo === 'indecifrada') return; // sem texto pra ler: o Claude espera a mensagem chegar aberta

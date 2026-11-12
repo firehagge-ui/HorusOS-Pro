@@ -9,6 +9,7 @@
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 import path from 'node:path';
+import { execFile } from 'node:child_process';
 import { q, q1 } from '../lib/db.mjs';
 import { RAIZ_REPO } from '../lib/env.mjs';
 import { salvarEmpresa, registrarAtividade } from '../lib/crm.mjs';
@@ -40,9 +41,10 @@ export function proxima(regra, de = new Date()) {
   const local = bahia(de);
   const em = (dias, h) => { const x = new Date(Date.UTC(local.getUTCFullYear(), local.getUTCMonth(), local.getUTCDate() + dias, h, 0, 0)); return deBahia(x); };
   const horas = [...r.matchAll(/(\d{1,2})h/g)].map((m) => Number(m[1]));
-  if (/segunda/.test(r)) {
+  const dia = [/domingo/, /segunda/, /ter[cç]a/, /quarta/, /quinta/, /sexta/, /s[aá]bado/].findIndex((x) => x.test(r));
+  if (dia >= 0) {
     const h = horas[0] ?? 8;
-    for (let d = 0; d <= 7; d++) { const alvo = em(d, h); if (bahia(alvo).getUTCDay() === 1 && alvo > de) return alvo; }
+    for (let d = 0; d <= 7; d++) { const alvo = em(d, h); if (bahia(alvo).getUTCDay() === dia && alvo > de) return alvo; }
   }
   const lista = horas.length ? horas : [7];
   for (let d = 0; d <= 1; d++) for (const h of [...lista].sort((a, b) => a - b)) { const alvo = em(d, h); if (alvo > de) return alvo; }
@@ -162,6 +164,12 @@ async function rotinaSemana() {
   return j ? 'Sessão da semana na fila.' : 'Já havia uma sessão na fila.';
 }
 
+/** Pesquisa e pauta da semana seguinte (Marcelo, 28/10/2026): o agendado é a pesquisa, não o carrossel. */
+async function rotinaPauta() {
+  const j = await criarJob('midia_pauta', { marca: MARCA, semana: segundaDa(new Date(Date.now() + 7 * 24 * HORA)) }, 4);
+  return j ? 'Pesquisa da pauta na fila.' : 'Já havia uma pesquisa na fila.';
+}
+
 /** Próximo horário de publicação livre (dias e hora da config). */
 async function proximoHorario(cfg, depoisDe = new Date()) {
   const dias = cfg.dias_publicacao || [1, 3, 5];
@@ -239,7 +247,7 @@ async function rotinaToken() {
 /** Botão "Atualizar agora" da tela Instagram: coleta pela API oficial. */
 export const coletarAgora = rotinaMetricas;
 
-const ROTINAS = { metricas: rotinaMetricas, caixa: rotinaCaixa, triagem: rotinaTriagem, semana: rotinaSemana, publicar: rotinaPublicar, token: rotinaToken };
+const ROTINAS = { metricas: rotinaMetricas, caixa: rotinaCaixa, triagem: rotinaTriagem, semana: rotinaSemana, pauta: rotinaPauta, publicar: rotinaPublicar, token: rotinaToken };
 
 let girando = false;
 /** Chamada pelo Farejador a cada minuto. */
@@ -309,7 +317,9 @@ export function doutrinaMidia({ curta = false } = {}) {
 function pautaAprovada() {
   const rel = 'marketing/conteudo/midia/pautas';
   try {
-    const f = fs.readdirSync(path.join(RAIZ_REPO, rel)).filter((x) => /^\d{4}-\d{2}-\d{2}\.md$/.test(x)).sort().pop();
+    // A pauta que o Mídia acabou de pesquisar nasce "ESPERANDO APROVAÇÃO": não vale como aprovada
+    const f = fs.readdirSync(path.join(RAIZ_REPO, rel)).filter((x) => /^\d{4}-\d{2}-\d{2}\.md$/.test(x)).sort()
+      .filter((x) => !/ESPERANDO APROVAÇÃO/.test(lerRepo(`${rel}/${x}`).slice(0, 300))).pop();
     return f ? { arquivo: `${rel}/${f}`, texto: lerRepo(`${rel}/${f}`) } : null;
   } catch { return null; }
 }
@@ -356,6 +366,7 @@ const ESQ_SLIDE_V2 = {
     conversa: lista({ type: 'object', additionalProperties: false, required: ['de', 'texto'], properties: { de: { enum: ['cliente', 'voce'] }, texto: txt } }),
     buscas: { type: 'object', additionalProperties: false, required: ['itens'], properties: { rotulo: txt, itens: lista(txt), destaque: { type: 'integer' } } },
     imagem: { type: 'object', additionalProperties: false, required: ['pedido'], properties: { pedido: txt, arquivo: txt } },
+    exemplo: { type: 'boolean' },   // conversa inventada: sai a etiqueta EXEMPLO
   },
 };
 export const ESQ_POST_V2 = {
@@ -406,12 +417,14 @@ PROVA VISUAL (a regra que mais pesa: o Marcelo reprovou carrossel só de texto, 
 pelo menos metade dos slides do miolo leva UM destes, e só um por slide:
 - "imagem": {"pedido"}: ilustração gerada no ChatGPT do Marcelo (o código pede pelo Chrome dele e encaixa no slide). "pedido" em
   inglês: o objeto ou a cena com objetos nomeados, sempre a mesma descrição literal do objeto que se repete (o estilo da série
-  o código cola sozinho). Máximo 4 por post, capa incluída. Nunca: gráfico com número, print de tela, rosto, logo de marca,
+  o código cola sozinho). Máximo 6 por post, capa incluída. Nunca: gráfico com número, print de tela, rosto, logo de marca,
   letra ou número escrito na imagem, o produto ou o lugar de um cliente. Imagem que já existe vem com "arquivo": não mexa nele.
 - "antes_depois": {antes, depois, rotulo_antes?, rotulo_depois?, exemplo?}: o par ✕/✓ com a fala literal; exemplo inventado
   fica com exemplo = true (sai a etiqueta "exemplo"). Os rótulos padrão são "Em vez de" / "Responda assim": troque pelo que
   servir ao tema ("Faça assim", "Escreva assim", "Turbine assim").
 - "conversa": [{de: "cliente" | "voce", texto}]: até 4 balões de WhatsApp (a cena da conversa, a resposta pronta).
+- NÃO use "imagem" e "conversa" juntas no mesmo slide, nem cartão de conversa com etiqueta "exemplo" ao lado da imagem (reprovado pelo
+  Marcelo em 05/11/2026: "não é assim que se monta isso"). O que ele aprovou: título grande e uma imagem forte por slide.
 - "buscas": {rotulo?, itens (até 3), destaque (índice)}: cartão de busca do Google (o que a pessoa digita).
 Varie a prova visual ao longo do post (nunca o mesmo tipo três slides seguidos); imagem no miolo é bem-vinda quando ilustra a ideia.
 Densidade: até 45 palavras por slide somando tudo; slide com visual leva pouco texto (título e uma frase).
@@ -566,6 +579,355 @@ Responda só no formato pedido.`;
   });
 }
 
+/* ------------------------------ pesquisa e pauta da semana (o "Sherlock" da casa) ------------------------------
+   Pedido do Marcelo (28/10/2026): o que fica agendado é a pesquisa, o planejamento e o estudo de ideias, como o
+   Sherlock do opensquad; o carrossel só nasce depois de ele aprovar os temas e o esqueleto (/carrossel, Claude Code).
+   O Claude do Farejador não roda comando (Bash bloqueado), por isso o radar dos perfis é feito aqui pelo código com
+   ferramentas/social/bin/referencias.mjs (Playwright sem login, nunca curte nem segue) e chega pronto no pedido. */
+export const RADAR_PADRAO = ['brun0gpt', 'aprendeconvalerio', 'brunofragaoficial', 'barretobru', 'eugersonrodrigues', 'ideiasquepagam25'];
+const BIN_REFERENCIAS = path.join(RAIZ_REPO, 'ferramentas', 'social', 'bin', 'referencias.mjs');
+const espera = (ms) => new Promise((r) => setTimeout(r, ms));
+
+function referencias(args, timeoutMs = 4 * 60000) {
+  return new Promise((resolve) => {
+    execFile(process.execPath, [BIN_REFERENCIAS, ...args], { cwd: RAIZ_REPO, timeout: timeoutMs, windowsHide: true, maxBuffer: 8 << 20 }, (erro, saida) => {
+      if (erro) return resolve({ erro: String(erro.message || erro).split('\n')[0].slice(0, 200) });
+      try { resolve(JSON.parse(saida)); } catch { resolve({ erro: 'saída ilegível do referencias.mjs' }); }
+    });
+  });
+}
+
+/** Lê os perfis de referência e baixa o carrossel mais forte de cada um (folha.jpg) pra o Mídia abrir. */
+export async function radarPerfis(handles, pasta, progresso, cancelado) {
+  const achados = [];
+  let falhasSeguidas = 0;
+  for (const h of handles) {
+    if (cancelado?.()) break;
+    // Sem login o Instagram corta depois de 1 ou 2 perfis: duas grades vazias seguidas, para (não insistir, 23/10)
+    if (falhasSeguidas >= 2) { achados.push({ handle: h, erro: 'não lido: o Instagram cortou o acesso sem login' }); continue; }
+    progresso(`Radar: lendo @${h}`);
+    const r = await referencias(['perfil', h]);
+    if (r.erro || !r.posts?.length) { falhasSeguidas++; achados.push({ handle: h, erro: r.erro || 'grade vazia' }); continue; }
+    falhasSeguidas = 0;
+    const forte = r.posts.filter((x) => x.tipo === 'carrossel').sort((a, b) => (b.curtidas + b.comentarios) - (a.curtidas + a.comentarios))[0];
+    let estudado = null;
+    if (forte) {
+      progresso(`Radar: baixando o carrossel ${forte.codigo} de @${h}`);
+      const destino = path.join(pasta, `${h}-${forte.codigo}`);
+      const b = await referencias(['post', forte.codigo, destino], 3 * 60000);
+      const folha = path.join(destino, 'folha.jpg');
+      estudado = { codigo: forte.codigo, curtidas: forte.curtidas, comentarios: forte.comentarios, outlier: forte.outlier, slides: b.slides || 0,
+        folha: fs.existsSync(folha) ? relRepo(folha) : null, erro: b.erro || null };
+    }
+    achados.push({ handle: h, resumo: r.resumo, mediana: r.mediana, carrossel_estudado: estudado,
+      posts: r.posts.map(({ codigo, tipo, slides, curtidas, comentarios, outlier, legenda }) => ({ codigo, tipo, slides, curtidas, comentarios, outlier, legenda })) });
+    await espera(15000);
+  }
+  return achados;
+}
+
+const ESQ_IDEIA = {
+  type: 'object', additionalProperties: false,
+  required: ['titulo_capa', 'tema', 'angulo', 'cena_de_abertura', 'formato', 'objetivo', 'prova_visual', 'referencia_organizacao', 'por_que_circula',
+    'fonte', 'confianca', 'risco', 'nota', 'recomendada'],
+  properties: {
+    titulo_capa: txt, tema: txt, angulo: txt, cena_de_abertura: txt, formato: txt,
+    objetivo: { enum: ['salvar', 'enviar', 'comentar', 'seguir'] },
+    prova_visual: txt, referencia_organizacao: txt, por_que_circula: txt, fonte: txt,
+    confianca: { enum: ['alta', 'media', 'baixa'] }, risco: txt,
+    nota: { type: 'object', additionalProperties: false, required: ['surpresa', 'relevancia', 'acionavel', 'atualidade'],
+      properties: { surpresa: { type: 'integer', minimum: 0, maximum: 3 }, relevancia: { type: 'integer', minimum: 0, maximum: 3 },
+        acionavel: { type: 'integer', minimum: 0, maximum: 2 }, atualidade: { type: 'integer', minimum: 0, maximum: 2 } } },
+    recomendada: { type: 'boolean' },
+  },
+};
+export const ESQ_PAUTA = {
+  type: 'object', additionalProperties: false, required: ['analise', 'referencias', 'buscas', 'ideias', 'descartadas', 'aprendizados'],
+  properties: {
+    analise: txt,
+    referencias: lista({ type: 'object', additionalProperties: false, required: ['perfil', 'codigo', 'o_que_funcionou'], properties: { perfil: txt, codigo: txt, o_que_funcionou: txt } }),
+    buscas: lista({ type: 'object', additionalProperties: false, required: ['consulta', 'achado'], properties: { consulta: txt, achado: txt } }),
+    ideias: { type: 'array', minItems: 5, maxItems: 7, items: ESQ_IDEIA },
+    descartadas: lista(txt),
+    aprendizados: lista({ type: 'object', additionalProperties: false, required: ['tipo', 'texto'], properties: { tipo: { enum: ['hipotese', 'evidencia'] }, texto: txt } }),
+  },
+};
+const SISTEMA_PAUTA = `Você é o 📣 Mídia da Horus, no papel de pesquisador de pauta (o "Sherlock" da casa). Fale português do Brasil.
+Seu trabalho é PESQUISAR e PROPOR TEMAS para o Marcelo aprovar. Você não escreve post, não escreve slide, não gera imagem.
+Nada inventado: todo fato e número com fonte aberta por você (WebFetch) e data conferida; o que não conferiu, diga que não conferiu.`;
+
+const dataBR = (iso) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
+const totalNota = (n) => n.surpresa + n.relevancia + n.acionavel + n.atualidade;
+
+function pautaEmMarkdown(semana, p, radar) {
+  const ideias = [...p.ideias].sort((a, b) => Number(b.recomendada) - Number(a.recomendada) || totalNota(b.nota) - totalNota(a.nota));
+  const linhas = [
+    `# Pauta da semana de ${dataBR(semana)}/${semana.slice(0, 4)} (ESPERANDO APROVAÇÃO DO MARCELO)`, '',
+    `> Feita pelo 📣 Mídia em ${bahia().toISOString().slice(0, 10)} (rotina "Pesquisa e pauta"). Processo de 28/10/2026: temas aprovados →`,
+    '> esboço de cada post aprovado → slides, pela `/carrossel`. Nada aqui vira slide antes das duas aprovações.', '',
+    '| # | Capa | Formato | Objetivo | Nota | |', '|---|---|---|---|---|---|',
+    ...ideias.map((x, i) => `| ${i + 1} | ${x.titulo_capa} | ${x.formato} | ${x.objetivo} | ${totalNota(x.nota)} | ${x.recomendada ? '⭐ recomendada' : ''} |`), '',
+    '## O que a semana passada ensina', '', p.analise, '',
+  ];
+  ideias.forEach((x, i) => linhas.push(
+    `## ${i + 1}. ${x.titulo_capa}${x.recomendada ? ' ⭐' : ''}`, '',
+    `- **Tema:** ${x.tema}`, `- **Ângulo:** ${x.angulo}`, `- **Como abre (a cena antes do passo):** ${x.cena_de_abertura}`,
+    `- **Formato e objetivo:** ${x.formato}, pra ${x.objetivo}`, `- **Prova visual:** ${x.prova_visual}`,
+    `- **Organização de referência:** ${x.referencia_organizacao}`, `- **Por que pode circular:** ${x.por_que_circula}`,
+    `- **Fonte:** ${x.fonte} (confiança ${x.confianca})`, `- **Risco:** ${x.risco}`,
+    `- **Nota:** ${totalNota(x.nota)} (surpresa ${x.nota.surpresa}, relevância ${x.nota.relevancia}, acionável ${x.nota.acionavel}, atualidade ${x.nota.atualidade})`, ''));
+  linhas.push('## Radar', '', '**Perfis de referência (lidos pelo Playwright, sem login):**', '');
+  for (const r of radar) linhas.push(r.erro ? `- @${r.handle}: ${r.erro}` : `- @${r.handle}: mediana ${r.mediana}; carrossel mais forte ${r.carrossel_estudado ? `\`${r.carrossel_estudado.codigo}\` (${r.carrossel_estudado.curtidas} curtidas${r.carrossel_estudado.folha ? `, folha em \`${r.carrossel_estudado.folha}\`` : ''})` : 'nenhum nos 12 últimos'}`);
+  linhas.push('', ...p.referencias.map((r) => `- @${r.perfil.replace(/^@/, '')} \`${r.codigo}\`: ${r.o_que_funcionou}`), '', '**Buscas:**', '',
+    ...p.buscas.map((b) => `- "${b.consulta}": ${b.achado}`), '', '**Descartadas:**', '', ...p.descartadas.map((d) => `- ${d}`), '');
+  return linhas.join('\n');
+}
+
+/** O pedido inteiro da pauta (doutrina + radar + histórico). Exportado pra o teste do Agy receber o mesmo pedido. */
+export async function pedidoPauta(semana, radar) {
+  const recentes = await q(`select titulo, formato, status, semana, conteudo->>'serie' serie, revisao->>'instrucoes' parecer
+    from social_posts where marca = $1 and criado_em > now() - interval '60 days' order by criado_em desc limit 20`, [MARCA]);
+  const aprend = await q("select tipo, texto from social_aprendizados where marca = $1 and status <> 'descartado' order by criado_em desc limit 20", [MARCA]);
+  const perguntas = (await q(`select texto from social_interacoes where marca = $1 and texto is not null and classificacao in ('duvida','lead','outro')
+    and recebido_em > now() - interval '30 days' order by recebido_em desc limit 30`, [MARCA])).map((x) => x.texto);
+  const anterior = pautaAprovada();
+
+  return `${doutrinaMidia()}
+
+=== A PAUTA ANTERIOR (${anterior?.arquivo || 'nenhuma'}; não repetir tema dela que já virou post ou foi recusado) ===
+${(anterior?.texto || '').slice(0, 30000)}
+
+=== RADAR DOS PERFIS DE REFERÊNCIA (lido agora pelo código) ===
+${JSON.stringify(radar)}
+
+=== POSTS DOS ÚLTIMOS 60 DIAS (status e parecer; reprovado = o que não repetir) ===
+${JSON.stringify(recentes)}
+
+=== APRENDIZADOS REGISTRADOS ===
+${JSON.stringify(aprend)}
+
+=== PERGUNTAS REAIS DA CAIXA (comentários e DMs, 30 dias; use só o padrão, nunca o nome) ===
+${JSON.stringify(perguntas)}
+
+Pesquisa e pauta da semana de ${semana} (posts de segunda, quarta e sexta). Faça, nesta ordem:
+1. ABRA com Read a folha.jpg de cada carrossel estudado no radar e anote a organização: o que a capa diz e mostra, a sequência,
+   quantos slides, que prova visual cada um usa. Diga por que aquele fugiu da média do perfil.
+2. PESQUISE na web, no mínimo 4 buscas de ângulos diferentes, e abra a fonte (WebFetch) antes de citar:
+   a) notícia dos últimos 14 dias sobre o que o dono de negócio local usa (WhatsApp, Instagram, Google/Maps, IA, Pix, consumo);
+   b) estudo brasileiro recente com dado (Sebrae, Opinion Box, Octadesk, Google/Ipsos), na fonte original;
+   c) ferramenta grátis que o dono abre hoje (confira que é grátis mesmo);
+   d) data das próximas 3 semanas que mexe com comércio, e se algum dia de publicação (segunda, quarta, sexta) desta semana é
+      feriado (em 02/11/2026 a pauta planejou post pra segunda de Finados sem notar; quem notou foi o Agy). Feriado muda o dia ou o tema.
+3. JUNTE 10 a 15 candidatos e dê a nota honesta (surpresa 0-3, relevância pro dono 0-3, acionável 0-2, atualidade 0-2; a mediana é 5 ou 6).
+   Reprovam sozinhas as travas da pauta (público errado, sem fonte conferível, tema repetido ou já reprovado, só informativo).
+4. ENTREGUE de 5 a 7 ideias, as 3 melhores com recomendada = true, de pilares diferentes (no máximo duas do mesmo assunto, como WhatsApp).
+   Regras do Marcelo que reprovaram os posts de 26/10 e valem pra cada ideia:
+   - titulo_capa com até 10 palavras, entendido de relance, com uma ponta de curiosidade ("sexy", na palavra dele);
+   - tema que todo mundo já sabe só entra com ângulo de uso no negócio dele ("como usar melhor X no SEU WhatsApp Business");
+   - cena_de_abertura: a introdução que situa a pessoa antes de qualquer passo (onde fica, que bagunça resolve);
+   - prova_visual: o que mostra exatamente a ideia (print real da tela, réplica fiel da interface, diagrama, foto do objeto); objeto 3D
+     genérico não serve;
+   - referencia_organizacao: conta e código de um carrossel do radar (ou dos estudos) cuja organização o post vai seguir.
+5. Em "descartadas", os candidatos que caíram e por quê, numa linha cada.
+
+Responda só no formato pedido.`;
+}
+
+export async function midiaPauta(job, progresso, cancelado) {
+  const cfg = await configMidia();
+  const semana = job.entrada?.semana || segundaDa(new Date(Date.now() + 7 * 24 * HORA));
+  const pasta = path.join(RAIZ_REPO, 'marketing', 'conteudo', 'midia', 'pautas', `${semana}-radar`);
+
+  let radar = job.saida?.radar;
+  if (!radar) {
+    fs.mkdirSync(pasta, { recursive: true });
+    radar = await radarPerfis(cfg.radar_perfis || RADAR_PADRAO, pasta, progresso, cancelado);
+    await salvarSaida(job.id, { radar });   // a retomada não lê os perfis de novo
+    fs.writeFileSync(path.join(pasta, 'radar.json'), JSON.stringify(radar, null, 2));   // o teste do Agy usa o mesmo radar
+  }
+
+  progresso('Juntando o histórico: posts, reprovações, aprendizados e perguntas da Caixa');
+  const prompt = await pedidoPauta(semana, radar);
+  progresso('Pesquisando o que está em alta e montando as ideias');
+  const r = await rodarClaude({ prompt, sistema: SISTEMA_PAUTA, modelo: OPUS, modo: 'horus', ferramentas: ['Read', 'Grep', 'Glob', 'WebSearch', 'WebFetch'],
+    esquemaJson: ESQ_PAUTA, timeoutMs: 30 * 60000, deveParar: cancelado });
+  const p = r.json;
+  if (!p || !Array.isArray(p.ideias) || !p.ideias.length) throw new Error('O Mídia não devolveu a pauta no formato esperado.');
+
+  // Nunca sobrescreve uma pauta da mesma semana (pode já ter a marcação de aprovação do Marcelo)
+  const dir = path.join(RAIZ_REPO, 'marketing', 'conteudo', 'midia', 'pautas');
+  let arquivo = path.join(dir, `${semana}.md`);
+  for (let v = 2; fs.existsSync(arquivo); v++) arquivo = path.join(dir, `${semana}-v${v}.md`);
+  fs.writeFileSync(arquivo, pautaEmMarkdown(semana, p, radar));
+
+  for (const a of p.aprendizados || []) await q('insert into social_aprendizados (marca, tipo, texto) values ($1,$2,$3)', [MARCA, a.tipo, a.texto]);
+  // Prazo: a sexta antes da semana (dia útil, como pede a tela Tarefas)
+  const sexta = new Date(`${semana}T12:00:00Z`); sexta.setUTCDate(sexta.getUTCDate() - 3);
+  await q(`insert into tarefas (titulo, descricao, pronto_quando, area, prioridade, responsavel, prazo, criado_por) values ($1,$2,$3,'marketing','alta','Marcelo',$4,'midia')`,
+    [`Aprovar os temas do Instagram da semana de ${dataBR(semana)}`, `Pauta em ${relRepo(arquivo)} (${p.ideias.length} ideias, 3 recomendadas). Aprove no Hounder › Instagram › Semana: o esboço de cada tema aprovado sai sozinho, e depois do seu ok saem imagens e slides.`,
+      'O Marcelo disse quais temas valem; o esqueleto de cada um foi pedido', sexta.toISOString().slice(0, 10)]).catch((e) => logErro('midia', e));
+  // Os temas também entram no banco (status `tema`): é no painel, Instagram › Semana, que o Marcelo aprova (03/11/2026)
+  for (const x of p.ideias) {
+    const ja = await q1('select id from social_posts where marca = $1 and semana = $2 and titulo = $3', [MARCA, semana, x.titulo_capa]);
+    if (ja) continue;
+    await q("insert into social_posts (marca, semana, status, titulo, formato, objetivo, tipo_midia, conteudo, criado_por) values ($1,$2,'tema',$3,$4,$5,'carrossel',$6,'midia')",
+      [MARCA, semana, x.titulo_capa, x.formato, x.objetivo, JSON.stringify({ ideia: x, pauta: relRepo(arquivo) })]).catch((e) => logErro('midia', e));
+  }
+  const recomendadas = p.ideias.filter((x) => x.recomendada);
+  await avisar(`🔎 *Pauta da semana de ${dataBR(semana)} pronta.* ${p.ideias.length} temas pesquisados; os recomendados:\n${recomendadas.map((x, i) => `${i + 1}. ${x.titulo_capa}`).join('\n')}\n\nAprove os temas em Hounder → Instagram → Semana. Depois eu escrevo o esboço de cada um e você aprova de novo; só então saem as imagens e os slides.`);
+  await registrarAcao({ acao: 'pauta_semana', resumo: `${semana}: ${p.ideias.map((x) => x.titulo_capa).join(' | ')}`.slice(0, 600) });
+  return { semana, arquivo: relRepo(arquivo), ideias: p.ideias.length };
+}
+
+/* ------------------------------ tema → esboço → post (as duas aprovações no painel, 03/11/2026) ------------------------------
+   Pedido do Marcelo: "não dá pra eu abrir uma sessão toda semana; deixe configurado pra gerar os carrosséis automaticamente".
+   A regra de 28/10 continua (ele aprova os temas e depois o esboço), mas a aprovação acontece no painel (Instagram › Semana)
+   e o Farejador faz o resto sozinho:
+     pauta (quinta 8h) → linhas `tema`  → ele aprova o tema  → job midia_esboco → status `esboco`
+                       → ele aprova o esboço → job midia_montar → imagens no ChatGPT, slides, 🎨 Criação → `aguardando` */
+
+const ESQ_ESBOCO = {
+  ...ESQ_POST_V2,
+  required: [...ESQ_POST_V2.required, 'referencia', 'muda', 'riscos', 'pendencias'],
+  properties: { ...ESQ_POST_V2.properties,
+    referencia: txt,   // conta e código do carrossel olhado, e o que o post segue dele
+    muda: txt,         // o que muda em relação ao post anterior (citando qual)
+    riscos: txt,       // onde o post pode falhar (teste do "eu salvaria", distribuição)
+    pendencias: lista(txt),   // fato que não deu pra conferir na fonte: não entra no slide, o Marcelo vê antes de aprovar
+  },
+};
+
+const slugDe = (t) => String(t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 50);
+
+/** A seção "Como escrever" do preferencias.md (a regra do Marcelo, 03/11/2026) vai inteira para dentro do pedido. */
+function comoEscrever() {
+  const t = lerRepo('_memoria/preferencias.md');
+  const i = t.indexOf('## Como escrever');
+  if (i < 0) return '';
+  const j = t.indexOf('\n## ', i + 5);
+  return t.slice(i, j < 0 ? undefined : j).trim();
+}
+
+/** Cria o job do post só se não houver um igual na fila (o criarJob comum deduplica por tipo, e aqui são vários posts). */
+async function jobDoPost(tipo, postId, prioridade = 4) {
+  const ja = await q1("select id from jobs where tipo = $1 and status in ('fila','processando') and entrada->>'post_id' = $2 limit 1", [tipo, String(postId)]);
+  if (ja) return null;
+  return q1('insert into jobs (tipo, entrada, prioridade, criado_por) values ($1,$2,$3,$4) returning id', [tipo, JSON.stringify({ marca: MARCA, post_id: postId }), prioridade, 'midia']);
+}
+
+function esbocoEmMarkdown(e, estado) {
+  const cel = (s) => String(s || '').replace(/\|/g, '/').replace(/\n/g, ' ');
+  const linhas = [
+    `# Esboço: ${e.titulo} (${estado})`, '',
+    `> Feito pelo 📣 Mídia. Aprovação no Hounder › Instagram › Semana. Nada de imagem nem slide antes do ok.`, '',
+    `- **Série e formato:** ${e.serie}, ${e.formato}`, `- **Objetivo:** ${e.objetivo}`, `- **Dia:** ${e.dia === 1 ? 'segunda' : e.dia === 3 ? 'quarta' : e.dia === 5 ? 'sexta' : e.dia}`,
+    `- **Referência olhada:** ${e.referencia}`, `- **O que muda em relação ao post anterior:** ${e.muda}`, `- **Riscos:** ${e.riscos}`,
+    ...((e.pendencias || []).length ? ['', '**Pendências (não conferido na fonte, fora do texto dos slides):**', ...e.pendencias.map((x) => `- ${x}`)] : []),
+    '', '## Slide a slide', '', '| # | Tipo | Texto | Imagem (pedido ao ChatGPT) | Conversa / outro visual |', '|---|---|---|---|---|',
+  ];
+  e.slides.forEach((s, i) => {
+    const texto = [s.titulo, ...(s.paragrafos || []), ...(s.lista?.itens || [])].filter(Boolean).join(' ');
+    const conv = (s.conversa || []).map((c) => `${c.de === 'voce' ? 'Você' : 'Cliente'}: ${c.texto}`).join(' → ')
+      || (s.antes_depois ? `✕ ${s.antes_depois.antes} → ✓ ${s.antes_depois.depois}` : '') || (s.buscas?.itens ? `Busca: ${s.buscas.itens.join(' / ')}` : '');
+    linhas.push(`| ${i + 1} | ${s.tipo} | ${cel(texto)}${s.fonte ? ` (Fonte: ${cel(String(s.fonte).replace(/^s*fonte:s*/i, ''))})` : ''} | ${cel(s.imagem?.pedido)} | ${cel(conv)}${s.exemplo ? ' (EXEMPLO)' : ''} |`);
+  });
+  linhas.push('', '## Legenda', '', e.legenda || '');
+  return linhas.join('\n');
+}
+
+/** Tema aprovado → esboço (texto, imagem e layout slide a slide). Para aqui: o Marcelo aprova no painel antes de qualquer imagem. */
+export async function midiaEsboco(job, progresso, cancelado) {
+  const p = await q1('select * from social_posts where id = $1', [job.entrada?.post_id]);
+  if (!p) throw new Error('Tema não encontrado.');
+  const ideia = p.conteudo?.ideia || (p.conteudo?.slides ? { titulo_capa: p.titulo } : null);
+  if (!ideia) throw new Error('Esse item não tem a ideia da pauta.');
+  const semana = p.semana ? isoData(p.semana) : segundaDa();
+  const anterior = p.conteudo?.esboco || null;
+  const pedido = p.pedido_ajuste || job.saida?.pedido || '';
+  let esboco = job.saida?.esboco;
+  if (!esboco) {
+    progresso(anterior && pedido ? 'Refazendo o esboço com o seu pedido' : 'Escrevendo o esboço');
+    const recentes = await q(`select titulo, status, semana, agendado_para, conteudo->>'serie' serie, conteudo->>'dia' dia from social_posts
+      where marca = $1 and id <> $2 and (semana = $3 or criado_em > now() - interval '21 days') and status not in ('tema','reprovado') order by agendado_para desc nulls last limit 12`, [MARCA, p.id, semana]);
+    const modelo = lerRepo('marketing/conteudo/midia/2026-11-02/5-chatices-que-todo-dono-de-negocio-devia-ter/post.json');
+    const prompt = `${doutrinaMidia()}
+
+=== COMO ESCREVER (regra do Marcelo, 03/11/2026: "nunca esquecer") ===
+${comoEscrever()}
+
+=== O TEMA QUE O MARCELO APROVOU (da pauta ${p.conteudo?.pauta || ''}) ===
+${JSON.stringify(ideia)}
+
+=== POSTS RECENTES E DA SEMANA (série, dia e status; não repita a série do último, nem o dia de outro post da semana) ===
+${JSON.stringify(recentes)}
+
+${modelo ? `=== UM ESBOÇO QUE O MARCELO APROVOU EM 03/11/2026 (nível de acabamento esperado; o texto dele é o jeito dele de falar) ===\n${modelo}\n\n` : ''}${anterior && pedido ? `=== ESBOÇO ATUAL E O PEDIDO DE AJUSTE DO MARCELO (mude só o que ele pediu) ===\nPEDIDO: ${pedido}\nESBOÇO: ${JSON.stringify(anterior)}\n\n` : ''}Escreva o ESBOÇO deste post: o texto exato de cada slide, a imagem e o layout. Ainda não existe slide nem imagem; o Marcelo aprova isto no painel primeiro.
+1. ABRA a fonte do tema com WebFetch e confira cada fato e número. Fato que você não conseguiu conferir NÃO entra no texto do slide: vai em "pendencias" (uma linha: o que falta e onde conferir). Exemplo de conversa inventada leva "exemplo": true.
+2. ABRA com Read o carrossel de referência indicado na ideia (a folha.jpg do radar ou dos estudos, quando existir) e siga a organização dele. Preencha "referencia" com conta, código e o que o post segue.
+3. ESTÉTICA: o que o Marcelo aprovou em 05/11 (o "5 chatices" v2, roteiro do ChatGPT): fundo escuro, título GRANDE no alto, UMA imagem forte por slide (objeto 3D que mostra a ideia, mesmo material e luz na série), número grande em cada item. Nunca imagem e conversa lado a lado, nunca cartão de "exemplo" ao lado da imagem. Print real da tela quando o post ensina ferramenta (marque no pedido que é print e vem de fonte real). Nunca a série do último post.
+4. TEXTO no jeito do Marcelo (a seção "Como escrever" acima): imperativo, convicção sem atenuante, frase reta, uma ideia por frase, fecha com o que o dono ganha ou perde. Sem "ou seja:", sem "pra você X, pro cliente Y", sem "não é X, é Y".
+5. "imagem.pedido" em inglês, objeto nomeado, sem texto, número, rosto, logo nem print; centralizado, com espaço vazio dos lados.
+6. "dia": 1 segunda, 3 quarta, 5 sexta. Confira feriado e o que já está nesses dias. "muda": o que muda em relação ao post anterior, citando qual. "riscos": onde este post pode falhar.
+7. Legenda de 1.000 a 1.800 caracteres, primeira frase com palavra-chave de busca, no máximo 5 hashtags, sem link.
+
+${GUIA_V2}
+
+Responda só no formato pedido.`;
+    const r = await rodarClaude({ prompt, sistema: SISTEMA_MIDIA, modelo: OPUS, modo: 'horus', ferramentas: ['Read', 'Grep', 'Glob', 'WebSearch', 'WebFetch', 'mcp__firecrawl'],
+      esquemaJson: ESQ_ESBOCO, timeoutMs: 30 * 60000, deveParar: cancelado });
+    esboco = r.json;
+    if (!esboco || !Array.isArray(esboco.slides)) throw new Error('O Mídia não devolveu o esboço no formato esperado.');
+    const vetos = validar(esboco);
+    if (vetos.length) {
+      const fix = await corrigirPost(esboco, `Corrija este esboço para passar nos vetos (mantenha o tema e o jeito de escrever):\nVETOS: ${vetos.join(' | ')}`);
+      if (fix) esboco = { ...esboco, ...fix };
+    }
+    await salvarSaida(job.id, { esboco, pedido });
+    job.saida = { ...(job.saida || {}), esboco, pedido };
+  }
+
+  const vetosFinais = validar(esboco);
+  const slug = slugDe(esboco.titulo);
+  const pastaRel = `marketing/conteudo/midia/${semana}/${slug}`;
+  fs.mkdirSync(path.join(RAIZ_REPO, pastaRel), { recursive: true });
+  fs.writeFileSync(path.join(RAIZ_REPO, pastaRel, 'esboco.md'), esbocoEmMarkdown(esboco, 'ESPERANDO APROVAÇÃO'));
+  fs.writeFileSync(path.join(RAIZ_REPO, pastaRel, 'post.json'), JSON.stringify(esboco, null, 2));
+  const novo = { ...(p.conteudo || {}), ideia, esboco, vetos_esboco: vetosFinais };
+  await q(`update social_posts set status = 'esboco', titulo = $2, pilar = $3, formato = $4, objetivo = $5, etapa_funil = $6, hipotese = $7, experimento = $8,
+    legenda = $9, pasta = $10, conteudo = $11, pedido_ajuste = null, erro = null where id = $1`,
+  [p.id, esboco.titulo, esboco.pilar, esboco.formato, esboco.objetivo, esboco.etapa_funil, esboco.hipotese, Boolean(esboco.experimento), esboco.legenda, pastaRel, JSON.stringify(novo)]);
+  await registrarAcao({ acao: 'esboco_pronto', post_id: p.id, resumo: esboco.titulo });
+  await avisar(`📝 *Esboço pronto:* "${esboco.titulo}". Texto, imagem e layout slide a slide esperando o seu ok em Hounder → Instagram → Semana.${(esboco.pendencias || []).length ? `\n⚠️ ${esboco.pendencias.length} pendência(s) de conferência no esboço.` : ''}`);
+  return { post_id: p.id, esboco: `${pastaRel}/esboco.md`, vetos: vetosFinais.length };
+}
+
+/** Esboço aprovado → imagens no ChatGPT (Chrome do Marcelo), slides, render, 🎨 Criação. Termina em `aguardando`. */
+export async function midiaMontar(job, progresso, cancelado) {
+  const p = await q1('select * from social_posts where id = $1', [job.entrada?.post_id]);
+  if (!p) throw new Error('Post não encontrado.');
+  const esboco = p.conteudo?.esboco;
+  if (!esboco?.slides) throw new Error('Esse post não tem esboço aprovado para montar.');
+  const marca = carregarMarca(MARCA);
+  const semana = p.semana ? isoData(p.semana) : segundaDa();
+  try {
+    return await comEsperaDoChrome(job, async () => {
+      progresso('Conferindo o Chrome (as imagens saem do ChatGPT por ele)');
+      await exigirChrome();
+      await q("update social_posts set status = 'criando', erro = null where id = $1", [p.id]);
+      const id = await montarPost({ post: { ...esboco }, semana, marca, cfg: await configMidia(), idExistente: p.id, progresso });
+      progresso('O 🎨 Criação está revisando');
+      await revisar([id], marca, cancelado);
+      await registrarAcao({ acao: 'montar_post', post_id: p.id, resumo: esboco.titulo });
+      const fim = await q1('select status, erro from social_posts where id = $1', [p.id]);
+      await avisar(`🎨 *Post montado:* "${esboco.titulo}". Slides prontos esperando a sua aprovação em Hounder → Instagram → Semana.${fim?.erro ? `\n⚠️ Pendência: ${String(fim.erro).slice(0, 200)}` : ''}`);
+      return { post_id: p.id, status: fim?.status };
+    });
+  } catch (e) {
+    if (!e.chromeFora && !(e.retomarEm instanceof Date) && !ehLimite(e)) await q("update social_posts set status = 'erro', erro = $2 where id = $1", [p.id, String(e.message || e).slice(0, 400)]).catch(() => {});
+    throw e;
+  }
+}
+
 /** Valida (uma correção se precisar), gera as imagens, renderiza (uma correção se estourar) e grava o post. */
 async function montarPost({ post, semana, marca, cfg, idExistente = null, progresso = () => {} }) {
   const v2 = SERIES.includes(post.serie);
@@ -574,7 +936,7 @@ async function montarPost({ post, semana, marca, cfg, idExistente = null, progre
     const fix = await corrigirPost(post, `Corrija este post para passar nos vetos:\nVETOS: ${vetos.join(' | ')}`);
     if (fix) { post = fix; vetos = validar(post); }
   }
-  const slug = String(post.titulo).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 50);
+  const slug = slugDe(post.titulo);
   const pastaRel = path.join('marketing', 'conteudo', 'midia', semana, slug);
   const pasta = path.join(RAIZ_REPO, pastaRel);
   if (v2) {

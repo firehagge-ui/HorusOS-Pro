@@ -2,6 +2,8 @@
 // Farejador — o que cada tipo de trabalho faz.
 // Cada função recebe o job e um "progresso(texto)" para o painel acompanhar ao vivo.
 // =============================================================================
+import { buscarMaps } from './maps.mjs';
+import { gerarProposta, gerarPrevia, conferirCnpj } from './documentos.mjs';
 import { q, q1 } from '../lib/db.mjs';
 import { salvarEmpresa, registrarAtividade, adicionarItensLista, resumoCRM, detalheEmpresa } from '../lib/crm.mjs';
 import { criarOperador } from '../lib/operadores.mjs';
@@ -12,8 +14,9 @@ import * as WA from './whatsapp.mjs';
 import { coletarESalvar } from './instagram.mjs';
 import { log } from './log.mjs';
 import { detectarObjecoesTexto } from './objecoes.mjs';
-import { midiaSemana, midiaAjuste, midiaTriagem, coletarAgora } from './midia.mjs';
+import { midiaSemana, midiaPauta, midiaAjuste, midiaTriagem, midiaEsboco, midiaMontar, coletarAgora } from './midia.mjs';
 import { cicloAgente } from './agente.mjs';
+import { responderAuto } from './resposta-auto.mjs';
 import { pedirCiclo, especialistaPara, saberDoEspecialista } from '../lib/agentes.mjs';
 
 const FERR_PESQUISA = ['WebSearch', 'WebFetch', 'Read', 'Grep', 'Glob', 'mcp__firecrawl', 'mcp__hound-dog'];
@@ -269,10 +272,9 @@ function briefingParaMd(b = {}, d = {}) {
   ].filter(Boolean).join('\n\n');
 }
 
+// Método único desde 03/11/2026 (_memoria/prospeccao/40-testes.md): o teste casa × curiosidade foi encerrado.
 async function proximoFormato() {
-  const r = await q("select formato, count(*)::int n from disparos where status <> 'cancelado' group by formato");
-  const n = Object.fromEntries(r.map((x) => [x.formato, x.n]));
-  return (n.casa || 0) <= (n.curiosidade || 0) ? 'casa' : 'curiosidade';
+  return 'casa';
 }
 
 export async function investigarEmpresa(job, progresso, cancelado) {
@@ -303,7 +305,10 @@ export async function investigarEmpresa(job, progresso, cancelado) {
     // (29/09: o agente da LevSaúde pediu investigação com a conversa já no passo 2; gravar passo 1 aqui atropelaria)
     const comAgente = (await q1("select 1 from agentes where empresa_id = $1 and status = 'ativo'", [empresaId])) != null;
     const limpo = Object.fromEntries(Object.entries(d.atualizacoes || {}).filter(([k, v]) => v !== null && v !== '' && v !== undefined && !['whatsapp', 'telefone'].includes(k)));
-    const tags = [...new Set([...(empresa.tags || []), 'investigado'])];
+    // Método único desde 03/11/2026: qualificado sem abordagem marcada entra no placar como prévia com licença
+    const semAbordagem = !(empresa.tags || []).some((t) => t.startsWith('abordagem:'));
+    const tags = [...new Set([...(empresa.tags || []), 'investigado',
+      ...(d.decisao !== 'perdido' && semAbordagem ? ['abordagem:previa-com-licenca'] : [])])];
     const estagio = d.decisao === 'perdido' ? 'perdido' : (['novo', 'qualificado'].includes(empresa.estagio) ? 'qualificado' : empresa.estagio);
     await salvarEmpresa({ id: empresaId, ...limpo, tags, estagio, resumo: d.resumo || empresa.resumo,
       proxima_acao: comAgente ? empresa.proxima_acao : d.decisao === 'perdido' ? null : 'Revisar o briefing e aprovar a mensagem no Disparos',
@@ -593,15 +598,15 @@ export async function criarOperadorJob(job) {
 }
 
 export const TAREFAS = {
-  chat, analisar_conversa: analisarConversa, pesquisar_clientes: pesquisarClientes, enriquecer_empresa: enriquecerEmpresa,
+  chat, analisar_conversa: analisarConversa, pesquisar_clientes: pesquisarClientes, buscar_maps: buscarMaps, gerar_proposta: gerarProposta, gerar_previa: gerarPrevia, conferir_cnpj: conferirCnpj, enriquecer_empresa: enriquecerEmpresa,
   pesquisa_mercado: pesquisaMercado, enriquecer_lista: enriquecerLista, mensagem_personalizada: mensagemPersonalizada,
   instagram, ideias_instagram: ideiasInstagram, whatsapp_conectar: whatsappConectar, whatsapp_desconectar: whatsappDesconectar,
   whatsapp_codigo: whatsappCodigo, whatsapp_enviar: whatsappEnviar, criar_operador: criarOperadorJob, investigar_empresa: investigarEmpresa, triar_lista: triarLista,
-  midia_semana: midiaSemana, midia_ajuste: midiaAjuste, midia_triagem: midiaTriagem, agente_ciclo: cicloAgente,
+  midia_semana: midiaSemana, midia_pauta: midiaPauta, midia_esboco: midiaEsboco, midia_montar: midiaMontar, midia_ajuste: midiaAjuste, midia_triagem: midiaTriagem, agente_ciclo: cicloAgente, responder_auto: responderAuto,
 };
 
 /** Tarefas que abrem o navegador do Farejador: uma de cada vez (o perfil do Chrome não abre duas vezes). */
-export const USA_NAVEGADOR = new Set(['investigar_empresa', 'triar_lista']);
+export const USA_NAVEGADOR = new Set(['investigar_empresa', 'triar_lista', 'midia_montar']);   // montar usa o Chrome do Marcelo (ChatGPT): um post por vez
 
 /** Tarefas que usam o Claude (limite de concorrência menor). */
-export const USA_CLAUDE = new Set(['investigar_empresa', 'triar_lista', 'chat', 'analisar_conversa', 'pesquisar_clientes', 'enriquecer_empresa', 'pesquisa_mercado', 'enriquecer_lista', 'mensagem_personalizada', 'ideias_instagram', 'midia_semana', 'midia_ajuste', 'midia_triagem', 'agente_ciclo']);
+export const USA_CLAUDE = new Set(['gerar_previa', 'investigar_empresa', 'triar_lista', 'chat', 'analisar_conversa', 'pesquisar_clientes', 'enriquecer_empresa', 'pesquisa_mercado', 'enriquecer_lista', 'mensagem_personalizada', 'ideias_instagram', 'midia_semana', 'midia_pauta', 'midia_esboco', 'midia_montar', 'midia_ajuste', 'midia_triagem', 'agente_ciclo', 'responder_auto']);

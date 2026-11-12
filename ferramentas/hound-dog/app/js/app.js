@@ -3,7 +3,7 @@
    notificações e status do Farejador
    ============================================================================= */
 import { sb, estado, carregarBase, ligarTempoReal, desligarTempoReal, ouvir, farejadorOnline } from './sb.js';
-import { $, $$, el, esc, toast, menu, debounce, iniciais, relativo, erroAmigavel, botaoCarregando } from './ui.js';
+import { $, $$, el, esc, toast, menu, debounce, iniciais, relativo, erroAmigavel, botaoCarregando, fecharSobreposicoes } from './ui.js';
 import { icone, sparkClaude, logoHound } from './icones.js';
 
 const ROTAS = {
@@ -28,6 +28,7 @@ const MENU = ['inicio', 'tarefas', 'agentes', 'encontrar', 'mercado', 'esteira',
 const contadores = { conversas: 0, agenda: 0, esteira: 0, tarefas: 0, agentes: 0 };
 let limparTela = null;
 let rotaAtual = null;
+let fecharPaleta = null;
 
 /* =============================== Login =============================== */
 function telaLogin(mensagem = '') {
@@ -132,13 +133,14 @@ function montarCasca() {
       </header>
       <main class="vista" id="vista" tabindex="-1"></main>
     </div>
+    <nav class="barra-mob" id="barra-mob" aria-label="Atalhos"></nav>
   </div>`);
   document.body.appendChild(app);
   desenharNav();
   desenharFarejador();
 
   $('[data-sair]').onclick = async () => { desligarTempoReal(); await sb.auth.signOut(); };
-  $('[data-menu]').onclick = () => alternarMenu();
+  $$('[data-menu]').forEach((b) => (b.onclick = () => alternarMenu()));
   $('[data-paleta]').onclick = abrirPaleta;
   $('[data-notif]').onclick = (e) => abrirNotificacoes(e.currentTarget);
   import('./central.js').then(({ ligarCentral }) => ligarCentral($('[data-central]')));
@@ -146,8 +148,8 @@ function montarCasca() {
     { icone: 'usuariomais', rotulo: 'Novo lead', fn: async () => (await import('./acoes.js')).novoLead() },
     { icone: 'checkc', rotulo: 'Nova tarefa', fn: async () => (await import('./telas/tarefas.js')).editarTarefa() },
     { icone: 'agenda', rotulo: 'Agendar compromisso', fn: async () => (await import('./acoes.js')).agendar() },
-    { icone: 'planilha', rotulo: 'Subir planilha do Spark', fn: () => { location.hash = '#/encontrar?aba=spark'; } },
-    { icone: 'radar', rotulo: 'Farejar clientes com o Claude', fn: () => { location.hash = '#/encontrar?aba=claude'; } },
+    { icone: 'planilha', rotulo: 'Enviar planilha', fn: () => { location.hash = '#/encontrar?planilha=1'; } },
+    { icone: 'radar', rotulo: 'Farejar clientes com o Claude', fn: () => { location.hash = '#/encontrar'; } },
     { icone: 'mercado', rotulo: 'Nova pesquisa de mercado', fn: () => { location.hash = '#/mercado?nova=1'; } },
     '-',
     { icone: 'comentario', rotulo: 'Perguntar ao Claude', fn: () => { location.hash = '#/claude'; } },
@@ -178,6 +180,16 @@ function desenharNav() {
     const badge = n ? `<span class="badge ${id === 'conversas' ? 'verde' : id === 'esteira' || id === 'tarefas' ? '' : 'acc'}">${n > 99 ? '99+' : n}</span>` : '';
     return `<a href="#/${id}" data-rota="${id}">${icone(r.icone)}<span>${r.titulo}</span>${badge}</a>`;
   }).join('');
+  // Barra de baixo do celular (11/11/2026, pedido do Marcelo: usar o Hounder pelo telefone): as telas do dia a um toque
+  const barra = $('#barra-mob');
+  if (barra) {
+    const curto = { inicio: 'Início', tarefas: 'Tarefas', conversas: 'Conversas', agentes: 'Mesa' };
+    barra.innerHTML = Object.keys(curto).map((id) => {
+      const n = contadores[id];
+      return `<a href="#/${id}" data-rota="${id}"><span class="bm-ic">${icone(ROTAS[id].icone)}${n ? `<i class="bm-n${id === 'conversas' ? ' verde' : ''}">${n > 99 ? '99+' : n}</i>` : ''}</span><span>${curto[id]}</span></a>`;
+    }).join('') + `<button type="button" data-menu aria-label="Abrir menu"><span class="bm-ic">${icone('menu')}</span><span>Menu</span></button>`;
+    $('[data-menu]', barra).onclick = () => alternarMenu();
+  }
   marcarAtivo();
 }
 
@@ -238,6 +250,8 @@ async function navegar() {
   const { rota, args, params } = parseHash();
   const def = ROTAS[rota];
   if (!def) { location.hash = '#/inicio'; return; }
+  fecharSobreposicoes();
+  fecharPaleta?.();
   // Elemento novo a cada tela: as telas ligam `v.addEventListener('click')` e o mesmo #vista era reaproveitado, então
   // cada visita empilhava mais um ouvinte e um clique abria N modais (Tarefas e Agenda, 29/09/2026).
   const antiga = $('#vista');
@@ -276,13 +290,14 @@ function abrirPaleta() {
   document.body.append(veu, p);
   const inp = $('input', p), res = $('.pres', p);
   let itens = [], sel = 0;
-  const fechar = () => { veu.remove(); p.remove(); };
+  const fechar = () => { veu.remove(); p.remove(); fecharPaleta = null; };
+  fecharPaleta = fechar;
   veu.onclick = fechar;
   const acoes = [
     { g: 'Ações', icone: 'usuariomais', rotulo: 'Novo lead', fn: async () => (await import('./acoes.js')).novoLead() },
     { g: 'Ações', icone: 'agenda', rotulo: 'Agendar compromisso', fn: async () => (await import('./acoes.js')).agendar() },
-    { g: 'Ações', icone: 'planilha', rotulo: 'Subir planilha do Spark', fn: () => { location.hash = '#/encontrar?aba=spark'; } },
-    { g: 'Ações', icone: 'radar', rotulo: 'Farejar clientes com o Claude', fn: () => { location.hash = '#/encontrar?aba=claude'; } },
+    { g: 'Ações', icone: 'planilha', rotulo: 'Enviar planilha', fn: () => { location.hash = '#/encontrar?planilha=1'; } },
+    { g: 'Ações', icone: 'radar', rotulo: 'Farejar clientes com o Claude', fn: () => { location.hash = '#/encontrar'; } },
     { g: 'Ações', icone: 'mercado', rotulo: 'Nova pesquisa de mercado', fn: () => { location.hash = '#/mercado?nova=1'; } },
     { g: 'Ações', icone: 'comentario', rotulo: 'Perguntar ao Claude', fn: () => { location.hash = '#/claude'; } },
     ...[...MENU, 'claude', 'ajustes'].map((id) => ({ g: 'Telas', icone: ROTAS[id].icone, rotulo: `Ir para ${ROTAS[id].titulo}`, fn: () => { location.hash = `#/${id}`; } })),

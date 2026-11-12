@@ -4,8 +4,7 @@ Mapa de todas as skills instaladas, por função. Não é skill (não tem `SKILL
 índice. Detalhe de estilo visual continua em `identidade/catalogo-estilos.md`; regra de
 roteamento de estilo e precedência das `kit-*` no `CLAUDE.md`.
 
-> Atualizado em 10/09/2026 — 52 skills locais (contagem real de `.claude/skills/`; o
-> número de 04/09 incluía as 8 `higgsfield-*`, removidas em 07/09). Ao criar/instalar
+> Atualizado em 09/11/2026 — 57 skills locais, 11 desligadas em `skillOverrides`. Ao criar/instalar
 > skill nova, adicionar aqui.
 
 ## Operação da casa
@@ -19,6 +18,7 @@ roteamento de estilo e precedência das `kit-*` no `CLAUDE.md`.
 | `mapear-rotinas` | entrevista e gera skills personalizadas |
 | `verificar` | verificação obrigatória antes de declarar pronto |
 | `ver-no-celular` | serve site local na rede pra abrir no celular (preview antes de publicar) |
+| `criacao-canonica-de-skills` | método pesado e auditor mecânico pra refatorar skill que não funciona ou transformar base grande em skill (veio do MazyOS, 09/11/2026); skill simples segue a skill-creator nativa |
 
 ## Decisão (Conselho)
 | Skill | Pra quê |
@@ -33,7 +33,6 @@ roteamento de estilo e precedência das `kit-*` no `CLAUDE.md`.
 |---|---|
 | `criar-site` | orquestra o site do zero (pré-voo → estudo → plano → build → verificar) |
 | `estudar-site` | teardown de referência (URL ou imagem) |
-| `redesign-skill` | upgrade de site existente |
 
 ## Acervo de peças (cannonball — ver precedência no CLAUDE.md)
 | Skill | Pra quê |
@@ -53,14 +52,11 @@ roteamento de estilo e precedência das `kit-*` no `CLAUDE.md`.
 | Skill | Pra quê |
 |---|---|
 | `carrossel` | central de post: pauta por tendência → formato e gancho → fala humana → ChatGPT pelo Chrome → HTML→PNG → checklist; estuda post/reel de referência (10/10/2026) |
-| `publicar-tema` | fluxo de criação de conteúdo por tema |
-| `aprovar-post` | aprova e publica post da fila (blog + Instagram/Facebook) |
 | `email-profissional` | rascunho de email calibrado |
 | `responder-avaliacoes` | resposta a avaliações |
 | `midia` | agente de social media (Mídia): planeja, escreve e publica o Instagram aprovado |
-| `revisar-mensagem` | revisão de mensagem de prospecção antes de mostrar (checklist de `_memoria/prospeccao/`) |
-| `responder-lead` | conduz a conversa com lead que respondeu, lance a lance até a reunião: lê o momento, devolve a próxima mensagem com o plano e grava no Hounder (14/10/2026) |
-| `ingerir-network` | transforma export de grupo de WhatsApp do network em card de `_conhecimento/network/` |
+| `prospeccao` | a porta de toda mensagem pra lead ou cliente: primeira mensagem, conversa com o lead que respondeu e mensagem pra cliente, alinhada à pesquisa de 09/10 e à fala humana (junta `revisar-mensagem`, `responder-lead` e a fala humana da `carrossel`, 03/11/2026) |
+| `prospecta-maps` | lista de leads pelo Google Maps com CNPJ conferido, pra triagem da esteira, ao lado do Spark (veio do MazyOS, 09/11/2026; travas da Horus no topo da skill) |
 
 ## Marketing e dados
 | Skill | Pra quê |
@@ -83,10 +79,10 @@ roteamento de estilo e precedência das `kit-*` no `CLAUDE.md`.
 | `brandkit` | boards de brand guidelines |
 | `image-to-code-skill` | imagem → código de site |
 | `imagegen-frontend-web` / `imagegen-frontend-mobile` | referências de design por imagem |
-| `output-skill`, `stitch-skill` | utilitários de saída/composição |
+| `output-skill` | utilitário de saída (desligado) |
 
 ## Estilos de marca (escolher UM por peça — ver catalogo-estilos.md)
-`brutalist-skill` · `minimalist-skill` · `riso` · `soft-skill`
+Removidos em 09/11/2026 a pedido do Marcelo. A marca do cliente e `_memoria/design/` definem o visual.
 
 ## Engavetadas pelo Marcelo (não listar, não sugerir, não apontar no /atualizar)
 As pastas continuam em `.claude/skills/`, mas estão **engavetadas por decisão do Marcelo**. Não são
@@ -104,5 +100,5 @@ Detalhe no `CLAUDE.md` da raiz, seção "Geração de mídia".
 ---
 
 **Dependências gitignoradas** (não versionadas, reinstalar por comando): `impeccable/`
-(`npx impeccable@4.0.4 install`). As `kit-*` são versionadas (adaptadas e vinculadas ao
+(`npx --yes impeccable@4.8.2 install -y --providers=claude --project` (depois conferir os hooks em `.claude/settings.json`), `taste-skill/assets/` (34 MB, baixar de `Leonxlnx/taste-skill`)). As `kit-*` são versionadas (adaptadas e vinculadas ao
 nosso acervo); o motor pristino fica em `_biblioteca/cannonball/` (gitignorado).

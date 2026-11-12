@@ -16,6 +16,15 @@ const PRIO = { alta: ['vermelho', 'Alta'], media: ['amarelo', 'Média'], baixa: 
 const STATUS = [['a_fazer', 'A fazer'], ['fazendo', 'Fazendo'], ['travada', 'Travada'], ['feita', 'Feita'], ['cancelada', 'Cancelada']];
 const ABERTAS = ['a_fazer', 'fazendo', 'travada'];
 const nomeArea = (a) => (AREAS.find((x) => x[0] === a) || [, a])[1];
+// Repetição (migração 020, 10/11/2026): marcou feita, o banco cria a próxima
+const REPETIR = [['', 'Não repete'], ['1:dia', 'Todo dia'], ['1:semana', 'Toda semana'], ['2:semana', 'A cada 2 semanas'],
+  ['1:mes', 'Todo mês'], ['2:mes', 'A cada 2 meses'], ['3:mes', 'A cada 3 meses'], ['6:mes', 'A cada 6 meses']];
+export function repeteTxt(t) {
+  if (!t.repetir_cada) return '';
+  const n = t.repetir_cada, u = t.repetir_unidade;
+  if (n === 1) return { dia: 'todo dia', semana: 'toda semana', mes: 'todo mês' }[u] || '';
+  return `a cada ${n} ${{ dia: 'dias', semana: 'semanas', mes: 'meses' }[u] || u}`;
+}
 const opcoes = (lista, atual) => lista.map(([v, r]) => `<option value="${v}"${v === atual ? ' selected' : ''}>${esc(r)}</option>`).join('');
 
 /** Data de hoje no fuso da Bahia, AAAA-MM-DD (prazo é data, sem hora). */
@@ -48,6 +57,7 @@ export function linhaTarefa(t, todas = []) {
       <span class="tarefa-meta">
         <span class="${atrasada ? 'atrasada' : ''}">${icone('relogio')}${feita && t.concluida_em ? `feita ${new Date(t.concluida_em).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })}` : esc(prazoTxt(t.prazo))}</span>
         ${t.responsavel && !/marcelo/i.test(t.responsavel) ? `<span>${icone('clientes')}${esc(t.responsavel)}</span>` : ''}
+        ${t.repetir_cada ? `<span title="Ao marcar feita, nasce a próxima">${icone('relogio')}${esc(repeteTxt(t))}</span>` : ''}
         ${t.privada ? `<span class="tarefa-privada" title="Só o dono vê esta tarefa">${icone('cadeado')}só você vê</span>` : ''}
         ${t.projeto ? `<span class="tarefa-proj">${icone('pasta')}${esc(t.projeto)}</span>` : `<span>${esc(nomeArea(t.area))}</span>`}
         ${emp ? `<span>${icone('predio')}${esc(emp.nome)}</span>` : ''}
@@ -65,6 +75,11 @@ export async function alternarFeita(t, feita) {
   const { error } = await sb.from('tarefas').update({ status: feita ? 'feita' : 'a_fazer' }).eq('id', t.id);
   if (error) { toast(erroAmigavel(error), 'erro'); return false; }
   if (feita) {
+    if (t.repetir_cada) {
+      // O banco já criou a próxima (gatilho hd_repetir); mostra a data dela
+      sb.from('tarefas').select('prazo').eq('repetiu_de', t.id).eq('status', 'a_fazer').order('criado_em', { ascending: false }).limit(1)
+        .then(({ data }) => { if (data?.[0]?.prazo) toast(`Próxima: ${new Date(`${data[0].prazo}T12:00:00`).toLocaleDateString('pt-BR')} (${repeteTxt(t)})`, 'ok', { ms: 6000 }); });
+    }
     toast(`Feita: ${t.titulo}`, 'ok', { ms: 6000, acao: { rotulo: 'Desfazer', fn: () => sb.from('tarefas').update({ status: t.status }).eq('id', t.id).then(() => {}) } });
     if (t.empresa_id) sb.from('atividades').insert({ empresa_id: t.empresa_id, tipo: 'nota', titulo: `Tarefa concluída: ${t.titulo}`, autor: quem() }).then(() => {});
   }
@@ -104,6 +119,11 @@ export async function editarTarefa(existente = null, prefill = {}) {
       </div>
       <div class="grade-2">
         <div class="campo"><label>Empresa (opcional)</label><select class="sel" name="empresa_id"><option value="">Nenhuma</option>${empresas.map((e) => `<option value="${e.id}"${e.id === base.empresa_id ? ' selected' : ''}>${esc(e.nome)}</option>`).join('')}</select></div>
+        <div class="campo"><label>Repetir</label><select class="sel" name="repetir">${(() => {
+          const atual = base.repetir_cada ? `${base.repetir_cada}:${base.repetir_unidade}` : '';
+          const lista = REPETIR.some(([v]) => v === atual) ? REPETIR : [...REPETIR, [atual, repeteTxt(base)]];
+          return opcoes(lista, atual);
+        })()}</select></div>
       </div>
       ${estado.eu?.papel === 'dono' ? `<label class="check mt-8"><input type="checkbox" name="privada"${base.privada ? ' checked' : ''}> Só eu vejo (os outros operadores não veem esta tarefa)</label>` : ''}
       <div class="campo"><label>Travada por quê</label><input class="inp" name="motivo_trava" value="${esc(base.motivo_trava || '')}" placeholder="Só se a situação for Travada"></div>
@@ -126,6 +146,8 @@ export async function editarTarefa(existente = null, prefill = {}) {
       projeto: String(f.get('projeto') || '').trim() || null,
       empresa_id: f.get('empresa_id') || null, motivo_trava: String(f.get('motivo_trava') || '').trim() || null, depende_de: f.getAll('dep'),
     };
+    const [rc, ru] = String(f.get('repetir') || '').split(':');
+    linha.repetir_cada = rc ? Number(rc) : null; linha.repetir_unidade = rc ? ru : null;
     if (estado.eu?.papel === 'dono') linha.privada = f.has('privada');
     if (f.has('concluida_obs')) linha.concluida_obs = String(f.get('concluida_obs') || '').trim() || null;
     botaoCarregando(ev.currentTarget, true, 'Salvando…');

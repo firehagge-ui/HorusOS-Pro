@@ -51,7 +51,7 @@ Pular passo é mentir, não é economizar tempo.
 Antes de dizer que um site está pronto, rodar:
 
 ```
-npx --yes impeccable@4.0.4 detect "clientes/<nome>/site"
+npx --yes impeccable@4.8.2 detect "clientes/<nome>/site"
 ```
 
 O `node .claude/skills/impeccable/scripts/detect.mjs` local deu "limpo" num arquivo sabidamente
@@ -85,7 +85,7 @@ só três:
 2. **Dispensar com motivo registrado**, quando a regra briga com uma decisão
    deliberada e documentada:
    ```
-   npx --yes impeccable@4.0.4 ignores add-value <regra> "*" --file "clientes/<nome>/**" --reason "<por que, e onde a decisão está escrita>"
+   npx --yes impeccable@4.8.2 ignores add-value <regra> "*" --file "clientes/<nome>/**" --reason "<por que, e onde a decisão está escrita>"
    ```
    Dispensa sem `--reason` não é dispensa, é varrer pra debaixo do tapete.
 3. **Escalar pro Marcelo**, quando não está claro se é erro ou escolha.
@@ -97,7 +97,7 @@ mecânica, não pega mentira nem estratégia.
 
 **Exceções ativas** ficam em `.impeccable/config.json`, versionado de propósito
 pra que o motivo de cada uma fique visível. Ver com
-`npx --yes impeccable@4.0.4 ignores list`.
+`npx --yes impeccable@4.8.2 ignores list`.
 
 ## Sinais de que você está prestes a violar
 

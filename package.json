@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "conta-claude": "node ferramentas/hound-dog/scripts/conta-claude.mjs"
+    "conta-claude": "node ferramentas/hound-dog/scripts/conta-claude.mjs",
+    "scraper": "node ferramentas/maps-local/servidor.mjs",
+    "repeticao": "node ferramentas/hound-dog/scripts/ligar-repeticao.mjs && node ferramentas/hound-dog/scripts/testar-repetir.mjs"
   },
   "repository": {
     "type": "git",

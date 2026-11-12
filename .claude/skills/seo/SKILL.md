@@ -183,7 +183,7 @@ description: >
 
 **Output:** `marketing/seo/05-estrategia-conteudo.md`
 
-> Essa lista é o insumo da skill `/publicar-tema` — cada item dessa estratégia vira artigo + carrossel + legendas com um único comando.
+> Essa lista alimenta a pauta da `/carrossel`.
 
 ---
 

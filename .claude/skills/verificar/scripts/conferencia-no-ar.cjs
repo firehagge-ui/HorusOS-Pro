@@ -8,7 +8,8 @@
 //   - acha as páginas sozinho (links internos .html a partir da home, dois níveis);
 //   - abre cada uma em 360, 390, 768 e 1440, rola até o fim e anota: erro de console, resposta HTTP 400+,
 //     imagem quebrada, rolagem lateral, título/parágrafo/botão saindo da tela;
-//   - no texto visível procura [FALTA], travessão (— ou –) e lorem;
+//   - no texto visível procura [FALTA], travessão (— ou –), lorem e bastidor ("site da X", "fonte:", "a validar",
+//     "rascunho", "Horus" fora do site da Horus);
 //   - confere links internos e âncoras sem alvo;
 //   - lista os números de WhatsApp (wa.me) e e-mails distintos, pra bater com o Hounder;
 //   - confere que os caminhos passados em --fora dão 404 (backup ou página de teste que não pode estar no ar);
@@ -85,6 +86,9 @@ const LARGURAS = [[360, 740], [390, 844], [768, 1024], [1440, 900]];
           falta: (texto.match(/\[FALTA[^\]]*\]/g) || []).slice(0, 3),
           travessao: (texto.match(/.{0,25}[—–].{0,25}/g) || []).slice(0, 3),
           lorem: /lorem ipsum/i.test(texto),
+          // bastidor: nota de fonte ou de trabalho que vazou pro visitante (Débora, 10/11/2026: "Nomes dos projetos: site da Débora.")
+          bastidor: (texto.match(/.{0,30}(\bsite (?:d[ao]s?|antigo)\b|\bfonte:|a validar|placeholder|rascunho|H[oó]rus).{0,30}/gi) || [])
+            .filter(t => !(/h[oó]rus/i.test(t) && /horus/i.test(location.hostname))).slice(0, 3),
           whats: [...document.querySelectorAll('a[href*="wa.me"],a[href*="api.whatsapp"]')].map(a => (a.href.match(/(?:wa\.me\/|phone=)(\d+)/) || [])[1]).filter(Boolean),
           emails: [...document.querySelectorAll('a[href^="mailto:"]')].map(a => a.href.slice(7).split('?')[0]),
           internos: [...document.querySelectorAll('a[href]')].map(a => a.href.split('#')[0]),
@@ -99,6 +103,7 @@ const LARGURAS = [[360, 740], [390, 844], [768, 1024], [1440, 900]];
         if (r.falta.length) problemas.push(`${n}: [FALTA] visível ${r.falta.join(' | ')}`);
         if (r.travessao.length) problemas.push(`${n}: travessão ${r.travessao.join(' | ')}`);
         if (r.lorem) problemas.push(`${n}: lorem ipsum`);
+        if (r.bastidor.length) problemas.push(`${n}: bastidor visível ${r.bastidor.join(' | ')}`);
         r.whats.forEach(x => whats.add(x)); r.emails.forEach(x => emails.add(x));
         r.internos.filter(x => x.startsWith(base)).forEach(x => linksInternos.add(x)); r.ancoras.forEach(x => ancorasRuins.add(n + ' ' + x));
       }

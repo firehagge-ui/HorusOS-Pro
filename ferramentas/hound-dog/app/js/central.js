@@ -12,11 +12,11 @@ import { $, $$, el, esc, relativo, toast } from './ui.js';
 import { icone } from './icones.js';
 
 export const NOMES_JOB = {
-  pesquisar_clientes: 'Farejada de clientes', pesquisa_mercado: 'Pesquisa de mercado', enriquecer_empresa: 'Dossiê da empresa',
+  pesquisar_clientes: 'Farejada de clientes', buscar_maps: 'Busca no Google Maps', pesquisa_mercado: 'Pesquisa de mercado', enriquecer_empresa: 'Dossiê da empresa',
   analisar_conversa: 'Análise da conversa', chat: 'Resposta do Claude', instagram: 'Coleta do Instagram', ideias_instagram: 'Ideias de conteúdo',
-  midia_semana: 'Mídia: sessão da semana', midia_ajuste: 'Mídia: ajuste de post', midia_triagem: 'Mídia: triagem',
+  midia_semana: 'Mídia: sessão da semana', midia_pauta: 'Mídia: pesquisa e pauta', midia_ajuste: 'Mídia: ajuste de post', midia_esboco: 'Mídia: esboço do post', midia_montar: 'Mídia: montando o post', midia_triagem: 'Mídia: triagem',
   whatsapp_enviar: 'Mensagem no WhatsApp', investigar_empresa: 'Investigação profunda', enriquecer_lista: 'Enriquecimento da lista',
-  triar_lista: 'Triagem da lista', mensagem_personalizada: 'Mensagem personalizada', agente_ciclo: 'Agente pensando',
+  triar_lista: 'Triagem da lista', gerar_proposta: 'Proposta em PDF', gerar_previa: 'Prévia do site', conferir_cnpj: 'Conferência de CNPJ', mensagem_personalizada: 'Mensagem personalizada', agente_ciclo: 'Agente pensando',
 };
 // Tarefas internas que não ajudam a acompanhar nada (rodam o tempo todo ou são do próprio WhatsApp)
 const OCULTAS = new Set(['chat', 'whatsapp_conectar', 'whatsapp_codigo', 'instagram', 'analisar_conversa']);
@@ -30,11 +30,11 @@ export function linkDoJob(j) {
   switch (j.tipo) {
     case 'enriquecer_lista': return j.lista_id || s.lista_id ? `#/encontrar/lista/${j.lista_id || s.lista_id}?filtro=enriquecidos` : null;
     case 'triar_lista': return j.lista_id ? `#/encontrar/lista/${j.lista_id}` : '#/esteira';
-    case 'pesquisar_clientes': return s.lista_id ? `#/encontrar/lista/${s.lista_id}` : '#/encontrar?aba=claude';
+    case 'pesquisar_clientes': case 'buscar_maps': return s.lista_id ? `#/encontrar/lista/${s.lista_id}` : '#/encontrar';
     case 'pesquisa_mercado': return s.pesquisa_id ? `#/mercado/${s.pesquisa_id}` : '#/mercado';
     case 'agente_ciclo': return j.empresa_id ? `#/agentes?lead=${j.empresa_id}` : '#/agentes';
     case 'whatsapp_enviar': return j.conversa_id ? `#/conversas/${j.conversa_id}` : '#/conversas';
-    case 'midia_semana': case 'midia_ajuste': case 'midia_triagem': case 'ideias_instagram': return '#/instagram';
+    case 'midia_semana': case 'midia_pauta': case 'midia_esboco': case 'midia_montar': case 'midia_ajuste': case 'midia_triagem': case 'ideias_instagram': return '#/instagram';
     default: return j.empresa_id ? `#/empresa/${j.empresa_id}` : j.lista_id ? `#/encontrar/lista/${j.lista_id}` : null;
   }
 }

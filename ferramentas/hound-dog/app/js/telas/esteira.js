@@ -29,7 +29,7 @@ export default async function esteira(v) {
   v.className = 'vista cheia';
   v.innerHTML = `
     <div class="cab"><div class="tt"><h1>Esteira</h1><p>Onde cada negócio está, do primeiro contato ao fechamento.</p></div>
-      <div class="acoes"><a class="btn" href="#/encontrar?aba=listas">${icone('upload')}Importar da lista</a><button class="btn" data-investigar-lote title="Põe os leads do Novo na fila da investigação profunda, um por vez">${icone('radar')}Investigar Novos</button><button class="btn prim" data-novo>${icone('mais')}Novo lead</button></div></div>
+      <div class="acoes"><a class="btn" href="#/encontrar?planilha=1">${icone('upload')}Importar da lista</a><button class="btn" data-investigar-lote title="Põe os leads do Novo na fila da investigação profunda, um por vez">${icone('radar')}Investigar Novos</button><button class="btn prim" data-novo>${icone('mais')}Novo lead</button></div></div>
     <div class="kpis" data-kpis></div>
     <div class="barra-ferramentas">
       <div class="busca" style="flex:1;max-width:380px">${icone('busca')}<input class="inp" data-busca placeholder="Buscar por nome, nicho, cidade, @…"></div>

@@ -69,6 +69,8 @@ export function abrirFicha(id, { aba = 'geral', aoFechar } = {}) {
           <button class="btn sm" data-acao="investigar" title="Investigação profunda">${icone('radar')}Investigar</button>
           <button class="btn sm" data-acao="agendar">${icone('agenda')}Agendar</button>
           <button class="btn sm" data-acao="agente" title="Plano, memória e diário do agente deste lead">${icone('robo')}Agente</button>
+          <button class="btn sm" data-acao="previa" title="Site de demonstração para quem respondeu">${icone('globo')}Prévia</button>
+          <button class="btn sm" data-acao="proposta" title="Proposta em PDF">${icone('arquivo')}Proposta</button>
           <button class="btn sm claude" data-acao="claude">${sparkClaude(15)}Falar sobre este lead</button>
         </div>
       </div>
@@ -107,6 +109,8 @@ export function abrirFicha(id, { aba = 'geral', aoFechar } = {}) {
     if (acao === 'agendar') agendar({ empresa_id: e.id, tipo: ['novo', 'qualificado', 'abordado', 'conversando'].includes(e.estagio) ? 'r1' : 'followup' });
     if (acao === 'claude') { g.fechar(); location.hash = `#/claude?empresa=${e.id}`; }
     if (acao === 'agente') (await import('./telas/agentes.js')).abrirAgente(e.id);
+    if (acao === 'previa') (await import('./documentos.js')).abrirPrevia(e).catch((err) => toast(erroAmigavel(err), 'erro'));
+    if (acao === 'proposta') (await import('./documentos.js')).abrirProposta(e).catch((err) => toast(erroAmigavel(err), 'erro'));
     if (acao === 'mais') {
       menu(b, [
         { icone: 'radar', rotulo: 'Investigar (investigação profunda)', fn: () => { abaAtual = 'dossie'; desenharCab(); desenharCorpo().then(() => $('[data-investigar]', g.corpo)?.click()); } },
@@ -599,7 +603,7 @@ function cartaoPronto(d, disps, e) {
   const variasNoPasso = (p) => msgs.filter((m) => m.passo === p).length > 1;
   const rotulo = (m) => variasNoPasso(m.passo) || m.angulo ? `Passo ${m.passo} · abordagem ${m.variante || 'A'}${m.angulo ? `: ${m.angulo}` : ''}` : (ROTULO_PASSO[m.passo] || `Passo ${m.passo}`);
   return `<div class="card mt-16 ${perdido ? '' : 'destaque'}">
-    ${d ? `<div class="row wrap"><span class="selo ${perdido ? 'vermelho' : 'verde'}">${icone(perdido ? 'x' : 'checkc')}${perdido ? 'Perdido' : 'Qualificado'}${d.nota != null ? ` · ${d.nota}` : ''}</span><b class="grow" style="font-size:14px">${esc(b.tese || d.motivo_decisao || '')}</b><button class="btn xs fantasma" data-g="ir-briefing">${icone('radar')}Briefing</button></div>` : ''}
+    ${d ? `<div class="row wrap"><span class="selo ${perdido ? 'vermelho' : 'verde'}">${icone(perdido ? 'x' : 'checkc')}${perdido ? 'Perdido' : 'Qualificado'}${d.nota != null ? ` · ${d.nota}` : ''}</span><b class="grow" style="font-size:14px;flex:1 1 220px">${esc(b.tese || d.motivo_decisao || '')}</b><button class="btn xs fantasma" data-g="ir-briefing">${icone('radar')}Briefing</button></div>` : ''}
     ${msgs.length && !perdido ? `<h3 class="mt-16">Mensagens</h3>` + msgs.map((m) => `<div class="rotulo mt-16 mb-8">${esc(rotulo(m))} · ${esc(m.st)}</div><div class="msg-sugerida">${esc(m.texto)}</div>
       <div class="row wrap mt-12"><button class="btn sm" data-g="copiar-pronta" data-texto="${esc(m.texto)}">${icone('copiar')}Copiar</button>${e.whatsapp ? `<a class="btn sm verde" href="${linkWhats(e.whatsapp, m.texto)}" target="_blank" rel="noopener">${icone('whatsapp')}Abrir no WhatsApp</a>` : ''}</div>`).join('') + `<div class="row wrap mt-12"><a class="btn sm fantasma" href="#/disparos">${icone('enviar')}Disparos</a></div>` : ''}
     ${(b.respostas || []).length && !perdido ? `<details class="mt-16 dobra" open><summary><h3 class="grow">Se responder assim (${b.respostas.length})</h3>${icone('chevb', 'seta')}</summary>

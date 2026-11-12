@@ -19,8 +19,8 @@ export default async function inicio(v) {
         <p class="muted mt-8" data-resumo>Farejando o dia…</p>
       </div>
       <div class="hero-acoes">
-        <a class="btn prim lg" href="#/encontrar?aba=claude">${icone('radar')}Farejar clientes</a>
-        <a class="btn lg" href="#/encontrar?aba=spark">${icone('planilha')}Subir planilha do Spark</a>
+        <a class="btn prim lg" href="#/encontrar">${icone('radar')}Farejar clientes</a>
+        <a class="btn lg" href="#/encontrar?planilha=1">${icone('planilha')}Enviar planilha</a>
         <a class="btn lg" href="#/mercado?nova=1">${icone('mercado')}Pesquisar um nicho</a>
       </div>
     </section>

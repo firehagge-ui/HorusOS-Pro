@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MazyOS Scraper</title>
+    <link rel="icon" type="image/png" href="/static/img/mazyos-simbolo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+    <link rel="stylesheet" href="/static/css/mazyos.css">
+</head>
+<body>
+    <div id="map"></div>
+
+    <aside class="panel">
+        <header class="panel-head">
+            <div class="brand">
+                <img class="logo" src="/static/img/mazyos-simbolo.png" alt="">
+                <div>
+                    <div class="brand-name">MazyOS Scraper</div>
+                    <div class="brand-sub">Empresas do Google Maps</div>
+                </div>
+            </div>
+            <div class="seg" id="viewSeg">
+                <button type="button" data-view="map" class="on">Mapa</button>
+                <button type="button" data-view="board">Painel</button>
+            </div>
+        </header>
+
+        <div class="panel-body">
+            <section class="box search">
+                <label class="field">
+                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                    <input id="q" type="text" placeholder="O que você procura?" autocomplete="off">
+                    <kbd>/</kbd>
+                </label>
+                <label class="field">
+                    <svg viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+                    <input id="loc" type="text" placeholder="Onde? Bairro, cidade" autocomplete="off">
+                    <span class="spin" id="locSpin"></span>
+                </label>
+            </section>
+            <p class="hint" id="locHint">Ex.: <b>dentista</b> em <b>Batel, Curitiba</b>. Várias buscas? Separe por vírgula.</p>
+
+            <section class="box settings">
+                <div class="row">
+                    <div>
+                        <div class="row-title">Quantidade</div>
+                        <div class="row-desc" id="qtyDesc">Aproximado, leva ~3 min</div>
+                    </div>
+                    <div class="chips" id="qty">
+                        <button type="button" data-qty="20">20</button>
+                        <button type="button" data-qty="60" class="on">60</button>
+                        <button type="button" data-qty="120">120</button>
+                        <button type="button" data-qty="200">200+</button>
+                    </div>
+                </div>
+                <div class="row col">
+                    <div class="row-line">
+                        <div>
+                            <div class="row-title">Raio</div>
+                            <div class="row-desc">Área da busca em volta do local</div>
+                        </div>
+                        <div class="row-value" id="radiusVal">5 km</div>
+                    </div>
+                    <input type="range" id="radius" min="1" max="30" step="1" value="5">
+                </div>
+                <div class="row">
+                    <div>
+                        <div class="row-title">Idioma</div>
+                        <div class="row-desc">Das categorias: "Dentista" ou "Dentist"</div>
+                    </div>
+                    <select id="lang" class="select">
+                        <option value="pt" selected>Português</option>
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <div>
+                        <div class="row-title">Buscar e-mails</div>
+                        <div class="row-desc">Visita o site de cada empresa. Mais lento.</div>
+                    </div>
+                    <button type="button" class="toggle" id="email" aria-pressed="false"><span></span></button>
+                </div>
+                <div class="row">
+                    <div>
+                        <div class="row-title">Limite de tempo</div>
+                        <div class="row-desc">Para a busca mesmo se não terminar</div>
+                    </div>
+                    <select id="maxTime" class="select">
+                        <option value="auto" selected>Automático</option>
+                        <option value="600">10 min</option>
+                        <option value="1200">20 min</option>
+                        <option value="2400">40 min</option>
+                        <option value="3600">1 hora</option>
+                    </select>
+                </div>
+            </section>
+
+            <button type="button" class="primary" id="go">Buscar empresas</button>
+            <div class="error" id="err"></div>
+
+            <section class="jobs">
+                <div class="jobs-head">
+                    <h2>Suas buscas</h2>
+                    <span class="engine" id="engine"><i></i>conectando</span>
+                </div>
+                <div id="jobList"></div>
+            </section>
+        </div>
+
+        <footer class="panel-foot">mazyos.com.br</footer>
+    </aside>
+
+    <div class="livebar" id="livebar" hidden>
+        <span class="live-dot" id="liveDot"></span>
+        <span id="liveText"></span>
+        <button type="button" class="ghost" id="liveDownload">Baixar planilha</button>
+    </div>
+
+    <main class="board" id="board" hidden>
+        <div class="board-empty" id="boardEmpty">
+            <img class="logo big" src="/static/img/mazyos-simbolo.png" alt="">
+            <p>Escolha uma busca em <b>Suas buscas</b> pra ver as empresas aqui.</p>
+        </div>
+        <div class="board-main" id="boardMain" hidden>
+            <div class="board-head">
+                <div>
+                    <h1 id="boardTitle"></h1>
+                    <div class="board-meta" id="boardMeta"></div>
+                </div>
+                <div class="board-actions">
+                    <button type="button" class="ghost" id="copyPhones">Copiar telefones</button>
+                    <button type="button" class="primary small" id="download">Baixar planilha</button>
+                </div>
+            </div>
+            <div class="stats" id="stats"></div>
+            <div class="board-tools">
+                <div class="chips" id="filters">
+                    <button type="button" data-f="all" class="on">Todas</button>
+                    <button type="button" data-f="nosite">Sem site</button>
+                    <button type="button" data-f="social">Só rede social</button>
+                    <button type="button" data-f="whats">WhatsApp</button>
+                    <button type="button" data-f="email">Com e-mail</button>
+                </div>
+                <label class="field slim">
+                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                    <input id="filterText" type="text" placeholder="Filtrar por nome ou bairro">
+                </label>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Empresa</th>
+                            <th>Bairro</th>
+                            <th class="num">Nota</th>
+                            <th>Telefone</th>
+                            <th>Site</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="rows"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script src="/static/js/mazyos.js"></script>
+</body>
+</html>

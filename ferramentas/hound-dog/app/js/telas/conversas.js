@@ -91,6 +91,9 @@ export default async function conversas(v, { args }) {
   async function abrirConversa(id) {
     selecionada = id;
     history.replaceState(null, '', `#/conversas/${id}`);
+    // Celular: abre só a conversa, com Voltar pra lista (11/11/2026)
+    $('.inbox', v)?.classList.add('com-conversa');
+    if (innerWidth <= 900) scrollTo(0, 0);
     desenharLista();
     const painel = $('[data-conversa]', v);
     painel.innerHTML = `<div style="padding:20px">${esqueleto(8, 26)}</div>`;
@@ -122,6 +125,7 @@ export default async function conversas(v, { args }) {
 
     painel.innerHTML = `
       <header class="conv-cab">
+        <button class="btn icone sm conv-voltar" data-voltar-lista aria-label="Voltar para a lista">${icone('setae')}</button>
         <span class="avatar">${esc(iniciais(nome))}</span>
         <div class="grow" style="min-width:0"><b class="ellipsis" style="display:block">${esc(nome)}</b><div class="dim ellipsis" style="font-size:12.5px">${esc(telefoneBonito(c.telefone))}${c.nome && emp ? ` · ${esc(c.nome)}` : ''}${emp ? ` · ${esc(emp.categoria || '')}` : ''}</div></div>
         ${emp ? `${seloEstagio(emp.estagio)}<button class="btn sm" data-ficha>${icone('predio')}Ficha</button>` : ''}
@@ -193,6 +197,12 @@ export default async function conversas(v, { args }) {
     $$('[data-usar-p]', painel).forEach((b) => (b.onclick = () => { prontaEmUso = prontas.find((p) => p.id === b.dataset.usarP); usar(prontaEmUso.texto); }));
     $$('[data-play]', painel).forEach((b) => (b.onclick = () => { const o = estado.playbook.find((x) => x.id === b.dataset.play); usar(o.resposta); }));
     $('[data-ficha]', painel)?.addEventListener('click', () => abrirFicha(emp.id));
+    $('[data-voltar-lista]', painel)?.addEventListener('click', () => {
+      selecionada = null;
+      history.replaceState(null, '', '#/conversas');
+      $('.inbox', v)?.classList.remove('com-conversa');
+      desenharLista();
+    });
     $('[data-mover]', painel)?.addEventListener('click', async (ev) => { await moverEstagio(emp, ev.currentTarget.dataset.mover); abrirConversa(c.id); });
     $('[data-acao]', painel)?.addEventListener('click', async (ev) => { await salvarEmpresa(emp.id, { proxima_acao: ev.currentTarget.dataset.acao }); toast('Próxima ação definida'); });
     $('[data-menu-conv]', painel).onclick = (ev) => import('../ui.js').then(({ menu }) => menu(ev.currentTarget, [

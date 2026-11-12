@@ -123,6 +123,18 @@ o Marcelo aprova no Disparos → o Farejador envia. O Conselho só roda quando o
   `_gestao/` (`contaRestrita()`). Lista só de pet shops: uns 11 mil caracteres (antes, 70 mil num teste misturado). A nota da triagem grava os sinais vistos e, de quem passa, as
   oportunidades como hipótese.
 
+- **Encontrar clientes com a estrutura do MazyOS Scraper e a identidade do Hounder (09/11/2026, pedido do Marcelo):** página única, sem abas. Quem vai para a esteira sai da lista (`empresa_id` preenchido) e fica no filtro "Na esteira". `telas/encontrar-mapa.js` tem busca, mapa, "Suas buscas" (cada item é uma `lista`) e a lista aberta com triagem, funil, enriquecer e score. `telas/encontrar-planilha.js` é a única entrada de planilha. O CSS em `css/encontrar-mapa.css` usa prefixo `mz-` e as variáveis do Hounder. Ponto no mapa só aparece com latitude e longitude em `dados`. Scraper local: `npm run scraper` (`ferramentas/maps-local/`). Estudo em `_gestao/estudo-hounder-vs-mazyos-2026-11-09.md`.
+- **Motor do Maps no botão Buscar (10/11/2026, pedido do Marcelo):** motor padrão "Google Maps" (job `buscar_maps`, `farejador/maps.mjs`), sem Claude; "Claude" continua como segunda opção (`pesquisar_clientes`). O motor mora em `ferramentas/maps-local/motor.mjs`, o mesmo do scraper local, e segue o método do MazyOS Scraper: só com o agente antigo do Chrome (`AGENTE`) o Google entrega número de avaliações e comentários. Uma busca por vez (as outras esperam), grava conforme acha via `adicionarItensLista` (que agora aceita `dados` e `origem`), confere se o site abre e guarda posição, horários, fotos e 5 comentários em `dados`. Migração 021: origem `maps` nas listas.
+- **Proposta, prévia e CNPJ (10/11/2026):** botões Prévia e Proposta na ficha (`app/js/documentos.js`) e "Conferir CNPJ" na lista. Tarefas `gerar_proposta`, `gerar_previa` (Opus escreve o texto só com os fatos da ficha) e `conferir_cnpj` em `farejador/documentos.mjs`, que rodam os scripts da skill `prospecta-maps`. A prévia só sai para lead que respondeu (mensagem recebida ou "Respondeu" no Disparos). PDF em `Downloads\Propostas` e no bucket público `documentos` (caminho com uuid); prévia no projeto Vercel `horus-previas` (noindex, `.previas/`, fora do Git). CNPJ: mapa de ramos por nicho (`CNAES_POR_NICHO`), base da Minha Receita com espera no 429, páginas menores (1000, 200, 100) quando a grande é recusada como "busca muito custosa", e base parcial aceita e guardada com o ponto de parada (`<municipio>-<cnae>.parcial.json`; a próxima rodada continua dali em vez de baixar tudo de novo, 11/11); o selo diz só se o cadastro confere (sem corte por idade nem MEI).
+- **Celular (11/11/2026, pedido do Marcelo: "quero poder usar ele pelo telefone"):** até 900 px aparece a barra de baixo
+  (`.barra-mob`, montada em `desenharNav` com os contadores: Início, Tarefas, Conversas, Mesa e Menu). Campos a 16 px (o
+  iPhone dá zoom abaixo disso), botões pequenos com 38 px, janela sem foco automático em tela de toque (o teclado cobria
+  tudo), ficha em tela cheia. **Trocar de tela fecha ficha, janelas e menus** (`fecharSobreposicoes` em `ui.js`, chamado no
+  `navegar`): o Voltar do celular deixava a ficha por cima de todas as telas. Conversas mostra a lista OU a conversa, com
+  seta de voltar. A lista do Encontrar vira cartões até 620 px e abre rolada até as empresas. `manifest.webmanifest`
+  deixa instalar na tela inicial ("Adicionar à tela de início"), abrindo sem a barra do navegador. Teste: `node ferramentas/hound-dog/scripts/testar-celular.cjs`
+  (390 px, conta QA, escritas interceptadas: mede estouro lateral, botões pequenos, campos que dão zoom e erros).
+
 ## Time de agentes de prospecção (Fase 1 no ar desde 29/09/2026)
 
 Desenho e decisões em `PLANO-AGENTES.md` (nesta pasta): agente = lead com memória + ciclo por acontecimento
@@ -209,6 +221,12 @@ Veio do benchmarking de repositórios de cold outreach (`_memoria/prospeccao/91-
 - **`scripts/conversa-auto/` (09/10/2026):** `enviar.mjs` manda balões pela fila do Farejador (mesmo caminho do botão
   Enviar) e `vigiar.mjs` acorda o Claude quando o lead escreve (uma consulta por minuto ao banco, sem gastar token).
   Só por pedido do Marcelo, só no lead nomeado (exceção registrada no `CLAUDE.md` da raiz).
+- **Resposta automática por gatilho (05/11/2026, pedido do Marcelo: "sem loop gastando token"):** `farejador/resposta-auto.mjs`.
+  Ficha com a etiqueta `auto:responder` + roteiro em `clientes/_leads/<slug do nome>/roteiro-auto.md`. A mensagem chegando
+  no WhatsApp cria o job `responder_auto` (60 s de folga); Sonnet sem ferramentas, com a pesquisa de 09/10, a fala humana e
+  o roteiro no pedido. Só sai sozinha se passar nas travas do código (caso do roteiro, revisor, 60 palavras, 7h a 21h, 5
+  por dia, ninguém respondeu antes, corpo igual ao aprovado); senão vai como sugestão pro WhatsApp do Marcelo. Desligar =
+  tirar a etiqueta. Primeiro lead: Clínica Michele Oliveira.
 - **`node scripts/aprender.mjs [dias]`:** edições do Marcelo, variante escolhida, respostas humanas e o que o revisor
   mais acusou. A leitura vira linha em `_memoria/prospeccao/aprendizados.md`.
 
@@ -237,7 +255,14 @@ e as do dia (`rotinaBriefing` em `farejador/index.mjs`).
   Antônio, Social Media, Prospecção, Presença Google, CRM + WhatsApp, Ofertas e preço, Cases e prova). Não substitui o
   objetivo do plano (O1 a O7). Tela: visão "Por projeto" com barra de progresso e filtro; MCP: `projeto` no `hd_tarefas`
   e no `hd_salvar_tarefa`.
-- Agenda continua sendo compromisso com hora. Tarefa não tem hora.
+- Agenda continua sendo compromisso com hora. Tarefa não tem hora. **Desde 11/11/2026 a tela Agenda mostra também as
+  tarefas com prazo** (rosa, no dia do prazo, sem hora; vermelha se atrasada, riscada se feita, "↻" se repete; clicar abre
+  a tarefa). Pedido do Marcelo: "não vi nada no calendário", porque as tarefas recorrentes estavam só na tela Tarefas.
+- **Tarefa que se repete (10/11/2026, migração 020, pedido do Marcelo):** `repetir_cada` + `repetir_unidade` (dia,
+  semana, mes). Marcou feita (painel, MCP ou Farejador), o gatilho `hd_repetir` cria a próxima aberta, com o prazo contado
+  do prazo anterior (mantém "todo dia 10"), pulando para depois de hoje e de sábado/domingo para segunda (`hd_proxima_data`).
+  Desmarcou: a cópia aberta some. `repetiu_de` liga as duas. Teste: `node scripts/testar-repetir.mjs` (cria e apaga).
+  Toda data dita pelo Claude numa conversa vira tarefa aqui (regra da raiz, 10/11).
 
 ## 📣 Mídia, o agente de social media (27/09/2026)
 
@@ -278,14 +303,43 @@ sem conferir a 002** (tem o @ antigo como padrão); aplicar só a migração nov
   Corrigido em 28/10: `\n` no texto vira quebra de linha (CSS `pre-line`), render novo apaga os slides do anterior, e
   imagem que ficou na pasta do título antigo (título mudou na correção) é copiada pra pasta do post (`trazerImagens`).
 - **28/10:** a direção de arte de 23/10 veio do worktree `swordtail` pra `main` (pedido do Marcelo: "traz tudo") e entra
-  na `doutrinaMidia()`. ⚠️ **Falta no Mídia:** em 28/10 o Marcelo reprovou os 3 posts de 26/10 e a regra virou "duas
-  aprovações antes de qualquer slide" (temas da semana, depois o esqueleto de cada post; `/carrossel`, topo). Hoje a
-  sessão da semana ainda monta os slides direto, e as séries `tweet`/`escuro` não podem sair em dois posts seguidos.
+  na `doutrinaMidia()`. Em 28/10 o Marcelo reprovou os 3 posts de 26/10 e a regra virou "duas aprovações antes de
+  qualquer slide" (temas da semana, depois o esboço de cada post; `/carrossel`, topo). A rotina `semana` (que
+  monta slides direto) foi **desligada** em 28/10.
+
+**🔎 Pesquisa e pauta da semana (28/10/2026, pedido do Marcelo: "ao invés de deixarmos agendado os carrosséis, deixar
+agendado a pesquisa, planejamento e estudo de ideias", como o Sherlock do opensquad):**
+- Rotina `pauta` (quinta 8h) → tarefa `midia_pauta` (`midiaPauta` em `farejador/midia.mjs`). Pesquisa a semana seguinte.
+  **Não monta post, não gera imagem, não precisa do Chrome.**
+- Radar pelo código (o Claude do Farejador não roda Bash, por isso a pesquisa da pauta nunca tinha rodado de verdade):
+  `ferramentas/social/bin/referencias.mjs` lê os 12 posts recentes de cada perfil de `config.midia.radar_perfis` (padrão
+  no código: brun0gpt, aprendeconvalerio, brunofragaoficial, barretobru, eugersonrodrigues, ideiasquepagam25) e baixa
+  o carrossel mais forte de cada um em `marketing/conteudo/midia/pautas/<segunda>-radar/` (folha.jpg). Para depois de
+  duas grades vazias seguidas (o Instagram corta o acesso sem login). Playwright sem login; nunca curte nem segue.
+- Depois o Opus (Read, WebSearch, WebFetch) abre as folhas, faz no mínimo 4 buscas (notícia, estudo brasileiro,
+  ferramenta grátis, data do comércio), dá a nota do opensquad e entrega 5 a 7 ideias, 3 recomendadas, cada uma com
+  capa de até 10 palavras, cena de abertura, prova visual, carrossel de referência e fonte.
+- Saída: `marketing/conteudo/midia/pautas/<segunda>.md` com "ESPERANDO APROVAÇÃO" no título (nunca sobrescreve:
+  vira `-v2`), tarefa "Aprovar os temas do Instagram da semana de DD/MM" (prazo: a sexta antes), aviso no WhatsApp.
+  `pautaAprovada()` ignora arquivo que ainda diz "ESPERANDO APROVAÇÃO".
+- **As duas aprovações no painel (03/11/2026, pedido do Marcelo: "não dá pra eu abrir uma sessão toda semana"):** a pauta também
+  grava cada ideia em `social_posts` com status `tema` (migração `019_pauta_e_esboco.sql`: status novos `tema` e `esboco`). Em
+  Instagram › Semana o Marcelo aprova o tema (job `midia_esboco`, `midiaEsboco`: Opus abre a fonte, escreve o esboço no padrão
+  `ESQ_ESBOCO` = post v2 + referência, o que muda, riscos e pendências, grava `esboco.md` e `post.json` na pasta do post e põe o
+  status `esboco`). Depois aprova o esboço (job `midia_montar`, `midiaMontar`: Chrome, imagens no ChatGPT, slides, 🎨 Criação,
+  status `aguardando`). Pedir ajuste no esboço refaz só o esboço. Nada sai sem o ok dele, e nenhuma etapa precisa de sessão do
+  Claude Code aberta; só do Farejador ligado e do Chrome aberto e logado no ChatGPT (sem Chrome o job espera e avisa no WhatsApp).
+  A série `tweet` ganhou o **par de cartões** (`imagem` + `conversa` no mesmo slide, `exemplo: true` põe a etiqueta; até 6
+  imagens por post). Limites: print real de tela e diagrama em código (calendário) ainda não existem na série automática;
+  tema que depende deles fica melhor numa sessão do Claude Code. Aprovar post cujo horário já passou pergunta o novo horário
+  (evita publicar na hora). Job de montagem pode ser agendado: `jobs.retomar_em` (usado no "5 chatices", 04/11 às 9h05).
+- A rotina `semana` segue desligada; o motor de montar slides direto (`midiaSemana`) fica só como código legado.
 
 **Estado das rotinas (18/10/2026, Marcelo):** só `semana` (planejamento semanal de posts, segunda 8h), `publicar` e `token`
 ficam ligadas em `social_rotinas`. `caixa` (comentários e DMs) e `triagem` estão desligadas por gastar token e engavetadas;
 sem a caixa, DM nova não avisa no WhatsApp. `metricas` também desligada (05/10). Religar = `ativo = true` na linha.
 **Conferido em 28/10/2026:** `caixa` está LIGADA de novo (quem religou não ficou registrado); `triagem` e `metricas` seguem desligadas.
+**28/10/2026 (Marcelo):** `semana` desligada; `pauta` (quinta 8h, pesquisa e pauta) ligada no lugar.
 
 ## Dívidas conhecidas (27/09/2026)
 

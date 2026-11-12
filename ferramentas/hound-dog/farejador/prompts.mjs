@@ -371,14 +371,26 @@ DECISÃO
   Se ele tem o problema e sabe, oferta direta. Se não sabe, a mensagem mostra o fato e deixa a conclusão com ele. Se para
   ele não é problema (agenda cheia, nome consolidado, sem busca por cliente), é PERDIDO por timing, com esse motivo.
 - Lead que já tem "quase tudo" (nota boa, agenda, mini-site ou cartão de links) e nenhum argumento convence: antes de PERDIDO,
-  considere a PRÉVIA (§9 e §2A da doutrina): passo 1 confirma o decisor, o Marcelo monta uma prévia leve do site, e o passo 2
-  diz "montei uma prévia de como ficaria, quer dar uma olhada?". Nesse caso, NÃO grave o passo 2 no disparo (a prévia ainda
-  não existe); descreva a prévia e o texto do passo 2 em "pendencias".
+  considere a PRÉVIA COM LICENÇA (método da casa desde 03/11/2026, _memoria/prospeccao/40-testes.md): o corpo diz o que eu
+  montaria e termina em "Posso te mostrar como ficaria?". NADA se monta antes do sim: a prévia não pedida é a estratégia com
+  mais fracassos em 2026 (pesquisa de 09/10, regra 7). Nunca escreva "comecei a montar" ou "montei" se nada foi montado.
 - Achou agência ou fornecedor atual: não desqualifica sozinho, mas a tese vira COMPLEMENTO (a camada que falta), nunca crítica ao trabalho dele.
 
 MENSAGENS (só se QUALIFICADO)
-- Formato "casa": passo 1 = abertura curta que confirma o decisor ("Oi, tudo bem? Falo com a responsável pela X?"); passo 2 = fato
-  verificado + o que eu faço + pedido de licença ("quer que eu te explique?").
+- O MÉTODO DA CASA (decisão do Marcelo, 03/11/2026, _memoria/prospeccao/40-testes.md e 15-o-que-deu-certo.md; a pesquisa de
+  09/10 vem acima da doutrina antiga):
+  1. Passo 1 chama QUEM DECIDE PELO NOME ("Oi, Gabriel! Tudo bem?", "Oi, tudo bem? Falo com o Mateus?"). O nome só entra se foi
+     conferido na ficha do Google, no CNPJ, no site ou no perfil, e vai com fonte em "verificacao". Sem nome conferido:
+     "Oi, tudo bem? Falo com quem cuida da [empresa]?". Nunca chute o nome.
+  2. Passo 2 (o corpo, até 60 palavras, um balão): o problema que o dono vê em segundos e que custa cliente, o que eu faço com as
+     palavras do negócio dele, e "Posso te mostrar como ficaria?". Dia e hora só depois do sim.
+  3. A casa monta em 24h só depois do sim. O preço vai na resposta ao sim, ANTES de montar: "Fica entre R$ 1.200 e R$ 2.000,
+     depende de quantas páginas. Monto em 24h e te mostro amanhã às 10h ou às 16h?". Nunca no primeiro corpo.
+  4. A medida é reunião marcada (o Farejador marca a ficha com "abordagem:previa-com-licenca" sozinho).
+- O formato "casa" abaixo é este método. O formato "curiosidade" foi ENCERRADO em 03/11 (pergunta sobre o negócio é pescaria);
+  se o pedido vier com ele, use o método da casa e diga isso em "pendencias".
+- Formato "casa": passo 1 = abertura pelo nome de quem decide; passo 2 = fato verificado + o que eu faço + "Posso te mostrar
+  como ficaria?".
 - Formato "curiosidade": mensagem 1 sem me apresentar e sem oferta: problema real + o prejuízo que o dono não vê (quem cai nele não avisa,
   vai pro concorrente) + pergunta sobre o NEGÓCIO (o que mais sai, a história); nunca sobre site/marketing. Mensagem 2 só depois da resposta:
   "Aliás, nem me apresentei: sou o Marcelo..." + o que faço + "se fizer sentido, te mostro".
@@ -411,7 +423,8 @@ MENSAGENS (só se QUALIFICADO)
      explicar, pra montar uma prévia (que só se monta depois do sim) ou uma ligação de 10 minutos com dois horários.
   3. "respostas" cobre no mínimo: "respondeu a recepção / a secretária", "já tenho site/fornecedor", "uso o Instagram", "quanto custa?", "já tenho quem cuida",
      "quem é você / de onde tirou meu número", "manda mais informações", "obrigado, agora não", silêncio de 4 dias, e o sim
-     (próximo passo com dois horários). Preço nunca por texto. Aceitar a saída, nunca empurrar.
+     (preço da Fase 1 e dois horários, pela regra 3 do método). "quanto custa?" de site recebe a faixa da Fase 1 (R$ 1.200 a
+     R$ 2.000, depende de quantas páginas) e dois horários (P3, 09/10); valor fechado só ao vivo. Aceitar a saída, nunca empurrar.
   4. "mapa": por que esta abertura, a pauta da ligação (R1) com as perguntas, o que descobrir antes da proposta, a proposta em
      fases ancorada no ticket DELE, e as oportunidades além da primeira venda (o que mais esse negócio compraria).
      A PAUTA DA R1 segue SPIN + Mom Test (_conselho/mentes/neil-rackham.md e rob-fitzpatrick.md): nada de pergunta de
@@ -421,7 +434,7 @@ MENSAGENS (só se QUALIFICADO)
      reputação ou dinheiro), não "vou pensar".
   5. As "respostas" a objeção usam _conselho/mentes/chris-voss.md (espelhar, rotular, pergunta calibrada "o que/como", nunca
      "por quê") e o mapa das 7 crenças do Cole Gordon (_conselho/mentes/fontes/cole-gordon/mega-brain/AGENT.md, MM-CG-001:
-     cada objeção é uma crença que faltou). Continua valendo: aceitar a saída, uma pergunta só, preço nunca por texto.
+     cada objeção é uma crença que faltou). Continua valendo: aceitar a saída, uma pergunta só, valor fechado nunca por texto (a faixa da Fase 1 pode).
 - O QUE ENTROU EM 29/09 (_memoria/prospeccao/20-escrita.md):
   a. PERSONALIZE A OFERTA, NÃO SÓ A ABERTURA. A frase do "eu posso montar pra vocês" diz o serviço com os substantivos que
      só esse negócio tem (o procedimento, o botão quebrado, a fala do dono). Teste: trocando o nome do lead por outro do mesmo
@@ -448,11 +461,12 @@ ${lote.map((t) => `  · ${t.replace(/\s+/g, ' ').slice(0, 260)}`).join('\n')}` :
 ${regrasParaPrompt()}
 - AUTOCRÍTICA ANTES DE DEVOLVER: rode _memoria/prospeccao/99-checklist.md (vetos, os quatro testes, a nota de 0 a 50) em cada
   mensagem, reescreva o que não passar, e registre em "autocritica" o que você mudou e por quê.
-- PASSO 1 também com duas variantes: "A" = abertura em dois passos ("Oi, [nome]! Tudo bem? Falo com você ou com a recepção?"),
-  angulo "abertura em dois passos"; "B" = a VARIAÇÃO SIMPLES, uma mensagem só, angulo "simples": "Oi, [nome]! Tudo bem? Aqui é o
-  Marcelo, da Hórus. Vi o perfil de vocês no Instagram e reparei que vocês ainda não têm um site próprio. Já pensaram em ter um, pra
-  aparecer no Google quando alguém procura [serviço em palavra de busca] em [cidade]?" (adapte se tiver site: fora do ar, ou
-  ficha sem site). Mande as duas em "mensagens" com passo 1 e variante A ou B; o "disparo" continua sendo a A.
+- PASSO 1 também com duas variantes: "A" = abertura pelo nome de quem decide ("Oi, [nome conferido]! Tudo bem?"), angulo
+  "abertura pelo nome"; "B" = MENSAGEM ÚNICA no mesmo método, pra quando o número é do próprio dono, angulo "mensagem única":
+  nome + "aqui é o Marcelo, da Horus" + o problema + o que eu faço + "Posso te mostrar como ficaria?", até 60 palavras. Modelo
+  aprovado pelo Marcelo (Michele, 03/11): "Vi que o site da sua bio está fora do ar. Quem clica cai num erro. Eu posso montar um
+  site novo pra você, com cada procedimento explicado do seu jeito. Posso te mostrar amanhã como ficaria?". Nunca "já pensaram
+  em ter um site?": é pescaria. Mande as duas em "mensagens" com passo 1 e variante A ou B; o "disparo" continua sendo a A.
 
 Responda SÓ com \`\`\`json no formato:
 {
@@ -509,7 +523,7 @@ QUEM FALA (decisão do Marcelo, 29/09)
 TRAVAS
 - Integridade: todo fato da mensagem tem linha na verificação (frase, fonte, como conferiu). Nada inventado. O que falta
   vira lacuna na memória ou pedido ao Marcelo, nunca texto plausível. Posição na busca só com a busca do Marcelo no dia.
-- Preço nunca por mensagem. Promessa de resultado nunca. Setor regulado: compliance trava.
+- Valor fechado nunca por mensagem; "quanto custa?" de site recebe a faixa da Fase 1 (R$ 1.200 a R$ 2.000) e dois horários, e o preço vai na resposta ao sim, antes de montar (método de 03/11, 40-testes.md). Promessa de resultado nunca. Setor regulado: compliance trava.
 - Uma pergunta só por mensagem. Aceitar a saída ("obrigado, agora não" é resposta, não objeção pra contornar).
 - Nada de "bom dia", "boa tarde" ou "boa noite": você não sabe a hora em que o Marcelo vai aprovar e mandar. "Oi" ou
   "Obrigado pelo retorno" servem a qualquer hora.
@@ -761,7 +775,7 @@ ${respostas.map((r, i) => `[${i}] se: ${r.se}\n    responde: ${r.entao}`).join('
 A RÉGUA
 - Responde de verdade ao "se"? Serve pra quem provavelmente vai falar (dono, sócia, recepção)?
 - Voz do Marcelo (abaixo), sem cara de IA, uma pergunta só, até umas 50 palavras, sem travessão, emoji ou parêntese.
-- Preço nunca por texto: leva pra conversa. Promessa nunca. Aceitar a saída quando é recusa.
+- Valor fechado nunca por texto: leva pra conversa (a faixa da Fase 1 pode, P3 de 09/10). Promessa nunca. Aceitar a saída quando é recusa.
 - Nada que envelheça: "amanhã", "hoje", dia da semana ou horário fixo reprovam (ele pode usar dias depois). Pra marcar:
   "fica melhor de manhã ou de tarde?" ou "essa semana ou na próxima?".
 - Nada de "bom dia/boa tarde/boa noite". Nada de fato que não esteja na lista acima. Nada de tese descartada.

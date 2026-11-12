@@ -73,9 +73,14 @@ export async function placarFormatos(especialistaId = null) {
   return p;
 }
 
-/** Qual formato a próxima abertura deve usar pra o teste ter base: o que tem menos envios (empate: curiosidade). */
-export function formatoDaVez(placar) {
-  return placar.curiosidade.enviados <= placar.casa.enviados ? 'curiosidade' : 'casa';
+/**
+ * Qual formato a próxima abertura usa. Desde 03/11/2026 é sempre "casa" (método único, decisão do Marcelo na tarefa
+ * "Decidir o método de prospecção depois da avaliação de 15/10", _memoria/prospeccao/40-testes.md): o teste casa ×
+ * curiosidade foi encerrado. A pergunta sobre o negócio é pescaria, e a pesquisa de 09/10 manda dizer a oferta.
+ * O placar segue lido só como histórico.
+ */
+export function formatoDaVez(_placar) {
+  return 'casa';
 }
 
 export async function agenteDa(empresaId) {

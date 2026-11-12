@@ -400,6 +400,7 @@ table.tabela { width: 100%; border-collapse: collapse; font-size: 14px; }
 @media (max-width: 1080px) {
   .grade-3 { grid-template-columns: 1fr 1fr; }
 }
+.barra-mob { display: none; }
 @media (max-width: 900px) {
   body { overflow: auto; }
   .app { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
@@ -417,4 +418,39 @@ table.tabela { width: 100%; border-collapse: collapse; font-size: 14px; }
   .modal-cab, .modal-corpo, .modal-pe { padding-left: 16px; padding-right: 16px; }
   .gaveta-cab, .gaveta-corpo { padding-left: 16px; padding-right: 16px; }
   .coluna { width: 270px; }
+
+  /* Celular (11/11/2026): barra de atalhos embaixo, campos a 16 px (o iPhone dá zoom abaixo disso), alvos de toque maiores */
+  .barra-mob {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 55; display: grid; grid-template-columns: repeat(5, 1fr);
+    padding: 6px 6px calc(6px + env(safe-area-inset-bottom)); background: rgba(13, 13, 17, 0.94);
+    border-top: 1px solid var(--line-2); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  }
+  .barra-mob a, .barra-mob button {
+    display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 2px; min-height: 52px; border: 0; border-radius: 12px;
+    background: transparent; color: var(--txt-3); font-size: 11.5px; font-weight: 600; -webkit-tap-highlight-color: transparent;
+  }
+  .barra-mob .bm-ic { position: relative; display: grid; place-items: center; width: 44px; height: 28px; border-radius: 99px; }
+  .barra-mob svg { width: 21px; height: 21px; }
+  .barra-mob .ativo { color: var(--txt); }
+  .barra-mob .ativo .bm-ic { background: var(--accent-soft); color: var(--accent-2); }
+  .barra-mob .bm-n {
+    position: absolute; top: -4px; right: 2px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 99px; display: grid; place-items: center;
+    background: var(--accent); color: var(--accent-ink); font: 700 10.5px/1 var(--ff); font-style: normal;
+  }
+  .barra-mob .bm-n.verde { background: var(--green); color: #04210f; }
+  .vista, .vista.cheia { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+  /* Instalado na tela inicial (iPhone): o topo desce abaixo do relógio e da bateria */
+  .topo { padding-top: calc(12px + env(safe-area-inset-top)); }
+  .side { padding-top: env(safe-area-inset-top); }
+  .gaveta-cab { padding-top: calc(20px + env(safe-area-inset-top)); }
+  .toasts { bottom: calc(84px + env(safe-area-inset-bottom)); right: 12px; left: 12px; align-items: stretch; }
+  .toast { max-width: none; }
+  .inp, .sel, .txt, .inp.sm, .sel.sm, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select, textarea { font-size: 16px; }
+  .btn.sm { min-height: 38px; }
+  .btn.icone.sm { width: 38px; height: 38px; }
+  .btn.xs { min-height: 34px; }
+  .modal { width: calc(100vw - 20px); max-height: calc(100dvh - 24px); }
+  .modal-pe .btn { flex: 1 1 auto; }
+  .gaveta { width: 100vw; border-left: 0; }
+  .gaveta-corpo { padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
 }

@@ -61,6 +61,7 @@ dados/*
 # Sem a pasta, o hook vira no-op silencioso (o guard `[ ! -f ... ]` cobre) e o
 # /verificar continua funcionando, porque ele chama o detector via npx.
 .claude/skills/impeccable/
+.claude/skills/taste-skill/assets/
 
 # Cannonball e Squads (trazidos em 04/09/2026) — mesma lógica do impeccable.
 # São CÓDIGO E DOUTRINA DE TERCEIRO, prateleira de mineração, não decisão da Horus.

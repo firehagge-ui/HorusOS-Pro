@@ -4,6 +4,10 @@ Regra do Marcelo (08/10/2026): **nenhum post é montado antes de ele aprovar a i
 A pauta vai em `marketing/conteudo/midia/pautas/<segunda>.md` e vira tarefa no Hounder.
 Processo completo e o porquê em `ferramentas/social/ARQUITETURA.md` §8.
 
+**Desde 28/10/2026 a pesquisa roda sozinha:** toda quinta às 8h o Mídia faz o radar e a pauta da semana seguinte
+(rotina `pauta`) e avisa no WhatsApp. No Claude Code, a `/carrossel` começa lendo essa pauta; se ela não existir ou o
+Marcelo pedir outra, faz a pesquisa aqui mesmo, com o radar abaixo e `ferramentas/social/bin/referencias.mjs`.
+
 ## Radar (de onde vêm as ideias)
 
 1. Notícia da semana sobre o que o dono usa: WhatsApp, Instagram, IA, Pix, consumo.

@@ -226,6 +226,7 @@ servidor.registerTool('hd_tarefas', {
   if (texto) { p.push(`%${texto}%`); cond.push(`(t.titulo ilike $${p.length} or t.descricao ilike $${p.length} or t.objetivo ilike $${p.length})`); }
   p.push(limite);
   return q(`select t.id, t.titulo, t.descricao, t.pronto_quando, t.area, t.prioridade, t.status, t.responsavel, t.prazo, t.marco, t.objetivo, t.projeto, t.privada, t.depende_de, t.motivo_trava,
+      t.repetir_cada, t.repetir_unidade, t.repetiu_de,
       t.concluida_em, t.concluida_obs, e.nome empresa, t.empresa_id,
       (t.prazo is not null and t.prazo < (now() at time zone 'America/Bahia')::date and t.status not in ('feita','cancelada')) atrasada,
       exists (select 1 from tarefas d where d.id = any(t.depende_de) and d.status not in ('feita','cancelada')) bloqueada
@@ -236,7 +237,9 @@ servidor.registerTool('hd_tarefas', {
 servidor.registerTool('hd_salvar_tarefa', {
   title: 'Criar, atualizar ou concluir tarefa',
   description: 'Cria uma tarefa (sem id) ou atualiza uma existente (com id; só os campos que mudaram). Para dar o check: status "feita" (+ concluida_obs com o que foi feito). '
-    + 'Travou? status "travada" + motivo_trava. Prazo em AAAA-MM-DD (horário da Bahia). Responsável: Marcelo ou Antônio. marco: m1 (90 dias), m2 (6 meses), m3 (12), m4 (24).',
+    + 'Travou? status "travada" + motivo_trava. Prazo em AAAA-MM-DD (horário da Bahia). Responsável: Marcelo ou Antônio. marco: m1 (90 dias), m2 (6 meses), m3 (12), m4 (24). '
+    + 'Toda data dita na conversa ("medir dia 10", "conferir em 30 dias") vira tarefa aqui. Algo que se repete ("todo mês", "toda semana"): repetir_cada + repetir_unidade; '
+    + 'ao marcar feita, o banco cria a próxima sozinho (migração 020).',
   inputSchema: {
     id: z.string().optional(), titulo: z.string().optional().describe('Obrigatório para criar. Verbo no começo: "Abrir o CNPJ"'), descricao: z.string().optional(),
     pronto_quando: z.string().optional().describe('Como se sabe que acabou'), area: AREA_TAREFA.optional(), prioridade: z.enum(['alta', 'media', 'baixa']).optional(),
@@ -244,11 +247,18 @@ servidor.registerTool('hd_salvar_tarefa', {
     objetivo: z.string().optional(), projeto: z.string().nullable().optional().describe('Agrupa tarefas do mesmo fim: Tráfego, Icarus, Empresa, Social Media...'),
     privada: z.boolean().optional().describe('true = só o dono (Marcelo) vê. Use em tudo do acompanhamento do Antônio: ele é operador e não pode saber do teste'), depende_de: z.array(z.string()).optional().describe('ids de tarefas que precisam acabar antes'), empresa_id: z.string().nullable().optional(),
     motivo_trava: z.string().nullable().optional(), ordem: z.number().int().optional(), concluida_obs: z.string().optional(),
+    repetir_cada: z.number().int().min(1).max(365).nullable().optional().describe('Repete a cada N unidades (ex.: 1 com "mes" = todo mês). null tira a repetição'),
+    repetir_unidade: z.enum(['dia', 'semana', 'mes']).nullable().optional().describe('Vai junto com repetir_cada'),
   },
 }, envolver(async ({ id, ...t }) => {
   // Prazo em sábado ou domingo volta com aviso (21/10/2026: o Claude marcou contador e CNPJ no sábado)
   if (t.prazo && [0, 6].includes(new Date(`${String(t.prazo).slice(0, 10)}T12:00:00`).getDay())) {
     throw new Error(`O prazo ${t.prazo} cai no fim de semana. Use a sexta antes ou a segunda depois (ou mande de novo com o dia útil).`);
+  }
+  // Repetição vai em par (o banco recusa um sem o outro): null em um tira os dois
+  if (t.repetir_cada === null || t.repetir_unidade === null) { t.repetir_cada = null; t.repetir_unidade = null; }
+  else if ((t.repetir_cada === undefined) !== (t.repetir_unidade === undefined)) {
+    throw new Error('Para repetir, mande repetir_cada e repetir_unidade juntos (ex.: 1 e "mes").');
   }
   const campos = Object.keys(t).filter((c) => t[c] !== undefined);
   if (process.env.HD_SO_PUBLICO === '1') {
@@ -257,8 +267,11 @@ servidor.registerTool('hd_salvar_tarefa', {
   }
   if (id) {
     if (!campos.length) throw new Error('Nada para mudar');
-    const r = await q1(`update tarefas set ${campos.map((c, i) => `${c} = $${i + 2}`).join(', ')} where id = $1 returning id, titulo, status, prazo, responsavel, concluida_em`, [id, ...campos.map((c) => t[c])]);
+    const r = await q1(`update tarefas set ${campos.map((c, i) => `${c} = $${i + 2}`).join(', ')} where id = $1 returning id, titulo, status, prazo, responsavel, concluida_em, repetir_cada, repetir_unidade`, [id, ...campos.map((c) => t[c])]);
     if (!r) throw new Error('Tarefa não encontrada');
+    if (t.status === 'feita' && r.repetir_cada) {
+      r.proxima = await q1(`select id, prazo from tarefas where repetiu_de = $1 and status = 'a_fazer' order by criado_em desc limit 1`, [id]);
+    }
     if (t.status === 'feita' && t.empresa_id !== null) {
       const e = await q1('select empresa_id from tarefas where id = $1', [id]);
       if (e?.empresa_id) await registrarAtividade(e.empresa_id, 'nota', `Tarefa concluída: ${r.titulo}`, t.concluida_obs || null, AUTOR);

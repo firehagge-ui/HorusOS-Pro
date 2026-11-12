@@ -20,7 +20,7 @@ manda de verdade.
 - Site ou landing page novo, do zero, pra qualquer cliente ou pra própria Hórus
 - O Marcelo pediu pra "começar o site" de alguém
 - **Não** usar pra ajuste pontual num site que já existe (aí é edição direta, ou
-  a `/redesign-skill` se for repaginar). Essa aqui é pra quando não há HTML ainda.
+  a `/impeccable` com `references/auditar-site-existente.md` se for repaginar). Essa aqui é pra quando não há HTML ainda.
 
 ## O fluxo, em ordem. Não pular fase.
 
@@ -125,7 +125,7 @@ Não declarar pronto sem conferir (regra da `/verificar` e do `CLAUDE.md`).
    node .claude/skills/impeccable/scripts/detect.mjs "clientes/<nome>/site"
    ```
    Ou, se a skill não estiver nesse clone:
-   `npx --yes impeccable@4.0.4 detect "clientes/<nome>/site"`.
+   `npx --yes impeccable@4.8.2 detect "clientes/<nome>/site"`.
    Saída `0` é limpo, `2` achou coisa. Regra de acessibilidade se corrige, dispensa
    exige `--reason`.
 3. Se o comando não rodou nesta mensagem, o item é **não verificado**, nunca ok.

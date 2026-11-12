@@ -173,6 +173,12 @@ details[open] > summary.rotulo::before { content: "▾ "; }
 .conv-prev { display: block; font-size: 12.5px; color: var(--txt-3); margin-top: 4px; }
 .inbox-conversa { display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
 .conv-cab { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.conv-voltar { display: none; }
+@media (max-width: 900px) {
+  .conv-voltar { display: inline-flex; }
+  /* O nome fica inteiro na primeira linha; estágio e botões descem pra segunda */
+  .conv-cab > .grow { flex: 1 1 calc(100% - 110px); }
+}
 .conv-corpo { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 340px; }
 .conv-msgs { overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 8px; background: radial-gradient(600px 300px at 50% 0%, rgba(37, 211, 102, 0.03), transparent); }
 .conv-lado { border-left: 1px solid var(--line); overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 16px; }
@@ -223,6 +229,10 @@ details[open] > summary.rotulo::before { content: "▾ "; }
 .mes-num { font-size: 12.5px; color: var(--txt-3); }
 .mes-dia.hoje .mes-num { color: var(--accent-ink); background: var(--accent); border-radius: 6px; padding: 0 6px; align-self: flex-start; font-weight: 700; }
 .mes-dia .evento { padding: 3px 6px; flex-direction: row; gap: 5px; }
+/* tarefa com prazo na Agenda (11/11/2026) */
+.tarefa-ev .tl { display: flex; align-items: center; gap: 5px; min-width: 0; max-width: 100%; }
+.tarefa-ev .tl svg { width: 12px; height: 12px; flex: none; color: var(--cor); }
+.tarefa-ev .tl i { font-style: normal; color: var(--cor); font-size: 11px; flex: none; }
 .agenda-lista { padding: 8px 16px 16px; }
 .al-grupo { display: flex; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--line); }
 .al-grupo:last-child { border-bottom: 0; }
@@ -365,8 +375,11 @@ details[open] > summary.rotulo::before { content: "▾ "; }
   .hero h1 { font-size: 26px; }
   .hero-acoes { min-width: 0; width: 100%; }
   .inbox, .chat-layout, .ajustes-grade { grid-template-columns: 1fr; }
-  .inbox-lista { max-height: 46vh; }
-  .inbox-conversa { min-height: 70vh; }
+  /* Celular: lista OU conversa, nunca as duas (11/11/2026) */
+  .inbox-lista { max-height: none; }
+  .inbox-itens { overflow: visible; }
+  .inbox.com-conversa .inbox-lista, .inbox:not(.com-conversa) .inbox-conversa { display: none; }
+  .inbox-conversa { min-height: calc(100dvh - 190px); }
   .chat-threads { max-height: 180px; }
   .chat-principal { min-height: 72vh; }
   .ajustes-nav { position: static; flex-direction: row; overflow-x: auto; }
@@ -406,6 +419,8 @@ details[open] > summary.rotulo::before { content: "▾ "; }
   .bolha { max-width: 92%; }
   .conv-cab { gap: 8px; padding: 12px; }
   .modal-cab h2 { font-size: 17px; }
+  /* Texto que cresce numa linha que quebra: desce pra linha de baixo em vez de virar coluna de 80 px (11/11/2026) */
+  .row.wrap > .grow { flex-basis: 160px; }
 }
 
 /* Esteira em lista no celular: só o essencial (empresa, estágio, score) */
@@ -472,6 +487,13 @@ details[open] > summary.rotulo::before { content: "▾ "; }
 .midia-post { display: grid; grid-template-columns: minmax(0, 340px) 1fr; gap: 18px; margin-bottom: 14px; }
 .midia-tira { display: flex; gap: 6px; overflow-x: auto; cursor: zoom-in; padding-bottom: 4px; align-self: start; }
 .midia-tira img { width: 96px; aspect-ratio: 3 / 4; border-radius: 6px; flex: none; object-fit: cover; border: 1px solid var(--line); }
+.midia-tema { margin-bottom: 14px; }
+.midia-tema h3 { margin-top: 8px; }
+.midia-esb { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+.midia-esb th { text-align: left; color: var(--txt-3); font-weight: 600; padding: 4px 8px 4px 0; }
+.midia-esb td { vertical-align: top; padding: 7px 8px 7px 0; border-top: 1px solid rgba(128,128,128,.25); }
+.midia-esb td:first-child { width: 28px; color: var(--txt-3); }
+.midia-esb .ex { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; opacity: .7; }
 .midia-dl { display: grid; grid-template-columns: 110px 1fr; gap: 4px 12px; margin: 10px 0 0; font-size: 13.5px; }
 .midia-dl dt { color: var(--txt-3); }
 .midia-dl dd { margin: 0; }

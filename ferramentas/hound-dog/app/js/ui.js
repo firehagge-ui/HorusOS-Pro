@@ -146,7 +146,9 @@ export function modal({ titulo, subtitulo = '', corpo = '', pe = '', largo = fal
   if (peEl) { if (typeof pe === 'string') peEl.innerHTML = pe; else if (pe) peEl.appendChild(pe); if (!pe) peEl.remove(); }
   document.body.append(veu, m);
   const anterior = document.activeElement;
-  requestAnimationFrame(() => { veu.classList.add('on'); m.classList.add('on'); const f = $('input,select,textarea,button:not([data-fechar])', corpoEl); if (f) f.focus(); });
+  // No celular o foco automático abre o teclado por cima da janela: só foca com mouse
+  const toque = matchMedia('(pointer: coarse)').matches;
+  requestAnimationFrame(() => { veu.classList.add('on'); m.classList.add('on'); const f = !toque && $('input,select,textarea,button:not([data-fechar])', corpoEl); if (f) f.focus(); });
   function fechar(valor) {
     const i = pilha.indexOf(api); if (i >= 0) pilha.splice(i, 1);
     veu.classList.remove('on'); m.classList.remove('on');
@@ -185,7 +187,7 @@ export function perguntar(titulo, { rotulo = 'Salvar', valor = '', placeholder =
     const inp = $('[data-v]', m.el);
     const ok = () => { res = inp.value; m.fechar(); };
     $('[data-ok]', m.el).onclick = ok;
-    if (!multilinha) inp.onkeydown = (e) => { if (e.key === 'Enter') ok(); };
+    if (!multilinha) inp.onkeydown = (e) => { if (e.key === 'Enter') { e.preventDefault(); ok(); } };
   });
 }
 
@@ -209,15 +211,24 @@ export function gaveta({ cab = '', corpo = '', aoFechar } = {}) {
   if (typeof corpo === 'string') corpoEl.innerHTML = corpo; else if (corpo) corpoEl.appendChild(corpo);
   document.body.append(veu, g);
   requestAnimationFrame(() => { veu.classList.add('on'); g.classList.add('on'); });
-  function fechar(imediato) {
+  // silencioso: fecha sem rodar o aoFechar (troca de tela, quando o endereço já mudou)
+  function fechar(imediato, silencioso) {
     veu.classList.remove('on'); g.classList.remove('on');
     const fim = () => { veu.remove(); g.remove(); };
     if (imediato) fim(); else setTimeout(fim, 300);
-    if (aoFechar) aoFechar();
+    if (aoFechar && !silencioso) aoFechar();
   }
   g._fechar = fechar;
   veu.onclick = () => fechar();
   return { el: g, cab: cabEl, corpo: corpoEl, fechar };
+}
+
+/** Troca de tela fecha o que estava por cima: ficha, janelas e menus.
+ *  No celular o botão Voltar muda o endereço, e a ficha ficava aberta por cima de tudo (11/11/2026). */
+export function fecharSobreposicoes() {
+  $$('.menu-pop').forEach((m) => m.remove());
+  while (pilha.length) pilha[pilha.length - 1].fechar();
+  $$('.gaveta').forEach((g) => g._fechar && g._fechar(true, true));
 }
 
 /* ------------------------------ Menu suspenso ------------------------------ */

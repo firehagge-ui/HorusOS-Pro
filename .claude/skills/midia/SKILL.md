@@ -35,7 +35,8 @@ e o que ele precisa fazer. Horário sempre no fuso da Bahia.
 
 | Pedido | O que fazer |
 |---|---|
-| "planeja a semana agora" | `update social_rotinas set proxima = now() where id = 'semana'` (o Farejador pega em até 1 min) |
+| "pesquisa a pauta agora" | `update social_rotinas set proxima = now() where id = 'pauta'` (o Farejador pega em até 1 min; pesquisa a semana seguinte e avisa no WhatsApp) |
+| "planeja a semana" / "monta os posts" | A rotina `semana`, que montava os slides direto, está **desligada desde 28/10**: os posts saem da `/carrossel` no Claude Code, depois dos temas e do esboço aprovados. Não religar sem o Marcelo pedir |
 | "aprova o post X" | `update social_posts set status='aprovado', erro=null where id=...` só com o Marcelo pedindo, nunca por conta própria |
 | "refaz o post X com Y" | `update social_posts set status='ajuste', pedido_ajuste='Y'` + job `midia_ajuste` com `{post_id}` na tabela `jobs` |
 | "muda o horário" | `update social_posts set agendado_para=... , status='agendado'` |
@@ -43,5 +44,11 @@ e o que ele precisa fazer. Horário sempre no fuso da Bahia.
 | "roda a coleta agora" | `update social_rotinas set proxima = now() where id = 'metricas'` |
 
 Travas que não mudam: nada público sai sem aprovação do Marcelo na fase 1; responder DM é dele;
-nada de número inventado; ChatGPT só pelo Chrome do Marcelo. O Farejador precisa estar ligado
-(`npm run farejador` na pasta `ferramentas/hound-dog`) para qualquer coisa rodar.
+nada de número inventado; nenhum slide antes dos temas e do esboço aprovados. Rotas de imagem e o papel de cada
+agente (Mídia, Claude, Agy, Codex): `_memoria/conteudo/30-quem-faz-o-que.md`. O Farejador precisa estar ligado
+(`npm run farejador` na pasta `ferramentas/hound-dog`) para qualquer coisa rodar, e mudança no código dele só vale
+depois de reiniciar.
+
+**O que o Mídia faz sozinho hoje (29/10/2026):** `pauta` (quinta 8h, pesquisa e pauta da semana seguinte, Claude),
+`publicar` (a cada 5 min, posta o que o Marcelo aprovou), `token` (todo dia 6h), `caixa` (a cada 30 min, sem Claude).
+Desligadas: `semana`, `triagem`, `metricas`.

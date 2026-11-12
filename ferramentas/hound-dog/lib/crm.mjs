@@ -167,7 +167,7 @@ export async function adicionarItensLista(listaId, itens) {
              google_nota, google_avaliacoes, gmb_status, roda_anuncio, cnpj, observacao, dados, score, score_motivos, prioridade, empresa_id)
              values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23)`,
     [listaId, it.nome, it.categoria, it.cidade, it.bairro, it.endereco, it.telefone, it.whatsapp, it.instagram, it.instagram_seguidores, it.site, it.site_status,
-      it.google_nota, it.google_avaliacoes, it.gmb_status, it.roda_anuncio, it.cnpj, it.observacao, JSON.stringify({ fontes: bruto.fontes || [], origem: 'claude' }),
+      it.google_nota, it.google_avaliacoes, it.gmb_status, it.roda_anuncio, it.cnpj, it.observacao, JSON.stringify({ fontes: bruto.fontes || [], origem: bruto.origem || 'claude', ...(bruto.dados && typeof bruto.dados === 'object' ? bruto.dados : {}) }),
       p.score, JSON.stringify(p.motivos), p.prioridade, emp?.id || null]);
     inseridos++;
   }

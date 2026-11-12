@@ -10,3 +10,5 @@ farejador/.estado/
 .vercel/
 .navegador/
 .navegador-saidas/
+.previas/
+.cnpj-cache/
