@@ -1,0 +1,195 @@
+# Números dos perfis medidos em 13/11/2026 (últimos ~12 posts de cada; fonte: ScrapeCreators via Firecrawl)
+# ER = (mediana de curtidas + mediana de comentários) / seguidores. 'curt ocultas' = posts com curtida escondida pelo dono.
+# Fixados saem da conta de frequência e mediana, mas entram no top.
+## @laisgalvaoarq | seg 28,407 | 9 posts em 41 dias (1.5/sem) | fixados 3 | tipos {'carr': 7, 'reel': 2, 'foto': 0, 'video': 0} | med curt 105 med com 9 | ER 0.40% | med plays reel 5544.0 | pagos 0 | curt ocultas 4
+   top 26-05-12 carr lk 776 cm 89 pl None | Muito feliz com essa capa na Casa e Jardim! Projeto que amei fazer pra essa família tão carinho
+   top 26-08-25 carr lk 801 cm 63 pl None | Nosso apartamento é onde desaceleramos, criamos memórias e encontramos um pouco de nós em cada 
+   top 25-03-20 carr lk 251 cm 11 pl None | Criar um living acolhedor depende não só do mobiliário confortável, mas sim de todo o conjunto 
+   top 26-09-24 carr lk 154 cm 18 pl None | Estudo e resultado para um apartamento em São Paulo.  Foto @adrianopacelli
+   bio: 
+## @domaarquitetura | seg 1,278,562 | 12 posts em 43 dias (1.9/sem) | fixados 0 | tipos {'carr': 3, 'reel': 9, 'foto': 0, 'video': 0} | med curt 2548 med com 72 | ER 0.20% | med plays reel 97249 | pagos 1 | curt ocultas 0
+   top 26-10-27 reel lk 42080 cm 225 pl 476730 | Quem disse que precisa de obra, sujeira e furadeira pra transformar um cantinho da sua casa?  A
+   top 26-10-12 reel lk 24473 cm 225 pl 638289 | Qual seu preferido?!  Já salva pra escolher com calma…   Nem sempre o acabamento precisa ser aq
+   top 26-10-22 reel lk 17205 cm 541 pl 1590225 | Iluminação e ventilação natural no banheiro: quem também ama? ☀️  Nesse projeto de 45m², abrir 
+   top 26-09-30 carr lk 10291 cm 208 pl None | Mudar a estampa do meu quarto foi aquele respiro que eu estava precisando! 🩵  E o mais legal de
+   bio: 
+## @diogooliveiraof | seg 1,459,768 | 12 posts em 157 dias (0.5/sem) | fixados 0 | tipos {'carr': 9, 'reel': 2, 'foto': 1, 'video': 0} | med curt 6622 med com 488 | ER 0.49% | med plays reel 98915.0 | pagos 0 | curt ocultas 0
+   top 26-06-07 carr lk 682339 cm 34041 pl None | Garagem nova 🔥🤌🏻 @diogooliveiraof você realmente é internacional 👏🏻
+   top 26-05-13 carr lk 74521 cm 5833 pl None | Suíte presidencial. @carlinhos
+   top 26-04-20 foto lk 17126 cm 1002 pl None | Golden hour NYC Spring 2026.
+   top 26-08-26 carr lk 16450 cm 423 pl None | Cruzeiro Explora 3 Fjords Noruegueses. Copenhagen Denmark  Verão hemisfério Norte 2026.
+   bio: 
+## @camilapimentaoficial | seg 352,325 | 12 posts em 78 dias (1.1/sem) | fixados 0 | tipos {'carr': 5, 'reel': 7, 'foto': 0, 'video': 0} | med curt 752 med com 12 | ER 0.22% | med plays reel 56847 | pagos 0 | curt ocultas 4
+   top 26-11-10 reel lk 1087 cm 29 pl 204842 | Existe uma diferença entre conhecer o gosto de uma pessoa e compreender até onde ela gostaria d
+   top 26-11-10 carr lk 1059 cm 5 pl None | Cada escolha precisa fazer sentido por si e ganhar força na presença das outras. Meu olhar está
+   top 26-09-01 reel lk 794 cm 19 pl 103323 | Behind the scenes 🎬
+   top 26-09-14 reel lk 761 cm 13 pl 56847 | Reflections.
+   bio: 
+## @estudiolfarq | seg 653,112 | 9 posts em 51 dias (1.2/sem) | fixados 3 | tipos {'carr': 0, 'reel': 9, 'foto': 0, 'video': 0} | med curt 425 med com 6 | ER 0.07% | med plays reel 14577 | pagos 0 | curt ocultas 0
+   top 26-07-25 reel lk 53329 cm 122 pl 1134191 | Magnific House  Projeto Estúdio LF Arquitetura   Entre em contato e tenha o seu projeto exclusi
+   top 24-12-16 reel lk 11422 cm 341 pl 969876 | Hoje fechamos o dia – uma segunda-feira, véspera de Natal – com esse feedback do Roberto Justus
+   top 26-09-23 reel lk 2304 cm 60 pl 101420 | Quem sabe faz ao vivo!! 😅😅  Vocês acharam que os projetos eram ia né garotinhos ?? 🤣🤣  Aqui o s
+   top 26-10-09 reel lk 1598 cm 4 pl 37843 | AR House Design by @estudiolfarq  . . #arquitetura #casasmodernas #casasdeluxo #casasluxuosas #
+   bio: 
+## @fernandamarquesarquiteta | seg 700,090 | 10 posts em 18 dias (3.8/sem) | fixados 2 | tipos {'carr': 6, 'reel': 4, 'foto': 0, 'video': 0} | med curt 234 med com 16 | ER 0.04% | med plays reel 45995.0 | pagos 0 | curt ocultas 1
+   top 25-12-16 carr lk 2072 cm 67 pl None | CASA VOGUE 50 | Parto da premissa de que a arquitetura só tem sentido quando estética e função 
+   top 26-10-29 carr lk 1064 cm 29 pl None | [ 01 ] Inhabiting & Integrating | Jabuticaba House  Located in São José dos Campos, Brazil, the
+   top 26-10-30 reel lk 666 cm 38 pl 55830 | Um exercício de olhar, combinar e descobrir. Fernanda Marques na escolha dos tecidos para futur
+   top 26-10-24 reel lk 477 cm 26 pl 11262 | Nossa visita à Casa Millan, projeto de Paulo Mendes da Rocha, ao lado da Parket, foi uma oportu
+   bio: 
+## @mauricioarruda | seg 1,150,298 | 9 posts em 27 dias (2.3/sem) | fixados 3 | tipos {'carr': 2, 'reel': 7, 'foto': 0, 'video': 0} | med curt 3390 med com 82 | ER 0.30% | med plays reel 60314 | pagos 0 | curt ocultas 0
+   top 26-10-16 reel lk 106315 cm 25660 pl 971086 | Conhecer o Brasil é entender o tamanho da nossa desigualdade e a responsabilidade do nosso voto
+   top 26-11-05 reel lk 11706 cm 328 pl 182968 | Sem nenhum exagero considero o @mauricioarruda um dos profissionais que mais colabora para difu
+   top 26-10-30 carr lk 11378 cm 109 pl None | O que vc gosta de mesmo é de bastidores, né? Eu e o @caio temos conteúdo pra uns 50 carrosséis 
+   top 25-12-09 carr lk 5613 cm 224 pl None | Muito feliz e orgulhoso em receber a notícia de fazer parte desta lista pelo segundo ano consec
+   bio: 
+## {'code': 'not_found', 'message': 'ScrapeCreators found no public page for this input.', 'status': 404} None
+## @sertaoarquitetos | seg 68,067 | 9 posts em 43 dias (1.5/sem) | fixados 3 | tipos {'carr': 3, 'reel': 6, 'foto': 0, 'video': 0} | med curt 347 med com 9 | ER 0.52% | med plays reel 5746.5 | pagos 0 | curt ocultas 0
+   top 26-10-15 carr lk 1827 cm 24 pl None | Que sentido faz em pleno 2026 ainda ter uma entrada, um banheiro e um quarto de serviços, (minú
+   top 26-03-14 carr lk 1429 cm 28 pl None | Projetos - Sertão Arquitetos  1. Casa da Mata – Foto: @omanuelsa 2. Apartamento Aroeira – Foto:
+   top 26-10-11 carr lk 894 cm 270 pl None | Quantas vezes já ouvimos alguém dizer: “Quero uma casa brasileira, com brasilidade e borogodó!”
+   top 26-01-29 carr lk 443 cm 78 pl None | É uma alegria compartilhar que a Casa Graviola foi indicada para a premiação internacional Buil
+   bio: 
+## @isabelav.arq | seg 37,648 | 9 posts em 17 dias (3.7/sem) | fixados 3 | tipos {'carr': 1, 'reel': 0, 'foto': 8, 'video': 0} | med curt 0 med com 1 | ER 0.00% | med plays reel - | pagos 0 | curt ocultas 9
+   top 25-07-03 carr lk 3 cm 10 pl None | Transformação que teremos nesse apê, vai ficar demais!  Pra dar uma bela repaginada nessa sala 
+   top 24-07-15 reel lk 3 cm 9 pl 11719 | ✨ ANTES E DEPOIS ✨ Apartamento studio cheio de personalidade, onde o projeto foi iniciado lá qu
+   top 25-01-23 carr lk 3 cm 8 pl None | DEPOIS > ANTES ✨ desse quarto que ficou maravilhoso!!  Projeto autoral de um dos ambientes dess
+   top 26-11-09 foto lk 3 cm 7 pl None | Pontos de cores vibrantes nesse quarto com base toda neutra e mais rústica deram um estilo mais
+   bio: 
+## {'code': 'not_found', 'message': 'ScrapeCreators found no public page for this input.', 'status': 404} None
+## @eyeswoon | seg 1,199,439 | 9 posts em 14 dias (4.5/sem) | fixados 3 | tipos {'carr': 6, 'reel': 3, 'foto': 0, 'video': 0} | med curt 3792 med com 71 | ER 0.32% | med plays reel 137637 | pagos 0 | curt ocultas 0
+   top 26-03-10 carr lk 47709 cm 1628 pl None | “Maybe this is the grown-up, more sophisticated, more educated version of myself,” Athena Calde
+   top 23-06-22 carr lk 29311 cm 775 pl None | 06.22.23 @nytstyle cover story!!  A pivotal moment. As I look back in gratitude at all that cam
+   top 24-10-15 foto lk 13142 cm 301 pl None | Athena Calderone, founder of lifestyle brand @eyeswoon, graces the cover of Harper’s Bazaar Net
+   top 26-11-06 carr lk 7596 cm 117 pl None | Athena Calderone, founder of @eyeswoon and a celebrated voice in design and entertaining, welco
+   bio: 
+## @jakearnold | seg 459,922 | 9 posts em 58 dias (1.1/sem) | fixados 3 | tipos {'carr': 7, 'reel': 2, 'foto': 0, 'video': 0} | med curt 4684 med com 80 | ER 1.04% | med plays reel 133691.0 | pagos 1 | curt ocultas 0
+   top 26-07-10 reel lk 259860 cm 2611 pl 3227719 | Full tour of the concealed kitchen at the Tennis Pavilion, a guest and entertainment structure 
+   top 26-08-07 reel lk 51858 cm 554 pl 739650 | Full walkthrough of the Tennis Pavilion: the entertainment & guest space beneath the tennis cou
+   top 26-10-08 carr lk 11636 cm 155 pl None | THE FABRICS OF THE TENNIS PAVILION  On Substack this week, I’ve shared some of my favorite fabr
+   top 26-10-16 reel lk 7680 cm 215 pl 191630 | THE WEST VILLAGE TOWNHOUSE  Head to Jake’s Take for an exclusive, room-by-room tour of our late
+   bio: 
+## @amberinteriors | seg 2,046,384 | 10 posts em 11 dias (6.5/sem) | fixados 2 | tipos {'carr': 8, 'reel': 2, 'foto': 0, 'video': 0} | med curt 3869 med com 29 | ER 0.19% | med plays reel 129097.0 | pagos 0 | curt ocultas 9
+   top 26-08-21 carr lk 16109 cm 229 pl None | You guys, I have been posting on Instagram for a long time!!! 15 years to be exact, which feels
+   top 26-11-03 reel lk 3869 cm 25 pl 143707 | It's here, it's happening, and it's our biggest sale of the year. ❤️ Black Friday starts NOW! S
+   top 26-02-20 foto lk 3 cm 267 pl None | BIG NEWS TODAY!!! BOOK 3 IS HERE! Interiors: Curated Spaces From Start to Finish is available f
+   top 26-11-11 carr lk 3 cm 51 pl None | The second “P” of my process is PLAY! And while it may sound like all fun and games, this stage
+   bio: 
+## @em_henderson | seg 1,131,825 | 9 posts em 11 dias (5.7/sem) | fixados 3 | tipos {'carr': 5, 'reel': 4, 'foto': 0, 'video': 0} | med curt 979 med com 135 | ER 0.10% | med plays reel 43675.5 | pagos 0 | curt ocultas 0
+   top 25-02-09 reel lk 152089 cm 664 pl 2736590 | Here are just a few things I love about our funny farm :) which one is your fav?
+   top 26-06-07 carr lk 10168 cm 130 pl None | It’s like ‘if you give a mouse a cookie...’ but instead it’s ‘if you give an Emily an empty she
+   top 25-05-08 reel lk 8770 cm 157 pl 267846 | I can’t believe how far we’ve come…❤️
+   top 26-11-02 carr lk 2418 cm 5559 pl None | My tried and trues - these are the items that I swear by (and they would all make excellent gif
+   bio: 
+## @beataheuman | seg 369,887 | 12 posts em 135 dias (0.6/sem) | fixados 0 | tipos {'carr': 9, 'reel': 2, 'foto': 1, 'video': 0} | med curt 5471 med com 90 | ER 1.50% | med plays reel 114407.5 | pagos 0 | curt ocultas 0
+   top 26-07-01 reel lk 10277 cm 105 pl 157846 | Memories of summer – for our Summer Chintz… Feeling sticky, tomatoes, cake in the afternoon, my
+   top 26-09-16 carr lk 9095 cm 138 pl None | When we were designing our kitchen at 188 Hammersmith Road we found ourselves in a spot of both
+   top 26-10-30 carr lk 7553 cm 119 pl None | My parents in law decided to leave the family home where my husband John and his sister @finfel
+   top 26-10-17 carr lk 6371 cm 72 pl None | We were in NYC a few weeks ago which was a whirlwind 48 hours to mark the occasion of us joinin
+   bio: 
+## @kellywearstler | seg 2,336,857 | 12 posts em 13 dias (6.6/sem) | fixados 0 | tipos {'carr': 11, 'reel': 1, 'foto': 0, 'video': 0} | med curt 0 med com 64 | ER 0.00% | med plays reel 150838 | pagos 0 | curt ocultas 12
+   top 26-11-08 carr lk 3 cm 322 pl None | NIGHT AT THE MUSEUM The @lacma Art+Film Gala: art and Hollywood under one roof, in support of a
+   top 26-11-03 carr lk 3 cm 104 pl None | HEART OF STONE My first time inside a quarry, standing inside a mountain. Marble underfoot, ove
+   top 26-11-04 carr lk 3 cm 99 pl None | PRIVATE MATTERS I’m interested in the beautiful contradictions of domestic life. The rare and t
+   top 26-11-06 reel lk 3 cm 86 pl 150838 | OFF THE MENU XK
+   bio: 
+## @hendricksoninteriors | seg 17,499 | 11 posts em 16 dias (4.8/sem) | fixados 1 | tipos {'carr': 7, 'reel': 2, 'foto': 2, 'video': 0} | med curt 34 med com 2 | ER 0.21% | med plays reel 1352.5 | pagos 0 | curt ocultas 10
+   top 26-06-30 carr lk 3 cm 108 pl None | I am so excited to share that @hendricksoninteriors is featured on the cover and in an editoria
+   top 26-11-13 carr lk 34 cm 3 pl None | Hosting season is oh-so close, and your dining room is about to work harder than it has all yea
+   top 26-11-09 carr lk 3 cm 8 pl None | “I’ve never met a color I didn’t like,” our client told us. So we ran with it... ✨  Picture lav
+   top 26-11-03 carr lk 3 cm 8 pl None | I always find myself paying the most attention to the little details in a bathroom. 🤎 For this 
+   bio: 
+## @nicktalksdesign | seg 200,964 | 12 posts em 458 dias (0.2/sem) | fixados 0 | tipos {'carr': 2, 'reel': 10, 'foto': 0, 'video': 0} | med curt 429 med com 20 | ER 0.22% | med plays reel 38753.5 | pagos 7 | curt ocultas 0
+   top 25-12-14 reel lk 2386 cm 116 pl 44200 | Hard launch. 💕
+   top 26-01-29 reel lk 1978 cm 136 pl 66518 | Who else is with me in the non-reusable coffee cups? Seriously these things must be 80,000 year
+   top 26-11-02 reel lk 1315 cm 27 pl 41826 | This is basically my whole life now so follow along for all the new house content. It’s so stre
+   top 26-08-25 carr lk 718 cm 20 pl None | I’ve been told I should post on Instagram more. Galicia 🇪🇸- Reims 🇫🇷- Paris 🇫🇷- Menorca 🇪🇸- Ven
+   bio: 
+## @justinablakeney | seg 529,112 | 9 posts em 176 dias (0.4/sem) | fixados 3 | tipos {'carr': 7, 'reel': 1, 'foto': 1, 'video': 0} | med curt 1595 med com 40 | ER 0.31% | med plays reel 29996 | pagos 0 | curt ocultas 2
+   top 22-05-17 foto lk 19677 cm 999 pl None | Hello there, @archdigest (!!!). I’m extremely excited, proud and moved to be featured on the co
+   top 26-08-28 carr lk 6057 cm 58 pl None | Let whatever needs to come, come! Let whatever needs to go, go!  -Tosha Silver
+   top 26-07-02 carr lk 4928 cm 154 pl None | Our new @ruggable collection just dropped 🔥and it’s full of color, pattern & hand-painted detai
+   top 26-05-18 carr lk 3697 cm 40 pl None | Q: What’s my favorite color to use for interiors?   A: All the colors!   Photos 1 and 12 by @je
+   bio: 
+## @jeremiahbrent | seg 1,401,364 | 11 posts em 23 dias (3.3/sem) | fixados 1 | tipos {'carr': 4, 'reel': 5, 'foto': 2, 'video': 0} | med curt 1514 med com 22 | ER 0.11% | med plays reel 74481 | pagos 0 | curt ocultas 0
+   top 26-10-09 reel lk 30651 cm 597 pl 888616 | I’m so proud to share that my children’s book, “The Love That Carried You”, arrives on May 11 2
+   top 26-10-26 carr lk 6967 cm 92 pl None | An homage to the origins of inspiration—architecture, travel, objects, and the details we colle
+   top 26-10-30 reel lk 5266 cm 155 pl 157204 | Making the old feel new again.
+   top 26-11-05 carr lk 2622 cm 26 pl None | Surrounded by so much beauty last night.  Thank you @thesalonny for having us.
+   bio: 
+## vazio None
+## vazio None
+## vazio None
+## vazio None
+## @deborareisarquitetura | seg 2,595 | 7 posts em 5 dias (10.2/sem) | fixados 5 | tipos {'carr': 1, 'reel': 2, 'foto': 4, 'video': 0} | med curt 39 med com 2 | ER 1.58% | med plays reel 288.0 | pagos 0 | curt ocultas 1
+   top 21-05-28 foto lk 109 cm 18 pl None | O seu ambiente fala muito sobre você, vai muito além de um conceito estético, mas traz suas ori
+   top 26-06-20 foto lk 57 cm 16 pl None | Quando me formei, em 2004, eu imaginava que minha profissão seria feita de projetos. Com o temp
+   top 19-09-17 foto lk 50 cm 6 pl None | Amei o resultado desse quarto! Cabeceira em capitonê de linho com iluminação de led! A roupa de
+   top 21-09-24 foto lk 42 cm 12 pl None | Olha aí gente! O espelho em forma de ursinho, tem altura da criança, assim como tbem o pendurad
+   bio: 
+## @eukellymares | seg 3,413 | 12 posts em 58 dias (1.5/sem) | fixados 0 | tipos {'carr': 7, 'reel': 2, 'foto': 3, 'video': 0} | med curt 59 med com 6 | ER 1.89% | med plays reel 7444.0 | pagos 0 | curt ocultas 0
+   top 25-07-27 reel lk 488 cm 22 pl 11185 | Mais uma vez, eu tô aqui. Na terra que me pariu, com a mão no barro que me criou. Não é a prime
+   top 25-10-15 reel lk 200 cm 101 pl 3703 | Ela espalha o cheiro de café, o riso, a memória da Bahia… E eu? Desenhei cada canto pra caber t
+   top 26-01-09 carr lk 269 cm 12 pl None | Projetar um studio hoje é encarar uma contradição urbana. O metro quadrado em São Paulo é um do
+   top 26-08-01 foto lk 90 cm 41 pl None | Tem uma pergunta que eu me faço em todo projeto. Será que alguém vai querer permanecer aqui? Nã
+   bio: 
+## @leticiagarin.arq | seg 52,116 | 9 posts em 15 dias (4.2/sem) | fixados 3 | tipos {'carr': 1, 'reel': 8, 'foto': 0, 'video': 0} | med curt 259 med com 24 | ER 0.54% | med plays reel 8406.5 | pagos 0 | curt ocultas 0
+   top 25-07-03 reel lk 3936 cm 174 pl 105208 | Mais uma entrega, a gente participa de todas as etapas, desde o projeto, obra e até a decoração
+   top 24-11-08 reel lk 1479 cm 246 pl 49115 | Sejam bem vindos à Letícia Garin Arquitetura.   Hoje começamos um novo capítulo da nosssa histó
+   top 26-10-18 reel lk 866 cm 49 pl 26603 | Para quem não conseguiu assistir o tour completo de mais de 10 min, fiz um de 2 minutos mais co
+   top 26-10-19 reel lk 704 cm 37 pl 21934 | Semana abençoada para vocês 🙏🏻🤍
+   bio: 
+## @designeranaleticia | seg 73,992 | 11 posts em 10 dias (7.9/sem) | fixados 1 | tipos {'carr': 2, 'reel': 6, 'foto': 3, 'video': 0} | med curt 69 med com 6 | ER 0.10% | med plays reel 3326.0 | pagos 0 | curt ocultas 0
+   top 26-02-19 reel lk 74847 cm 140 pl 1165369 | Ela é seu lugar no mundo! 🌍   Não há lugar melhor para voltar que não seja o SEU lar, onde você
+   top 26-11-05 reel lk 261 cm 202 pl 9436 | A melhor época chegou e claroooo que vou dividir com vocês a minha decoração com vocês ❤️🎄  Se 
+   top 26-11-08 foto lk 292 cm 6 pl None | Nossa cliente tinha um desejo muito especial: criar um espaço que fosse além de receber convida
+   top 26-11-04 reel lk 104 cm 9 pl 2535 | Um olhar sobre o design contemporâneo brasileiro, onde a natureza se torna parte da arquitetura
+   bio: 
+## @tatiwaileman.arq | seg 157,001 | 9 posts em 27 dias (2.3/sem) | fixados 3 | tipos {'carr': 4, 'reel': 5, 'foto': 0, 'video': 0} | med curt 314 med com 6 | ER 0.20% | med plays reel 11931 | pagos 0 | curt ocultas 0
+   top 26-10-19 reel lk 67259 cm 387 pl 697738 | A fachada já dá algumas pistas do que a gente vai encontrar lá dentro… mas não entrega tudo 💚  
+   top 24-02-19 reel lk 9529 cm 201 pl 155172 | Decidi dividir com vocês um pouco da minha trajetória nesses últimos 10 anos🥰 É emocionante pod
+   top 24-09-05 carr lk 1219 cm 11 pl None | O curso se chama "como escolher o lar ideal", e é pra você que é LEIGO e sonha em ter sua futur
+   top 26-10-31 carr lk 653 cm 5 pl None | Esse apartamento tem um lugar muito especial no meu coração! 🥹  Foi o primeiro apartamento que 
+   bio: 
+## @isabeladeandradearq | seg 94,172 | 9 posts em 9 dias (7.0/sem) | fixados 3 | tipos {'carr': 2, 'reel': 7, 'foto': 0, 'video': 0} | med curt 140 med com 5 | ER 0.15% | med plays reel 4974 | pagos 0 | curt ocultas 0
+   top 24-07-22 reel lk 7088 cm 303 pl 447981 | Demorou, mas começou a Série de Vídeos onde contarei TUDO sobre o projeto da Casa da Minha Mãe,
+   top 26-09-21 reel lk 888 cm 283 pl 14754 | Estavam com saudades das Fofocas do Nosso Apê?   Semana que vem completamos 02 meses de mudança
+   top 25-06-07 reel lk 489 cm 112 pl 19545 | Sempre que chega junho faço uma retrospectiva de tudo que nos trouxe até aqui.   Já foram mais 
+   top 26-11-10 carr lk 583 cm 16 pl None | Cozinha charmosa, leve e funcional!   Com todos os equipamentos necessários para esta casa, pro
+   bio: 
+## @thaisfranca.arq | seg 62,642 | 9 posts em 9 dias (7.1/sem) | fixados 3 | tipos {'carr': 3, 'reel': 5, 'foto': 1, 'video': 0} | med curt 54 med com 2 | ER 0.09% | med plays reel 6817 | pagos 0 | curt ocultas 0
+   top 25-11-04 reel lk 5867 cm 329 pl 189037 | Bem-vindos ao apartamento LC! ✨ Um tour por cada detalhe desse projeto cheio de personalidade e
+   top 26-11-06 reel lk 988 cm 39 pl 32071 | Bancada com saia reta de 4 cm não é a única resposta.  A borda da pedra é um detalhe pequeno, e
+   top 25-05-16 reel lk 786 cm 54 pl 128626 | ✨ Depoimento real de quem viveu a transformação!  Vanessa e Gustavo nos confiaram a reforma com
+   top 25-07-21 carr lk 397 cm 29 pl None | ✨ Um pouco sobre mim… muito além da arquitetura.  Filha amada de Deus, esposa do Robson, mãe do
+   bio: 
+## @arq.pradella | seg 95,560 | 9 posts em 8 dias (7.9/sem) | fixados 3 | tipos {'carr': 2, 'reel': 7, 'foto': 0, 'video': 0} | med curt 262 med com 14 | ER 0.29% | med plays reel 7780 | pagos 0 | curt ocultas 6
+   top 25-06-26 reel lk 26781 cm 735 pl 664273 | Conforto começa nos detalhes. O toalheiro aquecido mantém suas toalhas sempre secas, cheirosas 
+   top 26-03-13 reel lk 7260 cm 821 pl 248084 | Porta renovada sem troca e sem quebra ✨  O envelopamento é uma solução prática e elegante: tem 
+   top 26-03-24 reel lk 4614 cm 295 pl 205771 | Nada como sair do banho e encontrar uma toalha seca, quente e perfumada. O toalheiro aquecido g
+   top 26-11-04 reel lk 434 cm 21 pl 18057 | Neste apartamento de praia, a marcenaria é a essência do projeto.   Cada detalhe foi cuidadosam
+   bio: 
+## @alteraarquitetura | seg 128,756 | 9 posts em 73 dias (0.9/sem) | fixados 3 | tipos {'carr': 6, 'reel': 0, 'foto': 3, 'video': 0} | med curt 293 med com 15 | ER 0.24% | med plays reel - | pagos 0 | curt ocultas 0
+   top 20-08-21 carr lk 2660 cm 142 pl None | Hoje, estamos na Revista Quem com o apartamento que fizemos com todo carinho para @lucianagimen
+   top 26-09-06 foto lk 905 cm 17 pl None | Detalhes que transformam o ambiente. ✨  Neste canto do bar, a marcenaria em tom fechado serve d
+   top 26-08-31 carr lk 681 cm 40 pl None | Um espaço que poderia passar despercebido ganhou vida no projeto do Renan. Agora, abriga as mem
+   top 26-09-09 carr lk 405 cm 22 pl None | Um espaço pensado para viver e receber ✨  Neste projeto a área social foi projetada para acompa
+   bio: 
+## @marianaorsifotografia | seg 262,250 | 11 posts em 13 dias (5.9/sem) | fixados 1 | tipos {'carr': 2, 'reel': 9, 'foto': 0, 'video': 0} | med curt 551 med com 9 | ER 0.21% | med plays reel 58783 | pagos 0 | curt ocultas 0
+   top 26-11-07 reel lk 37600 cm 67 pl 570637 | TOUR Parte 3 | 190m² • @grafito.studio Três meninas, três idades e três quartos completamente d
+   top 26-11-11 reel lk 20894 cm 324 pl 218162 | Fizemos as lembracinhas do nosso casamento durante o nosso casamento e foi INCRÍVEL!! ❤️ Nossos
+   top 26-11-05 reel lk 3169 cm 15 pl 129306 | Você já viu uma porta travar assim? 👀  Um simples toque e ela trava ou destrava. Esse é mais um
+   top 26-10-31 reel lk 1343 cm 12 pl 171600 | Essa adega foi um pedido especial dos moradores para o projeto da @deboradalaneziarquitetura. A
+   bio: 
+## @fer_satiko | seg 55,940 | 9 posts em 3 dias (21.0/sem) | fixados 3 | tipos {'carr': 3, 'reel': 5, 'foto': 1, 'video': 0} | med curt 375 med com 5 | ER 0.68% | med plays reel 9816 | pagos 0 | curt ocultas 0
+   top 25-01-28 reel lk 63050 cm 287 pl 953927 | Eu vou usar todas as minhas roupas #roupas #looks #closet
+   top 26-02-05 reel lk 37887 cm 494 pl 579422 | Compramos uma casa! Na verdade um apartamento! E esse o tour assim que pegamos as chaves! Logo 
+   top 26-11-10 reel lk 2663 cm 37 pl 36840 | Compras do Japão de roupas e sapatos do meu noivo! Parte 5 dos vídeos de compras no Japão #japa
+   top 26-03-21 reel lk 2070 cm 37 pl 28238 | Eu vou usar todas as minhas roupas em 200 looks! 2 temporada Uhul!  #roupas #looks #closet
+   bio: 
+## @zora.arq | seg 946 | 9 posts em 92 dias (0.7/sem) | fixados 3 | tipos {'carr': 7, 'reel': 2, 'foto': 0, 'video': 0} | med curt 30 med com 2 | ER 3.44% | med plays reel 873.0 | pagos 0 | curt ocultas 3
+   top 26-11-11 reel lk 84 cm 21 pl 1104 | Esse projeto começou com uma ideia bem diferente: reformar o apartamento onde os clientes já mo
+   top 26-08-11 carr lk 38 cm 2 pl None | Às vezes, o projeto pede algo que simplesmente não existe pronto.  Foi o caso da iluminação des
+   top 26-07-27 carr lk 31 cm 6 pl None | Em um apartamento, cada escolha interfere na forma como o espaço é vivido. No Apartamento Sonia
+   top 26-08-25 reel lk 30 cm 2 pl 642 | Neste projeto, o paisagismo redesenha a chegada e conecta os diferentes acessos da casa de form
+   bio: 
