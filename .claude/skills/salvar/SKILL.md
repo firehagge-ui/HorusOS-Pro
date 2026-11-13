@@ -43,6 +43,11 @@ Detectar com `git rev-parse --is-inside-work-tree`. Se falhar:
 
 ## Regras
 
+- **Trabalho de outra sessão no mesmo repositório (12/11/2026):** antes do `git add .`, ver se o `git status` traz pastas
+  que esta conversa não tocou (outro cliente, outra frente). Nesse caso, commitar só as pastas desta sessão
+  (`git add -A -- <pastas>`) e listar na resposta o que ficou de fora, com a contagem. O `git add .` de tudo foi barrado
+  pela checagem de segurança em 12/11, porque levava o trabalho da Débora Reis feito em outra sessão. Pasta com código
+  publicado por várias sessões (ex.: `ferramentas/hound-dog/`) vai inteira, senão o commit quebra o que está no ar.
 - Nunca usar `--force` sem o usuário pedir explicitamente
 - Nunca rodar `git reset --hard` ou outras destrutivas sem confirmação clara
 - Se o push falhar por divergência (alguém comitou no remoto), avisar o usuário e oferecer `git pull --rebase` antes de tentar de novo

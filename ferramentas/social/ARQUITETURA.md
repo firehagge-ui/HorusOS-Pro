@@ -441,3 +441,12 @@ Duas paradas em vez de seis: **aprovar a ideia** e **aprovar o post pronto**.
   a escrever só as aprovadas. A rotina `semana` continua desligada até isso existir. *(Histórico: em 19/10/2026 ela voltou a rodar, com o Mídia
   lendo o "padrão da casa" da `/carrossel` e `identidade/social/referencias/perfis.md`; a aprovação da ideia antes do post
   segue manual, pela tela Semana.)*
+- **28/10/2026: a Fase 2 saiu pela metade, do jeito que o Marcelo pediu** ("ao invés de agendar os carrosséis, agendar a
+  pesquisa, planejamento e estudo de ideias", como o Sherlock). Rotina `pauta`, quinta 8h, tarefa `midia_pauta`: radar
+  dos perfis pelo código (`bin/referencias.mjs`, sem login) + Opus com busca na web → arquivo da pauta, tarefa no Hounder
+  e aviso no WhatsApp. Ainda sem tabela `social_pautas` nem botões Aprovar/Trocar: a aprovação é no chat. A `semana`
+  foi desligada de novo (montava slides direto). Detalhe no `ferramentas/hound-dog/CLAUDE.md` (seção do Mídia).
+- **Por que a pesquisa nunca tinha rodado de 08 a 28/10:** estava escrita na skill e nesta seção, mas nenhum código a
+  executava. A sessão `semana` só tinha "pesquisa de tendências" em semana par, por busca na web (Firecrawl sem crédito
+  desde 14/10), e o Claude do Farejador não roda Bash, então nunca abriu um perfil de referência. **Lição: passo que um
+  agente deve fazer precisa de código que o faça, e a prova é o log da execução, não o texto da skill.**

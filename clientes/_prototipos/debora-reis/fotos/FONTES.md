@@ -49,3 +49,19 @@ deborareisarquitetura Uma casa sem livros pode ser bonita. Mas uma casa com livr
 ## DdDDDmKMa6M (1 fotos)
 https://www.instagram.com/p/DdDDDmKMa6M/
 deborareisarquitetura Esse apartamento para mim, é o retrato da alma brasileira...Há quem goste de Vinil, de CDs, de livros...Há quem valorize e preserve o que é antigo... Isso é sensibilidade, isso é autenticidade...Isso é história! Parabéns às proprietárias por serem autênticas e preservarem suas raízes! Foto:@roberto.moreira.rego #casasbrasileiras #projetoresidencial
+
+## Do site atual dela (28/10/2026)
+https://deborareisarquitetura.netlify.app (fotos do Roberto Moreira Rego, nomes dados por ela), baixadas pelo Playwright para
+`site/assets/fotos/`: rio-vermelho-g (Ap Rio Vermelho, 1268 px), alto-parque, alto-parque-2/-3/-4 (Ap Alto do Parque),
+itaigara-quarto, itaigara-quarto-2, itaigara-banheiro (Quarto e banheiro infantil no Itaigara). O site dela também nomeia:
+sala da mesa vermelha = Apartamento Paralela; livros, CDs, cerâmica e nicho azul = Ap. Graça; aparador = Ap Rio Vermelho.
+
+## Versões melhoradas trazidas pelo Marcelo (30/10/2026)
+O Marcelo mandou sete fotos com melhor resolução e elas substituíram as do site, com os mesmos nomes: itaigara-quarto
+(1549 px), alto-parque (1437), alma-brasileira (1082), rio-vermelho-g (1268), artesanato (1086), estante-gatos (941) e
+banheiro-gato-c (974). As antigas estão em `versoes/fotos-antes-30-10/`. Comparadas lado a lado com as antigas: mesmo
+enquadramento e os mesmos objetos, com textura e nitidez refeitas (pelo jeito, aumento de resolução por IA: aparecem
+bigodes e pelos que a foto antiga não tinha). Três delas têm o mesmo tamanho em pixel da antiga; o ganho é só de nitidez.
+**Antes de o site ir ao ar de verdade:** a Débora precisa saber e concordar, e o ideal continua sendo os originais do
+Roberto Moreira Rego.
+

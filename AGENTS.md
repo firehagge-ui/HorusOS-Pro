@@ -96,7 +96,7 @@ Origem: 15/09/2026, site da Mullsanni. Detalhe no `PLANO.md` daquele cliente (Pa
 
 Para site/landing do zero, a skill **`/criar-site`** orquestra o fluxo na ordem travada
 (pré-voo → `/estudar-site` em 3-5 concorrentes reais → plano com passe duplo → build →
-`/verificar`). Para ajuste pontual num site existente, edição direta ou `/redesign-skill`.
+`/verificar`). Para ajuste pontual num site existente, edição direta ou `/impeccable`, com o checklist de `.claude/skills/criar-site/references/auditar-site-existente.md`.
 
 Antes da primeira linha de HTML, ler:
 1. `_memoria/design/00-anatomia.md` — passe duplo, elemento-assinatura, estrutura por seção
@@ -122,7 +122,7 @@ Antes de **entregar**, rodar checklist, varredura de antipadrões e o detector:
 ```
 node .Codex/skills/impeccable/scripts/detect.mjs "clientes/<nome>/site"
 ```
-(sem a skill no clone: `npx --yes impeccable@4.0.4 detect "clientes/<nome>/site"`). Saída
+(sem a skill no clone: `npx --yes impeccable@4.8.2 detect "clientes/<nome>/site"`). Saída
 `0` limpo, `2` achou coisa. Regra de acessibilidade se corrige, não se dispensa (dispensa
 exige `--reason` em `.impeccable/config.json`). Se o comando não rodar, o item é **não
 verificado**, nunca ok.
@@ -142,7 +142,7 @@ Número de benchmark nunca vira promessa; o dado real de cada campanha substitui
 Antes de escrever abordagem ou resposta a objeção, ler `_conhecimento/network/abordagem-e-prospeccao.md`
 (§8 a §10) e `cold-message-processo.md`, e a pasta `_memoria/prospeccao/` (sinais, escrita, exemplos só do
 Marcelo, aprendizados; desde 29/09). Evidência externa (pesquisa de 09/10/2026) em
-`_memoria/prospeccao/fontes/`, pra consulta antes de mudar o método. Antes de mostrar, `_memoria/prospeccao/99-checklist.md` ou `/revisar-mensagem`. Em resumo: o problema é do Google, não do dono; a
+`_memoria/prospeccao/fontes/`. 🔴 A pesquisa de 09/10 vem acima da doutrina antiga (03/11/2026): toda mensagem pra lead ou cliente passa pela skill `prospeccao` antes de aparecer, que lê primeiro `_memoria/prospeccao/15-o-que-deu-certo.md`. Em resumo: o problema é do Google, não do dono; a
 pergunta pede licença pra dar, nunca pede que ele se explique; aceitar o "obrigado"; perguntas de
 volume e ticket só na reunião. Todo fato da mensagem precisa ter sido visto, e **posição na busca
 só com a busca feita pelo Marcelo no dia**. Lead do Spark passa pela triagem de 5 minutos antes de

@@ -30,20 +30,20 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://cafegraodaserra.netlify.app/assets/og-capa-2026.jpg">
 
-<link rel="icon" type="image/png" sizes="32x32" href="assets/icone-32.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/icone-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icone-32.png?v=2026-11-04">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icone-180.png?v=2026-11-04">
 
 <!-- A foto do hero é o maior elemento da primeira dobra (LCP). Pré-carregada,
      e no celular vem a versão de 900px (39 KB) em vez da de 1812px (157 KB). -->
-<link rel="preload" as="image" href="assets/hero-mob-2026-10-15c.webp" media="(max-width:900px)" fetchpriority="high">
-<link rel="preload" as="image" href="assets/hero-home-v3.webp" media="(min-width:901px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/hero-mob-2026-10-15c.webp?v=2026-11-04" media="(max-width:900px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/hero-home-v3.webp?v=2026-11-04" media="(min-width:901px)" fetchpriority="high">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 <!-- ?v= obrigatório: o netlify.toml guarda /assets/* em cache imutável de 1 ano.
      Mudou o CSS, muda a data aqui, senão quem já visitou continua vendo o antigo. -->
-<link rel="stylesheet" href="assets/site.css?v=2026-10-15f">
+<link rel="stylesheet" href="assets/site.css?v=2026-11-04">
 
 <script type="application/ld+json">
 {
@@ -101,7 +101,7 @@
     <button class="menu-btn" id="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
 
     <a class="marca" href="#topo">
-      <img src="assets/logo-topo.png" width="78" height="78" alt="">
+      <img src="assets/logo-topo.png?v=2026-11-04" width="78" height="78" alt="">
       <span class="marca-txt">
         <span class="marca-cafe">Café</span>
         <span class="marca-nome">Grão da Serra</span>
@@ -150,8 +150,8 @@
            sobre a serra ao pôr do sol). No celular entra um recorte dela (saco +
            pacote) ABAIXO do texto, para o pacote aparecer inteiro, sem texto por cima. -->
       <picture>
-        <source media="(max-width:900px)" srcset="assets/hero-mob-2026-10-15c.webp" width="900" height="1078">
-        <img src="assets/hero-home-v3.webp" width="1808" height="870" alt="" fetchpriority="high">
+        <source media="(max-width:900px)" srcset="assets/hero-mob-2026-10-15c.webp?v=2026-11-04" width="900" height="1078">
+        <img src="assets/hero-home-v3.webp?v=2026-11-04" width="1808" height="870" alt="" fetchpriority="high">
       </picture>
     </div>
 
@@ -346,7 +346,7 @@
          lavoura. -->
     <div class="origem-topo">
       <div class="galho-origem" aria-hidden="true">
-        <img src="assets/galho-cafe.webp" width="396" height="900" loading="lazy" decoding="async" alt="">
+        <img src="assets/galho-cafe.webp?v=2026-11-04" width="396" height="900" loading="lazy" decoding="async" alt="">
       </div>
       <div class="wrap origem-grid">
         <div class="origem-txt revela">
@@ -365,11 +365,11 @@
           <!-- 15/10/2026: no celular, a MESMA foto real com luz de fim de tarde (só a cor muda:
                céu dourado, tom quente), como no mockup do Marcelo. Script em site-fontes/. -->
           <picture>
-            <source media="(max-width:900px)" srcset="assets/vista-brejoes-quente-mob.webp" width="1040" height="693">
-            <img src="assets/vista-brejoes.webp" width="1040" height="693" loading="lazy" decoding="async" alt="Vista da Serra de Brejões, na Bahia, com a cidade no vale e o café em primeiro plano">
+            <source media="(max-width:900px)" srcset="assets/vista-brejoes-quente-mob.webp?v=2026-11-04" width="1040" height="693">
+            <img src="assets/vista-brejoes.webp?v=2026-11-04" width="1040" height="693" loading="lazy" decoding="async" alt="Vista da Serra de Brejões, na Bahia, com a cidade no vale e o café em primeiro plano">
           </picture>
           <div class="selo-lugar" aria-hidden="true">
-            <img src="assets/selo-bahia.webp" width="340" height="340" decoding="async" alt="">
+            <img src="assets/selo-bahia.webp?v=2026-11-04" width="340" height="340" decoding="async" alt="">
           </div>
         </figure>
       </div>
@@ -381,14 +381,14 @@
     <!-- 07/08: texto à ESQUERDA, foto à DIREITA (pedido do Marcelo). A planta
          acompanha o texto, à esquerda, espelhada. -->
     <div class="planta planta-cafe" aria-hidden="true">
-      <img src="assets/planta-2.webp" width="460" height="690" loading="lazy" decoding="async" alt="">
+      <img src="assets/planta-2.webp?v=2026-11-04" width="460" height="690" loading="lazy" decoding="async" alt="">
     </div>
     <!-- 11/08: segunda planta pedida pelo Nelson, do lado direito. Galho de
          café ilustrado (Planta 4). O Marcelo mandou o PNG já SEM FUNDO (alfa
          real) — é só converter e colar, sem tratamento. Fica atrás do pacote,
          sangrando/cortada pela borda direita. -->
     <div class="planta planta-cafe-dir" aria-hidden="true">
-      <img src="assets/planta-4.webp" width="760" height="1219" loading="lazy" decoding="async" alt="">
+      <img src="assets/planta-4.webp?v=2026-11-04" width="760" height="1219" loading="lazy" decoding="async" alt="">
     </div>
 
     <!-- 18/08: o Marcelo pediu para voltar ao layout de ANTES do print 1 — mesmos
@@ -441,7 +441,7 @@
         <!-- 15/10/2026: a cena com a mesa, o saco de juta e o pé de café (o mesmo fundo da
              abertura) saiu a pedido do Marcelo; no celular ficam só os dois pacotes, como no
              computador. A montagem antiga está em site-fontes/. -->
-        <img class="cafe-dois" src="assets/dois-pacotes.webp" width="720" height="697" loading="lazy" decoding="async" alt="Café Grão da Serra 100% arábica nos dois formatos: o saco de café em grão e o pacote kraft de café moído">
+        <img class="cafe-dois" src="assets/dois-pacotes.webp?v=2026-11-04" width="720" height="697" loading="lazy" decoding="async" alt="Café Grão da Serra 100% arábica nos dois formatos: o saco de café em grão e o pacote kraft de café moído">
       </figure>
     </div>
   </section>
@@ -475,7 +475,7 @@
            um balcão genérico, SEM o pacote, para não sugerir cliente que não existe. -->
       <div class="pq-banners">
         <a class="pqb pqb-casa revela" href="#pedido" data-tipo="Consumidor, para tomar em casa">
-          <img src="assets/publico-casa.webp" width="1000" height="1000" loading="lazy" decoding="async" alt="Mesa de café da manhã com uma xícara de café e o pacote do Café Grão da Serra">
+          <img src="assets/publico-casa.webp?v=2026-11-04" width="1000" height="1000" loading="lazy" decoding="async" alt="Mesa de café da manhã com uma xícara de café e o pacote do Café Grão da Serra">
           <div class="pqb-txt">
             <p class="pqb-eyebrow">Para a sua casa</p>
             <h3>O café do seu<br class="br-620"> dia a dia.</h3>
@@ -484,7 +484,7 @@
           </div>
         </a>
         <a class="pqb pqb-negocio revela d1" href="#pedido" data-foco="p-tipo">
-          <img src="assets/publico-negocio.webp" width="1000" height="1000" loading="lazy" decoding="async" alt="Balcão de cafeteria com xícaras de café servidas">
+          <img src="assets/publico-negocio.webp?v=2026-11-04" width="1000" height="1000" loading="lazy" decoding="async" alt="Balcão de cafeteria com xícaras de café servidas">
           <div class="pqb-txt">
             <p class="pqb-eyebrow">Para o seu negócio</p>
             <h3>Café para servir<br class="br-620"> ou revender.</h3>
@@ -550,13 +550,13 @@
          tratamento das plantas 1 e 2), a máscara saiu, e ele voltou para o
          lugar do PT 5: à esquerda, atrás da xícara e um pouco acima dela. -->
     <div class="planta planta-form-esq" aria-hidden="true">
-      <img src="assets/planta-3.webp" width="740" height="913" loading="lazy" decoding="async" alt="">
+      <img src="assets/planta-3.webp?v=2026-11-04" width="740" height="913" loading="lazy" decoding="async" alt="">
     </div>
     <div class="xicara-form" aria-hidden="true">
-      <img src="assets/xicara.webp" width="620" height="699" loading="lazy" decoding="async" alt="">
+      <img src="assets/xicara.webp?v=2026-11-04" width="620" height="699" loading="lazy" decoding="async" alt="">
     </div>
     <div class="planta planta-form-dir" aria-hidden="true">
-      <img src="assets/planta-1.webp" width="460" height="690" loading="lazy" decoding="async" alt="">
+      <img src="assets/planta-1.webp?v=2026-11-04" width="460" height="690" loading="lazy" decoding="async" alt="">
     </div>
 
     <!-- 05/10/2026: formulário em DUAS colunas (layout do mockup que o Marcelo
@@ -659,7 +659,7 @@
     <div class="rodape-grid">
       <div>
         <a class="marca" href="#topo">
-          <img src="assets/logo-topo.png" width="78" height="78" loading="lazy" alt="">
+          <img src="assets/logo-topo.png?v=2026-11-04" width="78" height="78" loading="lazy" alt="">
           <span class="marca-txt">
             <span class="marca-cafe">Café</span>
             <span class="marca-nome">Grão da Serra</span>
@@ -724,8 +724,8 @@
   </div>
 </footer>
 
-<script src="assets/js/gsap.min.js"></script>
-<script src="assets/js/ScrollTrigger.min.js"></script>
+<script src="assets/js/gsap.min.js?v=2026-11-04"></script>
+<script src="assets/js/ScrollTrigger.min.js?v=2026-11-04"></script>
 <script>
 (function(){
   var reduz = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -829,7 +829,7 @@
     ];
     var graos = pousos.map(function(p){
       var im = document.createElement('img');
-      im.src = 'assets/grao-' + p.f + '.webp'; im.alt = ''; im.decoding = 'async';
+      im.src = 'assets/grao-' + p.f + '.webp?v=2026-11-04'; im.alt = ''; im.decoding = 'async';
       im.style.left = p.x + '%'; im.style.top = p.y + '%';
       im.style.setProperty('--w', p.w + 'px');
       im.style.transform = 'rotate(' + p.r + 'deg)';

@@ -2,6 +2,10 @@
 
 Por que existe e como vai ficar: `ARQUITETURA.md`. Como pegar a chave: `CHAVE-META.md`.
 
+> **Estado atual (29/10/2026):** o quadro abaixo é de 27/09. Hoje o Mídia pesquisa a pauta toda quinta e publica o que o
+> Marcelo aprova; os posts saem da `/carrossel`. Estado vivo na seção do Mídia em `ferramentas/hound-dog/CLAUDE.md`;
+> mapa de tudo que é Instagram em `_memoria/conteudo/README.md`.
+
 ## Estado (27/09/2026): etapa 0 pronta
 
 | Peça | Arquivo | Estado |

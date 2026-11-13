@@ -46,15 +46,10 @@ estilo por peça nem a marca do cliente:
 | Skill | Pra quê |
 |---|---|
 | `brandkit` | Geração de imagem pra brand-kit/logo/identidade visual (boards, decks). |
-| `brutalist-skill` | Interface industrial/brutalista — grid rígido, tipografia extrema. Pra dashboards pesados ou portfólio "blueprint". |
 | `gpt-tasteskill` | Motor alternativo ao taste-skill: estrutura AIDA rígida + GSAP pesado (pin/scrub/stack). Landing pages mais "cinematográficas". |
 | `image-to-code-skill` | Gera a imagem de referência primeiro, analisa, só depois implementa o código a partir dela. |
 | `imagegen-frontend-web` / `imagegen-frontend-mobile` | Geram só imagens de referência (web ou app mobile) — não escrevem código. Uma imagem por seção/tela. |
-| `minimalist-skill` | Editorial minimalista monocromático quente — não confundir com o estilo de marca `minimal` (Tier 2), são skills diferentes. |
 | `output-skill` | Força saída completa em tarefas grandes de código, sem truncar nem deixar placeholder. |
-| `redesign-skill` | Audita um site/app existente, aponta padrões genéricos de IA, propõe upgrade sem quebrar funcionalidade. |
-| `soft-skill` | Padrões de agência premium: fonte, espaçamento, sombra, cards — pra fugir do "cara de IA barata". |
-| `stitch-skill` | Gera `DESIGN.md` no formato do Google Stitch (tokens semânticos, anti-genérico). |
 
 ---
 
@@ -100,7 +95,6 @@ Cada nome abaixo é uma skill em `.claude/skills/<nome>/`. São guias de tokens
 - **friendly** — acessível, cantos arredondados, pastéis suaves
 - **paper** — textura de papel, print, serifa/sans limpa, tátil
 - **sketch** — desenho à mão, papel creme, acento teal, manuscrito
-- **riso** — risografia 2 cores, off-white quente, alegre
 - **creative** — lúdico, tipografia expressiva, cara de personagem
 - **storytelling** — narrativo, guia o usuário por uma jornada emocional
 

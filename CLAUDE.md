@@ -32,6 +32,15 @@ compliance do cliente (CFO/CFP)  >  integridade.md  >  briefing.md + marca.md
 - **`integridade.md` vence** o impulso de completar. Nenhuma ferramenta autoriza
   inventar número, formação ou depoimento pra "fechar" um layout.
 
+## Como escrever (Marcelo, 03/11/2026: "nunca esquecer")
+
+Vale pra post, mensagem (lead e cliente) e **conversa com o Marcelo**. Post de cliente segue o tom do `marca.md` dele. Imperativo ("Mande", "Pergunte", "Confirme sempre"), convicção
+sem atenuante ("um pouco", "pode ser", "às vezes", "costuma" saem), frase reta sem vírgula encaixada, uma ideia por
+frase e para, cena no presente, fechar com o que o dono ganha ou perde. Sem fórmula de IA ("ou seja:", "pra você X, pro
+cliente Y", "não é X, é Y"). **Com cliente** (03/11): conselho como experiência própria ("hoje eu só começo com..."),
+nunca julgar as pessoas dele, oferecer em vez de mandar fazer, conselho e oferta em mensagens separadas. Regra completa
+e os exemplos dele em `_memoria/preferencias.md` ("Como escrever").
+
 ## Integridade e verificação
 
 - **`_memoria/integridade.md` é leitura obrigatória antes de escrever sobre um cliente.**
@@ -152,7 +161,8 @@ Atualizar a linha que já existe antes de criar outra; memória duplicada e doc 
 ## Fluxo de trabalho
 
 - Antes de qualquer tarefa, checar se existe skill relevante em `.claude/skills/`. Se
-  houver, seguir a skill; senão, executar normal.
+  houver, seguir a skill; senão, executar normal. Estratégia de Google, ficha ou palavra-chave passa pela `/seo` antes
+  da primeira recomendação (10/11/2026, Débora: a estratégia saiu sem ela, e o Marcelo perguntou "Usou a Skill de Seo?").
 - Ao concluir uma tarefa sem skill mas claramente repetível, perguntar: *"Isso pode virar
   uma skill pra próxima vez. Quer que eu crie?"* Só quando o padrão de repetição for claro.
 - Produzir por prioridade, um bloco por vez. Nada de "product-dump".
@@ -215,7 +225,7 @@ eu anunciei como achado era o meio do trabalho dela).
 
 Para site/landing do zero, a skill **`/criar-site`** orquestra o fluxo na ordem travada
 (pré-voo → `/estudar-site` em 3-5 concorrentes reais → plano com passe duplo → build →
-`/verificar`). Para ajuste pontual num site existente, edição direta ou `/redesign-skill`.
+`/verificar`). Para ajuste pontual num site existente, edição direta ou `/impeccable`, com o checklist de `.claude/skills/criar-site/references/auditar-site-existente.md`.
 
 Antes da primeira linha de HTML, ler:
 1. `_memoria/design/00-anatomia.md` — passe duplo, elemento-assinatura, estrutura por seção
@@ -243,10 +253,14 @@ foto do lugar ou do produto e frase na boca do profissional vêm do cliente ou v
 o link pro lead continua sendo decisão dele. Na sessão na nuvem não há credencial da Vercel: `vercel login` gera um link de
 autorização para o Marcelo, a credencial vale só naquela sessão, e token nunca se pede no chat (15/10/2026). E antes de deixar um `[FALTA]` na página, procurar o dado no Hounder e nas
 fontes do próprio cliente (ficha do Google, site antigo, Instagram).
+🔴 **Todo deploy (Netlify, Vercel, zip):** zip só por `python zipfile` com barra normal, nunca `Compress-Archive` (grava
+`assets\arquivo` e a Netlify não cria a pasta). Depois do deploy, conferir **cada** arquivo que o HTML publicado chama
+(CSS, JS, imagem, fonte) em HTTP 200 antes de dizer "feito"; home em 200 não prova nada. Origem: Grão da Serra, 03/11/2026,
+4h40 sem CSS e sem imagem depois de um deploy feito só pra pôr o arquivo do Search Console.
 
 Antes de **entregar**, rodar checklist, varredura de antipadrões e o detector:
 ```
-npx --yes impeccable@4.0.4 detect "clientes/<nome>/site"
+npx --yes impeccable@4.8.2 detect "clientes/<nome>/site"
 ```
 (o `node .claude/skills/impeccable/scripts/detect.mjs` local já deu "limpo" num arquivo sabidamente ruim em 09/09 e
 14/10: só usar depois de validar contra um arquivo ruim; ver `90-antipadroes.md`). Saída
@@ -268,14 +282,17 @@ Número de benchmark nunca vira promessa; o dado real de cada campanha substitui
 
 Antes de escrever abordagem ou resposta a objeção, ler `_conhecimento/network/abordagem-e-prospeccao.md`
 (§8 a §10) e `cold-message-processo.md`, e a pasta `_memoria/prospeccao/` (sinais, escrita, exemplos só do
-Marcelo, aprendizados; desde 29/09). Evidência externa (pesquisa de 09/10/2026) em
-`_memoria/prospeccao/fontes/`, pra consulta antes de mudar o método. Antes de mostrar, `_memoria/prospeccao/99-checklist.md` ou `/revisar-mensagem`. Em resumo: o problema é do Google, não do dono; a
+Marcelo, aprendizados; desde 29/09). 🔴 **A pesquisa de 09/10 vem acima da doutrina antiga (Marcelo, 03/11/2026).**
+Toda mensagem pra lead ou cliente, minha ou dele, passa pela `/prospeccao` (junta a antiga `/revisar-mensagem`, a `/responder-lead` e a fala humana) **antes de aparecer**, sem esperar
+pedido. A skill lê primeiro `_memoria/prospeccao/15-o-que-deu-certo.md` (a pesquisa em uma página) e devolve a mensagem
+com o quadro "a pesquisa diz → a mensagem faz". Origem: Clínica Michele, 03/11. Ele perguntou duas vezes se estava
+alinhado, e não estava ("não aguento mais ter que pedir"). Em resumo: o problema é do Google, não do dono; a
 pergunta pede licença pra dar, nunca pede que ele se explique; aceitar o "obrigado"; perguntas de
 volume e ticket só na reunião. Todo fato da mensagem precisa ter sido visto, e **posição na busca
 só com a busca feita pelo Marcelo no dia**. Lead do Spark passa pela triagem de 5 minutos antes de
 virar ficha.
 
-**A esteira de prospecção (Marcelo, 25/09/2026):** lista do Spark → **triagem** (o Spark acertou? o
+**A esteira de prospecção (Marcelo, 25/09/2026):** lista do Spark (desde 10/11, a busca do Google Maps no botão Buscar do Hounder) → **triagem** (o Spark acertou? o
 gancho existe?) → funil em **Novo** → o Marcelo pede "investiga o próximo" → **investigação
 profunda, um lead por vez**, em seis camadas (empresa e pessoas: CNPJ, sócios, conselho, imprensa;
 reputação: avaliações e respostas; presença completa; dinheiro e momento: anúncio, agência atual,
@@ -294,16 +311,20 @@ responde sozinha; aprovar mensagem por mensagem é só o jeito da nossa prospec�
 
 Antes da primeira linha de copy:
 0. **Duas aprovações antes do primeiro slide** (28/10/2026): os **temas da semana** (toda semana, mesmo com pauta antiga
-   aprovada), depois o **esqueleto** de cada post (texto, imagem e layout slide a slide). Só então os slides. Em 28/10 o
+   aprovada), depois o **esboço** de cada post (texto, imagem e layout slide a slide). Só então os slides. Em 28/10 o
    Marcelo reprovou os três posts da semana, montados direto de uma pauta de 10/10. A `/carrossel` é a central.
 1. `_memoria/conteudo/00-formatos.md` — os nove formatos narrativos (os sete + print de tweet e antes/depois de fala, 07/10). **Escolher UM antes de escrever.**
 2. `_memoria/conteudo/10-legibilidade.md` — pisos de fonte/contraste/densidade (corpo ≥ 34px, nada de leitura < 24px; renderiza a 1080px, lido num celular de 390px)
 3. `_memoria/conteudo/90-antipadroes.md` — o que denuncia carrossel feito por IA
 4. `_memoria/integridade.md` — dado que falta vira `[FALTA: ...]`
-5. `_memoria/conteudo/20-direcao-de-arte.md` — **nunca o visual do post anterior**, imagem que mostra a ideia, fala
+5. `_memoria/conteudo/20-direcao-de-arte.md` — 🔴 **post da Horus desde 13/11/2026: 100% @v4company** (§0 e
+   `referencias/2026-11-13-v4company.md`: caso real em capítulos, capa-manchete, botão-ponte; azul da Horus; pessoa real
+   nunca por IA). Cliente: **nunca o visual do post anterior**, imagem que mostra a ideia, fala
    direta; olhar um carrossel de referência (pelo Playwright) e seguir a organização dele antes de montar. Imagem no
    ChatGPT: `25-imagem-no-chatgpt.md` (plano completo antes, conversa no projeto da marca). Origem: reprovação do
    post do cliente que volta, 20/10/2026.
+6. `_memoria/conteudo/30-quem-faz-o-que.md` — quem faz cada etapa (Mídia pesquisa a pauta toda quinta, Claude faz o
+   esboço e confere, Agy em teste), rotas de imagem e vídeo. **Mapa de tudo que é Instagram:** `_memoria/conteudo/README.md`.
 
 Antes de entregar, rodar `_memoria/conteudo/99-checklist.md` (vetos primeiro, rubrica
 depois). **Correção do Marcelo vira linha em `_memoria/conteudo/90-antipadroes.md` com o
@@ -328,10 +349,12 @@ referência, e site de marca paga por tipo). `kit-montar` não substitui a `/cri
 
 ## Geração de mídia (imagem e vídeo)
 
-- **Imagem = ChatGPT.** Posts da Hórus: o Claude gera pelo Chrome do Marcelo (perfil social §8).
-  Clientes: o Marcelo gera e traz, ou o Claude gera pelo Chrome com o ok dele. Não há API de
-  imagem conectada. (Marcelo, 10/10/2026)
-- Para animação/3D, o caminho é **WebGL/canvas/SVG na mão**.
+- **Imagem = ChatGPT** (gera as melhores, Marcelo 29/10/2026). Posts da Horus: o Claude gera pelo Chrome do Marcelo
+  (perfil social §8). Clientes: o Marcelo gera e traz, ou o Claude gera pelo Chrome com o ok dele. Outras rotas:
+  `codex exec` no terminal (sem Chrome) e o Agy com Playwright num Chrome logado no ChatGPT (liberado em 29/10, em
+  teste). Quando usar cada uma: `_memoria/conteudo/30-quem-faz-o-que.md` §3.
+- **Vídeo curto = Google Flow** (modelos Veo do Google; o Marcelo tem acesso), pra Reels: mesmas travas da imagem.
+- Para animação/3D no site, o caminho é **WebGL/canvas/SVG na mão**.
 - ⚠️ **IA nunca no objeto que o cliente vende** (carro/dyno de oficina, rosto de profissional
   de saúde) — destrói credibilidade. IA só em elemento abstrato (fundo, textura). Em cliente
   regulado, a imagem passa pelo compliance.
@@ -343,8 +366,10 @@ referência, e site de marca paga por tipo). `kit-montar` não substitui a `/cri
 MCP em `.mcp.json` (fora do git — chave só local). Busca, scrape, crawl, extração
 estruturada, parsing e monitoramento. Útil para `seo`, `analisar-dados`, `relatorio-ads`,
 `responder-avaliacoes` e para auditar concorrente/anúncio. Pergunta pontual, a busca nativa
-resolve sem gastar crédito. ⚠️ **Créditos esgotados em 14/10/2026** (erro 402 em busca e leitura de página): enquanto não
-recarregar, o Playwright faz o trabalho (Awwwards, ficha do Google com fotos, horário e avaliações, site antigo do cliente).
+resolve sem gastar crédito. Os créditos acabaram em 14/10/2026 e voltaram: em 10/11 a busca, a leitura de página e o
+provedor de Maps funcionaram. Se der 402 ou o servidor não conectar, o Playwright faz o trabalho (Awwwards, ficha do
+Google com fotos, horário e avaliações, site antigo do cliente). Página oficial do CAU responde 403 ao Firecrawl (10/11):
+tentar o Playwright ou o Chrome do Marcelo.
 
 ## Fluxo com o Mega Brain (estratégia → produção)
 
@@ -393,6 +418,11 @@ automática só quando o Marcelo pede, só no lead nomeado, com roteiro e regra 
 Débora Reis, encerrado em 15/10 com o lead: o Claude mandava sozinho só o que o Marcelo já tinha aprovado; o resto virava aviso pra ele). O **Farejador** (`ferramentas/hound-dog/farejador/`) roda no PC e liga
 Claude+WhatsApp+Instagram ao painel; "Farejador offline" = ligar (`npm run farejador`).
 
+🔴 **Toda data vira tarefa no Hounder (Marcelo, 10/11/2026: "sempre, sempre e sempre").** "Medir em 10/12", "conferir
+daqui a 30 dias", "se não responder até sexta": no mesmo turno vira `hd_salvar_tarefa` (com a empresa, se for de cliente).
+O que se repete ("todo dia 10", "toda semana") vai com `repetir_cada` + `repetir_unidade`; marcou feita, o banco cria a
+próxima (migração 020). Hora marcada vai na agenda. A data que morre no chat é a falha que esta regra fecha.
+
 **Tarefas da Hórus (desde 27/09/2026):** o plano de negócio (`_gestao/plano-de-negocio.md`, v2)
 diz para onde e por quê; **o quê, quem e até quando mora na tela Tarefas do Hounder** (tabela
 `tarefas`, `hd_tarefas` / `hd_salvar_tarefa`). Uma lista só. O Marcelo contou que fez algo? Dar o
@@ -413,7 +443,8 @@ Nada sai sem aprovação.
 O serviço de CRM + WhatsApp que as mensagens oferecem ainda não foi entregue a ninguém: base em
 `_conhecimento/network/servico-crm-whatsapp.md`, demo e troca das chaves do Pronto antes da primeira R1.
 
-**A esteira tem botões desde 26/09/2026:** "Fazer a triagem" na lista do Spark (quem passa vai pro Novo),
+**A esteira tem botões desde 26/09/2026:** "Montar lote" na lista (desde 13/11: filtro dele, CNPJ, o Claude escolhe as melhores e
+escreve a M1 e os follow-ups; "Fazer a triagem" ficou só na lista de planilha; a busca tem o motor "Sem Google"),
 "Investigar" na ficha (investigação profunda, Opus 5.5, uma por vez) e "Falar sobre este lead" (chat com a
 ficha, a investigação e o Disparos no contexto, que grava no CRM quando pedido). Cada botão abre um Claude
 novo no Farejador, não esta conversa. O Conselho continua sendo pedido por texto, nomeando o lead.
@@ -463,7 +494,7 @@ produzir PARA um cliente, ler os dois; a marca das peças é a do cliente, não 
   presença digital zero. Máquina: **Google Meu Negócio** → Instagram → site. Sem regulação
   pesada; evitar promessa de resultado físico.
 - **#3 — Aion Psicologia** (clínica, Itaigara/Salvador · CFP) — **reaberta em 15/10/2026** pelo Antônio:
-  reunião presencial de 16/10 remarcada; **em 21/10 o Antônio disse que ainda não há data** (decisões de preço travadas
+  reunião presencial de 16/10 remarcada; **em 21/10 o Antônio disse que ainda não há data; em 03/11, arquivada (familiar da Tuti no hospital), revisão em 01/12** (decisões de preço travadas
   no Hounder até a data sair). Site sai sem cobrança (promessa do Antônio); a venda é o plano mensal (posts + Google +
   manutenção). Reestudo em `ESTUDO-2026-10.md`, site novo de uma página em `site-v2/` (protegido na Vercel), plano da
   reunião em `reuniao-2026-10-16.md`. **Compliance CFP trava** (sem depoimento em nenhum formato; CRP visível; site
@@ -521,3 +552,15 @@ produzir PARA um cliente, ler os dois; a marca das peças é a do cliente, não 
   R$ 690/mês por 3 meses (primeiro case), implantação de graça, depois R$ 890; verba paga por ele. ⚠️ **A R1 de 20/10 foi
   cancelada pelo Antônio** ("a gente não sabe tráfego, risco de se queimar"). Follow-up: reabrir em 14/12 com o número
   da campanha da própria Horus (projeto Tráfego no Hounder).
+- **#13 · Débora Reis** (arquiteta de interiores, Barra/Salvador) · **fechou de boca em 04/11/2026**, e o contrato ainda não
+  foi assinado. Tudo em `clientes/_prototipos/debora-reis/` (comece pelo topo do `CLAUDE.md` de lá).
+  - **O acordo:** site e Google sem custo; 10% do valor total de cada projeto que vier pelo site, pagos no início;
+    Instagram com 8 posts por mês por R$ 350.
+  - **Domínio:** deborareisarquitetura.com.br, no CPF dela. Site de produção na Netlify, gerado por `publicar-dominio.cjs`.
+  - **11/11:** Google arrumado em 10/11 (estratégia em `seo/`). A rodada 1 de conversão do site (`AUDITORIA-CONVERSAO-2026-11.md`)
+    espera o ok do Marcelo.
+  - 🔴 **Travas:**
+    - nada de "Horus" no material dela; o Marcelo fala como pessoa;
+    - CPF e endereço dela só em `_gestao/`;
+    - foto só dos projetos dela, nunca IA;
+    - a regra 5.2.2 do CAU pesa sobre os 10% (decisão do Marcelo em 04/11).

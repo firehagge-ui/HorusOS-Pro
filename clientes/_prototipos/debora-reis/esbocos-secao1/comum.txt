@@ -1,0 +1,11 @@
+Use your built-in image generation tool to create ONE image. Do NOT write HTML, CSS or any code, and do not compose the image with scripts: generate it as a picture.
+The image is a high-fidelity desktop website section mockup, landscape 16:9 (about 1536x864), for the site of a Brazilian interior architect, Débora Reis.
+Keep EXACTLY the visual language of the attached screenshot of the current site: cream paper background (#F3F0E8) with very faint thin vertical grid lines, a thin elegant high-contrast serif for headlines (dark ink #1E1A17), small uppercase sans-serif labels with wide letter spacing, a red handwritten script accent (#9E3326), a thin red hand-drawn underline stroke, straight rectangular photos with no rounded corners, no shadows, no geometric frames, no icons. Use the SAME real interior photos you see in the screenshot (white bookshelf full of colorful books; glass pendant lamp in front of wooden shelves with ceramics; blue niche inside wooden cabinetry with a seahorse frame). Do not invent new rooms. The site header is NOT part of this image (no menu, no logo bar).
+All text in Brazilian Portuguese, spelled exactly as given, with correct accents:
+- small label: MAIS DE DUAS DÉCADAS DE PROJETOS, SEMPRE ME PERGUNTAM
+- handwritten red: “Você não enjoa?”
+- headline: Não. Nunca projetei a mesma casa duas vezes.
+- paragraph: Cada projeto parte de quem mora ali: os livros, os discos, o artesanato, os bichos e tudo que faz a casa ter sentido.
+- link: Conheça a arquiteta →
+- numbers row: +20 ANOS DE EXPERIÊNCIA · SALVADOR E REGIÃO METROPOLITANA · ARQUITETURA COM HISTÓRIA E IDENTIDADE
+The section must fit in ONE screen height and feel compact, calm and editorial, with generous but not excessive whitespace.

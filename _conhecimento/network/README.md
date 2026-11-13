@@ -41,7 +41,7 @@ Hoje, das duas formas:
 | `cobranca-e-protecao-comercial.md` | Cliente que fecha verbal e some antes da entrada: por que trava, como destravar (voz, mini-call com o sócio, cartão) e como estruturar pagamento/contrato pra não tomar cano | 10/09/2026 |
 | `abordagem-e-prospeccao.md` | O gancho que converte (Google + perda de cliente), os 3 modelos de mensagem, regras de ouro, aquecimento de chip e ferramentas de lista de lead | 12/09/2026 |
 | `taxas-de-conversao.md` | Benchmarks de funil: volume frio × personalizado, quantas abordagens/dia, o canal que muda a conversão (ligação/presencial) | 12/09/2026 |
-| `apresentacao-de-preco-e-objecao.md` | Ancoragem em 3 planos, desmembrar em fases, parcelamento, 3 perguntas de micro-compromisso, objeção "tá caro" e contraproposta sem baixar preço | 12/09/2026 |
+| `apresentacao-de-preco-e-objecao.md` | Ancoragem em 3 planos, desmembrar em fases, parcelamento, 3 perguntas de micro-compromisso, objeção "tá caro" e contraproposta sem baixar preço; prestador que trava no valor, entrada antes de trabalhar, filtro de orçamento no inbound (03/11) | 12/09 e 03/11/2026 |
 | `recorrencia-e-pos-venda.md` | As 4 pontes pra virar mensalidade (tráfego, GMN, WhatsApp+CRM, suporte) e a régua de recompra (reativação, aniversário, avaliação, ciclo) | 12/09/2026 |
 | `operacao-agencia-e-sociedade.md` | Divisão originação × produção, IA como chão de fábrica, como não virar gargalo, o que deu certo e o que quebrou em sociedades, erros ao escalar | 12/09/2026 |
 | `objecao-ja-tem-alguem-fazendo.md` | Objeção "já tem alguém fazendo o site": testar se é migué, mandar prévia (com trava de gatekeeper), pivotar pra camada adjacente, reaproveitar estrutura sem torrar reputação | 15/09/2026 |
@@ -52,6 +52,7 @@ Hoje, das duas formas:
 | `follow-up.md` | Follow-up que entrega valor em vez de cobrar: os 4 modelos (frio, prévia, quase fechado, sumiu depois do preço) com a leitura da casa, cadência de 5 a 12 contatos só pra quem já conversou, confirmação 1 dia e 2 horas antes da R1 | 05/10/2026 |
 | `contrato-e-garantia.md` | Contrato de site e de mensalidade: CPF antes do CNPJ (e por que MEI não serve à Horus), entrada que não volta e rescisão por etapa, arrependimento de 7 dias, nunca expor o cliente, 1 a 2 rodadas com lista única, erro × pedido novo, garantia de 15 a 30 dias, fidelidade só com benefício real (implantação diluída) | 16/10/2026 |
 | `pacotes-e-precos-2026-10.md` | Como a rede empacota: setup + mensalidade, três pacotes (presença essencial, captação, operação com IA) com faixas, avulsos, três planos, contrato separando implantação de mensalidade; desconto "Pix hoje + 5 indicações" vetado pela casa | 16/10/2026 |
+| `alinhamento-visual-com-cliente.md` | Post de cliente: nunca "como você quer?" a seco; 2 ou 3 direções visuais ancoradas (imagem real, editorial, dor e solução) + 1 carrossel modelo antes do mês; leitura da casa (capas do mesmo post, cliente escolhe a moldura, sem "comente PALAVRA") | 07/11/2026 |
 | `segunda-mensagem-e-agendamento.md` | Depois do primeiro "oi": ler o "obrigado vou ajustar" como objeção de saída, descobrir volume e ticket sem interrogatório ("de cada 10..."), do primeiro contato à reunião em 3-6 trocas, preço só na call | 21/09/2026 |
 
 ## Ao destilar uma resposta (lição de 01/10/2026)

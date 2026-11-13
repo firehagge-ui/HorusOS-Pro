@@ -47,9 +47,7 @@ do WhatsApp), com força da evidência marcada. Abrir antes de propor mudança d
 - `90-cara-de-ia.md` — os vícios de texto de IA em português de WhatsApp.
 - O revisor mecânico (`ferramentas/hound-dog/app/js/revisor.js`) roda sozinho no Disparos, no MCP
   e no Farejador. O que ele pega não precisa de julgamento; o resto da checklist precisa.
-- Skill `/revisar-mensagem` quando o Marcelo colar uma mensagem pra revisar.
-- Skill `/responder-lead` quando o lead responder: o Marcelo cola a resposta, a skill devolve o próximo
-  lance (mensagem, plano se ele disser sim, próximo lance previsto) e grava no Hounder (14/10/2026).
+- Skill `/prospeccao` pra toda mensagem: escrever ou revisar a primeira, e conduzir a conversa quando o lead responde (desde 03/11/2026 junta a `/revisar-mensagem` e a `/responder-lead`).
 
 ## O circuito de aprendizado
 

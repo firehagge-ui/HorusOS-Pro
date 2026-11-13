@@ -59,6 +59,23 @@
     });
   }
 
+  // ---------- seção 1 (28/10): as setas trocam o par de detalhes da direita ----------
+  var lado = document.querySelector('.intro-lado');
+  if (lado) (function () {
+    var imgs = [].slice.call(lado.querySelectorAll('img[data-troca]'));
+    var pares = imgs.map(function (im) { var t = im.getAttribute('data-troca').split('|'); return [[im.getAttribute('src'), im.alt], [t[0], t[1]]]; });
+    var vez = 0;
+    lado.querySelectorAll('.intro-seta').forEach(function (bt) {
+      bt.addEventListener('click', function () {
+        vez = (vez + 1) % 2;
+        imgs.forEach(function (im, i) {
+          im.classList.add('trocando');
+          setTimeout(function () { im.src = pares[i][vez][0]; im.alt = pares[i][vez][1]; im.classList.remove('trocando'); }, reduz ? 0 : 420);
+        });
+      });
+    });
+  })();
+
   // ---------- projetos: um ambiente por vez ----------
   var pj = document.querySelector('.projetos');
   if (pj) (function () {
@@ -91,13 +108,36 @@
       cont.textContent = ('0' + (j + 1)).slice(-2);
     }
 
-    // 15/10: sem zoom lento (a foto de 1080 px amolece) e sem troca sozinha (mudava o slide de quem ainda lia).
-    // Quem passa é a pessoa; o fio embaixo do nome só marca onde ela está.
+    // 15/10: sem zoom lento (a foto de 1080 px amolece). 29/10 (Marcelo): volta a passar sozinho, a cada 7 s; o fio
+    // embaixo do nome enche enquanto espera. Para com a pausa, com o foco do teclado dentro, fora da tela ou na aba escondida.
+    var DUR = 7, relogio = null, pausado = false, visivel = false, foco = false;
+    var btPausa = pj.querySelector('.pj-pausa');
     function respirar() { if (kb) kb.kill(); kb = null; }
+    function podeRodar() { return !pausado && visivel && !foco && !document.hidden && !tl && !arrastando; }
     function relogioNovo() {
+      if (relogio) relogio.kill(); relogio = null;
       nomes.forEach(function (b, k) { b.querySelector('i').style.transform = k === atual ? 'scaleX(1)' : 'scaleX(0)'; });
+      if (!window.gsap || reduz) return;
+      relogio = gsap.fromTo(nomes[atual].querySelector('i'), { scaleX: 0 }, { scaleX: 1, duration: DUR, ease: 'none', paused: true,
+        onComplete: function () { relogio = null; passar(atual + 1, 1); } });
+      atualizarRelogio();
     }
-    function atualizarRelogio() {}
+    function atualizarRelogio() { if (relogio) { if (podeRodar()) relogio.resume(); else relogio.pause(); } }
+    if (btPausa) {
+      if (reduz || !window.gsap) btPausa.hidden = true;
+      btPausa.addEventListener('click', function () {
+        pausado = !pausado;
+        btPausa.setAttribute('aria-pressed', pausado ? 'true' : 'false');
+        btPausa.setAttribute('aria-label', pausado ? 'Retomar a troca automática' : 'Pausar a troca automática');
+        atualizarRelogio();
+      });
+    }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { visivel = es[0].isIntersecting; atualizarRelogio(); }, { threshold: 0.55 }).observe(pj);
+    } else visivel = true;
+    document.addEventListener('visibilitychange', atualizarRelogio);
+    pj.addEventListener('focusin', function (e) { if (e.target.matches(':focus-visible')) { foco = true; atualizarRelogio(); } });
+    pj.addEventListener('focusout', function () { foco = false; atualizarRelogio(); });
 
     // a passagem: a câmera atravessa o ambiente que sai; o próximo entra pela porta (o fio claro), da direita
     function preparar(para, dir) {
@@ -144,6 +184,7 @@
       if (tl || arrastando) return;
       j = wrap(j); if (j === atual) return;
       if (!anim) { atual = j; marcar(j, true); notas(); relogioNovo(); return; }
+      if (relogio) relogio.pause();
       indicar(j); tl = preparar(j, dir); tl.play();
     }
 
@@ -169,7 +210,10 @@
         if (Math.abs(mx) < 8 && Math.abs(my) < 8) return;
         decidido = true;
         if (Math.abs(mx) <= Math.abs(my)) { pid = null; return; }
-        arrastando = true; pj.classList.add('arrastando'); atualizarRelogio();
+        arrastando = true; pj.classList.add('arrastando');
+        // 07/11 (Marcelo): no celular não há mais o botão de pausa; quem arrasta com o dedo assume, e a troca sozinha para
+        if (e.pointerType === 'touch') pausado = true;
+        atualizarRelogio();
         try { palco.setPointerCapture(pid); } catch (err) {}
       }
       dx = mx;
@@ -275,6 +319,7 @@
     var paths = svg.querySelectorAll('path');
     paths.forEach(function (p) { var l = p.getTotalLength(); p.style.strokeDasharray = l + ' ' + l; p.style.strokeDashoffset = l; });
     var corpo = svg.querySelectorAll('.gato-corpo'), luz = svg.querySelector('.luz'), cota = svg.querySelector('text.cota');
+    var tom = svg.querySelectorAll('.tom'); gsap.set(tom, { opacity: 0 });
     gsap.set(corpo, { fillOpacity: 0 });
     if (luz) gsap.set(luz, { opacity: 0 });
     if (cota) gsap.set(cota, { opacity: 0, y: 6 });
@@ -282,6 +327,7 @@
     var q = function (c) { return svg.querySelectorAll('path.' + c); };
     tl.to(q('d0'), { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut' })
       .to(q('d1'), { strokeDashoffset: 0, duration: 1.2, ease: 'power2.inOut', stagger: 0.12 }, '-=0.45')
+      .to(tom, { opacity: 1, duration: 0.9, ease: 'power1.out' }, '-=0.5')
       .to(q('d2'), { strokeDashoffset: 0, duration: 0.9, ease: 'power1.inOut', stagger: 0.07 }, '-=0.7');
     if (luz) tl.to(luz, { opacity: 1, duration: 1.6, ease: 'power1.out' }, '-=0.6');
     tl.to(q('d3'), { strokeDashoffset: 0, duration: 1.3, ease: 'power2.inOut', stagger: 0.25 }, '-=1.1')
@@ -352,4 +398,95 @@
 
     ScrollTrigger.refresh(); notas();
   });
+})();
+
+// ---------- 30/10: o WhatsApp fixo no celular e a pausa (foto de ponta a ponta) ----------
+(function () {
+  var zap = document.getElementById('zap-flut');
+  if (zap) {
+    var contato = document.getElementById('contato') || document.querySelector('.todos-fim');
+    var contatoVisivel = false, carrosselBase = false;
+    var vez = function () {
+      var menuAberto = document.querySelector('.cab-menu[aria-expanded="true"]');
+      zap.classList.toggle('ve', window.scrollY > window.innerHeight * 0.7 && !contatoVisivel && !carrosselBase && !menuAberto);
+    };
+    if (contato && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (its) { contatoVisivel = its[0].isIntersecting; vez(); }, { threshold: 0.1 }).observe(contato);
+    }
+    // 03/11: no celular o botão cobria o "Ver todos os projetos"; some enquanto os controles do carrossel estão na tela
+    var base = document.querySelector(".pj-ctrl");
+    if (base && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (its) { carrosselBase = its[0].isIntersecting; vez(); }, { threshold: 0 }).observe(base);
+    }
+    window.addEventListener('scroll', vez, { passive: true });
+    document.addEventListener('click', function () { setTimeout(vez, 0); });
+    vez();
+  }
+
+  var pausa = document.querySelector('.pausa img');
+  if (pausa && window.gsap && window.ScrollTrigger && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.fromTo(pausa, { yPercent: -13 }, { yPercent: 0, ease: 'none', scrollTrigger: { trigger: '.pausa', start: 'top bottom', end: 'bottom top', scrub: true } });
+    gsap.fromTo('.pausa', { clipPath: 'inset(6% 5% 6% 5%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', scrollTrigger: { trigger: '.pausa', start: 'top 95%', end: 'top 35%', scrub: true } });
+  }
+})();
+
+// 07/11 (Marcelo, como na Tarq): no celular o "Como trabalho" fica preso e as etapas andam para a esquerda com a
+// rolagem. Não segura a rolagem: a seção ganha a altura do percurso e a fila acompanha a posição dela na tela.
+(function () {
+  var sec = document.querySelector('.cronograma');
+  if (!sec) return;
+  var trilho = sec.querySelector('.crono-trilho'), palco = sec.querySelector('.crono-palco'), lista = sec.querySelector('.crono');
+  if (!trilho || !palco || !lista) return;
+  var celular = window.matchMedia('(max-width: 760px) and (min-height: 560px)');
+  var reduz = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var curso = 0, ligado = false, pedido = false;
+  function mover() {
+    pedido = false;
+    if (!ligado) return;
+    var r = trilho.getBoundingClientRect();
+    var p = curso ? Math.min(1, Math.max(0, -r.top / curso)) : 0;
+    lista.style.transform = 'translate3d(' + (-p * curso).toFixed(1) + 'px,0,0)';
+  }
+  function medir() {
+    ligado = celular.matches && !reduz.matches;
+    sec.classList.toggle('crono-h', ligado);
+    if (!ligado) { trilho.style.height = ''; lista.style.transform = ''; return; }
+    var cs = getComputedStyle(palco);
+    var util = palco.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    curso = Math.max(0, lista.scrollWidth - util);
+    var altura = (palco.offsetHeight + curso) + 'px';
+    var mudou = trilho.style.height !== altura;
+    trilho.style.height = altura;
+    mover();
+    // a barra de endereço do iPhone dispara resize a cada rolagem: só recalcula o resto se a altura mudou
+    if (mudou && window.ScrollTrigger) window.ScrollTrigger.refresh();
+  }
+  window.addEventListener('scroll', function () { if (!pedido) { pedido = true; requestAnimationFrame(mover); } }, { passive: true });
+  window.addEventListener('resize', medir);
+  if (celular.addEventListener) { celular.addEventListener('change', medir); reduz.addEventListener('change', medir); }
+  window.addEventListener('load', medir);
+  medir();
+})();
+
+// 07/11 (Marcelo, como na Tarq): no celular, enquanto a seção 1 cobre a capa, a capa sobe a 35% da rolagem e escurece
+// até metade do brilho (medido no site da Tarq: -221 px e brilho 0,50 aos 600 px).
+(function () {
+  var capa = document.querySelector('.capa-palco > .capa');
+  if (!capa) return;
+  var partes = [capa.querySelector('.capa-foto'), capa.querySelector('.capa-txt')].filter(Boolean);
+  var celular = window.matchMedia('(max-width: 760px)');
+  var reduz = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var pedido = false;
+  function mover() {
+    pedido = false;
+    if (!celular.matches || reduz.matches) { partes.forEach(function (e) { e.style.transform = ''; }); capa.style.removeProperty('--escuro'); return; }
+    var h = capa.offsetHeight, y = Math.min(window.scrollY, h);
+    var p = Math.max(0, y / h);
+    var t = 'translate3d(0,' + (-0.35 * y).toFixed(1) + 'px,0)';
+    partes.forEach(function (e) { e.style.transform = t; });
+    capa.style.setProperty('--escuro', (0.5 * p).toFixed(3));
+  }
+  window.addEventListener('scroll', function () { if (!pedido) { pedido = true; requestAnimationFrame(mover); } }, { passive: true });
+  window.addEventListener('resize', mover);
+  mover();
 })();

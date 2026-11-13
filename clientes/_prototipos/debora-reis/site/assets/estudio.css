@@ -668,56 +668,725 @@ main,.rodape{position:relative;z-index:1}
   .obra-uma blockquote{max-width:26em}
 }
 
-/* ---------- 28/10: seção 2 e Como trabalho refeitas a partir das referências ---------- */
-/* Seção 2: frase à esquerda e grande, uma foto grande e duas menores, retas (Simone Katherine, Tarq, Stanzza) */
-.intro{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;padding:150px var(--lateral) 140px;align-items:start}
-.intro-frase{grid-column:1/11;grid-row:1;margin-bottom:80px}
+/* ---------- 28/10: home a partir dos mockups do Marcelo (capa, seção 1, projetos, Como trabalho, gatos, arquiteta) ----
+   Os mockups são especificação de estrutura; fotos e dados continuam sendo os dela. */
+:root{--pessego:#E3A88C}
+.btn .seta,.capa-proj .seta{width:18px;height:auto;margin-left:14px;fill:none;stroke:currentColor;stroke-width:1.3;vertical-align:middle}
+.cab-marca{display:flex;flex-direction:column;align-items:center}
+.cab-marca span{font:500 11px/1 var(--f-texto);font-stretch:100%;letter-spacing:.42em;text-transform:uppercase;margin:7px 0 0 .42em;opacity:.8}
+@media (min-width:761px){
+  .home .cab:not(.solido){color:var(--cal)}
+  .home .cab:not(.solido) .cab-menu{background:rgba(243,240,232,.12)}
+  .home .cab:not(.solido) .cab-acao:hover{background:var(--cal);color:var(--tinta)}
+}
+
+/* 1. capa de ponta a ponta (mockup 1). A faixa de baixo sem ícones; a capa diz de qual apartamento é a foto (Tarq). */
+.capa-cheia{position:relative;padding:0;height:100vh;height:100svh;min-height:680px;overflow:hidden;color:var(--cal)}
+.capa-cheia .capa-foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.capa-cheia::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(22,15,12,.74) 0%,rgba(22,15,12,.52) 36%,rgba(22,15,12,.14) 68%,rgba(22,15,12,.06) 100%),linear-gradient(to bottom,rgba(22,15,12,.5) 0%,rgba(22,15,12,0) 20%,rgba(22,15,12,0) 66%,rgba(22,15,12,.72) 100%)}
+.capa-cheia .capa-txt{position:absolute;z-index:2;left:max(var(--lateral),14vw);right:auto;top:47%;bottom:auto;transform:translateY(-50%);max-width:880px;padding:0;text-align:left}
+.capa-rot{display:flex;align-items:center;gap:22px;color:#E9DFD2;letter-spacing:.32em;margin:0 0 28px}
+.capa-rot i{width:46px;height:1px;background:currentColor}
+.capa-cheia h1{font-size:clamp(48px,5.2vw,90px);line-height:.98;color:var(--cal)}
+.capa-cheia .capa-sub{font-size:19px;line-height:1.5;max-width:31em;margin:26px 0 36px;color:#EDE4D8}
+.capa-acoes{display:flex;align-items:center;gap:36px;flex-wrap:wrap}
+.capa-cheia .capa-link{font:500 var(--t-rotulo)/1 var(--f-texto);font-stretch:100%;letter-spacing:.2em;text-transform:uppercase;color:var(--cal);text-decoration:none;border-bottom:1px solid rgba(243,240,232,.7);padding-bottom:9px}
+.capa-proj{position:absolute;z-index:2;right:var(--lateral);bottom:136px;display:flex;flex-direction:column;align-items:flex-end;gap:10px;color:var(--cal);text-decoration:none;font:400 22px/1 var(--f-display)}
+.capa-proj .rot{color:#D9CFC2;margin:0}
+.capa-proj:hover{color:#F2C7BD}
+.capa-faixa{position:absolute;z-index:2;left:var(--lateral);right:var(--lateral);bottom:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));list-style:none;margin:0;padding:24px 0 30px;border-top:1px solid rgba(243,240,232,.22)}
+.capa-faixa li{display:flex;flex-direction:column;gap:9px;padding:0 28px;border-left:1px solid rgba(243,240,232,.26)}
+.capa-faixa li:first-child{padding-left:0;border-left:0}
+.capa-faixa b,.capa-faixa span{font:500 11px/1.3 var(--f-texto);font-stretch:100%;letter-spacing:.2em;text-transform:uppercase}
+.capa-faixa b{color:var(--cal)}
+.capa-faixa span{color:#D3C8BA}
+
+/* 2. seção 1 (mockup 2): texto e números | a estante alta | dois detalhes que trocam, com as palavras à mão */
+.intro{display:grid;grid-template-columns:minmax(0,40fr) minmax(0,32fr) minmax(0,25fr);column-gap:24px;align-items:stretch;padding:120px var(--lateral) 110px}
+.intro-frase{display:flex;flex-direction:column;align-items:flex-start;margin:0;padding-right:12px}
 .intro-frase .rot{margin-bottom:14px}
-.intro-perg{font-size:34px;line-height:1;color:var(--vermelho);margin:0 0 18px;transform:rotate(-3deg);transform-origin:left bottom}
-.intro-frase h2{font-size:clamp(48px,5.4vw,80px);line-height:1;max-width:none}
+.intro-perg{font-size:34px;line-height:1;color:var(--vermelho);margin:0 0 20px;transform:rotate(-3deg);transform-origin:left bottom}
+.intro-frase h2{font-size:clamp(38px,3.5vw,60px);line-height:1.03;max-width:none}
 .intro-frase .linha{display:block}
-.intro .risco{margin:18px 0 0;width:min(380px,40%)}
-.intro-grande{grid-column:1/7;grid-row:2}
-.intro-grande .intro-q{aspect-ratio:1/1}
-.intro-grande img{object-position:50% 20%}
-.intro-lado{grid-column:8/13;grid-row:2;align-self:stretch;display:flex;flex-direction:column}
-.intro-txt{font-size:var(--t-lead);line-height:1.35;color:var(--tinta);max-width:17em;margin:0 0 22px}
-.intro-link{align-self:flex-start}
-.intro-par{display:grid;grid-template-columns:1fr 1fr;column-gap:24px;align-items:end;margin-top:auto;padding-top:56px}
-.intro-par .intro-desce{margin-bottom:64px}
+.intro .risco{margin:18px 0 0;width:min(340px,62%)}
+.intro-txt{font-size:20px;line-height:1.45;color:var(--tinta-2);max-width:23em;margin:34px 0 24px}
+.intro-num{display:flex;margin:auto 0 0;padding-top:52px}
+.intro-num div{display:flex;flex-direction:column;justify-content:flex-end;padding:0 24px;border-left:1px solid var(--linha)}
+.intro-num div:first-child{padding-left:0;border-left:0}
+.intro-num dt{font:400 42px/1 var(--f-display);color:var(--tinta);margin:0 0 10px}
+.intro-num dd{margin:0;font:500 11px/1.55 var(--f-texto);font-stretch:100%;letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2);max-width:13em}
+.intro-num dd b{display:block;font-weight:500;color:var(--tinta)}
 .intro-f{margin:0}
 .intro-f a{display:block;color:inherit;text-decoration:none}
-.intro-q{display:block;overflow:hidden;background:var(--cal-2);aspect-ratio:3/4}
-.intro-q img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--facil)}
+.intro-q{display:block;overflow:hidden;background:var(--cal-2)}
+.intro-q img{display:block;width:100%;height:100%;object-fit:cover;transition:opacity .45s ease,transform 1.4s var(--facil)}
+.intro-q img.trocando{opacity:0}
 .intro-f a:hover img{transform:scale(1.03)}
-.intro-f figcaption{font-size:25px;line-height:1.05;color:var(--vermelho);margin:14px 0 0 6px;transform:rotate(-3deg);transform-origin:left top;transition:color .3s ease}
-.intro-f a:hover figcaption{color:var(--tinta)}
+.intro-grande a,.intro-grande .intro-q{height:100%}
+.intro-grande .intro-q{min-height:640px}
+.intro-lado{display:flex;flex-direction:column;gap:24px}
+.intro-cima{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22px;align-items:start}
+.intro-a .intro-q{aspect-ratio:1/1.08}
+.intro-b{flex:1;display:flex;min-height:200px}
+.intro-b .intro-q{flex:1}
+.intro-palavras{margin:0;padding:6px 0 6px 18px;border-left:1px solid var(--linha);font-size:22px;line-height:1.2;color:var(--tinta-2);white-space:nowrap}
+.intro-pe{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
+.intro-pe .rot{margin:0;text-decoration:none}
+.intro-pe .rot:hover{color:var(--vermelho)}
+.intro-setas{display:flex;gap:4px}
+.intro-seta{width:36px;height:32px;display:grid;place-items:center;background:none;border:0;cursor:pointer;color:var(--tinta);transition:color .3s ease}
+.intro-seta:hover{color:var(--vermelho)}
+.intro-seta svg{width:20px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
 
-/* Como trabalho: um desenho de linha por etapa, no lugar da foto que Tarq e Stanzza põem */
-.crono-des{display:block;width:100%;max-width:280px;height:auto;margin:6px 0 30px;stroke:var(--tinta)}
+/* 3. projetos: a foto cobre o card inteiro, o texto e o botão por cima, embaixo à esquerda */
+.pj-indice{grid-template-columns:repeat(4,minmax(0,1fr))}
+.pj-txt h3{font-size:clamp(40px,4.2vw,64px);line-height:1}
+.pj-btn{margin-top:4px}
+@media (min-width:1081px){
+  .pj,.pj-retrato{background:transparent}
+  .pj-foto{top:0;bottom:0;left:0;right:0;width:auto}
+  .pj-foto::after{display:block}
+  .pj-txt{top:auto;bottom:150px;transform:none;left:var(--lateral);max-width:640px}
+  .pj-base{bottom:34px}
+}
+
+/* 5. Como trabalho (print 3): número em vermelho, nome, desenho, prazo e o texto depois de um fio */
+.crono{border-top:0}
+.crono li{padding-top:0}
+.crono .crono-n{color:var(--vermelho);font-weight:500;margin:0 0 16px}
+.crono h3{font-size:clamp(26px,2.3vw,34px);margin:0 0 24px}
+.crono-des{display:block;width:100%;max-width:300px;height:auto;margin:0 0 26px;stroke:var(--tinta)}
 .crono-des .g{stroke-width:1.4}
+.crono-des .parede{stroke-width:3}
 .crono-des .f{stroke-width:1;stroke:rgba(30,26,23,.55)}
-.crono-des .vm{stroke:var(--vermelho);stroke-width:1.4}
+.crono-des .vm{stroke:var(--vermelho);stroke-width:1.3}
+.crono-des .tom{fill:rgba(199,149,96,.2);stroke:none}
+.crono .crono-prazo{margin:0 0 24px}
+.crono .crono-txt{border-top:1px solid var(--linha);padding-top:22px;max-width:none}
+.crono-pe{display:flex;justify-content:flex-start;margin-top:64px}
+
+/* 6. gatos (print 4): a foto alta à esquerda, o texto no meio, a foto menor e mais baixa à direita */
+.faixa-fio{display:block;width:40px;height:1px;background:#C9705A;margin:2px 0 26px}
+.faixa-seta{display:none;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.fb figcaption br{display:none}
+@media (min-width:1081px){
+  .faixa{grid-template-columns:minmax(0,30fr) minmax(0,38fr) minmax(0,21fr);column-gap:clamp(40px,5vw,88px);padding:64px var(--lateral) 72px}
+  .faixa .rot{color:var(--pessego)}
+  .faixa h2{font-size:clamp(44px,4.3vw,66px);line-height:1.02}
+  .faixa-centro{gap:40px;padding-top:44px}
+  .faixa-txt{max-width:520px}
+  .faixa-txt p:not(.rot){margin-bottom:22px}
+  .fa,.fb{width:auto;aspect-ratio:auto}
+  .faixa-foto.fa img{aspect-ratio:540/930;height:auto}
+  .faixa-foto.fb{margin-top:280px}
+  .faixa-foto.fb img{aspect-ratio:640/1000;height:auto}
+  .faixa-foto figcaption{background:none;padding:0;white-space:nowrap;font-size:28px;line-height:1.05;color:var(--pessego)}
+  .fa figcaption{left:22px;right:auto;bottom:36px;transform:rotate(-6deg)}
+  .faixa-seta{display:block}
+  .fb figcaption br{display:inline}
+  .fa .faixa-seta{width:22px;margin:6px 0 0 75%}
+  .fb figcaption{left:auto;right:-8px;top:-104px;bottom:auto;text-align:right;transform:rotate(-8deg)}
+  .fb .faixa-seta{width:18px;margin:2px 22px 0 auto}
+}
+
+/* 7. a arquiteta (print 5): o retrato grande, o nome bem grande, o traço vermelho, a frase e a assinatura */
+.sobre-retrato{position:static}
+.sobre-retrato figcaption{margin:18px 0 0;letter-spacing:.24em}
+.sobre-traco{display:block;width:34px;height:2px;background:var(--vermelho);margin:0 0 48px}
+@media (min-width:1081px){
+  .sobre{grid-template-columns:repeat(12,minmax(0,1fr));padding:96px var(--lateral) 96px}
+  .sobre-retrato{grid-column:1/7}
+  .sobre-retrato img{aspect-ratio:7/8}
+  .sobre-txt{grid-column:8/13;position:relative;padding-top:112px}
+  .sobre-txt::before{content:"";position:absolute;left:-48px;top:0;height:248px;width:1px;background:var(--vermelho)}
+  .sobre-nome{font-size:clamp(72px,7.4vw,116px);line-height:.92;margin:0 0 22px}
+  .sobre-form{color:var(--tinta);margin:0 0 30px}
+  .sobre-frase p{font-size:clamp(24px,1.95vw,30px);line-height:1.4}
+  .sobre-frase footer{font-size:54px;margin-top:26px}
+}
 
 @media (max-width:1080px){
-  .intro{padding:120px var(--lateral) 110px}
-  .intro-grande{grid-column:1/8}
-  .intro-lado{grid-column:8/13;padding-left:8px}
-  .intro-par{grid-template-columns:1fr;row-gap:32px}
-  .intro-par .intro-desce{display:none}
+  .capa-cheia .capa-txt{left:var(--lateral);right:var(--lateral)}
+  .capa-proj{display:none}
+  .capa-faixa li{padding:0 14px}
+  .intro{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);row-gap:48px;padding:110px var(--lateral) 96px}
+  .intro-frase{grid-column:1/3;padding-right:0}
+  .intro-grande .intro-q{min-height:520px}
+  .crono .crono-n{margin-bottom:12px}
 }
 @media (max-width:760px){
-  .intro{display:block;padding:104px var(--lateral) 80px}
-  .intro-frase{margin-bottom:40px}
+  .capa-cheia{height:100svh;min-height:620px}
+  .capa-cheia::after{background:linear-gradient(to bottom,rgba(22,15,12,.1) 0%,rgba(22,15,12,.18) 28%,rgba(22,15,12,.74) 56%,rgba(22,15,12,.93) 100%)}
+  .capa-cheia .capa-foto{object-position:50% 45%}
+  .capa-cheia .capa-txt{left:24px;right:24px;top:auto;bottom:44px;transform:none}
+  .capa-rot{margin-bottom:18px;letter-spacing:.24em}
+  .capa-cheia h1{font-size:44px;line-height:.96}
+  .capa-cheia .capa-sub{font-size:17px;margin:18px 0 26px}
+  .capa-acoes{flex-direction:column;align-items:stretch;gap:20px}
+  .capa-acoes .btn{text-align:center;padding:19px 16px}
+  .capa-cheia .capa-link{align-self:flex-start}
+  .capa-faixa{display:none}
+  .cab-marca span{display:none}
+  .intro{display:flex;flex-direction:column;gap:40px;padding:96px var(--lateral) 80px}
   .intro-perg{font-size:28px}
   .intro-frase h2{font-size:40px}
-  .intro .risco{width:70%}
-  .intro-grande .intro-q{aspect-ratio:4/5}
-  .intro-lado{padding:0;margin-top:32px}
   .intro-txt{font-size:var(--t-corpo)}
-  .intro-par{grid-template-columns:1fr 1fr;column-gap:12px;padding-top:32px}
-  .intro-par .intro-desce{display:block}
-  .intro-par .intro-desce{margin-bottom:40px}
-  .intro-f figcaption{font-size:20px}
-  .crono-des{max-width:220px;margin-bottom:20px}
+  .intro-num{padding-top:36px}
+  .intro-num div{padding:0 14px}
+  .intro-num dt{font-size:34px}
+  .intro-num dd{font-size:11px;letter-spacing:.1em}
+  .intro-grande .intro-q{min-height:0;aspect-ratio:4/5}
+  .intro-palavras{font-size:19px;padding-left:14px}
+  .pj-txt h3{font-size:38px}
+  .crono-des{max-width:240px;margin-bottom:20px}
+  .sobre-traco{margin-bottom:32px}
+}
+
+/* ---------- 29/10: ajustes do Marcelo ---------- */
+/* capa: "Ver projetos" na mesma altura do botão (o sublinhado fica no pé do botão, o texto no meio) */
+.capa-cheia .capa-link{display:inline-flex;align-items:center;padding:18px 0 17px;line-height:1}
+.capa-acoes{align-items:stretch}
+/* seção 1 mais curta, com os números logo depois do link (provisório até ele escolher um dos esboços) */
+.intro{padding-top:96px;padding-bottom:80px}
+.intro-num{margin-top:0;padding-top:44px}
+.intro-lado{gap:20px}
+@media (min-width:1081px){ .intro-grande .intro-q{min-height:560px} }
+/* a arquiteta: o retrato menor e sem a linha vermelha ao lado do nome */
+@media (min-width:1081px){
+  .sobre-retrato{grid-column:1/5}
+  .sobre-retrato img{aspect-ratio:4/5}
+  .sobre-txt{grid-column:6/13;padding-top:64px}
+  .sobre-txt::before{display:none}
+}
+.faixa h2 .linha{display:block}
+/* 29/10: alvos de toque no celular com pelo menos 24 px de altura (WCAG 2.5.8) */
+.rodape-grade li a,.rodape-contato a{display:inline-block;padding:6px 0}
+.intro-pe .rot{padding:8px 0}
+@media (max-width:760px){
+  .pj-indice button{padding-top:12px}
+  .cab-marca{padding:4px 0}
+}
+
+/* ---------- 30/10: seção 1 na opção B (frase em cima, três fotos iguais embaixo) ---------- */
+.intro-v2{display:grid;grid-template-columns:minmax(0,58fr) minmax(0,42fr);column-gap:72px;row-gap:56px;align-items:end;padding:96px var(--lateral)}
+.intro-v2 .intro-frase{padding-right:0}
+.intro-v2 .intro-frase h2{font-size:clamp(40px,5vw,80px);line-height:1.02}
+.intro-v2 .risco{width:min(420px,70%)}
+.intro-apoio{display:flex;flex-direction:column;align-items:flex-start;padding-bottom:6px}
+.intro-v2 .intro-txt{margin:0 0 22px}
+.intro-v2 .intro-num{margin:0;padding-top:40px}
+.intro-fotos{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.intro-fotos .intro-q{aspect-ratio:4/3}
+@media (max-width:1080px){
+  .intro-v2{grid-template-columns:minmax(0,1fr);row-gap:40px;padding:88px var(--lateral) 80px}
+  .intro-v2 .intro-frase{grid-column:auto}
+  .intro-fotos{gap:16px}
+  .intro-fotos .intro-q{aspect-ratio:3/4}
+}
+@media (max-width:760px){
+  .intro-v2{display:grid;row-gap:32px;padding:80px var(--lateral) 72px}
+  .intro-v2 .intro-frase h2{font-size:40px}
+  .intro-fotos{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .intro-fotos .intro-f:first-child{grid-column:1/-1}
+  .intro-fotos .intro-f:first-child .intro-q{aspect-ratio:4/3}
+  .intro-fotos .intro-q{aspect-ratio:4/5}
+}
+
+/* 30/10: o ícone do Instagram herdava o display:inline-block e o padding dos links do rodapé e saía do centro */
+.rodape-contato a.rede-icone{display:inline-grid;place-items:center;padding:0;width:44px;height:44px}
+.intro-v2 .intro-frase .rot{margin-bottom:22px}
+
+/* ---------- 30/10: revisão de projetos, transições, gatos, arquiteta e celular ---------- */
+.falta{color:var(--vermelho)}
+
+/* página de projetos: uma composição por projeto, só o título; a foto abre o modo revista */
+.obra-v2{display:block;padding:88px 0;border-bottom:1px solid var(--linha)}
+.obra-cab{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin:0 0 32px}
+.obra-v2 h2{margin:0}
+.obra-v2 .obra-acoes{margin:0;display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.obra-revista{display:inline-flex;align-items:center;gap:10px;background:none;border:0;border-bottom:1px solid currentColor;padding:12px 0 4px;color:inherit;font:inherit;font-size:var(--t-corpo);cursor:pointer;transition:color .3s ease}
+.obra-revista svg{width:20px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;transition:transform .4s var(--facil)}
+.obra-revista:hover{color:var(--vermelho)}
+.obra-revista:hover svg{transform:translateX(3px)}
+.obra-grade{display:grid;gap:16px}
+.obra-f{margin:0;min-height:0;overflow:hidden;background:var(--cal-2)}
+.obra-abrir{display:block;width:100%;height:100%;padding:0;border:0;background:none;cursor:zoom-in}
+.obra-abrir img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--facil)}
+.obra-abrir:hover img{transform:scale(1.03)}
+.obra-abrir:focus-visible{outline:2px solid var(--tinta);outline-offset:3px}
+/* Rio Vermelho: o corredor grande e dois detalhes ao lado */
+.obra-1 .obra-grade{grid-template-columns:minmax(0,2fr) minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr));height:clamp(480px,50vw,740px)}
+.obra-1 .obra-f:first-child{grid-row:1/3}
+/* Paralela: uma foto só, o título ao lado */
+.obra-2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.3fr);column-gap:40px;align-items:end}
+.obra-2 .obra-cab{flex-direction:column;align-items:flex-start;gap:28px;margin:0;padding-bottom:6px}
+.obra-2 .obra-grade{grid-template-columns:1fr}
+.obra-2 .obra-f{aspect-ratio:1080/717}
+/* Graça: a estante alta e o resto em mosaico, título à direita */
+.obra-3 .obra-cab{flex-direction:row-reverse}
+.obra-3 .obra-grade{grid-template-columns:minmax(0,5fr) minmax(0,3fr) minmax(0,3fr);grid-template-rows:repeat(2,minmax(0,1fr));height:clamp(600px,62vw,900px)}
+.obra-3 .obra-f:nth-child(1){grid-row:1/3}
+.obra-3 .obra-f:nth-child(2){grid-column:2/4}
+/* Alto do Parque: a poltrona na largura toda, três fotos embaixo */
+.obra-4 .obra-grade{grid-template-columns:repeat(3,minmax(0,1fr))}
+.obra-4 .obra-f:first-child{grid-column:1/-1;aspect-ratio:21/9}
+.obra-4 .obra-f:not(:first-child){aspect-ratio:4/5}
+/* Itaigara: o quarto grande à direita, dois detalhes à esquerda */
+.obra-5 .obra-cab{flex-direction:row-reverse}
+.obra-5 .obra-grade{grid-template-columns:minmax(0,1fr) minmax(0,2fr);grid-template-rows:repeat(2,minmax(0,1fr));grid-template-areas:"b a" "c a";height:clamp(460px,46vw,680px)}
+.obra-5 .obra-f:nth-child(1){grid-area:a}
+.obra-5 .obra-f:nth-child(2){grid-area:b}
+.obra-5 .obra-f:nth-child(3){grid-area:c}
+
+/* o modo revista */
+html.revista-aberta{overflow:hidden}
+.revista{position:fixed;inset:0;width:100vw;max-width:none;height:100vh;height:100dvh;max-height:none;margin:0;padding:0;border:0;background:#14100D;color:var(--cal)}
+.revista[open]{display:grid;grid-template-rows:auto minmax(0,1fr) auto}
+.revista::backdrop{background:#14100D}
+.revista-topo{display:flex;align-items:center;gap:24px;padding:16px var(--lateral)}
+.revista-nome{flex:1;margin:0;font:400 22px/1.1 var(--f-display)}
+.revista-conta{margin:0;font:500 11px/1 var(--f-texto);font-stretch:100%;letter-spacing:.16em;text-transform:uppercase;color:rgba(243,240,232,.72)}
+.revista-fechar{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 16px;background:none;border:1px solid rgba(243,240,232,.35);color:inherit;font:500 11px/1 var(--f-texto);font-stretch:100%;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:background .3s ease,color .3s ease}
+.revista-fechar span{font-size:20px;letter-spacing:0}
+.revista-fechar:hover{background:var(--cal);color:var(--tinta)}
+.revista-palco{position:relative;display:grid;place-items:center;min-height:0;padding:0 var(--lateral);touch-action:pan-y;overflow:hidden}
+.revista-foto{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;width:100%;height:100%;min-height:0;margin:0}
+.revista-foto[hidden],.revista-cartao[hidden]{display:none}
+.revista-foto img{display:block;max-width:100%;max-height:calc(100% - 44px);min-height:0;object-fit:contain}
+
+.revista-foto figcaption{max-width:52em;font-size:14px;line-height:1.4;text-align:center;color:rgba(243,240,232,.72)}
+.revista-cartao{width:100%;max-width:820px;max-height:100%;overflow:auto;padding:8px 0}
+.revista-cartao .rot{color:rgba(243,240,232,.72)}
+.revista-cartao h2{font-size:clamp(40px,5vw,76px);line-height:.95;margin:12px 0 32px}
+.revista-historia blockquote{margin:0 0 36px}
+.revista-historia blockquote p{margin:0 0 12px;font:italic 400 clamp(22px,2.1vw,31px)/1.28 var(--f-display)}
+.revista-historia cite{font-style:normal;font-size:14px;color:rgba(243,240,232,.72)}
+.revista-sem{margin:0 0 36px}
+.revista-historia dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin:0;padding-top:22px;border-top:1px solid rgba(243,240,232,.25)}
+.revista-historia dt{margin:0 0 8px;font:500 11px/1.2 var(--f-texto);font-stretch:100%;letter-spacing:.16em;text-transform:uppercase;color:rgba(243,240,232,.72)}
+.revista-historia dd{margin:0;font-size:16px;line-height:1.45}
+.revista .falta{color:#E9A896}
+.revista-pe{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px var(--lateral) 22px}
+.revista .obra-seta{color:var(--cal);border-color:rgba(243,240,232,.35)}
+.revista .obra-seta:hover{background:var(--cal);color:var(--tinta);border-color:var(--cal)}
+@keyframes rv-entra{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.revista .entra{animation:rv-entra .6s var(--facil) both}
+
+/* a pausa: uma foto de ponta a ponta entre dois blocos */
+.pausa{position:relative;margin:0;height:clamp(420px,74vh,780px);overflow:hidden;background:var(--cal-2)}
+.pausa img{display:block;width:100%;height:116%;object-fit:cover;object-position:50% 52%}
+
+/* gatos: a foto da estante manda; o desenho pousa no mesmo chão das fotos; o questionário ganha bloco próprio */
+.faixa-centro{display:flex;flex-direction:column}
+.faixa-centro .faixa-txt{order:1}
+.faixa-centro .desenho-estante{order:2}
+.faixa-quiz{display:grid;justify-items:start;gap:14px;margin-top:36px;padding:26px 28px 28px;border:1px solid rgba(243,240,232,.3)}
+.faixa-quiz p{margin:0}
+.faixa-quiz-t{font:400 30px/1 var(--f-display)}
+.faixa-quiz .btn{margin-top:6px}
+@media (min-width:1081px){
+  .faixa{grid-template-columns:minmax(0,36fr) minmax(0,36fr) minmax(0,19fr);align-items:stretch}
+  .faixa-foto.fa img{width:100%;height:100%;object-fit:cover}
+  .faixa-centro{padding-top:0;gap:48px}
+  .faixa-centro .desenho-estante{margin-top:auto;max-width:400px}
+  .faixa-foto.fb{align-self:end;margin-top:0}
+}
+
+/* a arquiteta: fundo um tom abaixo e a trajetória num detalhe */
+.sobre{background:var(--cal-2)}
+.sobre-linha{display:flex;margin:6px 0 36px;padding:0;list-style:none;max-width:560px}
+.sobre-linha li{flex:1;position:relative;padding:18px 24px 0 0;border-top:1px solid var(--tinta)}
+.sobre-linha li::before{content:"";position:absolute;left:0;top:-5px;width:9px;height:9px;border-radius:50%;background:var(--vermelho)}
+.sobre-linha b{display:block;margin-bottom:6px;font:400 34px/1 var(--f-display)}
+.sobre-linha span{display:block;font-size:var(--t-min);line-height:1.4;color:var(--tinta-2)}
+
+/* celular: o WhatsApp sempre à mão */
+.zap-flut{display:none}
+@media (max-width:760px){
+  .zap-flut{position:fixed;right:16px;bottom:16px;z-index:45;display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 18px;background:var(--tinta);color:var(--cal);text-decoration:none;font:500 12px/1 var(--f-texto);font-stretch:100%;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 10px 28px rgba(20,16,13,.28);transform:translateY(150%);transition:transform .45s var(--facil)}
+  .zap-flut.ve{transform:none}
+  .zap-flut svg{width:20px;height:20px;fill:currentColor}
+}
+
+@media (max-width:1080px){
+  .obra-1 .obra-grade{height:clamp(420px,62vw,620px)}
+  .obra-3 .obra-grade{height:clamp(520px,80vw,760px)}
+  .obra-5 .obra-grade{height:clamp(400px,58vw,560px)}
+  .obra-2{grid-template-columns:1fr;row-gap:28px}
+  .obra-2 .obra-cab{flex-direction:row;align-items:flex-end;justify-content:space-between}
+  .faixa-quiz{padding:22px}
+}
+@media (max-width:760px){
+  .obra-v2{padding:48px 0}
+  .obra-cab,.obra-3 .obra-cab,.obra-5 .obra-cab,.obra-2 .obra-cab{flex-direction:column;align-items:flex-start;gap:16px;margin-bottom:24px}
+  .obra-v2 .obra-acoes{gap:20px}
+  .obra-v2 .obra-grade{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;grid-template-areas:none;height:auto;gap:10px}
+  .obra-v2 .obra-f{grid-area:auto;grid-row:auto;grid-column:auto;aspect-ratio:4/5}
+  .obra-v2 .obra-f:first-child{grid-column:1/-1;aspect-ratio:4/3}
+  .obra-v2 .obra-f:last-child:nth-child(even){grid-column:1/-1;aspect-ratio:4/3}
+  .obra-2 .obra-f:first-child{aspect-ratio:1080/717}
+  .revista-topo{padding:12px var(--lateral);gap:14px}
+  .revista-nome{font-size:18px}
+  .revista-conta{display:none}
+  .revista-cartao h2{margin-bottom:24px}
+  .revista-historia dl{grid-template-columns:1fr;gap:18px}
+  .revista-pe{padding:12px var(--lateral) 18px;gap:10px}
+  .revista-zap{flex:1;text-align:center;padding-left:10px;padding-right:10px}
+  .pausa{height:56vh}
+  .sobre-linha{margin-bottom:28px}
+  .sobre-linha b{font-size:28px}
+}
+@media (max-width:760px){ .revista-zap{letter-spacing:.08em;font-size:11px;white-space:nowrap} }
+.pausa{height:clamp(380px,64vh,660px)}
+.pausa img{object-position:50% 62%}
+@media (min-width:1081px){ .faixa-foto.fa{overflow:hidden} .faixa-foto.fa img{height:calc(100% + 40px);margin-top:-40px} }
+@media (max-width:760px){
+  .obra-v2 .obra-grade .obra-f:nth-child(n){grid-area:auto;grid-row:auto;grid-column:auto;aspect-ratio:4/5}
+  .obra-v2 .obra-grade .obra-f:first-child{grid-column:1/-1;aspect-ratio:4/3}
+  .obra-v2 .obra-grade .obra-f:last-child:nth-child(even){grid-column:1/-1;aspect-ratio:4/3}
+  .obra-2 .obra-grade .obra-f:first-child{aspect-ratio:1080/717}
+  .faixa h2{line-height:1.04}
+}
+/* 30/10: o que a Débora ainda não contou aparece como demonstração, nunca como texto inventado */
+.demo{color:rgba(243,240,232,.62);font-style:italic}
+.demo b{display:inline-block;margin:0 8px 4px 0;padding:4px 7px 3px;border:1px solid rgba(243,240,232,.4);font:500 11px/1 var(--f-texto);font-style:normal;font-stretch:100%;letter-spacing:.14em;text-transform:uppercase;color:var(--cal);vertical-align:middle}
+.revista-sem .demo{font-size:18px}
+
+/* 30/10: seção 1 presa às linhas do fundo (6 colunas sem vão): a frase ocupa 4, o texto começa na linha da 5ª e termina na
+   mesma altura do título. Saiu o risco vermelho (mais uma voz no bloco; os traços saíram do site em 29/10). */
+@media (min-width:1081px){
+  .intro-v2{grid-template-columns:repeat(6,minmax(0,1fr));column-gap:0;align-items:end}
+  .intro-v2 .intro-frase{grid-column:1/5;padding-right:48px}
+  .intro-v2 .intro-apoio{grid-column:5/7;padding:0 0 10px 0}
+  .intro-v2 .intro-txt{max-width:30em}
+  .intro-fotos{grid-column:1/-1}
+}
+.intro-v2 .risco{display:none}
+.intro-v2 .intro-num{padding-top:32px}
+
+/* 30/10: gatos um pouco mais baixos no computador */
+@media (min-width:1081px){
+  .faixa{grid-template-columns:minmax(0,31fr) minmax(0,38fr) minmax(0,18fr);padding-top:56px;padding-bottom:60px}
+  .faixa-centro{gap:36px}
+  .faixa-quiz{margin-top:28px;padding:22px 26px 24px}
+}
+@media (min-width:1081px){ .faixa-centro .desenho-estante{max-width:330px} .faixa-centro{gap:28px} }
+/* 30/10: subtítulo da capa na largura normal da letra (o corpo do site usa a versão estreita), maior e mais solto, como o modelo do Marcelo */
+@media (min-width:1081px){
+  .capa-cheia .capa-sub{font-stretch:100%;font-size:21px;line-height:1.55;letter-spacing:.005em;max-width:30em}
+}
+/* 30/10: o título da capa em duas linhas no computador, "Interiores com identidade." inteiro na segunda (modelo do Marcelo) */
+@media (min-width:1081px){
+  .capa-cheia .capa-txt{max-width:none;right:var(--lateral)}
+  .capa-cheia h1 .linha{display:block;white-space:nowrap}
+}
+/* 30/10: os três números em colunas iguais, sem passar da tela; entre 1081 e 1279 px a seção 1 empilha como no tablet */
+.intro-v2 .intro-num{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.intro-v2 .intro-num div{min-width:0;padding:0 16px}
+.intro-v2 .intro-num div:first-child{padding-left:0}
+.intro-v2 .intro-num dd{max-width:none;letter-spacing:.1em}
+@media (min-width:1081px) and (max-width:1279px){
+  .intro-v2{grid-template-columns:minmax(0,1fr);row-gap:40px}
+  .intro-v2 .intro-frase,.intro-v2 .intro-apoio{grid-column:1/-1;padding-right:0}
+  .intro-v2 .intro-apoio{max-width:640px}
+}
+
+/* ---------- 30/10: seção 1 no modelo Söl Haus: texto numa coluna, foto grande + pequena com a identificação no vão ---------- */
+.intro-v3{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:0;row-gap:48px;align-items:center;padding:110px var(--lateral)}
+.intro-v3 .intro-col{grid-column:1/4;display:flex;flex-direction:column;align-items:flex-start;padding-right:56px}
+.intro-v3 .rot{margin:0 0 20px}
+.intro-v3 .intro-perg{margin:0 0 18px}
+.intro-v3 h2{font-size:clamp(40px,3.9vw,68px);line-height:1.02;margin:0}
+.intro-v3 h2 .linha{display:block}
+.intro-v3 .intro-txt{margin:30px 0 22px;max-width:30em}
+.intro-v3 .intro-num{display:flex;align-items:flex-end;margin:44px 0 0;padding:0}
+.intro-v3 .intro-num div{display:flex;flex-direction:column;justify-content:flex-end;min-width:0;padding:0 22px;border-left:1px solid var(--linha)}
+.intro-v3 .intro-num div:first-child{padding-left:0;border-left:0}
+.intro-v3 .intro-num dt{font:400 68px/.9 var(--f-display);color:var(--vermelho);margin:0 0 10px}
+.intro-v3 .intro-num dd{max-width:12em;letter-spacing:.12em}
+.intro-fotos2{grid-column:4/7;display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);column-gap:20px;align-items:start}
+.intro-fotos2 .intro-q{aspect-ratio:4/5}
+.intro-lateral{display:flex;flex-direction:column;gap:22px}
+.intro-legenda{margin:0;display:flex;flex-direction:column;align-items:flex-start;gap:6px;font-size:var(--t-min);line-height:1.45;color:var(--tinta-2)}
+.intro-legenda b{font:400 24px/1.1 var(--f-display);color:var(--vermelho)}
+.intro-legenda .link-seta{margin-top:8px;font-size:var(--t-min)}
+@media (max-width:1080px){
+  .intro-v3{grid-template-columns:minmax(0,1fr);padding:88px var(--lateral) 80px}
+  .intro-v3 .intro-col,.intro-fotos2{grid-column:1/-1;padding-right:0}
+  .intro-fotos2{max-width:760px}
+}
+@media (max-width:760px){
+  .intro-v3{display:grid;row-gap:40px;padding:80px var(--lateral) 72px}
+  .intro-v3 h2{font-size:40px}
+  .intro-v3 .intro-num dt{font-size:54px}
+  .intro-v3 .intro-num div{padding:0 14px}
+  .intro-v3 .intro-num dd{letter-spacing:.08em}
+  .intro-fotos2{grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:12px;row-gap:12px}
+  .intro-fotos2 .if-grande{grid-column:1/-1}
+  .intro-fotos2 .if-grande .intro-q{aspect-ratio:4/4.4}
+  .intro-lateral{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:end}
+}
+/* 30/10: ajustes na seção 1 (pedido do Marcelo): título em três linhas e coluna mais estreita, foto pequena mais perto da
+   grande, a frase dela sobre os livros como legenda discreta da foto grande, Salvador e Casas na letra do título */
+@media (min-width:1081px){
+  .intro-v3 .intro-col{padding-right:clamp(56px,7vw,140px)}
+  .intro-fotos2{grid-template-columns:minmax(0,1.85fr) minmax(0,1.15fr);column-gap:12px}
+}
+.intro-v3 h2{line-height:1}
+.intro-cap{margin-top:12px;font:italic 400 17px/1.3 var(--f-display);color:var(--tinta-2)}
+.intro-v3 .intro-num dt.dt-txt{font-size:34px;line-height:1;color:var(--tinta);margin-bottom:12px}
+@media (max-width:760px){ .intro-v3 .intro-num dt.dt-txt{font-size:26px} .intro-cap{font-size:16px} }
+@media (max-width:760px){
+  .intro-v3 .intro-num{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));row-gap:22px}
+  .intro-v3 .intro-num div:first-child{grid-column:1/-1}
+  .intro-v3 .intro-num div:nth-child(2){padding-left:0;border-left:0}
+}
+/* os três itens começam na mesma linha de leitura: o "Salvador" e o "Casas" descem até a base do +20 */
+.intro-v3 .intro-num{align-items:stretch}
+.intro-v3 .intro-num div{justify-content:flex-start}
+.intro-v3 .intro-num dt.dt-txt{padding-top:27px}
+@media (max-width:760px){ .intro-v3 .intro-num dt.dt-txt{padding-top:0} }
+/* 30/10: a linha antes da pergunta virou frase normal (não rótulo em maiúsculas), para a pergunta à mão continuar a frase */
+.intro-antes{margin:0 0 10px;font-size:19px;line-height:1.4;color:var(--tinta-2)}
+@media (max-width:760px){ .intro-antes{font-size:17px} }
+.intro-v3 .intro-antes{margin-bottom:20px}
+/* 30/10: o Rio Vermelho entrou como quinto projeto do carrossel */
+.pj-indice{grid-template-columns:repeat(5,minmax(0,1fr))}
+
+/* 03/11: rótulo e contador do carrossel legíveis sobre foto clara (teto iluminado da Paralela no celular) */
+.pj-topo .rot,.pj-cont{text-shadow:0 0 8px rgba(20,16,13,.85),0 0 2px rgba(20,16,13,.6)}
+.pj-topo .rot{color:var(--cal)}
+@media (max-width:760px){
+  .pj-foto::after{background:linear-gradient(to top,rgba(20,16,13,.84) 0%,rgba(20,16,13,.42) 30%,rgba(20,16,13,0) 56%,rgba(20,16,13,0) 68%,rgba(20,16,13,.6) 100%)}
+}
+
+/* 05/11: pedidos da Débora na reunião de 04/11 */
+/* 1. nome maior no topo */
+.cab-marca{font-size:42px}
+.cab-marca span{font-size:12px}
+@media (max-width:760px){ .cab-marca{font-size:27px} }
+/* 2. Instagram visível: ícone no topo (computador e tablet) e botão no contato */
+.cab-dir{justify-self:end;display:flex;align-items:center;gap:10px}
+.cab-insta{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;color:inherit}
+.cab-insta svg,.btn-insta svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5}
+/* 06/11: o Instagram aparece no topo do celular também (pedido do Marcelo) */
+.btn-insta{display:inline-flex;align-items:center;justify-content:center;gap:10px}
+.btn-insta svg{width:18px;height:18px}
+.btn-linha:hover{background:var(--tinta);color:var(--cal)}
+.contato-acoes{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+@media (max-width:760px){ .contato-acoes{flex-direction:column} }
+/* 3. seção dos gatos com o mesmo fundo claro do resto do site */
+.faixa{background:var(--cal);color:var(--tinta)}
+.faixa .rot{color:var(--vermelho)}
+.faixa-foto figcaption{color:var(--vermelho);background:none}
+.faixa .desenho-estante{stroke:rgba(30,26,23,.62)}
+.faixa .desenho-estante .f{stroke:rgba(30,26,23,.36)}
+.faixa .desenho .gato{stroke:var(--tinta)}
+.faixa .desenho .gato-corpo{fill:rgba(30,26,23,.05)}
+.faixa-quiz{border-color:var(--linha)}
+.faixa-txt p:not(.rot){color:var(--tinta-2)}
+.faixa-quiz-t{color:var(--tinta)}
+.faixa .btn-claro{background:var(--tinta);color:var(--cal);border-color:var(--tinta)}
+.faixa .btn-claro:hover{background:transparent;color:var(--tinta)}
+@media (max-width:760px){ .faixa .fb{outline-color:var(--cal)} }
+/* 4. capa com a foto do Alto do Parque: a poltrona fica à direita do texto no computador e no centro no celular */
+.capa-cheia .capa-foto{object-position:62% 50%}
+@media (min-width:761px){ .capa-cheia::after{background:linear-gradient(90deg,rgba(22,15,12,.8) 0%,rgba(22,15,12,.64) 38%,rgba(22,15,12,.3) 68%,rgba(22,15,12,.08) 100%),linear-gradient(to bottom,rgba(22,15,12,.5) 0%,rgba(22,15,12,0) 20%,rgba(22,15,12,0) 66%,rgba(22,15,12,.72) 100%)} }
+@media (max-width:760px){ .capa-cheia .capa-foto{object-position:44% 40%} }
+
+/* 06/11 (Marcelo): o botão "Menu" saiu. Os links ficam à vista no topo: à esquerda do nome no computador,
+   numa segunda linha embaixo do nome no tablet e no celular. */
+.cab-links{justify-self:start;display:flex;align-items:center;gap:26px}
+.cab-links a{font:500 var(--t-rotulo)/1 var(--f-texto);font-stretch:100%;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;white-space:nowrap;padding:14px 0;background:linear-gradient(currentColor,currentColor) 0 calc(100% - 8px)/0 1px no-repeat;transition:background-size .3s var(--facil)}
+.cab-links a:hover,.cab-links a[aria-current]{background-size:100% 1px}
+@media (max-width:1080px){
+  .cab,.cab.solido{grid-template-columns:1fr auto;grid-template-areas:"marca dir" "links links";column-gap:12px;row-gap:2px;padding-bottom:6px}
+  .cab-marca{grid-area:marca;justify-self:start;align-items:flex-start}
+  .cab-marca span{margin-left:0}
+  .cab-dir,.cab>.cab-acao{grid-area:dir}
+  .cab-links{grid-area:links;gap:22px}
+  .cab-links a{padding:12px 0}
+}
+@media (max-width:760px){
+  .cab-links{justify-self:stretch;justify-content:space-between;gap:10px}
+  .cab-links a{font-size:11px;letter-spacing:.04em}
+}
+/* A página Projetos usa a classe "home" também: sem capa escura, o topo fica na cor da tinta. */
+@media (min-width:761px){
+  .home.pagina .cab:not(.solido){color:var(--tinta)}
+  .home.pagina .cab:not(.solido) .cab-acao:hover{background:var(--tinta);color:var(--cal)}
+}
+
+/* 06/11 (Marcelo, dois prints do celular): seção 1 e seção dos gatos no celular como ele mandou.
+   Seção 1: os três números numa linha só, com fio entre eles; foto grande mais baixa (5:4) e sem a legenda; a foto
+   pequena deitada ao lado do texto, centrado, com "Ver o projeto" em vermelho; sem os fios do fundo nessa seção.
+   Gatos: o desenho da estante (com a animação de sempre) sai do meio do texto e vai para o vão entre as duas fotos. */
+@media (max-width:760px){
+  .intro-v3{background:var(--cal);row-gap:32px}
+  .intro-v3 .intro-num{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr) minmax(0,1fr);margin-top:36px;row-gap:0;width:100%}
+  .intro-v3 .intro-num div,.intro-v3 .intro-num div:nth-child(2){padding:0 0 0 clamp(10px,3.4vw,16px);border-left:1px solid var(--linha)}
+  .intro-v3 .intro-num div:first-child{grid-column:auto;padding-left:0;border-left:0}
+  .intro-v3 .intro-num dt{font-size:clamp(34px,10.5vw,44px);line-height:.9;margin:0 0 12px}
+  .intro-v3 .intro-num dt.dt-txt{font-size:clamp(20px,6.4vw,26px);line-height:1;padding-top:clamp(6px,2.4vw,10px);margin-bottom:14px}
+  .intro-v3 .intro-num dd{font-size:clamp(9.5px,2.8vw,11px);letter-spacing:.1em;line-height:1.6}
+  .intro-fotos2{row-gap:16px}
+  .intro-fotos2 .if-grande .intro-q{aspect-ratio:5/4}
+  .intro-cap{display:none}
+  .intro-lateral{grid-template-columns:minmax(0,45fr) minmax(0,55fr);gap:18px;align-items:center}
+  .intro-lateral .intro-q{aspect-ratio:1.18/1}
+  .intro-legenda{font-size:var(--t-corpo);line-height:1.4;color:var(--tinta)}
+  .intro-legenda .link-seta{margin-top:10px;font-size:var(--t-corpo);color:var(--vermelho);border-color:var(--vermelho)}
+
+  .faixa-centro{display:contents}
+  .faixa .faixa-centro .faixa-txt{order:0;margin:0 0 40px}
+  .fa{order:1;width:67%;aspect-ratio:auto}
+  .fa img{display:block;aspect-ratio:7/10;height:auto}
+  .faixa .desenho-estante{order:2;display:block;flex:none;width:calc(31% + var(--lateral) - 8px);max-width:none;height:auto;margin:calc(-95.7% + 14px) calc(8px - var(--lateral)) 0 auto}
+  .fb{order:3;width:48%;aspect-ratio:auto;margin:10px 0 0 auto}
+  .fb img{display:block;aspect-ratio:2/3;height:auto}
+}
+@media (max-width:359px){ .intro-v3 .intro-num dd{letter-spacing:.03em;font-size:9px} .intro-v3 .intro-num dt.dt-txt{font-size:19px} .intro-v3 .intro-num div,.intro-v3 .intro-num div:nth-child(2){padding-left:8px} .intro-v3 .intro-num div:first-child{padding-left:0} }
+
+/* 07/11 (Marcelo, celular): sem o link "Contato" no topo (o botão Conversar já leva a ela); três links com mais ar. */
+@media (max-width:760px){
+  .cab-links a[href$="#contato"]{display:none}
+  .cab-links a{font-size:12px;letter-spacing:.1em}
+}
+@media (max-width:370px){ .cab-links a{font-size:11px;letter-spacing:.05em} }
+
+/* 07/11 (Marcelo, como na Tarq): no celular a capa fica parada e a seção 1 sobe por cima dela. Só CSS. */
+@media (max-width:760px){
+  .capa-palco{position:relative}
+  .capa-palco > .capa{position:sticky;top:0;z-index:0}
+  .capa-palco > .intro{position:relative;z-index:1;background:var(--cal)}
+}
+
+/* 07/11 (Marcelo, como na Tarq): no celular o "Como trabalho" fica preso e as etapas correm da direita para a
+   esquerda conforme a rolagem. O script liga a classe .crono-h só em tela estreita, alta o bastante e sem "reduzir
+   movimento"; sem ela, as etapas ficam empilhadas como antes. */
+@media (max-width:760px){
+  .cronograma.crono-h{padding-top:24px}
+  .crono-h .crono-palco{position:sticky;top:0;height:100svh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;overflow:hidden;margin:0 calc(-1 * var(--lateral));padding:0 var(--lateral)}
+  .crono-h .crono-topo{margin-bottom:28px}
+  .crono-h .crono{display:flex;width:max-content;border-top:1px solid var(--tinta);will-change:transform}
+  .crono-h .crono li,.crono-h .crono li + li{flex:none;width:74vw;box-sizing:border-box;padding:22px 22px 0 0}
+  .crono-h .crono li + li{padding-left:22px}
+  .crono-h .crono li::before,.crono-h .crono li:nth-child(3)::before{display:none}
+  .crono-h .crono li + li::before,.crono-h .crono li:nth-child(3)::before{content:"";display:block;position:absolute;left:0;top:0;bottom:0;right:auto;border-top:0;border-left:1px solid var(--linha)}
+  .crono-h .crono-des{max-width:190px;margin-bottom:14px}
+  .crono-h .crono .crono-prazo{font-size:50px;margin-bottom:14px}
+  .crono-h .crono .crono-txt{font-size:16px;padding-top:14px}
+  .crono-h .crono h3{margin-bottom:12px}
+}
+
+/* 07/11 (Marcelo, celular): "A arquiteta" e o nome vêm antes da foto dela. */
+@media (max-width:760px){
+  .sobre{display:flex;flex-direction:column;row-gap:0}
+  .sobre-txt{display:contents}
+  .sobre-txt > .rot{order:1}
+  .sobre-nome{order:2;margin-bottom:28px}
+  .sobre-retrato{order:3;margin-bottom:36px}
+  .sobre-txt > :not(.rot):not(.sobre-nome){order:4}
+}
+
+/* 07/11 (Marcelo, como na Tarq): enquanto a seção 1 sobe, a capa sobe devagar e escurece. O script mexe só em
+   transform e na opacidade do véu; sem script ou com "reduzir movimento", a capa fica como estava. */
+@media (max-width:760px){
+  .capa-palco > .capa::before{content:"";position:absolute;inset:0;z-index:1;background:#140F0C;opacity:var(--escuro,0);pointer-events:none}
+  .capa-palco .capa-txt{z-index:2}
+  .capa-palco .capa-foto,.capa-palco .capa-txt{will-change:transform}
+}
+
+/* 07/11, tarde (Marcelo, referência do celular). No celular:
+   - o topo fica só com o nome, "Arquitetura de interiores" embaixo e o Instagram, sem os links e sem o "Conversar"
+     (ele quer testar sem menu; o rodapé tem os mesmos links e o WhatsApp fixo aparece depois da capa);
+   - a capa ganha o rótulo com fio, e "Ver projetos" vira botão de contorno, de ponta a ponta, embaixo do "Entrar em contato";
+   - o carrossel passa só com o dedo: saem as setas e a pausa. Os fios dos cinco projetos sobem para o alto, como nos
+     stories, e embaixo ficam "Ver projeto" e logo abaixo "Ver todos os projetos";
+   - no rodapé, cada link fica na mesma linha de um dado de contato. */
+.cab-marca span b{display:none;font-weight:inherit}
+.capa-cheia .capa-rot{display:none}
+@media (max-width:760px){
+  .cab-links,.cab-dir .cab-acao{display:none}
+  .cab,.cab.solido{grid-template-columns:1fr auto;grid-template-areas:"marca dir";padding-top:12px;padding-bottom:12px}
+  .cab-marca{font-size:30px}
+  .cab-marca span{display:block;font-size:11px;letter-spacing:.22em;margin:8px 0 0;opacity:.85}
+  .cab-marca span b{display:inline}
+  .cab-insta{width:48px;height:48px}
+  .cab-insta svg{width:26px;height:26px}
+
+  /* o rótulo fica mais alto que o texto antigo: o véu se mede de baixo para cima, em px, e o rótulo passa de 4,5:1 sobre a almofada em qualquer altura de tela */
+  .capa-cheia::after{background:linear-gradient(to top,rgba(22,15,12,.93) 0,rgba(22,15,12,.86) 330px,rgba(22,15,12,.74) 470px,rgba(22,15,12,.2) 620px,rgba(22,15,12,.1) 100%)}
+  .capa-cheia .capa-rot{display:block;width:fit-content;max-width:100%;font:500 12px/1.2 var(--f-texto);font-stretch:100%;text-transform:uppercase;letter-spacing:.26em;color:#EDE4D8;padding-bottom:16px;margin:0 0 22px;border-bottom:1px solid rgba(243,240,232,.55)}
+  .capa-cheia .capa-sub{margin:20px 0 28px}
+  .capa-acoes{gap:12px}
+  .capa-cheia .capa-link{align-self:stretch;justify-content:center;border:1px solid rgba(243,240,232,.8);padding:19px 16px}
+
+  .js-pj .pj-ant,.js-pj .pj-prox,.js-pj .pj-pausa{display:none}
+  .js-pj .pj-base{display:contents}
+  .js-pj .pj-indice{position:absolute;left:var(--lateral);right:var(--lateral);top:146px}
+  .js-pj .pj-indice button{padding:0 0 14px}
+  .js-pj .pj-ctrl{position:absolute;left:var(--lateral);right:var(--lateral);bottom:40px}
+  .js-pj .pj-todos{flex:1;margin:0;padding:17px 12px;background:transparent;color:var(--cal);border-color:rgba(243,240,232,.8);letter-spacing:.14em}
+  .js-pj .pj-txt{left:var(--lateral);right:var(--lateral);bottom:104px}
+  .js-pj .pj-btn{display:block;text-align:center}
+
+  .rodape-grade{grid-template-columns:minmax(0,1fr) auto;row-gap:24px}
+  .rodape-marca{grid-column:1/-1;grid-row:1}
+  .rodape-grade ul{grid-column:2;grid-row:2;line-height:24px}
+  .rodape-dir{grid-column:1;grid-row:2;line-height:24px}
+  .rodape-dir > p:first-child,.rodape-dir .rodape-contato a:not(.rede-icone),.rodape-grade li a{display:block;padding:10px 0;line-height:24px}
+  .rodape-dir .rodape-contato{gap:0}
+  .rodape-dir .rodape-contato a.rede-icone{margin-top:0}
+}
+
+/* Lenis (assets/fluido.js): a página desliza; enquanto ele rola, o navegador não soma a rolagem suave dele */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
+
+/* 08/11 (Marcelo, print do computador): gatos com o desenho maior e o resto menor. A foto da estante deixa de mandar na altura. */
+@media (min-width:1081px){
+  .faixa{grid-template-columns:minmax(0,25fr) minmax(0,40fr) minmax(0,20fr)}
+  .faixa h2{font-size:clamp(40px,3.5vw,58px)}
+  .faixa-centro{gap:40px}
+  .faixa-centro .desenho-estante{width:100%;max-width:560px}
+}
+
+/* 11/11 (auditoria de conversão, rodada 1). Linha de prova na capa: os fatos dela e a nota do Google, pequena, abaixo
+   dos botões. Fecho do "Como trabalho" com os custos previstos antes da obra e o botão de começar. */
+.capa-prova{display:flex;flex-wrap:wrap;align-items:center;gap:8px 0;margin:26px 0 0;font:500 var(--t-rotulo)/1.3 var(--f-texto);font-stretch:100%;letter-spacing:.14em;text-transform:uppercase;color:var(--cal);text-shadow:0 1px 10px rgba(20,15,12,.55)}
+.capa-prova > *{padding:0 14px;border-left:1px solid rgba(243,240,232,.55)}
+.capa-prova > :first-child{padding-left:0;border-left:0}
+.capa-prova a{color:inherit;text-decoration:underline;text-decoration-color:rgba(243,240,232,.6);text-underline-offset:4px}
+.capa-prova a:hover{text-decoration-color:currentColor}
+.capa-prova .estrela{letter-spacing:0;margin-right:2px}
+.crono-pe.crono-custo{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 48px;border-top:1px solid var(--tinta);padding-top:32px}
+.crono-custo p{max-width:38em;font-size:var(--t-corpo)}
+.crono-custo strong{display:block;font:400 var(--t-h4)/1.1 var(--f-display);color:var(--tinta);margin-bottom:10px}
+.crono-custo .btn{flex:none}
+/* ".contato > p:not(.rot)" zerava a margem de cima desta linha e a grudava no botão */
+.contato > p.contato-alt{margin:32px auto 0;max-width:30em;line-height:1.9}
+.contato-alt a{color:var(--tinta);text-underline-offset:4px}
+@media (max-width:760px){
+  .capa-prova{margin-top:18px;font-size:11px;letter-spacing:.1em}
+  .capa-prova > *{padding:0 10px}
+  .crono-pe.crono-custo{display:block;padding-top:24px}
+  .crono-custo p{margin-bottom:22px}
+  .contato-alt{line-height:1.9}
+}
+
+/* 12/11 (Marcelo): no computador também saem as setas e a pausa dos Projetos, como já era no celular. Quem quer
+   escolher toca no nome do apartamento; o teclado continua passando pelas setas do teclado, e a troca automática para
+   com o foco dentro, fora da tela e na aba escondida. */
+.js-pj .pj-ant,.js-pj .pj-prox,.js-pj .pj-pausa{display:none}
+.js-pj .pj-todos{margin-left:0}
+
+/* 12/11 (Marcelo): Facebook e LinkedIn dela ao lado do Instagram, no rodapé de todas as páginas. */
+.rodape-contato .redes{display:flex;gap:10px}
+/* 12/11: o rótulo da capa ficou mais longo ("Arquiteta de interiores em Salvador"); no celular, letra menos espaçada
+   e quebra equilibrada, para "Salvador" não cair sozinho. */
+@media (max-width:760px){
+  .capa-cheia .capa-rot{letter-spacing:.18em;text-wrap:balance}
 }

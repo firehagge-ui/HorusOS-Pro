@@ -1357,3 +1357,82 @@ com os lados vazios. Nas referências, a seção logo depois da capa junta frase
 de tamanhos diferentes, uma dominante (Stanzza, Tarq, Simone Katherine, Telha Clarke). **Por quê:** a abertura é onde o
 visitante confirma o que o escritório faz e vê o primeiro trabalho; texto sozinho ali parece seção inacabada. **Como
 aplicar:** quando o cliente pede menos fotos, diminuir o número e aumentar a que fica, nunca zerar.
+
+### Projeto com nome poético e texto em cima da foto (Débora Reis, 28/10/2026)
+O Marcelo trocou "Colorir", "Aconchego" e "Frio e quente" pelo nome do apartamento ("Apartamento Paralela"), tirou as
+frases à mão e as citações da página de projetos e pediu a foto cobrindo o card inteiro, sem anotação por cima. **Por quê:**
+os escritórios de referência nomeiam o projeto pelo lugar (Stanzza, "Pau Claris Apartment"); nome poético não diz ao
+visitante se o caso parece o dele, e texto demais em cima da foto disputa com o trabalho. **Como aplicar:** projeto se
+chama pelo bairro ou rua (procurar no site, Instagram e ficha do cliente antes de inventar); na lista, só o título; no
+carrossel, foto de ponta a ponta com título e botão.
+
+### Traço decorativo e legenda à mão em todo canto (Débora Reis, 29/10/2026)
+O Marcelo pediu para tirar "todos os traços" do site (o tracinho antes do rótulo da capa, o fio entre parágrafos, o traço
+vermelho e a linha vertical ao lado do nome) e as legendas à mão das fotos dos gatos, além da faixa de quatro itens e do
+"Na foto" na capa: a cliente tinha pedido menos texto. **Por quê:** enfeite repetido em cada seção vira ruído e soma
+"texto" sem informação. **Como aplicar:** um recurso de assinatura (a letra à mão) em poucos lugares, onde diz algo;
+nada de tracinho decorativo como separador; antes de pôr um rótulo, perguntar se a seção perde algo sem ele.
+
+### Ícone herdando a regra genérica de link (Débora Reis, 30/10/2026)
+O Marcelo viu o ícone do Instagram do rodapé fora do centro do círculo. Uma regra posterior, feita para aumentar a área de
+toque dos links do rodapé (`.rodape-contato a{display:inline-block;padding:6px 0}`), venceu o `display:inline-grid` do
+ícone. **Por quê:** regra ampla aplicada a todos os links pega também o botão de ícone, e ninguém confere o resultado.
+**Como aplicar:** ao mexer em um seletor genérico (`a`, `li a`), excluir os ícones (`:not(.rede-icone)`) ou reforçar o
+ícone logo depois. Antes de entregar, conferir o rodapé no print e não só a seção mexida.
+
+### Enfeite de "revisão" que piora a peça (Débora Reis, 30/10/2026)
+Uma revisão sugeriu "foto de ponta a ponta entre seções" e "um detalhe visual com a trajetória". Entraram uma faixa larga
+com uma foto de 1079 px esticada (parecia render e já estava no carrossel) e uma linha do tempo de duas bolinhas. O Marcelo
+perguntou "era pra ter isso?" e pediu para tirar a linha do tempo. **Por quê:** foto esticada e fora da resolução fica pior
+do que nenhuma, e linha do tempo com dois pontos é enfeite genérico para dizer uma frase. **Como aplicar:** foto de ponta a
+ponta só com arquivo de pelo menos 1600 px que não se repete na página; trajetória curta vira uma frase com um fato novo,
+sem repetir a citação ao lado.
+
+
+### Mockup desenhado não troca a peça que já existe (Débora Reis, 06/11/2026)
+O print do celular feito pelo Marcelo mostrava um gatinho de traço entre as duas fotos da seção dos gatos. Eu tirei o
+desenho animado da estante e desenhei um gato novo, parecido com o do print. Ele corrigiu: "mantenha a animação anterior e
+coloque ela naquele lugar". **Por quê:** o mockup é feito numa ferramenta de imagem e redesenha o que já existe. Ele diz
+onde a peça fica, não que a peça muda, e a animação era trabalho aprovado. **Como aplicar:** quando o print mostra um
+desenho, foto ou animação parecido com um que o site já tem, mover o que existe para o lugar indicado. Peça nova só se o
+Marcelo disser que é nova. O mesmo vale para texto do print que não bate com o site, que se confere antes (o "tipo do imóvel"
+do quiz, no mesmo dia).
+
+### Página de projeto que mostra sem dizer o que é nem por quê (Débora Reis, 07/11/2026)
+Revisão do Marcelo no Rio Vermelho, já no ar: o título era bonito, mas faltava dizer o tipo de trabalho; "O que tem por trás
+desta foto" era vago; a marcenaria listava as peças sem dizer por que eram sob medida; a frase das cores era abstrata; a
+luz aparecia três vezes. **Por quê:** quem chega do Google decide se o caso é parecido com o dele, e para isso precisa do
+tipo de obra, do problema e do raciocínio. Frase bonita sem explicação não serve a essa decisão. **Como aplicar:**
+- o rótulo acima do título diz a categoria ("Reforma de apartamento"), e a ficha traz tipo, lugar, quem mora e prazo;
+- o título de seção diz o que a pessoa vai descobrir ("Quatro decisões que transformaram o apartamento");
+- cada solução vem com o porquê: para quem, para qual espaço, com que efeito;
+- cada fato entra uma vez na página: a frase de abertura resume, e o capítulo aprofunda sem repetir a caixa da foto;
+- o fecho fala com quem vai reformar ("Vai reformar o seu apartamento?").
+O porquê vem do cliente. Sem a fala dele, só entra o que a foto mostra, e o resto se pede (quem mora, o que pediram, o
+que mudou, quanto tempo levou). As referências que fazem isso bem são Paula Müller (abre pela pergunta da família) e
+Telha Clarke e Stanzza (ficha com prazo).
+Segunda revisão no mesmo dia: a página ainda parecia lista de serviços (blocos pequenos, foto sem protagonismo, assuntos
+soltos). **Como aplicar:** a página de projeto é um percurso. Abre com a foto dominando e o texto por cima; ficha
+discreta logo abaixo; conceito curto que liga os assuntos; galeria; cada aspecto com a sua imagem; fecho com uma foto
+forte e uma chamada curta. Com poucas fotos, cada recorte mostra um assunto diferente e nenhuma imagem aparece duas vezes.
+Terceira rodada (mesmo dia): o Marcelo mandou as páginas de projeto da Tarq e pediu "o mesmo tom, a mesma forma, mais
+profissional", sem as legendas pequenas à mão em vermelho. **Como aplicar:** página de projeto de arquitetura segue a
+Tarq: foto parada com o nome grande e a faixa de lugar e tipo, visão geral passando por cima da foto, blocos com título
+em caixa alta e parágrafo curto e justificado, em terceira pessoa. Legenda à mão não descreve projeto; texto de descrição
+normal descreve.
+
+- **Carrossel no celular com setas e pausa (Débora Reis, 07/11/2026).** O Marcelo: "a pessoa não precisa apertar nesses
+  botões para passar pro lado, ela só precisa arrastar com o dedo". Três botões quadrados no pé da foto disputavam o
+  polegar com o "Ver projeto" e o "Ver todos". **Como aplicar:** no celular o carrossel passa só com o dedo; os fios de
+  posição sobem para o alto, como nos stories, e a troca sozinha para quando a pessoa arrasta (esse gesto faz o papel da
+  pausa). Embaixo ficam dois botões de ponta a ponta: a ação do slide em cima, cheio, e o "ver todos" logo abaixo, de
+  contorno. No computador as setas continuam, porque lá não há dedo. No rodapé do celular, cada link fica na mesma linha
+  de um dado de contato, com a mesma altura de linha nas duas colunas. Coluna solta de altura própria parece desalinhada.
+- **Rótulo novo sobre foto se mede de novo (mesmo dia).** O rótulo "Arquiteta em Salvador" com fio, pedido pela
+  referência, subiu o bloco de texto e caiu sobre a almofada clara. Deu 2,2:1 num celular de 360x780, embora o título
+  passasse. **Como aplicar:** o véu da capa no celular se mede de baixo para cima em px (`to top`, paradas em 330, 470 e
+  620 px), porque o texto fica preso embaixo. Depois de mexer no texto sobre a foto, medir de novo nos pixels em 360x780,
+  375x667, 390x844 e 414x896. O detector acusa o rótulo acima do h1 (`kicker-above-heading`). Ficou porque veio da
+  referência do Marcelo.
+
+- **Ilustração espremida ao lado de foto grande (Débora Reis, 08/11/2026).** "Aquele desenho ficou muito pequeno e o resto muito grande." O desenho é o que dá personalidade à seção, e ficou com um teto de largura de 330px enquanto a foto ganhava a coluna. Muda: **em seção com foto e desenho, medir o peso de cada um na tela de 1440 e 1900 antes de fixar teto de largura.**

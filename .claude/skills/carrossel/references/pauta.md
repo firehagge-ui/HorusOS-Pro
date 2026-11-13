@@ -10,6 +10,10 @@ Marcelo pedir outra, faz a pesquisa aqui mesmo, com o radar abaixo e `ferramenta
 
 ## Radar (de onde vêm as ideias)
 
+🔴 **Desde 13/11/2026 (Marcelo: "inspirados 100% nesse instagram", @v4company):** a ideia é um **caso real da semana**
+(marca, plataforma, data do comércio, gente do mercado) contado em capítulos, com 3 a 5 números conferíveis e a lição
+pro dono pequeno. Estudo: `_memoria/conteudo/referencias/2026-11-13-v4company.md` §4.
+
 1. Notícia da semana sobre o que o dono usa: WhatsApp, Instagram, IA, Pix, consumo.
 2. Estudo brasileiro recente com dado (Sebrae, Opinion Box, Octadesk, Google/Ipsos),
    com o relatório original conferido.

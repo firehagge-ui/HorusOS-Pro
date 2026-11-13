@@ -1,0 +1,194 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "analise",
+    "referencias",
+    "buscas",
+    "ideias",
+    "descartadas",
+    "aprendizados"
+  ],
+  "properties": {
+    "analise": {
+      "type": "string"
+    },
+    "referencias": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "perfil",
+          "codigo",
+          "o_que_funcionou"
+        ],
+        "properties": {
+          "perfil": {
+            "type": "string"
+          },
+          "codigo": {
+            "type": "string"
+          },
+          "o_que_funcionou": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "buscas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "consulta",
+          "achado"
+        ],
+        "properties": {
+          "consulta": {
+            "type": "string"
+          },
+          "achado": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ideias": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "titulo_capa",
+          "tema",
+          "angulo",
+          "cena_de_abertura",
+          "formato",
+          "objetivo",
+          "prova_visual",
+          "referencia_organizacao",
+          "por_que_circula",
+          "fonte",
+          "confianca",
+          "risco",
+          "nota",
+          "recomendada"
+        ],
+        "properties": {
+          "titulo_capa": {
+            "type": "string"
+          },
+          "tema": {
+            "type": "string"
+          },
+          "angulo": {
+            "type": "string"
+          },
+          "cena_de_abertura": {
+            "type": "string"
+          },
+          "formato": {
+            "type": "string"
+          },
+          "objetivo": {
+            "enum": [
+              "salvar",
+              "enviar",
+              "comentar",
+              "seguir"
+            ]
+          },
+          "prova_visual": {
+            "type": "string"
+          },
+          "referencia_organizacao": {
+            "type": "string"
+          },
+          "por_que_circula": {
+            "type": "string"
+          },
+          "fonte": {
+            "type": "string"
+          },
+          "confianca": {
+            "enum": [
+              "alta",
+              "media",
+              "baixa"
+            ]
+          },
+          "risco": {
+            "type": "string"
+          },
+          "nota": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "surpresa",
+              "relevancia",
+              "acionavel",
+              "atualidade"
+            ],
+            "properties": {
+              "surpresa": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 3
+              },
+              "relevancia": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 3
+              },
+              "acionavel": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2
+              },
+              "atualidade": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2
+              }
+            }
+          },
+          "recomendada": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "descartadas": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "aprendizados": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "tipo",
+          "texto"
+        ],
+        "properties": {
+          "tipo": {
+            "enum": [
+              "hipotese",
+              "evidencia"
+            ]
+          },
+          "texto": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

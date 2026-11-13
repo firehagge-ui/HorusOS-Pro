@@ -1,0 +1,60 @@
+/* "Começar meu projeto" (11/11/2026). Mesmo sistema do site: papel, tinta, cantos retos, rótulo em 12 px caixa alta.
+   No computador, uma folha no meio da tela; no celular, sobe de baixo e ocupa quase a altura toda. O botão de abrir o
+   WhatsApp fica preso embaixo da folha, sempre à vista (antipadrão de 14/10: a ação que fecha a experiência não se esconde). */
+.cm{padding:0;border:0;background:transparent;max-width:none;max-height:none;width:100%;height:100%;margin:0;color:var(--tinta,#1E1A17)}
+.cm::backdrop{background:rgba(20,15,12,.6)}
+.cm[open]{display:flex;align-items:center;justify-content:center}
+.cm-caixa{position:relative;box-sizing:border-box;width:min(560px,calc(100% - 48px));max-height:calc(100dvh - 48px);overflow-y:auto;overscroll-behavior:contain;background:var(--cal,#F3F0E8);padding:28px 32px 0;font:400 16px/1.45 var(--f-texto,"Archivo",Arial,sans-serif);animation:cm-entra .45s cubic-bezier(.16,1,.3,1)}
+@keyframes cm-entra{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.cm-topo{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
+.cm-rot{margin:0;font:500 12px/1 var(--f-texto,Arial,sans-serif);font-stretch:100%;letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2,#5E554D)}
+.cm-fechar{display:grid;place-items:center;width:44px;height:44px;margin:-10px -12px -10px 0;padding:0;border:0;background:transparent;color:inherit;cursor:pointer}
+.cm-fechar svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.4}
+.cm-t{margin:0 0 10px;font:400 clamp(30px,4.2vw,38px)/1.02 var(--f-display,"Boska",Georgia,serif);letter-spacing:-.01em;text-wrap:balance}
+.cm-sub{margin:0 0 22px;color:var(--tinta-2,#5E554D);max-width:30em}
+.cm-grupo{border:0;border-top:1px solid var(--linha,rgba(30,26,23,.16));margin:0;padding:18px 0 20px;min-width:0}
+.cm-grupo legend{float:left;width:100%;padding:0;margin:0 0 12px;font:500 12px/1.3 var(--f-texto,Arial,sans-serif);font-stretch:100%;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta,#1E1A17)}
+.cm-grupo legend span{color:var(--tinta-2,#5E554D);letter-spacing:.08em;text-transform:none}
+.cm-ops{clear:both;display:flex;flex-wrap:wrap;gap:8px}
+.cm-op{position:relative;cursor:pointer}
+.cm-op input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.cm-op span{display:flex;align-items:center;min-height:44px;box-sizing:border-box;padding:10px 16px;border:1px solid var(--linha,rgba(30,26,23,.16));background:transparent;font-size:15px;line-height:1.2;transition:background .25s ease,color .25s ease,border-color .25s ease}
+.cm-op:hover span{border-color:var(--tinta,#1E1A17)}
+.cm-op input:checked + span{background:var(--tinta,#1E1A17);border-color:var(--tinta,#1E1A17);color:var(--cal,#F3F0E8)}
+.cm-op input:focus-visible + span{outline:2px solid var(--vermelho,#9E3326);outline-offset:2px}
+.cm-campo{display:block;margin-top:14px}
+.cm-campo span{display:block;margin-bottom:6px;font-size:15px;color:var(--tinta,#1E1A17)}
+.cm-campo i{font-style:normal;color:var(--tinta-2,#5E554D)}
+.cm-campo input{box-sizing:border-box;width:100%;max-width:320px;min-height:46px;padding:10px 14px;border:1px solid var(--linha,rgba(30,26,23,.16));background:#FBF9F4;color:inherit;font:inherit;font-size:16px;border-radius:0}
+.cm-campo input::placeholder{color:#8A8178}
+.cm-campo input:focus{outline:2px solid var(--vermelho,#9E3326);outline-offset:1px;border-color:transparent}
+.cm-fim{border-top:1px solid var(--tinta,#1E1A17);margin:0 -32px;padding:20px 32px 0;background:var(--cal-2,#E8E3D8)}
+.cm-previa-rot{margin:0 0 10px;font:500 12px/1 var(--f-texto,Arial,sans-serif);font-stretch:100%;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2,#5E554D)}
+/* a prévia imita o balão de quem envia no WhatsApp: verde e encostado à direita */
+.cm-balao{margin-left:auto;max-width:92%;width:fit-content;background:#D9FDD3;color:#111B21;padding:10px 12px;font-size:15px;line-height:1.4;box-shadow:0 1px 1px rgba(11,20,26,.13)}
+.cm-balao p{margin:0}
+.cm-balao dl{margin:8px 0 0}
+.cm-balao dl div{margin:0}
+.cm-balao dt,.cm-balao dd{display:inline;margin:0}
+.cm-balao dt{font-weight:500}
+.cm-enviar{position:sticky;bottom:0;z-index:1;display:flex;align-items:center;justify-content:center;gap:14px;margin:18px -32px 0;padding:21px 24px;background:var(--tinta,#1E1A17);color:var(--cal,#F3F0E8);text-decoration:none;font:500 12px/1 var(--f-texto,Arial,sans-serif);font-stretch:100%;letter-spacing:.16em;text-transform:uppercase;transition:background .3s ease}
+.cm-enviar:hover{background:#000}
+.cm-enviar:focus-visible{outline:2px solid var(--vermelho,#9E3326);outline-offset:-4px}
+.cm-enviar svg{width:18px;height:auto;fill:none;stroke:currentColor;stroke-width:1.3}
+.cm-fim{padding-bottom:18px}
+.cm-enviar{margin-top:0}
+.cm-pe{margin:0 -32px;padding:4px 32px 6px;background:var(--cal,#F3F0E8);text-align:center}
+.cm-direto{display:inline-block;padding:14px 4px;color:var(--tinta,#1E1A17);font-size:15px;text-underline-offset:4px}
+@media (max-width:760px){
+  .cm[open]{align-items:flex-end}
+  .cm-caixa{width:100%;max-height:94dvh;padding:22px 20px 0;animation-name:cm-sobe}
+  @keyframes cm-sobe{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+  .cm-fim{margin:0 -20px;padding:18px 20px 18px}
+  .cm-enviar{margin:0 -20px}
+  .cm-pe{margin:0 -20px;padding:4px 20px calc(6px + env(safe-area-inset-bottom))}
+  .cm-sub{margin-bottom:16px}
+  .cm-grupo{padding:14px 0 16px}
+  .cm-op span{padding:10px 14px}
+  .cm-campo input{max-width:none}
+}
+@media (prefers-reduced-motion:reduce){ .cm-caixa{animation:none} }

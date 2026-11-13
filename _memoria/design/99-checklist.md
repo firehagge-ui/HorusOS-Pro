@@ -137,11 +137,24 @@ de IA precisou entrar.*
       do CSS já usa, e **não** dispensar a regra: `cramped-padding` legítimo é
       defeito real e dos mais fáceis de ver.
       *Descoberto na Aion, 01/08/2026, nas faixas de cor das páginas de serviço.*
-- [ ] Favicon (32px e 180px)
+- [ ] Favicon em PNG de 48, 96 e 192 px, `favicon.ico` na raiz e `apple-touch-icon` de 180 px, além do SVG. O Google
+  ignora SVG cuja letra depende de fonte do sistema e mostra o globo na busca (Débora, 10/11/2026)
 - [ ] Imagem de compartilhamento 1200x630 + tags `og:` (senão o link no WhatsApp vira retângulo cinza)
 - [ ] `schema.org` LocalBusiness com endereço, telefone, e-mail e redes
 - [ ] Política de privacidade linkada no rodapé, se existir qualquer formulário
 - [ ] `noindex` retirado no dia da publicação, e não antes
+- [ ] **Esboço de venda que vira site do cliente:** o domínio recebe uma **versão de produção gerada por script**, e o esboço
+  continua igual. O script tira a página de demonstração, o selo de prévia, o que está marcado "Demonstração" ou
+  "Simulação", os links para essas páginas e os comentários internos. Ele põe canonical, `og:url`, `og:image` absoluto,
+  `robots.txt` e `sitemap.xml`. Cada troca para com erro se o padrão sumir, e no fim o script procura o que não pode
+  sobrar. Modelo: `clientes/_prototipos/debora-reis/publicar-dominio.cjs` (07/11/2026).
+- [ ] **Hospedagem de cliente pagante na Netlify, não na Vercel:** o plano grátis da Vercel não permite uso comercial.
+  A conta firehagge da Netlify cria site novo protegido por login da equipe, e todo visitante recebe 401. Depois de
+  criar, rodar `api updateSite` com `{"sso_login":false,"built_with_badge_enabled":false}` (o segundo tira o selo
+  "Powered by Netlify", que a conta põe em site novo; Débora, 07/11) e conferir a home e os arquivos em 200 numa aba anônima.
+- [ ] **Nenhuma foto aparece maior que 1,3 vez o tamanho real do arquivo**, em 390 e 1440. Medir com
+  `getBoundingClientRect().width / naturalWidth` em cada `img`; recorte pequeno (detalhe de 100 a 300 px) fica pequeno
+  na página ou sai. Origem: Débora, 07/11/2026 (o painel bordado de 108 px aparecia 3,2 vezes maior no celular).
 - [ ] Uma checagem em 390px de largura, não só no desktop
 - [ ] **`JUSTIFICATIVA.md` na pasta do cliente:** uma tabela com cada elemento (título, texto, foto, seção, cor, fonte),
   de onde veio (post, site, ficha, conversa, referência) e por quê. O que é texto nosso fica marcado como nosso.

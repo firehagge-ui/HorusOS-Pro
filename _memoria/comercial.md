@@ -282,7 +282,10 @@ voltar. Compromisso = reunião marcada, entrada paga ou um "quero" claro. Antes 
 **Entrega sem cobrança: a troca se diz (Débora Reis, 14/10/2026).** Desconhecido que dá de graça sem dizer por quê
 gera desconfiança ("qual a pegadinha?"), e quem recebe se sente em dívida. Dizer a troca com clareza: autorização de
 portfólio antes de publicar, depoimento depois de uns 30 dias no ar, indicação na entrega. Dizer de saída, numa frase
-e sem preço, que o resto (ferramentas, manutenção) é trabalho à parte. Domínio no nome do cliente, pago por ele. Só
+e sem preço, que o resto (ferramentas, manutenção) é trabalho à parte. Domínio no nome do cliente, pago por ele. Mesmo
+quando o Marcelo paga para adiantar, o registro sai no CPF do cliente: trocar de titular depois pede formulário assinado
+pelo Gov.br (prata ou ouro), documento e conta do cliente no Registro.br. O cliente cria a conta e põe o ID do Marcelo
+como contato técnico, que mexe no DNS sem a senha dele (Débora, 06/11/2026). Só
 vale como exceção aprovada pelo Marcelo: a regra de 09/10 ("nenhum trabalho grátis novo até a primeira entrada cair")
 continua (`_memoria/estrategia.md`).
 
@@ -318,3 +321,22 @@ continua (`_memoria/estrategia.md`).
 Nem todo "não" é erro de processo. O massagista alegou problema na família e adiamento.
 Pode ser verdade. Técnica de fechamento aumenta a taxa, não a leva a 100%. Registrar a
 perda, extrair a lição, seguir — sem romantizar que toda venda era recuperável.
+
+**Serviço que a casa nunca entregou (Marcelo, 04/11/2026, Débora Reis: "Não quero vender algo que ainda não sei
+executar").** Ela pediu captação paga por percentual. O Conselho de 03/11 recomendou anúncio com verba dela, e
+nenhum de nós opera anúncio. Ele pediu crítica dura em vez de conforto. É a mesma família do Antônio cancelando a R1 da
+MB Barbearia (20/10: "a gente não sabe tráfego, risco de se queimar").
+Muda:
+- **antes de recomendar uma frente nova**, fazer a tabela "sabemos fazer? onde está a prova?", parte por parte;
+- **vender só o que tem prova:** "arrumo a sua vitrine no Google e meço", nunca "trago clientes";
+- **o resultado vira medição combinada**, com data de revisão;
+- **anúncio nunca é o primeiro passo** de cliente sem verba, nem o primeiro teste da casa com dinheiro de outro;
+- **dizer ao cliente o que é a primeira vez:** "anúncio eu ainda não fiz com cliente, então não começo por ele";
+- **percentual de cliente sem caixa é bônus, não receita.** Só com teto de horas, regra de origem do contato e data de
+  revisão por escrito.
+- **com arquiteto, nem bônus:** a regra 5.2.2 do Código de Ética do CAU (Res. CAU/BR 52/2013) impede a arquiteta de
+  "oferecer vantagem ou incentivo material ou pecuniário a outrem, visando favorecer indicação de eventuais futuros
+  contratantes" (texto oficial conferido em 04/11). Com qualquer profissional de conselho, ler o código dele antes de
+  aceitar percentual. Serviço de marketing com preço fixo não esbarra nessa regra.
+
+Plano do caso: `clientes/_prototipos/debora-reis/plano-captacao-90-dias.md`.

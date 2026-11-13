@@ -12,11 +12,11 @@ import { $, $$, el, esc, relativo, toast } from './ui.js';
 import { icone } from './icones.js';
 
 export const NOMES_JOB = {
-  pesquisar_clientes: 'Farejada de clientes', buscar_maps: 'Busca no Google Maps', pesquisa_mercado: 'Pesquisa de mercado', enriquecer_empresa: 'Dossiê da empresa',
+  pesquisar_clientes: 'Farejada de clientes', buscar_sem_google: 'Busca de quem não tem Google', buscar_maps: 'Busca no Google Maps', pesquisa_mercado: 'Pesquisa de mercado', enriquecer_empresa: 'Dossiê da empresa',
   analisar_conversa: 'Análise da conversa', chat: 'Resposta do Claude', instagram: 'Coleta do Instagram', ideias_instagram: 'Ideias de conteúdo',
   midia_semana: 'Mídia: sessão da semana', midia_pauta: 'Mídia: pesquisa e pauta', midia_ajuste: 'Mídia: ajuste de post', midia_esboco: 'Mídia: esboço do post', midia_montar: 'Mídia: montando o post', midia_triagem: 'Mídia: triagem',
   whatsapp_enviar: 'Mensagem no WhatsApp', investigar_empresa: 'Investigação profunda', enriquecer_lista: 'Enriquecimento da lista',
-  triar_lista: 'Triagem da lista', gerar_proposta: 'Proposta em PDF', gerar_previa: 'Prévia do site', conferir_cnpj: 'Conferência de CNPJ', mensagem_personalizada: 'Mensagem personalizada', agente_ciclo: 'Agente pensando',
+  triar_lista: 'Triagem da lista', montar_lote: 'Lote do Fischer', gerar_proposta: 'Proposta em PDF', gerar_previa: 'Prévia do site', conferir_cnpj: 'Conferência de CNPJ', mensagem_personalizada: 'Mensagem personalizada', agente_ciclo: 'Agente pensando',
 };
 // Tarefas internas que não ajudam a acompanhar nada (rodam o tempo todo ou são do próprio WhatsApp)
 const OCULTAS = new Set(['chat', 'whatsapp_conectar', 'whatsapp_codigo', 'instagram', 'analisar_conversa']);
@@ -30,7 +30,8 @@ export function linkDoJob(j) {
   switch (j.tipo) {
     case 'enriquecer_lista': return j.lista_id || s.lista_id ? `#/encontrar/lista/${j.lista_id || s.lista_id}?filtro=enriquecidos` : null;
     case 'triar_lista': return j.lista_id ? `#/encontrar/lista/${j.lista_id}` : '#/esteira';
-    case 'pesquisar_clientes': case 'buscar_maps': return s.lista_id ? `#/encontrar/lista/${s.lista_id}` : '#/encontrar';
+    case 'montar_lote': return '#/disparos';
+    case 'pesquisar_clientes': case 'buscar_sem_google': case 'buscar_maps': return s.lista_id ? `#/encontrar/lista/${s.lista_id}` : '#/encontrar';
     case 'pesquisa_mercado': return s.pesquisa_id ? `#/mercado/${s.pesquisa_id}` : '#/mercado';
     case 'agente_ciclo': return j.empresa_id ? `#/agentes?lead=${j.empresa_id}` : '#/agentes';
     case 'whatsapp_enviar': return j.conversa_id ? `#/conversas/${j.conversa_id}` : '#/conversas';
@@ -111,6 +112,7 @@ function resumoSaida(j) {
   const s = j.saida || {};
   if (j.tipo === 'enriquecer_lista') return `${s.atualizados ?? '?'} de ${s.pedidos ?? '?'} leads com dado novo`;
   if (j.tipo === 'triar_lista') return `${s.passaram ?? 0} passaram, ${s.descartados ?? 0} descartados`;
+  if (j.tipo === 'montar_lote') return `${s.escolhidas ?? 0} escolhidas, ${s.descartadas ?? 0} descartadas`;
   if (j.tipo === 'agente_ciclo') return { mensagem: 'Mensagem pronta pra aprovar', esperar: 'Decidiu esperar o lead', precisa_marcelo: 'Precisa de você', manter: 'Manteve a proposta', investigar: 'Pediu investigação', encerrar: 'Recomendou encerrar' }[s.decisao] || 'Pronto';
   return (j.progresso && j.progresso !== 'Pronto' ? j.progresso : 'Pronto').slice(0, 120);
 }

@@ -236,3 +236,31 @@ uma microempresa como consumidora quando ela é tecnicamente vulnerável (o dono
 A cláusula 15.6 ajuda, mas não blinda; quem protege de verdade é a rescisão por etapa e o registro de cada aprovação.
 **Para o advogado:** a retenção do sinal e a rescisão por etapa (4.5, 13.2); se o 15.6 se sustenta com microempresa
 leiga; o contrato no CPF com transferência (15.1).
+
+## Revisão jurídica de 05/11/2026 (pedido do Marcelo: "veja falhas, confira tudo")
+
+Pontos a corrigir no modelo ou a levar ao advogado. As cláusulas não foram mudadas: a decisão é do Marcelo.
+1. **3.3, silêncio vale aprovação:** com cliente pessoa física pode ser lido como abusivo (CDC, art. 51, IV). Em post e
+   peça que vai a público, contradiz o "nada vai ao ar sem o seu ok" que a casa promete. Proposta: aprovação expressa
+   para publicação e silêncio só para etapa interna.
+2. **6.2, revisão de preço por custo de terceiros:** com pessoa física, variação unilateral de preço é abusiva (CDC, art.
+   51, X). Proposta: só com o aceite do cliente, ou encerramento sem multa se ele não aceitar.
+3. **6.4, mínimo de 3 meses:** o mesmo item deixa sair antes pagando só o mês corrente, e as duas regras se anulam.
+   Escolher: ou fidelidade com consequência, ou sem fidelidade com aviso de 30 dias.
+4. **7.1, propriedade "com o pagamento integral":** não cobre trabalho sem custo ou pago por percentual. E não reserva
+   à Horus o direito de reaproveitar layout e estrutura sem o conteúdo do cliente. Proposta: separar conteúdo do
+   cliente e estrutura da Horus (ver o 3.4 do contrato da Débora).
+5. **12.1, limite ao "valor efetivamente pago":** dá zero em trabalho sem custo. Com pessoa física, limitar a
+   responsabilidade pode ser nulo (CDC, arts. 25 e 51, I). Proposta: "valor recebido nos 12 meses anteriores, salvo
+   dolo", sabendo que com consumidor pode não valer.
+6. **Remuneração variável:** o modelo não tem. Toda vez que houver, precisa de origem objetiva, exclusões, janela,
+   base, dever de informar, prazo de pagamento, multa e sobrevivência depois do fim (ver a cláusula 4 do contrato da
+   Débora).
+7. **Saída e hospedagem:** falta a entrega dos arquivos e o apoio na migração quando o site fica na conta da Horus.
+8. **Título executivo:** com duas testemunhas o contrato se cobra direto (CPC, art. 784, III). Vale para todo contrato
+   com saldo, mensalidade ou percentual.
+9. **Profissional de conselho que não é da saúde** (arquiteto, advogado, contador): a cláusula 8 fala em "saúde ou
+   outro setor regulado", mas a regra de publicação expressa só vale para saúde. Estender para todo profissional de
+   conselho.
+10. **Tributo do CPF:** receita no CPF do Marcelo vai ao carnê-leão quando o cliente paga como pessoa física. Conferir
+    com o contador antes do primeiro recebimento.

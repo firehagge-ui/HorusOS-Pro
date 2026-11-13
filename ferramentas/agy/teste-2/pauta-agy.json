@@ -1,0 +1,207 @@
+{
+  "analise": "Análise da pauta para a semana de 02/11/2026 (segunda 02/11 - feriado de Finados, quarta 04/11 e sexta 06/11). A leitura visual das cinco folhas do radar confirmou a regra de ouro do Marcelo: o post circula quando entrega uma inversão provocativa e prática pro dia a dia do dono (@brunofragaoficial DfAEhJIkTuy, 1.541 curtidas, ~8x a mediana) ou quando a imagem mostra de forma tangível e realista o modelo de negócio (@ideiasquepagam25 DfFpTSYFLFv, 62 curtidas, 2,5x a mediana). Por outro lado, posts centrados em si mesmo (@barretobru DfCQOQaDine e @eugersonrodrigues DekIKezmFft) ou listas genéricas de prompts de IA sem cena de negócio (@aprendeconvalerio DeXrxV-DRld) ficaram abaixo da mediana, reforçando a reprovação do Marcelo de 15/10. As ideias selecionadas respeitam rigorosamente as travas de 28/10: títulos de capa com até 10 palavras e de relance, introdução situando a cena antes de qualquer passo, provas visuais com prints reais e interfaces autênticas (sem 3D genérico), diversidade visual entre séries e no máximo duas ideias sobre WhatsApp, com as 3 recomendadas cobrindo pilares distintos da agência.",
+  "aprendizados": [
+    {
+      "texto": "O estudo das folhas do radar confirmou que carrosséis com fotos pessoais/institucionais (@barretobru DfCQOQaDine com 76 curtidas e @eugersonrodrigues DekIKezmFft com 38 curtidas) ficam na mediana ou bem abaixo, enquanto posts com inversão de perspectiva provocativa (@brunofragaoficial DfAEhJIkTuy com 1.541 curtidas) e soluções ultra-visuais de espaço físico (@ideiasquepagam25 DfFpTSYFLFv com 62 curtidas) viralizam.",
+      "tipo": "evidencia"
+    },
+    {
+      "texto": "O post de ChatGPT do @aprendeconvalerio (DeXrxV-DRld) confirmou na prática a reprovação do Marcelo de 15/10: mesmo em perfil focado em tecnologia com 1 milhão de seguidores, a lista genérica de comandos de ChatGPT ficou abaixo da mediana (361 contra 453 curtidas), provando que 'como pedir pro ChatGPT' não circula sem aplicação hiper-específica de negócio.",
+      "tipo": "evidencia"
+    },
+    {
+      "texto": "Pesquisa Sebrae 2026 (Pulso dos Pequenos Negócios): 82% das micro e pequenas empresas usam o WhatsApp como principal canal de vendas e atendimento no Brasil, tornando o atendimento rápido e organizado no aplicativo o fator mais crítico de sobrevivência do comércio local.",
+      "tipo": "evidencia"
+    },
+    {
+      "texto": "Posts ancorados em datas de calendário próximas (feriado prolongado de 02/11 e esquenta de Black Friday) geram maior taxa de salvamento quando trazem a ação preventiva exata que o dono precisa aplicar no próprio celular antes da data chegar.",
+      "tipo": "hipotese"
+    },
+    {
+      "texto": "O formato 'print de tweet' com fundo branco e tipografia nativa continua gerando maior compartilhamento por DM e reposts porque simula conteúdo orgânico da plataforma, reduzindo a barreira de peça publicitária de agência.",
+      "tipo": "hipotese"
+    }
+  ],
+  "buscas": [
+    {
+      "achado": "12ª edição do Pulso dos Pequenos Negócios do Sebrae (2026): 82% das micro e pequenas empresas utilizam o WhatsApp como principal canal de vendas e relacionamento com clientes no Brasil (contra 57% do Instagram e apenas 10% de lojas virtuais próprias). O Sebrae alerta que estar no WhatsApp virou pré-requisito e que a profissionalização do atendimento é o gargalo.",
+      "consulta": "pesquisa Sebrae WhatsApp pequenos negócios vendas 2026 Brasil"
+    },
+    {
+      "achado": "Novas regras tarifárias da Meta para a Cloud API do WhatsApp Business entraram em vigor em 01/10/2026, encerrando a gratuidade das mensagens de serviço na janela de 24 horas para APIs corporativas, enquanto o aplicativo comum de celular operado por pequenos empresários segue 100% gratuito.",
+      "consulta": "WhatsApp Business novidades atualizações recentes Brasil 2026"
+    },
+    {
+      "achado": "A Biblioteca de Anúncios da Meta (facebook.com/ads/library) é ferramenta pública e 100% gratuita que permite auditar em tempo real anúncios ativos de qualquer concorrente no Instagram e Facebook, revelando criativos, textos, datas de início e testes A/B sem exigir login ou pagamento.",
+      "consulta": "Meta Biblioteca de Anúncios oficial recursos pesquisa concorrentes"
+    },
+    {
+      "achado": "Novembro de 2026 concentra o feriado prolongado de Finados (segunda-feira 02/11), Dia da Consciência Negra (sexta-feira 20/11) e o pico do varejo na Black Friday (27/11), com as campanhas de antecipação do comércio e preparação do catálogo no WhatsApp iniciando logo na primeira semana do mês.",
+      "consulta": "calendario comercio novembro 2026 feriados datas varejo brasil"
+    }
+  ],
+  "descartadas": [
+    "19 comandos para usar no ChatGPT: descartada por ser lista de IA genérica que o dono já conhece ou acha que resolve sozinho (reprovação de 15/10 e post DeXrxV-DRld do Valerio abaixo da média).",
+    "Negrito, lista e citação no WhatsApp: descartada porque o recurso isolado todo mundo já conhece; viraria repetição do tema reprovado pelo Marcelo em 28/10.",
+    "Como configurar a IA oficial do WhatsApp Business: descartada por falta de confirmação na prática se o recurso já está liberado gratuitamente para todas as contas no Brasil (trava de integridade).",
+    "Os 5 comportamentos tóxicos que todo vendedor deveria ter: descartada por atrair público corporativo/equipe de vendas grande (B2B tech), desalinhado do perfil de pequenos negócios locais atendidos pela Horus.",
+    "Carrossel de lifestyle empresarial e liberdade da rotina: descartada por ter tom de coach sem ferramenta ou valor acionável (como no post DfCQOQaDine da Bruna Barreto, que ficou abaixo da média).",
+    "Lançamento da nova turma do treinamento de empresários: descartada por ser post meramente institucional e auto-referente, sem utilidade para quem lê no feed (como no post DekIKezmFft do Gérson).",
+    "7 negócios lucrativos para começar na garagem: descartada por falar com quem quer começar um negócio do zero (aspirante), e não com quem já é dono de negócio local ativo em Salvador."
+  ],
+  "ideias": [
+    {
+      "angulo": "Como o dono de comércio ou serviço de bairro em Salvador programa o WhatsApp Business (mensagem de ausência útil com catálogo e prazo) para não perder o cliente que manda mensagem no feriadão de 2 de novembro.",
+      "cena_de_abertura": "Segunda-feira de feriado, 15h. O cliente pesquisa na rua, acha seu WhatsApp no perfil e pergunta se está aberto. Se recebe silêncio ou só 'estamos fechados', ele compra no concorrente.",
+      "confianca": "alta",
+      "fonte": "Sebrae Nacional, 12ª edição do Pulso dos Pequenos Negócios (2026): 82% das MPEs usam WhatsApp para vender.",
+      "formato": "antes/depois de fala",
+      "nota": {
+        "acionavel": 2,
+        "atualidade": 2,
+        "relevancia": 3,
+        "surpresa": 2
+      },
+      "objetivo": "salvar",
+      "por_que_circula": "Tensão imediata de perder venda no feriado prolongado de 2 de novembro; o número de 82% do Sebrae é oficial e forte; o dono salva para configurar a resposta no celular antes do fim de semana.",
+      "prova_visual": "Réplica fiel da interface do WhatsApp Business comparando duas telas de celular: uma com resposta fria de fechado (✕) e outra com a mensagem de ausência automática contendo o link do catálogo de feriado e o horário exato de retorno no dia seguinte (✓).",
+      "recomendada": true,
+      "referencia_organizacao": "@aprendeconvalerio DeXrxV-DRld",
+      "risco": "Evitar promessa de venda automática; o foco é retenção do contato do cliente para retorno no próximo dia útil.",
+      "tema": "Atendimento no feriado prolongado de Finados (02/11) com WhatsApp Business",
+      "titulo_capa": "82% compram pelo WhatsApp. O seu fecha no feriado?"
+    },
+    {
+      "angulo": "Ensinar o dono a abrir o relatório de 'Termos de pesquisa' no painel do Google Perfil da Empresa para descobrir as palavras exatas que os vizinhos usam para achar a loja física, ajustando a descrição do serviço.",
+      "cena_de_abertura": "Você abre o aplicativo do Google Perfil da Empresa, vai em Desempenho e rola até 'Pesquisas'. Quase todo dono só olha nota de 1 a 5 estrelas e não sabe que o Google lista exatamente o que os vizinhos do bairro digitaram para encontrar a sua porta.",
+      "confianca": "alta",
+      "fonte": "Ajuda oficial do Google Perfil da Empresa (relatório de desempenho e buscas da empresa).",
+      "formato": "print de tweet",
+      "nota": {
+        "acionavel": 2,
+        "atualidade": 1,
+        "relevancia": 3,
+        "surpresa": 3
+      },
+      "objetivo": "salvar",
+      "por_que_circula": "Descoberta de ferramenta oculta na ficha do Google que todo comerciante tem instalada mas nunca explorou; gera curiosidade imediata para abrir o app e checar as buscas do próprio bairro.",
+      "prova_visual": "Print real da tela do painel do Google Perfil da Empresa no celular com a aba 'Termos de pesquisa' em destaque, demonstrando consultas locais reais com números de visualizações.",
+      "recomendada": true,
+      "referencia_organizacao": "@lucureau DdAR0dugICW",
+      "risco": "Não prometer primeiro lugar na busca; focar na leitura dos termos de busca reais que a ficha já recebe.",
+      "tema": "Relatório oculto de pesquisas no Google Perfil da Empresa",
+      "titulo_capa": "O Google mostra o que pesquisaram antes de ligar"
+    },
+    {
+      "angulo": "Como o dono do negócio local pesquisa a Biblioteca pública da Meta para ver as ofertas de Black Friday e anúncios que os concorrentes da sua cidade já estão veiculando no Instagram.",
+      "cena_de_abertura": "Você abre facebook.com/ads/library no navegador do celular. Não precisa de cadastro nem de login. É a Biblioteca oficial da Meta, onde toda empresa que paga anúncio no Instagram é obrigada a mostrar as campanhas ativas.",
+      "confianca": "alta",
+      "fonte": "Meta Ad Library oficial (facebook.com/ads/library), ferramenta pública de transparência publicitária.",
+      "formato": "print de tweet",
+      "nota": {
+        "acionavel": 2,
+        "atualidade": 2,
+        "relevancia": 3,
+        "surpresa": 3
+      },
+      "objetivo": "salvar",
+      "por_que_circula": "Ativa a curiosidade natural de 'espionar' concorrentes locais sem pagar nada e sem risco de banimento; utilidade máxima no mês de preparação para a Black Friday.",
+      "prova_visual": "Print real da interface da Biblioteca de Anúncios da Meta pesquisando uma categoria local no Brasil, com os filtros de data, plataforma e anúncios ativos destacados com setas.",
+      "recomendada": true,
+      "referencia_organizacao": "@lucureau DdAR0dugICW",
+      "risco": "Ressaltar que a ferramenta mostra criativos e tempo no ar, mas não valores gastos ou segmentação detalhada para contas comuns no Brasil.",
+      "tema": "Espionagem de anúncios de concorrentes na Biblioteca da Meta",
+      "titulo_capa": "Como ver os anúncios que seu concorrente está pagando"
+    },
+    {
+      "angulo": "Desmentir o boato de que o aplicativo de celular do WhatsApp Business começou a cobrar por mensagem em outubro de 2026, esclarecendo a diferença entre a API corporativa e o app gratuito do pequeno negócio.",
+      "cena_de_abertura": "Áudios e prints em grupos de lojistas avisando que o WhatsApp começou a cobrar por mensagem enviada a clientes. O dono entra em pânico achando que vai ter surpresa na fatura no final do mês.",
+      "confianca": "alta",
+      "fonte": "Meta for Developers, Tabela Oficial de Preços de Mensagens da WhatsApp Business Platform (atualização de 01/10/2026) e Central de Ajuda do WhatsApp.",
+      "formato": "print de tweet",
+      "nota": {
+        "acionavel": 1,
+        "atualidade": 2,
+        "relevancia": 3,
+        "surpresa": 2
+      },
+      "objetivo": "enviar",
+      "por_que_circula": "Alívio de medo real sobre custos novos; formato de alerta que o dono encaminha diretamente para outros empresários e grupos de associação comercial.",
+      "prova_visual": "Print real da documentação oficial da Meta Developers destacando o trecho sobre a gratuidade contínua do aplicativo WhatsApp Business, com par ✕ Boato / ✓ Fato.",
+      "recomendada": false,
+      "referencia_organizacao": "@brunofragaoficial DfAEhJIkTuy",
+      "risco": "Diferenciar com clareza cristalina no slide 2 que a cobrança se aplica apenas a sistemas integrados por API e não ao app do aparelho.",
+      "tema": "Esclarecimento sobre a cobrança da API da Meta e gratuidade do WhatsApp Business",
+      "titulo_capa": "O WhatsApp Business vai cobrar mensagem? Lemos a regra"
+    },
+    {
+      "angulo": "Como preparar o catálogo e a lista de transmissão do WhatsApp com antecedência para clientes que já estão pesquisando compras de fim de ano em novembro.",
+      "cena_de_abertura": "Todo ano é a mesma coisa: o comércio deixa para pensar na Black Friday na última semana de novembro, quando o feed já está saturado e os anúncios custam o triplo.",
+      "confianca": "alta",
+      "fonte": "Pesquisa Google/Offerwise sobre intenção de compras na Black Friday no Brasil: 48% dos consumidores já definem lista de compras com semanas de antecedência.",
+      "formato": "antes/depois de fala",
+      "nota": {
+        "acionavel": 2,
+        "atualidade": 2,
+        "relevancia": 3,
+        "surpresa": 1
+      },
+      "objetivo": "salvar",
+      "por_que_circula": "Urgência de calendário comercial real; entrega um plano de ação simples de 3 semanas antes do pico de vendas.",
+      "prova_visual": "Gráfico limpo desenhado com proporções da pesquisa (48% com lista pronta) e comparativo de telas do WhatsApp: ✕ oferta em cima da hora na sexta / ✓ aviso exclusivo antecipado para a base.",
+      "recomendada": false,
+      "referencia_organizacao": "@lucureau Ddkp92NAC2W",
+      "risco": "Cuidar para não soar como incentivo a descontos predatórios que corroam a margem do pequeno comércio.",
+      "tema": "Antecipação da Black Friday para a base de clientes do WhatsApp",
+      "titulo_capa": "Black Friday: metade dos clientes já tem a lista"
+    },
+    {
+      "angulo": "Como melhorar a foto de produtos ou pratos usando apenas a luz lateral da janela e lente limpa do celular, sem precisar de estúdio ou equipamentos caros.",
+      "cena_de_abertura": "Você coloca o produto no balcão, tira a foto com a luz amarela do teto e posta no feed. A foto fica escura, sem contraste e parece amadora comparada às lojas maiores.",
+      "confianca": "alta",
+      "fonte": "Manual de Produção Visual da Horus e testes práticos de iluminação natural com smartphone.",
+      "formato": "antes/depois de fala",
+      "nota": {
+        "acionavel": 2,
+        "atualidade": 1,
+        "relevancia": 3,
+        "surpresa": 2
+      },
+      "objetivo": "salvar",
+      "por_que_circula": "Transformação visual instantânea e gratuita; o comerciante consegue aplicar no balcão em 5 minutos após ler o post.",
+      "prova_visual": "Foto real tirada com smartphone mostrando o mesmo produto: antes (luz artificial de teto com reflexo) e depois (luz suave de janela a 45 graus com fundo neutro).",
+      "recomendada": false,
+      "referencia_organizacao": "@ideiasquepagam25 DfFpTSYFLFv",
+      "risco": "Usar fotos 100% reais tiradas em teste pela agência ou celular próprio, sem usar fotos de banco ou simulações por IA de produtos.",
+      "tema": "Fotografia de produto com celular para comércio local",
+      "titulo_capa": "Foto de produto com celular: o ajuste da janela"
+    }
+  ],
+  "referencias": [
+    {
+      "codigo": "DfAEhJIkTuy",
+      "o_que_funcionou": "Formato print de tweet branco com inversão provocativa na capa ('comportamento tóxico' como virtude) e memes de cinema; miolo com 5 regras práticas do dia a dia com falas literais entre aspas; gerou 1.541 curtidas (8x a mediana do perfil).",
+      "perfil": "@brunofragaoficial"
+    },
+    {
+      "codigo": "DfFpTSYFLFv",
+      "o_que_funcionou": "Gancho visual altamente concreto e tangível ('7 negócios que cabem numa garagem'); cada slide desenha a porta de enrolar do comércio aberta mostrando a operação por dentro; gerou 62 curtidas (2,5x a mediana do perfil).",
+      "perfil": "@ideiasquepagam25"
+    },
+    {
+      "codigo": "DeXrxV-DRld",
+      "o_que_funcionou": "Estrutura visual de caderno escolar pautado com marcadores e post-its organizando pares de contraste ✕ 'Evite pedir assim' / ✓ 'Pida melhor assim'; no entanto, ficou abaixo da mediana (361 vs 453) por ser tema de IA genérico sem cena de negócio real.",
+      "perfil": "@aprendeconvalerio"
+    },
+    {
+      "codigo": "DfCQOQaDine",
+      "o_que_funcionou": "Carrossel de fotos pessoais de viagem sem texto nas imagens; gerou 76 curtidas (abaixo da mediana de 78), confirmando que conteúdo focado em si mesmo não entrega valor salvável ou compartilhável.",
+      "perfil": "@barretobru"
+    },
+    {
+      "codigo": "DekIKezmFft",
+      "o_que_funcionou": "Fotos institucionais de turmas presenciais de treinamento em cidades do interior; gerou 38 curtidas (menos da metade da mediana de 90), demonstrando que post puramente auto-referente não circula fora da própria base.",
+      "perfil": "@eugersonrodrigues"
+    }
+  ]
+}

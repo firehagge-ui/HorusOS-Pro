@@ -5,8 +5,13 @@ Lista do Marcelo pra estudar quando precisar de ideia, formato ou referência ("
 post que fugiu da média, entender por que funcionou, refazer pro dono de negócio daqui, com dado nosso ou com fonte.
 Nunca copiar número, rosto, nicho ou a isca "comenta PALAVRA" (sem bot de DM, decisão de 10/10).
 
+> 🔴 **Desde 13/11/2026 a referência da Horus é uma só: [@v4company](https://www.instagram.com/v4company/)** ("inspirados
+> 100% nesse instagram", Marcelo). Estudo e o que se leva: `_memoria/conteudo/referencias/2026-11-13-v4company.md`. Os
+> perfis abaixo viram fonte de assunto, nunca de visual.
+
 | Perfil | Quem é | O que estudar | Estudo |
 |---|---|---|---|
+| [@v4company](https://www.instagram.com/v4company/) | V4 Company, marketing e vendas (867 mil) | **Tudo:** capa-manchete, caso real em capítulos, botão-ponte, "o que muda no seu negócio" | `_memoria/conteudo/referencias/2026-11-13-v4company.md` |
 | [@lucureau](https://www.instagram.com/lucureau/) | Luíza Cureau, conteúdo e Instagram | Print de tweet com notícia, estudo e ferramenta; fio que puxa o próximo slide | `2026-10-07-essencia.md` (3 posts) |
 | [@nacaothiagofinch](https://www.instagram.com/nacaothiagofinch/) | Thiago Finch, vendas | Escuro com acento único, ✕ o que todo mundo faz / ✓ o que eu faço, frase literal | `2026-10-07-essencia.md` |
 | [@aprendeconvalerio](https://www.instagram.com/aprendeconvalerio/) | Valerio Meoli, IA e apps (espanhol, 1,4 mi) | Truque escondido de app que todo mundo usa; caderno; um truque por slide | `2026-10-10-valerio.md` |

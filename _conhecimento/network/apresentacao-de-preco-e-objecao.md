@@ -90,3 +90,25 @@ perguntas de compromisso de Jeremy Miner em `_memoria/comercial.md`.)
 - 🔴 **Compliance trava:** cliente de setor regulado (saúde, psicologia) **não** aceita
   escassez, urgência, "desconto relâmpago" nem promessa de ROI. Ali, só valor informado com
   sobriedade.
+
+## Retorno de 03/11/2026: prestador de serviço que trava no valor (caso Débora Reis)
+
+> Perguntas levadas pelo Agy ao notebook "Comunidade IA Business: Estratégias e Vendas com MazyOS" (9 fontes, conversas
+> de WhatsApp do grupo). Resposta bruta em `_conselho/logs/2026-11-03-debora-reis-projetos-travam-no-valor.md`, anexo.
+> A comunidade vende site e sistema, não arquitetura: o princípio vale, o número não. Os valores dos exemplos (R$ 12 mil,
+> 13,4 mil e 18 mil; "mercado cobra R$ 25 a 30 mil") foram gerados pelo NotebookLM como ilustração e **não são dado**.
+
+- **Nunca trabalhar antes do contrato e da entrada.** Posição "praticamente unânime" no grupo, com casos de quem perdeu
+  o trabalho todo (sistema pronto recusado, site entregue e reembolsado). Exceção única: a prévia rápida para a reunião.
+  Ordem: proposta ao vivo → contrato digital → Pix ou cartão de entrada → execução. Confirma
+  `cobranca-e-protecao-comercial.md`.
+- **Entrada:** 50/50 é o padrão; 20 a 50% de entrada e o resto parcelado; 100% no cartão por link (o prestador recebe à
+  vista); marcos por fase em projeto de R$ 10 a 15 mil.
+- **Trava no valor = o cliente não viu que não contratar custa mais.** Recomendações: 3 opções em escada; desmembrar as
+  etapas; ancorar no mercado antes do número; condição de pagamento e silêncio; proposta ao vivo com as palavras do
+  cliente; compromisso antes do preço ("concorda que resolve? se couber nas condições, a gente fecha hoje?"); custo do
+  erro (no caso de interiores: compra errada, marcenaria refeita, obra atrasada); parcelar em vez de baixar.
+- **Faixa de valor antes da reunião:** sim no inbound (formulário ou quiz com pergunta de orçamento descarta quem não
+  pode); não no outbound frio (preço solto vira custo). Qualificação: BANT, ligação de 3 a 5 minutos antes da reunião
+  longa, raio-X do porte. ⚠️ Para arquiteto, o CAU só permite informar honorário quando solicitado: o formulário pergunta
+  quanto o cliente pensa investir, sem anunciar o valor dela.

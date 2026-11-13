@@ -30,7 +30,7 @@ import { RAIZ_REPO } from './marca.mjs';
 
 export const SERIES = ['tweet', 'escuro'];
 export const TIPOS = ['capa', 'conteudo', 'impacto', 'cta'];
-export const MAX_IMAGENS = 4;
+export const MAX_IMAGENS = 6;   // 6 quando cada slide do miolo é o par imagem + conversa (post '5 chatices', 03/11/2026)
 
 const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const palavras = (s = '') => String(s).replace(/\*/g, '').split(/\s+/).filter(Boolean).length;
@@ -70,7 +70,8 @@ export function validarV2(post, { exigirArquivos = false } = {}) {
     if ((sl.conversa || []).length > 4) vetos.push(`Slide ${n}: conversa com mais de 4 balões.`);
     if ((sl.buscas?.itens || []).length > 3) vetos.push(`Slide ${n}: mais de 3 buscas no cartão.`);
     const visuais = [sl.imagem, sl.antes_depois, sl.conversa?.length, sl.buscas?.itens?.length].filter(Boolean).length;
-    if (visuais > 1) vetos.push(`Slide ${n}: dois elementos visuais no mesmo slide (um por slide).`);
+    const dupla = visuais === 2 && sl.imagem && sl.conversa?.length;   // o par de cartões lado a lado (imagem + conversa) conta como um só
+    if (visuais > 1 && !dupla) vetos.push(`Slide ${n}: dois elementos visuais no mesmo slide (um por slide; só imagem + conversa formam o par de cartões).`);
     if (sl.imagem && !String(sl.imagem.pedido || '').trim() && !sl.imagem.arquivo) vetos.push(`Slide ${n}: imagem sem pedido.`);
     if (sl.imagem?.pedido && /\b(chart|graph|screenshot|portrait|selfie|infographic)\b|gr[áa]fico|print de|rosto/i.test(sl.imagem.pedido))
       vetos.push(`Slide ${n}: o ChatGPT não gera gráfico, print nem rosto (número e print vêm de fonte real).`);
@@ -78,10 +79,10 @@ export function validarV2(post, { exigirArquivos = false } = {}) {
     if (sl.tipo === 'impacto' && palavras(sl.titulo) > 14) vetos.push(`Slide ${n}: frase de impacto com mais de 14 palavras.`);
   });
   // a mesma prova visual três slides seguidos vira padrão repetido (teste de 21/10: três ✕/✓ em fila)
-  const tipoVisual = (sl) => (sl.imagem ? 'imagem' : sl.antes_depois ? 'antes_depois' : sl.conversa?.length ? 'conversa' : sl.buscas?.itens?.length ? 'buscas' : null);
+  const tipoVisual = (sl) => (sl.imagem && sl.conversa?.length ? 'dupla' : sl.imagem ? 'imagem' : sl.antes_depois ? 'antes_depois' : sl.conversa?.length ? 'conversa' : sl.buscas?.itens?.length ? 'buscas' : null);
   for (let i = 2; i < s.length; i++) {
     const t = tipoVisual(s[i]);
-    if (t && t === tipoVisual(s[i - 1]) && t === tipoVisual(s[i - 2])) vetos.push(`Slides ${i - 1} a ${i + 1}: "${t}" três vezes seguidas (varie a prova visual).`);
+    if (t && t !== 'dupla' && t === tipoVisual(s[i - 1]) && t === tipoVisual(s[i - 2])) vetos.push(`Slides ${i - 1} a ${i + 1}: "${t}" três vezes seguidas (varie a prova visual).`);
   }
   const imagens = s.filter((x) => x.imagem).length;
   if (imagens > MAX_IMAGENS) vetos.push(`${imagens} imagens do ChatGPT (máximo ${MAX_IMAGENS} por post).`);
@@ -110,6 +111,11 @@ function blocoLista(l, tag) {
 }
 
 function blocoVisual(sl, a, tag) {
+  if (sl.imagem && sl.conversa?.length) {
+    const img = sl.imagem.arquivo ? `<div class="card-img"><img src="${a.arq(sl.imagem.arquivo)}" alt=""></div>` : '<div class="card-img falta"><span>[FALTA: imagem do ChatGPT]</span></div>';
+    const zap = `<div class="zap">${sl.exemplo ? '<span class="ex">exemplo</span>' : ''}${sl.conversa.map((c) => `<div class="bal ${c.de === 'voce' ? 'voce' : 'cliente'}">${marcar(c.texto, tag)}</div>`).join('')}</div>`;
+    return `<div class="duo">${img}${zap}</div>`;
+  }
   if (sl.imagem?.arquivo) return `<div class="card-img"><img src="${a.arq(sl.imagem.arquivo)}" alt=""></div>`;
   if (sl.imagem) return '<div class="card-img falta"><span>[FALTA: imagem do ChatGPT]</span></div>';
   if (sl.antes_depois) {
@@ -128,7 +134,7 @@ function blocoVisual(sl, a, tag) {
   return '';
 }
 
-const fonte = (sl) => (sl.fonte ? `<div class="fonte">Fonte: ${esc(sl.fonte)}</div>` : '');
+const fonte = (sl) => (sl.fonte ? `<div class="fonte">Fonte: ${esc(String(sl.fonte).replace(/^s*fonte:s*/i, ''))}</div>` : '');
 
 /* ------------------------------ série "tweet" ------------------------------ */
 
@@ -217,6 +223,17 @@ body { background:#444; font-family:'DM Sans','Noto Color Emoji',system-ui,sans-
 .zap .bal { max-width:84%; padding:24px 32px; border-radius:26px; font-size:38px; font-weight:500; line-height:1.35; }
 .zap .cliente { align-self:flex-start; border-top-left-radius:6px; }
 .zap .voce { align-self:flex-end; border-top-right-radius:6px; }
+/* par de cartões lado a lado (jeito da @luizacureau): ilustração à esquerda, conversa à direita */
+.duo { margin-top:48px; display:flex; gap:28px; align-items:stretch; }
+.duo .card-img { margin-top:0; flex:1; min-width:0; }
+.duo .card-img img { height:100%; max-height:none; aspect-ratio:1/1; object-fit:cover; }
+.duo .card-img.falta { min-height:0; font-size:28px; }
+.tw.capa .duo { margin-top:80px; }
+.tw.capa .duo .card-img img { aspect-ratio:3/4; }
+.tw.capa .duo .zap .bal { font-size:38px; padding:26px 30px; }
+.duo .zap { margin-top:0; flex:1.08; min-width:0; padding:44px 22px 30px; gap:16px; justify-content:center; position:relative; }
+.duo .zap .bal { max-width:94%; font-size:31px; padding:18px 22px; border-radius:22px; }
+.zap .ex { position:absolute; top:-18px; right:24px; font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; background:var(--azul); color:#fff; padding:6px 16px; border-radius:8px; }
 .falta { display:grid; place-items:center; min-height:420px; background:#fff0f0; border:4px dashed #b00020; color:#b00020; font-size:34px; font-weight:700; }
 
 /* escuro: fundo chapado (Marcelo, 15/10: sem brilho azul no canto) */

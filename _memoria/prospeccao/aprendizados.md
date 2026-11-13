@@ -5,6 +5,16 @@
 > Fonte de dados: `node ferramentas/hound-dog/scripts/aprender.mjs` (edições do Marcelo no Disparos,
 > variante escolhida, quem respondeu). Padrão que aparece duas vezes vira regra na doutrina.
 
+## Ritual da sexta de 05/11 (placar + aprender 7)
+
+- **Lead qualificado parado não vira dado.** Na semana saiu 1 envio (Michele, 04/11, sem resposta). New Place e
+  Gabriel Arcanjo estão qualificados desde 19/10 e a Dra. Mônica Pita também espera, os três sem contato. A
+  rotina pedia 5 envios por semana. O placar não mede abordagem nenhuma com 1 envio por semana. Muda: lead
+  qualificado sai em até 3 dias úteis ou volta pra Novo com o motivo escrito.
+- **O esboço é a única abordagem que chegou a reunião por texto** (Débora: respondeu e marcou; Spaço Saúde:
+  respondeu "não"). São 2 casos, então ainda é leitura de caso. Os 9 do dois passos antigo deram 8 respostas e
+  0 reunião.
+
 ## Análise geral de 08/10 (todas as conversas até aqui; o plano de teste está em `40-testes.md`)
 
 - **A abertura funciona, o corpo não.** 8 das 9 aberturas que chegaram tiveram resposta de gente. Ao
@@ -118,6 +128,91 @@ Bioclin ficou com a nova, sem o pedido de horário. O que isso ensina:
   15/10). A pesquisa chama isso de "a estratégia com mais relatos de fracasso em 2026" (Parte 1, item 6; T1 e T2).
 
 ## Correções do Marcelo
+
+- **10/11 · Débora Reis · escolha silenciosa no pedido dos projetos.** O rascunho v4 começava direto no pedido. Ele
+  mandou em três balões: "Queria te pedir uma coisinha. Pode responder quando tiver um tempo, tá?", depois "Me diga se já
+  estão bons ou se quer colocar mais projetos. Minha ideia é valorizar ao máximo seu trabalho" e só então o pedido das
+  histórias. Ela respondeu em 20 minutos ("joia, vou tentar dedicar um tempinho a isso"). Leitura: pedido grande pede
+  licença antes, e a pergunta fácil vem antes da trabalhosa. O motivo que ele cortou em 09/11 explicava a nossa estratégia
+  ("quem chega pelo site escolhe pela história"). O motivo que ele pôs diz o que ela ganha. Muda: **pedido grande a cliente
+  abre com um balão de licença sem pressa, põe a pergunta fácil primeiro e leva no máximo uma frase de motivo, sempre o
+  ganho dela, nunca a nossa lógica.** Refina a linha de 09/11 logo abaixo. Visto uma vez; vira regra da casa se repetir.
+
+- **09/11 · Débora Reis · "o tempo todo a gente pedir alguma coisa".** Montei nove mensagens, uma por resposta, e ele
+  temeu que ela se sentisse cobrada o tempo todo. Pedido em conta-gotas mantém o cliente em dívida com a conversa por
+  semanas. Uma lista só deixa ela responder no tempo dela. Muda: **com cliente que já fechou, pedidos do mesmo assunto vão
+  juntos numa mensagem, avisando que ela responde no tempo dela; só se separa o que depende de um passo anterior.** O
+  limite de 60 palavras e "uma recomendada por vez" valem para lead em conversa de venda.
+
+- **09/11 · Débora Reis · "Eu já te falei 1 bilhão de vezes como que se escreve."** Reenviei o pedido de material v4 e ele
+  reescreveu na hora. Saiu a frase que explica o motivo ("Quem chega pelo site escolhe pela história de cada casa"). Entrou
+  "Quando tiver um tempinho", que tira o peso do pedido. O "me conta de cada apartamento" virou "me conte sobre os
+  apartamentos", e as frases ficaram curtas ("Pode ser por áudio. 1 minuto por projeto já vale."). O texto tinha 0 vetos
+  e passou pela skill: o revisor mede vício, não medida. Muda: **pedido a cliente sai sem justificativa, com folga de
+  tempo e em frases curtas; rascunho antigo se relê na voz dele antes de reenviar, mesmo aprovado pelo revisor.** Mesma
+  família de "direto ao ponto vence o explicado" (03/11). A mensagem dele está em `exemplos.md`.
+
+- **06/11 · Débora Reis · escolha silenciosa no número corrigido.** Meu rascunho v2 dizia "conversei com o Antônio. São 8
+  posts por mês por 350, e não 5 como eu coloquei no resumo. Começa depois da primeira semana, que é por minha conta". Ele
+  mandou "confirmei com o Antônio, são 350 por mês pelos 8 posts. Começa depois da primeira semana, que é por nossa conta".
+  Saiu o erro anunciado, e o "minha" virou "nossa". Leitura: o número certo, dito com segurança, já corrige o resumo, e
+  apontar o erro diminui quem fala. Depois que o Antônio entrou na reunião, o combinado é da dupla, e o "eu" sozinho
+  apagava o sócio que ela conheceu. Muda: **dado corrigido para cliente vai como o número certo, sem "e não X como eu
+  disse"; quando o sócio participou do combinado, o que é por conta da casa é "por nossa conta".** Mesma família de
+  "direto ao ponto vence o explicado" (03/11). Isso não revoga a regra de 15/10 (sem o nome da agência com a Débora).
+
+- **03/11 · Clínica Michele Oliveira · "Não aguento mais ter que pedir pra você confirmar se está alinhado com a
+  pesquisa."** Escrevi a mensagem pela doutrina antiga e ele perguntou duas vezes se batia com a pesquisa de 09/10. A
+  versão dele, direta, ganhou da minha: "Vi que o site da sua bio está fora do ar. Quem clica cai num erro. Eu posso
+  montar um site novo pra você, com cada procedimento explicado do seu jeito. Posso te mostrar amanhã como ficaria?"
+  Ficou em 37 palavras, contra 57 da minha versão "tava lendo seus textos...". Muda: **a pesquisa vem acima da
+  doutrina antiga.** Toda mensagem passa pela `/prospeccao`, que lê primeiro `15-o-que-deu-certo.md` e devolve o
+  quadro da pesquisa sem ele pedir. Direto ao ponto vence o longo e explicado.
+
+- **03/11 · Débora Reis · conselho e presente para cliente, em quatro rodadas dele.** Partiu de "Quem paga o sinal já
+  decidiu" e "compre o domínio... Consegue comprar essa semana?". Terminou assim:
+  1. "Hoje eu só começo com contrato e entrada. Isso evita muita dor de cabeça e deixa os dois lados comprometidos."
+  2. "E agora uma coisa boa! O seu site já está pronto e consigo colocar no ar ainda hoje... Quer que eu te mande o passo
+     a passo? É bem simples!"
+
+  O que ele corrigiu:
+  - frase de efeito absoluta soa simplista;
+  - "quem está comprometido de verdade" julga os clientes dela;
+  - mandar o cliente fazer algo "do nada" pesa;
+  - o dia ruim dela tinha sido dias antes, e eu argumentei como se fosse hoje.
+
+  Muda: as regras foram para `_memoria/preferencias.md`, em "Mensagem para cliente".
+
+  **Escolha silenciosa no envio (visto no WhatsApp).**
+  - Mensagem 1: virou "É melhor sempre começar a trabalhar no projeto só depois de contrato e entrada pq aí evita dor
+    de cabeça e deixa os dois lados comprometidos, sabe?". Ele fecha o conselho com um "sabe?", que convida em vez de
+    ensinar.
+  - Mensagem 2: ele tirou o domínio, o Registro.br e o passo a passo. Mandou "consigo colocar ele no ar hoje se quiser.
+    Quer dar uma última olhada e ver se gostaria de ajustar alguma coisa antes?".
+  - Em 04/11 ele perguntou "Por que a gente não fala que é grátis? A gente publica no Netlify e acabou", sobre o meu
+    "o custo é só o domínio, uns R$ 40 por ano".
+
+  Muda: **presente para cliente sai sem tarefa, sem custo e sem burocracia.** A Horus absorve o atrito pequeno (domínio
+  de R$ 40, cadastro, hospedagem), e a mensagem termina pedindo o olhar dele sobre o que é dele.
+
+  **Acerto a repetir:** "Amei a sua observação sobre ela ter trabalhado antes de fechar!!!" Ver no cliente o mesmo erro
+  que a casa já cometeu e devolver como experiência própria.
+
+- **05/11 · Débora Reis · "tive pouco tempo para ler o material que você havia enviado antes da reunião. Por isso,
+  acabei improvisando em boa parte da conversa."** O roteiro da reunião de 04/11, 19h, mudou umas oito vezes entre 15h
+  e 19h45: percentual, Antônio, tráfego, Instagram, preço. A versão final chegou com a reunião já começando, e ele
+  entrou sem ter lido. O que salvou foram as respostas curtas, uma por pergunta, durante a reunião.
+  Muda: **o material de reunião fecha 2 horas antes, numa cola de uma página (abertura, 3 perguntas, a proposta, o
+  fechamento, o que não dizer).** O que mudar depois disso entra como linha nova na cola, nunca como roteiro refeito.
+  Durante a reunião, a resposta é curta e só sobre a pergunta. Mesma família de "uma mensagem recomendada por vez"
+  (15/10).
+
+- **04/11 · Débora Reis · ela pediu para conversar e esperou mais de 16 horas.** O pedido "Podemos conversar amanhã?"
+  chegou em 03/11 às 20h41. Até 13h20 de 04/11 não tinha resposta. No meio vieram três rodadas de estratégia
+  (percentual, tráfego, posicionamento), e a minha mensagem de confirmação ia enterrada no fim de respostas longas.
+  Muda: **quando o cliente pede para conversar, a confirmação com dois horários abre a minha resposta, sozinha, com
+  "mande agora".** A estratégia vem depois e nunca segura a confirmação. É a mesma família de "mensagem de remarcar faz
+  uma coisa só" (21/10).
 
 - **21/10 · Débora Reis · escolha silenciosa: ele mandou a v1 e cortou a oferta.** Ela tinha recusado a segunda e
   pedido "a partir de quarta". Ele quis acrescentar "se quiser, já posso ir adiantando algumas coisas"; eu troquei por

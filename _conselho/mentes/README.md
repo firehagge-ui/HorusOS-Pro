@@ -86,7 +86,7 @@ e Miner. Desde 29/09: objeção e negociação puxam Voss; pauta da R1 puxa SPIN
 Cialdini (sempre com o Compliance ao lado).
 
 **Fora do Conselho, no dia a dia** (é o que faz a mente ser usada):
-- `/revisar-mensagem` confere a mensagem contra Cialdini (reciprocidade, prova social
+- `/prospeccao` (antiga `/revisar-mensagem`) confere a mensagem contra Cialdini (reciprocidade, prova social
   negativa, escassez falsa) e Voss (nada de "por quê?", pergunta orientada ao não)
 - A investigação do Farejador monta a pauta da R1 em SPIN + Mom Test e o mapa de
   respostas com Voss e Cole Gordon (`ferramentas/hound-dog/farejador/prompts.mjs`)

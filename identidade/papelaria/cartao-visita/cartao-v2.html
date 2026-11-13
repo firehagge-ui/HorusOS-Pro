@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Cartão de visita Horus Agência v2</title>
+<!--
+  Versão 2 (29/10/2026), na direção dos dois mockups do Marcelo: frente preta fosca com a logo e arcos em
+  verniz localizado; verso com o olho grande cortado à direita e "HORUS AGÊNCIA" no lugar do nome de pessoa.
+  90 x 50 mm + 3 mm de sangria (página 96 x 56 mm). Área segura: 4 mm do corte.
+  Abrir com #verniz para a máscara do verniz localizado (preto = verniz, branco = sem verniz).
+  Contatos conferidos no site no ar em 28/10/2026. Linha de serviços: "Marketing · Sites · Automação com IA"
+  (recomendada e aceita em 29/10). Símbolo em vetor: identidade/logo/horus-simbolo.svg.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Sora:wght@500;600&family=Archivo:wght@400&display=block" rel="stylesheet">
+<style>
+  @page { size: 96mm 56mm; margin: 0; }
+  :root {
+    --preto: #0B0C10;
+    --verniz-previa: #1B1C24;
+    --azul: #2F6BEA;
+    --azul-texto: #5B8DEF;
+    --branco: #F2F2F0;
+    --cinza: #C9CDD3;
+    --cinza-2: #8A9099;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: #777; }
+  .pagina { width: 96mm; height: 56mm; position: relative; overflow: hidden; background: var(--preto);
+            break-after: page; page-break-after: always; }
+  .pagina:last-child { break-after: auto; page-break-after: auto; }
+  svg { display: block; }
+
+  /* Frente */
+  .marca { position: absolute; left: 15mm; top: 17mm; display: flex; align-items: center; gap: 3.2mm; }
+  .marca .simbolo { width: 21mm; height: auto; }
+  .palavra { display: flex; flex-direction: column; align-items: center; }
+  .palavra .horus { font: 600 21pt/1 'Montserrat', sans-serif; color: var(--branco); letter-spacing: 0.04em; }
+  .palavra .horus b { font-weight: 600; color: var(--azul); }
+  .palavra .agencia { font: 400 6.4pt/1 'Montserrat', sans-serif; color: var(--cinza-2); letter-spacing: 0.62em;
+                      margin-top: 1.6mm; margin-right: -0.62em; }
+  .arcos { position: absolute; inset: 0; width: 96mm; height: 56mm; }
+  .arcos path { fill: none; stroke: var(--verniz-previa); stroke-width: 2.6; stroke-linecap: round; }
+
+  /* Verso */
+  .olho-grande { position: absolute; left: 54mm; top: 4mm; width: 70mm; height: auto; }
+  .dados { position: absolute; left: 10mm; top: 9.5mm; width: 48mm; }
+  .nome { font: 600 10.5pt/1 'Sora', sans-serif; color: var(--branco); letter-spacing: 0.14em; }
+  .linha-servicos { font: 500 5.4pt/1.25 'Sora', sans-serif; color: var(--azul-texto); letter-spacing: 0.04em;
+                    margin-top: 1.8mm; text-transform: uppercase; white-space: nowrap; }
+  .filete { width: 9mm; height: 0.35mm; background: var(--azul); margin: 3.2mm 0 3.4mm; }
+  .contatos { list-style: none; display: grid; gap: 2.1mm; }
+  .contatos li { display: flex; align-items: center; gap: 2.4mm; font: 400 7.2pt/1 'Archivo', sans-serif; color: var(--cinza); }
+  .contatos svg { width: 3.3mm; height: 3.3mm; flex: none; stroke: var(--azul-texto); fill: none; stroke-width: 2;
+                  stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Máscara do verniz: só os arcos, pretos sobre branco */
+  body.verniz .pagina { background: #fff; }
+  body.verniz .pagina > *:not(.arcos) { visibility: hidden; }
+  body.verniz .arcos path { stroke: #000; }
+  body.verniz .verso { display: none; }
+
+  @media screen {
+    body { display: flex; gap: 24px; padding: 24px; flex-wrap: wrap; }
+    .pagina { zoom: 3; outline: 0.3mm dashed rgba(255,255,255,.3); outline-offset: -3mm; }
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="olho" viewBox="-14 0 434 348">
+    <path d="M14 80 Q185 -25 356 80" fill="none" stroke="#2F6BEA" stroke-width="20" stroke-linecap="round"/>
+    <path d="M99 186 L118 186 L73 314 L54 314 Z" fill="#2F6BEA"/>
+    <path d="M250 168 C290 150 322 200 291 246 S300 320 340 285" fill="none" stroke="#2F6BEA" stroke-width="20" stroke-linecap="round"/>
+    <path d="M352 142 Q180 50 10 140 Q130 216 250 168" fill="none" stroke="#F2F2F0" stroke-width="18" stroke-linejoin="miter" stroke-miterlimit="12" stroke-linecap="round"/>
+    <circle cx="178" cy="142" r="28" fill="#D4A437"/>
+  </symbol>
+</svg>
+
+<section class="pagina frente" aria-label="Frente">
+  <div class="marca">
+    <svg class="simbolo" viewBox="-14 0 434 348"><use href="#olho"/></svg>
+    <div class="palavra">
+      <span class="horus">H<b>Ó</b>RUS</span>
+      <span class="agencia">AGÊNCIA</span>
+    </div>
+  </div>
+  <svg class="arcos" viewBox="0 0 96 56" aria-hidden="true">
+    <path d="M50 62 Q72 30 104 38"/>
+    <path d="M60 64 Q78 40 104 47"/>
+  </svg>
+</section>
+
+<section class="pagina verso" aria-label="Verso">
+  <svg class="olho-grande" viewBox="-14 0 434 348" aria-hidden="true"><use href="#olho"/></svg>
+  <div class="dados">
+    <p class="nome">HORUS AGÊNCIA</p>
+    <p class="linha-servicos">Marketing · Sites · Automação com IA</p>
+    <div class="filete"></div>
+    <ul class="contatos">
+      <li><svg viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>(71) 99912-7514</li>
+      <li><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>contato.horus@gmail.com</li>
+      <li><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg>@horusagencia.br</li>
+      <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>horusagencia.com.br</li>
+    </ul>
+  </div>
+</section>
+<script>if (location.hash === '#verniz') document.body.classList.add('verniz');</script>
+</body>
+</html>

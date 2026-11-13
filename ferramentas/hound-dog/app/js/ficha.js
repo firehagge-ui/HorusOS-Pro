@@ -483,7 +483,8 @@ export function abrirFicha(id, { aba = 'geral', aoFechar } = {}) {
       if (fila.meu) { toast(fila.meu.status === 'processando' ? 'Já está sendo investigado' : 'Já está na fila', 'info'); return; }
       botaoCarregando(btn, true, 'Pondo na fila…');
       try {
-        await criarJob('investigar_empresa', {}, { empresa_id: e.id }, 4);
+        // No PC, abre na janela do chat (13/11/2026); no celular, roda escondida como antes
+        await criarJob('investigar_empresa', { janela: matchMedia('(pointer: fine)').matches && innerWidth > 900 }, { empresa_id: e.id }, 4);
         toast(fila.total ? `Na fila: ${fila.total} antes deste` : 'Investigação começando', 'info');
         desenharCorpo();
       } catch (err) { toast(erroAmigavel(err), 'erro'); botaoCarregando(btn, false); }

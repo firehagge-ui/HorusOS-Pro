@@ -258,7 +258,11 @@ tracinho vale aqui como em tudo: nunca `—` / `–` / ` - ` como separador em c
   - `site/assets/assinatura.webp` — assinatura horizontal completa, 520px
   - `site/site-fontes/marca-simbolo.png` e `marca-assinatura.png` — as fontes
     em PNG com alfa, recortadas do board e com o fundo removido por luminância
-- ❓ **Ainda falta o vetor (SVG ou AI/EPS)**, mais a versão em fundo claro e a
+  - ✅ `identidade/logo/horus-simbolo.svg` — **símbolo do olho redesenhado em vetor** em 29/10/2026, sobreposto ao
+    PNG para bater a geometria; cores chapadas para impressão (azul `#2F6BEA`, branco `#F2F2F0`, pupila `#D4A437`).
+    Usado no cartão de visita (`identidade/papelaria/cartao-visita/cartao-v2.html`). O logotipo continua em
+    Montserrat 600 (HÓRUS, com o Ó azul) e AGÊNCIA em Montserrat 400 espaçado
+- ❓ **Ainda falta o vetor do logotipo completo (SVG ou AI/EPS)**, mais a versão em fundo claro e a
   monocromática. O que existe é bitmap: serve para tela, não escala para
   impressão nem para aplicação grande
 - **Onde usar:** header do site, header de propostas, slides institucionais,

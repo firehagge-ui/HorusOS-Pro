@@ -1,0 +1,137 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>5 chatices que todo dono de negócio devia ter (v3, papel)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500;1,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+<style>
+:root { --papel:#f4f3ef; --tinta:#111014; --cinza:#77737d; --azul:#0062d6; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:#999; font-family:'DM Sans','Noto Color Emoji',system-ui,sans-serif; }
+.e { font-family:'Noto Color Emoji'; font-weight:400; }
+/* papel: cor chapada + grão fino em SVG, sem brilho nem gradiente colorido */
+.slide { width:1080px; height:1440px; position:relative; overflow:hidden; margin-bottom:40px; color:var(--tinta);
+  background-color:var(--papel);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"); }
+.topo { position:absolute; left:108px; right:108px; top:96px; display:flex; justify-content:space-between; align-items:center; }
+.marca { display:flex; align-items:center; gap:16px; font-size:28px; font-weight:700; line-height:1.15; color:var(--tinta); }
+.marca small { display:block; font-size:24px; font-weight:500; color:var(--cinza); }
+.marca .av { width:60px; height:60px; border-radius:50%; background:#0e0918; display:grid; place-items:center; }
+.marca .av img { width:42px; }
+.seta { width:64px; height:64px; border-radius:50%; border:2.5px solid var(--cinza); display:grid; place-items:center; }
+.seta svg { width:30px; height:30px; stroke:var(--cinza); stroke-width:2.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.rodape { position:absolute; left:108px; bottom:96px; font-size:28px; font-weight:700; color:var(--cinza); line-height:1.4; }
+.capa .rodape { font-weight:500; color:var(--tinta); }
+.meio { position:absolute; left:108px; right:108px; top:50%; transform:translateY(-50%); text-align:center; text-wrap:balance; }
+.meio h2, .meio p, .cta p { text-wrap:balance; }
+
+/* capa: serifada de revista, a palavra-chave em itálico pesado */
+.capa .l2 { font-family:'Playfair Display',serif; font-style:italic; font-weight:800; font-size:184px; letter-spacing:-.05em; line-height:.95; margin:4px 0 22px; white-space:nowrap; }
+.capa .l2 .az { color:var(--azul); font-size:1.3em; line-height:0; }
+.capa .l3 { font-family:'Playfair Display',serif; font-weight:500; font-size:84px; letter-spacing:-.045em; line-height:1.02; }
+
+/* miolo: número grande na serifada da capa, uma linha forte, uma de apoio */
+.n { font-family:'Playfair Display',serif; font-style:italic; font-weight:800; font-size:146px; line-height:.9; letter-spacing:-.04em; color:var(--azul); margin-bottom:40px; }
+.item h2 { font-size:60px; font-weight:800; line-height:1.12; letter-spacing:-.025em; }
+.item p { margin-top:16px; font-size:48px; font-weight:400; line-height:1.32; letter-spacing:-.015em; }
+
+/* provocação: serifada itálica em cima, negrito embaixo, rabisco azul */
+.provoca { position:absolute; left:150px; right:100px; top:50%; transform:translateY(-50%); }
+.provoca .faisca { position:absolute; left:-92px; top:-30px; width:80px; height:80px; }
+.provoca .serif { font-family:'Playfair Display',serif; font-weight:500; font-size:112px; line-height:1.04; letter-spacing:-.04em; }
+.provoca .serif i { font-style:italic; }
+.provoca .forte { margin-top:18px; font-size:98px; font-weight:800; line-height:1.08; letter-spacing:-.035em; }
+.provoca .sub { position:relative; display:inline-block; }
+.provoca .sub svg { position:absolute; left:-6px; right:-6px; bottom:-34px; width:calc(100% + 12px); height:34px; }
+
+/* CTA: alinhado à esquerda, com o botão */
+.cta { position:absolute; left:108px; right:108px; top:50%; transform:translateY(-50%); }
+.cta h2 { font-size:74px; font-weight:800; line-height:1.12; letter-spacing:-.03em; }
+.cta .botao { display:inline-flex; align-items:center; gap:16px; margin-top:52px; padding:26px 52px; border-radius:999px; background:var(--azul); color:#fff; font-size:54px; font-weight:800; letter-spacing:-.02em; }
+.cta p { margin-top:44px; font-size:50px; font-weight:400; line-height:1.32; letter-spacing:-.015em; color:#3a3740; }
+</style>
+</head>
+<body>
+
+<section class="slide capa">
+  <div class="topo"><div class="marca"><span class="av"><img src="../../../../../../site/assets/simbolo-grande.png" alt=""></span><span>Horus<small>Agência</small></span></div><div class="seta"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div></div>
+  <div class="meio">
+    <div class="l2"><span class="az">5</span> chatices</div>
+    <div class="l3">que todo dono de negócio devia ter</div>
+  </div>
+  <div class="rodape">@horusagencia.br</div>
+</section>
+
+<section class="slide">
+  <div class="topo"><div class="marca"><span class="av"><img src="../../../../../../site/assets/simbolo-grande.png" alt=""></span><span>Horus<small>Agência</small></span></div><div class="seta"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div></div>
+  <div class="meio item">
+    <div class="n">01</div>
+    <h2>Mande um segundo oi para o cliente.</h2>
+    <p>Quem não insiste deixa a venda para quem é insistente!</p>
+  </div>
+  <div class="rodape">@horusagencia.br</div>
+</section>
+
+<section class="slide">
+  <div class="topo"><div class="marca"><span class="av"><img src="../../../../../../site/assets/simbolo-grande.png" alt=""></span><span>Horus<small>Agência</small></span></div><div class="seta"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div></div>
+  <div class="meio item">
+    <div class="n">02</div>
+    <h2>Pergunte o que o impediu de fechar.</h2>
+    <p>A resposta vai te servir de ensinamento.</p>
+  </div>
+  <div class="rodape">@horusagencia.br</div>
+</section>
+
+<section class="slide">
+  <div class="topo"><div class="marca"><span class="av"><img src="../../../../../../site/assets/simbolo-grande.png" alt=""></span><span>Horus<small>Agência</small></span></div><div class="seta"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div></div>
+  <div class="meio item">
+    <div class="n">03</div>
+    <h2>Nunca termine a conversa sem um próximo passo!</h2>
+    <p>Antes de se despedir, combine o dia de voltar a falar.</p>
+  </div>
+  <div class="rodape">@horusagencia.br</div>
+</section>
+
+<section class="slide">
+  <div class="topo"><div class="marca"><span class="av"><img src="../../../../../../site/assets/simbolo-grande.png" alt=""></span><span>Horus<small>Agência</small></span></div><div class="seta"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div></div>
+  <div class="meio item">
+    <div class="n">04</div>
+    <h2>Confirme sempre no dia anterior.</h2>
+    <p>Se o cliente não puder ir, você ainda encaixa outra pessoa no horário.</p>
+  </div>
+  <div class="rodape">@horusagencia.br</div>
+</section>
+
+<section class="slide">
+  <div class="topo"><div class="marca"><span class="av"><img src="../../../../../../site/assets/simbolo-grande.png" alt=""></span><span>Horus<small>Agência</small></span></div><div class="seta"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div></div>
+  <div class="meio item">
+    <div class="n">05</div>
+    <h2>Peça avaliação no dia da entrega.</h2>
+    <p>Peça enquanto ele ainda está contente. Amanhã ele já esqueceu.</p>
+  </div>
+  <div class="rodape">@horusagencia.br</div>
+</section>
+
+<section class="slide">
+  <div class="topo"><div class="marca"><span class="av"><img src="../../../../../../site/assets/simbolo-grande.png" alt=""></span><span>Horus<small>Agência</small></span></div><div class="seta"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div></div>
+  <div class="provoca">
+    <svg class="faisca" viewBox="0 0 80 80" fill="none" stroke="#0062d6" stroke-width="7" stroke-linecap="round"><path d="M44 12 L52 34"/><path d="M14 30 L40 44"/><path d="M12 64 L38 60"/></svg>
+    <div class="serif">Chato <i>mesmo</i> é<br><i>perder uma venda</i></div>
+    <div class="forte">por vergonha de mandar uma <span class="sub">mensagem!<svg viewBox="0 0 300 34" preserveAspectRatio="none"><path d="M4 22 C 80 8, 200 6, 296 16" fill="none" stroke="#0062d6" stroke-width="7" stroke-linecap="round"/></svg></span></div>
+  </div>
+  <div class="rodape">@horusagencia.br</div>
+</section>
+
+<section class="slide">
+  <div class="topo"><div class="marca"><span class="av"><img src="../../../../../../site/assets/simbolo-grande.png" alt=""></span><span>Horus<small>Agência</small></span></div></div>
+  <div class="cta">
+    <h2>Qual dessas chatices você ainda precisa colocar em prática?</h2>
+    <div class="botao">Conta aqui <span class="e">👇</span></div>
+    <p>E compartilha com aquele empreendedor que precisa ler isso!</p>
+  </div>
+  <div class="rodape">@horusagencia.br</div>
+</section>
+
+</body>
+</html>

@@ -11,7 +11,7 @@
 [[headers]]
   for = "/assets/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 # HTML sempre revalidado, mais cabeçalhos de segurança.
 [[headers]]

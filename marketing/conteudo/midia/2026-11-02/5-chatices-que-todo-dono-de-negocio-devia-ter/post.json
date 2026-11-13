@@ -1,0 +1,75 @@
+{
+  "serie": "tweet",
+  "rotulo": "",
+  "titulo": "5 chatices que todo dono de negócio devia ter",
+  "pilar": "Atendimento e venda no WhatsApp",
+  "formato": "Print de tweet, lista numerada com frase pronta",
+  "objetivo": "Salvar: o dono guarda as cinco frases prontas para usar na conversa com o cliente.",
+  "etapa_funil": "Atração",
+  "hipotese": "Frase pronta de WhatsApp em par de cartões (ilustração e conversa) é salva mais que lista só de texto.",
+  "experimento": false,
+  "dia": 3,
+  "legenda": "Cliente pediu orçamento e sumiu? Mande um segundo oi. Quem não insiste deixa a venda para quem é insistente!\n\nAs 5 chatices que todo dono de negócio devia ter:\n\n1. Mande um segundo oi para o cliente que sumiu depois do orçamento.\n2. Pergunte o motivo quando ele diz que não quer fechar. A resposta vai te servir de ensinamento.\n3. Nunca termine a conversa sem um próximo passo. Combine o dia de voltar a falar.\n4. Confirme sempre no dia anterior. Se o cliente não puder ir, você encaixa outra pessoa no horário.\n5. Peça avaliação no dia da entrega, enquanto o cliente ainda está contente.\n\nAs conversas do post são exemplos. Troque o nome e o produto pelo seu e use hoje.\n\nSalve este post e mande para o dono de negócio que tem vergonha de insistir.\n\nQual dessas chatices você ainda tem vergonha de fazer? Conta aqui 👇\n\n#atendimento #vendas #whatsappbusiness #negociolocal #donodenegocio",
+  "slides": [
+    {
+      "tipo": "capa",
+      "titulo": "*5 chatices* que todo dono de negócio devia ter",
+      "imagem": { "pedido": "A smartphone lying flat on a small shop counter, two huge electric blue double-check marks floating up out of the screen, a small hourglass standing next to the phone. One centered composition, generous empty space on the left and right so a square crop works." },
+      "conversa": [ { "de": "voce", "texto": "Oi, Paula! Segue o orçamento do armário. ✓✓" } ],
+      "exemplo": true
+    },
+    {
+      "tipo": "conteudo",
+      "titulo": "Tem dono de negócio que não manda mensagem para não parecer chato.",
+      "paragrafos": [ "O cliente pede orçamento, some e fica por isso.", "*Ser chato do jeito certo é o que fecha negócio.*" ]
+    },
+    {
+      "tipo": "conteudo",
+      "titulo": "*1. Mande um segundo oi para o cliente.*",
+      "paragrafos": [ "Quem não insiste deixa a venda para quem é insistente!" ],
+      "imagem": { "pedido": "A silver service bell on a small shop counter, two curved sound waves coming out of it on each side. One centered composition, generous empty space on the left and right so a square crop works." },
+      "conversa": [ { "de": "voce", "texto": "Oi, Paula! Conseguiu ver o orçamento do armário? Qualquer dúvida, me chama." } ],
+      "exemplo": true
+    },
+    {
+      "tipo": "conteudo",
+      "titulo": "*2. Pergunte o motivo quando ele diz que não quer fechar.*",
+      "paragrafos": [ "A resposta vai te servir de ensinamento." ],
+      "imagem": { "pedido": "A large magnifying glass held over a big question mark sculpted like a 3D object, the question mark seen through the lens. One centered composition, generous empty space on the left and right so a square crop works." },
+      "conversa": [ { "de": "cliente", "texto": "Vou deixar pra depois, obrigada!" }, { "de": "voce", "texto": "Sem problema! Me conta o que fez você desistir? Assim eu melhoro aqui." } ],
+      "exemplo": true
+    },
+    {
+      "tipo": "conteudo",
+      "titulo": "*3. Nunca termine a conversa sem um próximo passo!*",
+      "paragrafos": [ "Antes de se despedir, combine o dia de voltar a falar." ],
+      "imagem": { "pedido": "A desk calendar standing on a table, one day circled with a thick electric blue ring, all other days blank. One centered composition, generous empty space on the left and right so a square crop works." },
+      "conversa": [ { "de": "cliente", "texto": "Vou ver com meu marido e te falo." }, { "de": "voce", "texto": "Combinado! Posso te chamar quinta?" } ],
+      "exemplo": true
+    },
+    {
+      "tipo": "conteudo",
+      "titulo": "*4. Confirme sempre no dia anterior.*",
+      "paragrafos": [ "Se o cliente não puder ir, você ainda encaixa outra pessoa no horário." ],
+      "imagem": { "pedido": "A round alarm clock with two bells on top and a big electric blue check mark on its face instead of numbers. One centered composition, generous empty space on the left and right so a square crop works." },
+      "conversa": [ { "de": "voce", "texto": "Oi, Bia! Confirmando sua escova amanhã às 15h. Tá de pé? 💇‍♀️" }, { "de": "cliente", "texto": "Tá sim, obrigada por lembrar!" } ],
+      "exemplo": true
+    },
+    {
+      "tipo": "conteudo",
+      "titulo": "*5. Peça avaliação no dia da entrega.*",
+      "paragrafos": [ "Peça enquanto ele ainda está contente. Amanhã ele já esqueceu." ],
+      "imagem": { "pedido": "One big glossy golden-yellow star with a ribbon, five small stars around it, the only warm yellow accent of the series. One centered composition, generous empty space on the left and right so a square crop works." },
+      "conversa": [ { "de": "voce", "texto": "Que bom que o Thor voltou cheiroso! 🐶 Se puder deixar uma avaliação no Google, ajuda muito a gente." } ],
+      "exemplo": true
+    },
+    {
+      "tipo": "impacto",
+      "titulo": "Chato mesmo é perder venda por vergonha de mandar mensagem!"
+    },
+    {
+      "tipo": "cta",
+      "titulo": "Qual dessas chatices você ainda tem vergonha de fazer? Conta aqui 👇"
+    }
+  ]
+}

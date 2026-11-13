@@ -661,7 +661,7 @@ body.limpo .rotulo{display:none}
    com véu escuro à esquerda para o texto. Os 3 passos ficam na coluna esquerda
    sobre o escuro; a xícara aparece à direita. Ícones dourados. */
 .passos{position:relative;background:var(--escuro);padding:100px 0;overflow:hidden}
-.passos-bg{position:absolute;inset:0;z-index:0;background:url(cafe-como-comprar.webp) right center/cover no-repeat}
+.passos-bg{position:absolute;inset:0;z-index:0;background:url(cafe-como-comprar.webp?v=2026-11-04) right center/cover no-repeat}
 .passos::after{
   content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(90deg,

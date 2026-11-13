@@ -15,6 +15,13 @@ function secoes(texto, inicios) {
   return inicios.map((ini) => { const i = texto.indexOf(ini); if (i < 0) return ''; const f = texto.indexOf('\n## ', i + ini.length); return texto.slice(i, f < 0 ? undefined : f).trim(); }).filter(Boolean).join('\n\n');
 }
 
+/* A pesquisa de 09/10 em uma página (12/11/2026). Desde 03/11 ela vem acima da doutrina antiga, e a /prospeccao do chat
+   lê este arquivo primeiro. Até 12/11 só a resposta automática a recebia: a investigação, o agente, o crítico, a
+   reescrita e a mensagem personalizada escreviam pela doutrina antiga (a regra 13, "não diga IA na abertura", só existe
+   aqui). Lida na hora, como o resto: editou o arquivo, o próximo pedido já usa. */
+const TITULO_PESQUISA = 'A PESQUISA DE 09/10 EM UMA PÁGINA (vem ACIMA da doutrina antiga desde 03/11/2026: onde o network ou a 20-escrita brigar com ela, vale a pesquisa; integridade e compliance travam acima das duas)';
+const pesquisa = () => { const t = ler('_memoria/prospeccao/15-o-que-deu-certo.md').trim(); return t ? `=== ${TITULO_PESQUISA} ===\n${t}` : ''; };
+
 /**
  * O conhecimento de prospecção da casa, lido do repositório na hora (29/09/2026): a análise de conversa roda
  * em modo leve (sem ferramentas, imune a injeção pelo texto do lead), então em vez de mandar ela ler os
@@ -22,6 +29,7 @@ function secoes(texto, inicios) {
  */
 export function doutrinaConversa() {
   const blocos = [
+    [TITULO_PESQUISA, ler('_memoria/prospeccao/15-o-que-deu-certo.md')],
     ['O JEITO DE FALAR E OS DEZ PASSOS (network §10 e §12)', secoes(ler('_conhecimento/network/abordagem-e-prospeccao.md'), ['## 10.', '## 12.'])],
     ['ABRIR, QUALIFICAR, AGENDAR (cold-message-processo)', ler('_conhecimento/network/cold-message-processo.md')],
     ['ESCRITA (29/09, com a regra da recepção)', ler('_memoria/prospeccao/20-escrita.md')],
@@ -211,6 +219,30 @@ COMO ENTREGAR
 - No fim, responda SÓ com \`\`\`json {"total": n, "resumo": "o que você viu do nicho nessa cidade em 3 frases", "melhores": ["nomes dos 3 mais promissores e por quê"]}.`;
 }
 
+/* ------------------------------ Negócio sem perfil no Google ------------------------------ */
+// 13/11/2026, Marcelo: "o google maps escapa quem não tem google meu negócio". A busca do Maps só acha quem já tem
+// perfil; esta procura o contrário fora dele e confere no navegador, um por um, que o perfil não existe.
+export function promptSemGoogle({ nicho, cidade, quantidade, observacao, listaId }) {
+  return `Encontre até ${quantidade} negócios reais e ativos do nicho "${nicho}" em ${cidade} que NÃO têm perfil no Google (Google Meu Negócio). A Horus vende a criação desse perfil, então o achado só vale se a falta do perfil estiver conferida.
+${observacao ? `\nObservação do Marcelo: ${observacao}\n` : ''}
+COMO ACHAR OS CANDIDATOS (fora do Google Maps)
+1. Procure onde quem não tem perfil aparece: Instagram (WebSearch "site:instagram.com ${nicho} ${cidade}", "${nicho} <bairro> instagram"), Facebook, iFood, Doctoralia, GuiaMais, Apontador, catálogos e listas do nicho.
+2. Fique só com negócio ativo: post ou avaliação dos últimos 90 dias, telefone ou WhatsApp publicado, bairro ou endereço. Negócio parado não compra.
+
+COMO CONFERIR QUE NÃO TEM PERFIL (obrigatório, um por um, no navegador)
+3. Abra https://www.google.com/maps/search/<nome do negócio>+<bairro ou cidade> e leia o resultado.
+   - Abriu a ficha do negócio, ou ele aparece na lista: TEM perfil. Descarte e conte em "com_perfil".
+   - Não apareceu: faça a segunda busca com o telefone ou o @ do Instagram no lugar do nome. Não apareceu de novo: NÃO TEM perfil.
+   - Ficha com nome parecido e endereço diferente, ou qualquer dúvida: descarte.
+4. Se o Google pedir verificação, CAPTCHA ou login, pare as conferências na hora. Salve só os que já conferiu e diga no resumo onde parou. Nunca tente contornar.
+
+COMO ENTREGAR
+- Salve com mcp__hound-dog__hd_lista_adicionar_itens, lista_id "${listaId}", em lotes de até 8, SÓ os conferidos sem perfil, com gmb_status "ausente" e, em "fontes", o link onde achou o negócio.
+- Em "observacao", uma frase: "Sem perfil no Google; <o sinal de que está ativo>". Ex.: "Sem perfil no Google; Instagram com 2.300 seguidores e post desta semana".
+- NÃO INVENTE NADA. Campo que não achou, omita. Nunca acrescente nem tire dígito de telefone.
+- No fim, responda SÓ com \`\`\`json {"total": n salvos, "conferidos": n de candidatos conferidos no Maps, "com_perfil": n descartados porque tinham perfil, "resumo": "o que você viu em 3 frases", "melhores": ["os 3 mais promissores e por quê"]}.`;
+}
+
 /* ------------------------------ Dossiê de empresa ------------------------------ */
 export function promptDossie({ empresa, atividades }) {
   return `Monte o dossiê de pré-reunião desta empresa, no padrão da casa (Horus-Comercial/40-dossie-pre-reuniao.md).
@@ -327,6 +359,8 @@ _conhecimento/network/cold-message-processo.md, _conhecimento/network/objecao-ja
 _conselho/cargos/compliance.md. E a pasta _memoria/prospeccao/ (29/09): 10-sinais.md (a biblioteca de sinais S1 a S15 e o
 "por que agora" do segmento), 20-escrita.md, exemplos.md (o padrão de voz: só mensagens do Marcelo), voz-marcelo.md,
 aprendizados.md (o que as respostas reais ensinaram) e 99-checklist.md (rode antes de devolver).
+
+${pesquisa()}
 
 AS SEIS CAMADAS (faça todas; anote fonte e data de cada achado)
 1. Empresa e pessoas: CNPJ (WebFetch em https://brasilapi.com.br/api/cnpj/v1/<cnpj> — ache o CNPJ pelo nome/endereço em cnpj.biz ou casadosdados),
@@ -706,6 +740,7 @@ AS CANDIDATAS
 ${candidatas.map((c, i) => `[${i}] passo ${c.passo}${c.tipo ? ` (${c.tipo})` : ''}${c.formato ? ` · formato ${c.formato}` : ''}${c.variante ? ` · ${c.variante}` : ''}${c.angulo ? ` · ${c.angulo}` : ''}: ${c.texto}\n    revisor mecânico: ${c.revisor?.length ? c.revisor.map((r) => `${r.nivel}: ${r.dica}`).join(' | ') : 'nada'}`).join('\n')}
 
 A RÉGUA (da casa; é ela que você aplica, não gosto próprio)
+${pesquisa()}
 === CHECKLIST ===
 ${ler('_memoria/prospeccao/99-checklist.md')}
 === CARA DE IA ===
@@ -781,6 +816,7 @@ A RÉGUA
 - Nada de "bom dia/boa tarde/boa noite". Nada de fato que não esteja na lista acima. Nada de tese descartada.
 - Anotação pro Marcelo entre parênteses no fim é permitida só se ele precisar fazer algo antes (ex.: tirar um print).
 
+${pesquisa()}
 === A VOZ DO MARCELO ===
 ${ler('_memoria/prospeccao/voz-marcelo.md')}
 === CARA DE IA ===
@@ -820,6 +856,8 @@ O que falta: ${critica.o_que_falta || '—'}
 
 O QUE O MARCELO JÁ CORRIGIU NESTE LEAD (nunca volte ao que ele tirou)
 ${correcoes.length ? correcoes.map((c) => `- ${typeof c === 'string' ? c : c.texto}`).join('\n') : 'Nada registrado.'}
+
+${pesquisa()}
 
 APRENDIZADOS DA CASA (respostas reais e correções dele; valem mais que a sua ideia)
 ${ler('_memoria/prospeccao/aprendizados.md')}
@@ -902,6 +940,83 @@ export function doutrinaTriagem({ nichos = [], amplos = [], semMapa = false, res
     if (semMapa) blocos.push(['MAPA DOS OUTROS NICHOS (para lead "sem nicho mapeado")', `Se o negócio cair num destes, abra com Read só a seção dele em _gestao/catalogo/02-nichos-amplos.md; se não cair em nenhum, siga só com o geral.\n${NICHOS_AMPLOS.map(([t]) => `- ${t.replace(/^## /, '')}`).join('\n')}`]);
   }
   return blocos.filter(([, t]) => t && t.trim()).map(([t, c]) => `=== ${t} ===\n${c.trim()}`).join('\n\n');
+}
+
+/* O lote do Fischer (13/11/2026, PLANO-AGENTES.md, seção "Fischer"). A busca do Maps já passou pelo filtro que o Marcelo
+   escolheu na tela. Aqui o Claude confere cada empresa, escolhe as N melhores e escreve a primeira mensagem (M1), o FU1 e o
+   FU2 de cada escolhida. Decidido pelo Marcelo: a M1 leva "cliente qualificado" e oferece site + Google + Google Ads,
+   sem "IA"; a prévia não vai na M1; a investigação profunda só roda em quem mostrar interesse. */
+export function promptLote({ itens, quantidade = 10, foco = 'geral', doutrina = '', naJanela = false }) {
+  const FOCO = {
+    google: 'O Marcelo quer vender o PERFIL NO GOOGLE (Google Meu Negócio) neste lote. Prefira quem tem o perfil fraco: poucas avaliações, sem horário, sem fotos do lugar, sem site no perfil, sem resposta às avaliações. O gancho é o que você viu no perfil.',
+    site: 'O Marcelo quer vender SITE neste lote. Prefira quem não tem site, tem site fora do ar ou só um link de rede social. Domínio divulgado que não abre vira gancho.',
+    geral: 'Sem foco escolhido: o gancho mais forte e verificável de cada empresa decide (site, perfil no Google, caminho até o WhatsApp).',
+  }[foco] || '';
+  return `${doutrina ? `O QUE A CASA SABE. Os blocos GERAL valem pra todo lead; um bloco NICHO vale só para os leads cujo campo "nicho" aponta pra ele
+
+${doutrina}
+
+` : ''}${pesquisa()}
+
+MONTE O LOTE DO FISCHER: das empresas abaixo, escolha as ${quantidade} melhores para a primeira mensagem de prospecção no WhatsApp.
+Elas vieram da busca do Google Maps do Hounder e já passaram pelo filtro que o Marcelo escolheu na tela (nota, avaliações, site,
+celular). O seu trabalho é o que um filtro não faz.
+
+FOCO DESTE LOTE: ${FOCO}
+
+EMPRESAS (os "dados" vieram do Maps: horários, fotos, comentários, CNPJ quando já conferido)
+${JSON.stringify(itens, null, 1)}
+${itens.some((i) => i.gmb_status === 'ausente') ? `
+EMPRESAS COM gmb_status "ausente" vieram da busca "Sem Google": o Claude achou fora do Maps (Instagram, catálogos) e conferiu que
+não há perfil no Google. Confira de novo no Maps (passo 1). Se o perfil não existe mesmo, o gancho é esse: quem procura o serviço
+no Google não encontra a empresa. A M1 diz o que você viu ("procurei a <empresa> no Google e não achei o perfil de vocês") e oferece
+montar o perfil. Achou o perfil? Use o perfil real e conte em "divergencias".
+` : ''}
+PARA CADA EMPRESA (uns 3 minutos cada, uma de cada vez)
+1. Google Maps (navegador, https://www.google.com/maps/search/<nome+bairro+cidade>?hl=pt-BR): aberta? o perfil do Google como está
+   (fotos do lugar, horário, descrição, site, se responde às avaliações)? as avaliações recentes têm maioria negativa?
+2. Instagram: o @ certo (confira por nome, bairro e telefone; homônimo é comum), último post, link da bio.
+3. Site: se existir, abre? é próprio ou plataforma genérica?
+4. Critérios do Wagner (skill /prospecta-maps): fora quem é rede ou franquia, filial de outra cidade, CNPJ inapto ou baixado,
+   e quem já tem bem feito o que venderíamos. MEI e empresa nova só saem se o CNPJ já conferido mostrar isso.
+5. O gancho: o fato verificável que o dono confere em segundos, visto por você nesta rodada (dois caminhos quando der).
+
+ESCOLHA
+- "escolhido": true nas ${quantidade} com o gancho mais forte e o dono mais provável de atender o WhatsApp. Se menos de ${quantidade}
+  passarem, escolha só as que passam: nunca complete o lote com empresa fraca.
+- "decisao": "passa" (serve, escolhida ou não) ou "descarta" (com o motivo, em uma frase, com o que você viu).
+
+AS MENSAGENS (só das escolhidas)${naJanela ? `
+Escreva cada mensagem pela skill /prospeccao (ela lê primeiro _memoria/prospeccao/15-o-que-deu-certo.md, a fala humana e o
+revisor). O Hounder roda o revisor mecânico quando grava, e o que ele acusar aparece em vermelho pro Marcelo.
+${regrasParaPrompt()}` : `
+Escreva pelo conhecimento de prospecção da casa que vem neste pedido (a pesquisa de 09/10 vem acima da doutrina antiga).`}
+- M1, uma mensagem só, até 60 palavras, no jeito do Marcelo ("Oi, aqui é o Marcelo."): o fato que você viu no Google (nota e
+  avaliações, ou o que falta no perfil), o que ele faz ("eu trago cliente qualificado para empresas como a sua, com site, perfil no
+  Google e Google Ads: gente que já está procurando o serviço no Google"), e fecha com "Topa eu te mostrar como a <empresa>
+  poderia aparecer para quem precisa agora?". Sem "IA", sem número que você não viu, sem preço, sem link, sem prévia, sem emoji,
+  sem travessão. Varie a frase de uma empresa para outra: o lote não pode sair com o mesmo esqueleto.
+- FU1 (48 horas depois, se não responder): uma frase curta que retoma sem cobrar, com um fato novo do perfil se houver.
+- FU2 (3 dias depois do FU1, o último): despedida leve que deixa a porta aberta. Depois dele, ninguém insiste.
+- "verificacao": cada frase com fato da M1, a fonte (Maps, Instagram, site) e como você conferiu.
+
+INTEGRIDADE
+- Nunca mude, acrescente ou tire dígito de telefone. Número diferente entre Maps e Instagram vai em "divergencias".
+- Não afirme posição na busca. Não afirme ausência sem ter olhado. Campo que você não conferiu fica de fora.
+- Cliente de saúde (CFO, CFP, CFM): sem promessa de resultado e sem "cliente qualificado"; troque por "gente que já procura o
+  serviço no Google".
+- Se o navegador pedir login, anote em "divergencias" e siga com o que der.
+
+Responda SÓ com \`\`\`json no formato:
+{"resumo": "uma frase sobre o lote", "itens": [{
+  "id": "id do item", "decisao": "passa" | "descarta", "escolhido": true, "motivo": "uma frase com o que você viu",
+  "gancho": "o fato verificável (só se passa)",
+  "site": "url ou omita", "site_status": "sem|fora_do_ar|ruim|ok", "instagram": "@ confirmado", "instagram_seguidores": 0,
+  "google_nota": 0, "google_avaliacoes": 0, "gmb_status": "como está o perfil do Google, em uma frase",
+  "divergencias": [], "sinais": ["S3: o que você viu"], "oportunidades": ["hipótese: solução + por que encaixa"],
+  "m1": "texto (só escolhidas)", "fu1": "texto", "fu2": "texto",
+  "verificacao": [{"frase": "trecho da M1", "fonte": "Maps", "como_conferiu": "abri o perfil em 13/11"}]
+}]}`;
 }
 
 export function promptTriagem({ itens, doutrina = '' }) {

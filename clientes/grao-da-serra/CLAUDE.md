@@ -6,7 +6,17 @@
 > **ESTADO (21/10/2026): trabalho concluído.** Site novo no Netlify (cafegraodaserra.netlify.app), zip entregue em 16/10.
 > O Nelson agradeceu e deixou avaliação no Google da Horus (1º case). O Marcelo ofereceu, sem custo e pra juntar case,
 > tráfego, social media ou e-commerce; o Nelson ainda vai dizer o que faz sentido. O CRM pago saiu da fila. Pendente:
-> autorização de case e os números do Google dele (tarefa de 22/10), Search Console (23/10).
+> autorização de case e os números do Google dele (tarefa de 22/10). **Search Console feito em 03/11** (verificado pelo arquivo google4d1e45f4409a276e.html, que não pode sair do site; sitemap enviado; falta pedir a indexação, a cota do dia acabou).
+> 🔴 **04/11: site no ar sem CSS e sem imagens.** O deploy de 03/11 subiu só os arquivos soltos, sem `assets/` (19 arquivos
+> em 404). Republicar sempre o pacote INTEIRO do `montar_entrega.py` (36 arquivos), nunca só o arquivo novo. Zip pronto:
+> `Downloads/Site Grão da Serra (republicar 04-11).zip`.
+> **Causa confirmada pelo registro da sessão (04/11):** o Marcelo pediu o deploy (21h01); a sessão zipou com o
+> `Compress-Archive` do PowerShell, que grava `assets\arquivo` (barra invertida) e o Netlify não cria a pasta, e conferiu
+> só o arquivo de verificação e a home (200), nunca os assets. Regra: zip só por `python zipfile` com `/`, e depois do
+> deploy conferir TODO asset do HTML em HTTP 200 antes de declarar feito (4h40 no ar quebrado, 21h04 à 1h46).
+> Segunda causa: o `/assets/*` tinha cache imutável de 1 ano e a Netlify aplica o cabeçalho também ao 404, então quem
+> abriu o site na falha guardou a imagem "inexistente" por um ano. Corrigido: todo link de asset leva `?v=2026-11-04` e
+> o cache de `/assets/*` virou `max-age=0, must-revalidate` (no `site/netlify.toml` e no `montar_entrega.py`).
 >
 > **Indicação (21/10/2026, 21h41):** o Nelson tem um lead pra Horus. Explicou o escopo do nosso trabalho, o lead
 > mostrou interesse; segunda 26/10 o Nelson encontra com ele, explica melhor e passa o contato do Marcelo ("aí vc

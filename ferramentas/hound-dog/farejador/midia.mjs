@@ -294,6 +294,7 @@ export function doutrinaMidia({ curta = false } = {}) {
     ['PERFIL DO INSTAGRAM DA HORUS (público, pilares, voz, o que nunca vai ao ar)', lerRepo('identidade/social/perfil.md')],
     ['ANTIPADRÕES (correções do Marcelo, com o porquê)', lerRepo('_memoria/conteudo/90-antipadroes.md')],
     ['DIREÇÃO DE ARTE (moldura fixa, mundo variável, imagem que mostra a ideia, nunca o visual do post anterior; 23/10)', lerRepo('_memoria/conteudo/20-direcao-de-arte.md')],
+    ['A REFERÊNCIA ÚNICA DA HORUS DESDE 13/11/2026: @v4company (estrutura, moldura e o que fica de fora)', lerRepo('_memoria/conteudo/referencias/2026-11-13-v4company.md')],
     ['CHECKLIST DO POST (vetos e rubrica)', lerRepo('_memoria/conteudo/99-checklist.md')],
     ['IMAGEM E CONSISTÊNCIA ENTRE SLIDES (skill /carrossel)', secao(skill, '## Passo 4')],
   ];
@@ -584,7 +585,7 @@ Responda só no formato pedido.`;
    Sherlock do opensquad; o carrossel só nasce depois de ele aprovar os temas e o esqueleto (/carrossel, Claude Code).
    O Claude do Farejador não roda comando (Bash bloqueado), por isso o radar dos perfis é feito aqui pelo código com
    ferramentas/social/bin/referencias.mjs (Playwright sem login, nunca curte nem segue) e chega pronto no pedido. */
-export const RADAR_PADRAO = ['brun0gpt', 'aprendeconvalerio', 'brunofragaoficial', 'barretobru', 'eugersonrodrigues', 'ideiasquepagam25'];
+export const RADAR_PADRAO = ['v4company', 'brun0gpt', 'aprendeconvalerio', 'brunofragaoficial', 'barretobru', 'eugersonrodrigues', 'ideiasquepagam25'];
 const BIN_REFERENCIAS = path.join(RAIZ_REPO, 'ferramentas', 'social', 'bin', 'referencias.mjs');
 const espera = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -864,9 +865,9 @@ ${JSON.stringify(recentes)}
 ${modelo ? `=== UM ESBOÇO QUE O MARCELO APROVOU EM 03/11/2026 (nível de acabamento esperado; o texto dele é o jeito dele de falar) ===\n${modelo}\n\n` : ''}${anterior && pedido ? `=== ESBOÇO ATUAL E O PEDIDO DE AJUSTE DO MARCELO (mude só o que ele pediu) ===\nPEDIDO: ${pedido}\nESBOÇO: ${JSON.stringify(anterior)}\n\n` : ''}Escreva o ESBOÇO deste post: o texto exato de cada slide, a imagem e o layout. Ainda não existe slide nem imagem; o Marcelo aprova isto no painel primeiro.
 1. ABRA a fonte do tema com WebFetch e confira cada fato e número. Fato que você não conseguiu conferir NÃO entra no texto do slide: vai em "pendencias" (uma linha: o que falta e onde conferir). Exemplo de conversa inventada leva "exemplo": true.
 2. ABRA com Read o carrossel de referência indicado na ideia (a folha.jpg do radar ou dos estudos, quando existir) e siga a organização dele. Preencha "referencia" com conta, código e o que o post segue.
-3. ESTÉTICA: o que o Marcelo aprovou em 05/11 (o "5 chatices" v2, roteiro do ChatGPT): fundo escuro, título GRANDE no alto, UMA imagem forte por slide (objeto 3D que mostra a ideia, mesmo material e luz na série), número grande em cada item. Nunca imagem e conversa lado a lado, nunca cartão de "exemplo" ao lado da imagem. Print real da tela quando o post ensina ferramenta (marque no pedido que é print e vem de fonte real). Nunca a série do último post.
+3. ESTÉTICA: desde 13/11/2026 a Horus segue 100% a @v4company (estudo em "A REFERÊNCIA ÚNICA DA HORUS"; folhas em _memoria/conteudo/referencias/2026-11-13-v4company/, abra pelo menos uma com Read). Capa-manchete: assunto famoso em letra média + palavra-choque GIGANTE condensada em caixa alta + tarja azul com o complemento, cena do assunto atrás. Miolo: o caso real em capítulos, um fato com número, data e fonte por slide, prova visual em todo slide (recorte de manchete ou print REAL da fonte, gráfico desenhado em código a partir do número, objeto 3D da marca citada). Todo slide termina num botão-ponte azul no pé com a frase que puxa o próximo e uma seta. Penúltimo: "O que isso muda no seu negócio" com ação concreta pro dono pequeno. Último: CTA do link da bio. Fundos alternam (claro, azul #0077ff chapado, escuro, foto), nunca o vermelho da V4. NUNCA pessoa real gerada por IA (nem celebridade, nem CEO): quando a história pede gente, objeto que representa ou foto real com crédito. Sem "comente PALAVRA".
 4. TEXTO no jeito do Marcelo (a seção "Como escrever" acima): imperativo, convicção sem atenuante, frase reta, uma ideia por frase, fecha com o que o dono ganha ou perde. Sem "ou seja:", sem "pra você X, pro cliente Y", sem "não é X, é Y".
-5. "imagem.pedido" em inglês, objeto nomeado, sem texto, número, rosto, logo nem print; centralizado, com espaço vazio dos lados.
+5. "imagem.pedido" em inglês, objeto nomeado, sem texto, número, rosto nem print (o logo só da marca do caso, como objeto 3D, no jeito da V4); centralizado, com espaço vazio dos lados.
 6. "dia": 1 segunda, 3 quarta, 5 sexta. Confira feriado e o que já está nesses dias. "muda": o que muda em relação ao post anterior, citando qual. "riscos": onde este post pode falhar.
 7. Legenda de 1.000 a 1.800 caracteres, primeira frase com palavra-chave de busca, no máximo 5 hashtags, sem link.
 

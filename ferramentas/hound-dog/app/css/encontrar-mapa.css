@@ -198,6 +198,8 @@
 .mz .mz-chips button.mz-on { background: var(--txt); border-color: var(--txt); color: #fff; }
 .mz .mz-qty { flex-wrap: nowrap; flex: none; gap: 4px; }
 .mz .mz-qty button { padding: 6px 9px; }
+.mz .mz-motores { display: grid; grid-template-columns: repeat(3, 1fr); }
+.mz .mz-motores button { justify-content: center; text-align: center; white-space: nowrap; padding: 8px 4px; }
 
 .mz input[type=range] {
     -webkit-appearance: none;

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-14 0 434 348" width="434" height="348">
+  <!-- Símbolo do olho da Horus, redesenhado em vetor em 29/10/2026 sobre o PNG da marca
+       (site/site-fontes/marca-simbolo.png). Cores chapadas para impressão: azul, branco e dourado da pupila. -->
+  <g fill="none">
+    <path id="sobrancelha" d="M14 80 Q185 -25 356 80" stroke="#2F6BEA" stroke-width="20" stroke-linecap="round"/>
+    <path id="haste" d="M99 186 L118 186 L73 314 L54 314 Z" fill="#2F6BEA" stroke="none"/>
+    <path id="espiral" d="M250 168 C290 150 322 200 291 246 S300 320 340 285" stroke="#2F6BEA" stroke-width="20" stroke-linecap="round"/>
+    <path id="olho" d="M352 142 Q180 50 10 140 Q130 216 250 168" stroke="#F2F2F0" stroke-width="18" stroke-linejoin="miter" stroke-miterlimit="12" stroke-linecap="round"/>
+  </g>
+  <circle id="pupila" cx="178" cy="142" r="28" fill="#D4A437"/>
+</svg>

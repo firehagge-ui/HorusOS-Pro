@@ -126,6 +126,24 @@
         ],
         "createdAt": "2026-10-15T19:00:00.000Z",
         "reason": "Os 37 caracteres em caixa alta sao os rotulos curtos de secao (2 a 3 palavras cada), nao texto corrido; vem dos mockups do Marcelo de 15/10/2026. Vale so para o Grao da Serra."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "marketing/conteudo/midia/2026-11-02/5-chatices-que-todo-dono-de-negocio-devia-ter/v2/carrossel.html"
+        ],
+        "createdAt": "2026-11-13T19:23:42.164Z",
+        "reason": "Claude: a section .slide é a própria tela 1080x1440 do carrossel; o texto fica a 84-108px da borda. Falso positivo de carrossel já registrado em _memoria/conteudo/90-antipadroes.md"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "marketing/conteudo/midia/2026-11-02/5-chatices-que-todo-dono-de-negocio-devia-ter/v3/carrossel.html"
+        ],
+        "createdAt": "2026-11-13T19:23:42.504Z",
+        "reason": "Claude: a section .slide é a própria tela 1080x1440 do carrossel; o texto fica a 84-108px da borda. Falso positivo de carrossel já registrado em _memoria/conteudo/90-antipadroes.md"
       }
     ]
   }

@@ -96,6 +96,9 @@ rascunho. A ordem abaixo é a que funcionou.
 
 - **Área de atendimento só com as cidades atendidas de verdade.** "Brasil" ou o estado inteiro
   dilui o ranqueamento local; o Google orienta região de até ~2 h de deslocamento.
+  **Cidade que o cliente não nomeou não entra, nem deduzida de "região metropolitana"** (Débora, 10/11/2026: comecei a pôr
+  Lauro de Freitas e Camaçari, e o Marcelo cortou com "cuidado com o que preencher"; nada foi salvo). Na ficha de cliente,
+  campo sem dado dele fica como está e vira pergunta.
 - **Nome sem palavra-chave.** O nome real da empresa ("Horus Agência"), não "Hórus Marketing
   Digital". Palavra-chave no nome arrisca suspensão; a categoria faz esse trabalho. Troca de
   nome passa por revisão (até 7 dias).

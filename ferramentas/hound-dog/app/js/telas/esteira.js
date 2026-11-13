@@ -29,7 +29,7 @@ export default async function esteira(v) {
   v.className = 'vista cheia';
   v.innerHTML = `
     <div class="cab"><div class="tt"><h1>Esteira</h1><p>Onde cada negócio está, do primeiro contato ao fechamento.</p></div>
-      <div class="acoes"><a class="btn" href="#/encontrar?planilha=1">${icone('upload')}Importar da lista</a><button class="btn" data-investigar-lote title="Põe os leads do Novo na fila da investigação profunda, um por vez">${icone('radar')}Investigar Novos</button><button class="btn prim" data-novo>${icone('mais')}Novo lead</button></div></div>
+      <div class="acoes"><a class="btn" href="#/encontrar?planilha=1">${icone('upload')}Importar da lista</a><button class="btn" data-investigar-lote title="Escolha os leads que mostraram interesse e investigue todos de uma vez, um depois do outro">${icone('radar')}Investigar</button><button class="btn prim" data-novo>${icone('mais')}Novo lead</button></div></div>
     <div class="kpis" data-kpis></div>
     <div class="barra-ferramentas">
       <div class="busca" style="flex:1;max-width:380px">${icone('busca')}<input class="inp" data-busca placeholder="Buscar por nome, nicho, cidade, @…"></div>
@@ -229,23 +229,41 @@ export default async function esteira(v) {
   area.addEventListener('keydown', (ev) => { if (ev.key === 'Enter' && ev.target.classList.contains('cartao')) abrirFicha(ev.target.dataset.id); });
 
   $('[data-novo]', v).onclick = () => novoLead();
+  // Investigar (13/11/2026, pedido do Marcelo): a investigação começa quando o lead mostra interesse. Ele marca os leads em
+  // conversa e investiga todos de uma vez; cada um roda na sua própria conversa, um depois do outro. No PC abre a janela do
+  // chat. O jeito antigo (os do Novo) continua aqui embaixo até o lote novo provar que rende igual ou melhor.
   $('[data-investigar-lote]', v).onclick = async () => {
-    const { perguntar, toast, erroAmigavel } = await import('../ui.js');
+    const { modal, toast, erroAmigavel, esc, botaoCarregando } = await import('../ui.js');
     const { criarJob } = await import('../sb.js');
     const { data: fila } = await sb.from('jobs').select('empresa_id').eq('tipo', 'investigar_empresa').in('status', ['fila', 'processando']);
     const naFila = new Set((fila || []).map((j) => j.empresa_id));
-    const candidatos = estado.empresas
-      .filter((e) => e.estagio === 'novo' && e.relacao === 'lead' && !e.arquivado && !naFila.has(e.id) && !(e.tags || []).includes('investigado'))
-      .sort((a, b) => (b.score || 0) - (a.score || 0));
-    if (!candidatos.length) { toast('Nenhum lead do Novo esperando investigação', 'info'); return; }
-    const r = await perguntar(`Quantos investigar? (${candidatos.length} no Novo, do maior score pro menor)`, { valor: String(Math.min(5, candidatos.length)), placeholder: 'um número, ou "todos"', rotulo: 'Pôr na fila' });
-    if (r == null) return;
-    const n = /todos/i.test(r) ? candidatos.length : Math.max(0, Math.min(candidatos.length, parseInt(r, 10) || 0));
-    if (!n) return;
-    try {
-      for (const e of candidatos.slice(0, n)) await criarJob('investigar_empresa', {}, { empresa_id: e.id }, 5);
-      toast(`${n} na fila da investigação. Um por vez, 20 a 40 min cada; aviso no seu WhatsApp a cada um.`, 'info');
-    } catch (err) { toast(erroAmigavel(err), 'erro'); }
+    const livre = (e) => e.relacao === 'lead' && !e.arquivado && !naFila.has(e.id);
+    const conversa = estado.empresas.filter((e) => livre(e) && ['abordado', 'conversando', 'reuniao', 'proposta', 'negociacao'].includes(e.estagio))
+      .sort((a, b) => ['conversando', 'reuniao', 'proposta', 'negociacao', 'abordado'].indexOf(a.estagio) - ['conversando', 'reuniao', 'proposta', 'negociacao', 'abordado'].indexOf(b.estagio));
+    const novos = estado.empresas.filter((e) => livre(e) && e.estagio === 'novo' && !(e.tags || []).includes('investigado')).sort((a, b) => (b.score || 0) - (a.score || 0)).slice(0, 30);
+    const noPC = matchMedia('(pointer: fine)').matches && innerWidth > 900;
+    const nomeEst = (id) => (estado.estagios.find((x) => x.id === id)?.nome || id);
+    const item = (e) => `<label class="check" style="display:flex;padding:6px 0"><input type="checkbox" data-inv="${e.id}"> <span><b>${esc(e.nome)}</b> <span class="dim">· ${esc(nomeEst(e.estagio))}${(e.tags || []).includes('investigado') ? ' · já investigado' : ''}</span></span></label>`;
+    const m = modal({
+      titulo: 'Investigar', subtitulo: 'Marque os leads que mostraram interesse. Cada um é investigado na sua própria conversa, um depois do outro.', icone: 'radar', largo: true,
+      corpo: `<div class="rotulo mb-8">Em conversa</div>${conversa.map(item).join('') || '<p class="dim">Nenhum lead em conversa agora.</p>'}
+        <details class="mt-16"><summary class="rotulo">No Novo (o jeito antigo: investigar antes do primeiro contato)</summary><div class="mt-8">${novos.map(item).join('') || '<p class="dim">Nenhum lead no Novo esperando.</p>'}</div></details>
+        <label class="check mt-16"><input type="checkbox" data-janela ${noPC ? 'checked' : 'disabled'}> Abrir na janela do chat, no PC, para eu assistir e corrigir</label>`,
+      pe: '<button class="btn" data-fechar>Cancelar</button><button class="btn prim" data-ir disabled>Investigar</button>',
+    });
+    const ir = m.el.querySelector('[data-ir]');
+    const marcados = () => [...m.el.querySelectorAll('[data-inv]:checked')].map((x) => x.dataset.inv);
+    m.el.querySelectorAll('[data-inv]').forEach((x) => (x.onchange = () => { const n = marcados().length; ir.disabled = !n; ir.textContent = n ? `Investigar ${n}` : 'Investigar'; }));
+    ir.onclick = async () => {
+      const ids = marcados(); if (!ids.length) return;
+      const janela = noPC && m.el.querySelector('[data-janela]')?.checked;
+      botaoCarregando(ir, true, 'Pondo na fila…');
+      try {
+        for (const id of ids) await criarJob('investigar_empresa', { janela: Boolean(janela), motivo: 'Mostrou interesse na conversa' }, { empresa_id: id }, 4);
+        m.fechar();
+        toast(`${ids.length} na fila da investigação, um por vez. Aviso no seu WhatsApp a cada um.`, 'info');
+      } catch (err) { toast(erroAmigavel(err), 'erro'); botaoCarregando(ir, false); }
+    };
   };
   const inpBusca = $('[data-busca]', v);
   inpBusca.oninput = debounce(() => { busca = inpBusca.value; desenhar(); }, 200);

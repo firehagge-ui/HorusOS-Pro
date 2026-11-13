@@ -86,8 +86,9 @@ do símbolo. Sem Inter, Montserrat ou Poppins em texto.
   clientes segue 4:5 até o teste dizer o contrário.
 - Identidade travada em `identidade/social/carrossel-referencia.html` (criada com os 3 fixados).
 - **ChatGPT liberado em todo post da Hórus** para elementos visuais (fundo, textura, objeto
-  ilustrativo): o Mídia gera pelo Chrome do Marcelo, que fica aberto no PC; nunca no lugar de
-  pessoa ou trabalho real. (Marcelo, 07/10/2026)
+  ilustrativo), nunca no lugar de pessoa ou trabalho real. (Marcelo, 07/10/2026) Desde 28/10 o Mídia não monta mais
+  post; a imagem sai na `/carrossel`, depois do esboço aprovado, por uma das rotas de
+  `_memoria/conteudo/30-quem-faz-o-que.md` §3.
 
 ## 9. Autonomia
 

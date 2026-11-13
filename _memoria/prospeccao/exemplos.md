@@ -24,6 +24,16 @@ Resultado: `[FALTA: quantos responderam da lista de 28/09 — o envio foi manual
 **Aceitar a saída (Casa Verona, 24/09, depois da recusa).** O modelo de resposta a "não tenho interesse".
 > Entendi, faz todo sentido. O atendimento de vocês é o que faz a casa. De qualquer forma, obrigado pelo retorno
 
+## Pedido a cliente (Débora Reis, 09/11, escrito por ele)
+
+Sem explicar o motivo, com folga de tempo e em frases curtas.
+> Débora, quero deixar as páginas dos projetos mais completas. Quando tiver um tempinho me conte sobre os apartamentos, o que pediram, o que você mudou, quanto tempo levou. Pode ser por áudio. 1 minuto por projeto já vale. Se tiver mais fotos, me mande também. Até de antes da reforma.
+
+Avaliações, também escrita por ele:
+> Débora, agora que o site está ligado ao seu perfil, o próximo passo é avaliação. O Google conta as avaliações pra decidir quem aparece primeiro quando alguém procura arquiteta em Salvador. Quer que eu deixe uma mensagem pronta com o link, pra você mandar aos seus clientes antigos? Amigo e parente que já foi seu cliente vale também.
+
+Resultado: ainda não enviadas.
+
 ## Corpos escolhidos pelo Marcelo no teste cego (29/09)
 
 Escolhidos sem saber qual método tinha escrito cada um. Resultado ainda não medido.

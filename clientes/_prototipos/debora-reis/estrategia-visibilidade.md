@@ -208,7 +208,9 @@ contar a história de um projeto, ele ganha página; antes disso, fica na págin
   com "faz um ano". Quem já reformou com ela volta e indica.
 - **Corretores e imobiliárias da região:** quem compra ou aluga apartamento procura arquiteta logo depois. Uma página
   do site para os corretores mandarem aos clientes (o que dá para fazer num apartamento comprado, como ela trabalha).
-  Pagar comissão a corretor por indicação: `[a conferir com o CAU-BA]` antes de oferecer qualquer coisa.
+  Pagar comissão a corretor por indicação: **não**. A regra 5.2.2 do Código de Ética (Res. CAU/BR 52/2013) impede
+  a arquiteta de oferecer vantagem a alguém para favorecer indicação de futuros contratantes (conferida no texto
+  oficial em 04/11/2026).
 - **Profissionais da obra e de acabamento:** marceneiros, empreiteiros, eletricistas, lojas de revestimento e de
   iluminação, o fotógrafo Roberto. A troca de indicação entre eles é natural. **A trava do CAU:** a arquiteta não
   pode receber comissão, presente ou vantagem de fornecedor por especificar produto (a "reserva técnica", vedada pelo

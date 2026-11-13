@@ -1,0 +1,123 @@
+{
+  "serie": "escuro",
+  "rotulo": "GEMINI + PERFIL DO GOOGLE",
+  "titulo": "Pergunte ao Gemini como foi o mês do seu negócio",
+  "pilar": "Google explicado pro dono",
+  "formato": "Tutorial (demonstração com print real, um passo por slide)",
+  "objetivo": "Salvar: o dono guarda os quatro pedidos prontos e faz o teste no perfil dele.",
+  "etapa_funil": "Atração",
+  "hipotese": "Um tutorial com print real da conta da própria Horus é mais salvo que uma lista ilustrada, porque prova que o recurso funciona aqui.",
+  "experimento": false,
+  "legenda": "Gemini e Perfil da Empresa no Google: pergunte como foi o mês do seu negócio e receba a resposta numa conversa.\n\nO Google conta quem viu seu perfil, quem ligou e quem pediu rota até você. Conecte o perfil ao Gemini e ele lê esses números por você. Fizemos o teste no perfil da Horus e mostramos cada tela no post.\n\nFaça em quatro passos:\n\n1. Conecte o Perfil da Empresa ao Gemini.\n2. Pergunte: \"Como foi o desempenho da minha empresa este mês?\"\n3. Peça: \"Me ajude a responder a minha última avaliação.\"\n4. Pergunte: \"O que está faltando no meu perfil?\"\n\nLeia cada resposta do Gemini antes de publicar. O perfil é seu e o nome que assina a resposta também.\n\nFonte: Blog do Google Brasil, \"Economize tempo e impulsione seu negócio com as novas ferramentas do Gemini\", 2 de julho de 2026.\n\nSalve este post e faça o teste hoje no seu perfil.\n\nQual número do seu mês te surpreendeu? Conta aqui 👇\n\n#googlemeunegocio #gemini #negociolocal #donodenegocio #perfildaempresa",
+  "dia": 3,
+  "slides": [
+    {
+      "tipo": "capa",
+      "titulo": "*Pergunte ao Gemini* quantas pessoas pediram rota até você",
+      "imagem": {
+        "pedido": "A smartphone lying flat on a small shop counter, a large glossy electric blue map pin rising out of the screen, a dotted route line curving from the pin across the counter, a small four-point sparkle star floating next to the pin. One centered composition, generous empty space on the left and right so a square crop works."
+      }
+    },
+    {
+      "tipo": "conteudo",
+      "titulo": "O Google anota quem chega no seu perfil.",
+      "lista": {
+        "estilo": "checks",
+        "itens": [
+          "Quem viu",
+          "Quem ligou",
+          "Quem pediu rota"
+        ]
+      },
+      "paragrafos": [
+        "Agora o Gemini lê esses números e responde numa conversa."
+      ],
+      "fonte": "Fonte: Blog do Google Brasil, 02/07/2026"
+    },
+    {
+      "tipo": "conteudo",
+      "titulo": "*1. Conecte o perfil do Google ao Gemini.*",
+      "paragrafos": [
+        "Abra o Gemini e ligue o Perfil da Empresa. Leva um clique."
+      ],
+      "imagem": {
+        "pedido": "The same large glossy electric blue map pin standing on a small shop counter, joined to the same small four-point sparkle star by a short glossy electric blue cable with a plug clicked into place between them. No screen, no interface. One centered composition, generous empty space on the left and right so a square crop works."
+      },
+      "fonte": "Fonte: Blog do Google Brasil, 02/07/2026"
+    },
+    {
+      "tipo": "conteudo",
+      "titulo": "*2. Pergunte como foi o mês.*",
+      "paragrafos": [
+        "A resposta traz os números do seu perfil no mês."
+      ],
+      "buscas": {
+        "rotulo": "Digite no Gemini",
+        "itens": [
+          "Como foi o desempenho da minha empresa este mês?"
+        ],
+        "destaque": 0
+      },
+      "fonte": "Pergunta sugerida pelo Google, Blog do Google Brasil, 02/07/2026"
+    },
+    {
+      "tipo": "conteudo",
+      "titulo": "Pare de caçar o gráfico no painel.",
+      "antes_depois": {
+        "rotulo_antes": "Em vez de",
+        "antes": "Abrir o painel, achar o menu e procurar o número de rotas.",
+        "rotulo_depois": "Pergunte assim",
+        "depois": "“Quantas pessoas pediram rota até mim este mês?”"
+      }
+    },
+    {
+      "tipo": "conteudo",
+      "titulo": "*3. Peça ajuda com a última avaliação.*",
+      "paragrafos": [
+        "Digite: “Me ajude a responder a minha última avaliação.” Leia antes de publicar."
+      ],
+      "imagem": {
+        "pedido": "A blank white speech bubble card standing upright on a small shop counter, five small outlined stars in a row above it, the same small four-point sparkle star touching the corner of the card like a pen tip. No letters, no numbers, no face. One centered composition, generous empty space on the left and right so a square crop works."
+      },
+      "fonte": "Pedido sugerido pelo Google, Blog do Google Brasil, 02/07/2026"
+    },
+    {
+      "tipo": "conteudo",
+      "titulo": "*4. Pergunte o que falta no seu perfil.*",
+      "paragrafos": [
+        "Preencha hoje o que ele apontar."
+      ],
+      "buscas": {
+        "rotulo": "Digite no Gemini",
+        "itens": [
+          "O que está faltando no meu perfil?"
+        ],
+        "destaque": 0
+      }
+    },
+    {
+      "tipo": "impacto",
+      "titulo": "Os números do seu mês já existem. Pergunte por eles!",
+      "paragrafos": [
+        "Quem não olha o mês decide no chute."
+      ]
+    },
+    {
+      "tipo": "cta",
+      "titulo": "Faça o teste hoje e conta aqui: qual número do seu mês te surpreendeu? 👇"
+    }
+  ],
+  "referencia": "@aprendeconvalerio DeMjygEjb3c (\"7 códigos de WhatsApp que quase ninguém usa\", 754 comentários). Folha olhada em identidade/social/referencias/2026-10-10-valerio/folha-valerio-whats.jpg. Este post segue a organização: um passo por slide, número grande no título, o que digitar destacado e o resultado na tela logo abaixo. Ficam de fora o caderno roxo, o rosto e o \"comenta LISTA\". No lugar do balão desenhado entra o print real da tela do Gemini.",
+  "muda": "O post anterior foi o \"5 chatices\" (série tweet, fundo branco, um objeto 3D do ChatGPT por item). Este sai na série escuro. Só a capa é ilustrada. O miolo traz print real da tela no lugar do objeto 3D, e um par ✕/✓ quebra a sequência de prints. A capa da pauta (\"O Gemini vai ler suas avaliações do Google, você querendo ou não\") saiu porque é falsa: o Gemini só lê o perfil quando o dono conecta. A capa nova manda fazer, com a cena da rota.",
+  "riscos": "1. O post depende do teste na conta da Horus. Se a conexão não aparecer no Brasil, não responder em português ou não trazer número, o post não existe (os slides 3, 4, 6 e 7 viram promessa sem prova). 2. O perfil \"Horus Agência\" pede verificação de novo desde 05/11 e está sem Desempenho. Sem verificação, o Gemini pode não ter número nenhum pra mostrar: verificar antes do teste. 3. O número de um perfil novo é baixo. Mostrar \"3 rotas no mês\" expõe o tamanho da Horus: o Marcelo decide se mostra ou borra. 4. A avaliação do perfil da Horus é de cliente (Nelson, Grão da Serra). Print com o nome dele só com autorização escrita; sem ela, borrar. 5. A conexão dá ao Gemini acesso pra alterar o perfil (horário, posts). No teste, não aceitar nenhuma alteração sem querer, e o post não manda o dono mudar nada às cegas. 6. O Google não diz se o recurso é grátis e a liberação é gradual. O post não fala em \"grátis\", e quem ainda não tiver o recurso vai comentar que não achou. 7. O caminho exato da conexão muda entre a versão web e o app: o slide 3 descreve só o que o print mostrar.",
+  "pendencias": [
+    "Fazer o teste na conta da Horus (sessão com o Claude pelo Chrome): conectar o Perfil da Empresa ao Gemini, fazer as três perguntas em português e tirar os quatro prints. Se falhar, o post cai e a vaga vai pra outro tema.",
+    "Antes do teste, verificar de novo o perfil 'Horus Agência' (pede verificação desde 05/11). Sem Desempenho, os slides 4 e 5 não têm prova.",
+    "Conferir na tela o caminho exato da conexão (Extensões ou Apps, web ou app do celular) e o 'um clique' do Google. O slide 3 descreve só o que o print mostrar.",
+    "Testar no Gemini a pergunta do par ✕/✓ ('Quantas pessoas pediram rota até mim este mês?') e a pergunta da capa. Se não vier o número de rotas, trocar a capa e o par pela pergunta que funcionou.",
+    "Decisão do Marcelo: mostrar os números reais do perfil da Horus ou borrar.",
+    "Avaliação do Nelson no print do slide 6: pedir autorização escrita ou borrar o nome e a foto.",
+    "A pauta citava o post do Google de 20/10/2026. O post que traz as perguntas de exemplo e a lista do que o Gemini faz com o perfil é o de 02/07/2026 ('Economize tempo e impulsione seu negócio com as novas ferramentas do Gemini'). As fontes dos slides usam o de 02/07.",
+    "A semana de 02/11 já passou. Proposta: quarta, 11/11, ao meio-dia, se o teste der certo até segunda (10/11). Conferir o dia do post da Black Friday pra não cair no mesmo dia."
+  ]
+}

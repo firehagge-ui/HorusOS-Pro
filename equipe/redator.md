@@ -9,7 +9,7 @@
 
 ## Configuração de IA
 
-**Ferramentas:** skills `/carrossel`, `/publicar-tema`, `/seo`,
+**Ferramentas:** skills `/carrossel`, `/seo`,
 `/email-profissional`, `/responder-avaliacoes`, Firecrawl (pesquisa).
 
 **Tarefas atribuídas:**

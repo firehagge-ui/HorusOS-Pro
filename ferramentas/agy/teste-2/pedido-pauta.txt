@@ -1,0 +1,1982 @@
+=== O PADRÃO DA CASA (o que o Marcelo ensinou de 07 a 15/10/2026; vence qualquer referência de fora) ===
+## O padrão da casa (o que o Marcelo ensinou de 07 a 15/10/2026)
+
+Ler antes de tudo. É o que separa o post que ele aprova do que ele reprova. Origem e porquê de cada item em
+`_memoria/conteudo/90-antipadroes.md`.
+
+**Tema**
+- **O teste é: o Marcelo, como dono de negócio, salvaria isso?** "Eu já sabia" ou "isso eu resolvo sozinho" =
+  genérico, não vai (o "5 coisas pra pedir pro ChatGPT" foi reprovado por isso, 15/10).
+- **O que ele elogiou em 15/10:** "adorei como você montou tudo, tá muito bonito" (as capas com ilustração do
+  ChatGPT na mesma conversa, os cartões com print real, o par ✕/✓ com destaque) e "gostei demais" da bio (o recurso
+  que quase ninguém usa, com a fonte). Desde 20/10 o visual também reprova quando se repete (ver Visual abaixo).
+- **Tema que todo mundo já sabe vira ângulo de uso** (28/10): "negrito, lista e citação" não; "como usar melhor o
+  negrito e a citação no SEU WhatsApp Business", sim. A curiosidade do original ("7 códigos que quase ninguém usa")
+  tem que sobreviver na nossa versão.
+- O que ele aprovou: a frase pronta pra uma cena de cliente ("Quanto custa?"), o recurso que quase ninguém usa (a bio
+  com 5 links e botão de WhatsApp), o achado de um perfil que bombou refeito pro dono daqui.
+- O que ele não quer: tema de Google repetido, post sobre o método da Horus, isca "comenta PALAVRA" (sem bot de DM).
+- **Fonte de ideia nova:** os perfis em `identidade/social/referencias/perfis.md` (aqui e na gringa). Antes de propor
+  pauta, olhar o que fugiu da média neles.
+
+**Escrita**
+- **Capa se entende de relance** (28/10): até 10 palavras, uma ponta de curiosidade, sem linha de apoio que precise
+  ser lida. Se a pessoa tem que parar e ler com calma, a capa falhou.
+- **Introdução antes do passo** (28/10): o slide 2 situa a cena e o problema (onde fica, que bagunça resolve); só
+  depois vem o "faça assim". Nunca chegar mandando fazer como se o leitor já tivesse o contexto.
+- Frase inteira, com o verbo que diz o que fazer, como ele fala: "A bio **deve** responder três perguntas", nunca
+  manchete comprimida. Um dado por frase.
+- Gancho pergunta a cena e abre a hipótese, sem afirmar causa única ("...e sumiu? Talvez o problema não seja o preço").
+- Regra vira orientação com condição ("quando fizer sentido, até três opções").
+- A frase mais forte do post ganha slide próprio, pouco texto, contraste alto.
+- Exemplo do par ✕/✓ enxuto, com só os elementos que ensinam destacados (no preço: valor, o que inclui, a pergunta).
+- CTA pede uma situação vivida ("qual pergunta de cliente mais te deixou sem resposta?") ou o envio ("manda pro amigo
+  que..."). Fala humana: `references/fala-humana.md`.
+
+**Conteúdo**
+- Cada slide do miolo traz algo que o dono não sabia ou uma frase que ele vai copiar. Slide que só repete é cortado.
+- Todo fato com fonte conferida no dia, na linha do slide; exemplo inventado leva a etiqueta "exemplo".
+
+**Visual (todas as marcas, 23/10/2026)**
+- **Nunca o visual do post anterior.** O do cliente que volta (20/10) foi reprovado por repetir capa e sequência
+  do "Seu próximo cliente ainda não te segue". A moldura da marca fica; a linguagem e o mundo visual mudam.
+- **Coisa visual que mostra a ideia** em cada slide do miolo (objeto, interface, diagrama, cena); enfeite não conta.
+  Post que ensina ferramenta mostra a tela dela: print real ou réplica fiel em HTML, nunca objeto 3D genérico
+  (caixa de presente pro catálogo foi reprovada em 28/10).
+- **As séries prontas do Mídia ("escuro" e "tweet") não podem sair em dois posts seguidos** (28/10: o "Não sabe o que
+  postar" e o "4 ferramentas" saíram iguais).
+- **Fala direta**: a frase que o dono diria no balcão, nada de pergunta abstrata na capa.
+
+**Visual (Horus)**
+- Assina o avatar da Horus, nunca rosto. 1080 × 1440. Formatos que funcionaram: antes/depois de fala (escuro), print
+  de tweet (branco), lista de cartões (claro, borda e sombra deslocada azul).
+- Capa com ilustração do ChatGPT pelo Chrome, sempre na mesma conversa pra manter o estilo (balão, estrela, etiqueta).
+- Print de verdade quando o post fala de ferramenta.
+- Fundo chapado: **sem brilho azul no canto, sem barra grossa de um lado só, sem brilho colorido**. Destaque é fundo
+  tingido com borda fina.
+
+**Distribuição (fato de 19/10/2026)**
+- Os cinco primeiros posts alcançaram 2 a 3 contas cada, com zero salvamento e zero envio: o perfil ainda não chega em
+  quem não segue. Formato bom não resolve sozinho. Cada post leva junto um jeito de chegar em gente nova (story,
+  repost do Antônio e do Marcelo, colaboração, ou o post de contraste que vira anúncio, tarefa de 06/11).
+- A cadência trava na aprovação: post que não foi aprovado até a véspera perde a data (o do ChatGPT perdeu). Avisar o
+  Marcelo na véspera, com a folha, em vez de deixar na tela Semana.
+
+**Antes de mostrar**
+- Render com `ferramentas/social/bin/render-carrossel.mjs`, folha da série olhada, detector `npx impeccable@4.0.4`
+  (três regras dele não valem pra carrossel, ver `90-antipadroes.md`), checklist, até 5 hashtags.
+- Gravar em `social_posts` como `revisao` e mandar a folha pro Marcelo. Ele aprova na tela Semana.
+
+=== A ESSÊNCIA QUE O MARCELO QUER (estudo de 07/10, regras aprovadas em 08/10) ===
+# A essência que o Marcelo quer nos posts (estudo de 07/10/2026)
+
+Origem: o Marcelo não gostou dos últimos carrosséis do Mídia e mandou 4 referências, dizendo
+"é com essa essência que eu quero, não precisa ser desses nichos". Slides e legendas baixados
+nesta pasta (`2026-10-07/`, prefixo = código do post).
+
+| Código | Perfil | Tema | Formato |
+|---|---|---|---|
+| `Dd_9MEgkZWS` | @nacaothiagofinch | A regra dos 48 segundos (abordagem de venda) | Escuro, 4 slides numerados, "todo mundo faz ✗ / eu faço ✓" |
+| `Ddkp92NAC2W` | @lucureau | Estudo derruba mito de que só vídeo curto viraliza | "Print de tweet", 9 slides, gráfico como prova |
+| `DeAnxfDGWNv` | @lucureau | 31 formas de recuperar a atenção | Capa com foto + caixa branca, lista numerada, PDF por palavra-chave |
+| `DdAR0dugICW` | @lucureau | Ferramenta que espiona o concorrente (Social Blade) | "Print de tweet", 7 slides, revelação com blur |
+
+## O que é a essência (o que se copia)
+
+1. **Fala uma pessoa, não uma marca.** Foto, nome e @ em todo slide, em primeira pessoa e no
+   tom de conversa (":)", "hahaha", emoji pontual). Nossos posts falam como instituição: logo
+   HORUS no topo, "a ordem da casa", "seis coisas que a gente recusa".
+2. **O post entrega algo novo e útil pra quem lê, não fala de nós.** Um estudo com dado, uma
+   ferramenta que ele pode abrir hoje, a frase exata que ele deve dizer. É o próprio argumento do
+   post do Finch: "ninguém liga pra você, fala do problema dele". Hoje metade dos nossos posts é
+   sobre o método da Horus.
+3. **Cada slide tem prova visual.** Gráfico com círculo vermelho desenhado à mão, print da
+   ferramenta, meme com balão de fala, imagem borrada que só se revela adiante. A imagem é a
+   evidência, não enfeite. Nossos slides são só texto sobre degradê.
+4. **Gancho de notícia e fio de curiosidade.** "🚨 AGORA:", "ALERTA:", "Sabia que existe...". Cada
+   slide fecha puxando o próximo ("e tem um dado ainda mais interessante ➡️", "e TEM MAIS 👉").
+5. **Uma ideia por slide, texto grande, quase nada de corpo.** O print de tweet tem 2 a 4 linhas.
+   Os nossos têm título mais parágrafo de 4 linhas em letra pequena.
+6. **Contraste concreto, com fala literal.** "✗ Em vez de: 'Oi, sou o Thiago, trabalho com
+   marketing...' / ✓ Eu disse: 'Você tá perdendo...'". O leitor sai com a frase pronta.
+7. **CTA de conversa, não de venda.** Pergunta pra comentar ("você prefere curto ou longo?"),
+   palavra-chave pra receber material ("comenta VENEZA que eu te mando o PDF"), "se chegou até
+   aqui, tá no perfil certo :)". Nosso CTA é sempre "chama no WhatsApp pelo link da bio".
+
+## Linguagem visual observada
+
+- **Print de tweet:** fundo branco, avatar redondo + nome em negrito + @ cinza, texto preto
+  grande (fonte de sistema), uma imagem em card de canto arredondado. Parece conteúdo nativo da
+  plataforma, não peça de agência. É o formato que mais se repete (2 das 4).
+- **Escuro com acento único:** grafite, um laranja só pras palavras-chave, rótulo "01 / 04" com
+  fio, caixa com barra lateral pra citação, assinatura com avatar no rodapé de todo slide.
+- **Capa com gente:** foto real da pessoa + caixa branca com título enorme em negrito.
+- **Lista em grade:** número dentro de círculo na cor de acento, título em negrito, exemplo entre
+  aspas embaixo.
+- **Elemento de IA usado direito:** a curva de retenção com o pico rosa brilhando
+  (`DeAnxfDGWNv-02`) é ilustração, não dado. É esse o lugar do ChatGPT.
+
+## Como isso vira regra pra Horus (aprovada em 08/10/2026)
+
+- **Quem assina:** o avatar da Horus (símbolo + "Horus" + @horusagencia.br), não o rosto do
+  Marcelo. Decidido pelo Marcelo em 08/10/2026. O tom continua de gente, em primeira pessoa do
+  plural ("a gente"), sem cara de instituição.
+- **Pauta:** a régua passa a ser "o dono do negócio salva ou manda pra alguém?". Notícia de
+  Google, Instagram e WhatsApp com fonte; ferramenta grátis; frase pronta; erro comum com a
+  correção. Falar do método da Horus vira exceção, não pilar.
+- **Formatos:** entram dois novos ao lado dos sete de `_memoria/conteudo/00-formatos.md`:
+  "print de tweet" (fio de 6 a 9 slides) e "antes/depois de fala" (✗/✓ com a frase literal).
+- **ChatGPT:** gera ilustração, objeto, textura, cena e o meme-ilustração. **Nunca** gera gráfico
+  com número, print de ferramenta ou rosto: número vem de fonte real e é desenhado em código;
+  print é print de verdade (tirado pelo Chrome).
+- **Integridade não cede ao estilo:** nada de "fechei R$ 180 mil" sem ser verdade; todo dado com
+  fonte no slide ("Fonte: Socialinsider, jan a jun/26"); meme com foto de pessoa real só se o
+  Marcelo aprovar caso a caso.
+- **Prova do slide:** cada slide do miolo precisa de um elemento visual que prove ou mostre
+  (print, gráfico, ilustração, objeto). Slide só de texto é exceção (a virada, o fecho).
+- **CTA:** alternar pergunta pra comentário, palavra-chave pra material e o WhatsApp da bio.
+
+=== PERFIL DO INSTAGRAM DA HORUS (público, pilares, voz, o que nunca vai ao ar) ===
+# Perfil social da Horus (@horusagencia.br)
+
+> Camada de marca do agente social: o que o cérebro genérico lê antes de planejar, criar,
+> responder ou analisar qualquer coisa do Instagram da Horus. Criado em 27/09/2026 a partir da
+> auditoria aprovada (`auditoria-2026-09-27.md`), do `brandbook.md`, do `_memoria/comercial.md` e
+> do `_conhecimento/network/abordagem-e-prospeccao.md` §10.
+> Número de meta **não existe ainda**: a conta começou do zero em 27/09. Metas saem depois de
+> 4 semanas de dado, não antes.
+
+---
+
+## 1. Para que serve o canal (em ordem)
+
+1. **Prova para quem chega pela esteira.** O lead recebe a mensagem no WhatsApp, abre o perfil
+   e decide se a Horus existe de verdade. Objetivo O4 (Prova) do plano de negócio.
+2. **Conversa que nasce aqui.** Pessoa que viu o conteúdo e chama no WhatsApp pelo link da bio
+   ("Vim pelo Instagram da Horus"). Objetivo O2 (Originação).
+3. Alcance e seguidores são **diagnóstico**, nunca objetivo.
+
+## 2. Com quem fala
+
+Dono de negócio local ou profissional liberal em Salvador e região, sem time de marketing, que
+precisa de presença digital que gere agenda ou venda (brandbook 2.1 a 2.3). Na esteira de hoje:
+clínicas e consultórios, oficinas e estética automotiva, comércio e serviço de bairro.
+
+**Não fala com:** outros profissionais de marketing, quem quer "hackear o algoritmo", quem busca
+o mais barato (brandbook 2.4). Conteúdo sobre o nosso ofício (ferramenta, tendência de agência)
+só entra quando serve ao dono.
+
+## 3. Pilares
+
+| Pilar | O que é | Peso | Formatos que servem |
+|---|---|---|---|
+| **Google explicado pro dono** | Como a busca local funciona, o que a ficha mostra e esconde, erro comum de cadastro. É o mesmo assunto da mensagem da esteira | 35% | Lista, Mito vs Realidade, Tutorial, Problema → Solução |
+| **Como a Horus trabalha** | A régua da casa como argumento: você aprova, é dono, preço fechado, um bloco por vez, o que a gente recusa | 25% | Tese, Lista, História (bastidor) |
+| **Trabalho mostrado** | Projetos conceituais ("projeto nosso", nunca "cliente nosso") e trabalho de cliente **só com autorização escrita**. Transformação de processo (site velho → novo), nunca de pessoa | 25% | Transformação, História |
+| **Negócio local de Salvador** | Observação da cidade e de como o cliente daqui procura serviço | 15% | Tese, História |
+
+**Exploração:** até 20% do calendário pode ser experimento (tendência, formato novo, meme do
+nicho), sempre dentro de um pilar, marcado como experimento e com a mesma régua de qualidade.
+
+## 4. Cadência (fase 1)
+
+- **Feed:** 3 por semana. A cadência sai da capacidade de revisão do Marcelo, não do algoritmo.
+- **Stories:** 3 a 4 por semana, primeiro para montar os destaques (Como trabalhamos, Projetos,
+  Google, Fale com a gente).
+- **Horário:** começar ao meio-dia (fuso da Bahia). Horário só vira experimento com 12 posts ou mais.
+
+## 5. Caminho da conversão
+
+Conteúdo → perfil (bio + 3 fixados) → link da bio no **site** (horusagencia.com.br; decisão do Marcelo em
+10/10/2026, antes era o WhatsApp com "Vim pelo Instagram da Horus") → WhatsApp pelo site →
+conversa marcada no Hounder com origem Instagram → resposta **do Marcelo** (nunca do agente).
+
+CTA por objetivo: educativo pede **salvar**; prova pede **ver o site / o projeto**; conversão pede
+**chamar no WhatsApp pelo link da bio**. Um CTA por post, citando o conteúdo.
+
+## 6. Voz
+
+Brandbook §3 e `_memoria/preferencias.md`: claro, estratégico, frase curta e concreta, nomeia o
+que recusa. Olha como cliente, não como auditor. O problema é do Google, nunca do dono.
+
+- Sem jargão de agência: "funil", "autoridade", "otimizar perfil", "performance", "solução" saem.
+- Sem promessa de resultado ("primeiro lugar", "mais clientes") e sem superlativo.
+- Sem tracinho como separador, sem link na legenda.
+- Número só se for conferível no repositório ou vier de fonte citada.
+
+## 7. O que nunca vai ao ar
+
+- Nome, print ou busca de lead ou cliente sem autorização escrita. A investigação da esteira é
+  privada; o post fala do padrão, nunca de quem foi investigado.
+- Posição de alguém na busca que não foi conferida no dia (regra da prospecção).
+- Preço, faixa de preço ou "a partir de" (`_memoria/comercial.md`: preço vai para a conversa).
+- Material do network (`_conhecimento/network/`) citado como fonte: é privado.
+- Imagem de IA no lugar de trabalho real ou de pessoa.
+
+## 8. Visual
+
+Herda o site institucional (a pessoa que vai do Instagram para o site tem que reconhecer a casa):
+fundo void `#0e0918`, superfícies `#1a1624` e `#1b1728`, texto `#d1cece` e títulos `#ffffff`,
+destaque **azul elétrico `#0077ff`** (o quadradinho luminoso antes do rótulo), rótulos em
+**JetBrains Mono** caixa alta, títulos e corpo em **DM Sans**. Amarelo `#F4C430` só na pupila
+do símbolo. Sem Inter, Montserrat ou Poppins em texto.
+
+- **Formato: 1080 × 1440 (3:4)**, aprovado em 27/09/2026 para a Horus como teste; a regra dos
+  clientes segue 4:5 até o teste dizer o contrário.
+- Identidade travada em `identidade/social/carrossel-referencia.html` (criada com os 3 fixados).
+- **ChatGPT liberado em todo post da Hórus** para elementos visuais (fundo, textura, objeto
+  ilustrativo), nunca no lugar de pessoa ou trabalho real. (Marcelo, 07/10/2026) Desde 28/10 o Mídia não monta mais
+  post; a imagem sai na `/carrossel`, depois do esboço aprovado, por uma das rotas de
+  `_memoria/conteudo/30-quem-faz-o-que.md` §3.
+
+## 9. Autonomia
+
+Fase 1 da política (`ferramentas/social/marcas/horus.json`): tudo o que é público passa pela
+aprovação do Marcelo. Leitura, coleta e relatório rodam sozinhos.
+
+=== ANTIPADRÕES (correções do Marcelo, com o porquê) ===
+# Antipadrões: o que denuncia carrossel feito por IA
+
+> Catálogo vivo. **Toda correção do Marcelo em peça social entra aqui, com o
+> porquê.** Sem o porquê a regra vira superstição e é aplicada onde não devia.
+>
+> Irmão de `_memoria/design/90-antipadroes.md`, que cuida de site. Base inicial
+> adaptada do `opensquad`, 03/08/2026.
+
+---
+
+## Copy
+
+**Capa que anuncia em vez de parar.** "Hoje vamos falar sobre café", "5 dicas de
+implante", "Aion apresenta". A pessoa está em scroll rápido e a primeira fração
+de segundo decide tudo. Anúncio de intenção não para ninguém — o que para é fato
+concreto, pergunta incômoda ou tensão.
+→ *"O grão que você toma de manhã foi torrado há quanto tempo?" para. "Conheça
+nosso café" não.*
+
+**Afirmação factual sem dado nem fonte.** "Todo mundo está usando", "a maioria
+das pessoas sofre com isso", "é sabido que". Vago não convence, e em cliente de
+saúde vira risco: número inventado é informação falsa publicada sob o CRO ou o
+CRP de alguém. Vale a regra do `_memoria/integridade.md` — dado que falta vira
+`[FALTA: ...]` marcado, não texto plausível.
+
+**Copy que serve pra qualquer marca.** "A tecnologia está transformando a forma
+como nos relacionamos com o cuidado, criando novas possibilidades." Se a frase
+pode ser colada no carrossel de qualquer concorrente sem trocar uma palavra, ela
+não diz nada. Teste: trocar o nome do cliente pelo do concorrente. Se continua
+fazendo sentido, reescrever.
+
+**Carrossel só de informação, sem reflexão.** Dado, dado, dado, CTA. Memória é
+emocional: dado sem impacto é esquecido antes do próximo post. O penúltimo slide
+de conteúdo precisa ser o que incomoda, não o que informa.
+
+**Tom de coach / autoajuda motivacional.** "Sempre há uma saída", "basta olhar pra
+dentro", "você é mais forte do que pensa", "qual é a sua próxima jogada". Promete
+virada e joga a solução no colo de quem lê, como se bastasse querer enxergar. Em
+peça de psicólogo é problema duplo: soa raso e afasta justamente o público que
+percebe profundidade (o eixo arte + filosofia da Mayara existe pra fugir disso), e
+beira a promessa de resultado vedada pelo CFP. O antídoto não é pessimismo, é
+honestidade clínica — nem toda situação muda, e o que a terapia oferece não é a
+jogada mágica, é não reler o tabuleiro sozinho e poder escolher a atitude diante do
+que não muda (é Frankl, que é o oposto do coach).
+→ *Origem: a Mayara achou o post #1 "muito coach" ("a impressão é que basta olhar
+pra fora que você acha um caminho"), 12/08/2026. O eixo foi reescrito de "ainda há
+uma jogada" para "às vezes o xeque-mate é real, mas ninguém relê sozinho".*
+
+**CTA genérico.** "Nos siga", "link na bio", "salve este post" solto. Revela que
+ninguém pensou no próximo passo de quem leu. CTA bom cita o conteúdo:
+*"Salva. Da próxima vez que te oferecerem café mais barato, você vai saber a
+pergunta certa pra fazer."*
+
+**Jargão de marketing na boca do público.** "Ticket médio", "performance",
+"solução", "jornada", "experiência". Nenhum paciente, nenhuma aluna de
+hidroginástica e nenhum dono de padaria fala assim. Segue `_memoria/preferencias.md`.
+
+**Tema só informativo.** Post que explica um recurso ou uma regra sem novidade que o dono não
+sabe, sem prova nossa e sem polêmica que puxe comentário. Fica correto e ninguém compartilha.
+A pauta tem que passar por pelo menos um dos três.
+→ *Origem: o Marcelo achou fraca a 1ª pauta por tendência ("queria algo melhor") e não gostou dos
+temas de Google, 08/10/2026. Processo em `ferramentas/social/ARQUITETURA.md` §8.*
+
+**Gancho que afirma causa única.** "Talvez tenha sido a resposta" no fim é fraco; afirmar que
+toda perda vem da resposta é falso. O gancho bom pergunta a cena e abre a hipótese: "O cliente
+perguntou 'quanto custa?' e sumiu? Talvez o problema não seja o seu preço, mas a forma como você
+respondeu." Cria curiosidade sem prometer o que não dá pra provar.
+
+**Regra rígida onde cabe orientação.** "Três opções, no máximo" soa lei universal e não é.
+Escrever como orientação com condição: "Quando fizer sentido, ofereça até três opções claras."
+
+**Exemplo comprido no par ✕/✓.** No celular o exemplo é lido em 2 segundos. Enxugar e destacar
+no visual só os elementos que ensinam (no caso do preço: o valor, o que está incluso e a pergunta
+que mantém a conversa).
+
+**Frase mais forte afogada no meio.** A ideia que resume o carrossel ganha slide próprio, pouco
+texto e contraste alto, não um parágrafo igual aos outros.
+
+**CTA que pede opinião genérica.** "Qual pergunta você não sabe responder?" rende menos que pedir
+uma situação vivida: "Qual foi a pergunta de cliente que mais te deixou sem resposta? Conta aqui."
+→ *Origem das cinco: revisão do Marcelo no roteiro "Quanto custa?", 10/10/2026.*
+
+**Dica que o dono já sabe fazer sozinho.** "Peça pro ChatGPT responder uma avaliação", "descrever um produto": o
+dono olha e pensa "isso eu já faço" ou "isso eu resolvo sozinho". Para pra olhar, não salva. Teste antes da pauta:
+**o Marcelo, como dono de negócio, salvaria isso?** Se a resposta é "eu já sabia", o tema é genérico. Material
+salvável é inédito ou exclusivo: o achado de um perfil que bombou (aqui ou na gringa), o truque que quase ninguém
+usa, a prova que só a gente tem.
+→ *Origem: o Marcelo reprovou o "5 coisas pra pedir pro ChatGPT" em 15/10/2026 ("bem genéricos... eu não salvaria,
+eu não postaria"), mesmo achando o visual bonito.*
+
+**Título comprimido que esconde o verbo.** "A bio responde 3 perguntas em até 150 caracteres" lê como manchete de
+jornal. O Marcelo escreveria: "A bio **deve** responder três perguntas." Frase inteira, com o verbo que diz o que
+fazer, número por extenso quando cabe, um dado por vez. Clareza de gente falando vence a economia de palavra.
+→ *Origem: correção do Marcelo no slide 2 do post da bio, 15/10/2026 ("olha a diferença do que eu te disse agora
+pro que você escreveu").*
+
+**Tracinho como separador.** Nunca `—`, `–` ou ` - ` em copy de peça. Vírgula,
+ponto ou quebra de linha. Vale pra legenda também.
+→ *Origem: preferência antiga do Marcelo, registrada na memória.*
+
+**Superlativo.** "O melhor", "nº 1", "referência absoluta", "o mais completo".
+Além de gasto, é vedado no CFO e no CFP. Vale como hábito geral, não só nos
+clientes regulados: superlativo sem prova é ruído.
+
+**Legenda que passa de 2.000 caracteres.** O limite do Instagram é 2.200, mas as
+hashtags entram nele. Mirar 1.500 a 1.800 deixa a legenda respirar.
+
+**Link na legenda.** Legenda do Instagram não tem link clicável. URL ali queima
+caractere e denuncia amadorismo. Link vai na bio ou no sticker do story.
+
+**Chamada abstrata, escrita "de lado".** "Quanto vale um cliente que volta?", "Um cliente vale mais que a
+primeira compra". O dono não sabe responder na hora e não se vê na cena; soa como texto de IA, indireto e
+subjetivo. Capa fala a frase da cena ou a regra com verbo ("Não posso.", "Se você é empresário, estude"),
+pergunta só se a pessoa responde em um segundo.
+→ *Origem: o Marcelo reprovou o post do cliente que volta (semana de 19/10/2026): "o tema era bom, mas a
+forma como foi redigido não estava boa", "parece ser IA, falar de forma não direta e clara e meio subjetiva".*
+
+**Capa grande que precisa de leitura calma.** "Além da saudação, seu WhatsApp Business tem mais quatro ferramentas.
+Quantas estão ligadas aí?" (17 palavras e mais uma linha embaixo). Quem rola o feed não para pra ler; a capa se
+entende de relance, em até 10 palavras, com uma ponta de curiosidade ("os códigos que quase ninguém usa").
+→ *Origem: o Marcelo reprovou o "4 ferramentas do WhatsApp Business" (28/10/2026): "ficou grande, não ficou
+sexy. Pra entender logo de cara esse título a pessoa tem que parar e ler com calma".*
+
+**Entrar explicando sem introdução.** O slide 2 já manda fazer ("Separe quem pediu, quem pagou e quem espera
+entrega. Depois filtre as conversas...") como se o leitor já soubesse do que se trata. Antes do passo vem a cena
+e o problema: onde fica a ferramenta, que bagunça ela resolve, depois como usar.
+→ *Origem: mesma reprovação de 28/10/2026: "você já chega falando como se a pessoa já tivesse um contexto
+anterior... CALMA!".*
+
+**Tema que todo mundo já sabe, apresentado como novidade.** "Negrito, lista e citação no WhatsApp": o dono já
+conhece o recurso. O ângulo que salva é o uso no negócio dele: "como usar melhor o negrito, a citação etc. no SEU
+WhatsApp Business", com a mensagem real antes e depois.
+→ *Origem: reprovação de 28/10/2026 ("todo mundo já sabe, poderia ser...").*
+
+---
+
+## Design
+
+**Repetir o visual do post anterior.** Mesma capa (o olho 3D no mesmo canto), mesma sequência de layouts
+(números 01-02-03, lista, frase sublinhada, botão) em temas diferentes. O perfil vira a mesma peça repintada
+e o Marcelo não aprova. Consistência mora na moldura (assinatura, fontes, paleta); o mundo visual muda a
+cada post. Antes de montar, citar o post anterior da marca e dizer o que muda (`20-direcao-de-arte.md` §1 e §6).
+→ *Origem: post do cliente que volta (20/10/2026), reprovado por estar "com o mesmo visual que o post Seu
+próximo cliente ainda não te segue". Folhas lado a lado em `referencias/2026-10-23/horus-*.png`.*
+
+**Slide sem nada visual, ou com imagem que só enfeita.** Título e parágrafo sobre fundo chapado, ou o mesmo
+símbolo da marca em toda capa. A imagem tem que mostrar a ideia: objeto, interface, diagrama, cena
+(`20-direcao-de-arte.md` §2). Slide só tipográfico é escolha de ritmo, não falta de ideia.
+→ *Origem: mesma reprovação de 20/10/2026 ("não tinha muitas coisas visuais também") e a de 21/10 ("a
+pessoa olha, vê esse texto todo, não fica com vontade de ver").*
+
+**Objeto 3D no lugar da tela que se explica.** Caixa de presente pro catálogo, sacola pro QR code, caixa de
+ferramentas na capa: bonito e genérico, não mostra nada. Post que ensina ferramenta mostra a ferramenta: print da
+tela de verdade (tirado pelo Chrome) ou réplica fiel da interface em HTML, com o botão e o caminho que a pessoa vai
+tocar. ChatGPT não desenha interface.
+→ *Origem: reprovação do "4 ferramentas do WhatsApp Business" (28/10/2026): "é importante que tenham imagens
+mostrando exatamente o que você está explicando, pode ser prints ou montar exatamente como é aquilo".*
+
+**Contador de slide "1/8".** O Instagram já mostra os pontinhos de navegação
+nativos. Um contador desenhado dentro da arte é ruído redundante e um dos tells
+mais visíveis de template automático.
+⚠️ *Colide com a instrução antiga da `/carrossel`, que mandava pôr contador no
+canto superior direito de todos os slides. **Decisão pendente do Marcelo** —
+enquanto não decidir, a skill mantém o contador como opcional e desligado por
+padrão no Instagram.*
+
+**Barra lateral grossa no cartão.** Borda colorida de 6px ou mais num lado só do cartão, o
+"side-tab". É o sinal de interface de IA que o detector do impeccable mais pega. Cartão de destaque
+usa fundo tingido com borda fina em volta, sem brilho colorido (`dark-glow` também é tell).
+→ *Origem: post "Quem lê sua resposta à 1 estrela", 08/10/2026; a barra vinha da referência do
+Thiago Finch e o Marcelo aprovou trocar.*
+
+**Brilho azul no canto do slide (radial-spotlight-glow).** Degradê radial do acento sumindo no fundo, posto
+atrás do slide como "holofote". É enfeite reflexo de IA, e estava no modelo escuro dos posts de 08 e 12/10. Fundo
+chapado; luz só quando ela tem função (a ilustração já traz a dela).
+→ *Origem: detector oficial (`npx impeccable@4.0.4`) rodado em 15/10/2026 nos posts da semana de 12/10; o detector
+local tinha dado "limpo" nos mesmos arquivos. O "Quanto custa?" foi ao ar com o brilho.*
+
+**O detector é de site; três regras dele não valem pra carrossel.** `oversized-h1` (capa de carrossel é pra ser
+grande, o piso é de `10-legibilidade.md`), `clipped-overflow-container` (o slide é um quadro de 1080 de propósito) e
+`tight-leading` em frase de destaque de 90px ou mais (a regra mira texto corrido). Os outros achados valem. Silenciar
+no `.impeccable/config.json` só com o ok do Marcelo.
+
+**Texto sem proteção sobre foto.** Ver `10-legibilidade.md`. Sombra de texto não
+é proteção.
+
+**Sistema de design que muda no meio.** Fonte diferente no slide 3, cor nova no 5
+sem motivo narrativo, espaçamento que parece erro. Qualquer slide, solto, tem que
+ser reconhecível como parte daquele carrossel. Por isso o sistema de design se
+escreve **antes** do primeiro HTML, não durante.
+
+**Objeto que muda entre slides (imagem de IA que deriva).** A planta do slide 2
+vira árvore no 6, o grão de café muda de cor, a xícara troca de formato, o número
+de objetos na cena não bate. Denuncia geração de IA slide a slide sem âncora: cada
+geração independente é um sorteio, e o modelo não repete o objeto sozinho. O olho
+registra a série inteira como "peça amadora" mesmo sem saber nomear o quê. É a
+mesma falha da fonte que escorrega, mas no pixel gerado em vez do CSS. O porquê e a
+cura estão no Passo 4 da `/carrossel`: se o objeto tem que ser idêntico em vários
+slides, **não se gera N vezes** (gera uma e reposiciona o mesmo arquivo); quando é
+série de cenas diferentes, trava com cena-mestra + style lock fixo + objetos
+nomeados literalmente + seed fixa, e confere lado a lado antes do lote.
+→ *Origem: pedido do Marcelo em 14/08/2026 ("elementos do slide 1 fiéis no slide 8,
+plantas não viram árvores").*
+
+**Slide 1 igual aos outros.** A capa precisa de tratamento tipográfico maior e
+layout distinto. É o único slide que compete contra o feed inteiro; os outros
+competem só contra o dedo da pessoa.
+
+**Todos os slides com o mesmo layout.** Carrossel monótono é abandonado no meio.
+Alternar fundo (escuro, claro, destaque) e alternar layout. Nunca dois slides
+seguidos iguais.
+
+**Mais de cinco cores no sistema.** Primária, secundária, destaque, fundo, texto.
+Acabou. Variação sai dessas cinco, não de cor nova.
+
+**Foto de banco genérica.** Foto muito polida lê como anúncio e derruba alcance
+orgânico. No Grão da Serra tem um agravante: cafezal de banco de imagem **falseia
+a origem**, porque a família não tem lavoura. Foto ali é de beneficiamento,
+torra, embalagem e do Nelson.
+
+**Paleta corporate por reflexo.** Azul claro + branco + cinza é o default do
+modelo quando ninguém definiu nada. Se a marca do cliente não define, o caminho é
+o `identidade/catalogo-estilos.md`, não o reflexo.
+
+**Frase quebrada em rótulo pequeno + título grande.** "QUEM TE SEGUE" em
+eyebrow minúsculo e "Já te conhece." no título: é **uma frase só** partida em dois
+tamanhos, e o olho lê o grande primeiro, que sozinho não faz sentido. Se o rótulo
+completa a frase do título, ele entra no título ("Quem te segue *já te conhece.*",
+com a ênfase na cor da marca). Rótulo pequeno só existe quando é uma **categoria**
+de verdade, independente da frase, e mesmo assim não na capa, onde compete com o
+gancho.
+→ *Origem: o Marcelo sobre o carrossel "Seu próximo cliente ainda não te segue",
+post fixado da Horus, 27/09/2026: "faz o menor sentido esse título pequeno em cima
+e o grande embaixo".*
+
+---
+
+## Compliance (trava, não é gosto)
+
+**Depoimento de paciente.** Vedado na Aion em qualquer formato (CFP 011/2018).
+No Giovanni, só com autorização e nunca como promessa.
+
+**Antes e depois.** Vedado no site e nas peças de pessoa jurídica do Giovanni
+(CFO-196/2019), inclusive simulado por IA. Vedado na Aion em qualquer formato.
+
+**Promessa de resultado, cura ou prazo.** Vedado nos dois. Na Permita-se não é
+conselho que proíbe, mas resultado físico garantido não se promete.
+
+**Preço ou promoção como chamariz.** Vedado nos dois clientes regulados.
+
+**Conteúdo clínico não publica sem revisão do profissional responsável.** Vale
+pra carrossel e pra bot. Nenhuma exceção por urgência de calendário.
+
+**Alegação de saúde em alimento.** No Grão da Serra, sem "melhora o foco",
+"antioxidante", "faz bem pro coração". E sem jargão de café especial (nota de
+degustação, pontuação SCA, altitude, variedade) que o Nelson não tenha dito.
+
+=== DIREÇÃO DE ARTE (moldura fixa, mundo variável, imagem que mostra a ideia, nunca o visual do post anterior; 23/10) ===
+# Direção de arte de post e carrossel
+
+> Nasceu em 23/10/2026, do estudo de contas reais de psicologia, filosofia e pequeno negócio
+> (`referencias/2026-10-23-estudo.md`, folhas em `referencias/2026-10-23/`) e da reprovação do
+> post do cliente que volta (20/10): mesmo visual do "Seu próximo cliente ainda não te segue",
+> chamada subjetiva e quase nada visual. Vale pra Horus, pra May e pra todo cliente com Instagram.
+> A marca do cliente (`marca.md`) e o compliance vencem tudo daqui.
+
+## 1. Moldura fixa, mundo variável
+
+A consistência mora na **moldura**: o que está igual em todo slide de todo post (assinatura no alto
+e no pé, par de fontes, paleta, textura, margem). O **mundo visual** muda a cada post, escolhido pelo
+tema.
+
+Prova: a @psiandreabarini (referência que a May escolheu) usa nome e CRP no alto e no pé de todo slide,
+o mesmo par de fontes (serifa fina condensada em itálico + sans pesada pra palavra-chave) e a mesma paleta
+ardósia e creme. Mas cada carrossel tem um mundo: Aranhaverso pra "agradar os outros", foto P&B de
+adolescentes pra álcool, pintura de Ticiano pra Sísifo. Ninguém confunde um post com o outro, e ninguém
+duvida de quem é.
+
+O erro da casa até 23/10 foi o contrário: o molde do Mídia travou **o miolo** (mesma capa, mesma ordem de
+layouts) e deixou a moldura fraca. Resultado: posts de temas diferentes com a mesma cara.
+
+**Regra:** antes de montar, escrever o que é moldura (não muda) e o que é mundo (muda neste post).
+Capa e sequência de layouts nunca repetem as do post anterior da mesma marca.
+
+## 2. A imagem é a ideia, não o enfeite
+
+Nos posts que mais circularam, a imagem **explica** o conceito sozinha:
+
+| Post | Imagem | O que ela faz |
+|---|---|---|
+| "Enantiodromia" (@yurimocellin, 8.531 curtidas, imagem única) | pêndulo em gravura sobre página de livro antigo | o pêndulo é "a corrida para o oposto" |
+| "Os Círculos do Burnout" (@tarcisioelias_, 8.369) | três círculos concêntricos com os sintomas | o diagrama é o ciclo; a pessoa se acha nele |
+| "O que podemos controlar" (@portadoestoicismo, 6.913) | um diagrama diferente por slide: contorno, interseção de círculos, chaves de liga/desliga, círculo | a mesma ideia vista cinco vezes, cada slide com uma metáfora nova |
+| "Os 5 nãos que todo empreendedor precisa dar" (@barretobru) | o app de Notas do iPhone | parece pensamento anotado, não peça de agência |
+
+O 3D do olho da Horus, repetido em toda capa, é enfeite: não diz nada sobre o tema do post.
+
+**Pergunta que decide a imagem:** "que objeto, interface ou diagrama mostra essa ideia sem legenda?"
+Se a resposta é "nenhum", o slide fica tipográfico de propósito (ver §4), não com imagem genérica.
+
+## 3. Bonito não é o mesmo que circular
+
+A Andrea Barini tem o acabamento mais bonito do estudo e tirou 29 e 45 curtidas nos carrosséis de março
+de 2026. O "Círculos do Burnout" é quase só texto em fundo de papel e tirou 8.369. O que circulou tinha:
+- **um nome pra um padrão que a pessoa vive** (o ciclo perfeccionismo, ansiedade, burnout);
+- **a frase que ela diz pra si mesma** ("Só preciso fazer mais uma coisa", "Vou descansar depois");
+- **uma coisa pra fazer hoje** (o ritual de 7 passos);
+- **pedido de envio** no fim ("envia para 2 pessoas").
+
+Estética boa segura quem chegou; a ideia é que faz chegar. As duas coisas juntas são a meta.
+
+## 4. Catálogo de linguagens visuais
+
+Uma linguagem por post (a moldura da marca vai por cima). Escolher pelo tema, e não usar a mesma em dois
+posts seguidos.
+
+| Linguagem | Quando serve | Referência | Cuidado |
+|---|---|---|---|
+| **Verbete** (página de livro, termo, tradução, gravura) | conceito com nome (filosofia, psicologia, termo técnico do dono) | @yurimocellin "Enantiodromia" | ficha e atribuição conferidas |
+| **Diagrama na capa** (círculos, ciclo, eixo) | padrão, ciclo, mapa de sintomas, funil | @tarcisioelias_, @portadoestoicismo | o diagrama resume o post inteiro; o resto pode ser tipográfico |
+| **Interface nativa** (Notas, ajustes com chave liga/desliga, tweet, WhatsApp, busca do Google) | frase curta, lista de nãos, regra, conversa | @barretobru, @lucureau, série tweet da Horus | print de ferramenta real é print de verdade, nunca IA |
+| **Obra emoldurada fotografada** | arte + leitura psicológica (May) | projeto da May no ChatGPT | obra real; nu é bloqueado no gerador (§ ver `25-imagem-no-chatgpt.md`) |
+| **Colagem de gravura** (recortes de domínio público, etiqueta amarela) | lista de ideias, autodesenvolvimento, história | @portadoestoicismo "Maximização da Identidade" | só gravura em domínio público |
+| **Retrato P&B + serifa** | opinião forte, "se você é X, faça Y" | @eugersonrodrigues (7.643 curtidas, 4 slides) | rosto: só o do dono, com autorização; nunca IA |
+| **Foto editorial do objeto** (mesa, caderno, xícara, celular) | rotina, checklist, serviço | @ideiasquepagam25 | nunca o produto ou o lugar do cliente feito por IA |
+| **Tipográfico com ritmo** (só texto, uma ênfase colorida, papel) | mecanismo explicado, reflexão | @tarcisioelias_ miolo | 20 a 45 palavras; uma ênfase por slide |
+| **Enciclopédia** (um autor ou item por slide, texto denso) | conteúdo pra salvar e debater | @psi.entre.mentes (3.132 curtidas, 74 comentários) | denso só quando o público quer estudar |
+
+Fica fora da casa: **frame de filme ou desenho** (Aranhaverso na Barini, direito autoral de terceiro) e
+**isca "comenta PALAVRA"** (gerou os 1.050 comentários do Gerson; a casa não tem bot de DM).
+
+## 5. Texto por slide (o que foi medido nas referências)
+
+- Frase de impacto: 3 a 12 palavras, letra enorme (barretobru, Gerson).
+- Miolo que explica: 20 a 45 palavras, partidas em 2 ou 3 tamanhos (Barini, Tarcisio).
+- Enciclopédia: 60 a 80 palavras, só quando o objetivo é salvar pra estudar.
+- Hierarquia que se repete nas boas: título curto + a palavra-chave em outra cor ou peso + uma linha
+  de apoio menor. Nunca título e parágrafo do mesmo peso.
+- Número de slides: 4 (Gerson) a 14 (enciclopédia). O conteúdo decide, não a meta de 10.
+
+## 6. A ficha de direção de arte (antes do primeiro pixel)
+
+Todo post leva esta ficha no plano, e ela é aprovada junto com o texto:
+
+```
+Linguagem:            (uma do catálogo)
+Metáfora central:     (o objeto, interface ou diagrama que mostra a ideia)
+Moldura da marca:     (o que é fixo: assinatura, fontes, paleta, textura)
+Mundo deste post:     (imagens, cena, materiais)
+Diferente do anterior: capa = ..., sequência = ... (citar o post anterior da marca)
+Referência olhada:    @conta + código do post (organização e layout que vou seguir)
+Slide a slide:        nº, função, layout, texto exato, imagem
+```
+
+## 7. Fala direta (o outro motivo da reprovação de 20/10)
+
+"Quanto vale um cliente que volta?" é pergunta abstrata: o dono não sabe a resposta e não sente nada.
+O que funcionou nas referências fala a frase da cena: "Só preciso fazer mais uma coisa", "Não posso.",
+"Se você é empresário, estude". Regra da casa já escrita (`references/fala-humana.md`): frase inteira,
+verbo que diz o que fazer, a frase que o dono diria no balcão. Capa com pergunta só se a pessoa sabe
+responder na hora.
+
+## 8. Onde o Instagram está em out/2026 (pra não estudar a conta errada)
+
+- Na busca por "psicologia", os posts em destaque são quase todos reels com rosto; carrossel é minoria.
+- @nacaothiagofinch e @lucureau, duas das referências de 07/10, postaram só reels nos últimos 12 posts.
+  Pra estudar carrossel, usar conta que ainda posta carrossel (@brun0gpt, @portadoestoicismo,
+  @tarcisioelias_, @psiandreabarini).
+- Proporção vista: 1080 × 1350 (4:5) na maioria; @portadoestoicismo publica 1080 × 1440 (3:4). As duas passam.
+
+=== CHECKLIST DO POST (vetos e rubrica) ===
+# Checklist de carrossel — a porta antes de entregar
+
+> Rodar antes de mostrar qualquer peça pro Marcelo ou pro cliente. Mesma lógica
+> do `/verificar`: se a conferência não rodou nesta mensagem, não dá pra dizer
+> que passou.
+
+---
+
+## Parte 1 — Condições de veto
+
+Qualquer uma sozinha reprova a peça. Não se pondera, não se compensa com nota
+alta em outro lugar. Corrige e roda de novo.
+
+- [ ] A capa começa com o nome da marca ou com "hoje vamos falar sobre"
+- [ ] Existe afirmação factual central sem dado, sem fonte ou inventada
+- [ ] Menos de 5 ou mais de 10 slides
+- [ ] Legenda passa de 2.200 caracteres
+- [ ] Texto cortado, estourado ou fonte no fallback em algum slide renderizado
+- [ ] Todos os slides com o mesmo layout, sem variação
+- [ ] Algum texto de leitura abaixo do piso de `10-legibilidade.md`
+- [ ] **Compliance do cliente violado** (ver `90-antipadroes.md` §Compliance)
+- [ ] **Teste do "eu salvaria":** o Marcelo, como dono de negócio, olharia e pensaria "isso eu já sei" ou "isso eu
+      resolvo sozinho" (reprovação do post do ChatGPT, 15/10/2026)
+- [ ] Recurso de app (limite de caracteres, botão, menu) afirmado sem ter sido conferido na própria tela do app ou na
+      ajuda oficial; sem conferir, o slide sai (bio, 15/10/2026: os 150 caracteres foram vistos no contador; o "Nome
+      entra na busca" não se confirmou e saiu)
+- [ ] Detector oficial (`npx --yes impeccable@4.0.4 detect`) não rodou, ou achou algo fora das três regras de site que
+      não valem pra carrossel (`90-antipadroes.md`); o detector local não conta
+
+O último não é veto de qualidade, é trava. Em cliente regulado ele para a
+entrega mesmo que todo o resto esteja nota 10.
+
+---
+
+## Parte 2 — Rubrica, nota de 1 a 10
+
+Aprova com **média ≥ 7 e nenhum critério abaixo de 4**.
+
+**C1. Para o scroll ⭐ (peso 1,5)**
+Alguém que não conhece a marca pararia nessa capa?
+9-10 parada garantida, fato ou tensão concreta · 7-8 gancho bom, dá pra afinar ·
+5-6 só para quem já se interessa pelo tema · 3-4 genérico, não para ·
+1-2 capa decorativa ou só logo.
+**≤ 3 reprova sozinho.**
+
+**C2. Integridade do dado**
+Toda afirmação factual tem número específico ou fonte identificável? Placeholder
+`[FALTA: ...]` conta como honesto, texto plausível inventado é nota 1.
+
+**C3. Coerência narrativa**
+Cada slide é consequência do anterior? Se dá pra embaralhar os slides sem perder
+sentido, é 3 ou menos.
+
+**C4. Reflexão**
+O penúltimo slide de conteúdo entrega algo que incomoda ou reposiciona, ou só
+informa mais uma vez?
+
+**C5. CTA específico**
+O CTA cita o conteúdo e diz o próximo passo, ou é "nos siga"?
+
+**C6. Voz da marca**
+Lê como o cliente falaria, ou poderia ser de qualquer marca do segmento?
+Confere contra `clientes/<nome>/marca.md` e `_memoria/preferencias.md`.
+
+**V1. Consistência visual**
+Qualquer slide, solto, é reconhecível como parte deste carrossel?
+
+**V2. Legibilidade**
+Pisos de fonte respeitados e contraste 4,5:1 em todos os slides.
+
+**V3. Impacto visual**
+Tem energia e identidade, ou é template morno?
+
+---
+
+## Parte 3 — Técnico
+
+- [ ] Todos os slides na mesma dimensão: 1080 × 1350 (cliente) ou 1080 × 1440 (Horus)
+- [ ] Entre 2 e 10 imagens (limite da API do Instagram)
+- [ ] PNG ou JPEG, abaixo de 30MB por arquivo
+- [ ] Slide 1 foi renderizado e **olhado** antes do lote
+- [ ] HTML autocontido, sem dependência externa além de Google Fonts
+- [ ] Nenhum tracinho como separador na copy nem na legenda
+- [ ] Primeiros 125 caracteres da legenda funcionam sozinhos como gancho
+- [ ] Até 5 hashtags, específicas (limite do Instagram desde dez/2025; o Mosseri diz que ajudam na busca, não no alcance)
+- [ ] `legenda.md` gerada e salva na pasta da peça
+
+---
+
+## Parte 4 — Como reportar
+
+Não dizer "está pronto". Dizer o que passou, com o que sobrou:
+
+> Formato: Lista, 8 slides. Rubrica: média 7,8, menor nota 6 (C5, CTA).
+> Vetos: nenhum. Pendente: `[FALTA: telefone ativo]` no slide 8.
+
+Pendência declarada é profissional. Pendência escondida atrás de "está pronto"
+quebra confiança.
+
+=== IMAGEM E CONSISTÊNCIA ENTRE SLIDES (skill /carrossel) ===
+## Passo 4: Imagem e elementos visuais
+
+**Rotas** (detalhe e quando usar cada uma em `_memoria/conteudo/30-quem-faz-o-que.md` §3; o ChatGPT gera as
+melhores imagens, Marcelo 29/10): A) Claude in Chrome no ChatGPT do Marcelo, o padrão e a única que usa as Fontes do
+projeto da marca; B) `codex exec` no terminal, sem Chrome; C) o Agy com Playwright num Chrome logado no ChatGPT (em
+teste desde 29/10); D) gerador nativo do Agy, só pra textura. **Vídeo curto** (Reels): Google Flow, mesmas travas da
+imagem (§5 do mesmo arquivo).
+
+- **Horus:** ChatGPT liberado em todo post para ilustração, objeto, textura, cena (perfil §8,
+  Marcelo, 07/10/2026), **pelo Chrome do Marcelo** (método em `reference_chatgpt-imagem-pelo-chrome` na
+  memória: abrir chatgpt.com, "Gere uma imagem:", baixar pelo `fetch` da imagem, cai em
+  `E:\Users\hagge\Downloads`). Pedir na mesma conversa as imagens da série ("mesmo estilo e
+  paleta"), sem texto, sem número, nas cores da marca.
+- **Cliente:** imagem vem do Marcelo (ele gera e traz) ou do Chrome dele com o ok dele.
+- **Nunca IA:** gráfico com número (número é desenhado em código a partir da fonte), print de
+  ferramenta ou de conversa (print é print de verdade), rosto, o produto ou o lugar que o cliente
+  vende. Elementos já aprovados ficam em `identidade/social/elementos/` e se reaproveitam.
+
+### Consistência entre slides (a trava irmã da trava de CSS)
+
+Objeto que precisa aparecer **igual** em vários slides **não se gera N vezes**: gera uma vez e
+reposiciona o mesmo arquivo (recorte, `object-position`, escala). Série de cenas diferentes:
+1. **Cena-mestra** aprovada primeiro; as outras derivam dela (edição a partir da imagem).
+2. **Style lock** idêntico colado em todo prompt (paleta em hex, luz, lente, acabamento, clima).
+3. **Objetos nomeados** com a mesma descrição literal em todo prompt.
+4. **Conferir lado a lado** antes do lote; objeto que derivou volta pra geração.
+
+Prompt em inglês: conteúdo do slide + objetos nomeados + style lock.
+
+### Slide inteiro no ChatGPT (o jeito da May, 23/10/2026)
+
+Quando o slide todo sai do ChatGPT (texto e cena juntos), seguir `_memoria/conteudo/25-imagem-no-chatgpt.md`:
+plano aprovado antes, conversa nova **dentro do projeto da marca** (as Fontes têm as referências visuais),
+roteiro inteiro colado no primeiro pedido, slide âncora, lista de preservação repetida a cada slide, texto entre
+aspas, zoom no texto pequeno e folha da série. Pintura com nu é bloqueada: modo híbrido (cena gerada, obra e
+texto pelo código).
+
+=== OS NOVE FORMATOS NARRATIVOS (escolher UM por post) ===
+# Os formatos narrativos de carrossel (sete + dois de 07/10/2026)
+
+> **Escolher UM antes de escrever a primeira linha de copy.** O formato define
+> quantos slides, o que vai em cada um e para onde a coisa caminha. Sem formato
+> escolhido, o carrossel vira lista de frases soltas com uma capa na frente.
+>
+> Adaptado do `opensquad` (`best-practices/instagram-feed.md`), 03/08/2026, com
+> as travas de compliance da Horus adicionadas.
+
+---
+
+## Como escolher
+
+A pergunta não é "qual é mais bonito", é **o que eu quero que a pessoa faça
+depois**. Cada formato serve um objetivo diferente:
+
+| Quero que a pessoa... | Formato |
+|---|---|
+| Me reconheça como quem entende do assunto | Tese |
+| Salve pra consultar depois | Lista |
+| Salve pra executar depois | Tutorial |
+| Pare de acreditar em algo errado | Mito vs Realidade |
+| Sinta que eu entendo a dor dela | Problema → Solução |
+| Se conecte com a pessoa por trás | História |
+| Veja que funciona | Transformação ⚠️ |
+| Mande pra alguém (notícia, ferramenta, alerta) | Print de tweet |
+| Saia com a frase pronta | Antes/depois de fala |
+
+Se dois formatos servem, escolher o que a marca **menos** usou nas últimas
+semanas. Variedade de formato é o que mantém um perfil vivo — muito mais que
+variedade de cor.
+
+---
+
+## 1. Tese (8 a 10 slides)
+
+Defender um ponto de vista com evidência. Constrói autoridade, gera salvamento e
+compartilhamento.
+
+Serve pra: análise de mercado, tendência, opinião contrária ao senso comum.
+
+1. **Capa** — pergunta ou afirmação provocativa
+2. **Contexto** — qual é a mudança ou a tensão, com o dado que ancora
+3. **Argumento** (5 a 7 slides) — um argumento, exemplo ou dado por slide
+4. **Síntese** — o que tudo isso quer dizer
+5. **CTA** — fonte citada + ação específica
+
+## 2. Lista (8 a 10 slides)
+
+Entregar valor escaneável e numerado. É o formato que mais gera salvamento,
+porque vira material de consulta.
+
+Serve pra: dicas, ferramentas, sinais de alerta, o que observar.
+
+1. **Capa** — "X [coisas] pra [resultado]". Número grande e promessa clara
+2. **Itens** (6 a 8 slides) — um por slide, numerado. Título é o item, apoio é o porquê
+3. **Fechamento** — recapitulação visual + CTA de salvar
+
+## 3. Tutorial (8 a 12 slides)
+
+Ensinar um processo. Gera salvamento porque a pessoa marca pra executar depois.
+
+Serve pra: passo a passo, preparo, rotina, como fazer.
+
+1. **Capa** — mostrar o resultado final primeiro. "Como [resultado] em X passos"
+2. **Passos** (6 a 10 slides) — "Passo X: [ação]" + o detalhe que faz diferença
+3. **Resultado** — o desfecho outra vez
+4. **CTA** — "salva esse passo a passo"
+
+## 4. Mito vs Realidade (6 a 10 slides)
+
+Derrubar crença errada. Posiciona como autoridade e gera comentário, porque
+gera discordância.
+
+Serve pra: o que as pessoas acham vs o que acontece de verdade.
+
+1. **Capa** — "X coisas sobre [tema] que ainda contam por aí"
+2. **Pares** (4 a 8 slides) — o mito de um lado, a realidade do outro, com a correção
+3. **Síntese** — o que de fato vale
+4. **CTA** — "qual desses você já ouviu?"
+
+⚠️ Cuidado em saúde: derrubar mito é informação, e passa. Mas a correção não pode
+virar conselho clínico que substitua consulta, nem promessa. "Implante não dói
+nada" é promessa. "A anestesia usada hoje é local, e o incômodo do pós é
+controlado com o que o dentista prescreve" é informação.
+
+## 5. Problema → Solução (6 a 10 slides)
+
+Nomear uma dor e apresentar o caminho. Gera salvamento e envio por DM, porque a
+pessoa manda pra quem está passando por aquilo.
+
+Serve pra: posicionar serviço, atacar frustração comum.
+
+1. **Capa** — o problema dito na cara. "Você ainda [erro comum]?"
+2. **Problema** (2 a 3 slides) — um sintoma ou consequência por slide. A pessoa precisa se ver ali
+3. **Ponte** (1 slide) — "existe um jeito melhor"
+4. **Solução** (2 a 4 slides) — um ponto acionável por slide
+5. **CTA** — ação específica
+
+## 6. História (8 a 10 slides)
+
+Criar conexão. Gera compartilhamento e comentário, porque a pessoa se identifica.
+
+Serve pra: origem do negócio, bastidor, o que se aprendeu errando.
+
+1. **Capa** — gancho de curiosidade
+2. **Cenário** (1 a 2 slides) — quem, onde, quando
+3. **Conflito** (2 a 3 slides) — o problema, o erro, a virada
+4. **Desfecho** (2 a 3 slides) — o que aconteceu e o que ficou
+5. **Lição** — o que serve pra quem está lendo
+6. **CTA**
+
+Esse é o formato mais forte pro Nelson (Grão da Serra) e pra Jaqueline
+(Permita-se). Negócio pequeno com dono presente ganha da concorrência grande
+exatamente onde a concorrência grande não tem história.
+
+## 7. Transformação ⚠️ (6 a 8 slides)
+
+Mostrar antes e depois.
+
+**🔴 Proibido no Dr. Giovanni e na Aion.** No CFO, antes/depois de paciente em
+peça de pessoa jurídica é vedado (Res. CFO-196/2019), e IA simulando também. No
+CFP, antes/depois é vedado em qualquer formato. Não existe versão "leve" desse
+formato pra esses dois clientes: é não usar.
+
+Onde cabe (Grão da Serra, Permita-se, peça institucional da Horus), a
+transformação é **do processo ou do produto**, nunca de pessoa: grão cru → grão
+torrado, sala vazia → estúdio montado, site velho → site novo.
+
+## 8. Print de tweet (6 a 9 slides)
+
+Parece post nativo, não peça de agência. Veio das referências da Luíza Cureau
+(07/10/2026, `identidade/social/referencias/2026-10-07-essencia.md`). Gera envio e
+comentário, porque lê como alguém contando uma novidade.
+
+Serve pra: notícia do que o dono usa, ferramenta grátis, estudo com dado, alerta.
+
+1. **Capa** — avatar + nome + @, texto grande (2 a 4 linhas), gancho de notícia
+   ("🚨 ALERTA:", "Sabia que...") e um cartão de imagem (ilustração, print real, gráfico)
+2. **Fio** (4 a 7 slides) — um trecho por slide, com o fio cinza ligando os tweets.
+   Cada slide fecha puxando o próximo ("e tem mais 👉")
+3. **"Ou seja"** — a reflexão em uma frase
+4. **Conversa** — pergunta real pros comentários
+
+Prova: todo número com fonte no slide; print é print de verdade; gráfico com número
+é desenhado em código a partir da fonte, nunca gerado por IA.
+
+## 9. Antes/depois de fala (6 a 8 slides)
+
+A pessoa sai com a frase pronta. Veio da referência do Thiago Finch (07/10/2026) e
+foi o formato que o Marcelo mais aprovou (10/10/2026). Gera salvamento.
+
+Serve pra: responder cliente, avaliação, objeção, abordagem; qualquer cena em que
+o que se diz muda o resultado.
+
+1. **Capa** — a cena que todo dono viveu, dita na primeira linha
+2. **Por que importa** (1 slide) — quem vê, o que se perde
+3. **Pares** (2 a 3 slides) — "✕ Em vez de" (cartão apagado, a frase comum) e
+   "✓ Responda assim" (cartão de destaque, a frase pronta, marcada como exemplo)
+4. **O que as boas têm em comum** — 3 ou 4 setas
+5. **Reflexão** e **CTA** ("salva pra próxima vez")
+
+Exemplo com nome é sempre marcado "exemplo". Longe de saúde: preço e promessa em
+clínica têm regra própria.
+
+---
+
+## Regras que atravessam todos os formatos
+
+**Um slide, uma ideia.** Se o slide precisa de "e também", ele é dois slides.
+
+**O penúltimo slide de conteúdo é de reflexão, não de informação.** Dado sem
+impacto emocional é esquecido em minutos. Antes do CTA precisa ter um slide que
+faz a pessoa parar: uma pergunta, um incômodo, uma perspectiva que ela não tinha.
+É o slide que decide entre curtida e salvamento.
+
+**Todo slide precisa dar motivo pra arrastar.** Se o slide 5 fecha o assunto, o
+slide 6 não é lido. Deixar sempre uma ponta solta.
+
+**A capa é o único slide que compete contra o feed inteiro.** Ela não anuncia o
+conteúdo, ela para o scroll. "Hoje vamos falar sobre X" não para ninguém.
+
+**O CTA nasce do conteúdo.** "Nos siga pra mais conteúdo" é o CTA de quem não
+pensou no próximo passo de quem leu. O bom CTA cita o que acabou de ser dito.
+
+=== LEGIBILIDADE ===
+# Legibilidade em peça social — os pisos duros
+
+> Criado em 03/08/2026. Estes números **não são sugestão de estilo**, são piso.
+> Abaixo deles a peça fica ilegível no lugar onde ela é consumida de verdade:
+> um celular, na mão, em movimento, com brilho ruim.
+
+---
+
+## O erro que estava na skill
+
+A `/carrossel` mandava usar corpo de 20 a 24px e eyebrow de 13 a 16px numa peça
+de 1080px de largura. Parece razoável quando você olha o HTML no monitor. Não é.
+
+**A conta.** O carrossel é renderizado a 1080px e exibido num feed de celular com
+cerca de 390px de largura útil. O fator é **0,36**. Então:
+
+| No HTML | No celular |
+|---|---|
+| 16px | 5,8px |
+| 20px | 7,2px |
+| 24px | 8,7px |
+| **34px** | **12,3px** |
+| 58px | 21px |
+| 90px | 32,5px |
+
+Corpo de 22px vira 8px na mão da pessoa. Eyebrow de 14px vira 5px. É o mesmo erro
+que o detector do impeccable pega no site com as regras `tiny-text` e
+`undersized-ui-text` — só que no carrossel ninguém tinha rodado detector nenhum.
+
+Descoberto na comparação com o `opensquad`, 03/08/2026. A escala abaixo já está
+corrigida.
+
+---
+
+## Escala mínima por formato
+
+Piso absoluto, para qualquer texto feito pra ser lido, em qualquer peça: **24px**.
+O que estiver abaixo disso é decoração, não texto, e não pode carregar informação.
+
+### Carrossel e post de feed (1080 × 1350)
+
+| Papel | Piso | Faixa boa | Peso |
+|---|---|---|---|
+| Título de capa | 58px | 90 a 110px | 800-900 |
+| H2 de slide interno | 43px | 60 a 76px | 700-800 |
+| Corpo | 34px | 34 a 42px | 500 |
+| Eyebrow / rótulo | 24px | 26 a 30px | 700-800 |
+| Rodapé, @, crédito | 24px | 24 a 28px | 500-600 |
+
+### Story e Reels (1080 × 1920)
+
+Hero 56px · H2 42px · corpo 32px · rodapé 20px. A tela é maior em altura, mas a
+distância de leitura é a mesma.
+
+### LinkedIn horizontal (1200 × 627)
+
+Hero 40px · corpo 24px · rodapé 20px. Aqui o consumo é mais em desktop, o que
+alivia — mas não some.
+
+---
+
+## O que a escala corrigida faz com o texto
+
+Levantar o corpo de 22 para 36px reduz drasticamente quanto texto cabe num slide.
+**Isso é o efeito desejado, não um efeito colateral.** Com 36px e largura útil de
+940px, cabem umas 5 palavras por linha. Quatro linhas são 20 palavras. Com o H2,
+o slide fecha entre 25 e 45 palavras.
+
+Então a regra de densidade sai da própria escala:
+
+> **Entre 20 e 45 palavras por slide, em no máximo 4 linhas visíveis de corpo.**
+
+⚠️ O `opensquad` manda de 40 a 80 palavras por slide (`instagram-feed.md`) e ao
+mesmo tempo proíbe passar de 4 ou 5 linhas visíveis (`anti-patterns.md`) e exige
+corpo de 34px (`image-design.md`). As três regras não fecham juntas. Ficamos com
+as duas que se sustentam: piso de fonte e limite de linha. O número de palavras é
+consequência, não meta.
+
+---
+
+## Contraste
+
+Mínimo **4,5:1** entre texto e fundo, WCAG AA. Mesma régua do site — a tabela de
+contraste medida da paleta terrosa está em `_memoria/design/99-checklist.md`.
+
+Texto sobre foto **nunca** vai direto. Precisa de uma das três:
+
+1. Overlay sólido a 60% ou mais
+2. Gradiente de sólido pra transparente, com o texto no lado sólido
+3. Faixa/caixa atrás do bloco de texto
+
+Sombra de texto **não conta** como proteção de contraste. Ela ajuda a borda da
+letra e não resolve o miolo.
+
+---
+
+## Dimensão e proporção
+
+**Carrossel e post de feed: 1080 × 1350 (4:5).** É o que ocupa mais tela no feed.
+
+Duas coisas que valem lembrar:
+
+- **A primeira imagem define a proporção do carrossel inteiro.** Se o slide 1 sai
+  em 4:5, todos os outros são cortados pra 4:5, mesmo que tenham sido exportados
+  em outra medida. Renderizar tudo na mesma dimensão, sempre.
+- **A grade do perfil corta em 3:4.** Uma peça 4:5 aparece na grade com cerca de
+  17px cortados de cada lado. É pouco, mas logo e texto encostados na borda
+  lateral perdem pedaço na grade. Manter os 70 a 100px de padding lateral resolve.
+
+Story e Reels: 1080 × 1920 (9:16), só quando pedido.
+
+---
+
+## HTML que renderiza sem surpresa
+
+- Autocontido: CSS inline. A **única** dependência externa permitida é Google
+  Fonts por `@import`
+- Nada de CDN de framework, nada de JavaScript
+- Imagem por caminho absoluto ou `data:` URI
+- `width` e `height` fixos em px no container, batendo com a viewport de captura.
+  Nunca `height: auto`
+- Grid e Flexbox pro layout estrutural. Posição absoluta só pra elemento
+  decorativo que flutua (marca d'água, seta de swipe)
+- Peso de fonte 500 ou mais em qualquer texto de leitura. Pesos 100 a 300 não
+  sobrevivem à compressão do Instagram
+
+## Verificação antes de renderizar o lote
+
+Renderizar o **slide 1 sozinho**, abrir o PNG e olhar. Só depois renderizar o
+resto. Um erro de espaçamento, uma fonte que não carregou ou um texto cortado no
+slide 1 se repete nos outros dez se não for pego agora.
+
+O jeito de olhar que funciona: ler o PNG (não o HTML) e conferir se o texto cabe,
+se nada está cortado e se a fonte é a certa. O HTML pode estar perfeito e a fonte
+ter caído no fallback sem avisar.
+
+=== O QUE O INSTAGRAM PREMIA (algoritmo) ===
+# O que o Instagram premia (2026) e os limites técnicos
+
+Base: `sergebulaev/instagram-skills` `algorithm-heuristics.md` (síntese de falas do Adam
+Mosseri e medições de criadores; "relatado" = medido pela comunidade, não confirmado) e notícia
+do limite de hashtags (Social Media Today, dez/2025). Número daqui é referência, nunca promessa.
+
+## Sinais, do mais forte ao mais fraco
+
+1. **Envio** (DM pra um amigo, repost no story). O que o algoritmo mais pesa em 2026.
+2. **Salvamento.** Premia lista, passo a passo, frase pronta, antes/depois.
+3. **Comentário**, ainda mais quando o perfil responde.
+4. Tempo de vídeo e reassistida (Reels). 5. Visita ao perfil que vira seguir.
+6. Curtida: fraco. **Negativo pesado:** "não tenho interesse", ocultar, denunciar, deixar de seguir.
+
+## A primeira hora
+
+As primeiras respostas decidem se o post sai pra quem não segue. Responder comentário rápido
+(quem responde é o Marcelo; o Mídia só avisa).
+
+## O que derruba alcance
+
+- **Isca de engajamento**: "comenta SIM", "marca 3 amigos", "dois toques se...". O Instagram
+  rebaixa. Pergunta real pros comentários pode; ordem de comentar pra ganhar alcance, não.
+  **"Comenta PALAVRA que eu te mando no Direct" não se usa**: precisa de bot mandando DM sozinho, e o
+  Marcelo decidiu que não tem bot respondendo sozinho, por enquanto (10/10/2026). O material vai nos
+  últimos slides e o CTA pede pra salvar.
+- Muitas hashtags: o limite é **5 por post**, e o próprio Mosseri diz que hashtag ajuda na busca,
+  não no alcance.
+- Vídeo com marca d'água de outro app.
+- Proporção fora do aceito (corta a arte).
+
+## Limites técnicos
+
+| Item | Limite |
+|---|---|
+| Legenda | 2.200 caracteres; ~125 aparecem antes do "mais" |
+| Hashtags | até 5 |
+| Carrossel pela API | 2 a 10 imagens, todas imagem (sem misturar vídeo) |
+| Imagem | JPEG ou PNG, até 8 MB |
+| Proporção | Horus usa **1080 × 1440 (3:4)** desde 27/09, publicado sem erro; clientes seguem **1080 × 1350 (4:5)** até o teste dizer o contrário |
+| Ritmo | 3 a 5 posts bons por semana com constância batem post diário de enchimento |
+
+## Stories e Reels (quando entrarem)
+
+- Story não traz gente nova; mantém quem já segue. Repostar o post no story conta como envio.
+- Reels: os 3 primeiros segundos decidem. Nada de "oi gente, tudo bem?"; texto na tela pra quem
+  assiste sem som; final que emenda no começo ajuda a reassistir.
+
+=== GANCHOS E ESTRUTURAS ===
+# Ganchos e estruturas de carrossel
+
+Juntado em 10/10/2026 de: `sergebulaev/instagram-skills` (MIT, `ig-carousel-planner`,
+`hook-formulas.md`), `coreyhaines31/marketingskills` (MIT, `social/carousel-frameworks.md`),
+`petrogurcak/skills` (`instagram-content`) e das referências do Marcelo de 07/10. Traduzido e
+preso às travas da casa. **Gancho é forma; quem enche a forma é fato que a gente tem.**
+
+## 1. Escolher pelo objetivo (um por post)
+
+| Quero que a pessoa... | Sinal | Formatos que entregam |
+|---|---|---|
+| **Envie** pra alguém | o mais forte do algoritmo | Print de tweet (alerta, novidade), Mito vs Realidade, Tese contrária |
+| **Salve** pra usar depois | forte, dura dias | Lista, Tutorial, Antes/depois de fala, Framework com resumo |
+| **Comente** | forte | Cena reconhecível, pergunta real, debate |
+| **Siga** | crescimento | Transformação de processo, História com prova |
+
+Pergunta antes de escrever: **alguém mandaria isso pra um amigo específico, ou salvaria pra
+usar depois?** Se nenhum dos dois, o tema não está pronto.
+
+## 2. Fórmulas de gancho (slide 1 e primeira linha da legenda)
+
+Slide 1 é **promessa com ponta solta**, nunca título. "5 jeitos de X (quase todo mundo erra o
+4º)" para; "Dicas de X" não.
+
+| Tipo | Forma | Exemplo da casa |
+|---|---|---|
+| Número primeiro | "{número exato} {coisa}. Aqui o que mudou." | "54% dos brasileiros já compraram algo que uma IA indicou." |
+| Verdade contrária | "{conselho que todo mundo repete} está errado. {o que funciona}." | "Seguidor não paga boleto." |
+| Cena reconhecível | Uma linha que joga a pessoa num momento que todo dono viveu | "O cliente perguntou 'quanto custa?', você respondeu e ele sumiu." |
+| Alerta | "🚨 ALERTA: {o que está acontecendo} ➡️" | Golpe da denúncia falsa |
+| Descoberta | "Sabia que {ferramenta/recurso} faz {coisa}? 👀" | O painel Performance |
+| Pare de fazer | "Pare de {erro comum}. Faça isso:" | "Pare de responder 'fico no aguardo'." |
+| Experimento | "Perguntamos/testamos {X}. O resultado:" | ChatGPT em Salvador |
+| Antes/depois | "Mesma {coisa}, {pequena diferença}." | Foto de produto |
+
+Regras: **um número específico** quando houver (47 minutos bate "rápido"); **"como eu/nós"
+bate "como fazer"** porque carrega prova; o número nunca é inventado nem arredondado pra soar
+real. Gancho que a gente não defenderia nos comentários não vai.
+
+## 3. A espinha de qualquer carrossel
+
+| Slide | Papel |
+|---|---|
+| 1 | promessa + ponta solta. Funciona sozinho como post (é a miniatura da grade) |
+| 2 e 3 | **o melhor ponto, logo cedo**. O interesse cai a cada arrastada |
+| 4 ao penúltimo | um ponto por slide, lido em 2 segundos, cada um de pé sozinho |
+| penúltimo de conteúdo | reflexão (o que incomoda), não mais informação |
+| último | o resumo que vale salvar + **um** pedido só |
+
+Contagem pelo conteúdo real: lista enxuta 6 a 8, ensino mais rico 8 a 10. **Nunca encher pra
+chegar em 10**; ideia de 4 pontos é carrossel de 6 slides. Menos de 4 pontos é post único.
+Promessa de número na capa ("7 assuntos") é cumprida exata.
+
+## 4. Estruturas prontas (mapa pros nove formatos da casa)
+
+- **Pilha de valor** (Lista): capa com contagem exata + o que entrega; um item por slide com
+  3 a 6 subitens concretos; fecho com ação.
+- **Problema e prova** (Problema → Solução / História): capa com resultado nosso e número;
+  o problema de verdade; o sistema com passos nomeados; o detalhe literal (o texto, o modelo);
+  último slide é o recibo (print real). Sem prova real, não usar.
+- **Truques nomeados** (Lista): capa com o erro da maioria; por que falha; "Truque 1: {nome}"
+  com ruim ✕ / bom ✓; síntese. **Dar nome a cada técnica** ("a regra da véspera") faz circular.
+- **Desabafo com virada justa** (Tese): opinião forte; detalhes concretos que sobem o tom;
+  **penúltimo: "não me entenda mal"** (o que não se está atacando); fecho assinado. Sem a virada
+  justa vira briga nos comentários. Nunca atacar concorrente nem cliente.
+- **Demonstração** (Tutorial): resultado pronto primeiro; a dor que resolve; **o mapa dos
+  passos antes do detalhe** ("4 passos, 10 minutos"); um print real por passo, recortado e com
+  uma seta; resultado.
+- **Mito e verdade** (Mito vs Realidade): capa "{N} mitos que custam {perda}"; pares; fecho
+  "manda pra quem ainda acredita no 1".
+- **Antes/depois de fala** e **Print de tweet**: em `_memoria/conteudo/00-formatos.md` §8 e §9.
+
+## 5. Legenda
+
+Primeira linha (125 caracteres) repete o gancho com palavra que a pessoa buscaria. Depois:
+contexto em uma ou duas frases, o valor, **um** CTA que cita o conteúdo, hashtags. Carrossel
+pode ter legenda curta; quem carrega é o slide. **No máximo 5 hashtags** (limite do Instagram
+desde dez/2025), específicas, no fim. Sem link na legenda.
+
+## 6. Séries
+
+Formato que funcionou fica de **7 a 10 posts** antes de trocar; melhora-se o gancho e a
+execução, não o formato. Série com nome ("Em vez de... diga") cria hábito e puxa o próximo.
+
+=== GATILHOS (só os verdadeiros) ===
+# Gatilhos mentais no post (com trava ética)
+
+Base: `coreyhaines31/marketingskills` `marketing-psychology` (MIT), a mente Robert Cialdini
+(`_conselho/mentes/robert-cialdini.md`, consultar pra profundidade) e a skill tcheca
+`instagram-content`. **Gatilho só vale se for verdade.** Urgência falsa, escassez inventada e
+prova social fabricada são proibidas pela `_memoria/integridade.md`; em cliente regulado o
+compliance decide antes.
+
+| Gatilho | No carrossel | Como a casa usa |
+|---|---|---|
+| **Curiosidade (lacuna)** | Ponta solta no slide 1; "e tem mais 👉" no fim de cada slide | O fio do print de tweet; "quase todo mundo erra o 4º" |
+| **Zeigarnik (o que ficou aberto puxa)** | Série numerada, "parte 2" | Quadro fixo semanal |
+| **Reciprocidade** | Dar a frase pronta, o passo a passo, a ferramenta, sem pedir nada antes | Todo post educativo |
+| **Prova social** | Número real, print real, avaliação real | Só com autorização; nunca depoimento inventado (CFP veta qualquer depoimento) |
+| **Autoridade** | Fonte oficial no slide ("Ajuda do Google", "Opinion Box") | Linha de fonte em todo slide com fato |
+| **Pratfall (admitir o defeito)** | "A gente não é o mais barato" / "Reprovamos o próprio plano" | Aproxima; usar com fato real |
+| **Aversão à perda** | Mostrar o que se perde ("o cliente sumiu") mais do que o que se ganha | A cena da série "Em vez de... diga" |
+| **Semelhança** | Falar como o dono fala, cena do bairro, Salvador | Voz do perfil §6 |
+| **Efeito Cyrano (história por trás do comum)** | Contar o porquê de algo banal | Bastidor de cliente com autorização |
+| **Excesso de escolha** | No máximo 3 opções no slide final | "Só 3 opções" na mensagem de preço |
+| **Fim marcante (pico e fim)** | O último slide é o que fica | Resumo salvável + um pedido |
+
+Controvérsia leve ajuda o comentário, mas nunca em política, religião, direitos, saúde, nem
+contra concorrente ou cliente. A virada justa ("não me entenda mal") vem junto.
+
+=== FALA HUMANA ===
+# Fala humana no slide e na legenda
+
+A casa já tem o guia completo: **`_memoria/prospeccao/90-cara-de-ia.md`** (base
+`blader/humanizer` + `stop-slop`, em português do WhatsApp) e a skill **`/revisar-mensagem`**.
+Ler o guia antes de mostrar copy. Aqui só o que é específico de post, juntado de
+`sergebulaev/instagram-skills` (`ig-humanizer`) e `coreyhaines31/marketingskills` (`social`).
+
+Duas regras que vencem as outras:
+1. **Revisar nunca acrescenta fato.** Nem número, nem nome, nem data.
+2. **A amostra do Marcelo vence a lista** (`_memoria/prospeccao/voz-marcelo.md`, `exemplos.md`).
+
+## Vícios típicos de post
+
+| Vício | Como aparece | Troca por |
+|---|---|---|
+| "Não é X, é Y" | "não é sobre post, é sobre conexão" | Diga o Y com o motivo |
+| Revelação com dois-pontos | "O resultado? 3x mais."; "A melhor parte: ..." | A frase direta |
+| Lista de três por reflexo | "rápido, simples e eficiente" | A mais forte, ou duas |
+| Uma frase por linha o post inteiro | estilo "broetry" | Parágrafo curto, quebra onde a gente respiraria |
+| Emoji como marcador de toda linha | 🚀 ✅ 💡 em cascata | 0 a 3 emojis com função (o 🚨 do alerta, o 👉 do fio) |
+| Isca no fim | "Concorda?", "Pensa nisso.", "Leia de novo." | Termina no ponto ou numa pergunta que a gente quer mesmo ouvir |
+| Vulnerabilidade fabricada | "Vou ser sincero, eu estava apavorado..." sem história real | Só história que aconteceu |
+| Palavra de agência | "solução", "jornada", "potencializar", "alavancar", "performance" | Palavra do dono |
+| Travessão como cola | "um site — ligado ao Google — com agenda" | Vírgula, ponto ou quebra (a casa proíbe travessão) |
+| Frase de efeito no fim do slide | "E isso muda tudo." | Corta |
+
+## Escrever como o Marcelo fala (15/10/2026)
+
+Frase inteira, com o verbo que diz o que fazer: "A bio deve responder três perguntas", não "A bio responde 3
+perguntas em até 150 caracteres". Manchete de jornal economiza palavra e perde clareza. Um dado por frase; número por
+extenso quando é pequeno; o detalhe técnico (os 150 caracteres) vai numa frase própria embaixo.
+
+## Teste final
+
+Ler o slide em voz alta como o Marcelo leria pra um dono de loja no balcão. Travou, soou
+locutor ou soou anúncio: reescrever. Trocar "Horus" pelo nome de outra agência: se a frase
+continua servindo, ela não diz nada.
+
+=== PAUTA (radar, nota e travas) ===
+# Pauta: de onde sai o tema (passo 0 da /carrossel)
+
+Regra do Marcelo (08/10/2026): **nenhum post é montado antes de ele aprovar a ideia.**
+A pauta vai em `marketing/conteudo/midia/pautas/<segunda>.md` e vira tarefa no Hounder.
+Processo completo e o porquê em `ferramentas/social/ARQUITETURA.md` §8.
+
+**Desde 28/10/2026 a pesquisa roda sozinha:** toda quinta às 8h o Mídia faz o radar e a pauta da semana seguinte
+(rotina `pauta`) e avisa no WhatsApp. No Claude Code, a `/carrossel` começa lendo essa pauta; se ela não existir ou o
+Marcelo pedir outra, faz a pesquisa aqui mesmo, com o radar abaixo e `ferramentas/social/bin/referencias.mjs`.
+
+## Radar (de onde vêm as ideias)
+
+1. Notícia da semana sobre o que o dono usa: WhatsApp, Instagram, IA, Pix, consumo.
+2. Estudo brasileiro recente com dado (Sebrae, Opinion Box, Octadesk, Google/Ipsos),
+   com o relatório original conferido.
+3. Ferramenta grátis que o dono abre hoje.
+4. O que bombou nos perfis de referência, **inclusive os gringos** (ideia do Marcelo, 10/10:
+   "nada se cria, tudo se transforma"): achar o post que fugiu da média, estudar e refazer no
+   nosso jeito, pro dono daqui (ver `estudar-referencia.md`; primeiro estudo em
+   `identidade/social/referencias/2026-10-10-valerio.md`). **A lista de perfis do Marcelo está em
+   `identidade/social/referencias/perfis.md`: abrir ela toda vez que montar pauta.**
+5. Perguntas reais dos comentários, das DMs e das conversas de lead no Hounder, só o padrão,
+   sem nome.
+6. Datas que mexem com comércio (Black Friday, Natal, verão).
+7. A cena do dia a dia: o que o cliente diz e o dono responde mal (a série "Em vez de...
+   diga", aprovada em 10/10).
+
+## Nota (do opensquad, 0 a 10)
+
+Surpresa (0 a 3) + relevância pro dono (0 a 3) + acionável (0 a 2) + atualidade (0 a 2).
+Nota honesta: ideia mediana é 5 ou 6.
+
+## Travas que reprovam sozinhas
+
+- **Público errado.** Serve a marqueteiro, não ao dono (`identidade/social/perfil.md` §2).
+- **Sem fonte conferível.** Número que não dá pra checar não entra.
+- **Tema repetido** da semana anterior. Tema de Google com moderação (o Marcelo não curtiu, 08/10).
+- **Só informativo.** Tem que ter pelo menos um: novidade que o dono não sabe, prova nossa
+  ou polêmica que puxa comentário (`_memoria/conteudo/90-antipadroes.md`).
+
+## O que cada ideia leva na pauta
+
+Gancho do slide 1, formato (dos nove de `_memoria/conteudo/00-formatos.md`), objetivo
+(salvar, enviar, comentar ou seguir; ver `algoritmo.md`), fonte com data e confiança, por que
+pode viralizar, risco. As 3 melhores marcadas como recomendadas. Mostrar em tabela curta no chat
+e o detalhe no arquivo.
+
+## Depois da aprovação
+
+Produzir só as aprovadas. Se o Marcelo gostar de um tipo ("gostei da 6, dê mais ideias"),
+anotar em `marketing/conteudo/midia/pautas/` e na memória, e puxar a próxima pauta pra esse lado.
+
+=== PERFIS DE REFERÊNCIA (de onde vem ideia nova) ===
+# Perfis de referência do Instagram da Horus
+
+Lista do Marcelo pra estudar quando precisar de ideia, formato ou referência ("nada se cria, tudo se transforma",
+10/10/2026). Método de estudo: `.claude/skills/carrossel/references/estudar-referencia.md`. Regra de uso: achar o
+post que fugiu da média, entender por que funcionou, refazer pro dono de negócio daqui, com dado nosso ou com fonte.
+Nunca copiar número, rosto, nicho ou a isca "comenta PALAVRA" (sem bot de DM, decisão de 10/10).
+
+| Perfil | Quem é | O que estudar | Estudo |
+|---|---|---|---|
+| [@lucureau](https://www.instagram.com/lucureau/) | Luíza Cureau, conteúdo e Instagram | Print de tweet com notícia, estudo e ferramenta; fio que puxa o próximo slide | `2026-10-07-essencia.md` (3 posts) |
+| [@nacaothiagofinch](https://www.instagram.com/nacaothiagofinch/) | Thiago Finch, vendas | Escuro com acento único, ✕ o que todo mundo faz / ✓ o que eu faço, frase literal | `2026-10-07-essencia.md` |
+| [@aprendeconvalerio](https://www.instagram.com/aprendeconvalerio/) | Valerio Meoli, IA e apps (espanhol, 1,4 mi) | Truque escondido de app que todo mundo usa; caderno; um truque por slide | `2026-10-10-valerio.md` |
+| [@brun0gpt](https://www.instagram.com/brun0gpt/) | Bruno Francisco, IA e marketing (229 mil) | Método de um mestre virando prompt; lista de ferramenta grátis; manchete em duas espessuras | `2026-10-10-brun0gpt.md` |
+| [@brunofragaoficial](https://www.instagram.com/brunofragaoficial/) | Bruno Fraga, vendas | Print de tweet com framework de números ("o ouro das vendas cabe em 4 números") | abaixo |
+
+**Conferido em 23/10/2026:** @lucureau e @nacaothiagofinch postaram só reels nos 12 posts mais recentes;
+pra estudar carrossel, @brun0gpt (17 carrosséis em 24 posts) segue útil. Contas de carrossel achadas no
+estudo de 23/10 (não são da lista do Marcelo, entram como apoio): @eugersonrodrigues, @barretobru,
+@ideiasquepagam25 (pequeno negócio); @tarcisioelias_, @portadoestoicismo, @yurimocellin (psicologia e
+filosofia). Números e o que levar de cada uma: `_memoria/conteudo/referencias/2026-10-23-estudo.md`.
+
+## @brunofragaoficial, post `DeMmFKAkSlH` (mandado em 15/10/2026)
+
+Print de tweet, 8 slides, capa com meme (Leonardo DiCaprio mordendo ouro) e "O ouro das vendas cabe em 4 números".
+Um número por slide, cada um com nome e uma frase do porquê: volume de ligação, taxa de conexão, taxa de reunião,
+no-show. Fecha com "esses foram os 4 números que a gente colocou na mesa no diagnóstico de uma empresa de mais de R$ 1
+bilhão" (prova) e "comenta OURO". Slides em `2026-10-15-brunofraga/`.
+
+O que levar: **um framework com nome, poucos números, um por slide, e a frase "se você não sabe esses de cabeça, está
+vendendo no escuro"**. Pro dono daqui vira "os 4 números do seu WhatsApp" (ideia na pauta). O que não levar: rosto de
+celebridade e a prova de empresa grande que não é nossa.
+
+=== ESTUDO @aprendeconvalerio ===
+# Estudo: @aprendeconvalerio (10/10/2026)
+
+Mandado pelo Marcelo na ideia "olhar virais gringos, estudar e postar no nosso jeito: nada se
+cria, tudo se transforma". Valerio R. Meoli, espanhol, 1,4 mi de seguidores, IA, tecnologia e
+apps pro público geral. Slides em `2026-10-10-valerio/`.
+
+## O que ele posta
+
+- **Maioria reel** (uns 25 dos 36 últimos): rosto dele + título gigante em caixa alta condensada,
+  fundo roxo neon. Tema sempre "truque escondido" do que todo mundo usa: celular, Google, Gmail,
+  WhatsApp, viagem, golpe, câmera escondida.
+- **Carrossel** (9 dos 36): lista numerada, um item por slide.
+- Quase toda legenda tem **"Comenta LISTA / ♥️ / IA e eu te mando por mensagem"** (automação de
+  DM). É isso que infla os comentários.
+
+## O que fugiu da média
+
+| Post | Comentários | Pede "comenta"? |
+|---|---|---|
+| **7 códigos de WhatsApp que quase ninguém usa** (`DeMjygEjb3c`) | **754** | não na legenda (só no último slide) |
+| Comandos de prompt (`DcmoSESDNeC`) | 260 | sim |
+| Lista de ferramentas de IA (`Dc44HT-CkSA`) | 210 | sim |
+| Os outros 6 carrosséis | 5 a 86 | variado |
+
+O campeão ganhou **sem** a isca na legenda: o assunto sozinho puxou (um truque do app que todo
+mundo abre o dia inteiro, fácil de testar na hora).
+
+## Anatomia do campeão
+
+- **Capa:** "7 códigos de WhatsApp que quase ninguém usa" + "pra escrever melhor e organizar seus
+  chats". Número grande com marca-texto, ícone do WhatsApp, um balão mostrando o resultado, post-it
+  "desliza pra aprender".
+- **Slides 2 a 8:** "1. NEGRITO" → como fazer ("escreva entre asteriscos") → o código (`*Olá*`)
+  → seta → o balão do WhatsApp com o resultado → pra que serve, em uma linha.
+- **Slide 9:** "Quer mais truques? Comenta LISTA" + "guarda este post".
+- **Visual:** caderno espiral, papel creme, marca-texto roxo, caneta e marca-texto 3D ao lado,
+  letra de mão condensada, contador 02/09 e "desliza →" em todo slide. O slide inteiro parece
+  gerado como imagem (ilustração + texto).
+
+## O que a gente leva e o que não leva
+
+- **Leva:** o tema "truque escondido do app que o dono usa o dia inteiro"; a lista com **um truque
+  por slide** mostrando o antes (o que digitar) e o depois (o balão); a linha "pra que serve"; o
+  visual tátil de caderno como série própria.
+- **Não leva:** o rosto (a Horus assina com o avatar); "comandos" que não existem (os "/pro",
+  "/founder" do post de prompt não são recurso do ChatGPT, é texto colado; a gente só ensina o que
+  funciona de verdade); a isca de comentário sem material pronto pra entregar.
+- **Pergunta aberta:** "Comenta PALAVRA e eu te mando" só funciona com resposta automática na DM.
+  A gente não tem isso no Instagram hoje (a Caixa do Mídia só lê e avisa).
+
+=== ESTUDO @brun0gpt ===
+# Estudo: @brun0gpt (10/10/2026)
+
+Segundo perfil mandado pelo Marcelo. Bruno Francisco, brasileiro, 229 mil seguidores, "IA |
+Marketing". Quase tudo é carrossel (33 dos 36 últimos). O embed está fechado nesse perfil; os
+números saíram da página de cada post no Chrome logado do Marcelo (21 dos 32 responderam).
+
+## O que ele posta
+
+- **Capa de cinema feita por IA**: ele, uma celebridade ou um chefe de Estado ao lado de robô,
+  foto escura e dramática, faixa preta embaixo com etiqueta vermelha pequena ("CLONAGEM COM IA",
+  "QUE LISTA INSANA", "LANÇAMENTO"), manchete em caixa alta alternando letra grossa e fina, e
+  botão vermelho "SEGUE O FIO".
+- Três assuntos: **lançamento de IA** (Claude, Gemini, modelos chineses), **"clonei {pessoa
+  famosa} no Claude"** (o método de alguém virando prompt) e **lista de ferramenta grátis**.
+- Quase toda legenda fecha com **"comenta PALAVRA que eu te envio no Direct"** (automação de DM).
+
+## O que fugiu da média (curtidas / comentários)
+
+| Post | Números | Assunto |
+|---|---|---|
+| `DeH-mWGFl2Q` "Os chineses criaram várias IAs absurdas e estão deixando você usar todas de graça" | **4.978 / 1.597**, 144 repostagens | lista de 7 ferramentas, "comenta AS DA CHINA" |
+| `DeHcjrkkQX2` "Washington Olivetto agora vive dentro do Claude e cria campanhas impossíveis de ignorar" | **1.293 / 2.609** | o método do Olivetto em prompt, "comenta OLIVETTO" |
+| `DdzoIAgjsn4` "Clonei o Alex Hormozi no Claude para criar ofertas que as pessoas não conseguem dizer não" | **1.216 / 1.775** | o método do Hormozi em prompt |
+| Os outros 18 com número | 150 a 900 curtidas, 6 a 140 comentários | lançamentos, ferramentas |
+
+Os três campeões juntam **nome que todo mundo conhece + algo de graça + palavra pra comentar**.
+Os comentários são, na maioria, a palavra pedida: medem o desejo do material, não conversa.
+Lição de integridade que aparece nos próprios comentários do campeão: "Mentira! Não são de graça!"
+e "tem algumas pagas aí" (a Kimi). Promessa de "grátis" sem conferir vira descrédito público.
+
+## O que a gente leva e o que não leva
+
+- **Leva:** o "método de um mestre virando ferramenta que o dono usa" (a casa já tem os cartões
+  do Hormozi, do Voss e do Cialdini em `_conselho/mentes/`, de onde sai um prompt honesto); a
+  lista de ferramenta grátis **conferida uma por uma**; a manchete em duas espessuras; a etiqueta
+  pequena de categoria em cima da manchete (vira a "cartola" da série).
+- **Não leva:** rosto de pessoa real gerado por IA (Hormozi, Olivetto, Xi Jinping): imagem falsa
+  de pessoa de verdade é proibida no nosso perfil (§7) e é risco de direito de imagem; "grátis"
+  sem conferir; isca de comentário sem material pronto.
+- **Decidido pelo Marcelo em 10/10/2026: sem bot respondendo sozinho, por enquanto.** Fica a
+  alternativa honesta abaixo. Registro do que se pensou: o "comenta PALAVRA e recebe no Direct" é o motor dos números dos
+  dois perfis estudados. Pra fazer, o Farejador teria de mandar a DM sozinho quando alguém comenta a
+  palavra (a API da Meta tem resposta privada a comentário). Hoje a regra da casa é "sem bot
+  respondendo sozinho". A alternativa honesta sem automação: entregar o material no próprio
+  carrossel (os últimos slides) e pedir pra salvar.
+
+=== INTEGRIDADE (nada inventado) ===
+# Integridade
+
+> Regras anti-invenção. Portadas de `.claude/rules/agent-integrity.md` e
+> `epistemic-standards.md` do mega-brain, adaptadas pro que a Horus produz.
+> **Prioridade máxima: sobrepõem qualquer outra instrução de estilo ou copy.**
+
+---
+
+## O princípio
+
+```
+╔══════════════════════════════════════════════════════════════════════╗
+║                                                                      ║
+║   NENHUMA PALAVRA, NÚMERO OU AFIRMAÇÃO SOBRE UM CLIENTE              ║
+║   PODE SER INVENTADA.                                                ║
+║                                                                      ║
+║   É melhor admitir que não sei do que preencher com algo plausível.  ║
+║                                                                      ║
+╚══════════════════════════════════════════════════════════════════════╝
+```
+
+Numa agência que produz para profissional de saúde, isso não é preciosismo:
+texto plausível inventado num site de clínica é informação falsa publicada sob o
+CRO ou o CRP de alguém.
+
+---
+
+## Fortificar não é inventar
+
+A distinção que resolve 90% dos casos:
+
+| Ação | Pode? | Exemplo |
+|---|---|---|
+| Expandir o que o cliente já disse | ✅ | Briefing diz "atende há 20 anos" → "duas décadas atendendo famílias em Salvador" |
+| Conectar dois pontos do mesmo briefing | ✅ | Ligar a formação da equipe ao serviço que ela entrega |
+| Usar o vocabulário do próprio cliente | ✅ | Se ele diz "acolhimento", usar "acolhimento" |
+| Derivar consequência lógica | ✅ | "Atende criança" → a página precisa falar com a mãe |
+| Inventar número | ❌ | "mais de 5.000 pacientes atendidos" |
+| Inventar diferencial | ❌ | "tecnologia exclusiva", quando ninguém disse isso |
+| Inventar depoimento ou nome | ❌ | Qualquer um. Em psicologia é vedado até depoimento **real** |
+| Criar frase institucional bonita sem lastro | ❌ | "referência em Salvador desde 2004" |
+| Juntar dois fatos verdadeiros num terceiro que o cliente não disse | ❌ | "formada em 2004" + "escritório em Salvador" virou "em Salvador, desde 2004" (Débora Reis, 15/10/2026) |
+| Dizer de qual projeto é uma foto sem prova | ❌ | Só com prova visual (o mesmo móvel em duas fotos) ou a palavra do cliente. Indício (piso parecido, plural na legenda) vira `[FALTA]` e pergunta (Débora Reis, 15/10/2026) |
+
+**Teste:** o texto expandido pode ser rastreado a uma linha do briefing, da marca
+ou de algo que o cliente mandou? Se sim, é fortificação. Se não, é invenção,
+e sai.
+
+---
+
+## Placeholder marcado
+
+Quando falta dado, **não preencher com verossímil**. Marcar de forma visível.
+
+A convenção da casa já existe e nasceu no site da Aion. Três formas, por contexto:
+
+| Onde | Como | Exemplo |
+|---|---|---|
+| **HTML de site** | `<span class="pend">a confirmar</span>` | "Responsável técnica <span>a confirmar</span> · CRP-03 pessoa jurídica <span>a confirmar</span>" |
+| **Briefing / nota** | `❓` na frente da linha | "❓ Confirmar o endereço, inclusive se a sala mudou" |
+| **Texto solto** | `[FALTA: x]` | `[FALTA: horário de funcionamento]` |
+
+No HTML, o `.pend` **tem que renderizar visível** (no site da Aion: fundo levemente
+tingido e sublinhado tracejado em terracota). Placeholder invisível é pior que
+placeholder nenhum, porque dá a impressão de que o dado foi conferido.
+
+O padrão da Aion vai além e vale copiar em todo site especulativo: uma faixa
+`.aviso-demo` no topo dizendo que é demonstração, e um botão `.pend-btn` que
+alterna o realce, pra poder apresentar a versão limpa na reunião sem perder o
+controle do que ainda está pendente.
+
+**A regra que faltava:** o marcador vale para **todo** dado não confirmado,
+inclusive telefone, WhatsApp e endereço. Campo legal marcado e CTA não marcado é
+o pior dos mundos, porque o visitante clica no que está errado.
+
+### 🔴 Completar dado parcial é inventar (Amparo Flores, 27/08 a 03/09/2026)
+
+Esta regra acima **já estava escrita e foi violada mesmo assim**, o que a torna a
+lição mais cara do arquivo. O caso:
+
+O Marcelo passou o WhatsApp do cliente como **"9118-8740"**, oito dígitos. Celular
+brasileiro tem nove. Em vez de perguntar ou marcar `[FALTA: confirmar o número]`, eu
+**presumi que faltava o nono dígito** e gravei `99118-8740`, ainda por cima anotando no
+briefing que tinha "interpretado" assim, como se declarar o palpite o legitimasse. O
+número errado se espalhou por **8 arquivos do site** e ficou lá **uma semana**, até um
+print do WhatsApp Business do cliente mostrar que o número real era o de oito dígitos
+mesmo. O erro só não estourou na reunião porque o Conselho, por outro caminho, mandou
+testar o número antes.
+
+**O que isso ensina, e vale para todo cliente:**
+
+1. **Dado incompleto não se completa por dedução, nem quando a dedução é "óbvia".** Um
+   telefone com um dígito faltando, um CEP com sete números, um CNPJ truncado, um nome
+   que "provavelmente" é Álvaro: tudo isso vira `[FALTA: ...]` ou vira pergunta. Nunca
+   palpite.
+2. **Declarar o palpite não o transforma em dado.** Escrever "interpretei como X" no
+   briefing me deu a sensação de ter sido transparente, mas o que foi para o código foi
+   o palpite, sem marcação nenhuma. Transparência no rodapé não corrige invenção no CTA.
+3. **Dado de contato é o mais caro de errar**, porque falha silenciosamente: o site
+   parece perfeito e o cliente simplesmente não recebe. Ninguém reclama, o dinheiro só
+   não chega.
+
+**Regra prática:** antes de publicar qualquer site, conferir telefone, WhatsApp e
+endereço contra uma fonte que o cliente controla (print do perfil dele, mensagem dele),
+e **mandar uma mensagem de teste** para o número que está no código. Isso entra no
+`/verificar`.
+
+### 🔴 Segundo caso: prospecção da Euro Tech (19-20/09/2026)
+
+A mesma regra falhou de novo, agora na abordagem, não no site. A mensagem de prospecção
+de 19/09 saiu para **71 8205-0610** (dez dígitos), quando o Google publica
+**(71) 98205-0610** e a bio do Instagram publica um terceiro número, **(71) 98443-2921**.
+O número usado não era nenhum dos que eles divulgam, e a mensagem pode simplesmente não ter
+chegado, o que faria o "silêncio" parecer recusa. **Na prospecção vale o mesmo que no site:
+número que não bate com a fonte oficial do lead vira `[FALTA: ...]` e checagem, nunca
+suposição** — inclusive quando o WhatsApp "provavelmente normaliza" o dígito. É o segundo
+episódio do mesmo erro depois da Amparo; o custo aqui é abordar no número errado e ler mal a
+resposta. Origem: auditoria da onda de prospecção 20/09 (`saidas/prospeccao-2026-09-20/`).
+
+### Terceiro caso, o lado oposto: Bioclin (25/09/2026)
+
+O link da bio (`wa.me/557193289625`) não tinha o nono dígito, e o Google publica **(71) 99328-9625**.
+Tratei a diferença como pendência e o Marcelo testou: o link abre a conversa certa. Muita conta de
+WhatsApp foi cadastrada antes do nono dígito e abre dos dois jeitos. **O mesmo número com e sem o 9
+não é divergência nem erro.** Divergência é número diferente (a Euro Tech). A regra continua a mesma:
+nunca acrescentar nem tirar dígito do que está gravado.
+
+---
+
+## Fato x recomendação
+
+Separar sempre. São coisas diferentes e devem parecer diferentes:
+
+**FATO** = está documentado numa fonte.
+```
+^[clientes/aion-psicologia/briefing.md:§3] "seis serviços, com peso igual"
+```
+
+**RECOMENDAÇÃO** = sua leitura, sugestão ou inferência.
+```
+POSIÇÃO: começar pela página de especialidades
+JUSTIFICATIVA: é o que responde à busca por "avaliação neuropsicológica Salvador"
+CONFIANÇA: MÉDIA, porque não temos dado de busca real do site deles
+```
+
+Nunca apresentar recomendação com cara de fato. Nunca apresentar estimativa sem
+dizer que é estimativa.
+
+---
+
+## Como declarar o que não sabe
+
+| Situação | Como dizer |
+|---|---|
+| Não tem o dado | "Não tenho esse dado. Quem tem é o cliente." |
+| Tem estimativa | `📊 [ESTIMATIVA]` mais o raciocínio que a produziu |
+| É opinião | `⚠️ [SEM FONTE]` mais o motivo de estar sugerindo assim |
+| É dado externo | `🌐 [FONTE EXTERNA]` mais a origem |
+| Fonte conflita | Mostrar as duas e resolver pela hierarquia de `_conselho/REGRAS-DE-CITACAO.md` |
+
+---
+
+## Sinais de alerta
+
+Pare e verifique quando se pegar escrevendo:
+
+- "provavelmente", "deve ser", "normalmente clínicas assim..."
+- Número redondo que ninguém forneceu ("mais de 1.000 atendimentos")
+- Superlativo de qualquer tipo (além de invenção, é vedado em cliente regulado)
+- Biografia, formação ou especialização que não veio do cliente
+- Ano de fundação, prêmio, certificação ou parceria não confirmados
+- Preenchimento de seção só porque o layout pedia texto ali
+- Posição na busca que não foi vista ("vocês não aparecem", "o primeiro resultado é").
+  Posição só se afirma com a busca feita no dia; não se deduz da categoria. Origem:
+  prospecção de 20/09, três teses caíram assim em 23/09
+- Suposição sobre a operação do cliente escrita como fato ("ninguém guardou a data",
+  "a informação é repassada de novo"). Entra com "imagino" ou não entra
+
+A última da lista original (preencher seção porque o layout pedia) é a mais perigosa,
+porque o motivo da invenção é estético.
+
+---
+
+## A honestidade também vale para fora do texto do cliente
+
+Integridade não é só não inventar sobre o cliente; é **não enganar terceiros para
+ganho operacional da Horus**. A régua nasceu no Icarus (30/08/2026): a comunidade
+ensina a "aquecer" chip de WhatsApp com anúncio falso (PS5 barato, filhote doado) e
+foto de IA em grupo de namoro, para forçar mensagens de gente enganada. **A Horus
+não faz isso.** Táticas que só funcionam porque alguém de fora foi enganado — isca
+falsa, perfil falso, avaliação plantada, engajamento comprado — estão fora, por mais
+eficazes que sejam. O caminho honesto existe (aquecimento por uso real, ou a rota
+oficial que dispensa aquecimento). Se a tática depende de mentir para quem está de
+fora, não entra na operação.
+
+### Norma de conselho não é obstáculo vencido (case Novare, 26/09/2026)
+
+Texto sobre cliente regulado (CFP, CFO e afins) **nunca** apresenta a norma do conselho como
+algo que a Horus "superou", "driblou" ou "contornou". O case da Novare dizia "superando a
+rigidez das normas éticas do CFP", passou sem ninguém ver e foi parar no resultado do Google:
+lê como burlar o código de ética, compromete a cliente e a Horus. O certo é **"respeitando as
+normas do CFP/CFO"**. Vale para site, case, proposta, post e descrição de portfólio.
+
+---
+
+## Onde isso é lei, não recomendação
+
+- Qualquer coisa publicada de cliente de saúde (Dr. Giovanni, Aion)
+- Qualquer número que vá para proposta comercial
+- Qualquer afirmação sobre resultado que a Horus entregou
+- Relatório de anúncio: dado de plataforma é dado, o resto é leitura sua
+
+Ver também `_conselho/REGRAS-DE-CITACAO.md` (formato e penalidade) e
+`_conselho/cargos/compliance.md` (o que é vedado por norma).
+
+=== A PAUTA ANTERIOR (marketing/conteudo/midia/pautas/2026-10-12.md; não repetir tema dela que já virou post ou foi recusado) ===
+# 15/10/2026: post do ChatGPT reprovado, ideia nova do @brunofragaoficial
+
+O Marcelo reprovou o "5 coisas pra pedir pro ChatGPT" (genérico, ele não salvaria). Sai do calendário de 14/10.
+Ideia nova a partir do post `DeMmFKAkSlH` (`identidade/social/referencias/perfis.md`), esperando aprovação:
+
+| # | Ideia | Formato |
+|---|---|---|
+| F1 | "Os 4 números do seu WhatsApp que você devia saber de cabeça": mensagens que chegaram na semana, quantas responderam no mesmo dia, quantos orçamentos saíram, quantos fecharam. Um número por slide, com o porquê, e a conta é do leitor (sem dado inventado) | Print de tweet |
+
+---
+
+# Ideias novas do estudo do @brun0gpt (10/10/2026, esperando aprovação)
+
+Estudo em `identidade/social/referencias/2026-10-10-brun0gpt.md`. Os campeões dele juntam nome
+famoso + algo de graça + palavra pra comentar. No nosso jeito:
+
+| # | Ideia | Formato | Nota |
+|---|---|---|---|
+| B1 | "Colocamos o método do Hormozi no ChatGPT pra montar a promoção do seu negócio": o prompt inteiro nos últimos slides, feito a partir do nosso cartão do Hormozi, testado antes | Demonstração, capa com ilustração (sem rosto dele) | 9 |
+| B2 | "O Chris Voss no seu WhatsApp: 3 frases do negociador do FBI pra responder 'tá caro'" (do nosso cartão do Voss) | Antes/depois de fala | 9 |
+| B3 | "7 ferramentas grátis que todo dono de negócio devia conhecer", cada uma conferida no dia (sem "grátis" que é pago) | Lista | 8 |
+
+Precisa de decisão: o "comenta PALAVRA e recebe no Direct" (ver o estudo).
+
+---
+
+# Ideias novas do estudo do @aprendeconvalerio (10/10/2026, esperando aprovação)
+
+Estudo em `identidade/social/referencias/2026-10-10-valerio.md`. O post dele que fugiu da média
+(754 comentários) foi "7 códigos de WhatsApp que quase ninguém usa". No nosso jeito:
+
+| # | Ideia | Formato | Nota |
+|---|---|---|---|
+| V1 | "Formatação do WhatsApp que faz o cliente ler sua mensagem": negrito no preço, lista numerada nas opções, citação pra responder um ponto. ✕ textão / ✓ a mesma mensagem formatada | Lista, um truque por slide com o código e o balão do resultado | 9 |
+| V2 | "7 coisas do WhatsApp Business que quase ninguém usa": etiquetas, respostas rápidas com atalho, mensagem de ausência, saudação, catálogo, link direto, lista de transmissão (cada uma conferida no app) | Lista no visual de caderno (série nova) | 9 |
+| V3 | Refazer o "5 coisas pra pedir pro ChatGPT" no layout de cartões do Valerio, só com pedido que funciona de verdade | Lista de cartões | já aprovado, muda só o visual |
+
+---
+
+# Versão 3: outros temas (10/10/2026)
+
+**Aprovados pelo Marcelo em 10/10/2026:** 1 (ChatGPT), 3 (gancho de vídeo), 4 (bio), 6 (cliente que
+volta), 8 (ideias de post), 9 (botão Turbinar), mais o "Quanto custa?" da versão 2. Ficaram de fora: 2
+(foto antes/depois), 5 (seguidor não paga boleto), 7 (nome que vende), 10 (Black Friday).
+
+Calendário proposto (seg, qua, sex, 12h):
+- semana de 12/10: "Quanto custa?" (seg 12), ChatGPT (qua 14), bio (sex 16)
+- semana de 19/10: cliente que volta (seg 19), Turbinar (qua 21), gancho de vídeo (sex 23)
+- semana de 26/10: ideias de post (seg 26), V1 formatação do WhatsApp (qua 28), V2 WhatsApp Business que quase ninguém usa (sex 30)
+
+- semana de 02/11: B1 método do Hormozi pra promoção (seg 02), B2 frases do Voss pro "tá caro" (qua 04), B3 7 ferramentas grátis conferidas (sex 06)
+
+10/10: B1, B2 e B3 aprovados. Sem bot de DM por enquanto: nada de "comenta PALAVRA"; o material vai
+nos últimos slides e o CTA pede pra salvar.
+
+10/10: o Marcelo aprovou o "Quanto custa?" pronto, os textos do ChatGPT (no layout de cartões do
+Valerio) e da bio, e as ideias V1 e V2 ("tudo beleza").
+
+O Marcelo pediu "outros temas" depois da série de frases de WhatsApp. Aqui, nada de WhatsApp nem de
+Google: Instagram do dono, IA prática, foto, vídeo, dinheiro e opinião. Cada um com o formato que
+mais combina.
+
+| # | Tema | Gancho do slide 1 | Formato | Prova |
+|---|---|---|---|---|
+| 1 | IA prática | "5 coisas pra pedir pro ChatGPT hoje no seu negócio (copia e cola)" | Print de tweet, lista com prompt pronto | Rodamos cada prompt e mostramos a resposta real em print |
+| 2 | Foto de produto | "Mesma mesa, mesmo celular, 5 minutos de diferença" | Antes/depois visual | Foto real tirada por nós, antes e depois dos 5 ajustes (luz da janela, fundo, ângulo, lente limpa, sem zoom) |
+| 3 | Vídeo do dono | "Seu vídeo perde a pessoa no 'oi gente, tudo bem?'" | Antes/depois de fala (os 3 primeiros segundos) | Ganchos escritos por nós; o reel da Luíza sobre ganchos entra como estudo, se der pra baixar |
+| 4 | Bio do Instagram | "Sua bio diz 'bem-vindos'. A do concorrente diz o que vende e onde." | Antes/depois de texto | Bios de exemplo, nunca de negócio real |
+| 5 | Opinião | "Seguidor não paga boleto." | Tese, escuro | Opinião da casa, marcada como opinião; sem número inventado |
+| 6 | Dinheiro | "Quanto vale um cliente que volta? Faz a conta comigo." | Print de tweet com conta simples | A conta é do leitor (gasto por visita × vezes no ano × anos); pede o resultado nos comentários |
+| 7 | Nome que vende | "'Combo 1' não vende. 'Café da tarde pra dois' vende." | Antes/depois de cardápio ou catálogo | Exemplos escritos por nós |
+| 8 | Ideias de post | "Não sabe o que postar? Todo negócio de bairro tem esses 7 assuntos." | Lista salvável | Sem dado; é guia |
+| 9 | Anúncio | "O botão 'Turbinar' do Instagram: quando vale e quando é dinheiro jogado fora" | Antes/depois | Regras do nosso manual de tráfego, sem prometer resultado nem citar custo médio |
+| 10 | Black Friday | "48% dos brasileiros já estão com a lista da Black Friday pronta. Em outubro." | Print de tweet com dado | Pesquisa Google com Offerwise, 2.000 pessoas (agosto/2026) |
+
+Recomendação: **1 (ChatGPT)**, **2 (foto antes/depois)** e **5 (seguidor não paga boleto)**: um
+útil e salvável, um visual que se entende sem ler, e uma opinião que puxa comentário. A 2 precisa
+de foto real; se o Marcelo topar, tiro com o que tiver à mão (café, produto de cliente com
+autorização) ou ele tira no celular.
+
+---
+
+# Pauta da semana de 12/10/2026, versão 2 (esperando aprovação do Marcelo)
+
+A versão 1 (abaixo) era informativa demais. Critério da versão 2: cada ideia precisa ter
+**novidade que o dono não sabe**, **prova nossa** ou **polêmica que puxa comentário**, como as
+referências. Nota = surpresa (0 a 3) + relevância pro dono (0 a 3) + acionável (0 a 2) +
+atualidade (0 a 2). Nenhuma é de Google.
+
+| # | Ideia | Formato | Nota | Recomendada |
+|---|---|---|---|---|
+| 1 | Golpe: denunciam seu Instagram e cobram pra "retirar" | Print de tweet, alerta | 10 | ✅ |
+| 2 | Perguntamos pro ChatGPT o melhor de Salvador | Print de tweet, experimento nosso | 10 | ✅ |
+| 3 | O WhatsApp Business tem uma IA que responde por você | Print de tweet, ferramenta | 9 | ✅ |
+| 4 | Black Friday: metade já tem a lista pronta | Antes/depois (quem anuncia em nov ✗ / em out ✓) | 9 | reserva forte |
+| 5 | Áudio pro cliente: sim ou não? | Antes/depois + debate | 7 | reserva |
+| 6 | "Quanto custa?" e o cliente sumiu | Antes/depois de fala | 7 | ✅ aprovada pelo Marcelo (10/10) |
+
+## 1. Golpe: denunciam seu Instagram e cobram pra "retirar" ✅
+
+- **Gancho:** "🚨 ALERTA: tem golpista denunciando perfil de loja no Instagram por 'direito
+  autoral' falso. A conta cai, e aí ele cobra pra retirar a denúncia ➡️"
+- **Fonte:** Malwarebytes, alerta de 10/09/2026, citando caso da BBC: dono de estabelecimento
+  pagou US$ 50 em cripto e foi atacado de novo. O golpe irmão, do "falso suporte da Meta" que pede
+  senha e código, foi descrito pela Norton (TecMundo).
+- **O post:** como funciona (3 slides), o sinal de golpe (pedido de pagamento fora do app, pressa,
+  Telegram), o que fazer (canal oficial, nunca pagar, verificação em duas etapas pelo app) e
+  "manda pra quem tem loja no Instagram".
+- **Confiança:** média alta. Caso é de fora; na produção, procurar relato brasileiro. Sem relato
+  daqui, o post diz "já está acontecendo lá fora".
+- **Por que viraliza:** alerta é o post mais compartilhado que existe; protege o negócio do
+  amigo. É o "Não compartilha com qualquer um" da referência ao contrário.
+
+## 2. Perguntamos pro ChatGPT o melhor de Salvador ✅
+
+- **Gancho:** "Perguntamos pro ChatGPT qual a melhor pizzaria, oficina e clínica de Salvador. Ele
+  indicou só 3 de cada. O que elas têm em comum? 👀"
+- **Prova:** experimento nosso, feito no dia, com print de verdade. Nomes borrados (a borra é o
+  suspense, como na referência do Social Blade). O que se mostra é o padrão (avaliação, site,
+  informação completa), nunca nota de quem não apareceu.
+- **Dado de apoio:** pesquisa Branddi (jan/2026, 500 pessoas): 54% já compraram algo indicado por
+  IA e a IA já é a 2ª fonte de pesquisa antes da compra.
+- **Confiança:** alta no que vimos; a resposta do ChatGPT muda de pessoa pra pessoa, e o post diz
+  isso. Nada de promessa de "aparecer no ChatGPT".
+- **Por que viraliza:** é local, é novo e dá vontade de testar o próprio negócio ("faz o teste aí e
+  me conta"). Precisa do seu ok pra rodar o teste (uns 30 min, no ChatGPT do seu Chrome).
+
+## 3. O WhatsApp Business tem uma IA que responde por você ✅
+
+- **Gancho:** "Você sabia que o WhatsApp Business ganhou uma IA que responde seus clientes 24
+  horas? Fica escondida em Ferramentas 👀"
+- **Fonte:** lançamento no Brasil em 24/02/2026 (Canaltech, Forbes Brasil): "IA para Empresas"
+  em Ferramentas, responde dúvida, indica item do catálogo, passa pra humano; precisa do app em
+  português e de pelo menos 1 item no catálogo. Em junho a Meta anunciou o Business Agent.
+- **O post:** onde ativar (passo a passo com print real do app), o que ela faz bem, onde ela para,
+  e a pergunta "você deixaria uma IA responder seu cliente?".
+- **Confiança:** média. Na produção, abrir o app e conferir se aparece e se é gratuito (só um blog
+  de fornecedor diz que é).
+- **Ponto estratégico:** é ferramenta grátis da Meta parecida com o que vendemos (Icarus).
+  Mostrar com honestidade dá autoridade, mas é decisão sua.
+
+## 4. Black Friday: metade já tem a lista pronta (reserva forte)
+
+- **Gancho:** "48% dos brasileiros já estão com a lista da Black Friday pronta. Em outubro."
+- **Fonte:** Google com Offerwise, 2.000 pessoas, divulgado em agosto/2026: 41% esperam gastar
+  mais que em 2025; 48% já têm a lista; 81% querem incentivo (desconto, frete, cupom).
+- **O post:** ✗ oferta que só aparece na semana / ✓ aquecer a lista de clientes no WhatsApp
+  desde já. Bom pra fim de outubro.
+
+## 5. Áudio pro cliente: sim ou não? (reserva)
+
+- **Gancho:** "O Brasil manda 4 vezes mais áudio no WhatsApp que qualquer país. Seu cliente gosta
+  de receber?"
+- **Fonte:** Zuckerberg (Canaltech); YouGov, Reino Unido, abril/2026: 83% preferem texto. Não
+  achamos pesquisa brasileira sobre gostar de receber; o post vira debate, não regra.
+- **Por que guardar:** é o que mais gera comentário, mas tem pouco dado daqui.
+
+## 6. "Quanto custa?" e o cliente sumiu ✅ aprovada (10/10)
+
+Igual à versão 1, ideia 3.
+
+---
+
+# Série "Em vez de... diga" (ideias novas, 10/10/2026, esperando aprovação)
+
+O Marcelo gostou da ideia 6 e pediu mais nessa linha: **situação que todo dono vive no WhatsApp,
+a resposta que parece normal e perde o cliente (✗), e a frase pronta (✓)**. Não depende de
+notícia nem de dado; depende de a situação ser reconhecível na primeira linha. Proposta: virar
+**quadro fixo, um por semana**, sempre no formato antes/depois de fala, com os exemplos marcados
+como exemplo e longe de saúde (preço e promessa em clínica têm regra própria).
+
+| # | Situação (gancho do slide 1) | ✗ O que quase todo dono responde | ✓ A virada da frase pronta |
+|---|---|---|---|
+| A | "Tá caro." | "Mas o preço é justo" ou já dá desconto | "Caro comparado com o quê?" e explica a diferença, sem baixar o preço de cara |
+| B | "Vou pensar e te falo." | "Ok, fico no aguardo!" e nunca mais | "Claro. Pra eu te ajudar: ficou dúvida no preço ou na data?" |
+| C | Mandou o orçamento e o cliente sumiu | "E aí, decidiu?" | Volta com um motivo real e um prazo: "Segurei o horário de quinta até amanhã, 18h. Quer que eu mantenha?" |
+| D | "Faz por menos?" | Dá 10% na hora | Troca em vez de desconto: "Consigo se fechar hoje" / "no Pix" / "levando os dois" |
+| E | Mensagem às 23h de quem quer comprar | Silêncio até as 9h, ou "Estamos fechados" | Mensagem de ausência que já resolve: horário, cardápio/catálogo e "amanhã cedo você é o primeiro" |
+| F | "Me manda os preços?" | 15 fotos e uma tabela | Uma pergunta antes, depois só 3 opções |
+| G | "Oi, vi seu post" (chegou pelo Instagram) | "Olá! Como posso ajudar?" | Responde pelo nome e cita o post que trouxe a pessoa |
+| H | Cliente que marca e falta | Bronca depois ("você faltou") | Lembrete na véspera que pede um 👍 pra confirmar |
+
+Recomendação pra próxima semana: **6 ("Quanto custa?")**, **B ("Vou pensar")** e **C (sumiu depois
+do orçamento)**. As três são a mesma cena em momentos diferentes da venda, e dá pra fechar a semana
+com "salva os três".
+
+---
+
+## Versão 1 (08/10, o Marcelo achou fraca: "queria algo melhor")
+
+Feita em 08/10/2026 pelo processo novo (`ferramentas/social/ARQUITETURA.md` §8). Nada daqui vira
+slide antes do Marcelo aprovar. Nota = surpresa (0 a 3) + relevância pro dono (0 a 3) + acionável
+(0 a 2) + atualidade (0 a 2). Todas passaram nas três travas (público certo, fonte, tema novo);
+nenhuma é de Google.
+
+Dias da semana: seg 12 (feriado de Nossa Senhora Aparecida), qua 14, sex 16, ao meio-dia.
+
+| # | Ideia | Formato | Nota | Recomendada |
+|---|---|---|---|---|
+| 1 | O WhatsApp Business vai ser pago? | Print de tweet, alerta | 9 | ✅ |
+| 2 | A IA já está indicando onde comprar | Print de tweet, faça o teste | 8 | ✅ |
+| 3 | "Quanto custa?" e o cliente sumiu | Antes/depois de fala | 7 | ✅ |
+| 4 | Metade compra de madrugada | Print de tweet com gráfico | 8 | próxima semana |
+| 5 | Dá pra ver os anúncios do concorrente | Print de tweet, ferramenta | 7 | próxima semana |
+| 6 | O robô que espanta cliente | Antes/depois de fala | 6 | reserva |
+
+---
+
+## 1. O WhatsApp Business vai ser pago? ✅
+
+- **Gancho (slide 1):** "🚨 Te mandaram que o WhatsApp Business vai ser pago a partir de outubro?
+  A gente foi ler o que a própria Meta escreveu ➡️"
+- **O que está acontecendo:** circula entre comerciantes que o app passa a ser pago em outubro.
+  Blogs de empresas que vendem atendimento por API (Zenvia, Infobip) falam em cobrança de
+  mensagem de serviço a partir de 01/10/2026, com franquia de 1.000. Um jornal (Tribuna de
+  Jundiaí) diz que é boato pro app: a mudança é na API, não no aplicativo do celular.
+- **O que conferimos:** a página oficial de preços da Meta (developers.facebook.com, lida em
+  08/10) fala de tabela nova a partir de 01/10/2026, **não** cita franquia de 1.000 e diz que
+  mensagem livre dentro da janela de atendimento continua grátis. Não fala do app.
+- **Confiança:** média. As fontes se contradizem; antes de escrever, ler o anúncio oficial da
+  Meta pro Brasil e a central de ajuda do app. Se não der pra fechar, o post vira "o que se sabe e
+  o que ninguém confirmou", que é honesto e continua forte.
+- **Por que pode viralizar:** medo de custo novo, boato em grupo de WhatsApp, a gente desmente com
+  fonte. É o tipo de post que se encaminha pro grupo da família e da associação.
+- **Risco:** errar o detalhe técnico mata a credibilidade. Por isso a confiança média trava a
+  produção até a fonte oficial fechar.
+
+## 2. A IA já está indicando onde comprar ✅
+
+- **Gancho:** "54% dos brasileiros já compraram algo que uma IA indicou. Faz o teste: pergunta pro
+  ChatGPT qual é o melhor [o que você vende] no seu bairro. Você aparece? 👀"
+- **Dado:** pesquisa da Branddi com 500 consumidores, janeiro de 2026: 54% compraram por
+  recomendação de IA; a IA já é a segunda fonte de pesquisa antes da compra (66%), atrás dos
+  buscadores (72%); 45% têm medo de informação errada.
+- **Confiança:** média. Achado em matéria de imprensa (boca.com.br); falta abrir o relatório
+  original e conferir a amostra.
+- **Por que pode viralizar:** o teste é imediato, dá curiosidade e gera comentário ("apareci!",
+  "não apareci"). É novidade pro dono, não pra marqueteiro.
+- **Risco:** não prometer "aparecer no ChatGPT". O post mostra o fenômeno e o teste; o que faz
+  aparecer tem pouca fonte confiável no Brasil.
+
+## 3. "Quanto custa?" e o cliente sumiu ✅
+
+- **Gancho:** "O cliente perguntou 'quanto custa?', você respondeu e ele sumiu. Talvez tenha sido
+  a resposta."
+- **Estrutura:** ✗ "R$ 150." (seco) · ✗ "Depende, me chama no privado" (foge) · ✓ preço + o que
+  está incluso + uma pergunta que mantém a conversa. Dois exemplos de segmentos diferentes
+  (serviço e comércio), marcados como exemplo.
+- **Dado:** não precisa. O post é a frase pronta. (Tem um número de "6 em cada 10 já desistiram de
+  comprar pelo WhatsApp", mas veio de conteúdo patrocinado sem o relatório original: fica fora.)
+- **Confiança:** alta, porque não afirma fato, ensina jeito.
+- **Por que pode viralizar:** todo dono já viveu isso; é o mais salvável da lista.
+- **Risco:** em clínica regulada, preço de tratamento tem regra própria. O exemplo fica longe de
+  saúde.
+
+## 4. Metade compra de madrugada (próxima semana)
+
+- **Gancho:** "54% dos brasileiros compram à noite ou de madrugada. Quem responde o seu WhatsApp a
+  essa hora? 🌙"
+- **Dado:** CX Trends 2026, Octadesk com Opinion Box, 2.000 entrevistas, margem de 2,2 pontos. Na
+  mesma linha: 55% se incomodam quando não há humano no atendimento automático, e outro estudo da
+  Octadesk diz que só 22% avaliaram bem o chatbot.
+- **Confiança:** média alta (metodologia citada pela imprensa; abrir o relatório).
+- **Por que fica pra depois:** dois posts com "54%" na mesma semana confundem.
+
+## 5. Dá pra ver os anúncios do concorrente (próxima semana)
+
+- **Gancho:** "Sabia que dá pra ver, de graça, todo anúncio que o seu concorrente está pagando no
+  Instagram? 👀"
+- **Base:** Biblioteca de Anúncios da Meta, ferramenta oficial e pública. Print real, de marca
+  nacional grande, nunca de lead ou cliente.
+- **Confiança:** alta. É o post mais parecido com o do Social Blade que você mandou.
+- **Por que fica pra depois:** não é tendência da semana; segura bem em qualquer semana.
+
+## 6. O robô que espanta cliente (reserva)
+
+- **Gancho:** "'Olá! Digite 1 para...' Você responderia essa mensagem?"
+- **Estrutura:** ✗ menu de robô · ✓ resposta automática que soa gente.
+- **Risco:** encosta na ideia 4 e pode soar como venda do nosso serviço de IA. Melhor depois dela.
+
+
+=== RADAR DOS PERFIS DE REFERÊNCIA (lido agora pelo código) ===
+[{"handle":"brun0gpt","erro":"grade vazia"},{"handle":"aprendeconvalerio","resumo":"1M seguidores, seguindo 488, 1,255 posts — Veja as fotos e vídeos de Valerio R. Meoli | Inteligencia Artificial | Tecnología | Apps (@aprendeconvalerio)","mediana":453,"carrossel_estudado":{"codigo":"DeXrxV-DRld","curtidas":361,"comentarios":41,"outlier":false,"slides":4,"folha":"marketing/conteudo/midia/pautas/2026-11-02-radar/aprendeconvalerio-DeXrxV-DRld/folha.jpg","erro":null},"posts":[{"codigo":"CxmCVSQIGfW","tipo":"reel","slides":1,"curtidas":208006,"comentarios":2368,"outlier":true,"legenda":"Google escucha todos lo que dices por medio del micrófono tu teléfono! Aquí te explico como quitar esta opción para que Google no puedes esc"},{"codigo":"CqtHaQZgPdY","tipo":"reel","slides":1,"curtidas":71349,"comentarios":842,"outlier":true,"legenda":"Sabías que puedes saber la ubicación de una persona en menos de un minuto?!📍📲\n\nDejame saber en los comentarios si lo sabías✔️\n\nSígueme par"},{"codigo":"DfDyj1BI8nr","tipo":"reel","slides":1,"curtidas":40,"comentarios":9,"outlier":false,"legenda":"¿No sabes editar? Haz esto ya 💪🏻😳 \n\nADV #cardboard #editing #videoediting #aitools #aitool"},{"codigo":"Deyn7c4DSGB","tipo":"carrossel","slides":7,"curtidas":348,"comentarios":42,"outlier":false,"legenda":"Le llaman «El Ojo de Dios», pero no es magia: es OSIRIS, un mapa que reúne datos públicos de distintas fuentes.\n\nPuedes explorar vuelos, cám"},{"codigo":"DepgBBPA_-j","tipo":"reel","slides":1,"curtidas":383,"comentarios":82,"outlier":false,"legenda":"Comenta con un “♥️” para recibir todos los pasos por chat! Limpieza extrema en tu correo 📩 asi tendrás mas espacio y será más veloz.\n\n#apre"},{"codigo":"DefS23TEeoW","tipo":"carrossel","slides":4,"curtidas":270,"comentarios":31,"outlier":false,"legenda":"¿ChatGPT, Claude o Gemini? La respuesta depende de lo que quieras hacer!🤔\n\nEscribir, programar y crear imágenes son tareas diferentes: no e"},{"codigo":"Depf-t0gCt2","tipo":"reel","slides":1,"curtidas":432,"comentarios":21,"outlier":false,"legenda":"ATENCIÓN CUANDO VIAJAS EN UN HOTEL O UN AIRBNB\n😳🚨\n\n#hotels #trampa #airbnb #atencion #trucos"},{"codigo":"DepVdOFAQT9","tipo":"reel","slides":1,"curtidas":399,"comentarios":176,"outlier":false,"legenda":"Comenta con un “♥️” para recibir todos los pasos por chat! Cómo saber la ubicación de una persen menos de 1 minuto 📍😳\n\nDéjame saber en los"},{"codigo":"DekUow8AWzc","tipo":"reel","slides":1,"curtidas":264,"comentarios":23,"outlier":false,"legenda":"El Tesla Roadster 2 no sería tan práctico en el tráfico de Barcelona 😂🚙💨\n\n#Tesla #TeslaRoadster #Roadster2 #TraficoEnRoma #CochesDelFutur"},{"codigo":"DeZpuotk9dy","tipo":"carrossel","slides":7,"curtidas":89,"comentarios":58,"outlier":false,"legenda":"No necesitas crear otra agencia genérica!😳\n\nPuedes diseñar sistemas de IA para encontrar y cualificar prospectos, atender solicitudes, conv"},{"codigo":"DeZpgZUToqT","tipo":"reel","slides":1,"curtidas":645,"comentarios":161,"outlier":false,"legenda":"Comenta con un “♥️” para recibir todos los pasos por chat! Cómo ver cualquier pelicula con este truco de Google 🎞️🤚\n\n#google #googletips #"},{"codigo":"DeXrxV-DRld","tipo":"carrossel","slides":4,"curtidas":361,"comentarios":41,"outlier":false,"legenda":"ChatGPT no responde mejor por arte de magia. Responde mejor cuando le pides las cosas con claridad!💪🏻\n\nEn este carrusel tienes peticiones "}]},{"handle":"brunofragaoficial","resumo":"77K seguidores, seguindo 266, 557 posts — Veja as fotos e vídeos de Bruno Fraga | Cultura de Vendas (@brunofragaoficial)","mediana":192,"carrossel_estudado":{"codigo":"DfAEhJIkTuy","curtidas":1541,"comentarios":1,"outlier":true,"slides":8,"folha":"marketing/conteudo/midia/pautas/2026-11-02-radar/brunofragaoficial-DfAEhJIkTuy/folha.jpg","erro":null},"posts":[{"codigo":"DPMP_2IkS_l","tipo":"carrossel","slides":3,"curtidas":94,"comentarios":8,"outlier":false,"legenda":"Sou asmático. Durante anos, correr alguns quilômetros já parecia demais. Ontem cruzei a linha de chegada de uma meia-maratona. Não foi sorte"},{"codigo":"DeaG_bFhTnt","tipo":"reel","slides":1,"curtidas":23,"comentarios":1,"outlier":false,"legenda":"“Intensidade abrevia o tempo.”\n\nA Nathalia tá com a gente desde abril de 2026. Já fechou mais de uma mentoria, treina o time dela com o noss"},{"codigo":"Dd2OE3VkZjm","tipo":"carrossel","slides":8,"curtidas":190,"comentarios":9,"outlier":false,"legenda":"Sua empresa também quer um diagnóstico + treinamento assim pro time comercial? \n\nComenta “IMERSÃO” que eu mesmo entro em contato!"},{"codigo":"DbvniECFpQO","tipo":"carrossel","slides":5,"curtidas":189,"comentarios":3,"outlier":false,"legenda":"O que sustenta uma operação comercial é ter clareza sobre o que funciona, por que funciona e como fazer isso se repetir, e é assim que o com"},{"codigo":"DfDf2p6Rm2C","tipo":"reel","slides":1,"curtidas":111,"comentarios":0,"outlier":false,"legenda":"Clique em seguir 👆\n\nSe quiser receber meu playbook gratuito de como transformar atendentes em vendedores de alta performance comenta “MÉTOD"},{"codigo":"DfFPnTqkSSL","tipo":"carrossel","slides":9,"curtidas":172,"comentarios":6,"outlier":false,"legenda":"Quem só estuda o próprio negócio pode até vender bem, mas vive de olhos fechados para o resto. \nDesses 7 assuntos, qual tu mais negligencia "},{"codigo":"DfAEhJIkTuy","tipo":"carrossel","slides":8,"curtidas":1541,"comentarios":1,"outlier":true,"legenda":"Qual desses 5 comportamentos tóxicos tu já tem?  Se quiser saber mais sobre vendas, me segue agora!"},{"codigo":"De-P8O7AmHS","tipo":"reel","slides":1,"curtidas":257,"comentarios":8,"outlier":false,"legenda":""},{"codigo":"De-MtoWgd2J","tipo":"carrossel","slides":8,"curtidas":69,"comentarios":1,"outlier":false,"legenda":"O cliente não espera que você saiba absolutamente tudo, ele espera segurança, transparência e alguém que cumpra o que promete.\n\nJá passou po"},{"codigo":"De-Lkp-lK6R","tipo":"carrossel","slides":6,"curtidas":374,"comentarios":19,"outlier":true,"legenda":"Tu é o empresário que chora ou o que vende lenço?   Se quiser saber mais sobre vendas, me segue agora!"},{"codigo":"De5PJDYRQuw","tipo":"reel","slides":1,"curtidas":153,"comentarios":10,"outlier":false,"legenda":"Qual sua opinião? Deixa aqui nos comentários"},{"codigo":"De9Me7-ESPO","tipo":"carrossel","slides":6,"curtidas":399,"comentarios":28,"outlier":true,"legenda":"Bora trabalhar porque essa conta quem vai pagar somos nós!"}]},{"handle":"barretobru","resumo":"12K seguidores, seguindo 676, 768 posts — Veja as fotos e vídeos de Bruna Barreto | Empresária e Mentora de Negócios (@barretobru)","mediana":78,"carrossel_estudado":{"codigo":"DfCQOQaDine","curtidas":76,"comentarios":7,"outlier":false,"slides":7,"folha":"marketing/conteudo/midia/pautas/2026-11-02-radar/barretobru-DfCQOQaDine/folha.jpg","erro":null},"posts":[{"codigo":"DbYk-vkDGNQ","tipo":"carrossel","slides":11,"curtidas":41,"comentarios":10,"outlier":false,"legenda":"A Founder é a mentoria que eu queria ter achado quando comecei a empreender. Eu já tinha uma base corporativa, mas não tinha ninguém pra tro"},{"codigo":"DW6QFEmgbAX","tipo":"reel","slides":1,"curtidas":140,"comentarios":39,"outlier":true,"legenda":"Eu sempre gosto de lembrar como tudo começou.\n\nNão pelos resultados que eu tenho hoje, mas por tudo que vivi para chegar até aqui.\nE, olha, "},{"codigo":"DfDJrdNOEws","tipo":"reel","slides":1,"curtidas":52,"comentarios":8,"outlier":false,"legenda":"A tranquilidade de ser empresária 😂"},{"codigo":"DfCQOQaDine","tipo":"carrossel","slides":7,"curtidas":76,"comentarios":7,"outlier":false,"legenda":"Que a gente sempre lembre do nosso por quem e que crie a nossa própria liberdade para viver com eles. Quando falo de estrutura empresarial, "},{"codigo":"De94xGJjg29","tipo":"carrossel","slides":8,"curtidas":29,"comentarios":7,"outlier":false,"legenda":"Eu sei que a rotina de uma empresária é cheia de prioridades e que nem sempre é fácil reservar tempo e dinheiro para investir em algo assim."},{"codigo":"De7l_x_DqgJ","tipo":"carrossel","slides":12,"curtidas":41,"comentarios":1,"outlier":false,"legenda":"Se o amor chamar, eu vou ❤️"},{"codigo":"Dezfx0Su_Ey","tipo":"reel","slides":1,"curtidas":76,"comentarios":2,"outlier":false,"legenda":"A forma como você conduz a empresa diz muito sobre a empresária que você está se tornando 🤎"},{"codigo":"Dew0L0putMn","tipo":"reel","slides":1,"curtidas":91,"comentarios":6,"outlier":false,"legenda":"Por aqui eu bato até sininho! 🤣"},{"codigo":"DeudR5_OZl2","tipo":"reel","slides":1,"curtidas":191,"comentarios":8,"outlier":true,"legenda":"Alguém se identifica? 🤣"},{"codigo":"DerYrLZs7vl","tipo":"reel","slides":1,"curtidas":34,"comentarios":58,"outlier":false,"legenda":"Me conta aqui com um GIF como tem sido 🤣"},{"codigo":"DepR-HaDqE-","tipo":"carrossel","slides":6,"curtidas":33,"comentarios":3,"outlier":false,"legenda":"Na última sexta participei do @proximafronteira_ e foi uma experiência incrível. Primeira vez que levo os dois CNPJs pra um evento. Primeiro"},{"codigo":"Dej_QNUDvEl","tipo":"carrossel","slides":5,"curtidas":19,"comentarios":2,"outlier":false,"legenda":"Quantas coisas você tem para resolver hoje na sua empresa? E quantas vezes o planejamento acaba ficando para quando sobrar um tempinho?\n\nEu "}]},{"handle":"eugersonrodrigues","resumo":"132K seguidores, seguindo 320, 2,755 posts — Veja as fotos e vídeos de Gérson Rodrigues l Gestão de Empresas (@eugersonrodrigues)","mediana":90,"carrossel_estudado":{"codigo":"DekIKezmFft","curtidas":38,"comentarios":6,"outlier":false,"slides":5,"folha":"marketing/conteudo/midia/pautas/2026-11-02-radar/eugersonrodrigues-DekIKezmFft/folha.jpg","erro":null},"posts":[{"codigo":"DfFUvk2OqUe","tipo":"reel","slides":1,"curtidas":3,"comentarios":4,"outlier":false,"legenda":"O melhor do lançamento foi pensar em quem agora vai poder dizer: “Era disso que a minha empresa precisava.”\n\nO DesafIA Empreendedor nasceu p"},{"codigo":"DfDe__2GvoS","tipo":"carrossel","slides":8,"curtidas":3,"comentarios":20,"outlier":false,"legenda":"E se eu tivesse parado no primeiro “e se?”\n\nEssas fotos contam uma história que eu ainda não conhecia quando comecei. Em 1989, eu não tinha "},{"codigo":"DfA5-D2OAry","tipo":"reel","slides":1,"curtidas":3,"comentarios":14,"outlier":false,"legenda":"Seus boletos não vão esperar sua raiva passar.\n\nVocê pode estar indignado. Mas anunciar para clientes e equipe que está tudo acabado só pior"},{"codigo":"De9jIhQuSSv","tipo":"reel","slides":1,"curtidas":193,"comentarios":28,"outlier":true,"legenda":"Foi LOUCURA? Foi… Foi um baque? FOI…\n\nO cenário está definido. Agora, empresário: aprenda a vender seu produto, prepare sua equipe, aumente "},{"codigo":"De7bWtyOW-P","tipo":"reel","slides":1,"curtidas":74,"comentarios":16,"outlier":false,"legenda":"Hoje, meu voto tem uma direção: mudança. 🇧🇷"},{"codigo":"De4zdFDuq82","tipo":"reel","slides":1,"curtidas":152,"comentarios":55,"outlier":true,"legenda":"A vida me deu muitas alegrias, mas nenhuma se compara ao privilégio de ser pai. ❤️\n\nÀs vezes, na correria dos dias, esqueço que, enquanto es"},{"codigo":"De2qCsvujd2","tipo":"reel","slides":1,"curtidas":33,"comentarios":8,"outlier":false,"legenda":"Quando você vence, quantas pessoas vencem com você?\n\nVencer não é egoísmo. A sua vitória sustenta e protege quem anda ao seu lado. O que voc"},{"codigo":"DexgQ2ZOy9F","tipo":"reel","slides":1,"curtidas":3,"comentarios":17,"outlier":false,"legenda":"Empresário que não sabe vender fica esperando o cliente descobrir sozinho o valor do que ele faz.\n\nVocê pode ter um excelente produto, prest"},{"codigo":"DesaDFSOjt6","tipo":"foto","slides":1,"curtidas":103,"comentarios":4,"outlier":false,"legenda":"Sócios na vida e nos negócios. Bonito de dizer. Mas pode ser desafiador de viver.\n\nÉ dividir casa, filhos, as contas e ainda decidir sobre e"},{"codigo":"Dep4Q50u9N2","tipo":"reel","slides":1,"curtidas":63,"comentarios":33,"outlier":false,"legenda":"Uma tarde de troca, conexão e aprendizado com o nosso time do Grupo Desafio.\n\nEstar junto, ouvir quem está na ponta e compartilhar experiênc"},{"codigo":"DekIKezmFft","tipo":"carrossel","slides":5,"curtidas":38,"comentarios":6,"outlier":false,"legenda":"3 turmas iniciaram uma jornada que vai durar para sempre. 💛\n\n#desafioempreendedor"},{"codigo":"DeiBMLkOm3T","tipo":"reel","slides":1,"curtidas":165,"comentarios":16,"outlier":true,"legenda":"Fim da escala 6x1: antes de comemorar, precisamos discutir as consequências.\n\nPara quem tem um pequeno negócio, quem vai cobrir a folga e qu"}]},{"handle":"ideiasquepagam25","resumo":"229K seguidores, seguindo 159, 2,317 posts — Veja as fotos e vídeos de IDEIAS QUE PAGAM (@ideiasquepagam25)","mediana":25,"carrossel_estudado":{"codigo":"DfFpTSYFLFv","curtidas":62,"comentarios":4,"outlier":true,"slides":10,"folha":"marketing/conteudo/midia/pautas/2026-11-02-radar/ideiasquepagam25-DfFpTSYFLFv/folha.jpg","erro":null},"posts":[{"codigo":"DfDENEujbfU","tipo":"reel","slides":1,"curtidas":818,"comentarios":26,"outlier":true,"legenda":"O que você faria com um negócio que tem alta demanda justamente quando o movimento nos outros lugares cai? 🍲\n\nUm bar de caldos é uma operaç"},{"codigo":"DfCfb0olJKf","tipo":"reel","slides":1,"curtidas":2807,"comentarios":41,"outlier":true,"legenda":"O que separa um comércio vulnerável de uma operação profissional não é apenas o alarme, é a percepção de valor que a vitrine transmite. 🔒💰"},{"codigo":"DdeEPeilVIB","tipo":"foto","slides":1,"curtidas":89,"comentarios":121,"outlier":true,"legenda":"Quer tirar uma ideia do papel e começar a transformar conhecimento em negócio?\n\nCriamos o Grupo Ideias que Pagam para reunir pessoas que que"},{"codigo":"DfFwuhDlL9v","tipo":"carrossel","slides":10,"curtidas":23,"comentarios":2,"outlier":false,"legenda":"Dá para começar em casa, com o que você já tem e um investimento pequeno: unhas, bolo, costura, corte de cabelo, velas, lanche, aula de viol"},{"codigo":"DfFwJiSFBz8","tipo":"carrossel","slides":10,"curtidas":10,"comentarios":0,"outlier":false,"legenda":"Dá trabalho, dá nojo… e pode dar renda. Serviço que pouca gente quer fazer costuma ter pouca concorrência e cliente que precisa de solução r"},{"codigo":"DfFvR3SlOvk","tipo":"carrossel","slides":9,"curtidas":6,"comentarios":0,"outlier":false,"legenda":"Minha avó vendia bolo e tinha um caderninho com regras que muita empresa não segue: anotar o custo, pedir com antecedência, cobrar sinal, ma"},{"codigo":"DfFvEsfFF5K","tipo":"foto","slides":1,"curtidas":6,"comentarios":0,"outlier":false,"legenda":"Cliente não compra produto. Compra solução. Fale do problema que você resolve.\n\nA mesma coisa vende mais quando a mensagem mostra o que ela "},{"codigo":"DfFs_QUhPmH","tipo":"reel","slides":1,"curtidas":47,"comentarios":4,"outlier":true,"legenda":"🔥 ESSA MÁQUINA VENDE GÁS ATÉ ENQUANTO VOCÊ DORME! 💰\n\nImagine ter um negócio funcionando 24 horas por dia, sem precisar de um vendedor aten"},{"codigo":"DfFpTSYFLFv","tipo":"carrossel","slides":10,"curtidas":62,"comentarios":4,"outlier":true,"legenda":"Sua garagem pode estar parada enquanto podia ser o primeiro ponto de um negócio. 🚪\n\nMuita gente acha que precisa alugar uma loja para começ"},{"codigo":"DfFm_xbFEqy","tipo":"carrossel","slides":9,"curtidas":12,"comentarios":0,"outlier":false,"legenda":"Furadeira, mesas e cadeiras, projetor, roupa de festa, carrinho de bebê, bicicleta e vaga de garagem: coisas que ficam paradas a maior parte"},{"codigo":"DfFmJ-_lMWL","tipo":"carrossel","slides":10,"curtidas":6,"comentarios":0,"outlier":false,"legenda":"A diferença entre o sucesso e a estagnação reside na sua capacidade de interpretar dados e aplicar a estratégia correta. 📊\n\nNeste carrossel"},{"codigo":"DfFikMwlI0G","tipo":"carrossel","slides":10,"curtidas":18,"comentarios":0,"outlier":false,"legenda":"Escola tem uma coisa que todo negócio quer: as mesmas pessoas, no mesmo horário, todos os dias. Lanche, reforço, papelaria, uniforme, festa,"}]}]
+
+=== POSTS DOS ÚLTIMOS 60 DIAS (status e parecer; reprovado = o que não repetir) ===
+[{"titulo":"4 ferramentas do WhatsApp Business além da saudação","formato":"lista","status":"reprovado","semana":"2026-10-26T03:00:00.000Z","serie":"escuro","parecer":"Reprovado pelo Marcelo em 28/10/2026: título da capa grande e sem apelo (a pessoa tem que parar e ler com calma pra entender); organização ruim; as imagens não mostram o que se explica (caixa de presente pro catálogo, sacola pro QR code): tem que ser print ou réplica exata da tela; slide 2 entra explicando sem introdução (\"Separe quem pediu, quem pagou...\") como se a pessoa já tivesse contexto; mesmo design do post de 26/10."},{"titulo":"Negrito, lista e citação no WhatsApp","formato":"print-de-tweet","status":"reprovado","semana":"2026-10-26T03:00:00.000Z","serie":"tweet","parecer":"Reprovado pelo Marcelo em 28/10/2026: \"negrito, lista e citação no WhatsApp todo mundo já sabe\". O tema bom seria o ângulo de uso: \"como usar melhor o negrito, a citação etc. no SEU WhatsApp Business\". Título descritivo perde a curiosidade do original do Valerio (\"7 códigos que quase ninguém usa\")."},{"titulo":"Não sabe o que postar? Todo negócio de bairro tem estes 7 assuntos","formato":"lista","status":"reprovado","semana":"2026-10-26T03:00:00.000Z","serie":"escuro","parecer":"Reprovado pelo Marcelo em 28/10/2026: mesmo design do \"4 ferramentas do WhatsApp Business\" (série escuro: capa com objeto 3D e título branco, título numerado + objeto 3D, slide azul, pergunta final). Ele já tinha pedido pra não repetir."},{"titulo":"Seu vídeo começa com “oi, gente, tudo bem?”","formato":"antes-depois-de-fala","status":"aguardando","semana":"2026-10-19T03:00:00.000Z","serie":null,"parecer":"Aprovado, média 7,3, sem veto, menor nota 6 (V3). Capa boa: cita a fala exata que o dono reconhece, com ênfase azul.\n\nPendência declarada: não consegui conferir nesta rodada a afirmação do slide 2 (guia de Reels da Meta, via Social Media Today, orientando acertar o gancho nos primeiros segundos). A fonte está citada; confirme o texto da fonte antes de publicar e, se não bater, reescreva o slide 2 para dizer só o que a fonte diz.\n\nAjustes recomendados (não travam):\n1) Slide 4: a ordem está invertida em relação ao slide 3. No 3 o par vem ✕ e depois ✓, e no 4 o título grande já é o \"comece com\" e o texto abaixo começa com \"Em vez de...\". Padronize: o texto sempre diz o que sai (✕) e o título o que entra (✓), ou o contrário, nos três exemplos (slides 3, 4 e 5).\n2) Slide 6: \"O que as boas aberturas têm em comum\" é generalização sem fonte. Reescreva como \"O que os três exemplos têm em comum\", para ficar honesto com o que o post mostra.\n3) Pilar \"Negócio local de Salvador\" sem nada de Salvador. Se der, troque a padaria por um exemplo local reconhecível (sem inventar dado), ou mova o post de pilar.\n4) CTA: \"testa duas aberturas no mesmo vídeo\" confunde com a legenda (\"mesmo vídeo com duas aberturas\", ou seja, duas versões). Troque por \"grava duas versões do mesmo vídeo com aberturas diferentes\".\n5) Capa idêntica às outras duas da semana: varie a posição ou o recorte do olho."},{"titulo":"Você apertou Turbinar. Pra onde foi o dinheiro?","formato":"lista","status":"aguardando","semana":"2026-10-19T03:00:00.000Z","serie":null,"parecer":"Aprovado, média 7,5, sem veto, menor nota 6 (V3). Capa forte (cena concreta + pergunta que incomoda).\n\nPendência declarada: não consegui conferir na Central de Ajuda da Meta, nesta rodada, as três metas do Turbinar (visitas ao perfil, ao site, mensagens) nem a ausência de Leads e Vendas e de ajustes avançados. O post cita a fonte, mas quem publica deve abrir a página da Meta e confirmar antes de ir ao ar. Se algo não bater, o slide 2, o 6 e a legenda caem.\n\nAjustes recomendados (não travam):\n1) Legenda: \"Turbinar o post que já foi bem sem dinheiro\" fica ambíguo (lê como \"sem dinheiro\"). Troque por \"sem pagar\", como no slide 4.\n2) Slides 3, 4 e 5 são três \"numero\" em sequência, e a cartela alterna só o fundo. Se der, varie o layout do 04.\n3) A capa é idêntica à dos outros dois posts da semana (mesmo olho cortado, mesma posição). A identidade está consistente, mas lado a lado o feed vira repetição. Mude a posição ou o recorte do olho em pelo menos uma das três capas."},{"titulo":"Exemplo: cliente de R$ 25 vale R$ 1.800","formato":"tutorial","status":"reprovado","semana":"2026-10-19T03:00:00.000Z","serie":null,"parecer":"Reprovado por média (6,9 < 7), puxada pela capa. Nenhum veto.\n\n1) CAPA (C1, nota 5): \"Quanto vale um cliente que volta?\" é pergunta abstrata, sem fato nem tensão. Só para quem já pensa em fidelização. Troque por um fato concreto e rotulado como exemplo, por exemplo: \"O cliente de R$ 25 do mercadinho vale R$ 1.800. E o seu?\" (enfase em \"R$ 1.800\"). A conta já existe nos slides 3 a 5, então o número não é inventado, mas tem que aparecer como exemplo.\n\n2) Slide 2: o texto é circular (\"vale tudo o que gasta cada vez que volta\" repete o título). Corte e vá direto ao ponto: o dono olha o valor de uma compra e esquece que ela se repete. Use o slide pra criar a tensão, não pra repetir a definição.\n\n3) Slide 8 (citação): \"Quantos clientes de R$ 1.800 pararam...\" estende o número de exemplo do mercadinho para o negócio de quem lê. Isso vira afirmação sem base. Reescreva sem o valor: \"Quantos clientes que voltavam todo mês pararam de aparecer este ano sem ninguém perceber?\"\n\n4) Slide 6 (destaque): \"Quando esse cliente some, vão embora os R$ 1.800\" também generaliza. Escreva \"vai embora o que ele ainda ia gastar com você\" ou deixe claro \"no exemplo\".\n\n5) Tema salvável (antipadrão \"dica que o dono já sabe\"): LTV é conhecido. O que pode fazer o Marcelo salvar é o uso local. Troque o exemplo ou acrescente um segundo, de negócio típico de Salvador (barbearia, lava-jato, padaria de bairro), sem número de mercado, só a conta como exemplo. Hoje o pilar é \"Negócio local de Salvador\" e o post não tem nada de Salvador além da hashtag.\n\n6) Slides 3 a 5 são três \"numero\" seguidos. Os fundos alternam, então não é veto, mas varie o layout de um dos três (por exemplo, o 04 com a conta montada em linha: 25 × 24 = 600).\n\n7) Legenda: o primeiro parágrafo repete a promessa da capa antiga. Ajuste o gancho dos 125 primeiros caracteres para o novo fato da capa."},{"titulo":"A bio do Instagram","formato":"antes-depois-de-fala","status":"publicado","semana":"2026-10-12T03:00:00.000Z","serie":null,"parecer":null},{"titulo":"5 coisas pra pedir pro ChatGPT hoje","formato":"lista","status":"reprovado","semana":"2026-10-12T03:00:00.000Z","serie":null,"parecer":null},{"titulo":"Quanto custa? E o cliente sumiu","formato":"antes-depois-de-fala","status":"publicado","semana":"2026-10-12T03:00:00.000Z","serie":null,"parecer":null},{"titulo":"Quem lê sua resposta à 1 estrela","formato":"antes-depois-de-fala","status":"publicado","semana":"2026-10-05T03:00:00.000Z","serie":null,"parecer":null},{"titulo":"O Google mostra quem ligou pra você","formato":"print-de-tweet","status":"publicado","semana":"2026-10-05T03:00:00.000Z","serie":null,"parecer":null},{"titulo":"Anúncio é o último bloco, não o primeiro","formato":"tese","status":"reprovado","semana":"2026-10-05T03:00:00.000Z","serie":null,"parecer":null},{"titulo":"Em Salvador, endereço sozinho não leva ninguém","formato":"tese","status":"reprovado","semana":"2026-10-05T03:00:00.000Z","serie":null,"parecer":null},{"titulo":"Sete passos pra conferir sua ficha do Google antes do feriado","formato":"tutorial","status":"reprovado","semana":"2026-10-05T03:00:00.000Z","serie":null,"parecer":null},{"titulo":"Reprovamos o nosso próprio plano. Ainda bem.","formato":"historia","status":"reprovado","semana":"2026-09-28T03:00:00.000Z","serie":null,"parecer":null},{"titulo":"Seis coisas que a gente recusa fazer no seu negócio","formato":"lista","status":"reprovado","semana":"2026-09-28T03:00:00.000Z","serie":null,"parecer":null},{"titulo":"Quatro mitos da ficha do Google que o próprio Google desmente","formato":"mito-vs-realidade","status":"reprovado","semana":"2026-09-28T03:00:00.000Z","serie":null,"parecer":null},{"titulo":"O Google não sabe que você é bom","formato":"problema-solucao","status":"publicado","semana":"2026-09-28T03:00:00.000Z","serie":null,"parecer":"Aprovado pelo Marcelo em 27/09 com a correção de frase única."},{"titulo":"Seu próximo cliente ainda não te segue","formato":"tese","status":"publicado","semana":"2026-09-28T03:00:00.000Z","serie":null,"parecer":"Aprovado pelo Marcelo em 27/09 com a correção de frase única."}]
+
+=== APRENDIZADOS REGISTRADOS ===
+[{"tipo":"evidencia","texto":"O radar automático voltou com a grade vazia pro @brun0gpt em 28/10/2026: a coleta desse perfil falhou e precisa ser conferida."},{"tipo":"evidencia","texto":"Pesquisa de notícia dos últimos 14 dias (até 28/10/2026): quase toda novidade do Instagram vem de vazador no Threads. Fontes confiáveis achadas: blog do Google Brasil (20/10), Social Media Today (07/10) e a página de preços da Meta for Developers. Essa página trata só da API e não diz nada sobre o app WhatsApp Business."},{"tipo":"hipotese","texto":"A inversão de valor na capa (\"chatice\" ou \"tóxico\" como virtude) faz o leitor se reconhecer e mandar pro outro. Teste: o post \"5 chatices\", se aprovado, comparado com os outros da semana em envio e salvamento. Só conclui com 3 ou mais posts."},{"tipo":"evidencia","texto":"O @aprendeconvalerio DeXrxV-DRld (ChatGPT, 19 formas de pedir) ficou abaixo da mediana do perfil (358 contra 459). Tema ChatGPT genérico não circula nem num perfil de IA, o que confirma a reprovação do Marcelo em 15/10."},{"tipo":"evidencia","texto":"O @brunofragaoficial teve o segundo desvio seguido no mesmo formato, print de tweet branco (DeMmFKAkSlH em 15/10 e DfAEhJIkTuy agora). O de agora tem 1.119 curtidas e 0 comentários: o desvio vem de curtida e, provavelmente, de envio, não de conversa."},{"tipo":"evidencia","texto":"Radar de 28/10/2026: os dois desvios da semana (@brunofragaoficial DfAEhJIkTuy, cerca de 5,6 vezes a mediana, e @ideiasquepagam25 DfCyPgllNYB, cerca de 4 vezes) têm um item ou regra por slide, com título curto e de 3 a 7 linhas embaixo. Os posts sobre si mesmo (turma do @eugersonrodrigues, viagem da @barretobru) ficaram abaixo da mediana."},{"tipo":"evidencia","texto":"Marcelo, 28/10/2026, reprovou os 3 posts da semana de 26/10 (feitos pelo Mídia). (1) Dois posts seguidos com o mesmo design (série escuro): proibido, já tinha sido pedido em 20/10. (2) Capa: título curto e \"sexy\", que se entende de relance; 21 palavras não passam. (3) Imagem mostra exatamente o que se explica: print da tela real ou réplica fiel da interface; objeto 3D genérico (presente, sacola, caixa de ferramentas) não serve. (4) Nunca entrar explicando sem introdução: primeiro situar a cena e o problema, depois o passo. (5) Tema que todo mundo já sabe vira ângulo de uso no negócio dele (\"como usar melhor X no SEU WhatsApp Business\"). (6) PROCESSO NOVO: temas da semana -> aprovação do Marcelo -> esqueleto de cada post (texto, imagem e layout slide a slide) -> aprovação -> só então os slides. Nenhum slide é montado sem o esqueleto aprovado."},{"tipo":"hipotese","texto":"Recurso de app conferido na página oficial (formatação do WhatsApp, ferramentas do WhatsApp Business) é o tema mais próximo do campeão do @aprendeconvalerio (7 códigos de WhatsApp, 754 comentários) e da bio que o Marcelo elogiou. Sinal: salvamento e envio dos posts de 28 e 30/10 contra a lista de assuntos de 26/10."},{"tipo":"hipotese","texto":"Carrossel guarda quem já segue (salvamento), Reels traz gente nova (alcance). Como o gargalo é distribuição, transformar o carrossel mais forte de cada semana num Reels de 15 a 20 segundos com texto na tela deve passar do alcance de 2 a 4 contas. Medir o alcance do Reels contra o do carrossel de origem, com 3 pares no mínimo."},{"tipo":"evidencia","texto":"🌐 [FONTE EXTERNA] Tendência, pesquisa de 26/10/2026. Metricool: compartilhamento e salvamento cresceram em quase todos os segmentos e pesam mais que curtida; carrossel é o formato mais favorecido. Semrush: Reels supera os outros formatos em todas as métricas analisadas. Emplifi: o Instagram usa quantos slides a pessoa percorre no ranqueamento. As fontes divergem sobre o formato; nenhuma traz dado de outubro de 2026."},{"tipo":"evidencia","texto":"A coleta de métrica por post falhou na bio (publicada em 19/10, metricas nulas em 26/10). Com a coleta da conta também inconsistente, a semana de 19/10 não tem dado de leitura. Alguém precisa conferir a coleta antes da revisão de pilares."},{"tipo":"evidencia","texto":"Semana de 19/10/2026: um post publicado (a bio, 19/10), sem métrica gravada no banco; um reprovado (cliente que volta); dois ainda 'aguardando' com a data vencida (Turbinar 21/10 e 'oi, gente' 23/10), feitos no molde que o Marcelo reprovou em 23/10. Desde 28/09: 6 publicados, 8 reprovados. Leads vindos do Instagram nos últimos 7 dias: 0."},{"tipo":"evidencia","texto":"Reprovação do Marcelo (23/10/2026) do post do cliente que volta (\"Quanto vale um cliente que volta?\", semana de 19/10). O tema era bom; reprovou por três motivos. (1) Visual repetido: mesma capa com o olho, mesma sequência (números 01-02-03, lista, frase sublinhada, botão) do \"Seu próximo cliente ainda não te segue\". (2) Chamada fraca: escrita indireta e subjetiva, com cara de IA. (3) Quase nada visual. Regra daqui pra frente: nenhum post repete a capa nem a sequência de layouts do anterior; o miolo leva coisa visual que mostra a ideia (objeto, print, diagrama, cena), não enfeite; fala direta, a frase que o dono diria no balcão. Antes de montar, olhar um carrossel de referência e copiar a organização, não o tema. Os posts aguardando de 21/10 (Turbinar) e 23/10 (oi, gente) saíram no mesmo molde."},{"tipo":"hipotese","texto":"Experimento da semana de 19/10: o CTA de envio no post do Turbinar (quarta) contra o CTA de salvar nos posts da segunda e da sexta. Só conclui com 3 ou mais posts de cada tipo de CTA."},{"tipo":"hipotese","texto":"Com alcance de 2 a 4 contas, o orgânico sozinho não gera amostra para ler formato nenhum. Duas alavancas sem custo: repostar cada post no story no mesmo dia (conta como envio) e responder os comentários na primeira hora. Medir o alcance dos posts da semana de 19/10 contra os da semana de 12/10, sabendo que a amostra continua pequena."},{"tipo":"hipotese","texto":"Os pilares e pesos do perfil.md deixaram de descrever o que vai ao ar. Foram reprovados todos os posts de 'Como a Horus trabalha' e 'Trabalho mostrado', e o rótulo 'Negócio local de Salvador' virou guarda-chuva para post prático (frase pronta, recurso pouco usado, conta do dono). Proposta para a revisão de 25/10: reescrever os pilares a partir do que foi aprovado, para que a leitura por pilar volte a ter sentido. A decisão é do Marcelo."},{"tipo":"evidencia","texto":"Coleta da conta: houve só uma coleta entre 06 e 17/10/2026, e ela registra alcance 0 com 3 visualizações e 3 curtidas. Continua inconsistente com os números por post. O dado da conta segue sem valor de leitura até alguém conferir a coleta."},{"tipo":"evidencia","texto":"Cadência da semana de 12/10/2026: três posts planejados, um publicado ('Quanto custa?', 12/10), um reprovado (ChatGPT, 15/10) e um agendado sem data de publicação ('A bio do Instagram', previsto para 16/10). Desde 28/09: 5 publicados e 7 reprovados. Leads vindos do Instagram nos últimos 7 dias: 0."},{"tipo":"evidencia","texto":"Posts publicados de 09 a 12/10/2026 ('O Google mostra quem ligou', 'Quem lê sua resposta à 1 estrela', 'Quanto custa?'): alcance de 2 a 3 contas, 5 a 9 visualizações, 1 ou 2 curtidas e zero em salvamento, envio, visita ao perfil e seguidor. Somados aos dois de 28/09, são 5 posts e nenhum salvamento ou envio. A distribuição não passa de quem já segue, e nenhuma comparação entre formato ou pilar é possível."},{"tipo":"hipotese","texto":"Tutorial com prazo real e próximo (o feriado de 12/10) gera mais salvamento que educativo sem prazo. Ler no post de 05/10 contra os educativos seguintes; só conclui com 3 ou mais posts de cada tipo."}]
+
+=== PERGUNTAS REAIS DA CAIXA (comentários e DMs, 30 dias; use só o padrão, nunca o nome) ===
+[]
+
+Pesquisa e pauta da semana de 2026-11-02 (posts de segunda, quarta e sexta). Faça, nesta ordem:
+1. ABRA com Read a folha.jpg de cada carrossel estudado no radar e anote a organização: o que a capa diz e mostra, a sequência,
+   quantos slides, que prova visual cada um usa. Diga por que aquele fugiu da média do perfil.
+2. PESQUISE na web, no mínimo 4 buscas de ângulos diferentes, e abra a fonte (WebFetch) antes de citar:
+   a) notícia dos últimos 14 dias sobre o que o dono de negócio local usa (WhatsApp, Instagram, Google/Maps, IA, Pix, consumo);
+   b) estudo brasileiro recente com dado (Sebrae, Opinion Box, Octadesk, Google/Ipsos), na fonte original;
+   c) ferramenta grátis que o dono abre hoje (confira que é grátis mesmo);
+   d) data das próximas 3 semanas que mexe com comércio.
+3. JUNTE 10 a 15 candidatos e dê a nota honesta (surpresa 0-3, relevância pro dono 0-3, acionável 0-2, atualidade 0-2; a mediana é 5 ou 6).
+   Reprovam sozinhas as travas da pauta (público errado, sem fonte conferível, tema repetido ou já reprovado, só informativo).
+4. ENTREGUE de 5 a 7 ideias, as 3 melhores com recomendada = true, de pilares diferentes (no máximo duas do mesmo assunto, como WhatsApp).
+   Regras do Marcelo que reprovaram os posts de 26/10 e valem pra cada ideia:
+   - titulo_capa com até 10 palavras, entendido de relance, com uma ponta de curiosidade ("sexy", na palavra dele);
+   - tema que todo mundo já sabe só entra com ângulo de uso no negócio dele ("como usar melhor X no SEU WhatsApp Business");
+   - cena_de_abertura: a introdução que situa a pessoa antes de qualquer passo (onde fica, que bagunça resolve);
+   - prova_visual: o que mostra exatamente a ideia (print real da tela, réplica fiel da interface, diagrama, foto do objeto); objeto 3D
+     genérico não serve;
+   - referencia_organizacao: conta e código de um carrossel do radar (ou dos estudos) cuja organização o post vai seguir.
+5. Em "descartadas", os candidatos que caíram e por quê, numa linha cada.
+
+Responda só no formato pedido.

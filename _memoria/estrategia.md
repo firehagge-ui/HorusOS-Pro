@@ -7,7 +7,7 @@
 
 ⚠️ **Atualização (15/10/2026), contada pelo Marcelo:** nenhuma porta de caixa quente. **Amparo:** o Varo nunca mais
 respondeu (geladeira). **Leal:** não vai começar agora (geladeira). **Sates:** sem retorno depois do perfil do Google.
-**Débora:** encerrada (ver abaixo). **Spaço:** esperando falar com
+**Débora:** reaberta (ver abaixo). **Spaço:** esperando falar com
 a Dra.; decisão de 15/10: não refazer o site, ligar pro fixo. Paralela: resultado da R1 de 05/10 segue sem registro. O
 padrão de entregar antes do compromisso virou regra em `_memoria/comercial.md` (15/10).
 
@@ -16,7 +16,22 @@ sócios moram com os pais: pró-labore necessário R$ 0, sem prazo apertado. Um 
 gargalo é crescer, não sobreviver. O pró-labore *desejado* vira meta na recalibração de 11/11 (seção 5 do plano).
 **Contrato padrão aprovado em 16/10** (`templates/contrato-padrao.md`), falta o advogado.
 
-⚠️ **Atualização (15/10/2026):** a **Débora Reis está encerrada**: o Marcelo decidiu que a Hórus não vai mais trabalhar para
+✅ **Débora Reis (07/11/2026): fechou de boca na reunião de 04/11.** O acordo tem quatro partes:
+- site e Google sem custo;
+- 10% do valor total de cada projeto que vier pelo site, pagos no início;
+- Instagram com 8 posts por mês por R$ 350, depois de uma semana grátis;
+- o domínio no CPF dela, já pago, com os R$ 40 devolvidos por ela.
+
+O R$ 350 do Instagram é a primeira mensalidade da Horus, e ainda não caiu: o contrato espera os dados dela. **11/11:** o site
+está no ar no domínio desde 07/11, o Google foi arrumado em 10/11 (marco zero: 4 avaliações, 9º em "arquiteto Barra
+Salvador") e as avaliações começaram a entrar. Próximo: a camada de conversão do site (`AUDITORIA-CONVERSAO-2026-11.md`),
+que também mede a origem de cada contato. Sem isso, os 10% não têm como ser contados.
+*Histórico, 03/11:* reaberta desde 15/10, ativa. É prova e porta, não caixa. O site no domínio dela é o
+passo 1, depois vêm avaliação, portfólio, indicações e a vitrine para outras arquitetas (plano de 16/10). O site está
+pronto desde 30/10, mas segue na Vercel e fora do Google. Em 30/10 ela contou que os projetos dela travam no valor.
+Estado e mensagem em `clientes/_prototipos/debora-reis/CLAUDE.md` e no Hounder.
+
+*Histórico, superado:* ⚠️ **Atualização (15/10/2026):** a **Débora Reis está encerrada**: o Marcelo decidiu que a Hórus não vai mais trabalhar para
 ela (o motivo foi registrado pelo Marcelo fora do repositório). Antes disso, ela tinha visto as prévias (14/10) e oferecido permuta, e o esboço foi refeito em 15/10.
 O que fica é o aprendizado: o estudo de dez sites de arquitetura e interiores (`referencias/`) e o diagnóstico seção por
 seção (`clientes/_prototipos/debora-reis/PROPOSITO-DAS-SECOES.md`). Em 15/10 o esboço saiu do ar, as fotos dela foram apagadas e a

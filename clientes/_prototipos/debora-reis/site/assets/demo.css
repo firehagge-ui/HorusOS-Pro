@@ -70,7 +70,7 @@
 .caso-capa h1{font-size:var(--t-h1);line-height:1;margin-bottom:24px}
 .caso-capa h1 em{display:block}
 .caso-capa .lead{margin:0}
-.caso-ficha{max-width:1320px;margin:0 auto;padding:0 var(--lateral) 56px;display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.caso-ficha{max-width:1320px;margin:0 auto;padding:0 var(--lateral) 56px;display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
 .caso-ficha div{border-top:2px solid var(--tinta);padding-top:14px}
 .caso-ficha dt{font-size:var(--t-rotulo);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--madeira);margin-bottom:6px}
 .caso-ficha dd{margin:0;font-size:var(--t-corpo)}
@@ -452,7 +452,8 @@ button.btn{cursor:pointer;font-family:var(--f-texto)}
   .ideias-capa{padding-top:48px}
   .ideias-capa .lead{margin-bottom:32px}
   .ideia{grid-template-columns:1fr;gap:16px;padding:40px 0}
-  .por-tras ul,.cartoes-vive,.caso-ficha,.investimento{grid-template-columns:1fr}
+  .por-tras ul,.cartoes-vive,.investimento{grid-template-columns:1fr}
+  .caso-ficha{grid-template-columns:1fr 1fr;gap:20px 16px}
   .cartao{grid-template-columns:1fr}
   .mosaico{columns:2;column-gap:8px}
   .opcao-foto{margin-bottom:8px}
@@ -604,3 +605,84 @@ button.btn{cursor:pointer;font-family:var(--f-texto)}
 .pag-capa img{object-position:50% 58%}
 
 /* 25/10: a logo da Débora saiu da capa do guia, como do resto do site (pedido do Marcelo) */
+
+/* 30/10: área de toque no celular (o "Voltar" tinha 40 px de altura; a bolinha da metragem era difícil de pegar) */
+.barra-quiz .btn-sec{min-height:44px}
+.metros input{height:36px}
+.metros input::-webkit-slider-thumb{width:26px;height:26px}
+.metros input::-moz-range-thumb{width:26px;height:26px}
+
+/* 30/10: no celular o "Próximo apartamento" passava 21 px da tela (o nome do apartamento ficou longo com "Apartamento Paralela") */
+@media (max-width:760px){
+  .seguir-prox{grid-template-columns:minmax(0,1fr) auto;column-gap:16px}
+  .seguir-nome{font-size:42px}
+  .seguir-prox svg{width:44px}
+}
+
+/* 07/11 (Marcelo): páginas de projeto no modelo das páginas de projeto da Tarq (PH Makaira, Casa NJ). Geradas por
+   gerar-projetos.cjs. A foto fica parada enquanto a visão geral passa por cima e a escurece; depois blocos com título em
+   caixa alta, fotos lado a lado na mesma altura (cada uma na largura da sua proporção, sem corte) e um parágrafo curto e
+   justificado. Contraste do texto sobre a foto medido nos pixels: no mínimo 5,2:1. */
+.rvt-hero{position:relative;background:var(--tinta)}
+.rvt-fundo{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;z-index:0}
+.rvt-fundo img{width:100%;height:100%;object-fit:cover;display:block}
+.rvt-fundo::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,16,13,.84) 0%,rgba(20,16,13,.56) 22%,rgba(20,16,13,0) 40%,rgba(20,16,13,0) 44%,rgba(20,16,13,.55) 70%,rgba(20,16,13,.88) 100%)}
+.rvt-capa{position:relative;z-index:1;height:calc(100vh - 64px);height:calc(100svh - 64px);margin-top:-100vh;margin-top:-100svh;color:var(--cal)}
+.rvt-intro{position:absolute;top:28px;right:var(--lateral);width:min(340px,40vw);margin:0;font:400 italic 19px/1.4 var(--f-display);color:var(--cal);text-align:justify}
+.rvt-nome{position:absolute;left:var(--lateral);right:var(--lateral);bottom:92px;margin:0;font:400 clamp(56px,7.4vw,118px)/.92 var(--f-display);letter-spacing:-.01em;color:var(--cal)}
+.rvt-barra{position:absolute;left:var(--lateral);right:var(--lateral);bottom:30px;display:flex;justify-content:space-between;gap:24px;margin:0;padding:0;list-style:none;font:500 13px/1.2 var(--f-texto);font-stretch:100%;letter-spacing:.1em;text-transform:uppercase;color:var(--cal)}
+.rvt-capa p,.rvt-nome,.rvt-barra{text-shadow:0 1px 14px rgba(20,16,13,.45)}
+.rvt-visao{position:relative;z-index:1;padding:300px var(--lateral) 180px;background:linear-gradient(to bottom,rgba(20,16,13,0) 0,rgba(20,16,13,.8) 260px,rgba(20,16,13,.86) 100%);color:var(--cal)}
+.rvt-dados{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 24px}
+.rvt-dados > div{grid-column:7/13;border-top:1px solid rgba(243,240,232,.45);padding:14px 0 44px}
+.rvt-dados dt{font:500 13px/1.2 var(--f-texto);font-stretch:100%;letter-spacing:.1em;text-transform:uppercase;margin:0 0 18px}
+.rvt-dados dd{margin:0 0 0 auto;max-width:30em;font-size:17px;line-height:1.55;text-align:justify;color:#EDE6DC}
+.rvt-bloco{max-width:1320px;margin:0 auto;padding:150px var(--lateral) 0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:end}
+.rvt-titulo{grid-column:1/-1;margin:0 0 20px;font:500 22px/1 var(--f-texto);font-stretch:100%;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta)}
+.rvt-fotos{grid-column:1/10;justify-self:start;width:100%;max-width:calc(var(--sr) * var(--h) + (var(--n) - 1) * 16px);display:flex;gap:16px;align-items:flex-end}
+.rvt-fotos .pf{flex:var(--r) 1 0;min-width:0;margin:0}
+.rvt-fotos img{display:block;width:100%;height:auto}
+.rvt-texto{grid-column:10/13;margin:0;font-size:15px;line-height:1.6;text-align:justify;hyphens:auto;-webkit-hyphens:auto;color:var(--tinta-2)}
+.rvt-bloco-inv .rvt-fotos{grid-column:5/13;justify-self:end;order:3}
+.rvt-bloco-inv .rvt-texto{grid-column:1/4;order:2}
+.rvt-bloco-embaixo .rvt-fotos{grid-column:1/-1}
+.rvt-bloco-embaixo .rvt-texto{grid-column:9/13;align-self:start;margin-top:4px}
+.rvt-intro,.rvt-dados dd{hyphens:auto;-webkit-hyphens:auto}
+.rvt-fim{max-width:1320px;margin:0 auto;padding:170px var(--lateral) 110px}
+.rvt-fim h2{font-size:var(--t-h2);line-height:1.02;max-width:15em;margin:0 0 36px}
+.rvt-nav{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-top:96px;padding-top:20px;border-top:1px solid var(--tinta);font:500 13px/1.2 var(--f-texto);font-stretch:100%;letter-spacing:.1em;text-transform:uppercase}
+.rvt-nav a{color:var(--tinta);text-decoration:none}
+.rvt-prox{display:inline-flex;align-items:center;gap:12px}
+.rvt-prox b{font:400 28px/1 var(--f-display);letter-spacing:0;text-transform:none}
+.rvt-prox svg{width:40px;height:16px;fill:none;stroke:currentColor;stroke-width:1.4;transition:transform .3s var(--facil)}
+.rvt-prox:hover svg{transform:translateX(6px)}
+@media (max-width:1080px){
+  .rvt-dados > div{grid-column:4/13}
+  .rvt-fotos,.rvt-bloco-inv .rvt-fotos{grid-column:1/-1;justify-self:start;order:3}
+  .rvt-texto,.rvt-bloco-inv .rvt-texto,.rvt-bloco-embaixo .rvt-texto{grid-column:5/13;order:4;margin-top:12px}
+}
+@media (max-width:760px){
+  .rvt-capa{height:calc(100svh - 57px)}
+  .rvt-intro{display:none}
+  .rvt-nome{left:20px;right:20px;bottom:64px;font-size:46px}
+  .rvt-barra{left:20px;right:20px;bottom:24px;font-size:11px}
+  .rvt-barra li:nth-child(2){display:none}
+  .rvt-visao{padding:220px 20px 104px}
+  .rvt-dados > div{grid-column:1/-1;padding-bottom:36px}
+  .rvt-dados dd{font-size:16px;max-width:none}
+  .rvt-bloco{padding:96px 20px 0;grid-template-columns:minmax(0,1fr);gap:12px}
+  .rvt-titulo{font-size:18px;margin-bottom:12px}
+  .rvt-fotos,.rvt-bloco-inv .rvt-fotos,.rvt-bloco-embaixo .rvt-fotos{grid-column:1/-1;max-width:none;gap:10px}
+  .rvt-fotos.empilha{flex-direction:column;align-items:stretch}
+  .rvt-fotos.empilha .pf{flex:none}
+  .rvt-texto,.rvt-bloco-inv .rvt-texto,.rvt-bloco-embaixo .rvt-texto{grid-column:1/-1;margin-top:8px}
+  .rvt-fim{padding:112px 20px 80px}
+  .rvt-fim h2{font-size:36px}
+  .rvt-fim .btn{display:block;text-align:center}
+  .rvt-nav{flex-direction:column;align-items:flex-start;margin-top:64px}
+  .rvt-prox b{font-size:24px}
+}
+/* nenhuma foto passa de 1,3 vez o tamanho real quando as fotos se empilham no celular (o painel bordado tem 108 px) */
+@media (max-width:760px){ .rvt-fotos.empilha .pf{max-width:calc(var(--w) * 1.3)} }
+/* 11/11: rótulo do grupo "em que momento você está", no mesmo desenho do rótulo dos campos */
+.campo-rot{display:block;font-weight:600;font-size:var(--t-min);margin:28px 0 8px}

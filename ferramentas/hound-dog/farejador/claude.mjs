@@ -244,6 +244,92 @@ export function rodarClaude({
   });
 }
 
+/* ------------------------------ janela do chat no PC (13/11/2026) ------------------------------
+   Pedido do Marcelo: o botão do Hounder abre uma janela do PowerShell com o Claude Code em chat, já com o modelo, o
+   esforço e o pedido, para ele assistir e corrigir no meio. O resultado volta pro Hounder: a janela grava o JSON num
+   arquivo e o Farejador grava no banco com o mesmo código do modo escondido. Só para o dono (conta padrão): pedido de
+   operador segue escondido e restrito. A pasta é por tarefa: se o Farejador reiniciar no meio e o resultado já
+   estiver gravado, ele usa o arquivo e não abre outra janela. */
+const PASTA_JANELAS = path.join(RAIZ_HD, '.janelas');
+export const podeAbrirJanela = () => process.platform === 'win32' && !contaAtual.getStore()?.restrito && !contaAtual.getStore()?.pasta;
+
+/** A ferramenta de leitura corta linha muito longa: quebra nos espaços antes de gravar o pedido. */
+function quebrarLinhas(texto, max = 1500) {
+  return String(texto).split('\n').map((l) => {
+    if (l.length <= max) return l;
+    const partes = []; let resto = l;
+    while (resto.length > max) { let i = resto.lastIndexOf(' ', max); if (i < max / 2) i = max; partes.push(resto.slice(0, i)); resto = resto.slice(i).trimStart(); }
+    partes.push(resto);
+    return partes.join('\n');
+  }).join('\n');
+}
+const aspasPs = (s) => `'${String(s).replace(/'/g, "''")}'`;
+
+export function rodarNaJanela({ chave, titulo = 'Hounder', prompt, modelo = 'claude-opus-5-5', esforco = 'high', timeoutMs = 4 * 3600 * 1000, deveParar }) {
+  const pasta = path.join(PASTA_JANELAS, String(chave));
+  fs.mkdirSync(pasta, { recursive: true });
+  const arqPedido = path.join(pasta, 'pedido.md');
+  const arqResultado = path.join(pasta, 'resultado.json');
+  const relRepo = (p) => path.relative(RAIZ_REPO, p).replace(/\\/g, '/');
+  const lerResultado = () => {
+    try {
+      const t = fs.readFileSync(arqResultado, 'utf8').replace(/^﻿/, '');
+      return { texto: t, json: JSON.parse(t.trim().replace(/^```(?:json)?\s*|\s*```$/g, '')) };
+    } catch { return null; }
+  };
+  const pronto = fs.existsSync(arqResultado) && lerResultado();
+  if (pronto) return Promise.resolve({ ...pronto, ferramentas: [], duracaoMs: 0 });
+
+  fs.writeFileSync(arqPedido, quebrarLinhas(`${prompt}
+
+=== COMO ENTREGAR (vale acima de qualquer "responda só com json" do pedido) ===
+1. Quando terminar, grave SÓ o JSON final, sem texto antes ou depois, no arquivo ${relRepo(arqResultado)} (ferramenta Write).
+2. Não grave nada no CRM: o Hounder lê esse arquivo e grava sozinho, com as travas dele.
+3. Depois de gravar, diga em uma linha: "Pronto. O Hounder já recebeu. Pode fechar esta janela."
+4. O Marcelo está assistindo e pode corrigir no meio: o que ele disser aqui vale acima deste pedido.`), 'utf8');
+
+  // Só o navegador do Farejador (Playwright com o perfil logado); o .mcp.json do repositório traz o resto
+  const mcp = JSON.parse(fs.readFileSync(MCP_CONFIG, 'utf8'));
+  const arqMcp = path.join(pasta, 'mcp.json');
+  fs.writeFileSync(arqMcp, JSON.stringify({ mcpServers: mcp.mcpServers?.navegador ? { navegador: mcp.mcpServers.navegador } : {} }, null, 1));
+  const instrucao = `Pedido do Hounder: ${titulo}. Leia o arquivo ${relRepo(arqPedido)} inteiro (ele é grande: leia em partes, com offset e limit) e faça o que ele pede. No fim, grave o resultado em ${relRepo(arqResultado)}.`;
+  const { bin } = binarioClaude();
+  const ps1 = path.join(pasta, 'abrir.ps1');
+  fs.writeFileSync(ps1, `﻿$Host.UI.RawUI.WindowTitle = ${aspasPs(`Hounder · ${titulo}`)}
+Set-Location -LiteralPath ${aspasPs(RAIZ_REPO)}
+Write-Host ${aspasPs(`Hounder · ${titulo}`)} -ForegroundColor Cyan
+Write-Host 'O resultado volta sozinho pro Hounder. Você pode corrigir o Claude no meio, como no chat.' -ForegroundColor DarkGray
+& ${aspasPs(bin)} --model ${modelo} --effort ${esforco} --permission-mode acceptEdits --mcp-config ${aspasPs(arqMcp)} --allowedTools 'Read,Grep,Glob,WebSearch,WebFetch,Skill,mcp__navegador,mcp__firecrawl' --disallowedTools 'mcp__hound-dog' -- ${aspasPs(instrucao)}
+`, 'utf8');
+
+  return new Promise((resolve, reject) => {
+    const t0 = Date.now();
+    let fim = false;
+    // "start /wait" abre uma janela visível e só volta quando ela fecha
+    const filho = spawn('cmd.exe', ['/d', '/s', '/c', `"start "Hounder" /wait powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "${ps1}""`],
+      { windowsHide: true, windowsVerbatimArguments: true, stdio: 'ignore' });
+    const acabar = (erro, valor) => {
+      if (fim) return; fim = true;
+      clearInterval(vigia); clearTimeout(timer);
+      if (erro) { try { spawn('taskkill', ['/pid', String(filho.pid), '/T', '/F'], { windowsHide: true }); } catch { /* ok */ } reject(erro); }
+      else resolve(valor);
+    };
+    const conferir = () => {
+      const r = fs.existsSync(arqResultado) && lerResultado();
+      if (r) { log('claude', `janela ok (${modelo}, ${Math.round((Date.now() - t0) / 1000)}s): ${titulo}`); acabar(null, { ...r, ferramentas: [], duracaoMs: Date.now() - t0 }); }
+      return Boolean(r);
+    };
+    const vigia = setInterval(async () => {
+      if (conferir()) return;
+      try { if (deveParar && (await deveParar())) acabar(new Error('Cancelado.')); } catch { /* ignora */ }
+    }, 4000);
+    const timer = setTimeout(() => acabar(new Error(`A janela do chat passou de ${Math.round(timeoutMs / 3600000)} h sem gravar o resultado.`)), timeoutMs);
+    filho.on('error', (e) => acabar(new Error(`Não consegui abrir a janela do chat (${e.message}).`)));
+    filho.on('exit', () => setTimeout(() => { if (!conferir()) acabar(new Error('A janela do chat foi fechada antes de gravar o resultado.')); }, 1500));
+    log('claude', `janela aberta: ${titulo}`);
+  });
+}
+
 /** Pega o último bloco ```json ...``` (ou o maior objeto { } ) do texto. */
 export function extrairJson(texto) {
   if (!texto) return null;

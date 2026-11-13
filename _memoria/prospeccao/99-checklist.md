@@ -5,6 +5,11 @@
 > mecânico (`ferramentas/hound-dog/app/js/revisor.js`) já cobra sozinho; as Partes 2 a 4 são
 > julgamento.
 
+## Parte 0: a pesquisa de 09/10 (primeiro, sempre)
+
+- [ ] A mensagem passou pelas 14 regras de `15-o-que-deu-certo.md`. A pesquisa vence a doutrina antiga.
+- [ ] A resposta ao Marcelo traz o quadro "a pesquisa diz (caso) → a mensagem faz", sem ele pedir (03/11/2026).
+
 ## Parte 1 — Vetos mecânicos (o revisor pega)
 
 Qualquer um reprova. O MCP e o script recusam o rascunho; no Farejador ele entra marcado em

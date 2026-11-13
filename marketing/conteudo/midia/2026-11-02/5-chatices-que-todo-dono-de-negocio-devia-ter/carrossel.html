@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>5 chatices que todo dono de negócio devia ter</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=JetBrains+Mono:wght@500;600;700&family=Noto+Color+Emoji&display=swap');
+:root { --tinta:#0f1419; --cinza:#536471; --fio:#cfd9de; --void:#0e0918; --painel:#1b1728; --osso:#d1cece; --osso-2:#a7a1b3;
+  --azul:#0077ff; --azul-claro:#4a9bff; --lavanda:#f2f0f6; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:#444; font-family:'DM Sans','Noto Color Emoji',system-ui,sans-serif; }
+.e { font-family:'Noto Color Emoji'; font-weight:400; }
+.slide { width:1080px; height:1440px; position:relative; overflow:hidden; margin-bottom:40px; display:flex; flex-direction:column; }
+
+/* tweet */
+.tw { background:#fff; justify-content:center; padding:0 72px; color:var(--tinta); }
+.tw.capa { justify-content:flex-start; padding-top:130px; }
+.tw .fio { width:4px; height:64px; margin:0 0 18px 65px; background:var(--fio); border-radius:2px; }
+.tw .autor { display:flex; align-items:center; gap:30px; }
+.tw .avatar { width:134px; height:134px; border-radius:50%; background:var(--void); display:grid; place-items:center; flex-shrink:0; }
+.tw .avatar img { width:98px; }
+.tw .nome { font-size:48px; font-weight:700; letter-spacing:-.01em; line-height:1.1; }
+.tw .arroba { font-size:42px; font-weight:500; color:var(--cinza); line-height:1.25; }
+.tw .txt { margin-top:50px; font-size:56px; font-weight:500; line-height:1.3; letter-spacing:-.012em; }
+.tw .txt p + p { margin-top:40px; }
+.tw .txt b { font-weight:700; }
+.tw.impacto .txt { font-size:78px; font-weight:700; line-height:1.12; letter-spacing:-.025em; }
+.tw.impacto .txt .antes { font-size:48px; font-weight:500; color:var(--cinza); letter-spacing:-.01em; }
+.tw .lista { list-style:none; margin-top:28px; counter-reset:p; }
+.tw .lista li { position:relative; padding-left:60px; }
+.tw .lista li + li { margin-top:12px; }
+.tw .lista.pontos li::before { content:''; position:absolute; left:8px; top:28px; width:16px; height:16px; border-radius:50%; background:var(--azul); }
+.tw .lista.numeros li { counter-increment:p; padding-left:78px; }
+.tw .lista.numeros li::before { content:counter(p); position:absolute; left:0; top:4px; width:58px; height:58px; border-radius:50%; background:var(--void); color:#fff; font-size:34px; font-weight:700; display:grid; place-items:center; }
+.tw .lista.setas li::before { content:'→'; position:absolute; left:0; color:var(--azul); font-weight:700; }
+.tw .lista.checks li::before { content:'✓'; position:absolute; left:0; top:6px; width:46px; height:46px; border-radius:10px; background:var(--azul); color:#fff; font-size:32px; font-weight:700; display:grid; place-items:center; }
+.tw .card-img { margin-top:48px; border-radius:40px; overflow:hidden; border:2px solid #e6e9ee; flex:0 1 auto; min-height:0; }
+.tw .card-img img { display:block; width:100%; max-height:600px; object-fit:cover; }
+.tw .fonte { margin-top:40px; font-size:27px; font-weight:500; color:#6e767d; }
+.tw .buscas { margin-top:48px; background:var(--lavanda); border-radius:40px; padding:48px 52px 54px; }
+.tw .ad .ruim { background:#f4f4f6; border:2px solid #e6e6ec; color:#5c5668; }
+.tw .ad .bom { background:rgba(0,119,255,.07); border:2px solid rgba(0,119,255,.45); color:var(--tinta); }
+.tw .ad .rot { color:#5c5668; }
+.tw .zap { background:#efeae2; }
+.tw .zap .cliente { background:#fff; color:var(--tinta); }
+.tw .zap .voce { background:#d9fdd3; color:var(--tinta); }
+
+/* blocos comuns */
+.rotb { font-family:'JetBrains Mono',monospace; font-size:26px; font-weight:600; letter-spacing:.16em; color:#5c5668; text-transform:uppercase; }
+.pilula { margin-top:24px; background:#fff; border-radius:999px; padding:24px 34px; display:flex; align-items:center; gap:22px; font-size:40px; font-weight:500; color:var(--tinta); }
+.pilula svg { width:40px; height:40px; flex-shrink:0; }
+.pilula.alvo { box-shadow:0 0 0 4px var(--azul); }
+.ad { margin-top:20px; }
+.ad .rot { margin-top:40px; font-size:28px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; display:flex; align-items:center; gap:16px; }
+.ad .rot .x { color:#ff5c5c; font-size:34px; } .ad .rot .v { color:var(--azul); font-size:34px; }
+.ad .ruim, .ad .bom { margin-top:20px; border-radius:22px; padding:36px 46px; font-size:40px; font-weight:500; line-height:1.4; position:relative; }
+.ad .ex { position:absolute; top:-18px; right:30px; font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; background:var(--azul); color:#fff; padding:6px 16px; border-radius:8px; }
+.zap { margin-top:48px; border-radius:36px; padding:40px 36px; display:flex; flex-direction:column; gap:22px; }
+.zap .bal { max-width:84%; padding:24px 32px; border-radius:26px; font-size:38px; font-weight:500; line-height:1.35; }
+.zap .cliente { align-self:flex-start; border-top-left-radius:6px; }
+.zap .voce { align-self:flex-end; border-top-right-radius:6px; }
+/* par de cartões lado a lado (jeito da @luizacureau): ilustração à esquerda, conversa à direita */
+.duo { margin-top:48px; display:flex; gap:28px; align-items:stretch; }
+.duo .card-img { margin-top:0; flex:1; min-width:0; }
+.duo .card-img img { height:100%; max-height:none; aspect-ratio:1/1; object-fit:cover; }
+.duo .card-img.falta { min-height:0; font-size:28px; }
+.tw.capa .duo { margin-top:80px; }
+.tw.capa .duo .card-img img { aspect-ratio:3/4; }
+.tw.capa .duo .zap .bal { font-size:38px; padding:26px 30px; }
+.duo .zap { margin-top:0; flex:1.08; min-width:0; padding:44px 22px 30px; gap:16px; justify-content:center; position:relative; }
+.duo .zap .bal { max-width:94%; font-size:31px; padding:18px 22px; border-radius:22px; }
+.zap .ex { position:absolute; top:-18px; right:24px; font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; background:var(--azul); color:#fff; padding:6px 16px; border-radius:8px; }
+.falta { display:grid; place-items:center; min-height:420px; background:#fff0f0; border:4px dashed #b00020; color:#b00020; font-size:34px; font-weight:700; }
+
+/* escuro: fundo chapado (Marcelo, 15/10: sem brilho azul no canto) */
+.es { background:var(--void); color:var(--osso); padding:104px 96px 84px; }
+.es .rotulo { display:flex; align-items:center; gap:18px; font-family:'JetBrains Mono',monospace; font-weight:600; font-size:26px; letter-spacing:.2em; text-transform:uppercase; color:rgba(226,232,240,.75); }
+.es .rotulo i { width:14px; height:14px; border-radius:3px; background:var(--azul); flex-shrink:0; }
+.es .miolo { flex:1; display:flex; flex-direction:column; justify-content:center; min-height:0; }
+.es h1 { font-size:86px; font-weight:700; line-height:1.05; letter-spacing:-.028em; color:#fff; text-wrap:balance; }
+.es h2 { font-size:72px; font-weight:700; line-height:1.08; letter-spacing:-.025em; color:#fff; text-wrap:balance; }
+.es em { font-style:normal; color:var(--azul-claro); }
+.es p { font-size:40px; font-weight:500; line-height:1.42; margin-top:30px; }
+.es p b { color:#fff; font-weight:700; }
+.es .lista { list-style:none; margin-top:40px; counter-reset:p; }
+.es .lista li { font-size:42px; font-weight:500; line-height:1.32; padding-left:72px; position:relative; }
+.es .lista li + li { margin-top:28px; }
+.es .lista b { color:#fff; font-weight:700; }
+.es .lista.pontos li::before { content:''; position:absolute; left:10px; top:22px; width:16px; height:16px; border-radius:50%; background:var(--azul-claro); }
+.es .lista.setas li::before { content:'→'; position:absolute; left:0; color:var(--azul-claro); font-weight:700; }
+.es .lista.numeros li { counter-increment:p; }
+.es .lista.numeros li::before { content:counter(p); position:absolute; left:0; top:0; width:52px; height:52px; border-radius:12px; background:rgba(0,119,255,.16); border:1.5px solid rgba(74,155,255,.55); color:#fff; font-size:30px; font-weight:700; display:grid; place-items:center; }
+.es .lista.checks li::before { content:'✓'; position:absolute; left:0; top:2px; width:48px; height:48px; border-radius:10px; background:var(--azul); color:#fff; font-size:32px; font-weight:700; display:grid; place-items:center; }
+.es .card-img { margin-top:44px; border-radius:28px; overflow:hidden; border:1.5px solid rgba(255,255,255,.10); min-height:0; flex:0 1 auto; }
+.es .card-img img { display:block; width:100%; max-height:620px; object-fit:cover; }
+.es .fonte { margin-top:30px; font-size:26px; font-weight:500; color:#8a8496; }
+.es .buscas { margin-top:44px; background:var(--painel); border:1.5px solid rgba(255,255,255,.07); border-radius:28px; padding:44px 48px 50px; }
+.es .rotb { color:var(--osso-2); }
+.es .ad .rot { color:var(--osso-2); } .es .ad .rot .v { color:var(--azul-claro); }
+.es .ad .ruim { background:var(--painel); border:1.5px solid rgba(255,255,255,.07); color:var(--osso-2); }
+.es .ad .bom { background:rgba(0,119,255,.13); border:1.5px solid rgba(74,155,255,.55); color:#fff; }
+.es .zap { background:#0b141a; border:1.5px solid rgba(255,255,255,.06); }
+.es .zap .cliente { background:#202c33; color:#e9edef; }
+.es .zap .voce { background:#005c4b; color:#e9edef; }
+.es .rodape { margin-top:auto; padding-top:32px; border-top:1.5px solid rgba(255,255,255,.10); display:flex; align-items:center; gap:24px; }
+.es .avatar { width:92px; height:92px; border-radius:50%; background:var(--void); border:2px solid rgba(255,255,255,.16); display:grid; place-items:center; }
+.es .avatar img { width:66px; }
+.es .rodape .nome { font-size:34px; font-weight:700; color:#fff; line-height:1.1; }
+.es .rodape .arroba { font-size:28px; font-weight:500; color:var(--azul-claro); }
+.es.capa { padding-top:0; }
+.es.capa .ilus { margin:0 -96px; height:700px; flex-shrink:0; background:center 40% / cover no-repeat; position:relative; }
+.es.capa .ilus::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,transparent 55%,var(--void) 100%); }
+.es.capa .ilus.falta::after { display:none; }
+.es.capa .miolo { justify-content:flex-start; padding-top:20px; }
+.es.capa.sem-ilus .miolo { justify-content:center; }
+.es.capa p { font-size:40px; }
+.es.impacto { background:linear-gradient(141deg,#077ac7,#6b21ef); color:#fff; }
+.es.impacto .rotulo { color:rgba(255,255,255,.85); } .es.impacto .rotulo i { background:#fff; }
+.es.impacto .antes { font-size:44px; line-height:1.3; color:rgba(255,255,255,.88); margin-top:0; }
+.es.impacto .forte { margin-top:36px; font-size:100px; font-weight:800; line-height:1.02; letter-spacing:-.03em; text-wrap:balance; }
+.es.impacto .rodape { border-top-color:rgba(255,255,255,.25); }
+.es.impacto .rodape .arroba { color:#fff; }
+.es.impacto .avatar { border-color:rgba(255,255,255,.35); }
+
+/* "\n" no texto vira quebra de linha (preço por linha, lista dentro do balão; post de 26/10 saiu emendado) */
+.bal, .ad .ruim, .ad .bom, .txt p, .es p, .lista li { white-space:pre-line; }
+
+/* aperto automático quando o conteúdo passa do slide (o render liga e mede de novo) */
+.aperta.tw .txt { font-size:48px; } .aperta.tw .txt p + p { margin-top:30px; }
+.aperta.tw .card-img img, .aperta.es .card-img img { max-height:440px; }
+.aperta.es h2 { font-size:62px; } .aperta.es h1 { font-size:76px; } .aperta.es p, .aperta.es .lista li { font-size:36px; }
+.aperta .ad .ruim, .aperta .ad .bom { font-size:36px; padding:28px 40px; } .aperta .zap .bal { font-size:34px; }
+.aperta.es.capa .ilus { height:600px; }
+</style>
+</head>
+<body>
+<section class="slide tw capa"><div class="autor"><div class="avatar"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div><div class="txt"><p><b>5 chatices</b> que&nbsp;todo dono de&nbsp;negócio devia ter</p></div><div class="duo"><div class="card-img"><img src="file:///E:/Users/hagge/Downloads/HorusOS/marketing/conteudo/midia/2026-11-02/5-chatices-que-todo-dono-de-negocio-devia-ter/img/img-1cd90efb.png" alt=""></div><div class="zap"><span class="ex">exemplo</span><div class="bal voce">Oi, Paula! Segue o&nbsp;orçamento do&nbsp;armário. ✓✓</div></div></div></section>
+
+<section class="slide tw"><div class="fio"></div><div class="autor"><div class="avatar"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div><div class="txt"><p>Tem dono de&nbsp;negócio que&nbsp;não manda mensagem para não parecer chato.</p><p>O&nbsp;cliente pede orçamento, some e&nbsp;fica por isso.</p><p><b>Ser chato do&nbsp;jeito certo é&nbsp;o que&nbsp;fecha negócio.</b></p></div></section>
+
+<section class="slide tw"><div class="fio"></div><div class="autor"><div class="avatar"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div><div class="txt"><p><b>1. Mande um segundo oi para o&nbsp;cliente.</b></p><p>Quem não insiste deixa a&nbsp;venda para quem é&nbsp;insistente!</p></div><div class="duo"><div class="card-img"><img src="file:///E:/Users/hagge/Downloads/HorusOS/marketing/conteudo/midia/2026-11-02/5-chatices-que-todo-dono-de-negocio-devia-ter/img/img-c0e8b473.png" alt=""></div><div class="zap"><span class="ex">exemplo</span><div class="bal voce">Oi, Paula! Conseguiu ver o&nbsp;orçamento do&nbsp;armário? Qualquer dúvida, me chama.</div></div></div></section>
+
+<section class="slide tw"><div class="fio"></div><div class="autor"><div class="avatar"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div><div class="txt"><p><b>2. Pergunte o&nbsp;motivo quando ele diz que&nbsp;não quer fechar.</b></p><p>A&nbsp;resposta vai te servir de&nbsp;ensinamento.</p></div><div class="duo"><div class="card-img"><img src="file:///E:/Users/hagge/Downloads/HorusOS/marketing/conteudo/midia/2026-11-02/5-chatices-que-todo-dono-de-negocio-devia-ter/img/img-38e2ec25.png" alt=""></div><div class="zap"><span class="ex">exemplo</span><div class="bal cliente">Vou deixar pra&nbsp;depois, obrigada!</div><div class="bal voce">Sem problema! Me conta o&nbsp;que fez você desistir? Assim eu melhoro aqui.</div></div></div></section>
+
+<section class="slide tw"><div class="fio"></div><div class="autor"><div class="avatar"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div><div class="txt"><p><b>3. Nunca termine a&nbsp;conversa sem um próximo passo!</b></p><p>Antes de&nbsp;se despedir, combine o&nbsp;dia de&nbsp;voltar a&nbsp;falar.</p></div><div class="duo"><div class="card-img"><img src="file:///E:/Users/hagge/Downloads/HorusOS/marketing/conteudo/midia/2026-11-02/5-chatices-que-todo-dono-de-negocio-devia-ter/img/img-57baa230.png" alt=""></div><div class="zap"><span class="ex">exemplo</span><div class="bal cliente">Vou ver com meu marido e&nbsp;te falo.</div><div class="bal voce">Combinado! Posso te chamar quinta?</div></div></div></section>
+
+<section class="slide tw"><div class="fio"></div><div class="autor"><div class="avatar"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div><div class="txt"><p><b>4. Confirme sempre no&nbsp;dia anterior.</b></p><p>Se o&nbsp;cliente não puder ir, você ainda encaixa outra pessoa no&nbsp;horário.</p></div><div class="duo"><div class="card-img"><img src="file:///E:/Users/hagge/Downloads/HorusOS/marketing/conteudo/midia/2026-11-02/5-chatices-que-todo-dono-de-negocio-devia-ter/img/img-6d45c0bd.png" alt=""></div><div class="zap"><span class="ex">exemplo</span><div class="bal voce">Oi, Bia! Confirmando sua escova amanhã às 15h. Tá de&nbsp;pé? <span class="e">💇‍♀️</span></div><div class="bal cliente">Tá sim, obrigada por lembrar!</div></div></div></section>
+
+<section class="slide tw"><div class="fio"></div><div class="autor"><div class="avatar"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div><div class="txt"><p><b>5. Peça avaliação no&nbsp;dia da&nbsp;entrega.</b></p><p>Peça enquanto ele ainda está contente. Amanhã ele já esqueceu.</p></div><div class="duo"><div class="card-img"><img src="file:///E:/Users/hagge/Downloads/HorusOS/marketing/conteudo/midia/2026-11-02/5-chatices-que-todo-dono-de-negocio-devia-ter/img/img-9e12fa60.png" alt=""></div><div class="zap"><span class="ex">exemplo</span><div class="bal voce">Que&nbsp;bom que&nbsp;o Thor voltou cheiroso! <span class="e">🐶</span> Se puder deixar uma avaliação no&nbsp;Google, ajuda muito a&nbsp;gente.</div></div></div></section>
+
+<section class="slide tw impacto"><div class="fio"></div><div class="autor"><div class="avatar"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div><div class="txt"><p>Chato mesmo é&nbsp;perder venda por vergonha de&nbsp;mandar mensagem!</p></div></section>
+
+<section class="slide tw"><div class="fio"></div><div class="autor"><div class="avatar"><img src="file:///E:/Users/hagge/Downloads/HorusOS/site/assets/simbolo-grande.png" alt=""></div><div><div class="nome">Horus</div><div class="arroba">@horusagencia.br</div></div></div><div class="txt"><p>Qual dessas chatices você ainda tem vergonha de&nbsp;fazer? Conta aqui <span class="e">👇</span></p></div></section>
+</body>
+</html>

@@ -19,8 +19,8 @@ const FOCOS = [
 const STATUS_LISTA = { pronta: 'Concluída', processando: 'Buscando', erro: 'Erro' };
 const STATUS_JOB = { fila: 'Na fila', processando: 'Buscando', erro: 'Erro' };
 const ORIGEM = { spark: 'Spark', planilha: 'Planilha', network: 'Network', manual: 'Manual', maps: 'Google Maps', claude: 'Claude' };
-const QTDS = { maps: [20, 60, 120, 200], claude: [10, 20, 30, 50] };
-const TIPOS_BUSCA = ['pesquisar_clientes', 'buscar_maps'];
+const QTDS = { maps: [20, 60, 120, 200], claude: [10, 20, 30, 50], semgoogle: [10, 20, 30] };
+const TIPOS_BUSCA = ['pesquisar_clientes', 'buscar_maps', 'buscar_sem_google'];
 const SITE = { sem: 'Sem site', fora_do_ar: 'Fora do ar', ruim: 'Site fraco', desconhecido: 'A conferir' };
 const SALVADOR = [-12.9714, -38.5014];
 const POR_PAGINA = 50;
@@ -101,15 +101,15 @@ export function palco(v, { listaId = null, params = {} } = {}) {
             </section>
             <p class="mz-hint">Ex.: <b>pet shop</b> em <b>Pituba, Salvador</b>. Várias buscas? Separe por vírgula.</p>
             <section class="mz-box mz-settings">
-              <div class="mz-row"><div><div class="mz-row-title">Motor</div><div class="mz-row-desc" data-motor-desc>Lê o Google Maps, sem gastar Claude</div></div>
-                <div class="mz-chips mz-qty" data-motores><button type="button" class="mz-on" data-motor-opc="maps">Google Maps</button><button type="button" data-motor-opc="claude">Claude</button></div></div>
+              <div class="mz-row mz-col"><div><div class="mz-row-title">Motor</div><div class="mz-row-desc" data-motor-desc>Lê o Google Maps, sem gastar Claude</div></div>
+                <div class="mz-chips mz-qty mz-motores" data-motores><button type="button" class="mz-on" data-motor-opc="maps">Google Maps</button><button type="button" data-motor-opc="claude">Claude</button><button type="button" data-motor-opc="semgoogle" title="Acha quem não tem perfil no Google, para vender o Google Meu Negócio">Sem Google</button></div></div>
               <div class="mz-row"><div><div class="mz-row-title">Quantidade</div><div class="mz-row-desc" data-qtd-desc>Aproximada, leva 1 a 5 minutos</div></div>
                 <div class="mz-chips mz-qty" data-qtds></div></div>
               <div class="mz-row mz-col"><div class="mz-row-line"><div><div class="mz-row-title">Raio</div><div class="mz-row-desc">Área da busca em volta do local</div></div><div class="mz-row-value" data-raio-val>5 km</div></div>
                 <input type="range" min="1" max="30" step="1" value="5" data-raio aria-label="Raio da busca em quilômetros"></div>
               ${FOCOS.map(([f, r, d, on]) => `<div class="mz-row" data-so-claude hidden><div><div class="mz-row-title">${esc(r)}</div><div class="mz-row-desc">${esc(d)}</div></div><button type="button" class="mz-toggle" data-foco="${esc(f)}" aria-pressed="${on}" aria-label="${esc(r)}"><span></span></button></div>`).join('')}
             </section>
-            <input class="mz-obs" data-so-claude hidden name="observacao" placeholder="Algo mais? Ex.: evitar franquias" autocomplete="off" aria-label="Observação">
+            <input class="mz-obs" data-so-web hidden name="observacao" placeholder="Algo mais? Ex.: evitar franquias" autocomplete="off" aria-label="Observação">
             <button class="mz-primary" type="submit" data-ir>Buscar empresas</button>
             <div class="mz-error" data-erro></div>
           </form>
@@ -198,8 +198,9 @@ export function palco(v, { listaId = null, params = {} } = {}) {
     $$('[data-q]', caixa).forEach((b) => (b.onclick = () => { st.qtd = Number(b.dataset.q); desenharMotor(); }));
     $$('[data-motor-opc]', v).forEach((b) => b.classList.toggle('mz-on', b.dataset.motorOpc === st.motor));
     $$('[data-so-claude]', v).forEach((x) => { x.hidden = st.motor !== 'claude'; });
-    $('[data-motor-desc]', v).textContent = st.motor === 'maps' ? 'Lê o Google Maps, sem gastar Claude' : 'O Claude pesquisa na web e confere Instagram';
-    $('[data-qtd-desc]', v).textContent = st.motor === 'maps' ? 'Aproximada, leva 1 a 5 minutos' : 'Leva de 3 a 10 minutos';
+    $$('[data-so-web]', v).forEach((x) => { x.hidden = st.motor === 'maps'; });
+    $('[data-motor-desc]', v).textContent = { maps: 'Lê o Google Maps, sem gastar Claude', claude: 'O Claude pesquisa na web e confere Instagram', semgoogle: 'Quem não tem perfil no Google: o Claude acha no Instagram e confere no Maps, um por um' }[st.motor];
+    $('[data-qtd-desc]', v).textContent = { maps: 'Aproximada, leva 1 a 5 minutos', claude: 'Leva de 3 a 10 minutos', semgoogle: 'Leva de 10 a 30 minutos' }[st.motor];
   }
   $$('[data-motor-opc]', v).forEach((b) => (b.onclick = () => { st.motor = b.dataset.motorOpc; desenharMotor(); }));
   desenharMotor();
@@ -245,10 +246,12 @@ export function palco(v, { listaId = null, params = {} } = {}) {
       if (st.motor === 'maps') {
         const [lat, lon] = st.geo || [null, null];
         ultimo = await criarJob('buscar_maps', { nicho: termos.join(', '), cidade, quantidade: st.qtd, raio: st.raio, lat, lon }, {}, 4);
+      } else if (st.motor === 'semgoogle') {
+        for (const nicho of termos) ultimo = await criarJob('buscar_sem_google', { nicho, cidade, quantidade: st.qtd, observacao }, {}, 4);
       } else {
         for (const nicho of termos) ultimo = await criarJob('pesquisar_clientes', { nicho, cidade, quantidade: st.qtd, foco: [...st.focos], observacao }, {}, 4);
       }
-      toast(st.motor === 'claude' && termos.length > 1 ? `${termos.length} buscas na fila` : 'Busca na fila', 'info');
+      toast(st.motor !== 'maps' && termos.length > 1 ? `${termos.length} buscas na fila` : 'Busca na fila', 'info');
       form.observacao.value = '';
       st.esperando = ultimo?.id || null;
       await carregarBuscas();
@@ -342,7 +345,7 @@ export function palco(v, { listaId = null, params = {} } = {}) {
     const [{ data: l, error: e1 }, { data: its, error: e2 }, { data: jt }, { data: je }, { data: jc }] = await Promise.all([
       sb.from('listas').select('*').eq('id', id).maybeSingle(),
       sb.from('lista_itens').select('*').eq('lista_id', id).order('score', { ascending: false }).limit(5000),
-      sb.from('jobs').select('entrada,status,progresso').eq('tipo', 'triar_lista').eq('lista_id', id).in('status', ['fila', 'processando']),
+      sb.from('jobs').select('entrada,status,progresso').in('tipo', ['triar_lista', 'montar_lote']).eq('lista_id', id).in('status', ['fila', 'processando']),
       sb.from('jobs').select('id,status,progresso,entrada,saida,erro,criado_em,concluido_em').eq('tipo', 'enriquecer_lista').eq('lista_id', id).order('criado_em', { ascending: false }).limit(6),
       sb.from('jobs').select('id,status,progresso,entrada,saida,erro,concluido_em').eq('tipo', 'conferir_cnpj').eq('lista_id', id).order('criado_em', { ascending: false }).limit(3),
     ]);
@@ -363,6 +366,8 @@ export function palco(v, { listaId = null, params = {} } = {}) {
   limpezas.push(() => clearInterval(poll));
 
   const ativos = () => st.itens.filter((i) => !i.descartado && !i.empresa_id);
+  // Enriquecer e triagem nasceram para corrigir a planilha do Spark; a busca do Maps e a do Claude já trazem esses dados
+  const daPlanilha = () => ['spark', 'planilha', 'network', 'manual'].includes(st.lista?.origem);
   const naEsteira = () => st.itens.filter((i) => !i.descartado && i.empresa_id);
   function filtrados() {
     const q = semAcento(st.texto);
@@ -409,9 +414,8 @@ export function palco(v, { listaId = null, params = {} } = {}) {
       <div class="mz-board-head">
         <div><h1>${esc(l.nome)}</h1><div class="mz-board-meta">${esc([l.nicho, l.cidade].filter(Boolean).join(' · ') || ORIGEM[l.origem] || '')} · ${esc(dataCurta(l.criado_em))}${l.observacao ? ` · ${esc(l.observacao.slice(0, 90))}` : ''}</div></div>
         <div class="mz-board-actions">
-          <button type="button" class="mz-ghost" data-copiar>Copiar telefones</button>
-          <button type="button" class="mz-ghost" data-baixar>Baixar planilha (${total})</button>
-          ${pendentes ? '<button type="button" class="mz-primary mz-small" data-triagem title="O Claude confere cada lead: quem passa vai pro Novo, quem não passa sai com o motivo">Fazer a triagem</button>' : ''}
+          ${pendentes && daPlanilha() ? '<button type="button" class="mz-ghost" data-triagem title="Para planilha: o Claude confere se cada empresa existe e se o dado está certo; quem passa vai pro Novo, sem mensagem">Fazer a triagem</button>' : ''}
+          ${pendentes ? '<button type="button" class="mz-primary mz-small" data-lote title="Você escolhe o filtro; o Hounder confere o CNPJ; o Claude escolhe as melhores e escreve a primeira mensagem de cada uma">Montar lote</button>' : ''}
           <button type="button" class="mz-mais" data-menu-lista aria-label="Mais ações da busca">${icone('pontos')}</button>
         </div>
       </div>
@@ -428,7 +432,7 @@ export function palco(v, { listaId = null, params = {} } = {}) {
           <label class="mz-field mz-slim">${icone('busca')}<input data-texto value="${esc(st.texto)}" placeholder="Filtrar por nome ou bairro" aria-label="Filtrar por nome ou bairro"></label>
         </div>
       </div>
-      ${st.sel.size ? `<div class="mz-bulk"><b>${st.sel.size} ${st.sel.size > 1 ? 'selecionadas' : 'selecionada'}</b><button type="button" class="btn sm prim" data-bulk="importar">Pro funil</button><button type="button" class="btn sm claude" data-bulk="enriquecer">Enriquecer</button><button type="button" class="btn sm" data-bulk="cnpj">Conferir CNPJ</button><button type="button" class="btn sm" data-bulk="descartar">Descartar</button><button type="button" class="btn sm fantasma" data-bulk="limpar">Limpar</button></div>` : ''}
+      ${st.sel.size ? `<div class="mz-bulk"><b>${st.sel.size} ${st.sel.size > 1 ? 'selecionadas' : 'selecionada'}</b><button type="button" class="btn sm prim" data-bulk="importar">Pro funil</button>${daPlanilha() ? '<button type="button" class="btn sm claude" data-bulk="enriquecer">Enriquecer</button>' : ''}<button type="button" class="btn sm" data-bulk="cnpj">Conferir CNPJ</button><button type="button" class="btn sm" data-bulk="descartar">Descartar</button><button type="button" class="btn sm fantasma" data-bulk="limpar">Limpar</button></div>` : ''}
       <div class="mz-table-wrap"><table><thead><tr><th class="mz-check"><input type="checkbox" data-todos aria-label="Selecionar página" ${pag.length && selNaTela === pag.length ? 'checked' : ''}></th><th>Empresa</th><th>Bairro</th><th class="mz-num">Nota</th><th>Telefone</th><th>Site</th><th class="mz-num">Score</th></tr></thead>
         <tbody>${pag.map(linha).join('') || `<tr><td colspan="7" class="mz-t-empty">${l.status === 'processando' ? 'Buscando.' : 'Nada neste filtro.'}</td></tr>`}</tbody></table>
         ${total > POR_PAGINA ? `<div class="mz-pag"><span>${st.pagina * POR_PAGINA + 1} a ${Math.min(total, (st.pagina + 1) * POR_PAGINA)} de ${num(total)}</span><span><button type="button" class="mz-ghost" data-pag="-1" ${st.pagina === 0 ? 'disabled' : ''}>Anterior</button> <button type="button" class="mz-ghost" data-pag="1" ${(st.pagina + 1) * POR_PAGINA >= total ? 'disabled' : ''}>Próxima</button></span></div>` : ''}
@@ -453,7 +457,7 @@ export function palco(v, { listaId = null, params = {} } = {}) {
       const zap = zapDe(it);
       import('../ui.js').then(({ menu }) => menu(b, [
         { icone: 'olho', rotulo: 'Ver detalhes e motivos', fn: () => detalhes(it) },
-        { icone: 'comentario', rotulo: 'Enriquecer com o Claude', fn: () => enriquecer([it.id]) },
+        ...(daPlanilha() ? [{ icone: 'comentario', rotulo: 'Enriquecer com o Claude', fn: () => enriquecer([it.id]) }] : []),
         ...(zap ? [{ icone: 'whatsapp', rotulo: 'Abrir WhatsApp', fn: () => window.open(`https://wa.me/${zap}`, '_blank') }] : []),
         { icone: 'mapa', rotulo: 'Procurar no Google Maps', fn: () => window.open(`https://www.google.com/maps/search/${encodeURIComponent(`${it.nome} ${it.cidade || ''}`)}`, '_blank') },
         '-',
@@ -471,24 +475,29 @@ export function palco(v, { listaId = null, params = {} } = {}) {
       st.sel.clear();
       desenhar();
     }));
-    $('[data-baixar]', c).onclick = () => baixarArquivo(`${st.lista.nome.replace(/[^\w-]+/g, '_')}.csv`, paraCSV(filtrados(), [
+    const baixar = () => baixarArquivo(`${st.lista.nome.replace(/[^\w-]+/g, '_')}.csv`, paraCSV(filtrados(), [
       { campo: 'nome', rotulo: 'Empresa' }, { campo: 'categoria', rotulo: 'Categoria' }, { campo: 'bairro', rotulo: 'Bairro' }, { campo: 'cidade', rotulo: 'Cidade' }, { campo: 'whatsapp', rotulo: 'WhatsApp' }, { campo: 'telefone', rotulo: 'Telefone' }, { campo: 'instagram', rotulo: 'Instagram' }, { campo: 'instagram_seguidores', rotulo: 'Seguidores' },
       { campo: 'site', rotulo: 'Site' }, { campo: 'site_status', rotulo: 'Situação do site' }, { campo: 'google_nota', rotulo: 'Nota' }, { campo: 'google_avaliacoes', rotulo: 'Avaliações' }, { campo: 'score', rotulo: 'Score' }, { campo: 'prioridade', rotulo: 'Prioridade' }, { rotulo: 'Motivos', valor: (i) => (i.score_motivos || []).map((m) => `+${m.pontos} ${m.sinal}`).join(' | ') },
     ]));
-    $('[data-copiar]', c).onclick = () => {
+    const copiarTelefones = () => {
       const t = filtrados().map((i) => digitos(i.whatsapp || i.telefone)).filter(Boolean);
       if (!t.length) { toast('Nenhum telefone neste filtro', 'info'); return; }
       copiar(t.join('\n'), `${t.length} telefones copiados`);
     };
     const tri = $('[data-triagem]', c);
     if (tri) tri.onclick = triagem;
+    const lt = $('[data-lote]', c);
+    if (lt) lt.onclick = montarLote;
     $('[data-menu-lista]', c).onclick = (e) => {
       const alvo = e.currentTarget;
-      const altas = ativos().filter((i) => !i.empresa_id && i.prioridade === 'alta').sort((a, b) => b.score - a.score).slice(0, 10);
+      /* 13/11/2026, Marcelo: "achando algumas coisas meio redundantes... ao invés de ter botões muito específicos". O "Montar lote"
+         já filtra, confere o CNPJ, escolhe e escreve; aqui fica só o que ele não faz. Enriquecer e triagem só em lista de planilha. */
+      const semCnpj = ativos().filter((i) => !i.dados?.cnpj).sort((a, b) => b.score - a.score).slice(0, 40).map((i) => i.id);
       import('../ui.js').then(({ menu, perguntar }) => menu(alvo, [
-        { icone: 'comentario', rotulo: 'Enriquecer as 10 melhores', fn: enriquecerTop },
-        { icone: 'checkc', rotulo: 'Conferir CNPJ das 20 melhores', fn: () => conferirCnpj(ativos().filter((i) => !i.dados?.cnpj).sort((a, b) => b.score - a.score).slice(0, 20).map((i) => i.id)) },
-        ...(altas.length ? [{ icone: 'setad', rotulo: altas.length > 1 ? `Mandar as ${altas.length} melhores pro funil` : 'Mandar a melhor pro funil', fn: () => importar(altas.map((i) => i.id)) }] : []),
+        { icone: 'copiar', rotulo: 'Copiar telefones', fn: copiarTelefones },
+        { icone: 'download', rotulo: `Baixar planilha (${filtrados().length})`, fn: baixar },
+        ...(semCnpj.length ? [{ icone: 'checkc', rotulo: `Só conferir o CNPJ (${semCnpj.length})`, fn: () => conferirCnpj(semCnpj) }] : []),
+        ...(daPlanilha() ? [{ icone: 'comentario', rotulo: 'Enriquecer as 10 melhores', fn: enriquecerTop }] : []),
         { icone: 'atualizar', rotulo: 'Repontuar com a régua atual', fn: repontuar },
         { icone: 'editar', rotulo: 'Renomear', fn: async () => {
           const n = await perguntar('Nome da busca', { valor: st.lista.nome });
@@ -517,6 +526,81 @@ export function palco(v, { listaId = null, params = {} } = {}) {
       alvo.forEach((x) => st.triando.add(x));
       desenhar();
     } catch (e) { toast(erroAmigavel(e), 'erro'); }
+  }
+  /* O lote do Fischer (13/11/2026, pedido do Marcelo): ele escolhe o filtro antes ("que eu decida se vai ser com número X de
+     avaliações ou não"), a conta de quantas sobram é feita aqui na tela, sem Claude, e só as que sobram vão pro Claude. */
+  function montarLote() {
+    const naFila = st.triando;
+    const base = ativos().filter((i) => !i.empresa_id && !naFila.has(i.id));
+    const noPC = matchMedia('(pointer: fine)').matches && innerWidth > 900;
+    // Busca "Sem Google": ninguém ali tem nota nem avaliação, então o filtro já nasce sem esse corte e com o foco no perfil do Google
+    const semGoogle = base.length && base.filter((i) => i.gmb_status === 'ausente').length >= base.length / 2;
+    const f = semGoogle
+      ? { nota: '', minAval: '', maxAval: '', site: 'qualquer', celular: true, horario: 'qualquer', semMei: true, anos: 3, foco: 'google', quantidade: 10, janela: noPC }
+      : { nota: 4, minAval: 15, maxAval: '', site: 'sem', celular: true, horario: 'qualquer', semMei: true, anos: 3, foco: 'geral', quantidade: 10, janela: noPC };
+    const anosDe = (i) => { const a = i.dados?.cnpj?.receita?.abertura; const d = a ? new Date(a) : null; return d && !Number.isNaN(d.getTime()) ? (Date.now() - d) / (365.25 * 864e5) : null; };
+    const passa = (i) => {
+      if (f.nota && !(Number(i.google_nota) >= Number(f.nota))) return false;
+      if (f.minAval !== '' && !(Number(i.google_avaliacoes || 0) >= Number(f.minAval))) return false;
+      if (f.maxAval !== '' && !(Number(i.google_avaliacoes || 0) <= Number(f.maxAval))) return false;
+      if (f.site === 'sem' && !semSite(i) && !soRede(i)) return false;
+      if (f.site === 'com' && (semSite(i) || soRede(i))) return false;
+      if (f.celular && !zapDe(i)) return false;
+      if (f.horario === 'sem' && Object.keys(i.dados?.horarios || {}).length) return false;
+      const rec = i.dados?.cnpj?.receita;
+      // O CNPJ de quem ainda não foi conferido é conferido pelo Farejador antes do Claude (13/11)
+      if (rec && f.semMei && rec.mei) return false;
+      if (rec && f.anos) { const a = anosDe(i); if (a != null && a < Number(f.anos)) return false; }
+      if (i.dados?.cnpj?.veredito === 'reprovado') return false;
+      return true;
+    };
+    const campo = (rot, html, dica = '') => `<div class="campo"><span class="lbl">${rot}</span>${html}${dica ? `<span class="ajuda">${dica}</span>` : ''}</div>`;
+    const sel = (k, ops) => `<select class="sel" data-lf="${k}">${ops.map(([v, r]) => `<option value="${v}"${String(f[k]) === v ? ' selected' : ''}>${r}</option>`).join('')}</select>`;
+    const m = modal({
+      titulo: 'Montar lote', subtitulo: `${base.length} empresas desta busca fora do CRM`, icone: 'enviar', largo: true,
+      corpo: `<div class="grade-2">
+          ${campo('Nota mínima no Google', `<input class="inp" type="number" step="0.1" min="0" max="5" data-lf="nota" value="${f.nota}" placeholder="sem mínimo">`, semGoogle ? 'Esta busca é de quem não tem perfil no Google: sem nota para cortar.' : '')}
+          ${campo('Quantas no lote', `<input class="inp" type="number" min="1" max="20" data-lf="quantidade" value="${f.quantidade}">`)}
+          ${campo('Avaliações: no mínimo', `<input class="inp" type="number" min="0" data-lf="minAval" value="${f.minAval}" placeholder="sem mínimo">`, 'Deixe em branco para não cortar.')}
+          ${campo('Avaliações: no máximo', `<input class="inp" type="number" min="0" data-lf="maxAval" value="${f.maxAval}" placeholder="sem máximo">`, 'Para vender o perfil do Google: poucas avaliações = perfil fraco.')}
+          ${campo('Site', sel('site', [['sem', 'Sem site, fora do ar ou só rede social'], ['qualquer', 'Tanto faz'], ['com', 'Só quem tem site']]))}
+          ${campo('Horário no Google', sel('horario', [['qualquer', 'Tanto faz'], ['sem', 'Só quem não pôs o horário']]))}
+          ${campo('O que vender neste lote', sel('foco', [['geral', 'O gancho mais forte de cada uma'], ['google', 'Perfil no Google (Google Meu Negócio)'], ['site', 'Site']]))}
+          ${campo('CNPJ', `<span style="display:flex;flex-wrap:wrap;align-items:center;gap:8px"><label class="check"><input type="checkbox" data-lf="semMei" ${f.semMei ? 'checked' : ''}> Tirar MEI</label><span>Aberta há pelo menos</span><input class="inp sm" style="width:72px" type="number" min="0" data-lf="anos" value="${f.anos}"><span>anos</span></span>`, 'O Hounder confere o CNPJ na Receita só das que sobrarem do filtro, sem Claude, e corta antes de o Claude começar.')}
+        </div>
+        <label class="check mt-8"><input type="checkbox" data-lf="celular" ${f.celular ? 'checked' : ''}> Só quem tem celular (WhatsApp)</label>
+        <label class="check mt-8"><input type="checkbox" data-lf="janela" ${f.janela ? 'checked' : ''} ${noPC ? '' : 'disabled'}> Abrir na janela do chat, no PC, para eu assistir e corrigir</label>
+        <div class="aviso mt-16" data-conta></div>`,
+      pe: '<button class="btn" data-fechar>Cancelar</button><button class="btn prim" data-ir>Montar lote</button>',
+    });
+    const conta = () => {
+      const sobra = base.filter(passa).sort((a, b) => b.score - a.score);
+      const vao = sobra.slice(0, 40);
+      const proClaude = Math.min(vao.length, f.quantidade * 3);
+      $('[data-conta]', m.el).innerHTML = sobra.length ? `<div><b>Sobram ${sobra.length} de ${base.length}.</b><br>1. O Hounder confere o CNPJ ${vao.length < sobra.length ? `das ${vao.length} de maior score` : 'delas'} na Receita e tira MEI e empresa nova. Sem Claude.<br>2. O Claude olha até ${proClaude} e escolhe as ${f.quantidade} melhores para o lote.<br>3. Ele escreve a primeira mensagem e os dois follow-ups de cada uma. Nada sai sem você aprovar no Disparos.</div>` : '<div><b>Nenhuma sobrou.</b> Afrouxe o filtro.</div>';
+      $('[data-ir]', m.el).disabled = !sobra.length;
+      return vao;
+    };
+    $$('[data-lf]', m.el).forEach((x) => (x.oninput = x.onchange = () => {
+      const k = x.dataset.lf;
+      f[k] = x.type === 'checkbox' ? x.checked : x.type === 'number' ? (x.value === '' ? '' : Number(x.value)) : x.value;
+      if (k === 'quantidade') f.quantidade = Math.max(1, Math.min(20, Number(x.value) || 10));
+      conta();
+    }));
+    conta();
+    $('[data-ir]', m.el).onclick = async (ev) => {
+      const vao = conta();
+      if (!vao.length) return;
+      botaoCarregando(ev.currentTarget, true, 'Pondo na fila…');
+      const filtros = { nota: f.nota, min_avaliacoes: f.minAval, max_avaliacoes: f.maxAval, site: f.site, horario: f.horario, sem_mei: f.semMei, anos: f.anos, celular: f.celular };
+      try {
+        await criarJob('montar_lote', { item_ids: vao.map((i) => i.id), quantidade: f.quantidade, foco: f.foco, janela: Boolean(f.janela && noPC), filtros, lista_id: st.lista.id }, { lista_id: st.lista.id }, 4);
+        vao.forEach((i) => st.triando.add(i.id));
+        m.fechar();
+        toast(f.janela && noPC ? 'Lote na fila. A janela do chat abre no PC quando o navegador do Farejador estiver livre.' : `Lote na fila${farejadorOnline() ? '' : ' (Farejador offline: roda quando ligar)'}`, 'info');
+        desenhar();
+      } catch (e) { toast(erroAmigavel(e), 'erro'); botaoCarregando(ev.currentTarget, false); }
+    };
   }
   async function atualizar(ids, campos) {
     const { error } = await sb.from('lista_itens').update(campos).in('id', ids);

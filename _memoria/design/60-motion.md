@@ -232,11 +232,25 @@ em volta da esfera e a linha curva dos "4 passos".
   - Computador baixo (notebook de 1366x640): acende pela rolagem, sem prender. Preso ali, o cartão não cabe e a rolagem
     parece travada.
   - Tablet: dois por linha, todos acesos.
-  - Celular: empilhados e acesos.
+  - Celular: empilhados e acesos. **Trocado em 07/11 (Marcelo, modelo Tarq no celular):** a seção fica presa e as etapas
+    andam da direita para a esquerda, um pixel por pixel rolado, com a próxima aparecendo pela metade. Não sequestra a
+    rolagem: o trilho ganha a altura do percurso e a fila acompanha a posição dele. Liga só com 560 px de altura ou mais e
+    sem "reduzir movimento"; fora disso, empilhado. Código no fim do `estudio.js` da Débora.
   - Conferir em 1280x720 e 1366x640, não só em 1440x900.
   - O texto que explica cada etapa fica fora do cartão e sempre visível. O efeito chama a atenção, mas não esconde o
     conteúdo.
   - Recebeu um "Amei o site" do Marcelo.
+
+---
+
+- **Capa parada, a seção seguinte sobe por cima (Tarq no celular, Débora 07/11).** Só CSS: a capa e a seção 1 dentro de
+  um invólucro; a capa com `position: sticky; top: 0`, a seção 1 com fundo opaco e `z-index` acima. Fica preso só dentro
+  do invólucro, então nenhuma outra seção precisa de fundo. Nada de JavaScript nem de animação para desligar.
+  Complemento do mesmo dia: enquanto é coberta, a capa sobe a 35% da rolagem e escurece até metade do brilho (medido na
+  Tarq: -221 px e brilho 0,50 aos 600 px). Só `transform` e a opacidade de um véu; só no celular, sem "reduzir movimento".
+- **Foto parada com o texto passando por cima e escurecendo (página de projeto da Tarq, Débora 07/11).** A foto fica
+  `sticky` num invólucro; o nome e a visão geral vêm depois com `margin-top` negativo, e a visão geral tem um fundo em
+  degradê escuro que escurece a foto conforme sobe. Só CSS.
 
 ---
 
@@ -264,6 +278,22 @@ então o arsenal entrou quase inteiro. O que funcionou e vale para o próximo:
 - **Vídeo dentro das letras** para fechar a página com o nome, em SVG `<mask>` sobre `<video>`.
 
 ---
+
+## Rolagem fluida com Lenis no celular (Débora Reis, 07/11/2026)
+
+O Marcelo pediu "um efeito fluido quando a gente scrollar pelo site", olhando pelo celular. Com o Lenis só na roda do
+mouse, o celular não mudaria nada. Ficou assim, em `clientes/_prototipos/debora-reis/site/assets/fluido.js`, em todas as
+páginas:
+- `syncTouch: true`, `syncTouchLerp: 0.085`, `touchInertiaMultiplier: 30`, `lerp: 0.1` e `gestureOrientation: 'vertical'`.
+- A rolagem continua sendo a da janela. Sticky, ScrollTrigger (pelo `gsap.ticker`, com `lagSmoothing(0)`) e os efeitos
+  de rolagem feitos à mão seguem funcionando.
+- `prevent` devolve a rolagem ao navegador enquanto o carrossel está sendo arrastado (`.projetos.arrastando`) e dentro de
+  `dialog`. Um `MutationObserver` para o Lenis quando a janela abre.
+- Os links `#seção` deslizam com `lenis.scrollTo`. O "Pular para o conteúdo" fica com o navegador.
+- Com "reduzir movimento", o Lenis não liga.
+- O teste por toque (CDP `Input.dispatchTouchEvent`) confirmou: o arrasto de lado passa o projeto sem rolar a página, e o
+  arrasto vertical continua deslizando depois que o dedo solta.
+- Falta a prova no aparelho de verdade. Se o Android brigar com a inércia, o primeiro ajuste é `syncTouch: false`.
 
 ## Como uma correção entra aqui
 

@@ -1,5 +1,260 @@
 # Débora Reis Arquitetura: esboço (lead, interiores, Barra/Salvador)
 
+> 🟢 **12/11/2026: rodada 1 no domínio, SEM o formulário** (Netlify, deploy 6af5d8f3, aprovação do Marcelo). Entraram o
+> 5,0 no Google, o fecho do Como trabalho e o contato novo. O botão da capa virou "Começar meu projeto". No computador
+> saíram as setas e a pausa dos Projetos (`estudio.css`, fim). O formulário fica só no esboço até a Débora opinar: ela
+> recebe o rascunho v1 de 12/11 (formulário, faixas, meta de 22 avaliações e corretores) e a tarefa é a 63bec6e0. Para
+> ligar no domínio, use `FORMULARIO_NO_AR = true` em `publicar-dominio.cjs`. Sem ele, o contato volta ao texto antigo.
+> Mais tarde, no mesmo dia (deploy 6af5da8f): o título da home, a descrição da busca e a capa passaram a dizer
+> "arquiteta de interiores em Salvador". Facebook e LinkedIn dela entraram no rodapé de todas as páginas, ao lado do
+> Instagram, e no `sameAs`. O rodapé das páginas de projeto se edita no `gerar-projetos.cjs`.
+
+> 🟡 **12/11/2026: Google conferido e Instagram a começar.** Site no índice (3 das 8 páginas na busca), mas nem o nome
+> dela leva ao site (6º, atrás de Facebook, LinkedIn, @arquideborareis e Wix). Ajustes e páginas novas em
+> `seo/estrategia-google-2026-11.md` §7 (tarefa 4ad48289, esperar a sessão de conversão publicar). Instagram: rascunho v1
+> no Hounder (referências + semana grátis + R$ 350), decisão 2 ou 7 posts em `instagram/PLANO.md` (tarefa e20d97b2).
+>
+> 🟢 **11/11/2026, noite: rodada 1 de conversão montada e publicada SÓ no esboço** (https://esboco-debora-reis.vercel.app).
+> O domínio continua igual. Detalhe na seção 9 da `AUDITORIA-CONVERSAO-2026-11.md`. Backup: `versoes/antes-conversao-11-11/`.
+> - **Formulário "Começar meu projeto"** (`assets/comecar.js` + `comecar.css`) em todas as páginas. Todo botão de WhatsApp
+>   genérico abre a janela: imóvel, bairro, o que procura, momento e quando, mais o investimento opcional. A mensagem
+>   chega montada e diz a página de origem. O telefone do rodapé e a revista abrem direto. `?comecar=1` abre a janela.
+> - **"★ 5,0 no Google"** na capa e no contato, com link para a ficha. Em 11/11 eram **13 avaliações** (4 em 10/11).
+>   Conferir a nota todo dia 10 (tarefa 8460960a).
+> - **Fecho do Como trabalho:** "Você começa a obra com os custos previstos na mão." + botão. Questionário com "Em que
+>   momento você está?". Saiu "Nomes dos projetos: site da Débora.".
+> - **Não aplicado:** o Instagram continua no topo e no contato, porque foi pedido dela em 04/11.
+> - **Decide o Marcelo** (tarefa e0134436): domínio, contador de visitas e rótulo do botão da capa. Ela valida as faixas
+>   de investimento.
+> - **Publicar o esboço de novo:** copiar `site/` para uma pasta `esboco-debora-reis` com a `.vercel` (projeto
+>   `prj_91ZqsMM1gqNKRmG41ANz7iW8E2iA`) e rodar `npx -y vercel@60.0.0 deploy --prod --yes`.
+>
+> 📌 **ESTADO EM 11/11/2026: site no ar, Google arrumado, conversão do site a decidir.**
+> - **Google (10/11):** ela aprovou o acesso de gestor. A ficha foi arrumada e o Google aprovou a categoria Arquiteto +
+>   Designer de interiores, a descrição, o site no domínio e o chat no WhatsApp. Ficaram em revisão os serviços, os
+>   atributos e a 3ª categoria. Estratégia em `seo/estrategia-google-2026-11.md`, com medição todo dia 10 (repete no Hounder).
+> - **Conversão (10/11):** auditoria em `AUDITORIA-CONVERSAO-2026-11.md`. A rodada 1 não depende dela e espera o Marcelo
+>   aprovar e escolher o contador de visitas (tarefa e0134436, prazo 12/11). Montar no esboço da Vercel e só depois no domínio.
+> - **Mensagens enviadas em 11/11 (contado pelo Marcelo):** o "terminei o seu Google", o link de avaliação e a resposta ao
+>   áudio dela. No áudio, ela temia que as avaliações expusessem os melhores clientes a concorrentes mais baratos. A
+>   resposta: quem avaliou já comprou, e a avaliação não mostra o Instagram. Ofereceu também preparar as respostas das
+>   avaliações para ela aprovar (tarefa e9cf43a8). Ela viu o Google e não comentou. Uns 5 clientes já avaliaram. Regra
+>   nova no `instagram/PLANO.md`: nunca marcar nem identificar o cliente nos posts.
+> - **Esperando dela:** as histórias, fotos e plantas dos projetos (pedido de 09/11; lembrete leve em 18/11, tarefa f677eab4).
+> - **🎯 PRÓXIMO CHAT (pedido do Marcelo, 11/11):**
+>   1. Trabalhar o site de alta conversão (rodada 1 da auditoria). Começar pela seção 7 da `AUDITORIA-CONVERSAO-2026-11.md`.
+>   2. Destravar o contrato (CAU, dia do Pix, endereço, e-mail do Marcelo, vídeo do Antônio). Ele segura a primeira
+>      mensalidade da Horus. Confirmar com o Marcelo se o pedido do CAU e do Pix já saiu (não aparece na sincronização).
+>   3. Publicar o painel com as tarefas na Agenda, se o Marcelo der o ok (tarefa a94a07f3).
+> - **Perguntas abertas a ela:** se Itaigara e Alto do Parque são foto ou 3D (a capa usa o Alto do Parque), o Wix antigo e
+>   o site do amigo, o Instagram @arquideborareis, o número do CAU e os 5 melhores e 5 piores clientes.
+> - Contrato e Instagram continuam como no bloco de 07/11 abaixo.
+>
+> 📎 **Histórico: ESTADO EM 07/11/2026, 12h20: fechou de boca, site NO AR em https://deborareisarquitetura.com.br.**
+> - **Site:** a zona salva às 11h18 publicou perto das 12h; o certificado HTTPS saiu minutos depois do pedido na Netlify
+>   (`api provisionSiteTLSCertificate`). http e www redirecionam para o https. 4 páginas e 60 arquivos em 200, e
+>   `revisao.cjs https://deborareisarquitetura.com.br --producao` (rodar da raiz, onde está o Playwright) com 0 problema.
+>   Falta: Search Console (o Marcelo baixa o arquivo HTML de verificação com a conta dele, eu publico e envio o sitemap) e
+>   o acesso de gestor à ficha do Google para pôr o site no campo Website (tarefa no Hounder, prazo 10/11).
+>   Mensagem "site no ar" v2 com o agradecimento do Pix: rascunho no Hounder (07/11, 12h20).
+> - **Contrato** (`_gestao/contratos/debora-reis-2026-11.md`): falta o endereço residencial dela (o da Rua Aracaju é coworking),
+>   o número do CAU, o e-mail do Marcelo, o dia do Pix do Instagram, o Antônio confirmar se o vídeo conta entre os 8 e o PDF
+>   para o Gov.br.
+> - **Instagram:** outra sessão começou em 07/11 o plano em `instagram/PLANO.md` (3 capas e 1 carrossel modelo antes da pauta;
+>   decisões pendentes do Marcelo lá e no Hounder).
+> - **Mensagens pendentes do Marcelo:** o "site no ar" junto com o agradecimento pelo Pix e o comprovante (v2), e depois o
+>   pedido do endereço residencial.
+> - **Portfólio (07/11):** os quatro cartões além do Rio Vermelho contam pouco (Alto do Parque só tem o nome). Recomendado:
+>   nada de página só com fotos; pedir a ela, depois da resposta ao "site no ar", a história de cada projeto, inclusive o
+>   Rio Vermelho (quem mora, o que pediram, o que mudou, quanto tempo levou; pode ser áudio), e os originais do Roberto, que
+>   substituem as sete fotos aumentadas por IA de 30/10 (`fotos/FONTES.md`). Rascunho v2 no Hounder (07/11).
+> - **Rio Vermelho refeito como percurso (07/11, segunda revisão do Marcelo):** abertura com a foto do corredor dominando e
+>   o texto por cima, ficha discreta (Localização, Intervenções, Fotografia, Tipo), conceito curto, galeria (faixa do piso e
+>   dois detalhes), três aspectos com imagem e o fecho com o aparador e "Cada casa tem a sua própria história". A foto com
+>   os números saiu (repetia a abertura). Recortes `rv2-*` tirados de `rio-vermelho-g.jpg`. Contraste do texto sobre a foto
+>   medido nos pixels: no mínimo 5,6:1. Backup da versão da manhã em `versoes/antes-rv-07-11/`.
+> - **Celular, rodada da tarde (07/11, referência do Marcelo):**
+>   - **topo:** nome com "Arquitetura de interiores" e o Instagram, sem links e sem "Conversar" (ele quer testar sem menu);
+>   - **capa:** rótulo "Arquiteta em Salvador" com fio, e "Entrar em contato" no lugar de "Conversar com a Débora" (também
+>     no computador), com "Ver projetos" em botão de contorno;
+>   - **carrossel:** só com o dedo, os fios no alto e "Ver projeto" com "Ver todos os projetos" logo abaixo;
+>   - **ícone do WhatsApp:** o padrão do Simple Icons, porque o desenhado à mão ficava torto;
+>   - **rodapé:** cada link na linha de um dado de contato;
+>   - **rolagem:** fluida com o Lenis em todas as páginas (`assets/fluido.js`).
+>   Backup em `versoes/antes-mobile-07-11/`. **Publicado no domínio em 07/11 à noite com o ok do Marcelo** (deploy
+>   6aef82df na Netlify): 8 páginas no celular e no computador, 274 respostas sem falha, revisão de produção 0, sitemap com 8.
+> - **Home no celular (07/11):** sem "Contato" no topo; a capa fica parada e a seção 1 sobe por cima (CSS, `.capa-palco`);
+>   o "Como trabalho" fica preso e as etapas andam para a esquerda com a rolagem (`.crono-trilho`, script no fim do
+>   `estudio.js`; só com tela de 560 px de altura ou mais e sem "reduzir movimento"). Modelo: Tarq no celular.
+> - **Rio Vermelho no modelo da Tarq (07/11, terceira rodada):** o Marcelo mandou três páginas de projeto da Tarq (PH Makaira,
+>   Casa Decor, Casa NJ). A página virou: foto parada com o nome grande e a faixa de lugar e tipo; a visão geral passa por
+>   cima e escurece a foto; MATERIAIS, galeria, CONCEITO e ILUMINAÇÃO com parágrafo curto e justificado; sem legenda à mão.
+>   Recortes `rvt-*` (de `vermelho.jpg` e `rio-vermelho-g.jpg`). Contraste do texto sobre a foto: no mínimo 5,2:1.
+> - **Home no celular, terceira rodada:** a capa sobe a 35% e escurece até a metade (como a Tarq); "A arquiteta" e o nome
+>   antes da foto; gatos sem as seis perguntas, título "A casa também é dos bichanos"; o guia do cliente saiu do site (ela
+>   já tem um guia; pergunta pronta no Hounder).
+> - **Cinco páginas de projeto (07/11, quarta rodada):** `gerar-projetos.cjs` gera `projeto-rio-vermelho`, `-paralela`,
+>   `-graca`, `-alto-do-parque` e `-itaigara` a partir dos dados de cada projeto (texto só das legendas dela ou do que a
+>   foto mostra). **Editar o texto ou as fotos no gerador, nunca no HTML.** O Rio Vermelho voltou a ter o painel bordado,
+>   a pedra e o aparador inteiro (10 imagens). Nenhuma foto passa de 1,3 vez o tamanho real. Gatos: "Pet friendly" e
+>   volta ao rótulo "Pra quem mora" e ao título "O projeto é feito para quem mora. E para os bichanos." (07/11 à noite, pedido do Marcelo; "A casa também é dos bichanos" e "Pet friendly" saíram; "Casa com bicho" é o que ele não gostou). `publicar-dominio.cjs` e `revisao.cjs` já listam as oito páginas.
+> - **Perguntar à Débora:** as imagens do Itaigara são foto do quarto pronto ou render? Quem fotografou?
+> - **Tudo isso está no esboço da Vercel e espera o ok do Marcelo para ir ao domínio.**
+> - **09/11, sequência de mensagens agrupada (v3, textos no Hounder):** ela gostou do site. O Marcelo pediu juntar os pedidos em poucas mensagens, para ela responder no tempo dela. Agradecimento; site (projetos, histórias, imagens, guia); contrato e Google; avaliações no dia seguinte à aprovação; Instagram. Só se separa o que depende de um passo anterior.
+> - **08/11:** retrato novo em `assets/fotos/debora.jpg` e, no computador, seção dos gatos com o desenho maior, título e fotos menores (backup em `versoes/antes-gatos-08-11/`). Sitemap com status Success no Search Console (lido em 07/11, 4 páginas; o arquivo atual tem 8).
+> - **Search Console:** arquivo de verificação em `producao-extra/` (o `publicar-dominio.cjs` copia tudo de lá). O Marcelo
+>   enviou o `sitemap.xml` em 07/11; "Couldn't fetch" é o normal de propriedade nova. Conferir de novo em 10/11.
+> - **Netlify:** o selo "Powered by Netlify" (`built_with_badge_enabled`) foi desligado em 07/11.
+>
+> *Histórico: ESTADO EM 05/11/2026: reunião feita em 04/11, 19h, com o Antônio. Ela aceitou.*
+> - **Combinado (relato do Marcelo):**
+>   - 10% sobre cliente que vier pelo site;
+>   - Instagram com 8 posts por mês, uma semana grátis, depois R$ 350 por mês (o Antônio confirmou em 06/11);
+>   - domínio de R$ 40, pago pelo Marcelo e devolvido por ela por Pix, **no CPF dela**;
+>   - acesso de gestor à ficha do Google.
+> - **Ajustes pedidos no site:**
+>   - nome maior;
+>   - gatos com o mesmo fundo do resto;
+>   - capa com `alto-parque.jpg` (a confirmar se é foto ou 3D);
+>   - Instagram visível na home;
+>   - menu: perguntar o que ela quer.
+> - **Plano:** `estrategia-aquisicao-2026-11.md` (posicionamento, funil, Instagram, Google, preço, indicadores, contrato e
+>   90 dias). Tarefas no Hounder: domínio e publicação, ajustes do site, contrato, acervo e clientes antigos.
+> - **O que ela quer:** cliente de Salvador que valorize arquitetura; menos curiosos e menos conversa longa que não fecha.
+>   Trabalha sozinha; as fotos são do Roberto, amigo que não cobra.
+> - Hounder: a permissão automática bloqueou a mudança de estágio para "negociação" e a próxima ação na ficha. As
+>   tarefas foram gravadas.
+> - **05/11, tarde:**
+>   - site publicado com os quatro ajustes (nome, gatos com fundo claro, capa `alto-parque.jpg`, Instagram no topo e no
+>     contato), conferido no ar com 0 problema (backup em `versoes/antes-ajustes-05-11/`);
+>   - contrato em `contrato-2026-11-rascunho.md`;
+>   - questionário fora da prioridade, com a pergunta a ela;
+>   - domínio sem ligação: ela escolhe o nome, e o titular é ela.
+> - **06/11:**
+>   - ela escolheu deborareisarquitetura.com.br e propôs os 10% sobre o valor total, pagos no início;
+>   - o Instagram: ela falou em 300; o Antônio confirmou 8 posts por R$ 350 (o resumo de 05/11 dizia 5 posts). Contrato 4.1 já diz 8;
+>   - o botão "Menu" saiu (pedido do Marcelo). Os links Projetos, Como trabalho, A arquiteta e Contato ficam à vista no
+>     topo da home e de Projetos: à esquerda do nome no computador, numa linha embaixo do nome no tablet e no celular;
+>   - corrigido junto: o topo de Projetos ficava creme sobre creme no computador;
+>   - backup em `versoes/antes-menu-06-11/`. Revisão completa local e no ar, com 0 problema.
+>   - celular refeito pelos dois prints do Marcelo (só até 760 px, o computador não mudou):
+>     - seção 1: os três números numa linha, a foto grande mais baixa e sem a legenda "Uma casa com livros tem alma",
+>       a foto pequena deitada ao lado do texto e "Ver o projeto" em vermelho, sem os fios do fundo;
+>     - seção dos gatos: o desenho da estante, com a animação de sempre, saiu do meio do texto e foi para o vão entre
+>       as duas fotos. O gato vermelho que eu tinha posto ali foi rejeitado pelo Marcelo ("mantenha a animação anterior").
+>       É o mesmo SVG: no celular, `.faixa-centro` vira `display:contents` e a ordem do flex põe o desenho entre as fotos;
+>     - o ícone do Instagram aparece no topo do celular também, como no computador;
+>     - o print trazia "o tipo e o tamanho do imóvel" no quadro do quiz. O quiz não pergunta o tipo, então o texto
+>       continua "a metragem";
+>     - backup em `versoes/antes-celular-secoes-06-11/`. Revisão completa local e no ar, com 0 problema.
+>   - 15h42: ela mandou o nome completo e o CPF. Os dois ficam só no contrato em `_gestao/` (fora do Git). Falta o
+>     e-mail: ela perguntou se precisa ser Gmail (não precisa, vale o que ela mais usa) e o número do CAU;
+>   - ela perguntou se deborareis.com.br existe. Existe e tem dona: outra Débora Reis, contadora (registro de
+>     14/09/2026, vence em 14/09/2027, site no ar). deborareisarquitetura.com.br continua livre (consulta RDAP de 06/11).
+>   - o Marcelo pensou em registrar no nome dele e passar depois. Recomendei manter no CPF dela: a troca de titular
+>     do Registro.br pede formulário assinado pelo gov.br (prata ou ouro), cópia de documento e a conta dela no
+>     Registro.br do mesmo jeito. Rascunho v2 pede e-mail e endereço com CEP (o contrato também usa o endereço).
+>   - ela aprovou deborareisarquitetura.com.br ("está ótimo") e mandou e-mail e endereço com CEP (CEP conferido
+>     nos Correios). Os dados estão só no contrato em `_gestao/`. 18h54: ela avisou que o endereço é de um
+>     coworking e prefere o do prédio dela. Endereço residencial pedido.
+>   - 19h18: ela mesma registrou deborareisarquitetura.com.br no CPF dela (RDAP: titular dela, ativo, DNS do
+>     Registro.br). A cobrança sai depois, no painel. Ela ofereceu a senha. Plano: o Marcelo paga, põe o ID dele como
+>     contato técnico (o contato técnico altera o DNS sem a senha dela) e ela troca a senha depois.
+>   - Fim do dia: a conta foi criada com ela, o domínio foi pago (pedido 48216089) e ela devolveu os R$ 40 por Pix.
+> - **07/11: versão de produção.** `publicar-dominio.cjs <saída>` gera o site do domínio a partir de `site/`:
+>   - abre ao Google (sem noindex; canonical, og:url, url no ld+json, robots.txt, sitemap.xml);
+>   - tira a sala de ideias, o guia do cliente (simulação, nada confirmado por ela), o selo "Prévia" e os links para eles;
+>   - no modo revista, só aparece o que ela contou (os "Demonstração" somem; o Alto do Parque fica só com o nome);
+>   - tira os comentários internos do HTML e do CSS. `site/` continua sendo o esboço na Vercel, com tudo.
+>   - `revisao.cjs <pasta> --producao` confere só as quatro páginas públicas: 0 problema em 07/11.
+>   - Hospedagem: Netlify (a Vercel grátis não permite uso comercial). DNS no Registro.br: A @ 75.2.60.5 e CNAME www.
+>   - **No ar em 07/11:** https://debora-reis-arquitetura.netlify.app (site `fb8df0b2-acbc-4579-87c6-21b621dbcdcd`,
+>     conta firehagge; o nome sem hífen é do site antigo do amigo dela). Domínio e www ligados. A conta da Netlify protege
+>     todo site novo com login da equipe: neste foi tirado (`sso_login:false`). 41 arquivos em 200, revisão no ar com 0
+>     problema. Publicar de novo: gerar com `publicar-dominio.cjs` na mesma pasta de saída e rodar
+>     `npx -y netlify-cli@17.38.1 deploy --prod --dir <saída> --site fb8df0b2-acbc-4579-87c6-21b621dbcdcd`.
+>     A pasta de saída de 07/11 ficou no rascunho temporário da sessão. Se ela sumir, gerar de novo e rodar
+>     `npx -y netlify-cli@17.38.1 link --id fb8df0b2-acbc-4579-87c6-21b621dbcdcd` dentro dela antes do deploy.
+>   - **DNS (07/11):** o Claude não entra no Registro.br (senha e código de acesso são do Marcelo). O Marcelo fez pelo
+>     celular, guiado tela a tela: Configurar endereçamento › modo avançado › duas entradas › Salvar. Depois de ligar o
+>     modo avançado, o modo básico fica travado por uma hora, e a primeira publicação demora. Conferir direto no servidor
+>     dela: `nslookup -type=A deborareisarquitetura.com.br a.auto.dns.br`. Em 07/11, a versão da zona já tinha subido,
+>     mas as entradas ainda não apareciam.
+>
+> *Histórico, 04/11, antes da reunião:*
+> - **Percentual (decisão do Marcelo, 04/11, 15h10):** entra no contrato como pagamento variável pelo serviço de
+>   marketing, só na conversa, nunca por mensagem. Eu tinha recomendado tirar pela regra 5.2.2 do Código de Ética do CAU;
+>   ele entende que serviço de agência é custo da operação dela, não pagamento por indicação.
+> - **O que se oferece:** o site no ar no domínio dela e a base do Google, sem custo, com teto de 8 horas. Ela retribui
+>   com a avaliação, o portfólio e indicações de colegas. O Google em dia (R$ 390 por 3 meses, depois R$ 490) começa
+>   quando ela fechar o próximo projeto. Anúncio só depois do laboratório de tráfego da Horus.
+> - **Na conversa, ele diz a verdade:** "anúncio eu ainda não fiz com cliente". Roteiro em `conversa-2026-11-04.md`.
+>   O combinado vai por escrito (modelo A de `templates/contrato-padrao.md`, assinado pelo Gov.br).
+
+> 🔥 **03/11/2026, noite: ela respondeu às duas mensagens v8 (19h40 e 20h18).**
+> - **O que ela disse:**
+>   - 20h41: quer conversar em 04/11 e perguntou se manter o site no ar tem custo e se fica ligado ao Google;
+>   - 20h44: perguntou se a Horus faz captação de clientes, paga com "um bom percentual sobre cada projeto fechado".
+>     É a segunda vez que ela oferece; a primeira foi em 15/10.
+> - **Resposta v9 (na ficha):** "Claro, Débora! Pra ficar no ar, o custo é só o domínio no seu nome, uns R$ 40 por ano. E
+>   sim, ele fica ligado ao seu perfil no Google. Captação faz parte sim, e amanhã te mostro como funcionaria. Fica bom
+>   às 10h ou às 16h?"
+> - **Conselho** (`_conselho/logs/2026-11-03-debora-reis-captacao-por-percentual.md`, confiança de 66%): sim à captação,
+>   como piloto escrito de 90 dias. A verba é dela e o percentual vale por parcela recebida. O rastreio e o teto de horas
+>   ficam combinados, com regra de saída, contrato e confirmação do CAU.
+> - **Mudança de recomendação:** em 19/10 a recomendação era recusar o percentual (`reuniao-2026-10-19.md`, decisão 4).
+>   As duas objeções daquela vez eram a medição e o CAU, e o piloto responde às duas. Os números ficam na tarefa do
+>   Hounder.
+> - **Hospedagem:** o plano grátis da Vercel não permite uso comercial. Ao ir para o domínio dela, o site passa para a
+>   Netlify ou a Cloudflare Pages, que são grátis e permitem.
+> - **Correção da mesma noite, depois das perguntas do Marcelo:**
+>   - **anúncio fora do começo**, como já dizia `estrategia-visibilidade.md` §6, de 23/10;
+>   - **captação, nesta ordem:** Google grátis, site, avaliações, indicações, a proposta em 3 opções e, no mês 3 ou 4, o
+>     anúncio;
+>   - **"sem custo":** a Horus paga o primeiro ano do domínio. Fica pendente o ok do Marcelo.
+>   - O Marcelo nunca fez tráfego e tem medo de errar. O processo e as travas estão explicados na conversa e resumidos
+>     no log.
+> - **Ela, mais tarde:** "Como posso retribuir ao seu maravilhoso trabalho, se inicialmente nao posso pagar por ele?"
+>   O rascunho v10 está na ficha. A avaliação nunca é condição para o site.
+
+> ✅ **03/11/2026: revisão no celular (pedido do Marcelo), publicada e conferida no ar.**
+> - **Testado:**
+>   - prints de 390 px de todas as páginas;
+>   - toque no menu, nas perguntas, no carrossel, no questionário até o WhatsApp e no modo revista;
+>   - a revisão completa em 7 larguras, com 0 problema;
+>   - o detector com 23 achados, os mesmos de antes.
+> - **Corrigido:**
+>   1. O guia dizia "ajudo na compra de móveis, tapetes e cortinas" e, nas perguntas, que a compra não está incluída.
+>      A frase das compras saiu, porque ela não faz compra. O PDF foi gerado de novo, com a cópia no Downloads.
+>   2. "[ Projetos ]" sumia sobre o teto claro da Paralela: ganhou sombra, cor clara e o topo da foto mais escuro no
+>      celular.
+>   3. O botão flutuante do WhatsApp cobria o "Ver todos os projetos": agora some enquanto os controles do carrossel
+>      estão na tela.
+>   4. O crédito das fotos no Rio Vermelho estava à esquerda; ficou centralizado como nas outras páginas.
+> - **Backup:** `versoes/antes-revisao-celular-03-11/`.
+
+> 🔁 **03/11/2026: a reunião nunca aconteceu, e a conversa parou em 30/10 com ela.** Em 30/10 ela contou que não fecha
+> projetos ("É sempre pelo valor...", "Um foi pelo prazo"). Caso que ela citou: casa de praia na Praia do Forte, R$ 18.500,
+> 5 visitas incluídas, abaixo do preço normal dela, cliente antigo. Ela já trabalhava no projeto antes de fechar.
+> - **Mensagem v4** (na ficha do Hounder): "Débora, fiquei pensando no que você me contou da casa da Praia do Forte.
+>   Tenho ideias pra isso. Na mesma conversa a gente coloca o seu site no ar. [dia 1] ou [dia 2]?"
+> - **Conselho:** `_conselho/logs/2026-11-03-debora-reis-projetos-travam-no-valor.md`.
+> - **NotebookLM:** card `apresentacao-de-preco-e-objecao.md`, retorno de 03/11.
+> - **Pauta:**
+>   1. Diagnóstico dos 3 últimos que não fecharam.
+>   2. Site no ar.
+>   3. As ideias para ela fechar mais, como o que a gente aprendeu, nunca consultoria de preço:
+>      - contrato e entrada antes da primeira linha;
+>      - proposta ao vivo, com as palavras do cliente e o compromisso antes do número;
+>      - três opções de escopo, a menor com só o estudo preliminar, que também responde ao prazo;
+>      - parcelar por etapa em vez de baixar o preço;
+>      - o custo do erro na obra.
+>   4. Filtro de orçamento no questionário: pergunta o que o cliente pensa investir, sem dizer o valor dela, por causa do CAU.
+> - **Demo a montar quando ela marcar:** um modelo de proposta em 3 opções, na identidade dela, marcado como Demonstração.
+> - **Plano B:**
+>   - sem resposta até quinta 05/11, mandar uma linha;
+>   - sem reunião até 17/11, colocar o site no ar por mensagem.
+
 > 🎯 **O PLANO COM ELA (16/10/2026, recomendação; decisão do Marcelo).** Ela não é caixa: não tem dinheiro, e percentual
 > sem verba de anúncio é lento. Ela é **prova e porta** para o Marco 1 (26/12: 3 cases, 5 avaliações reais). Tirar, nesta
 > ordem: (1) o site dela no ar, no domínio dela, primeiro site de cliente real da Horus; (2) avaliação no Google da Horus,
@@ -7,10 +262,121 @@
 > (corretores e fornecedores dela); (4) a vitrine do nicho: com o site dela no ar, o template de arquitetura se vende a
 > outras arquitetas pela Fase 1. Investimento máximo: ~3 h. O resto só com acordo escrito ou plano pago. Nota no Hounder.
 >
+> ⚠️ **30/10, madrugada: o Marcelo vai remarcar** (não confirmou na semana). Rascunho com o link do site na ficha do Hounder,
+> para sair antes das 11h com dois horários da semana seguinte. O roteiro continua valendo.
+>
 > 📅 **Reunião: sexta 30/10/2026, a partir das 11h, por vídeo** `[FALTA: horário fechado; rascunho "sexta às 11h fica bom?"
 > na ficha, nota de 21/10]`. Ela remarcou duas vezes, sempre com motivo e carinho: 19/10 → quarta 28/10 15h (semana
 > puxada) → sexta 30/10 (vai apresentar uma proposta na quinta). Roteiro em `reuniao-2026-10-19.md`. Domínios livres no
 > Registro.br em 21/10: deborareisarquitetura.com.br, deborareis.arq.br, deborareisarquiteta.com.br.
+
+> ✅ **30/10, noite: revisão final, pronto para mostrar.** A foto da Paralela foi trocada pela versão nova (1542 px).
+> Conferido no ar: 6 páginas em 7 larguras (360 a 1905 px), sem erro de console, sem falha de carga, sem imagem quebrada e
+> sem rolagem lateral. Os links de WhatsApp estão no número dela. Nenhum link interno quebrado e nenhum [FALTA] visível.
+> Questionário e modo revista testados no celular. Miniaturas e texto do "site" na sala de ideias atualizados (as antigas
+> em `versoes/previas-antes-30-10/`). Script de revisão reutilizável: `revisao.cjs` (pasta, ou URL do site no ar).
+> O Marcelo mandou a mensagem de remarcar sem o link; o rascunho do link está na ficha.
+>
+> ✅ **30/10, noite, 4ª rodada:** o Rio Vermelho entrou como 5º projeto do carrossel ("Piso, cores, marcenaria e luz novos,
+> pensados para as moradoras.", da legenda dela; "Ver projeto" abre a página dele). Sete fotos trocadas pelas versões
+> melhoradas que o Marcelo trouxe (detalhe e ressalva em `fotos/FONTES.md`; as antigas em `versoes/fotos-antes-30-10/`).
+> Corrigida a rolagem lateral de 21 px do "Próximo apartamento" no celular, na página do Rio Vermelho.
+>
+> ✅ **30/10, noite, 3ª rodada (revisão colada pelo Marcelo):** a pergunta do valor sem "Demonstração", com o texto dele
+> (imóvel, ambientes e etapas; proposta com escopo, honorários e condições); contato pede "o tipo e o tamanho do imóvel e
+> quais ambientes"; detalhamento com os entregáveis do guia (marcenaria, bancadas, iluminação, acabamentos, quantitativos e
+> custos); Alto do Parque e Itaigara ganharam uma frase no carrossel, tirada do que as fotos mostram ("crescer" da sugestão
+> saiu: é intenção que ela não disse). **A validar com ela:** as duas frases, os entregáveis do detalhamento e se as fotos
+> do Alto do Parque e do Itaigara são fotografia ou imagem 3D (as duas parecem render). Páginas individuais seguem esperando
+> as histórias dela.
+>
+> ✅ **30/10, noite, 2ª rodada:** o parágrafo termina em "faz a casa ter a cara de quem mora ali"; a legenda da foto
+> pequena virou "A mistura de livros e peças feitas à mão dá personalidade ao espaço." (vem da legenda dela, post
+> Dc9zKCIRswM). Título mantido em três linhas: a quebra sugerida deixava "vezes." sozinha e separava "duas vezes".
+>
+> ✅ **30/10, noite: textos da seção 1 decididos pela revisão que o Marcelo colou** (encerra os 4 caminhos de
+> `esbocos-secao1/TEXTOS.md`): "Depois de tantos anos projetando casas, sempre me perguntam:" em letra normal / "Você não
+> enjoa?" / o título; o parágrafo "Cada casa começa pelas pessoas que vivem nela. Seus livros, suas memórias, seus objetos,
+> seus bichos e tudo aquilo que faz um espaço ser seu." (sem o "verdadeiramente" da sugestão); indicadores +20 anos de
+> experiência / Salvador e região metropolitana / Interiores, projetos residenciais.
+>
+> ✅ **30/10, noite (Marcelo):** saiu "Apartamento Graça" da legenda; título em três linhas; foto pequena mais perto da grande;
+> legenda da foto grande com a frase dela no post DdDBvl2MiR1, "Uma casa com livros tem alma."; "Salvador" e "Casas" na letra
+> do título, alinhados ao +20, com "e região metropolitana" de volta.
+>
+> ✅ **30/10, fim da tarde: seção 1 no modelo Söl Haus que o Marcelo trouxe** (todo o texto numa coluna à esquerda; à direita
+> a estante dos livros grande e a cerâmica pequena, com "Apartamento Graça" em terracota e "Ver o projeto" no vão; +20 grande
+> em terracota). A opção B ficou em `versoes/secao1-opcao-b-30-10/`. O nicho azul saiu da home (continua em Projetos).
+>
+> ✅ **30/10, tarde:** título da capa sempre em duas linhas no computador ("Interiores com identidade." inteiro, como o modelo do
+> Marcelo); números da seção 1 em três colunas iguais ("Salvador e região"), o que acabou com a rolagem lateral de 1100 a
+> 1280 px; entre 1081 e 1279 px a seção 1 empilha.
+>
+> ✅ **30/10, meio-dia (pedidos do Marcelo):** gatos mais baixos no computador (de ~1160 para ~1020 px em 1440); subtítulo da
+> capa na largura normal da letra, 21 px; seção 1 presa às 6 linhas do fundo (frase em 4 colunas, texto a partir da 5ª,
+> alinhado à base do título), sem o risco vermelho, e "Arquitetura com história e identidade" virou "Casas e apartamentos".
+>
+> ✅ **30/10, manhã: o Marcelo tirou a foto larga entre "Como trabalho" e os gatos e a linha do tempo da arquiteta**, que
+> virou a frase "formada pela UFBA em 2004, com escritório na Barra, em Salvador".
+>
+> ✅ **30/10/2026 (tarde): revisão em 6 pontos que o Marcelo colou, publicada** (backup em `versoes/antes-revisao-30-10/`).
+> - **Projetos:** cada projeto tem uma composição própria (o corredor grande, a Paralela com o título ao lado, o mosaico da
+>   Graça, a poltrona na largura toda, o quarto mais à direita). Na página continua só o título. Toda foto abre o **modo
+>   revista** (`assets/revista.js`): tela cheia, legenda discreta, setas, teclado e arrasto, e o botão "Quero um projeto
+>   assim", que leva o nome do projeto para o WhatsApp. Cada projeto começa por um cartão com a fala dela e três linhas:
+>   quem mora, o desafio e a solução. O que ela ainda não contou aparece com a etiqueta "Demonstração" e "Aqui entra..."
+>   (pedido do Marcelo; o marcador `[FALTA]` fica no `data-falta`). Nenhum texto foi inventado.
+> - **Páginas individuais:** não foram criadas para os outros quatro projetos. A Débora disse em 23/10 que "o cliente tem
+>   preguiça de ficar clicando", e sem a história de cada um a página só repetiria as fotos. Quando ela contar as histórias,
+>   dá para montar páginas como a do Rio Vermelho.
+> - **Home:** uma foto de ponta a ponta entre "Como trabalho" e os gatos (alto-parque.jpg, com parallax leve).
+>   - Gatos: a foto da estante ficou maior, o desenho fica no chão, junto da base das fotos, e o questionário ganhou um bloco
+>     com botão.
+>   - A arquiteta: fundo um tom abaixo e a trajetória (2004, UFBA → hoje). A foto não cresceu: o Marcelo pediu menor em 29/10.
+>   - Celular: botão "Conversar" (WhatsApp) fixo, que aparece depois da capa e some no contato.
+> - **Questionário testado no celular:** as 6 perguntas, o pular, o resultado e a mensagem com o número certo. Ganharam área
+>   de toque o "Voltar" (de 40 px para 44 px) e a bolinha da metragem.
+> - **Falta perguntar à Débora:** a história de cada projeto (quem mora, o desafio, a solução); a Paralela, o Alto do Parque
+>   e o Itaigara não têm nenhuma. Também falta saber se as fotos do Alto do Parque são fotografia ou imagem 3D: a da
+>   poltrona parece render.
+>
+> ✅ **30/10/2026: seção 1 na opção B, no ar** (escolha do Marcelo; backup em `versoes/antes-secao1-b-30-10/`). A frase
+> fica em cima, com o texto, o link e os números ao lado, e três fotos iguais embaixo (livros, cerâmica, nicho azul, todas
+> do Ap. Graça). Vai sem as legendas à mão do esboço, pelo antipadrão de 29/10. O ícone do Instagram no rodapé foi
+> recentralizado. Conferido em 1440, 1024 e 390: sem erro e sem rolagem lateral. Detector com os mesmos avisos de antes.
+> **Pendente: o texto da seção.** São 4 caminhos em `esbocos-secao1/TEXTOS.md`, todos tirados das legendas dela; a
+> recomendação é o 1 (tarefa no Hounder).
+>
+> ✅ **29/10/2026: ajustes do Marcelo + a revisão de 5 pontos que ele mandou, publicados** (backup em
+> `versoes/antes-ajustes-29-10/`). Capa sem a faixa de baixo, sem "Projeto e decoração" e sem "Na foto"; "Ver projetos"
+> na altura do botão; o texto diz quem, o quê e onde ("Débora Reis, arquiteta em Salvador. Projetos de interiores para
+> casas e apartamentos..."). Carrossel passa sozinho a cada 7 s, com pausa (para fora da tela e com o teclado). Gatos:
+> título "O projeto é feito para quem mora. E para os bichanos." e texto sobre o projeto incluir os bichos, sem legendas
+> à mão. Arquiteta: retrato menor, sem a linha vermelha. **Traços decorativos fora do site todo** (o do capa, o dos
+> gatos, o da arquiteta). Home com dados de busca local (`ld+json`, sem o `url` até o domínio sair); links pequenos
+> aumentados no celular. **Seção 1:** só encurtada; três esboços do ChatGPT (via `codex exec`) em `esbocos-secao1/`
+> esperam a escolha do Marcelo (recomendação B; tarefa no Hounder). Verificado: 1440, 1024 e 390, local e no ar, sem
+> erro e sem rolagem lateral; troca automática e pausa testadas; questionário até a mensagem do WhatsApp no celular.
+
+> ✅ **28/10/2026, noite: home refeita a partir dos 5 mockups do Marcelo, publicada** (backup em
+> `versoes/antes-mockups-28-10/`). Os mockups (feitos no ChatGPT) valem como estrutura; fotos e dados são os dela.
+> - **Nomes reais dos projetos (site atual dela, deborareisarquitetura.netlify.app, lido em 28/10):** o "Colorir" é o
+>   **Apartamento Paralela**; estante dos livros, estante dos CDs (a antiga capa), cerâmica e nicho azul são do
+>   **Apartamento Graça** (não do Rio Vermelho, como o indício de 15/10 sugeria); o aparador é do Rio Vermelho. Entraram
+>   **Alto do Parque** (4 fotos) e **Quarto infantil no Itaigara** (3 fotos), do site dela. **O Aconchego saiu**: nenhuma
+>   fonte diz de qual apartamento é `[FALTA: perguntar a ela]`. Green Ville (1 foto) ficou de fora.
+> - **Capa:** foto de ponta a ponta (o corredor do Rio Vermelho, arquivo de 1268 px do site dela), texto à esquerda, dois
+>   botões, "Na foto: Apartamento Rio Vermelho" e uma faixa de quatro itens **sem os ícones** do mockup. Sem o "01 a 04".
+> - **Seção 1:** texto e três números (+20 anos; Salvador e região metropolitana; arquitetura com história e identidade,
+>   sem repetir a faixa da capa) | a estante alta | dois detalhes que trocam pelas setas e as palavras à mão.
+> - **Carrossel:** foto cobrindo o card inteiro, sem as anotações à mão, botão "Ver projeto"; Paralela, Graça, Alto do
+>   Parque, Itaigara. **Projetos:** só o título, sem frase à mão e sem citação; os detalhes viraram o Ap. Graça.
+> - **Como trabalho:** número, nome, desenho, prazo e texto depois de um fio; saíram o "você aprova" e o parágrafo de
+>   baixo. Mantido "medição em até 5" (o print diz "até 5"; na proposta, os 5 dias valem só para a medição).
+> - **Gatos e arquiteta** no layout dos prints 4 e 5. "Débora Reis / Arquitetura" no topo da home e de Projetos.
+> - **Verificado:** home e Projetos em 1440, 1024, 768, 390 e 360, local e no ar: sem erro, sem imagem quebrada, sem
+>   rolagem lateral; carrossel avança nas três larguras; detector com 4 avisos a mais, todos conferidos (texto sobre a
+>   foto lido como sobre o creme; fios divisórios lidos como caixa).
 
 > ✅ **28/10/2026: seção 2 e Como trabalho refeitas pelo jeito das referências, publicadas** (pedido do Marcelo: "não só
 > comparar, assimilar e aplicar"). Estudo seção por seção em `referencias/arquitetura-awwwards-2026-10.md` ("Como montam

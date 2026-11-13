@@ -63,7 +63,7 @@ open(os.path.join(dst, 'netlify.toml'), 'w', encoding='utf-8').write('''[build]
 [[headers]]
   for = "/assets/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/*"
@@ -75,7 +75,7 @@ open(os.path.join(dst, 'netlify.toml'), 'w', encoding='utf-8').write('''[build]
 ''')
 import json
 json.dump({"headers": [
-    {"source": "/assets/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=31536000, immutable"}]},
+    {"source": "/assets/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=0, must-revalidate"}]},
     {"source": "/(.*)", "headers": [
         {"key": "X-Content-Type-Options", "value": "nosniff"},
         {"key": "X-Frame-Options", "value": "SAMEORIGIN"},

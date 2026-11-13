@@ -1,5 +1,32 @@
 # Testes de prospecção: as abordagens e o placar (aberto em 08/10/2026)
 
+## 🔴 O método desde 03/11/2026 (decisão do Marcelo, "tudo como recomendado")
+
+Tarefa do Hounder "Decidir o método de prospecção depois da avaliação de 15/10". Base: a pesquisa de 09/10, que vem
+acima da doutrina antiga (`15-o-que-deu-certo.md`), e o placar de 03/11 (nenhum lead novo contatado desde 15/10;
+as prévias da New Place e do Gabriel nunca foram montadas).
+
+1. **P2 aprovada: prévia com licença. O braço `previa` foi aposentado.** O corpo diz o que eu montaria e termina em
+   "Posso te mostrar como ficaria?". A casa monta em 24h só pra quem disser sim. Nunca "comecei a montar" se nada foi
+   montado. Por quê: a prévia não pedida é a estratégia com mais fracassos em 2026 (regra 7), e a troca não custou nada.
+2. **P1 aprovada como padrão, sem teste.** O passo 1 chama quem decide pelo nome, conferido na ficha, no CNPJ, no site
+   ou no perfil. Sem nome conferido: "Falo com quem cuida da [empresa]?". Por quê: C13 mede 1,5% com contato genérico,
+   11% com o nome e 18% com o nome e o problema. Testar contra a abertura genérica dividiria um volume pequeno.
+3. **Um método só, sem braços de texto.** Abertura pelo nome → corpo de até 60 palavras com o problema que custa
+   cliente → "Posso te mostrar como ficaria?" → monta depois do sim. Etiqueta `abordagem:previa-com-licenca` em todo
+   lead novo (o Farejador põe sozinho na investigação). A medida é reunião marcada. Por quê: com uns 12 leads em 4
+   semanas, quatro braços nunca chegam aos 10 contatos. O placar volta a comparar quando houver um segundo canal de
+   verdade (WhatsApp contra ligação). O teste casa × curiosidade do agente também foi encerrado.
+4. **Preço vai na resposta ao sim, antes de montar.** "Fica entre R$ 1.200 e R$ 2.000, depende de quantas páginas.
+   Monto em 24h e te mostro amanhã às 10h ou às 16h?". Nunca no primeiro corpo. Por quê: a pesquisa (T1) manda dizer
+   preço antes do trabalho, e o corpo fica curto. A P3 (faixa para "quanto custa?") continua valendo.
+
+Onde mudou no código: `ferramentas/hound-dog/farejador/prompts.mjs` (bloco "O MÉTODO DA CASA" e variantes do passo 1),
+`farejador/tarefas.mjs` (etiqueta e formato) e `lib/agentes.mjs` (`formatoDaVez` sempre "casa"). Vale depois de
+reiniciar o Farejador.
+
+O resto deste arquivo é o histórico do teste de 08/10 a 03/11.
+
 > Pedido do Marcelo (08/10): testar e validar tipos diferentes de prospecção, de forma organizada,
 > **sem assumir antes qual é a melhor**, medindo contatos, respostas, reuniões marcadas e clientes.
 > Nasceu da análise de todas as conversas até 08/10 (as linhas de 08/10 em `aprendizados.md`).
@@ -87,4 +114,5 @@ medida que decide é **reunião marcada**. Resposta só mostra se a abertura é 
   WhatsApp, emendando dois horários. O que for aprovado entra aqui antes do ritual da sexta.
   **P3 aprovada em 09/10:** "quanto custa?" de site recebe a faixa da Fase 1 do `comercial.md` (R$ 1.200 a
   R$ 2.000, depende de quantas páginas) e dois horários. Também aprovado: o corpo termina em "Posso te
-  mostrar?" e os horários só vêm depois do sim, com a opção de ir pessoalmente. P1 e P2 seguem em aberto.
+  mostrar?" e os horários só vêm depois do sim, com a opção de ir pessoalmente. **P1 e P2 aprovadas em 03/11** (topo
+  deste arquivo).

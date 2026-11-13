@@ -35,7 +35,7 @@
 Todas escrevem e-mail em inglês pra comprador B2B. Instalar em paralelo à doutrina criaria duas regras
 pro mesmo assunto, e a de fora ganharia quando fosse acionada por palavra-chave ("cold email"). O que
 servia foi traduzido pra dentro da doutrina da casa, com a origem anotada. A exceção prática é a
-`/revisar-mensagem`, que é da casa e usa a humanizer como base.
+`/revisar-mensagem` (desde 03/11/2026, `/prospeccao`), que é da casa e usa a humanizer como base.
 
 ## Dados de mercado que vieram junto (referência, não meta)
 

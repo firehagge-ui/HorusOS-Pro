@@ -6,9 +6,9 @@
   var WHATS = '5571999775453';
 
   var JEITOS = {
-    alma: { nome: 'Alma brasileira', h1: 'Alma <em>brasileira.</em>', foto: 'alma-brasileira.jpg', w: 1080, h: 1439,
+    alma: { nome: 'Alma brasileira', h1: 'Alma <em>brasileira.</em>', foto: 'alma-brasileira.jpg', w: 1082, h: 1453,
       frase: 'Há quem goste de vinil, de CDs, de livros. Há quem valorize e preserve o que é antigo. Isso é sensibilidade, isso é autenticidade. Isso é história!' },
-    pressa: { nome: 'Sem pressa', h1: 'Montada <em>sem pressa.</em>', foto: 'artesanato.jpg', w: 1080, h: 1434,
+    pressa: { nome: 'Sem pressa', h1: 'Montada <em>sem pressa.</em>', foto: 'artesanato.jpg', w: 1086, h: 1448,
       frase: 'O luxo de um interior está nisso: não parecer que foi comprado inteiro de uma vez.' },
     frio: { nome: 'Frio e quente', h1: 'Frio <em>e quente.</em>', foto: 'azul-madeira.jpg', w: 1080, h: 1350,
       frase: 'Azul e madeira. Frio e quente. Uma combinação que poderia ser previsível, mas aqui ganhou outra conversa.' },
@@ -19,16 +19,16 @@
   };
 
   var FOTOS = [
-    { f: 'alma-brasileira.jpg', w: 1080, h: 1439, alt: 'Estante com CDs e livros e mesa de madeira', p: { alma: 2 } },
+    { f: 'alma-brasileira.jpg', w: 1082, h: 1453, alt: 'Estante com CDs e livros e mesa de madeira', p: { alma: 2 } },
     { f: 'aconchego.jpg', w: 1080, h: 1440, alt: 'Sofá de linho com almofadas e planta pendente', p: { refugio: 2 } },
-    { f: 'artesanato.jpg', w: 1080, h: 1434, alt: 'Pendente de vidro diante de prateleiras com cerâmica', p: { pressa: 2 } },
+    { f: 'artesanato.jpg', w: 1086, h: 1448, alt: 'Pendente de vidro diante de prateleiras com cerâmica', p: { pressa: 2 } },
     { f: 'vermelho.jpg', w: 810, h: 1080, alt: 'Aparador vermelho com plantas e folhas decorativas', p: { perso: 2 } },
     { f: 'azul-madeira.jpg', w: 1080, h: 1350, alt: 'Marcenaria de madeira com nicho azul', p: { frio: 2 } },
     { f: 'livros.jpg', w: 1080, h: 1427, alt: 'Estante branca cheia de livros', p: { alma: 2 } },
     { f: 'objetos.jpg', w: 1080, h: 1440, alt: 'Quadro, objetos e bandeja de madeira sobre um móvel', p: { pressa: 2, perso: 0.5 } },
     { f: 'rio-vermelho.jpg', w: 1080, h: 1080, alt: 'Corredor com aparador vermelho e painel de ripas verde', p: { perso: 1, refugio: 1, alma: 0.5 } },
-    { f: 'estante-gatos.jpg', w: 540, h: 960, alt: 'Gato descendo por um nicho da estante', p: { alma: 1, refugio: 0.5 } },
-    { f: 'sala-vermelha.jpg', w: 1080, h: 717, alt: 'Sala com mesa vermelha e janela de ponta a ponta', p: { perso: 1.5, frio: 0.5 } },
+    { f: 'estante-gatos.jpg', w: 941, h: 1672, alt: 'Gato descendo por um nicho da estante', p: { alma: 1, refugio: 0.5 } },
+    { f: 'sala-vermelha.jpg', w: 1542, h: 1020, alt: 'Sala com mesa vermelha e janela de ponta a ponta', p: { perso: 1.5, frio: 0.5 } },
     { f: 'banheiro-gato.jpg', w: 640, h: 1136, alt: 'Banheiro com parede de tijolinho e um gato ao lado da cuba', p: { refugio: 1, pressa: 0.5 } }
   ];
 
@@ -95,7 +95,13 @@
     { id: 'ano', nome: 'Ainda este ano' }, { id: 'sonho', nome: 'Por enquanto, só sonhando' }
   ];
 
-  var resp = { fotos: [], vive: [], cores: null, sentir: null, comodos: [], quando: null };
+  // 11/11: o momento da obra, a pergunta que mais separa quem vai contratar de quem está só olhando
+  var MOMENTO = [
+    { id: 'comprar', nome: 'Comprei ou vou comprar' }, { id: 'reformar', nome: 'Vou reformar' },
+    { id: 'obra', nome: 'A obra já começou' }, { id: 'pensando', nome: 'Ainda estou pensando' }
+  ];
+
+  var resp = { fotos: [], vive: [], cores: null, sentir: null, comodos: [], quando: null, momento: null };
   var passo = 0, TOTAL = 6;
   var $ = function (s) { return document.querySelector(s); };
 
@@ -117,6 +123,7 @@
   SENTIR.forEach(function (o) { $('#op-sentir').appendChild(botao('op', o.nome + '<small>' + o.d + '</small>', 'sentir', o.id, false)); });
   COMODOS.forEach(function (o) { $('#op-comodos').appendChild(botao('op', icone(o.id) + o.nome, 'comodos', o.id, true)); });
   QUANDO.forEach(function (o) { $('#op-quando').appendChild(botao('op', o.nome, 'quando', o.id, false)); });
+  MOMENTO.forEach(function (o) { $('#op-momento').appendChild(botao('op', o.nome, 'momento', o.id, false)); });
 
   var metros = $('#metros'), metrosV = $('#metros-v');
   metros.addEventListener('input', function () { metrosV.textContent = metros.value + ' m²'; });
@@ -193,13 +200,15 @@
     }).join('');
 
     var quando = resp.quando ? achar(QUANDO, resp.quando).nome : '';
+    var momento = resp.momento ? achar(MOMENTO, resp.momento).nome : '';
     var linhas = [
       ['Jeito da casa', tres.map(function (k, i) { return JEITOS[k].nome; }).join(', ')],
       ['O que mora junto', nomes(VIVE, resp.vive).join(', ') || 'não marcado'],
       ['Cômodos', nomes(COMODOS, resp.comodos).join(', ')],
       ['Metragem', 'uns ' + metros.value + ' m²'],
       ['Bairro', bairro || 'não informado'],
-      ['Quando', quando ? quando.charAt(0).toLowerCase() + quando.slice(1) : 'não marcado']
+      ['Quando', quando ? quando.charAt(0).toLowerCase() + quando.slice(1) : 'não marcado'],
+      ['Momento', momento ? momento.charAt(0).toLowerCase() + momento.slice(1) : 'não marcado']
     ];
     $('#r-ficha').innerHTML = linhas.map(function (l) { return '<div><dt>' + l[0] + '</dt><dd>' + esc(l[1]) + '</dd></div>'; }).join('');
     $('#r-prazo').hidden = resp.quando !== 'ja';

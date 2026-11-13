@@ -132,6 +132,21 @@ conhece o recurso. O ângulo que salva é o uso no negócio dele: "como usar mel
 WhatsApp Business", com a mensagem real antes e depois.
 → *Origem: reprovação de 28/10/2026 ("todo mundo já sabe, poderia ser...").*
 
+**Texto com freio, encaixado e explicado demais.** Infinitivo de rótulo ("Mandar o segundo oi"), atenuante ("um
+pouco chato", "ele pode só ter esquecido", "às vezes", "costuma"), vírgula encaixando ideia no meio, explicação extra
+depois da regra, "ou seja:" e "pra você X, pro cliente Y". Lê como texto do Claude, sem convicção. O certo: imperativo,
+frase reta, uma ideia, fecho com o que o dono ganha ou perde ("Mande um segundo oi para o cliente. Quem não insiste
+deixa a venda para quem é insistente!"). Regra e exemplo completos em `_memoria/preferencias.md` ("Como escrever").
+→ *Origem: o Marcelo reescreveu o esboço do "5 chatices" em 03/11/2026: "Já cansei de ensinar isso e você esquecer".*
+
+**Imagem e conversa de "exemplo" lado a lado, título pequeno.** O "5 chatices" v1 saiu com dois cartões por slide
+(ilustração à esquerda, conversa de WhatsApp com etiqueta EXEMPLO à direita) e o título no tamanho do texto. Reprovado:
+"não é assim que se monta isso". O que ele aprovou na v2: título GRANDE ("5 CHATICES" ocupando a capa), UMA imagem
+forte por slide (objeto 3D que mostra a ideia, mesma luz e material na série toda), número grande em cada item, texto
+montado em código por cima. Antes de montar, pedir ao ChatGPT o roteiro da série (capa e cada slide) e seguir:
+"o ChatGPT roteiriza bem". Roteiro em `marketing/conteudo/midia/2026-11-02/5-chatices-.../v2/roteiro-chatgpt.md`.
+→ *Origem: Marcelo, 05/11/2026, sobre o "5 chatices" montado em 04/11.*
+
 ---
 
 ## Design

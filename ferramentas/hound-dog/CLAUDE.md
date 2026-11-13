@@ -227,6 +227,36 @@ Veio do benchmarking de repositórios de cold outreach (`_memoria/prospeccao/91-
   o roteiro no pedido. Só sai sozinha se passar nas travas do código (caso do roteiro, revisor, 60 palavras, 7h a 21h, 5
   por dia, ninguém respondeu antes, corpo igual ao aprovado); senão vai como sugestão pro WhatsApp do Marcelo. Desligar =
   tirar a etiqueta. Primeiro lead: Clínica Michele Oliveira.
+- **A pesquisa de 09/10 nos pedidos (12/11/2026, dúvida do Marcelo: "o botão do Hounder leva em consideração a regra que
+  a gente definiu no chat?"):** cada pedido lê os arquivos da casa na hora, mas até 12/11 só a resposta automática lia
+  `_memoria/prospeccao/15-o-que-deu-certo.md`, que vem acima da doutrina antiga desde 03/11. A investigação, o agente, a
+  análise de conversa, a mensagem personalizada, o crítico, a checagem das respostas e a reescrita escreviam pela
+  doutrina antiga (a regra 13, "não diga IA na abertura", só existe nesse arquivo). Agora `pesquisa()` em `prompts.mjs`
+  põe o arquivo no topo de cada um: uns 4.500 caracteres a mais por pedido (medido antes e depois com
+  `doutrinaConversa`, `promptCritico`, `promptRespostas`, `promptReescrita` e `promptInvestigacao`). Vale depois de
+  reiniciar o Farejador. **Regra que nasce no chat só chega ao Hounder se for gravada no arquivo que o pedido lê**
+  (`_memoria/prospeccao/` ou `_memoria/conteudo/`); a memória automática do Claude e o molde visual em código não entram.
+- **Lote do Fischer e janela do chat (13/11/2026, pedido do Marcelo):** na lista da busca, "Montar lote" abre o filtro que
+  ele escolhe antes (nota mínima, avaliações no mínimo e no máximo, site, horário no Google, MEI e idade do CNPJ quando
+  conferido, celular, o que vender: perfil no Google, site ou o gancho mais forte, e quantas no lote). A conta de quantas
+  sobram é feita na tela, sem Claude; vão para o Claude no máximo 3 vezes o tamanho do lote, por score. Tarefa
+  `montar_lote` (`farejador/lote.mjs`, `promptLote`): as escolhidas vão pro Novo com as etiquetas `lote-fischer`,
+  `lote:<data>` e `abordagem:fischer`, a M1 vira rascunho no Disparos e o FU1 e o FU2 ficam na ficha como "Rascunho". O
+  CNPJ das que sobram do filtro é conferido dentro do lote, antes do Claude (MEI, empresa nova e reprovado saem).
+  **Botões da lista simplificados (13/11, "achando algumas coisas meio redundantes"):** na frente fica só o "Montar lote";
+  o menu tem copiar telefones, baixar planilha, "Só conferir o CNPJ", repontuar, renomear e apagar. "Fazer a triagem" e
+  "Enriquecer" aparecem só em lista de planilha (`spark`, `planilha`, `network`, `manual`), que é para o que nasceram.
+  **Busca "Sem Google" (13/11, "o google maps escapa quem não tem google meu negócio"):** terceiro motor da busca, tarefa
+  `buscar_sem_google` (`pesquisarClientes` + `promptSemGoogle`): o Claude acha fora do Maps (Instagram, catálogos) e
+  confere no navegador, um por um, que não há perfil; salva só esses, com `gmb_status: ausente`. Usa a fila do navegador.
+  CAPTCHA ou login do Google param a conferência (nunca contornar). No "Montar lote" dessa lista o filtro nasce sem nota
+  e sem avaliações e com o foco no perfil do Google, e o `promptLote` reconfere a ausência antes de escrever a M1. **Janela do chat:** `rodarNaJanela` em `claude.mjs` abre uma janela do
+  PowerShell com o Claude Code em chat (Opus, esforço alto, `acceptEdits`, só o navegador do Farejador como MCP extra e
+  sem o MCP do Hounder), com o pedido em `.janelas/<job>/pedido.md`; a janela grava o JSON em `resultado.json` e o
+  Farejador grava no banco com o código de sempre. Só para o dono, no PC (o painel manda `janela: true` com mouse e tela
+  larga); operador e celular rodam escondidos. Testado em 13/11: abriu, gravou e voltou em 32 s. A investigação usa o
+  mesmo caminho: a Esteira tem "Investigar" com os leads em conversa para marcar vários (cada um na sua conversa, um
+  depois do outro), e o Novo ficou embaixo como o jeito antigo.
 - **`node scripts/aprender.mjs [dias]`:** edições do Marcelo, variante escolhida, respostas humanas e o que o revisor
   mais acusou. A leitura vira linha em `_memoria/prospeccao/aprendizados.md`.
 
@@ -343,7 +373,7 @@ sem a caixa, DM nova não avisa no WhatsApp. `metricas` também desligada (05/10
 
 ## Dívidas conhecidas (27/09/2026)
 
-- **Git:** o trabalho de 24 a 27/09 não foi commitado (falta o /salvar). Em 27/09 o repositório já
+- **Git (HISTÓRICO, resolvido em 12/11/2026, commit 1da7784):** o trabalho de 24 a 27/09 não tinha sido commitado. Em 27/09 o repositório já
   estava **privado** e o deploy na Vercel passou, então o vínculo GitHub ↔ Vercel está resolvido.
 - **Instagram (coleta do perfil da Hórus)**: leitura pública bloqueada pela Meta; só com a API oficial
   (token em Ajustes). Handle: **@horusagencia.br** (confirmado em 27/09/2026; o token da API do

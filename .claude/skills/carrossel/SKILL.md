@@ -110,6 +110,10 @@ Ler antes de tudo. É o que separa o post que ele aprova do que ele reprova. Ori
 - **Fala direta**: a frase que o dono diria no balcão, nada de pergunta abstrata na capa.
 
 **Visual (Horus)**
+- 🔴 **Desde 13/11/2026, 100% @v4company** (Marcelo): capa-manchete com palavra-choque condensada e tarja, caso real em
+  capítulos com número e fonte, botão-ponte no pé de todo slide, "o que isso muda no seu negócio", CTA do link da bio.
+  Azul da Horus, nunca o vermelho deles; pessoa real nunca por IA. Estudo: `_memoria/conteudo/referencias/2026-11-13-v4company.md`.
+  Onde as linhas abaixo brigarem com isso, vale a V4.
 - Assina o avatar da Horus, nunca rosto. 1080 × 1440. Formatos que funcionaram: antes/depois de fala (escuro), print
   de tweet (branco), lista de cartões (claro, borda e sombra deslocada azul).
 - Capa com ilustração do ChatGPT pelo Chrome, sempre na mesma conversa pra manter o estilo (balão, estrela, etiqueta).

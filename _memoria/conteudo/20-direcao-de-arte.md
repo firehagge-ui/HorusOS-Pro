@@ -6,6 +6,21 @@
 > chamada subjetiva e quase nada visual. Vale pra Horus, pra May e pra todo cliente com Instagram.
 > A marca do cliente (`marca.md`) e o compliance vencem tudo daqui.
 
+## 0. Horus desde 13/11/2026: o sistema da @v4company
+
+Marcelo, 13/11: "a partir de agora quero que nossos carrosseis e conteúdos sejam inspirados 100% nesse instagram".
+Para os posts **da Horus**, o catálogo de linguagens do §4 sai e vale **um sistema só**, o da V4. O estudo completo está
+em `referencias/2026-11-13-v4company.md`. Em resumo:
+- capa-manchete com palavra-choque gigante condensada e tarja azul;
+- caso real em capítulos, um fato com número e fonte por slide;
+- botão-ponte azul no pé de todo slide;
+- "O que isso muda no seu negócio" no penúltimo;
+- CTA do link da bio no último.
+
+Os fundos se alternam (claro, azul chapado, escuro, foto) e cada slide leva prova visual e uma anotação feita à mão. A
+moldura é fixa e o mundo muda com o caso de cada post. **Cor da Horus, nunca o vermelho deles. Pessoa real nunca feita
+por IA.** Cliente continua com o `marca.md` dele e com este arquivo a partir do §1.
+
 ## 1. Moldura fixa, mundo variável
 
 A consistência mora na **moldura**: o que está igual em todo slide de todo post (assinatura no alto
@@ -98,7 +113,7 @@ Slide a slide:        nº, função, layout, texto exato, imagem
 
 "Quanto vale um cliente que volta?" é pergunta abstrata: o dono não sabe a resposta e não sente nada.
 O que funcionou nas referências fala a frase da cena: "Só preciso fazer mais uma coisa", "Não posso.",
-"Se você é empresário, estude". Regra da casa já escrita (`references/fala-humana.md`): frase inteira,
+"Se você é empresário, estude". Regra da casa já escrita (`.claude/skills/prospeccao/references/fala-humana.md`): frase inteira,
 verbo que diz o que fazer, a frase que o dono diria no balcão. Capa com pergunta só se a pessoa sabe
 responder na hora.
 

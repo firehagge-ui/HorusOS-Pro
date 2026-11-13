@@ -23,7 +23,10 @@ try { ({ chromium } = require('playwright')); }
 catch { ({ chromium } = require('C:/Users/hagge/playwright-runtime/node_modules/playwright')); }
 
 const args = process.argv.slice(2);
-const inicio = args.find(a => /^(https?|file):/.test(a)) || null;
+// 11/11/2026: sem a barra no fim ("https://site.app"), a base virava "https://" e o script conferia o Instagram e a Meta
+// inteiros como se fossem páginas do site. Endereço só com o domínio ganha a barra.
+const inicioBruto = args.find(a => /^(https?|file):/.test(a)) || null;
+const inicio = inicioBruto && /^https?:\/\/[^/]+$/.test(inicioBruto) ? inicioBruto + '/' : inicioBruto;
 const base = inicio ? inicio.replace(/[^/]*$/, '') : null;
 if (!base) { console.log('Uso: node conferencia-no-ar.cjs <url-da-home> [--fora a,b] [--saida pasta]'); process.exit(1); }
 const opt = n => { const i = args.indexOf(n); return i > -1 ? args[i + 1] : null; };

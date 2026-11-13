@@ -282,3 +282,207 @@ Pedido do Marcelo: a tela como a do ChatGPT (bonecos pixelados que se mexem) e "
 A oferta de CRM + WhatsApp ainda não foi entregue a ninguém. Antes da primeira R1: montar a demo (Pronto
 como clínica fictícia) e trocar as chaves do Pronto. Análise completa do serviço (CRM, hospedagem, preço,
 trâmite) em andamento; base em `_conhecimento/network/servico-crm-whatsapp.md`.
+
+## Fase 5 (proposta de 11/11/2026): equipe por função, coordenador e operação 24h
+
+> Análise da ideia "equipe de agentes no modelo do Grok Bot, pelo Orca". **Não adotada (12/11/2026):** o Marcelo
+> decidiu manter o jeito atual (ver o fim da revisão de 12/11). O que segue desta ideia é o Fischer, na seção seguinte.
+
+**Veredito:** o Hounder continua sendo o sistema dos agentes (banco, fila, memória, aprovação). O Orca entra como
+cockpit do Marcelo e bancada de trabalho pesado em paralelo, sem guardar estado de operação. Motivo: o Orca 1.4.256
+instalado tem orquestração real (Run, tarefas, mensagens entre workers, portões de decisão), automações por cron e
+servidor remoto (`orca serve`), mas o estado dele mora num banco local do PC (`%APPDATA%/orca`), o `--supervise` ainda
+não existe no Windows, os workers são sessões inteiras de Claude Code feitas pra trabalho em worktree, e o Antônio e o
+painel no celular não enxergam nada disso.
+
+**O que já existe e a Fase 5 reaproveita:** agente por lead com memória e diário (`agentes`, `agente_eventos`),
+memória em três níveis (casa em `_memoria/`, nicho nos cadernos e em `especialista_notas`, lead em `agentes.memoria`),
+fila persistente com retomada (`jobs`: tentativas, `retomar_em`, órfãs voltam à fila no reinício, um ciclo por lead),
+aprovação no Disparos (10 por dia, 4 a 7 min, para no primeiro erro), rotinas de tempo, chat por lead, Mesa de agentes,
+MCP (`hd_agente_pedir`, `hd_agente_designar`, `hd_agente_status`).
+
+**O que o banco mostrou em 11/11 (leitura, sem gravar):** 6 agentes ativos, os 6 em "esperando o lead"; o último
+ciclo é de 05/10, dia em que o Claude automático foi desligado. Pelo Disparos saíram 22 mensagens para 11 empresas
+desde 24/09: nenhuma nas semanas de 19 e 26/10, e 1 na de 02/11. O gargalo medido está na esteira, que para antes da
+aprovação. A primeira entrega da Fase 5 é o Coordenador rodando a esteira inteira de um lote (Buscar, triagem, CNPJ,
+designar, abertura, Disparos) até a aprovação, com o relatório.
+
+**O que falta (a Fase 5):**
+1. Agente de função (Coordenador, Pesquisador, Vendedor WhatsApp, Secretária, Mídia) como linha no banco, com
+   identidade, modelo, memória própria e permissões; hoje `agentes` exige um `empresa_id`.
+2. Caixa de mensagens entre agentes (pedido, resposta, entrega, bloqueio), cada mensagem gravada e auditável.
+3. Coordenador: recebe o objetivo, quebra em tarefas com dono, teto de ciclos e condição de pronto, acompanha e relata.
+4. Checkpoint por item em tarefa longa (50 empresas: quais já foram, qual é a próxima) e rotinas configuráveis no banco.
+5. Relatório de lote no WhatsApp do Marcelo (o que saiu, horários, quem respondeu de verdade, o próximo passo).
+6. Máquina sempre ligada (hoje o Farejador, o WhatsApp e o Claude rodam no PC).
+
+**Decisões pendentes:**
+1. Hounder como sistema e Orca como cockpit (recomendado), ou estado no Orca.
+2. Agentes iniciais: Coordenador, Pesquisador e Vendedor WhatsApp (recomendado); Secretária e Financeiro depois.
+3. 24h: provar as fases com o PC ligado e decidir a máquina depois (recomendado); computador dedicado em casa mantém o
+   WhatsApp na rede residencial; VPS só para o que não toca WhatsApp.
+4. Canais: WhatsApp segue com aprovação e 10 por dia; Instagram e LinkedIn o agente prepara e o Marcelo envia
+   (recomendado). Disparo automático de DM no Instagram fere a regra da Meta. O envio de WhatsApp de hoje usa a
+   biblioteca Baileys, que não é o canal oficial; a API oficial exige consentimento prévio do contato e não serve
+   para primeiro contato frio. Escolher: manter o envio aprovado e em volume baixo, ou trocar o primeiro contato.
+5. Teto de consumo: toda tarefa nasce com limite de ciclos e o coordenador para no limite (recomendado).
+6. Identidade dos agentes de função: usar os SOWs de `equipe/` (autonomia, autoridade, ferramentas, gatilhos de
+   escalação) como instrução de cada agente, sem criar outra pasta (recomendado).
+
+### Revisão de 12/11/2026: frentes no Orca (substitui as decisões 1 e 2 acima)
+
+O Marcelo ampliou o pedido. A equipe não precisa ser só de prospecção. Ele quer uma frente responsável por cada coisa
+(Instagram da Horus, Débora, prospecção, tráfego), porque se perde entre conversas: desde 03/11 foram 11 conversas no
+HorusOS, e a Débora passou por quatro desde 23/10 (numa delas: "esse outro chat fez um monte de coisa errada").
+
+**Proposta:** uma aba por frente no workspace atual do Orca. `/abrir <frente>` carrega a casa da frente (pasta, projeto
+e fichas no Hounder) e diz onde parou; "fecha a frente" grava onde parou. A conversa fica no Orca; a operação, a
+aprovação e o trabalho sozinho ficam no Hounder. O coordenador vira a aba Gestão mais o resumo das 8h. A caixa de
+mensagens entre agentes espera uma frente precisar pedir algo a outra sem o Marcelo no meio.
+
+**Por que aba e não workspace por frente:** workspace novo no Orca é uma cópia do repositório, sem o `.mcp.json` e sem
+o `_gestao/` (ficam fora do Git), e com memória própria (a cópia "swordtail" de 09/11 ganhou uma memória vazia). Chat
+aberto em subpasta acha o `.mcp.json`, mas os servidores voltam a pedir aprovação e o que foi desligado na raiz volta
+(testado em 12/11 na pasta da Débora).
+
+**Decisões pendentes (12/11):**
+1. Seis frentes: Prospecção, Social Media (Instagram e Google da Horus), Tráfego, Débora Reis, Hounder e ferramentas,
+   Gestão. O Icarus fica no workspace dele (outra pasta). Cliente novo vira frente quando fecha; lead fica na Prospecção.
+2. Uma aba por frente, no workspace atual.
+3. `/abrir <frente>` para começar e "fecha a frente" para gravar onde parou.
+4. Regra do botão: vira botão no Hounder quando já saiu três vezes do mesmo jeito no chat, começa de algo que está no
+   Hounder e termina em algo que o Marcelo só aprova. Senão, fica na skill, na aba da frente.
+5. Encerrar os 6 agentes de lead parados desde 29/09 a 05/10 (Cavalcante, Talina, LevSaúde, Bioclin, Cintya, Harmony).
+   Reativar é um clique.
+6. Distribuir as 37 tarefas abertas sem projeto pelas frentes e tirar as 3 da Débora de "Presença Google", mostrando a
+   lista antes de gravar.
+7. Testar o pareamento do Orca com o celular, para conversar com as abas pelo telefone.
+
+**Decidido em 12/11/2026 (Marcelo):** "Vamos deixar como tá. Eu acho que se a gente fizer isso a gente vai complicar
+demais." Nenhuma das 7 entra: sem frentes no Orca, os 6 agentes parados e as tarefas sem projeto ficam como estão. Segue
+o jeito atual: o Marcelo pede no chat do Claude (com as skills), e o Hounder roda o que tem hora marcada e guarda o que
+ele aprova. A dúvida que ficou ("o botão do Hounder sabe a regra que eu combinei no chat?") foi respondida e corrigida
+no mesmo dia: ver "A pesquisa de 09/10 nos pedidos" no `CLAUDE.md` desta pasta.
+
+## Fischer: o fluxo do Wagner no Hounder (proposta de 12/11/2026)
+
+> Pedido do Marcelo (12/11): testar com a busca nova do Hounder o fluxo que o Wagner Mazzeo mostra no YouTube. "O nome
+> desse agente que vai prospectando e manda mensagem vai se chamar Fischer." **Nada implementado; decisões abaixo.**
+> Tarefa no Hounder: "Responder as 7 decisões do Fischer".
+
+**O fluxo do Wagner (vídeo e prints de 12/11):** busca no Maps; o Claude filtra pelos critérios da skill; pasta com 10
+empresas (relatório, prévia de site de cada uma, mensagens de abertura, follow-up e objeção); o Grok Bot, com o WhatsApp
+Web logado, manda a M1 de 5 em 5 minutos, o FU1 em 48 horas e o FU2 três dias depois; quem responde vai pro Wagner na
+hora, com a M2 e o print da prévia; o lead com interesse ganha proposta de site + Google Ads.
+
+**Os critérios do Wagner (skill `/prospecta-maps`, instalada em 09/11):** nota acima de 4, 15 avaliações ou mais, sem
+site, com celular, na cidade e do ramo; CNPJ que casa por telefone, CEP ou endereço junto com o nome; fora MEI, filial de
+fora, inapta ou baixada, com menos de 3 anos, com site no ar e quem já foi abordado; avaliações recentes sem maioria
+negativa; domínio divulgado que não abre vira gancho. O "Conferir CNPJ" do Hounder roda sem os cortes de MEI e de 3 anos
+(`--anos 0 --aceita-mei` em `farejador/documentos.mjs`). O Cofre de Abordagens dele (os códigos OBJ-03 e WA-01 dos
+prints) é material à parte e não veio no repositório. As mensagens base vieram (`monta-rodada.js`).
+
+| Passo do Wagner | No Hounder em 12/11 | Falta |
+|---|---|---|
+| Busca no Maps | Botão Buscar, motor Google Maps | Nada |
+| Filtro | Funil da lista, triagem, Conferir CNPJ | Os cortes de MEI e 3 anos; a escolha dos 10 |
+| Pasta do lote | Prévia só para quem respondeu; mensagem lead a lead pela investigação | O lote: 10 com prévia, print e mensagens, aprovado de uma vez |
+| Envio da M1 | Disparos: 10 por dia, 4 a 7 min, para no primeiro erro, "Aprovar todas" | Imagem (o print) no envio |
+| Follow-up | Depende do Claude automático, desligado desde 05/10 | FU1 e FU2 aprovados no lote, enviados sem Claude, cancelados quando o lead responde |
+| Aviso de resposta | "Esperando a sua resposta" depois de 3 horas (`followup.mjs`) | Aviso na hora, com a resposta e a M2 pronta |
+| Proposta | Botão Proposta (PDF) | Proposta pronta quando o lead mostra interesse |
+| "Não posso fechar" | Nada | A resposta no roteiro, pela `/prospeccao` |
+
+**Por que testar:** o gargalo é volume. Desde 24/09 o Disparos mandou mensagem para 11 empresas (banco, 11/11), e o
+Wagner manda 10 num dia. No placar de 12/11 (`node scripts/placar.mjs`), a abertura em dois passos teve 8 respostas em 9,
+a maioria de quem atende ("Em que podemos te ajudar?", "é da recepção"), e nenhuma reunião; o esboço em 24h teve 2
+respostas em 2 e uma reunião (a Débora, que fechou); a prévia com licença teve 1 contato e nenhuma resposta.
+
+**Onde o Fischer diverge do Wagner, e por quê:**
+- **Prévia na M1:** a própria skill dele diz que "numa rodada real a M1 com print e link não teve resposta"; a pesquisa de
+  09/10 (regra 7) aponta a prévia não pedida como a estratégia com mais fracassos de 2026.
+- **"Eu trago cliente qualificado... com IA":** a casa vende só o que tem prova ("arrumo a sua vitrine no Google e meço",
+  `_memoria/comercial.md`, 04/11) e não diz "IA" na abertura (pesquisa de 09/10, regra 13).
+- **Google Ads:** a casa nunca ligou uma campanha para cliente. "Não quero vender algo que ainda não sei executar"
+  (Marcelo, 04/11).
+
+**Decisões pendentes (12/11):**
+1. Aprovar o lote inteiro de uma vez: as 10 M1, FU1 e FU2 (recomendado).
+2. Follow-up sozinho: FU1 em 48 horas, FU2 três dias depois, e para; quem responde sai da fila. Mais follow-up gasta a
+   cota nova do WhatsApp para quem não responde (TechCrunch, 17/10/2025, na pesquisa de 09/10) (recomendado).
+3. Prévia pronta no lote e enviada só depois do sim: print na hora, link se ele pedir (recomendado). Alternativa: lote
+   meio a meio, com o print na M1 de cinco, e o placar decide.
+4. M1 no modelo do Wagner (uma mensagem: o fato, o que eu faço, "Topa eu te mostrar...?"), sem "IA" e sem "trago cliente",
+   escrita lead a lead pela `/prospeccao` (recomendado). Fura a regra 2 da pesquisa (oferta só depois da resposta), e é
+   isso que se testa: a abertura que segue a regra 2 não marcou reunião em 9.
+5. Oferta do lote: site + perfil no Google, que a casa já entregou; o Google Ads entra quando a casa tiver a primeira
+   campanha própria (recomendado). Se entrar já, a proposta diz que é o primeiro feito para fora.
+6. Lead com interesse: aviso na hora e proposta pronta, com o Claude rodando sozinho uma vez por lead; responder continua
+   com o Marcelo (recomendado).
+7. Primeiro lote: marmorarias e marcenarias de Salvador, o nicho do vídeo, em que o dono atende o WhatsApp (recomendado).
+
+**Respondido pelo Marcelo em 13/11/2026:**
+- **4, a M1:** "mantenha isso de trafego de cliente qualificado". A M1 leva "cliente qualificado": o Google Ads põe o
+  anúncio na frente de quem já está pesquisando o serviço, e isso é verdade. Sem número e sem quantidade prometida. O "com
+  IA" segue fora pela regra 13 da pesquisa, até ele dizer o contrário.
+- **5, a oferta:** "alem do site e google, google ads". A proposta do lote é site + perfil no Google + Google Ads. Como é
+  a primeira campanha da casa para cliente, a proposta diz isso, o preço do Ads é de primeiro case (o mesmo raciocínio da
+  MB Barbearia, 19/10), a verba é do cliente e a conta do CPA máximo e a regra de parada vêm antes da verba
+  (`_memoria/trafego/`). Opinião registrada: o Antônio cancelou a R1 da MB em 20/10 por "a gente não sabe tráfego";
+  alinhar com ele antes da primeira proposta com Ads sair.
+- **O botão:** ele pediu o lote por botão no Hounder, sem passar pelo chat. Fica assim: o "Montar lote" se constrói já, e
+  a primeira rodada roda nos dois (o botão e o chat, na mesma busca) para comparar os 10 escolhidos antes de valer sozinho.
+
+**Decisão nova (13/11), pendente:** 8. O lote pula a investigação de seis camadas. Antes da M1, cada lead passa pela
+triagem (Maps, Instagram, CNPJ, gancho conferido por dois caminhos); a investigação profunda roda só em quem responde,
+antes da proposta. Muda a regra "nada entra no Disparos antes da investigação" (CLAUDE.md da raiz, 25/09) só para o
+lote do Fischer (recomendado: 8 das 9 respostas da abertura antiga vieram de quem atende, e cada investigação é uma
+rodada inteira do Opus).
+
+**Respondido em 13/11, segunda rodada:**
+- **2, follow-up sozinho:** aprovado ("pode fazer esse follow-up sim").
+- **8, investigar só no interesse:** aprovado ("você iria investigar só se o cliente mostrasse interesse"). O gatilho é
+  interesse, não qualquer resposta: o "em que posso ajudar?" da recepção não dispara a investigação, e a resposta a ele sai
+  com o que a triagem já levantou.
+- **6 e 7:** ele decide depois. **1 e 3:** pendentes (o 1 foi explicado; o 2 depende dele, porque follow-up que pede
+  aprovação no dia não sai sozinho).
+- **Ideia dele para o botão:** o "Montar lote" abre uma janela do PowerShell com o Claude Code em chat, já com o modelo, o
+  esforço, a skill e o pedido da triagem, e o resultado volta pro Hounder. Proposta de como fazer na resposta de 13/11:
+  cortes e CNPJ pelo código, depois `claude --model claude-opus-5-5 --effort high "<pedido>"` na raiz do repositório; a
+  sessão devolve o JSON da triagem num arquivo e o Farejador grava com o código de hoje (`triarLista`); só o Marcelo
+  aperta (o pedido do Antônio segue na triagem restrita de hoje).
+
+**Terceira rodada (13/11):**
+- **A investigação começa pela mão do Marcelo:** quando o lead mostra interesse na conversa, ele aperta "Investigar". Dá
+  para marcar vários leads e investigar todos de uma vez. No PC abre a janela do chat, e cada lead é investigado na sua
+  própria conversa, um depois do outro (um de cada vez rende mais que vários juntos na mesma conversa).
+- **O fluxo novo fica se gastar menos e render igual ou melhor que o antigo.** O antigo continua no painel até a
+  primeira rodada provar isso.
+- **O envio do lote espera:** o Marcelo vai pesquisar como o bot do Wagner manda (parece um de cada vez, com intervalo e
+  ele respondendo no meio) e manda ainda em 13/11. A decisão 1 espera essa pesquisa.
+- **Organizar o Hounder:** pedido de reorganizar as telas (estão demais). Proposta de mapa na resposta de 13/11.
+
+**Quarta rodada (13/11), construído no mesmo dia:** o filtro do lote é dele, escolhido na tela antes de rodar ("que eu
+decida se vai ser com número X de avaliações ou não"), com a opção de vender o perfil do Google ("gosto de poder vender
+google meu negócio"). O "Montar lote" e o "Investigar" de vários abrem na janela do chat no PC. Detalhe no `CLAUDE.md`
+desta pasta. **Negócio sem perfil no Google** não aparece na busca do Maps: achar esses pede outra fonte (a base da Receita
+do ramo na cidade, cruzada com a busca do Maps: quem tem CNPJ ativo e não aparece no Maps). Proposto, não construído.
+**Quinta rodada (13/11):** ele aprovou a simplificação dos botões ("Pode aplicar") e pediu para achar quem não tem perfil
+no Google. Construído pelo caminho que dá hoje: a busca "Sem Google" (o Claude acha no Instagram e em catálogos e confere
+no Maps, um por um). O cruzamento com a Receita fica para depois: a API que usamos consulta um CNPJ por vez e não lista as
+empresas de um ramo numa cidade.
+
+**Pendentes:** 1 (espera a pesquisa do Marcelo sobre o Wagner), 3, 6 e 7.
+
+**Como roda o botão "Montar lote" (13/11):**
+1. Buscar no Hounder (motor do Maps, sem Claude).
+2. Cortes por código, sem Claude: nota acima de 4, 15 avaliações ou mais, sem site ou com site que não abre, celular, já
+   abordado.
+3. Conferir CNPJ com os cortes do Wagner ligados no lote (MEI, menos de 3 anos, inapta, filial de fora).
+4. O Claude roda só nos que sobraram: triagem com o navegador e o caderno do nicho, escolhe os 10 com gancho verdadeiro e
+   escreve a M1, o FU1 e o FU2 de cada um, com o revisor.
+5. Página do lote no Hounder: 10 cartões, aprovar o lote ou tirar um.
+- Bloco 1, o envio: aprovação única do lote; FU sem Claude, cancelado pela resposta; aviso na hora; imagem no Disparos.
+- Bloco 2, a resposta: investigação e proposta pronta no interesse; roteiro do "não posso fechar" (a fala do Marcelo de
+  12/11, no jeito dele, pela `/prospeccao`); placar do Fischer.
+- Até o bloco 1 ficar pronto, o follow-up entra no Disparos na data e o Marcelo aprova.

@@ -7,7 +7,8 @@ import { gerarProposta, gerarPrevia, conferirCnpj } from './documentos.mjs';
 import { q, q1 } from '../lib/db.mjs';
 import { salvarEmpresa, registrarAtividade, adicionarItensLista, resumoCRM, detalheEmpresa } from '../lib/crm.mjs';
 import { criarOperador } from '../lib/operadores.mjs';
-import { rodarClaude, contaRestrita } from './claude.mjs';
+import { rodarClaude, rodarNaJanela, podeAbrirJanela, contaRestrita } from './claude.mjs';
+import { montarLote } from './lote.mjs';
 import * as P from './prompts.mjs';
 import { revisar, similaridade } from '../app/js/revisor.js';
 import * as WA from './whatsapp.mjs';
@@ -179,25 +180,28 @@ export async function analisarConversa(job, progresso, cancelado) {
 /* =============================== Farejar clientes =============================== */
 export async function pesquisarClientes(job, progresso, cancelado) {
   const { nicho, cidade, quantidade = 20, foco = [], observacao } = job.entrada;
+  // "Sem Google" (13/11/2026, Marcelo: "o google maps escapa quem não tem google meu negócio"): o Claude acha fora do Maps
+  // e confere no navegador, um por um, que o negócio não tem perfil. Usa o navegador, então entra na fila dele.
+  const semGoogle = job.tipo === 'buscar_sem_google';
   let lista = job.saida?.lista_id ? await q1('select * from listas where id = $1', [job.saida.lista_id]) : null;
   if (!lista) {
     lista = await q1(`insert into listas (nome, origem, nicho, cidade, status, job_id, criado_por, observacao) values ($1,'claude',$2,$3,'processando',$4,'claude',$5) returning *`,
-      [`Claude · ${nicho} · ${cidade} · ${new Date().toLocaleDateString('pt-BR')}`, nicho, cidade, job.id, foco.join('; ') || null]);
+      [`${semGoogle ? 'Sem Google' : 'Claude'} · ${nicho} · ${cidade} · ${new Date().toLocaleDateString('pt-BR')}`, nicho, cidade, job.id, semGoogle ? 'Negócios sem perfil no Google' : foco.join('; ') || null]);
     await q('update jobs set saida = $2 where id = $1', [job.id, JSON.stringify({ lista_id: lista.id })]);
   }
-  progresso('Procurando negócios na web');
+  progresso(semGoogle ? 'Procurando fora do Google Maps (Instagram e outros sites)' : 'Procurando negócios na web');
   try {
     const r = await rodarClaude({
-      prompt: P.promptFarejar({ nicho, cidade, quantidade, foco, observacao, listaId: lista.id }),
+      prompt: semGoogle ? P.promptSemGoogle({ nicho, cidade, quantidade, observacao, listaId: lista.id }) : P.promptFarejar({ nicho, cidade, quantidade, foco, observacao, listaId: lista.id }),
       sistema: `${P.REGRAS_CASA}\n\nVocê está farejando leads para a Hórus. Vá salvando os achados com mcp__hound-dog__hd_lista_adicionar_itens conforme encontra.`,
-      modelo: await modeloDe('modelo_pesquisa'), modo: 'horus', ferramentas: FERR_PESQUISA, timeoutMs: 25 * 60 * 1000,
+      modelo: await modeloDe('modelo_pesquisa'), modo: 'horus', ferramentas: semGoogle ? FERR_INVESTIGACAO : FERR_PESQUISA, timeoutMs: (semGoogle ? 40 : 25) * 60 * 1000,
       aoFerramenta: (f) => progresso(`${f.rotulo}${f.detalhe ? `: ${f.detalhe.slice(0, 70)}` : ''}`),
       deveParar: cancelado,
     });
     const total = (await q1('select count(*)::int n from lista_itens where lista_id = $1', [lista.id])).n;
     await q("update listas set status = 'pronta', total = $2, observacao = coalesce($3, observacao) where id = $1", [lista.id, total, r.json?.resumo || null]);
-    if (!total) throw new Error('O Claude não encontrou nenhum negócio (ou não conseguiu salvar). Tente um nicho ou cidade mais específicos.');
-    return { lista_id: lista.id, total, resumo: r.json?.resumo, melhores: r.json?.melhores };
+    if (!total) throw new Error(semGoogle ? `O Claude não achou nenhum negócio sem perfil no Google${r.json?.com_perfil ? ` (${r.json.com_perfil} conferidos já tinham perfil)` : ''}. Tente outro bairro ou nicho.` : 'O Claude não encontrou nenhum negócio (ou não conseguiu salvar). Tente um nicho ou cidade mais específicos.');
+    return { lista_id: lista.id, total, resumo: r.json?.resumo, melhores: r.json?.melhores, conferidos: r.json?.conferidos, com_perfil: r.json?.com_perfil };
   } catch (e) {
     const total = (await q1('select count(*)::int n from lista_itens where lista_id = $1', [lista.id]).catch(() => ({ n: 0 }))).n;
     await q("update listas set status = $2, total = $3, observacao = $4 where id = $1",
@@ -292,12 +296,18 @@ export async function investigarEmpresa(job, progresso, cancelado) {
     [`Investigação — ${empresa.nome}`, empresaId, job.id]);
   progresso('Investigando: empresa, pessoas, reputação, presença, dinheiro, concorrência');
   try {
-    const r = await rodarClaude({
-      prompt: P.promptInvestigacao({ empresa, atividades, linhaOriginal: linha, pesquisasAnteriores: anterior?.resumo, formato, lote }),
-      sistema: P.REGRAS_CASA, modelo: await modeloDe('modelo_pesquisa'), modo: 'horus', ferramentas: FERR_INVESTIGACAO, timeoutMs: 45 * 60 * 1000,
-      aoFerramenta: (f) => progresso(`${f.rotulo}${f.detalhe ? `: ${f.detalhe.slice(0, 70)}` : ''}`),
-      deveParar: cancelado,
-    });
+    const promptInv = P.promptInvestigacao({ empresa, atividades, linhaOriginal: linha, pesquisasAnteriores: anterior?.resumo, formato, lote });
+    // No PC do Marcelo, a investigação pode abrir na janela do chat (13/11/2026): ele assiste e corrige; o resultado volta igual
+    const naJanela = Boolean(job.entrada?.janela) && podeAbrirJanela();
+    if (naJanela) progresso('Janela do chat aberta no PC');
+    const r = naJanela
+      ? await rodarNaJanela({ chave: job.id, titulo: `Investigação · ${empresa.nome}`, prompt: promptInv, modelo: await modeloDe('modelo_pesquisa'), deveParar: cancelado })
+      : await rodarClaude({
+        prompt: promptInv,
+        sistema: P.REGRAS_CASA, modelo: await modeloDe('modelo_pesquisa'), modo: 'horus', ferramentas: FERR_INVESTIGACAO, timeoutMs: 45 * 60 * 1000,
+        aoFerramenta: (f) => progresso(`${f.rotulo}${f.detalhe ? `: ${f.detalhe.slice(0, 70)}` : ''}`),
+        deveParar: cancelado,
+      });
     const d = r.json;
     if (!d || !d.decisao) throw new Error('O Claude não devolveu a investigação no formato esperado.');
     const b = d.briefing || {};
@@ -598,15 +608,15 @@ export async function criarOperadorJob(job) {
 }
 
 export const TAREFAS = {
-  chat, analisar_conversa: analisarConversa, pesquisar_clientes: pesquisarClientes, buscar_maps: buscarMaps, gerar_proposta: gerarProposta, gerar_previa: gerarPrevia, conferir_cnpj: conferirCnpj, enriquecer_empresa: enriquecerEmpresa,
+  chat, analisar_conversa: analisarConversa, pesquisar_clientes: pesquisarClientes, buscar_sem_google: pesquisarClientes, buscar_maps: buscarMaps, gerar_proposta: gerarProposta, gerar_previa: gerarPrevia, conferir_cnpj: conferirCnpj, enriquecer_empresa: enriquecerEmpresa,
   pesquisa_mercado: pesquisaMercado, enriquecer_lista: enriquecerLista, mensagem_personalizada: mensagemPersonalizada,
   instagram, ideias_instagram: ideiasInstagram, whatsapp_conectar: whatsappConectar, whatsapp_desconectar: whatsappDesconectar,
-  whatsapp_codigo: whatsappCodigo, whatsapp_enviar: whatsappEnviar, criar_operador: criarOperadorJob, investigar_empresa: investigarEmpresa, triar_lista: triarLista,
+  whatsapp_codigo: whatsappCodigo, whatsapp_enviar: whatsappEnviar, criar_operador: criarOperadorJob, investigar_empresa: investigarEmpresa, triar_lista: triarLista, montar_lote: montarLote,
   midia_semana: midiaSemana, midia_pauta: midiaPauta, midia_esboco: midiaEsboco, midia_montar: midiaMontar, midia_ajuste: midiaAjuste, midia_triagem: midiaTriagem, agente_ciclo: cicloAgente, responder_auto: responderAuto,
 };
 
 /** Tarefas que abrem o navegador do Farejador: uma de cada vez (o perfil do Chrome não abre duas vezes). */
-export const USA_NAVEGADOR = new Set(['investigar_empresa', 'triar_lista', 'midia_montar']);   // montar usa o Chrome do Marcelo (ChatGPT): um post por vez
+export const USA_NAVEGADOR = new Set(['investigar_empresa', 'triar_lista', 'montar_lote', 'buscar_sem_google', 'midia_montar']);   // montar usa o Chrome do Marcelo (ChatGPT): um post por vez
 
 /** Tarefas que usam o Claude (limite de concorrência menor). */
-export const USA_CLAUDE = new Set(['gerar_previa', 'investigar_empresa', 'triar_lista', 'chat', 'analisar_conversa', 'pesquisar_clientes', 'enriquecer_empresa', 'pesquisa_mercado', 'enriquecer_lista', 'mensagem_personalizada', 'ideias_instagram', 'midia_semana', 'midia_pauta', 'midia_esboco', 'midia_montar', 'midia_ajuste', 'midia_triagem', 'agente_ciclo', 'responder_auto']);
+export const USA_CLAUDE = new Set(['gerar_previa', 'investigar_empresa', 'triar_lista', 'montar_lote', 'chat', 'analisar_conversa', 'pesquisar_clientes', 'buscar_sem_google', 'enriquecer_empresa', 'pesquisa_mercado', 'enriquecer_lista', 'mensagem_personalizada', 'ideias_instagram', 'midia_semana', 'midia_pauta', 'midia_esboco', 'midia_montar', 'midia_ajuste', 'midia_triagem', 'agente_ciclo', 'responder_auto']);
